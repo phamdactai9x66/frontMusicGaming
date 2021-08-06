@@ -2,16 +2,16 @@
 import React from 'react'
 import { RouteChildrenProps, withRouter } from "react-router-dom";
 
-interface Footer<T> {
+interface Header<T> {
 
 }
 
-const Footer: React.FC<Footer<any>> = ({ ...props }) => {
+const Header: React.FC<Header<any>> = ({ ...props }) => {
     return (
         <footer>
-            <h1> this  Footer client</h1>
+            <h1> this  Header Admin</h1>
         </footer>
     )
 }
 
-export default Footer
+export default Header

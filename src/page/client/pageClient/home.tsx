@@ -8,12 +8,9 @@ interface Home<T> {
 }
 
 const Home: React.FC<Home<any>> = ({ ...props }) => {
-    const stateCart = useSelector<{ cart: any }>(state => state.cart) as ForminitialCart;
-    const dispatchCart = useDispatch();
+
     return (
         <div>
-            <p>{JSON.stringify(stateCart.dataCart)}</p>
-            <button onClick={() => { dispatchCart(funcitonCart(typeAction.pustCart)) }}>pust Cart</button>
             this Home
         </div>
     )

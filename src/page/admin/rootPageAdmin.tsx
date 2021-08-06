@@ -1,5 +1,6 @@
 import React from 'react'
-
+import Header from "../partials/admin/header";
+import Footer from "../partials/admin/footer";
 interface rootPageAdmin<T> {
 
 }
@@ -7,7 +8,7 @@ interface rootPageAdmin<T> {
 const rootPageAdmin: React.FC<rootPageAdmin<any>> = ({ ...props }) => {
     return (
         <>
-            <header><h1>header admin</h1></header>
+            <Header />
 
             <main>
                 {
@@ -15,7 +16,7 @@ const rootPageAdmin: React.FC<rootPageAdmin<any>> = ({ ...props }) => {
                 }
             </main>
 
-            <footer><h1>footer admin</h1></footer>
+            <Footer />
         </>
     )
 }
