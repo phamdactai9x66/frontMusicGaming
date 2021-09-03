@@ -1,5 +1,5 @@
 import { Route } from "react-router-dom"
-import Home from "./page/client/pageClient/home"
+import Home from "./page/client/pageClient/home/home"
 import HomeAdmin from "./page/admin/pageAdmin/home"
 export interface propertyPage {
     path: string,

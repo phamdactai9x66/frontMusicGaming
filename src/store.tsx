@@ -1,12 +1,12 @@
-import { createStore, applyMiddleware } from "redux";
-import AllReducer from "./redux/rootRedux";
-import { composeWithDevTools } from "redux-devtools-extension";
-import thunk from "redux-thunk";
+import { configureStore } from "@reduxjs/toolkit";
+import allReducer from "./redux/rootReducer";
 
 const firstMidd = (store: any) => (next: any) => (action: any) => {
-
-    return next(action);
+    return next(action)
 }
 
-const store = createStore(AllReducer, composeWithDevTools(applyMiddleware(firstMidd, thunk)));
-export default store;
+const storeGlobal = configureStore({
+    reducer: allReducer,
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(firstMidd),
+})
+export default storeGlobal
