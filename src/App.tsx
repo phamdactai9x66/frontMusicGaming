@@ -13,7 +13,7 @@ function App() {
       <Router>
         <Provider store={storeGlobal}>
           <Switch>
-            <Route path="/admin" exact={true}>
+            <Route path="/admin" >
               <RootAdmin>
                 <Switch>
                   {handlePage<propertyPage[]>(Admin)}
@@ -21,7 +21,7 @@ function App() {
               </RootAdmin>
             </Route>
 
-            <Route path="" exact={false}>
+            <Route path="">
               <RootClient>
                 <Switch>
                   {handlePage<propertyPage[]>(Client)}
@@ -32,9 +32,6 @@ function App() {
           </Switch>
         </Provider>
       </Router>
-
-
-
     </>
   );
 }

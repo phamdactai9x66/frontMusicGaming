@@ -1,4 +1,12 @@
+$test1:"red";
+:root{
+    --vartest1:rgb(252, 0, 0);
+}
 .test1{
     color: red;
     background-color: blue;
+}
+.test123{
+    font-size: 2rem;
+    color: var(--vartest1);
 }

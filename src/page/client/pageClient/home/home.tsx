@@ -9,7 +9,8 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
 
     return (
         <div>
-            <h1 className="test1">test1</h1>
+            <p className="test123">XIn chao</p>
+
             this Home
         </div>
     )
