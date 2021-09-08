@@ -9,7 +9,7 @@ interface Footer<T> {
 const Footer: React.FC<Footer<any>> = ({ ...props }) => {
     return (
         <footer>
-            <h1>  this  Footer client</h1>
+            <h1>  this  Footer admin</h1>
         </footer>
     )
 }
