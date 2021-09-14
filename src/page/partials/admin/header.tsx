@@ -14,7 +14,7 @@ const Header: React.FC<Header<any>> = ({ ...props }) => {
     return (
         <header>
             <div className="header__content">
-                <FiMenu className='header__content--icon'/>
+               <FiMenu className='header__content--icon'/>  
                 <span>HOME</span>
             </div>
             <div className="header__icons">
