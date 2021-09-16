@@ -94,14 +94,13 @@ main {
 }
 .toggle {
   @extend %toggleStyle;
-  color: rgb(212, 69, 69);
   top: 1.5rem;
   left: 6rem;
-  background-color: #ffffff00;
+  background-color: #ee4a4a00;
   width: 14rem;
   height: 1rem;
   cursor: pointer;
-   z-index: 500;
+  z-index: 1;
 }
 .nav__check {
   @extend %toggleStyle;
@@ -223,7 +222,7 @@ main {
 }
 
 // :checked
-input:checked {
+.tab input:checked {
   ~ .tab-label {
     background: #121a34;
     & .grid_item div {
@@ -241,6 +240,7 @@ input:checked {
 
 
 header {
+  background-color: #fff;
   width: 100%;
   line-height: 60px;
   display: flex;
@@ -255,24 +255,73 @@ header {
       }
       span{
         position: absolute;
-        z-index: 100;
         cursor: pointer;
         font-size: 17px;
         font-weight: bold;
+        z-index: 2;
+        color: black;
       }
     }
     &__icons{
       cursor: pointer;
       font-size: 1.3rem;
       &--2{
-        margin: 0px 10px 0px 10px;
+        margin: 20px 15px 0px 10px;
+      }
+      &--3{
+        margin: 20px 15px 0px 10px;
       }
       &--4{
-        margin: 0px 33px 0px 10px;
+        margin: 20px 15px 0px 10px;
       }
     }
   }
-  
+ .header__icons {
+   display: flex;
+ } 
+ .search-box {
+   background: rgb(255, 255, 255);
+   height: 40px;
+   border-radius: 50px;
+   margin-top: 0.7rem;
+   border: 1px solid black;
+   margin-right: 0.8rem;
+ }
+.search-btn {
+  color: rgb(0, 0, 0);
+  float: right;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgb(255, 255, 255);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 1s;
+}
+
+.search-input {
+  border: none;
+  background: none;
+  outline: none;
+  padding: 0;
+  color: rgb(0, 0, 0);
+  font-size: 15px;
+  transition: 0.4s;
+  line-height: 10px;
+  width: 0;
+  position: relative;
+  bottom: 0.7rem;
+  left: 0.7rem;
+}
+
+.search-box:hover > .search-input {
+  width: 250px;
+  position: relative;
+  bottom: 0.7rem;
+  left: 0.7rem;
+}
+
 }
 //=====Header 
 
@@ -291,33 +340,89 @@ header {
     }
     .footer__ver p{
       margin-top: 10px;
-    }
+    }   
   }
 }
 //=====Footer
-@media only screen and (max-width: 667px) {
-  .main_admin {
-    display: grid;
-    grid-template-columns: 280px 323px;
+.header_content_mobie {
+  display: none;
+}
+.header__icons_mobie {
+  display: none;
+}
+
+@media only screen and (max-width: 736px){
+  .toggle {
+    background-color: #5adaeb00;
+    left: -6.4rem;
+  }
+  .main_admin{
+    margin-left: -17.5rem;
     ._sidebar {
-      height: 115vh;
+      height: 125vh;
+    }
   }
+  .nav__check:checked ~ .main_admin{
+      margin-left: -12rem;
+      transition: 0.5s;
   }
+  .tabs .tab {
+    padding-top: 1rem;
+  }
+  main {
+    overflow: auto;
+    height: 150vh;
+  }
+
+  .header__icons_mobie svg {
+    padding: 0 0.4rem 1.1rem 0.4rem;
+    font-size: 2rem;
+  }
+  .header__icons {
+    display: none !important;
+  }
+  .header__content span {
+    display: none;
+  }
+  .header__icons_mobie {
+    display: block;
+    position: fixed;
+    z-index: 1000;
+    right: 1rem;
+    top: 1.2rem;
+    transition: 0.5s;
+    .btn {
+      margin-right: -0.9rem;
+      & svg {
+        font-size: 2.1rem;
+      }
+    }
+  }
+  .header_content_mobie {
+    display: block;
+    font-size: 17px;
+    font-weight: bold;
+    position: fixed;
+    z-index: 1000;
+    left: 10%;
+    top: 1.2rem;
+    transition: 0.5s;
+    color: black;
+    text-decoration: none;
+  }
+
+  .nav__check:checked ~ .header_content_mobie{
+    left: 27%;
+    transition: 0.5s;
+  }
+   .grid-main-2 {
+     margin-left: 3rem !important;
+   }
   main .home-page .grid-main-2 .main2 {
     background: white;
-    height: 100px;
+    height: 150px;
 } 
-.gird-main-3 {
-  margin: 0rem 0rem 0rem -3rem;
-}
-.main4 {
-  transform: scale(0.8);
-  margin-bottom: -4rem;
-}
-.main5 {
-  transform: scale(0.8);
-  margin-bottom: -7rem;
-}
+
 main .home-page .gird-main-3 .main5 .main5-table-flex3 div a {
   background: #1d2d47;
   color: white;
@@ -329,18 +434,74 @@ main .home-page .gird-main-3 .main5 .main5-table-flex3 div a {
 }
 header {
   position: sticky;
-  z-index: 200;
   top: 0;
   left: 0;
   bottom: 0;
   right: 0;
-  background-color: #fff;
+  background-color: rgb(255, 255, 255);
+  padding-right: 1rem;
 }
-.home-top {
-  margin-left: -1.2rem;
-  margin-right: 1rem;
+
 }
+
+.modal-window {
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.575);
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 999;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.3s;
+  &:target {
+    visibility: visible;
+    opacity: 1;
+  }
+  & > div {
+    width: 400px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%);
+    input {
+      color: #ffd35b;
+      margin: 0 0 0 15%;
+      outline: none;
+      background: none;
+      border: none;
+      width: 15rem;
+      border-bottom: 0.05rem solid rgb(67, 197, 219);
+    }
+    button {
+      cursor: pointer;
+      border: none;
+      border-radius: 100%;
+      background: rgb(42, 164, 212);
+      .icon-search_mobie {
+        padding: 0.5rem;
+        color: #fff;
+      }
+    }
+    .modal-close {
+      padding: 0.5rem;
+      border-radius: 100%;
+      border: 0.1rem solid rgba(219, 224, 217, 0.801);
+      text-decoration: none;
+      color: #fdfdfd;
+      position: fixed;
+      top: -18.5rem;
+      right: 2rem ;
+      z-index: 1;
+    }
+  }
 }
+
+
+
+/* Demo Styles */
+
 
 
 

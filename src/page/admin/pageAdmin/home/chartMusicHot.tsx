@@ -100,7 +100,7 @@ export default function App() {
            activeIndex={activeIndex}
            activeShape={ChartMusicHot}
            data={data}
-           cx={145}
+           cx={130}
            cy={80}
            innerRadius={30}
            outerRadius={40}

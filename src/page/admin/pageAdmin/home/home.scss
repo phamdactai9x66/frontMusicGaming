@@ -255,7 +255,6 @@
           border-bottom: 0.1rem solid rgb(126, 126, 126);
       }
 
-  
   }
 
   // :checked
@@ -332,15 +331,7 @@
  .chart_music_mobie {
      display: none;
   }
-    @media screen and (max-width:768px)  {
-        .home-top{
-            display: grid;
-            grid-template-columns:  1fr 1fr;
-            .box-bb{
-                width: 100%;
-            }
-          
-        }
+    @media only screen and (max-width:700px)  {
         .grid-main-2{
             display: grid;
             grid-template-columns: 1fr;
@@ -356,38 +347,33 @@
             display: grid;
             grid-template-columns: 1fr;
         }
+        .home-top{
+            display: grid;
+            grid-template-columns: 1fr;
+            .box-bb{
+                width: 100%;
+                z-index: -10;
+            } 
+        }
+        .chart_user_destop {
+            display: none;
+        }
+        .chart_user_mobie {
+            display: block;
+        }
+        .chart_music_destop {
+            display: none;
+        }
+        .chart_music_mobie {
+            display: block;
+        }
+        .payload_music {
+            font-size: 0.7rem;
+        }
+        .text_music {
+            font-size: 0.6rem;
+        }
     }
-    @media only screen and (max-width: 667px) {
-            .home-top{
-                display: grid;
-                grid-template-columns: 1fr;
-                .box-bb{
-                    width: 100%;
-                } 
-
-            }
-            .chart_user_destop {
-                display: none;
-            }
-            .chart_user_mobie {
-                display: block;
-            }
-            .chart_music_destop {
-                display: none;
-            }
-            .chart_music_mobie {
-                display: block;
-            }
-            .payload_music {
-                font-size: 0.7rem;
-            }
-            .text_music {
-                font-size: 0.6rem;
-            }
-            .Dashboarh {
-                margin-left: -1.3rem;
-            }
-      }
 
 }
 // mobie 

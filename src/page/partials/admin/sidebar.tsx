@@ -4,7 +4,6 @@ import imgAdmin from '../../public_image/img_admin/admin.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { Link, RouteChildrenProps, withRouter } from "react-router-dom";
-import 'bootstrap/dist/css/bootstrap.min.css';
 import { BsMusicNoteBeamed, BsFillImageFill, BsChat } from 'react-icons/bs';
 import { setOriginalNode } from 'typescript';
 import { BiMessageSquareAdd, BiPieChart } from 'react-icons/bi';
