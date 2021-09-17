@@ -14,7 +14,7 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
 
   return (
     <>
-  
+
       <div className="home-page">
         <section>
           <h3 className="Dashboarh">Dashboard</h3>
@@ -125,13 +125,13 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
 
                 <div className="_tab-content">
                   <div className="content_flex">
-                      <div>Name 1</div> <input className="checkbox_name" type="checkbox" />
+                    <div>Name 1</div> <input className="checkbox_name" type="checkbox" />
                   </div>
                   <div className="content_flex">
-                      <div>Name 2</div> <input className="checkbox_name" type="checkbox" />
+                    <div>Name 2</div> <input className="checkbox_name" type="checkbox" />
                   </div>
                   <div className="content_flex">
-                      <div>Name 3</div> <input className="checkbox_name" type="checkbox" />
+                    <div>Name 3</div> <input className="checkbox_name" type="checkbox" />
                   </div>
                 </div>
 
@@ -152,13 +152,13 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
 
                 <div className="_tab-content">
                   <div className="content_flex">
-                      <div>Name 1</div> <input className="checkbox_name" type="checkbox" />
+                    <div>Name 1</div> <input className="checkbox_name" type="checkbox" />
                   </div>
                   <div className="content_flex">
-                      <div>Name 2</div> <input className="checkbox_name" type="checkbox" />
+                    <div>Name 2</div> <input className="checkbox_name" type="checkbox" />
                   </div>
                   <div className="content_flex">
-                      <div>Name 3</div> <input className="checkbox_name" type="checkbox" />
+                    <div>Name 3</div> <input className="checkbox_name" type="checkbox" />
                   </div>
                 </div>
 
@@ -179,13 +179,13 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
 
                 <div className="_tab-content">
                   <div className="content_flex">
-                      <div>Name 1</div> <input className="checkbox_name" type="checkbox" />
+                    <div>Name 1</div> <input className="checkbox_name" type="checkbox" />
                   </div>
                   <div className="content_flex">
-                      <div>Name 2</div> <input className="checkbox_name" type="checkbox" />
+                    <div>Name 2</div> <input className="checkbox_name" type="checkbox" />
                   </div>
                   <div className="content_flex">
-                      <div>Name 3</div> <input className="checkbox_name" type="checkbox" />
+                    <div>Name 3</div> <input className="checkbox_name" type="checkbox" />
                   </div>
                 </div>
 
@@ -206,13 +206,13 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
 
                 <div className="_tab-content">
                   <div className="content_flex">
-                      <div>Name 1</div> <input className="checkbox_name" type="checkbox" />
+                    <div>Name 1</div> <input className="checkbox_name" type="checkbox" />
                   </div>
                   <div className="content_flex">
-                      <div>Name 2</div> <input className="checkbox_name" type="checkbox" />
+                    <div>Name 2</div> <input className="checkbox_name" type="checkbox" />
                   </div>
                   <div className="content_flex">
-                      <div>Name 3</div> <input className="checkbox_name" type="checkbox" />
+                    <div>Name 3</div> <input className="checkbox_name" type="checkbox" />
                   </div>
                 </div>
 
@@ -233,13 +233,13 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
 
                 <div className="_tab-content">
                   <div className="content_flex">
-                      <div>Name 1</div> <input className="checkbox_name" type="checkbox" />
+                    <div>Name 1</div> <input className="checkbox_name" type="checkbox" />
                   </div>
                   <div className="content_flex">
-                      <div>Name 2</div> <input className="checkbox_name" type="checkbox" />
+                    <div>Name 2</div> <input className="checkbox_name" type="checkbox" />
                   </div>
                   <div className="content_flex">
-                      <div>Name 3</div> <input className="checkbox_name" type="checkbox" />
+                    <div>Name 3</div> <input className="checkbox_name" type="checkbox" />
                   </div>
                 </div>
 
@@ -260,13 +260,13 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
 
                 <div className="_tab-content">
                   <div className="content_flex">
-                      <div>Name 1</div> <input className="checkbox_name" type="checkbox" />
+                    <div>Name 1</div> <input className="checkbox_name" type="checkbox" />
                   </div>
                   <div className="content_flex">
-                      <div>Name 2</div> <input className="checkbox_name" type="checkbox" />
+                    <div>Name 2</div> <input className="checkbox_name" type="checkbox" />
                   </div>
                   <div className="content_flex">
-                      <div>Name 3</div> <input className="checkbox_name" type="checkbox" />
+                    <div>Name 3</div> <input className="checkbox_name" type="checkbox" />
                   </div>
                 </div>
 
@@ -287,13 +287,13 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
 
                 <div className="_tab-content">
                   <div className="content_flex">
-                      <div>Name 1</div> <input className="checkbox_name" type="checkbox" />
+                    <div>Name 1</div> <input className="checkbox_name" type="checkbox" />
                   </div>
                   <div className="content_flex">
-                      <div>Name 2</div> <input className="checkbox_name" type="checkbox" />
+                    <div>Name 2</div> <input className="checkbox_name" type="checkbox" />
                   </div>
                   <div className="content_flex">
-                      <div>Name 3</div> <input className="checkbox_name" type="checkbox" />
+                    <div>Name 3</div> <input className="checkbox_name" type="checkbox" />
                   </div>
                 </div>
 
@@ -310,152 +310,152 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
 
             </div>
             <div className="main5">
-       
-              <div className="main5-table-flex3">
-              <Tabs>
-        <TabList>
-          <Tab><Link to="#" className="btn">Admin</Link></Tab>
-          <Tab><Link to="#" className="btn">Member</Link></Tab>
-          <Tab><Link to="#" className="btn">Viewer</Link></Tab>
-        </TabList>
 
-        <TabPanel>
-        <table className="table ">
-                <thead>
-                  <tr className=" text-white">
-                    <th scope="col">#</th>
-                    <th scope="col">Full name</th>
-                    <th scope="col">Age</th>
-                    <th scope="col">Job title</th>
-                    <th scope="col">Location</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>admin</td>
-                    <td>22</td>
-                    <td>tudeptrai</td>
-                    <td>tudeptrai</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>admin</td>
-                    <td>22</td>
-                    <td>tudeptrai</td>
-                    <td>tudeptrai</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>admin</td>
-                    <td>22</td>
-                    <td>tudeptrai</td>
-                    <td>tudeptrai</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>admin</td>
-                    <td>22</td>
-                    <td>tudeptrai</td>
-                    <td>tudeptrai</td>
-                  </tr>
-                </tbody>
-              </table>
-        </TabPanel>
-        <TabPanel>
-        <table className="table ">
-                <thead>
-                  <tr className=" text-white">
-                    <th scope="col">#</th>
-                    <th scope="col">Full name</th>
-                    <th scope="col">Age</th>
-                    <th scope="col">Job title</th>
-                    <th scope="col">Location</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>member</td>
-                    <td>22</td>
-                    <td>tudeptrai</td>
-                    <td>tudeptrai</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>member</td>
-                    <td>22</td>
-                    <td>tudeptrai</td>
-                    <td>tudeptrai</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>member</td>
-                    <td>22</td>
-                    <td>tudeptrai</td>
-                    <td>tudeptrai</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>member</td>
-                    <td>22</td>
-                    <td>tudeptrai</td>
-                    <td>tudeptrai</td>
-                  </tr>
-                </tbody>
-              </table>
-        </TabPanel>
-        <TabPanel>
-        <table className="table">
-                <thead>
-                  <tr className=" text-white">
-                    <th scope="col">#</th>
-                    <th scope="col">Full name</th>
-                    <th scope="col">Age</th>
-                    <th scope="col">Job title</th>
-                    <th scope="col">Location</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>viewer</td>
-                    <td>22</td>
-                    <td>tudeptrai</td>
-                    <td>tudeptrai</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>viewer</td>
-                    <td>22</td>
-                    <td>tudeptrai</td>
-                    <td>tudeptrai</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>viewer</td>
-                    <td>22</td>
-                    <td>tudeptrai</td>
-                    <td>tudeptrai</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>viewer</td>
-                    <td>22</td>
-                    <td>tudeptrai</td>
-                    <td>tudeptrai</td>
-                  </tr>
-                </tbody>
-              </table>
-        </TabPanel>
-      </Tabs>
+              <div className="main5-table-flex3">
+                <Tabs>
+                  <TabList>
+                    <Tab><Link to="#" className="btn">Admin</Link></Tab>
+                    <Tab><Link to="#" className="btn">Member</Link></Tab>
+                    <Tab><Link to="#" className="btn">Viewer</Link></Tab>
+                  </TabList>
+
+                  <TabPanel>
+                    <table className="table">
+                      <thead>
+                        <tr className="text-white">
+                          <th scope="col">#</th>
+                          <th scope="col">Full name</th>
+                          <th scope="col">Age</th>
+                          <th scope="col">Job title</th>
+                          <th scope="col">Location</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <th scope="row">1</th>
+                          <td>admin</td>
+                          <td>22</td>
+                          <td>tudeptrai</td>
+                          <td>tudeptrai</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">1</th>
+                          <td>admin</td>
+                          <td>22</td>
+                          <td>tudeptrai</td>
+                          <td>tudeptrai</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">1</th>
+                          <td>admin</td>
+                          <td>22</td>
+                          <td>tudeptrai</td>
+                          <td>tudeptrai</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">1</th>
+                          <td>admin</td>
+                          <td>22</td>
+                          <td>tudeptrai</td>
+                          <td>tudeptrai</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </TabPanel>
+                  <TabPanel>
+                    <table className="table ">
+                      <thead>
+                        <tr className=" text-white">
+                          <th scope="col">#</th>
+                          <th scope="col">Full name</th>
+                          <th scope="col">Age</th>
+                          <th scope="col">Job title</th>
+                          <th scope="col">Location</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <th scope="row">1</th>
+                          <td>member</td>
+                          <td>22</td>
+                          <td>tudeptrai</td>
+                          <td>tudeptrai</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">1</th>
+                          <td>member</td>
+                          <td>22</td>
+                          <td>tudeptrai</td>
+                          <td>tudeptrai</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">1</th>
+                          <td>member</td>
+                          <td>22</td>
+                          <td>tudeptrai</td>
+                          <td>tudeptrai</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">1</th>
+                          <td>member</td>
+                          <td>22</td>
+                          <td>tudeptrai</td>
+                          <td>tudeptrai</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </TabPanel>
+                  <TabPanel>
+                    <table className="table">
+                      <thead>
+                        <tr className=" text-white">
+                          <th scope="col">#</th>
+                          <th scope="col">Full name</th>
+                          <th scope="col">Age</th>
+                          <th scope="col">Job title</th>
+                          <th scope="col">Location</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <th scope="row">1</th>
+                          <td>viewer</td>
+                          <td>22</td>
+                          <td>tudeptrai</td>
+                          <td>tudeptrai</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">1</th>
+                          <td>viewer</td>
+                          <td>22</td>
+                          <td>tudeptrai</td>
+                          <td>tudeptrai</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">1</th>
+                          <td>viewer</td>
+                          <td>22</td>
+                          <td>tudeptrai</td>
+                          <td>tudeptrai</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">1</th>
+                          <td>viewer</td>
+                          <td>22</td>
+                          <td>tudeptrai</td>
+                          <td>tudeptrai</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </TabPanel>
+                </Tabs>
               </div>
-              
+
             </div>
           </div>
-        
-        {/* tabs */}
-    
+
+          {/* tabs */}
+
         </section>
       </div>
 

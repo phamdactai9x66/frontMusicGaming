@@ -331,21 +331,25 @@
  .chart_music_mobie {
      display: none;
   }
+  .cutting_string {
+    width: 500px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
     @media only screen and (max-width:700px)  {
         .grid-main-2{
             display: grid;
             grid-template-columns: 1fr;
-            .main1{
-                margin-right: 0px;
-            }
             .main2{
-              margin-left: 0px;  
                 margin-top: 10px;
             }
         }
         .gird-main-3{
             display: grid;
+            grid-gap: 3rem;
             grid-template-columns: 1fr;
+            margin-bottom: -2rem;
         }
         .home-top{
             display: grid;

@@ -95,7 +95,7 @@ export default function App() {
   return (
     <>
     <div className="chart_music_mobie">
-    <PieChart style={{marginLeft: "-2.7rem"}} width={280} height={200}>
+    <PieChart style={{marginLeft: "-2.5rem"}} width={280} height={200}>
          <Pie
            activeIndex={activeIndex}
            activeShape={ChartMusicHot}

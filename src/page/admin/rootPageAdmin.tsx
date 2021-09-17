@@ -28,7 +28,7 @@ const rootPageAdmin: React.FC<rootPageAdmin<any>> = ({ ...props }) => {
                                 <div>
                                     <a href="#" title="Close" className="modal-close">X</a><br/>
                                     <form action="">
-                                    <input type="text" name=""/>
+                                    <input type="text" name="" placeholder="Search..."/>
                                     <button><AiOutlineSearch className="icon-search_mobie"/></button>
                                     </form>
                                  </div>   
