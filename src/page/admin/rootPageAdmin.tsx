@@ -22,21 +22,6 @@ const rootPageAdmin: React.FC<rootPageAdmin<any>> = ({ ...props }) => {
                 <Link className="header_content_mobie" to="/">
                     <div>HOME</div>
                 </Link>
-                <div className="header__icons_mobie">
-                        <a className="btn" href="#open-modal"><AiOutlineSearch /></a>
-                            <div id="open-modal" className="modal-window">
-                                <div>
-                                    <a href="#" title="Close" className="modal-close">X</a><br/>
-                                    <form action="">
-                                    <input type="text" name="" placeholder="Search..."/>
-                                    <button><AiOutlineSearch className="icon-search_mobie"/></button>
-                                    </form>
-                                 </div>   
-                            </div>
-                    <BiMessageRounded />
-                    <FiBell />
-                    <FaExpandArrowsAlt />
-                </div>
                 <div className="main_admin">
                     <aside>
                         <Sidebar />

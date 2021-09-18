@@ -12,27 +12,44 @@ interface Header<T> {
 
 const Header: React.FC<Header<any>> = ({ ...props }) => {
     return (
-
-        <header>
-            <div className="header__content">
-
-                <FiMenu className='header__content--icon' />
-                <Link to="/"><span>HOME</span></Link>
-            </div>
-            <div className="header__icons">
-                <form action="">
-                    <div className="search-box">
-                        <input className="search-input" type="text" name="" placeholder="Search..." />
-                        <button style={{border: "none"}} className="search-btn">
-                            <AiOutlineSearch />
-                        </button>
+        <>
+            <div>
+                <div className="header__icons_mobie">
+                    <a className="btn" href="#open-modal"><AiOutlineSearch /></a>
+                    <div id="open-modal" className="modal-window">
+                        <div>
+                            <a href="#" title="Close" className="modal-close">X</a><br />
+                            <form action="">
+                                <input type="text" name="" placeholder="Search..." />
+                                <button><AiOutlineSearch className="icon-search_mobie" /></button>
+                            </form>
+                        </div>
                     </div>
-                </form>
-                <BiMessageRounded className="header__icons--2" />
-                <FiBell className="header__icons--3" />
-                <FaExpandArrowsAlt className="header__icons--4" />
+                    <BiMessageRounded />
+                    <FiBell />
+                    <FaExpandArrowsAlt />
+                </div>
+                <header>
+                    <div className="header__content">
+                        <FiMenu className='header__content--icon' />
+                        <Link to="/"><span>HOME</span></Link>
+                    </div>
+                    <div className="header__icons">
+                        <form action="">
+                            <div className="search-box">
+                                <input className="search-input" type="text" name="" placeholder="Search..." />
+                                <button style={{ border: "none" }} className="search-btn">
+                                    <AiOutlineSearch />
+                                </button>
+                            </div>
+                        </form>
+                        <BiMessageRounded className="header__icons--2" />
+                        <FiBell className="header__icons--3" />
+                        <FaExpandArrowsAlt className="header__icons--4" />
+                    </div>
+                </header>
             </div>
-        </header>
+        </>
     )
 }
 
