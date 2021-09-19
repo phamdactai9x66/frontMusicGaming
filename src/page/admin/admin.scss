@@ -103,7 +103,7 @@ main {
   transition: 0.5s;
 }
 %toggleStyle {
-  position: absolute;
+  position: fixed;
 }
 .toggle {
   @extend %toggleStyle;
@@ -113,7 +113,7 @@ main {
   width: 14rem;
   height: 1rem;
   cursor: pointer;
-  z-index: 2;
+  z-index: 200;
 }
 .nav__check {
   @extend %toggleStyle;
