@@ -1,6 +1,5 @@
 import React from 'react'
 import { RouteChildrenProps, withRouter } from "react-router-dom";
-import "./todolist.scss";
 import { AiOutlineSearch } from 'react-icons/ai';
 
 interface Todolist<T> {
@@ -10,9 +9,8 @@ interface Todolist<T> {
 const Todolist: React.FC<Todolist<any>> = ({ ...props }) => {
     return (
         <>
-        <div className="title">
-            <span>Todolist</span>
-        </div>
+        <div className="todo_main"> 
+            <h3>Todolist</h3>
         <div className="listToDo">
             <table>
                 <tr className="col">
@@ -20,8 +18,9 @@ const Todolist: React.FC<Todolist<any>> = ({ ...props }) => {
                     <th className="col-2"></th>
                     <th>
                     <select>
-                            <option value="volvo">Trạng thái</option>
-                            <option value="saab">Hiển thị</option>
+                            <option value="">Chọn trạng thái</option>
+                            <option value="hienthi">Hiển thị</option>
+                            <option value="chuahienthi">Chưa hiển thị</option>
                     </select>
                     </th>
                     <th className="search">
@@ -30,14 +29,14 @@ const Todolist: React.FC<Todolist<any>> = ({ ...props }) => {
                     </th>
                 </tr>
                 <tr className="col">
-                    <th><input type="number"/></th>
+                    <th><input type="number" min="0"/></th>
                     <th></th>
                     <th></th>
                     <th></th>
                 </tr>
                 <tr className="col title-table">
                     <th>ID</th>
-                    <th>Name Todolist</th>
+                    <th>Name</th>
                     <th>Trạng thái</th>
                     <th>Hành động</th>
                 </tr>
@@ -69,6 +68,7 @@ const Todolist: React.FC<Todolist<any>> = ({ ...props }) => {
                     </td>
                 </tr>
             </table>
+        </div>        
         </div>
         </>
     )

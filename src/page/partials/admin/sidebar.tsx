@@ -23,7 +23,7 @@ const Sidebar: React.FC<Sidebar<any>> = ({ ...props }) => {
             <h2>ADMIN MUSIC GAME</h2>
             <div className="main_info">
                 <div className="info_admin">
-                    <img width={50} src={imgAdmin} alt="" />
+                    <img width={50} height={50} src={imgAdmin} alt="" />
                     <div>Nguyễn Văn An</div>
                 </div>
             </div>
@@ -82,7 +82,7 @@ const Sidebar: React.FC<Sidebar<any>> = ({ ...props }) => {
                     <div className="tab-content">
                         <label className="add_item">
                             <BiMessageSquareAdd className="icon_item" />
-                            <span>Add Music</span>
+                            <Link to="/admin/AddMusic"><span>Add Music</span></Link>
                         </label>
                     </div>
                 </div>
@@ -94,7 +94,7 @@ const Sidebar: React.FC<Sidebar<any>> = ({ ...props }) => {
                             <label className="tabs__item--icon">
                                 <FiMenu />
                             </label>
-                            <label className="button_text"><span>Add</span>&nbsp;<span>Music</span></label>
+                            <label className="button_text"><span>Thể</span>&nbsp;<span>loại</span></label>
                         </div>
                         <div>&#10095;</div>
                     </label>
@@ -158,7 +158,7 @@ const Sidebar: React.FC<Sidebar<any>> = ({ ...props }) => {
                                 <SiTodoist />
                             </label>
 
-                            <label className="button_text"><span>Todo</span>&nbsp; <span>list</span></label>
+                            <Link to="/admin/todolist"><label className="button_text"><span>Todo</span>&nbsp; <span>list</span></label></Link>
 
                         </div>
                         <div>&#10095;</div>

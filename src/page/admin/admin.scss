@@ -7,6 +7,8 @@ main {
    display: none;
   }
   @import "./pageAdmin/home/home.scss";
+  @import "./pageAdmin/addMusic/add.scss";
+  @import "./pageAdmin/todolist/todolist.scss";
 }
 //=====Main import 
 
@@ -435,7 +437,7 @@ header {
   }
 
   .nav__check:checked ~ .header_content_mobie{
-    left: 27%;
+    left: 32.5%;
     transition: 0.5s;
   }
    .grid-main-2 {

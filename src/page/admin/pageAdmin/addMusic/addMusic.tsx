@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom'
 import React, { useCallback, useState ,useEffect } from "react";
-import './add.scss'
 import {ReactComponent as File} from './files.svg'
 
 interface AddMusic<T> {
@@ -15,7 +14,7 @@ const AddMusic: React.FC<AddMusic<any>> = ({ ...props }) => {
     <>
         <div className="admin-pageAdd">
             <div className="text-name-add">
-                <h3>Add muisc</h3>
+                <h3>Add Music</h3>
             </div>
             <div className="grid-addpage-2">
                 {/* grid 1 */}
@@ -64,11 +63,11 @@ const AddMusic: React.FC<AddMusic<any>> = ({ ...props }) => {
                 </div>
                 {/* grid 2 */}
                 <div className="section-add">
-                    {/* thông tin radio */}
+                    {/* thông tin audio */}
                     <div className="add-thongtin">
                         <div className="box-tt">
                             <div className="text-tt bg-text-tt" >
-                               <h5>Thông tin radio</h5>
+                               <h5>Thông tin audio</h5>
                             </div>
                             <div className="form-input-add bg-form-input ">
                                 <div className="input-add-tt bg-input add-file-input">
@@ -79,9 +78,8 @@ const AddMusic: React.FC<AddMusic<any>> = ({ ...props }) => {
                                        
                                     </div>
                                     <br />
-                                    <audio controls className="width-audio input-raido">
-                                        {/* <source src="horse.ogg" type="audio/ogg"/> */}
-                                        <source src="horse.mp3" type="audio/mpeg"/>
+                                    <audio controls className="audiplay width-audio input-raido">
+                                        <source className="source_music" src="https://dl.dropbox.com/s/oswkgcw749xc8xs/The-Noisy-Freaks.mp3?dl=1" type="audio/mp3"/>
                                     </audio>
                       
                                 </div>
@@ -108,7 +106,7 @@ const AddMusic: React.FC<AddMusic<any>> = ({ ...props }) => {
                                        
                                     </div>
                                     <div className="bia-bai-hat-image">
-                                        <img src={'https://cdn.shopify.com/s/files/1/0868/3310/products/Cygnus_20Loop_20Nebula_85988f73-2c8c-456b-92ae-6e23ab013827.jpg?v=1489583062'} alt="" />
+                                        <img src={'https://image.freepik.com/free-vector/user-icon_126283-435.jpg'} alt="" />
                                     </div>
                                 </div>
                                

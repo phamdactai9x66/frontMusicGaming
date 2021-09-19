@@ -1,21 +1,19 @@
 @import "../../../styles/stylesDefaut.scss";
 
-.title{
-    margin: 1rem 0rem 1rem 1rem;
-    span{
-        font-size: 20px;
-        font-weight: bold;
-    }
-}
+.todo_main {
+    padding-left: 40px;
+    padding-right: 40px;
+   h3 {
+    margin:42px 0 42px 0;
+   }
 
 .listToDo {
     background-color: #1d2d47;
-    margin: 0rem 1rem;
     color: #fff;
     padding: 1.5rem;
     table,th, td{
         border-bottom: 1px solid #56ccf2;
-        padding: 0.5rem 0rem;
+        padding: 1rem 0rem;
     }
     table{
         width: 100%;
@@ -26,14 +24,13 @@
             }
             select {
                 background-color: #5e90ca;
-                width: 120px;
+                width: 150px;
                 height: 38px;
                 border: none;
                 border-radius: 5px;
                 color: #fff;
-                option{
-                    padding : 0.5rem 1rem;
-                }
+                font-size: 1rem;
+                padding-left: 0.5rem;
             }
             .col-2{
                 width: 45%;
@@ -68,15 +65,21 @@
             }
             .col-icon{
                 position: absolute;
-                top: 1rem;
+                top: 1.5rem;
                 right: 1rem;
                 color: #28aab2;
                 font-size: 25px;
+                cursor: pointer;
             }
         }
         tr:nth-child(2){
             input{
-                width: 30px;
+                border-radius: 0.2rem;
+                padding-left: 0.8rem;
+                width: 45px;
+                color: #fff;
+                border: none;
+                background-color: #5e90ca;
             }
         }
         tr:nth-child(5){
@@ -87,7 +90,31 @@
     }
 }
 
+}
+// tablet
+@media screen and (min-width:768px) and (max-width:1024px) {
+    .add-todo button {
+        font-size: 0.7rem;
+      }
+}
 @media only screen and (max-width: 736px){
+    .title-table th:nth-child(3):before {
+        content: "";
+        margin-left: 2.3rem;
+    }
+    .status button {
+        margin-left: 2rem;
+    }
+    .todo_main {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+    .add-todo button {
+        font-size: 0.7rem;
+      }
+    .listToDo {
+        overflow-x: auto;
+    }
     table{
         .add-todo button{
             width: 6rem;
