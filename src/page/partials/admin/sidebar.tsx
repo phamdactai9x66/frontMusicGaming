@@ -18,245 +18,247 @@ interface Sidebar<T> {
 }
 
 const Sidebar: React.FC<Sidebar<any>> = ({ ...props }) => {
-    return (                     
-            <div className="_sidebar">                
-                <h2>ADMIN MUSIC GAME</h2>
-                <div className="main_info">
-                    <div className="info_admin">
-                        <img width={50} src={imgAdmin} alt="" />
-                        <div>Nguyễn Văn An</div>
+    return (
+        <div className="_sidebar">
+            <h2>ADMIN MUSIC GAME</h2>
+            <div className="main_info">
+                <div className="info_admin">
+                    <img width={50} src={imgAdmin} alt="" />
+                    <div>Nguyễn Văn An</div>
+                </div>
+            </div>
+            <div className="main_search">
+                <FontAwesomeIcon icon={faSearch} className="icon_search" />
+                <input type="text" placeholder="search" className="_search" />
+            </div>
+
+            {/* Tab item */}
+            <nav className="tabs">
+
+                <div className="tab">
+                    <label className="tab-label" htmlFor="chck1">
+                        <div className="grid_item">
+                            <label className="tabs__item--icon">
+                                <AiFillDashboard />
+                            </label>
+                            <Link to="/admin"><label className="button_text">Dashboard</label></Link>
+                        </div>
+                        <div>&#10095;</div>
+                    </label>
+                </div>
+
+                <div className="tab">
+                    <input hidden type="checkbox" id="chck2" />
+                    <label className="tab-label" htmlFor="chck2">
+                        <div className="grid_item">
+                            <label className="tabs__item--icon">
+                                <BiPieChart />
+                            </label>
+                            <label className="button_text">Chart</label>
+                        </div>
+                        <div>&#10095;</div>
+                    </label>
+
+                    <div className="tab-content">
+                        <label className="add_item">
+                            <BiMessageSquareAdd className="icon_item" />
+                            <span>Add Chart</span>
+                        </label>
                     </div>
                 </div>
-                <div className="main_search">
-                    <FontAwesomeIcon icon={faSearch} className="icon_search" />
-                    <input type="text" placeholder="search" className="_search" />
+
+                <div className="tab">
+                    <input hidden type="checkbox" id="chck3" />
+                    <label className="tab-label" htmlFor="chck3">
+                        <div className="grid_item">
+                            <label className="tabs__item--icon">
+                                <BsMusicNoteBeamed />
+                            </label>
+                            <label className="button_text">Music</label>
+                        </div>
+                        <div>&#10095;</div>
+                    </label>
+
+                    <div className="tab-content">
+                        <label className="add_item">
+                            <BiMessageSquareAdd className="icon_item" />
+                            <span>Add Music</span>
+                        </label>
+                    </div>
                 </div>
 
-                {/* Tab item */}
-                <nav className="tabs">
-
-                    <div className="tab">
-                        <label className="tab-label" htmlFor="chck1">
+                <div className="tab">
+                    <input hidden type="checkbox" id="chck4" />
+                    <label className="tab-label" htmlFor="chck4">
+                        <div className="grid_item">
                             <label className="tabs__item--icon">
-                            <AiFillDashboard />
+                                <FiMenu />
                             </label>
-                            <div className="grid_item">
-                            <Link to="/admin"><label className="button_text">Dashboard</label></Link>
-                            <div>&#10095;</div>
-                            </div>
+                            <label className="button_text"><span>Add</span>&nbsp;<span>Music</span></label>
+                        </div>
+                        <div>&#10095;</div>
+                    </label>
+
+                    <div className="tab-content">
+                        <label className="add_item">
+                            <BiMessageSquareAdd className="icon_item" />
+                            <span>Add Thể loại</span>
                         </label>
-                     </div>
-                     
-                    <div className="tab">
-                    <input hidden type="checkbox" id="chck2"/>
-                        <label className="tab-label" htmlFor="chck2">
+                    </div>
+                </div>
+
+                <div className="tab">
+                    <input hidden type="checkbox" id="chck5" />
+                    <label className="tab-label" htmlFor="chck5">
+                        <div className="grid_item">
                             <label className="tabs__item--icon">
-                            <BiPieChart />
+                                <FaRegPlayCircle />
                             </label>
-                            <div className="grid_item">
-                            <label className="button_text">Chart</label>
-                            <div>&#10095;</div>
-                            </div>
-                            
-                        </label>
-
-                      <div className="tab-content">
-                          <label className="add_item">
-                          <BiMessageSquareAdd className="icon_item"/>
-                          <span>Add Chart</span>
-                          </label>
-                       </div>
-                     </div>
-
-                     <div className="tab">
-                    <input hidden type="checkbox" id="chck3"/>
-                        <label className="tab-label" htmlFor="chck3">
-                            <label className="tabs__item--icon">
-                            <BsMusicNoteBeamed />
-                            </label>
-                            <div className="grid_item">
-                            <label className="button_text">Music</label>
-                            <div>&#10095;</div>
-                            </div>
-                            
-                        </label>
-
-                      <div className="tab-content">
-                          <label className="add_item">
-                          <BiMessageSquareAdd className="icon_item"/>
-                          <span>Add Music</span>
-                          </label>
-                       </div>
-                     </div>
-
-                     <div className="tab">
-                    <input hidden type="checkbox" id="chck4"/>
-                        <label className="tab-label" htmlFor="chck4">
-                            <label className="tabs__item--icon">
-                            <FiMenu />
-                            </label>
-                            <div className="grid_item">
-                            <label className="button_text">Thể loại</label>
-                            <div>&#10095;</div>
-                            </div>
-                            
-                        </label>
-
-                      <div className="tab-content">
-                          <label className="add_item">
-                          <BiMessageSquareAdd className="icon_item"/>
-                          <span>Add Thể loại</span>
-                          </label>
-                       </div>
-                     </div>
-
-                     <div className="tab">
-                    <input hidden type="checkbox" id="chck5"/>
-                        <label className="tab-label" htmlFor="chck5">
-                            <label className="tabs__item--icon">
-                            <FaRegPlayCircle />
-                            </label>
-                            <div className="grid_item">
                             <label className="button_text">Playlist</label>
-                            <div>&#10095;</div>
-                            </div>
-                            
+                        </div>
+                        <div>&#10095;</div>
+                    </label>
+
+                    <div className="tab-content">
+                        <label className="add_item">
+                            <BiMessageSquareAdd className="icon_item" />
+                            <span>Add Playlist</span>
                         </label>
+                    </div>
+                </div>
 
-                      <div className="tab-content">
-                          <label className="add_item">
-                          <BiMessageSquareAdd className="icon_item"/>
-                          <span>Add Playlist</span>
-                          </label>
-                       </div>
-                     </div>
-
-                     <div className="tab">
-                    <input hidden type="checkbox" id="chck6"/>
-                        <label className="tab-label" htmlFor="chck6">
+                <div className="tab">
+                    <input hidden type="checkbox" id="chck6" />
+                    <label className="tab-label" htmlFor="chck6">
+                        <div className="grid_item">
                             <label className="tabs__item--icon">
-                            <BsFillImageFill />
+                                <BsFillImageFill />
                             </label>
-                            <div className="grid_item">
+
                             <label className="button_text">Slider</label>
-                            <div>&#10095;</div>
-                            </div>
-                            
+
+                        </div>
+                        <div>&#10095;</div>
+                    </label>
+
+                    <div className="tab-content">
+                        <label className="add_item">
+                            <BiMessageSquareAdd className="icon_item" />
+                            <span>Add Slider</span>
                         </label>
-
-                      <div className="tab-content">
-                          <label className="add_item">
-                          <BiMessageSquareAdd className="icon_item"/>
-                          <span>Add Slider</span>
-                          </label>
-                       </div>
-                     </div>
+                    </div>
+                </div>
 
 
-                     <div className="tab">
-                    <input hidden type="checkbox" id="chck7"/>
-                        <label className="tab-label" htmlFor="chck7">
+                <div className="tab">
+                    <input hidden type="checkbox" id="chck7" />
+                    <label className="tab-label" htmlFor="chck7">
+                        <div className="grid_item">
                             <label className="tabs__item--icon">
-                            <SiTodoist />
+                                <SiTodoist />
                             </label>
-                            <div className="grid_item">
-                            <label className="button_text">Todo list</label>
-                            <div>&#10095;</div>
-                            </div>
-                            
+
+                            <label className="button_text"><span>Todo</span>&nbsp; <span>list</span></label>
+
+                        </div>
+                        <div>&#10095;</div>
+                    </label>
+
+                    <div className="tab-content">
+                        <label className="add_item">
+                            <BiMessageSquareAdd className="icon_item" />
+                            <span>Add Todo list</span>
                         </label>
+                    </div>
+                </div>
 
-                      <div className="tab-content">
-                          <label className="add_item">
-                          <BiMessageSquareAdd className="icon_item"/>
-                          <span>Add Todo list</span>
-                          </label>
-                       </div>
-                     </div>
-
-                     <div className="tab">
-                    <input hidden type="checkbox" id="chck8"/>
-                        <label className="tab-label" htmlFor="chck8">
+                <div className="tab">
+                    <input hidden type="checkbox" id="chck8" />
+                    <label className="tab-label" htmlFor="chck8">
+                        <div className="grid_item">
                             <label className="tabs__item--icon">
-                            <FaUserAlt />
+                                <FaUserAlt />
                             </label>
-                            <div className="grid_item">
+
                             <label className="button_text">User</label>
-                            <div>&#10095;</div>
-                            </div>
-                            
+
+                        </div>
+                        <div>&#10095;</div>
+                    </label>
+
+                    <div className="tab-content">
+                        <label className="add_item">
+                            <BiMessageSquareAdd className="icon_item" />
+                            <span>Add User</span>
                         </label>
+                    </div>
+                </div>
 
-                      <div className="tab-content">
-                          <label className="add_item">
-                          <BiMessageSquareAdd className="icon_item"/>
-                          <span>Add User</span>
-                          </label>
-                       </div>
-                     </div>
-
-                     <div className="tab">
-                    <input hidden type="checkbox" id="chck9"/>
-                        <label className="tab-label" htmlFor="chck9">
+                <div className="tab">
+                    <input hidden type="checkbox" id="chck9" />
+                    <label className="tab-label" htmlFor="chck9">
+                        <div className="grid_item">
                             <label className="tabs__item--icon">
-                            <BsChat />
+                                <BsChat />
                             </label>
-                            <div className="grid_item">
+
                             <label className="button_text">Comment</label>
-                            <div>&#10095;</div>
-                            </div>
-                            
-                        </label>
-                         <div className="tab-content">
-                          <label className="add_item">
-                          <FaChartPie className="icon_item"/>
-                          <span>Chart Comment</span>
-                          </label>
-                       </div>
-                     </div>
 
-                     <div className="tab">
-                    <input hidden type="checkbox" id="chck10"/>
-                        <label className="tab-label" htmlFor="chck10">
+                        </div>
+                        <div>&#10095;</div>
+                    </label>
+                    <div className="tab-content">
+                        <label className="add_item">
+                            <FaChartPie className="icon_item" />
+                            <span>Chart Comment</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div className="tab">
+                    <input hidden type="checkbox" id="chck10" />
+                    <label className="tab-label" htmlFor="chck10">
+                        <div className="grid_item">
                             <label className="tabs__item--icon">
-                            <SiBlogger />
+                                <SiBlogger />
                             </label>
-                            <div className="grid_item">
+
                             <label className="button_text">Blog</label>
-                            <div>&#10095;</div>
-                            </div>
-                            
-                        </label>
-                         <div className="tab-content">
-                          <label className="add_item">
-                          <BiMessageSquareAdd className="icon_item"/>
-                          <span>Add Blog</span>
-                          </label>
-                       </div>
-                     </div>
 
-                     <div className="tab">
-                    <input hidden type="checkbox" id="chck11"/>
-                        <label className="tab-label" htmlFor="chck11">
+                        </div>
+                        <div>&#10095;</div>
+                    </label>
+                    <div className="tab-content">
+                        <label className="add_item">
+                            <BiMessageSquareAdd className="icon_item" />
+                            <span>Add Blog</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div className="tab">
+                    <input hidden type="checkbox" id="chck11" />
+                    <label className="tab-label" htmlFor="chck11">
+                        <div className="grid_item">
                             <label className="tabs__item--icon">
-                            <FiMenu />
+                                <FiMenu />
                             </label>
-                            <div className="grid_item">
-                            <label className="button_text">Danh mục blog</label>
-                            <div>&#10095;</div>
-                            </div>
-                            
-                        </label>
-                         <div className="tab-content">
-                          <label className="add_item">
-                          <BiMessageSquareAdd className="icon_item"/>
-                          <span>Add Danh mục</span>
-                          </label>
-                       </div>
-                     </div>
-                </nav>
 
-            </div>
+                            <label className="button_text"><span>Danh</span>&nbsp;<span>mục</span>&nbsp;<span>blog</span></label>
+
+                        </div>
+                        <div>&#10095;</div>
+                    </label>
+                    <div className="tab-content">
+                        <label className="add_item">
+                            <BiMessageSquareAdd className="icon_item" />
+                            <span>Add Danh mục</span>
+                        </label>
+                    </div>
+                </div>
+            </nav>
+
+        </div>
     )
 }
 

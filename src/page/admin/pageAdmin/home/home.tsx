@@ -14,7 +14,6 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
 
   return (
     <>
-
       <div className="home-page">
         <section>
           <h3 className="Dashboarh">Dashboard</h3>
@@ -199,9 +198,7 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                       <div className="_icon_drop">&#10095;</div>
                       <input className="checkbox_name" type="checkbox" />
                     </div>
-
                   </div>
-
                 </label>
 
                 <div className="_tab-content">

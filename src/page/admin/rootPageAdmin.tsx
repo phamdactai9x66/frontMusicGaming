@@ -5,10 +5,6 @@ import Header from "../partials/admin/header";
 import Footer from "../partials/admin/footer";
 import Sidebar from "../partials/admin/sidebar";
 import { Link } from 'react-router-dom';
-import { FiBell } from 'react-icons/fi';
-import { AiOutlineSearch } from 'react-icons/ai';
-import { BiMessageRounded } from 'react-icons/bi';
-import { FaExpandArrowsAlt } from 'react-icons/fa'
 interface rootPageAdmin<T> {
 
 }

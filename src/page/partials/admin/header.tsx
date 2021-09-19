@@ -13,7 +13,7 @@ interface Header<T> {
 const Header: React.FC<Header<any>> = ({ ...props }) => {
     return (
         <>
-            <div>
+            <div className="header_container">
                 <div className="header__icons_mobie">
                     <a className="btn" href="#open-modal"><AiOutlineSearch /></a>
                     <div id="open-modal" className="modal-window">
