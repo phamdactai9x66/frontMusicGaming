@@ -7,6 +7,7 @@ import NotFound from "./page/client/pageClient/notFound/notFound";
 import HomeAdmin from "./page/admin/pageAdmin/home/home";
 import AddMusic from "./page/admin/pageAdmin/addMusic/addMusic";
 import NotFoundAdmin from "./page/admin/pageAdmin/notFound/notFoundAdmin";
+import Todolist from "./page/admin/pageAdmin/todolist/todolist";
 
 export interface propertyPage {
     path: string,
@@ -23,6 +24,11 @@ const Admin: propertyPage[] = [
     {
         path: "/admin/AddMusic",
         component: AddMusic,
+        exact: true
+    },
+    {
+        path: "/admin/todolist",
+        component: Todolist,
         exact: true
     },
     {

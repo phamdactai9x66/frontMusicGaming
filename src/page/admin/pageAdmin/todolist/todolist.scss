@@ -1,0 +1,96 @@
+@import "../../../styles/stylesDefaut.scss";
+
+.title{
+    margin: 1rem 0rem 1rem 1rem;
+    span{
+        font-size: 20px;
+        font-weight: bold;
+    }
+}
+
+.listToDo {
+    background-color: #1d2d47;
+    margin: 0rem 1rem;
+    color: #fff;
+    padding: 1.5rem;
+    table,th, td{
+        border-bottom: 1px solid #56ccf2;
+        padding: 0.5rem 0rem;
+    }
+    table{
+        width: 100%;
+        .col{
+            button{
+                background-color: #5e90ca;
+                border: none;
+            }
+            select {
+                background-color: #5e90ca;
+                width: 120px;
+                height: 38px;
+                border: none;
+                border-radius: 5px;
+                color: #fff;
+                option{
+                    padding : 0.5rem 1rem;
+                }
+            }
+            .col-2{
+                width: 45%;
+            }
+            .status{
+                button{
+                    padding: 0.2rem 1.3rem ;
+                }
+            }
+            .rows{
+                button{
+                    padding: 0.2rem 1.3rem ;
+                }
+                button:nth-child(1){
+                    background-color: #28aab2;
+                    margin-right: 0.5rem;
+                }
+                button:nth-child(2){
+                    background-color: #b22828;
+                }
+            }
+        }
+        [class|=search]{
+            position: relative;
+            input{
+                background-color: #121a34;
+                border: none;
+                height: 40px;
+                width: 230px;
+                padding: 0rem 0.5rem;
+                margin-left: 1rem;
+            }
+            .col-icon{
+                position: absolute;
+                top: 1rem;
+                right: 1rem;
+                color: #28aab2;
+                font-size: 25px;
+            }
+        }
+        tr:nth-child(2){
+            input{
+                width: 30px;
+            }
+        }
+        tr:nth-child(5){
+            td:nth-child(1){
+                width: 30%;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 736px){
+    table{
+        .add-todo button{
+            width: 6rem;
+        }
+    }
+}
