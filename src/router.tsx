@@ -4,7 +4,8 @@ import Home from "./page/client/pageClient/home/home"
 import About from "./page/client/pageClient/about/about"
 import NotFound from "./page/client/pageClient/notFound/notFound";
 
-import HomeAdmin from "./page/admin/pageAdmin/home/home"
+import HomeAdmin from "./page/admin/pageAdmin/home/home";
+import AddMusic from "./page/admin/pageAdmin/addMusic/addMusic";
 import NotFoundAdmin from "./page/admin/pageAdmin/notFound/notFoundAdmin";
 
 export interface propertyPage {
@@ -17,6 +18,11 @@ const Admin: propertyPage[] = [
     {
         path: "/admin",
         component: HomeAdmin,
+        exact: true
+    },
+    {
+        path: "/admin/AddMusic",
+        component: AddMusic,
         exact: true
     },
     {
