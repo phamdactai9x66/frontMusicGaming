@@ -38,10 +38,14 @@ const Sidebar: React.FC<Sidebar<any>> = ({ ...props }) => {
                 <div className="tab">
                     <label className="tab-label" htmlFor="chck1">
                         <div className="grid_item">
+                        <Link to="/admin">
                             <label className="tabs__item--icon">
                                 <AiFillDashboard />
                             </label>
-                            <Link to="/admin"><label className="button_text">Dashboard</label></Link>
+                            </Link>
+                            <Link to="/admin">
+                            <label className="button_text">Dashboard</label>
+                            </Link>
                         </div>
                         <div>&#10095;</div>
                     </label>
@@ -81,7 +85,9 @@ const Sidebar: React.FC<Sidebar<any>> = ({ ...props }) => {
 
                     <div className="tab-content">
                         <label className="add_item">
+                        <Link to="/admin/AddMusic">
                             <BiMessageSquareAdd className="icon_item" />
+                            </Link>
                             <Link to="/admin/AddMusic"><span>Add Music</span></Link>
                         </label>
                     </div>
@@ -154,11 +160,14 @@ const Sidebar: React.FC<Sidebar<any>> = ({ ...props }) => {
                     <input hidden type="checkbox" id="chck7" />
                     <label className="tab-label" htmlFor="chck7">
                         <div className="grid_item">
+                        <Link to="/admin/todolist">
                             <label className="tabs__item--icon">
                                 <SiTodoist />
                             </label>
-
-                            <Link to="/admin/todolist"><label className="button_text"><span>Todo</span>&nbsp; <span>list</span></label></Link>
+                            </Link>
+                            <Link to="/admin/todolist">
+                            <label className="button_text"><span>Todo</span>&nbsp; <span>list</span></label>
+                            </Link>
 
                         </div>
                         <div>&#10095;</div>
