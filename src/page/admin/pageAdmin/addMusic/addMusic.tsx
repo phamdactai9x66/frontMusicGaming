@@ -94,7 +94,7 @@ const AddMusic: React.FC<AddMusic<any>> = ({ ...props }) => {
                                 <div className="input-add-tt bg-input ">
                                     <p>Trang thái</p>
                                     <select name="" id="" className="add-seclect ">
-                                        <option value="" className="add-theloai">Hoại đông</option>
+                                        <option value="" className="add-theloai">Hoại động</option>
                                         <option value="" className="add-theloai">Không hoạt đông</option>
                                     </select>
                                 </div>

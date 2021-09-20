@@ -3,25 +3,34 @@
 .todo_main {
     padding-left: 40px;
     padding-right: 40px;
+    margin-bottom: 6rem;
    h3 {
     margin:42px 0 42px 0;
    }
 
 .listToDo {
+    table tbody tr:nth-child(even){
+        background-color: #121a34;
+    }
     background-color: #1d2d47;
     color: #fff;
     padding: 1.5rem;
-    table,th, td{
+    .thead_mobie_extend th .btn {
+        background-color: #5e90ca;
+    }
+    table{
+        .add-todo button{
+            width: 7rem;
+        }
+    }
+    th, td{
         border-bottom: 1px solid #56ccf2;
         padding: 1rem 0rem;
+        padding-left: 0.5rem;
     }
     table{
         width: 100%;
         .col{
-            button{
-                background-color: #5e90ca;
-                border: none;
-            }
             select {
                 background-color: #5e90ca;
                 width: 150px;
@@ -32,13 +41,11 @@
                 font-size: 1rem;
                 padding-left: 0.5rem;
             }
+            option {
+                background-color: #121a34;
+            }
             .col-2{
                 width: 45%;
-            }
-            .status{
-                button{
-                    padding: 0.2rem 1.3rem ;
-                }
             }
             .rows{
                 button{
@@ -53,20 +60,18 @@
                 }
             }
         }
-        [class|=search]{
-            position: relative;
+        .search_main {
             input{
                 background-color: #121a34;
                 border: none;
                 height: 40px;
                 width: 230px;
                 padding: 0rem 0.5rem;
-                margin-left: 1rem;
+                margin-left: 2.3rem;
+                color: #fff;
             }
             .col-icon{
-                position: absolute;
-                top: 1.5rem;
-                right: 1rem;
+                margin-left: -2.5rem;
                 color: #28aab2;
                 font-size: 25px;
                 cursor: pointer;
@@ -82,42 +87,74 @@
                 background-color: #5e90ca;
             }
         }
-        tr:nth-child(5){
-            td:nth-child(1){
-                width: 30%;
-            }
-        }
+
     }
 }
 
 }
 // tablet
 @media screen and (min-width:768px) and (max-width:1024px) {
-    .add-todo button {
-        font-size: 0.7rem;
-      }
+    .thead_mobie_extend th button {
+        width: 6rem !important;
+        font-size: 0.8rem;
+    }
 }
 @media only screen and (max-width: 736px){
-    .title-table th:nth-child(3):before {
-        content: "";
-        margin-left: 2.3rem;
+    .todo_main {
+        padding-left: 20px;
+        padding-right: 20px;
+        margin-bottom: 6rem;
+    .search_main input {
+        width: 290px !important;
+       margin: 0.4rem 0 -1rem 0 !important;
+    }
+    .rows {
+        display: flex;
+        flex-direction: column;
+        button {
+            font-size: 0.8rem;
+            width: 30%;
+            margin: 0.5rem 0 0 70%;
+        }
     }
     .status button {
-        margin-left: 2rem;
+        font-size: 0.8rem;
     }
-    .todo_main {
-        display: grid;
-        grid-template-columns: 1fr;
+    .listToDo table .thead_mobie .title-table {
+       display: none;
     }
-    .add-todo button {
-        font-size: 0.7rem;
-      }
-    .listToDo {
-        overflow-x: auto;
+    .listToDo table .thead_mobie .thead_mobie_extend {
+        display: flex;
+        flex-direction: column;
+        th,td {
+            border-bottom: none;
+            padding: 0.3rem 0rem;
+        }
+     }
+    .listToDo table, table tbody, table tr, table td {
+        display: block;
+        width: 100%;  
+        border-bottom: none;
     }
-    table{
+    .listToDo table td {
+        text-align: right;
+        position: relative;
+        padding-right: 0.5rem !important;
+    }
+    .listToDo table td::before {
+       content: attr(data-label);
+       position: absolute;
+       left: 0;
+       width: 50%;
+       font-size: 15px;
+       font-weight: bold;
+       text-align: left;
+       padding-left: 0.5rem;
+    }
+   .listToDo table{
         .add-todo button{
             width: 6rem;
         }
     }
+}
 }

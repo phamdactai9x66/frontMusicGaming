@@ -437,16 +437,19 @@ header {
   }
 
   .nav__check:checked ~ .header_content_mobie{
-    left: 32.5%;
+    left: 28.8%;
     transition: 0.5s;
   }
    .grid-main-2 {
      margin-left: 3rem !important;
    }
-  main .home-page .grid-main-2 .main2 {
-    background: white;
+main .home-page {
+  padding-left: 20px;
+  padding-right: 20px;
+  .grid-main-2 .main2 {
     height: 150px;
 } 
+}
 
 main .home-page .gird-main-3 .main5 .main5-table-flex3 div a {
   background: #1d2d47;
@@ -455,7 +458,7 @@ main .home-page .gird-main-3 .main5 .main5-table-flex3 div a {
   padding-right: 20px;
 }
 .footer__main p {
-  font-size: 0.9rem;
+  font-size: 0.8rem;
 }
 
 
