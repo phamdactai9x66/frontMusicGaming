@@ -9,9 +9,7 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
 
     return (
         <div>
-            <p className="test123">XIn chao</p>
-
-            this Home
+            <p className="test123">this Home</p>
         </div>
     )
 }

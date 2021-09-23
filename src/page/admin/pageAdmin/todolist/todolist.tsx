@@ -1,6 +1,8 @@
 import React from 'react'
 import { RouteChildrenProps, withRouter } from "react-router-dom";
 import { AiOutlineSearch } from 'react-icons/ai';
+import { ImNext2 } from 'react-icons/im';
+import { ImPrevious2 } from 'react-icons/im';
 
 interface Todolist<T> {
 
@@ -14,14 +16,14 @@ const Todolist: React.FC<Todolist<any>> = ({ ...props }) => {
                 <div className="listToDo">
                     <table>
                         <thead className="thead_mobie">
-                        <tr className="col thead_mobie_extend">
-                            <th><button className="btn btn-primary">Add Todo</button></th>
-                                <th className="col-2"></th>                           
+                            <tr className="col thead_mobie_extend">
+                                <th><button className="btn btn-primary">Add Todo</button></th>
+                                <th className="col-2"></th>
                                 <th><select>
-                                        <option value="">Chọn trạng thái</option>
-                                        <option value="hienthi">Hiển thị</option>
-                                        <option value="chuahienthi">Chưa hiển thị</option>
-                                    </select>
+                                    <option value="">Chọn trạng thái</option>
+                                    <option value="hienthi">Hiển thị</option>
+                                    <option value="chuahienthi">Chưa hiển thị</option>
+                                </select>
                                 </th>
                                 <th>
                                     <div className="search_main">
@@ -74,6 +76,16 @@ const Todolist: React.FC<Todolist<any>> = ({ ...props }) => {
                             </tr>
                         </tbody>
                     </table>
+                    <div className="pagination">
+                        <a href="#"><ImPrevious2/></a>
+                        <a href="#">&laquo;</a>
+                        <a href="#">1</a>
+                        <a href="#">2</a>
+                        <a href="#">3</a>
+                        <a href="#">4</a>
+                        <a href="#">&raquo;</a>
+                        <a href="#"><ImNext2/></a>
+                    </div>
                 </div>
             </div>
         </>

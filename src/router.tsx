@@ -1,13 +1,13 @@
 import { Route } from "react-router-dom"
 
 import Home from "./page/client/pageClient/home/home"
-import About from "./page/client/pageClient/about/about"
 import NotFound from "./page/client/pageClient/notFound/notFound";
 
 import HomeAdmin from "./page/admin/pageAdmin/home/home";
 import AddMusic from "./page/admin/pageAdmin/addMusic/addMusic";
 import NotFoundAdmin from "./page/admin/pageAdmin/notFound/notFoundAdmin";
 import Todolist from "./page/admin/pageAdmin/todolist/todolist";
+import Canhan from "./page/client/pageClient/canhan/canhan";
 
 export interface propertyPage {
     path: string,
@@ -32,7 +32,7 @@ const Admin: propertyPage[] = [
         exact: true
     },
     {
-        path: "/:pathNotFound",
+        path: "/admin/:pathNotFound",
         component: NotFoundAdmin,
         exact: false
     }
@@ -46,9 +46,9 @@ const Client: propertyPage[] = [
         exact: true
     },
     {
-        path: "/about",
-        component: About,
-        exact: false
+        path: "/canhan",
+        component: Canhan,
+        exact: true
     },
     {
         path: "/:pathNotFound",

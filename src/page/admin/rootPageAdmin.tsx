@@ -12,7 +12,7 @@ interface rootPageAdmin<T> {
 const rootPageAdmin: React.FC<rootPageAdmin<any>> = ({ ...props }) => {
     return (
         <>
-            <div>
+             <div className="container-admin">
                 <input hidden type="checkbox" name="" className="nav__check" id="nav-input" />
                 <label className="toggle" htmlFor="nav-input"></label>
                 <Link className="header_content_mobie" to="/">

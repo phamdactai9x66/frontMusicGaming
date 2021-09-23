@@ -12,6 +12,7 @@ main {
 }
 //=====Main import 
 
+.container-admin {
 .main_admin {
   display: grid;
   grid-template-columns: 280px 1fr;
@@ -450,7 +451,6 @@ main .home-page {
     height: 150px;
 } 
 }
-
 main .home-page .gird-main-3 .main5 .main5-table-flex3 div a {
   background: #1d2d47;
   color: white;
@@ -460,8 +460,6 @@ main .home-page .gird-main-3 .main5 .main5-table-flex3 div a {
 .footer__main p {
   font-size: 0.8rem;
 }
-
-
 }
 
 .modal-window {
@@ -520,6 +518,28 @@ main .home-page .gird-main-3 .main5 .main5-table-flex3 div a {
       z-index: 1;
     }
   }
+}
+// phân trang 
+.pagination {
+  display: flex;
+  justify-content: right;
+  margin: 0.5rem 0 -1rem 0;
+}
+.pagination a {
+  display: block;
+  color: rgb(141, 206, 231);
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+  transition: background-color .3s;
+}
+
+
+.pagination a:hover {
+  background-color: rgb(31, 84, 145);
+  color: rgb(228, 245, 252);
+}
+  
 }
 /* End Styles Admin*/
 
