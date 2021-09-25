@@ -8,9 +8,14 @@ interface Footer<T> {
 
 const Footer: React.FC<Footer<any>> = ({ ...props }) => {
     return (
-        <footer>
-            <h1>  this  Footer client</h1>
+        <div className="fixed_footer">
+  <footer>
+            <div className="footer__main">
+                <p>Copyright © 2021-2022 by music gaming </p>
+            </div>
         </footer>
+        </div>
+      
     )
 }
 

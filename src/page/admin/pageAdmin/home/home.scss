@@ -1,0 +1,366 @@
+.home-page{
+    width: 100%;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-bottom: 6rem;
+    .Dashboarh{
+        margin:42px 0 42px 0;
+    }
+    .home-top{ 
+         display: grid;
+         grid-template-columns:  1fr 1fr 1fr 1fr;
+         gap:20px;
+
+       .bg-box-1{
+           background-color: #17a2b8; 
+       }.bg-box-1:hover{
+        background-color: #01788d; 
+       }
+       .bg-box-2{
+           background-color: #28a745;
+       }.bg-box-2:hover{
+        background-color: #008820;
+       }
+       .bg-box-3{
+           background-color: #ffc107;
+
+       }.bg-box-3:hover{
+        background-color: #ce9a00;
+
+    }
+       .bg-box-4{
+           background-color: #dc3545;
+
+       }
+       .bg-box-4:hover{
+        background-color: #b30214;
+
+    }
+        .box-bb{
+            width: 100%;
+            // margin-left: 25px;
+            border-radius: 5px 5px 2px 2px;
+            a{
+                text-decoration: none;
+                color: white;
+               .grid-db-filter{
+                   display: grid;
+                   grid-template-columns: 1fr 1fr;
+                   margin-bottom: 10px;
+                .show-text{
+                    margin-top: 20px;
+                    h3{
+                        margin-left: 20px;
+                    }
+                    p{
+                        margin-left: 20px;
+                    }
+                    }
+                    .icon-music{
+                        margin-top: 20px;
+                        text-align: center;
+                        i{
+                            font-size: 60px;
+                            color: #2b6638;
+                            opacity: 40%;
+                            
+                        }
+                    }
+                
+                } 
+                .more-info{
+                    text-align: center;
+                   
+                    padding:  9px 0 9px 0;
+                    p{
+                        margin-bottom: 0px;
+                        i{
+                           font-size: 12px;
+                        }
+                    }
+                }
+                .bg-more-info1{
+                    background-color: #1592a5;
+               }
+               .bg-more-info2{
+                   background-color: #24963e;
+               }
+               .bg-more-info3{
+                   background-color: #e5ad06;
+               } .bg-more-info4{
+                   background-color: #c6303e;
+               }
+             
+            }
+            
+        }
+        .box-margin{
+            margin-left: 0px;
+        }
+        
+    }
+ 
+    ////section 2
+    .grid-main-2{
+        display: grid;
+       grid-template-columns: 1fr 1fr;
+       gap: 20px;
+      margin: 3px 0 32px 0;
+      .main1 {
+          margin: 2rem 0 0 -1.9rem;
+      }
+        .main2{
+            background: rgb(255, 255, 255);
+            height: 340px;
+        }
+    }
+
+    .gird-main-3{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        .main4{
+            border-radius: 5px;
+            width: 100%;
+            background: #1d2d47;
+            // margin-right: 10px;
+            padding-bottom: 20px;
+            .grid-main4-col2{
+                display: grid;
+                grid-template-columns: 90% 10%;
+                 background:#e1eaf8;
+                margin-left: 25px;
+                 margin-right: 25px;
+                 padding: 5px;
+                 border-radius: 4px;
+                 div{
+                     input{
+                         border: 8px solid gray;
+                     }
+                 }
+            }
+            .main4-all-in {
+                margin-top: 20px;
+                margin-left: 25px;
+                margin-bottom: 20px;
+            }
+          
+        }
+        .main5{
+            margin-top: -0.4rem;
+            width: 100%;
+            .main5-table-flex3{
+                div{
+                    padding-bottom: 5px;
+                    margin-bottom: 10px;
+                    border-bottom: 5px solid white;
+                    a{
+                        background: #1d2d47;
+                        color: white;
+                       padding-left: 20px;
+                       padding-right: 20px;
+                       
+                    }
+                }
+
+            }
+            table{
+                width: 100%;
+                thead{
+                    tr{
+                        background: #6c7ae0;
+                    }
+                }
+            }
+        }
+    }
+    @media screen and (min-width:768px) and (max-width:1024px) {
+  .gird-main-3{
+      display: grid;
+      grid-template-columns: 1fr;
+  }
+  .grid-main-2{
+    display: grid;
+    grid-template-columns: 1fr;
+    .main1{
+        margin-right: 0px;
+    }
+    .main2{
+      margin-left: 0px;  
+        margin-top: 10px;
+        margin-bottom: -4rem;
+    }
+  }
+    }
+// Drop check pass
+._grid_item {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+  .checkbox_name {
+    margin-top: 0.36rem;
+    margin-right: 1rem;
+  }
+  ._button_text {
+    cursor: pointer;
+  }
+  
+  ._tab {
+    width: 100%;
+    overflow: hidden;
+   margin-bottom: 1rem;
+    &-label {
+      display: flex;
+      padding: 0.4em;
+      background: #e1eaf8;
+      border-radius: 0.2rem;
+      margin: 0 1.56rem 0 1.56rem;
+      cursor: pointer;
+      /* Icon */
+      &:hover {
+        background: #c9f0ff;
+        transition: all 0.5s;
+      }
+    }
+    &-content {
+      max-height: 0;
+      margin: 0 1.56rem 0 1.56rem;
+      padding: 0 1em;
+      color: #fff;
+      background: #121a34;
+      transition: all .20s;
+      }
+      .content_flex {
+          display: flex;
+          justify-content: space-between;
+          padding: 1rem 0 1rem 0;
+          border-bottom: 0.1rem solid rgb(126, 126, 126);
+      }
+
+  }
+
+  // :checked
+  ._grid_item ._icon_drop {
+    transition: 0.5s;
+  }
+  input:checked {
+    ~ ._tab-label {
+      background: #c9f0ff;
+      & ._grid_item ._icon_drop {
+        transform: rotate(90deg);
+      }
+    }
+    ~ ._tab-content {
+      max-height: 100vh;
+      padding: 1em;
+    }
+  }
+.react-tabs__tab-list {
+  margin: 0 0 10px;
+  padding: 0;
+}
+
+.react-tabs__tab {
+  display: inline-block;
+  list-style: none;
+  padding: 6px;
+  cursor: pointer;
+  outline: none;
+}
+
+
+
+.react-tabs__tab-panel {
+  display: none;
+}
+
+.react-tabs__tab-panel--selected {
+  display: block;
+}
+.react-tabs__tab-list {
+    margin: 0 0 10px;
+    padding: 0;
+  }
+  
+  .react-tabs__tab {
+    border-bottom: 4px solid transparent;
+  }
+  
+  .react-tabs__tab--selected {
+    border-color: #42b3f4;
+    transition: all ease-in-out 0.4s;
+    color: black;
+    border-radius: 5px 5px 0 0;
+  }
+  
+  .react-tabs__tab-panel {
+    display: none;
+  }
+  
+  .react-tabs__tab-panel--selected {
+    display: block;
+  }
+// chart
+.chart_music {
+    width: 99%;
+    height: 300px;
+}
+.chart_user {
+ width: 99%;
+ height: 300px;
+}
+  .cutting_string {
+    width: 500px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+    @media only screen and (max-width:700px)  {
+        .grid-main-2{
+            display: grid;
+            grid-template-columns: 1fr;
+            .main2{
+                margin-top: -20px;
+                margin-bottom: 7.4em;
+            }
+        }
+        .gird-main-3{
+            display: grid;
+            grid-gap: 3rem;
+            grid-template-columns: 1fr;
+            margin-bottom: -2rem;
+        }
+        .chart_music_main {
+            position: relative;
+        }
+        .recharts-surface {
+            padding-left: 1rem;
+        }
+        .chart_music {
+            position: absolute;
+            left: -4.3rem;
+            width: 23.2rem;
+            background-color: rgb(255, 255, 255);
+        }
+        .text_music {
+            font-size: 0.7rem;
+        }
+        .chart_user {
+            margin-left: -1.5rem;
+        }
+        .home-top{
+            display: grid;
+            grid-template-columns: 1fr;
+            .box-bb{
+                width: 100%;
+                z-index: -10;
+            } 
+        }
+
+    }
+
+}
+// mobie 
+
+ 
