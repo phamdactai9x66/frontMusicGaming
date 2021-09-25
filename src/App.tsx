@@ -2,7 +2,8 @@ import { BrowserRouter as Router, Route, Switch, NavLink } from "react-router-do
 import RootClient from "./page/client/rootPageClient";
 import RootAdmin from "./page/admin/rootPageAdmin";
 import { Provider } from "react-redux";
-import storeGlobal from './store';
+import storeGlobal, { storePersiser } from './store';
+import { PersistGate } from 'redux-persist/integration/react'
 
 import { handlePage, Client, propertyPage, Admin } from "./router";
 
@@ -12,24 +13,26 @@ function App() {
     <>
       <Router>
         <Provider store={storeGlobal}>
-          <Switch>
-            <Route path="/admin" >
-              <RootAdmin>
-                <Switch>
-                  {handlePage<propertyPage[]>(Admin)}
-                </Switch>
-              </RootAdmin>
-            </Route>
+          <PersistGate loading={null} persistor={storePersiser}>
+            <Switch>
+              <Route path="/admin" >
+                <RootAdmin>
+                  <Switch>
+                    {handlePage<propertyPage[]>(Admin)}
+                  </Switch>
+                </RootAdmin>
+              </Route>
 
-            <Route path="">
-              <RootClient>
-                <Switch>
-                  {handlePage<propertyPage[]>(Client)}
+              <Route path="">
+                <RootClient>
+                  <Switch>
+                    {handlePage<propertyPage[]>(Client)}
 
-                </Switch>
-              </RootClient>
-            </Route>
-          </Switch>
+                  </Switch>
+                </RootClient>
+              </Route>
+            </Switch>
+          </PersistGate>
         </Provider>
       </Router>
     </>

@@ -1,11 +1,11 @@
 import React from 'react'
 import Header from "../partials/admin/header";
 import Footer from "../partials/admin/footer";
-interface rootPageAdmin<T> {
+interface RootPageAdmin<T> {
 
 }
 
-const rootPageAdmin: React.FC<rootPageAdmin<any>> = ({ ...props }) => {
+const RootPageAdmin: React.FC<RootPageAdmin<any>> = ({ ...props }) => {
     return (
         <>
             <Header />
@@ -21,4 +21,4 @@ const rootPageAdmin: React.FC<rootPageAdmin<any>> = ({ ...props }) => {
     )
 }
 
-export default rootPageAdmin
+export default RootPageAdmin
