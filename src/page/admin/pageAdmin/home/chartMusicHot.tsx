@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from "react";
-import { PieChart, Pie, Sector } from "recharts";
+import { PieChart, Pie, Sector, ResponsiveContainer } from "recharts";
 
 const data = [
   { name: "Music 1", value: 400 },
@@ -94,30 +94,14 @@ export default function App() {
 
   return (
     <>
-    <div className="chart_music_mobie">
-    <PieChart style={{marginLeft: "-2.5rem"}} width={280} height={200}>
-         <Pie
-           activeIndex={activeIndex}
-           activeShape={ChartMusicHot}
-           data={data}
-           cx={130}
-           cy={80}
-           innerRadius={30}
-           outerRadius={40}
-           fill="#1d2d47"
-           dataKey="value"
-           onMouseEnter={onPieEnter}
-         />
-       </PieChart>
-       </div>
-    <div className="chart_music_destop">
- <PieChart width={480} height={350}>
+    <div className="chart_music_main">
+    <div className="chart_music">
+      <ResponsiveContainer>
+ <PieChart>
       <Pie
         activeIndex={activeIndex}
         activeShape={ChartMusicHot}
         data={data}
-        cx={250}
-        cy={170}
         innerRadius={60}
         outerRadius={80}
         fill="#1d2d47"
@@ -125,6 +109,8 @@ export default function App() {
         onMouseEnter={onPieEnter}
       />
     </PieChart>
+    </ResponsiveContainer>
+    </div>
     </div>
    </>
   );

@@ -1,0 +1,187 @@
+@import "../styles/stylesDefaut.scss";
+
+main {
+    //import
+}
+
+$color_li: rgb(187, 187, 187);
+$color_icon: #56ccf2;
+.container-client {
+    background: #1d2d47;
+    .container-main {
+        display: grid;
+        grid-template-columns: 15.6rem 1fr;
+        & aside .sidebar {
+            overflow: hidden;
+            position: sticky;
+            top: 0;
+            left: 0;
+            width: 250px;
+            height: calc(100vh - 90px);
+            background-color: #0e192a;
+            padding-bottom: 20rem;
+            & h5 {
+                padding: 1.3rem 0 0 2.5rem;
+                color: #fff;
+            }
+            & ul {
+                h6 {
+                    color: rgb(238, 238, 238);
+                    margin-left: 0.7rem;
+                }
+                padding-bottom: 1em;
+                border-bottom: 1px solid $color_icon;
+                li {
+                    list-style: none;
+                    color: $color_li;
+                    font-size: 0.9rem;
+                    padding: 0.7rem;
+                    cursor: pointer;
+                    &:hover {
+                        color: $color_icon;
+                        transition: all ease-in 0.3s;
+                    }
+                    .icon {
+                        color: $color_icon;
+                        font-size: 1.2rem;
+                    }
+                }
+                li:hover {
+                    margin-left: -0.5rem;
+                    background: rgb(18, 47, 85);
+                }
+            }
+            .library-sidebar {
+                overflow: auto;
+                height: 100%;
+                ul:nth-child(3) {
+                    border-bottom: none;
+                }
+            }
+            .add-playlist {
+                background: #0e192a;
+                width: 15.6rem;
+                border-top: 1px solid $color_icon;
+                position: sticky;
+                left: 0rem;
+                bottom: 6.5rem;
+                padding-top: 1rem;
+                text-align: center;
+                color: $color_li;
+                cursor: pointer;
+                .icon {
+                    color: $color_icon;
+                    font-size: 1.5rem;
+                }
+            }
+        }
+        // end sidebar
+        header {
+            position: sticky;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 5rem;
+            display: flex;
+            padding: 1.4em;
+            background: #1d2d47;
+            justify-content: space-between;
+            .search {
+                display: flex;
+                .icon {
+                    font-size: 1.8rem;
+                    color: #56ccf2;
+                    margin: 0.2rem -2.2rem 0 0;
+                    z-index: 1;
+                    cursor: pointer;
+                }
+                input {
+                    border-radius: 3rem;
+                    padding: 0.5rem 0.5rem 0.5rem 3rem;
+                    border: none;
+                    width: 24rem;
+                    height: 2rem;
+                }
+            }
+            .icon-main {
+                display: flex;
+                .icon {
+                    color: #fff;
+                    font-size: 1.5rem;
+                    margin-left: 1rem;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+    footer {
+        position: fixed;
+        bottom: 0;
+        background: #0e192a;
+        width: 100%;
+        height: 5.6rem;
+    }
+    // end footer
+}
+// handel popup
+.popup-overlay {
+    background: rgba(0, 0, 0, 0.767) !important;
+    .modal-playlis {
+        div:nth-of-type(1) {
+            width: 217vh;
+            height: 100vh;
+        }
+        .content-modal {
+            border-radius: 0.5rem;
+            padding: 1rem;
+            background: #2c5491;
+            position: absolute;
+            top: 36%;
+            left: 40%;
+            h5 {
+                color: #fff;
+            }
+            %handel_input {
+                border-radius: 2rem;
+                border: none;
+                background: rgb(228, 228, 228);
+                padding: 0.6rem;
+                width: 18rem;
+            }
+            input {
+                @extend %handel_input;
+            }
+            button {
+                @extend %handel_input;
+                background: #8fb7f3;
+                color: #fff;
+            }
+        }
+    }
+}
+@mixin handel_sidebar {
+    .container-main {
+        display: grid;
+        grid-template-columns: 1fr;
+        aside {
+            display: none;
+        }
+        header {
+            .search {
+                input {
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+    .container-client {
+        @include handel_sidebar();
+    }
+}
+@media (min-width: 320px) and (max-width: 480px) {
+    .container-client {
+        @include handel_sidebar();
+    }
+}

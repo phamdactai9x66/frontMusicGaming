@@ -14,7 +14,6 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
 
   return (
     <>
-
       <div className="home-page">
         <section>
           <h3 className="Dashboarh">Dashboard</h3>
@@ -103,11 +102,6 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                 <div>
                   <h5 className="text-light">Tất cả &gt;</h5>
                 </div>
-                <div className="input-checkbox">
-                  <div>
-                    <input className="inp" type="checkbox" />
-                  </div>
-                </div>
               </div>
               <div className="_tab">
                 <input hidden type="checkbox" id="chck12" />
@@ -133,8 +127,16 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                   <div className="content_flex">
                     <div>Name 3</div> <input className="checkbox_name" type="checkbox" />
                   </div>
+                  <div style={{ display: "flex", justifyContent: "right", marginTop: "1rem" }}>
+                <button className="btn" style={{
+                  background: "#37AFBF",
+                  padding: "0.4rem 1rem 0.4rem 1rem",
+                  borderRadius: "0.2rem",
+                  border: "none",
+                  color: "#fff"
+                }}>Check Pass</button>
+              </div>
                 </div>
-
               </div>
               <div className="_tab">
                 <input hidden type="checkbox" id="chck13" />
@@ -160,6 +162,15 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                   <div className="content_flex">
                     <div>Name 3</div> <input className="checkbox_name" type="checkbox" />
                   </div>
+                  <div style={{ display: "flex", justifyContent: "right", marginTop: "1rem" }}>
+                <button className="btn" style={{
+                  background: "#37AFBF",
+                  padding: "0.4rem 1rem 0.4rem 1rem",
+                  borderRadius: "0.2rem",
+                  border: "none",
+                  color: "#fff"
+                }}>Check Pass</button>
+              </div>
                 </div>
 
               </div>
@@ -187,6 +198,15 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                   <div className="content_flex">
                     <div>Name 3</div> <input className="checkbox_name" type="checkbox" />
                   </div>
+                  <div style={{ display: "flex", justifyContent: "right", marginTop: "1rem" }}>
+                <button className="btn" style={{
+                  background: "#37AFBF",
+                  padding: "0.4rem 1rem 0.4rem 1rem",
+                  borderRadius: "0.2rem",
+                  border: "none",
+                  color: "#fff"
+                }}>Check Pass</button>
+              </div>
                 </div>
 
               </div>
@@ -199,9 +219,7 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                       <div className="_icon_drop">&#10095;</div>
                       <input className="checkbox_name" type="checkbox" />
                     </div>
-
                   </div>
-
                 </label>
 
                 <div className="_tab-content">
@@ -214,6 +232,15 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                   <div className="content_flex">
                     <div>Name 3</div> <input className="checkbox_name" type="checkbox" />
                   </div>
+                  <div style={{ display: "flex", justifyContent: "right", marginTop: "1rem" }}>
+                <button className="btn" style={{
+                  background: "#37AFBF",
+                  padding: "0.4rem 1rem 0.4rem 1rem",
+                  borderRadius: "0.2rem",
+                  border: "none",
+                  color: "#fff"
+                }}>Check Pass</button>
+              </div>
                 </div>
 
               </div>
@@ -241,6 +268,15 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                   <div className="content_flex">
                     <div>Name 3</div> <input className="checkbox_name" type="checkbox" />
                   </div>
+                  <div style={{ display: "flex", justifyContent: "right", marginTop: "1rem" }}>
+                <button className="btn" style={{
+                  background: "#37AFBF",
+                  padding: "0.4rem 1rem 0.4rem 1rem",
+                  borderRadius: "0.2rem",
+                  border: "none",
+                  color: "#fff"
+                }}>Check Pass</button>
+              </div>
                 </div>
 
               </div>
@@ -268,6 +304,15 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                   <div className="content_flex">
                     <div>Name 3</div> <input className="checkbox_name" type="checkbox" />
                   </div>
+                  <div style={{ display: "flex", justifyContent: "right", marginTop: "1rem" }}>
+                <button className="btn" style={{
+                  background: "#37AFBF",
+                  padding: "0.4rem 1rem 0.4rem 1rem",
+                  borderRadius: "0.2rem",
+                  border: "none",
+                  color: "#fff"
+                }}>Check Pass</button>
+              </div>
                 </div>
 
               </div>
@@ -295,10 +340,7 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                   <div className="content_flex">
                     <div>Name 3</div> <input className="checkbox_name" type="checkbox" />
                   </div>
-                </div>
-
-              </div>
-              <div style={{ display: "flex", justifyContent: "right", marginRight: "1.6rem" }}>
+                  <div style={{ display: "flex", justifyContent: "right", marginTop: "1rem" }}>
                 <button className="btn" style={{
                   background: "#37AFBF",
                   padding: "0.4rem 1rem 0.4rem 1rem",
@@ -306,6 +348,9 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                   border: "none",
                   color: "#fff"
                 }}>Check Pass</button>
+              </div>
+                </div>
+
               </div>
 
             </div>

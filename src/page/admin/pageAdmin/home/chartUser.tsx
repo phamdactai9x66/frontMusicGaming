@@ -7,7 +7,8 @@ import {
     YAxis,
     CartesianGrid,
     Tooltip,
-    Legend
+    Legend,
+    ResponsiveContainer
   } from "recharts";
   const data = [
     {
@@ -59,46 +60,12 @@ interface ChartUser<T> {
 
 const ChartUser: React.FC<ChartUser<any>> = ({ ...props }) => {
     return (
-      <>
-      <div className="chart_user_mobie">
-          <LineChart style={{fontSize: "0.8rem"}}
-          className="line_chart"
-      width={270}
-      height={230}
-      data={data}
-      margin={{
-        top: 5,
-        right: 30,
-        left: -17,
-        bottom: 5
-      }}
-    >
-      <CartesianGrid strokeDasharray="3 3" />
-      <XAxis dataKey="name" style={{fontSize: "0.8rem"}}/>
-      <YAxis />
-      <Tooltip />
-      <Legend />
-      <Line
-        type="monotone"
-        dataKey="pv"
-        stroke="#8884d8"
-        activeDot={{ r: 8 }}
-      />
-      <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
-    </LineChart>               
-    </div>  
-    <div className="chart_user_destop">
+      <>  
+    <div className="chart_user">
+      <ResponsiveContainer>
           <LineChart
           className="line_chart"
-      width={530}
-      height={300}
       data={data}
-      margin={{
-        top: 5,
-        right: 30,
-        left: 20,
-        bottom: 5
-      }}
     >
       <CartesianGrid strokeDasharray="3 3" />
       <XAxis dataKey="name" />
@@ -112,7 +79,8 @@ const ChartUser: React.FC<ChartUser<any>> = ({ ...props }) => {
         activeDot={{ r: 8 }}
       />
       <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
-    </LineChart>               
+    </LineChart>
+     </ResponsiveContainer>            
     </div> 
       </>
     )

@@ -1,7 +1,7 @@
 .home-page{
     width: 100%;
-    padding-left: 43px;
-    padding-right: 43px;
+    padding-left: 40px;
+    padding-right: 40px;
     padding-bottom: 6rem;
     .Dashboarh{
         margin:42px 0 42px 0;
@@ -104,7 +104,7 @@
     .grid-main-2{
         display: grid;
        grid-template-columns: 1fr 1fr;
-       grid-gap: -1rem;
+       gap: 20px;
       margin: 3px 0 32px 0;
       .main1 {
           margin: 2rem 0 0 -1.9rem;
@@ -140,27 +140,9 @@
                  }
             }
             .main4-all-in {
-                display: flex;
-                justify-content: space-between;
                 margin-top: 20px;
                 margin-left: 25px;
                 margin-bottom: 20px;
-               .input-checkbox{
-                  
-                   div{
-                       margin-right: 1.97rem;
-                    padding-top: 0.4rem;
-                       width: 2.9rem;
-                       height: 2.3rem;
-                        background-color: #52639e;
-                        border-radius: 5px;
-                        text-align: center;
-                   }
-                   div:hover{
-                       background: #6284ff;
-                   }
-                  
-               }
             }
           
         }
@@ -206,6 +188,7 @@
     .main2{
       margin-left: 0px;  
         margin-top: 10px;
+        margin-bottom: -4rem;
     }
   }
     }
@@ -319,18 +302,14 @@
     display: block;
   }
 // chart
-.chart_user_mobie {
-    display: none;
- }
- .chart_user_destop {
-     display: block;
-  }
-  .chart_music_destop {
-    display: block;
- }
- .chart_music_mobie {
-     display: none;
-  }
+.chart_music {
+    width: 99%;
+    height: 300px;
+}
+.chart_user {
+ width: 99%;
+ height: 300px;
+}
   .cutting_string {
     width: 500px;
     text-overflow: ellipsis;
@@ -342,7 +321,8 @@
             display: grid;
             grid-template-columns: 1fr;
             .main2{
-                margin-top: 10px;
+                margin-top: -20px;
+                margin-bottom: 7.4em;
             }
         }
         .gird-main-3{
@@ -350,6 +330,24 @@
             grid-gap: 3rem;
             grid-template-columns: 1fr;
             margin-bottom: -2rem;
+        }
+        .chart_music_main {
+            position: relative;
+        }
+        .recharts-surface {
+            padding-left: 1rem;
+        }
+        .chart_music {
+            position: absolute;
+            left: -4.3rem;
+            width: 23.2rem;
+            background-color: rgb(255, 255, 255);
+        }
+        .text_music {
+            font-size: 0.7rem;
+        }
+        .chart_user {
+            margin-left: -1.5rem;
         }
         .home-top{
             display: grid;
@@ -359,24 +357,7 @@
                 z-index: -10;
             } 
         }
-        .chart_user_destop {
-            display: none;
-        }
-        .chart_user_mobie {
-            display: block;
-        }
-        .chart_music_destop {
-            display: none;
-        }
-        .chart_music_mobie {
-            display: block;
-        }
-        .payload_music {
-            font-size: 0.7rem;
-        }
-        .text_music {
-            font-size: 0.6rem;
-        }
+
     }
 
 }
