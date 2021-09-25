@@ -100,11 +100,16 @@ $color_icon: #56ccf2;
                     cursor: pointer;
                 }
                 input {
+                    background: #363797;
                     border-radius: 3rem;
                     padding: 0.5rem 0.5rem 0.5rem 3rem;
                     border: none;
                     width: 24rem;
                     height: 2rem;
+                    color: rgb(255, 255, 255);
+                    &::placeholder{
+                        color: rgb(209, 209, 209);
+                    }
                 }
             }
             .icon-main {
