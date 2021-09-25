@@ -43,32 +43,32 @@ const Sidebar: React.FC<Sidebar<any>> = ({ ...props }) => {
           </ul>
         </div>
         <div className="popup-playlist">
-        <Popup
-          modal
-          overlayStyle={{ background: "rgba(255,255,255,0.98" }}
-          closeOnDocumentClick={false}
-          trigger={() =>
-            <div className="add-playlist">
-              <BsPlusCircle className="icon" />
-              <span>&ensp;Tạo playlist mới</span>            
-            </div>
-          }
-        >
-          {(close: any) => (
-            <div className="modal-playlis">
-              <div onClick={close}>
-                  
-              </div>   
-                  <div className="content-modal">
-                         <h5 className="text-center">Tạo playlist mới</h5> 
-                         <form action="">
-                           <input type="text" placeholder="Nhập tên playlist"/>
-                           <br/><br/><button>TẠO MỚI</button>
-                        </form>        
-                  </div>
-            </div>
-          )}
-        </Popup>
+          <Popup
+            modal
+            overlayStyle={{ background: "rgba(255,255,255,0.98" }}
+            closeOnDocumentClick={false}
+            trigger={() =>
+              <div className="add-playlist">
+                <BsPlusCircle className="icon" />
+                <span>&ensp;Tạo playlist mới</span>
+              </div>
+            }
+          >
+            {(close: any) => (
+              <div className="modal-playlis">
+                <div onClick={close}>
+
+                </div>
+                <div className="content-modal">
+                  <h5 className="text-center">Tạo playlist mới</h5>
+                  <form action="">
+                    <input type="text" placeholder="Nhập tên playlist" />
+                    <br /><br /><button>TẠO MỚI</button>
+                  </form>
+                </div>
+              </div>
+            )}
+          </Popup>
         </div>
       </div>
     </>
