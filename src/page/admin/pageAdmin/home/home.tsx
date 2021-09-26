@@ -2,8 +2,8 @@ import { Link } from 'react-router-dom'
 import React, { useCallback, useState } from "react";
 import { FaBlogger, FaMusic, FaUsers } from 'react-icons/fa';
 import { MdLibraryMusic } from 'react-icons/md';
-import ChartMusicHot from './chartMusicHot';
-import ChartUser from './chartUser';
+import ChartMusicHot from './component/chartMusicHot';
+import ChartUser from './component/chartUser';
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 
 interface Home<T> {
