@@ -3,7 +3,8 @@ import { AiFillGoogleSquare } from 'react-icons/ai';
 import { GrFacebook } from 'react-icons/gr';
 import { Link } from 'react-router-dom';
 import { Formik, Form, FormikContextType } from "formik";
-import validateSchema from "../../../../component/ValidateSchema/handleForm";
+import validateSchema from "./component/handleForm";
+import { stateForm } from "./component/stateForm";
 
 interface Signin<T> {
 
@@ -81,6 +82,9 @@ const Signin: React.FC<Signin<any>> = ({ ...props }) => {
       </div>
     )
   }
+  const handleSignIn = (data: any) => {
+    console.log(data);
+  }
   return (
     <>
       <div className="handleForm">
@@ -89,11 +93,12 @@ const Signin: React.FC<Signin<any>> = ({ ...props }) => {
           {linkHandle()}
           <div className="form-input">
             <Formik
-              initialValues={{}}
+              initialValues={stateForm[step.displayForm]}
               validationSchema={validateSchema[step.displayForm]}
-              onSubmit={() => { }}
+              onSubmit={handleSignIn}
               validateOnBlur={false}
               validateOnChange={false}
+              enableReinitialize
             >
               {formik => {
                 return (
