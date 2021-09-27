@@ -1,54 +1,31 @@
-import React, { useState } from 'react'
-import { AiFillGoogleSquare } from 'react-icons/ai';
-import { GrFacebook } from 'react-icons/gr';
-import { Link } from 'react-router-dom';
+import React, { useState, useRef } from 'react'
+import LoginFacebook from './component/loginFacebook';
+import LoginGoogle from './component/loginGoogle';
 import { Formik, Form, FormikContextType } from "formik";
 import validateSchema from "./component/handleForm";
 import { stateForm } from "./component/stateForm";
-
-interface Signin<T> {
+import { signIn, signUp } from "./component/formLocal";
+import userApi from "../../../../api/useApi";
+import LoadingButton from '@mui/lab/LoadingButton';
+import Alert from '@mui/material/Alert'
+import { saveInfo } from "../../../../redux/user/actionUser";
+import { RouteComponentProps } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+interface Signin<T> extends RouteComponentProps {
 
 }
-const signIn = <T extends FormikContextType<any>>(formik: T) => {
 
-  return (
-    <>
-      <div>
-        <input placeholder="E-mail" type="text" />
-      </div>
-      <div>
-        <input placeholder="Password" type="password" />
-      </div>
-      <Link className="forgot_pass" to="/forgotpassword">Forgot password ?</Link>
-    </>
-  )
-}
-const signUp = <T extends FormikContextType<any>>(formik: T) => {
-  return (
-    <>
-      <input placeholder="E-mail" type="text" />
-      <label htmlFor="">Gender</label>
-      <div className="gender">
-        <div style={{ display: "flex" }}>
-          <span>Male</span><input type="radio" name="gender" checked />
-        </div>
-        <div style={{ display: "flex" }}>
-          <span>Female</span><input type="radio" name="gender" />
-        </div>
-      </div>
-      <input placeholder="Password" type="text" />
-      <input placeholder="Comfirm Password" type="text" />
-    </>
-  )
-}
 
-const Signin: React.FC<Signin<any>> = ({ ...props }) => {
+const Signin: React.FC<Signin<any>> = ({ history, ...props }) => {
   const [step, setStep] = useState({
     displayForm: 0,
     addStyle: {
       borderBottom: " 0.2rem solid rgb(65, 217, 228)"
     }
   })
+  const dispatchUser = useDispatch();
+  const form = useRef<HTMLFormElement | any>(null);
+  const [alertError, setalertError] = useState<any>({ display: null, message: "" })
 
   const renderForm = <T extends number>(step: T, formik: FormikContextType<any>): JSX.Element => {
     switch (step) {
@@ -73,17 +50,32 @@ const Signin: React.FC<Signin<any>> = ({ ...props }) => {
     return (
       <div className="link_handel">
         <section style={!step.displayForm ? step.addStyle : {}}>
-          <Link to={{}} onClick={(event) => { navidateForm(event)(0) }}>Sign in</Link>
+          <a href={" "} onClick={(event) => { navidateForm(event)(0) }}>Sign in</a>
         </section>
 
         <section style={step.displayForm ? step.addStyle : {}}>
-          <Link to={{}} onClick={(event) => { navidateForm(event)(1) }}>Sign up</Link>
+          <a href={" "} onClick={(event) => { navidateForm(event)(1) }}>Sign up</a>
         </section >
       </div>
     )
   }
-  const handleSignIn = (data: any) => {
-    console.log(data);
+  const handleSignIn = async (data: any, action: any) => {
+    const handleForm = new FormData(form.current);
+
+    const loginUser = await userApi.Login(handleForm);
+
+    if (loginUser.status !== "failed") {
+
+      dispatchUser(saveInfo(loginUser))
+
+      return history.replace("/");
+    }
+
+    displayAlert(loginUser.message)
+
+  }
+  const displayAlert = (messageError: string) => {
+    setalertError({ display: true, message: messageError })
   }
   return (
     <>
@@ -96,22 +88,36 @@ const Signin: React.FC<Signin<any>> = ({ ...props }) => {
               initialValues={stateForm[step.displayForm]}
               validationSchema={validateSchema[step.displayForm]}
               onSubmit={handleSignIn}
-              validateOnBlur={false}
-              validateOnChange={false}
+              // validateOnBlur={false}
+              // validateOnChange={false}
               enableReinitialize
             >
               {formik => {
                 return (
-                  <Form>
+                  <Form ref={form}>
+                    {alertError.display &&
+                      <Alert severity="error" style={{ cursor: "pointer" }}
+                        onClick={() => {
+                          setalertError((value: any) => ({ ...value, display: null }))
+                        }}
+                      >{alertError.message}</Alert>
+                    }
 
                     {renderForm<number>(step.displayForm, formik)}
 
                     <div className="btn_login">
-                      <button type="submit"> {!step.displayForm ? "Sign in" : "Sign up"} </button>
+                      <LoadingButton loading={formik.isSubmitting}
+                        variant="outlined" type="submit">
+                        {!step.displayForm ? "Sign in" : "Sign up"}
+                      </LoadingButton>
+
 
                       {!step.displayForm ? <>
-                        <AiFillGoogleSquare className="icon" />
-                        <GrFacebook className="icon" /></> : ''}
+                        {/* <AiFillGoogleSquare className="icon" /> */}
+                        <LoginGoogle />
+                        <LoginFacebook />
+
+                      </> : ''}
                     </div>
 
                   </Form>

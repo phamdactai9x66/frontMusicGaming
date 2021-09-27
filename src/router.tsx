@@ -68,7 +68,6 @@ function handlePage<T extends propertyPage[]>(Page: T): JSX.Element[] {
 
     return Page.map((currenValue, index) => {
         let { path, component, exact } = currenValue;
-        console.log(exact, path)
         return (
             <Route key={index}
                 path={path}
