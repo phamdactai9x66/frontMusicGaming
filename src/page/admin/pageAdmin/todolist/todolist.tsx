@@ -32,8 +32,8 @@ const Todolist: React.FC<Todolist<any>> = ({ ...props }) => {
                  // multiline
                   // sx={{ m: 1, width: '25ch' }}
                   InputProps={{
-                    startAdornment: <SearchIcon></SearchIcon>,
-                    placeholder: "awdawd"
+                 startAdornment: <SearchIcon style={{ marginRight: 10 }}></SearchIcon>,
+                    placeholder: "searching"
                   }}
                   size="small"
                 />
