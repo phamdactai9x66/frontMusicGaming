@@ -1,95 +1,111 @@
 import React from 'react'
-import { RouteChildrenProps, withRouter } from "react-router-dom";
-import { AiOutlineSearch } from 'react-icons/ai';
-import { ImNext2 } from 'react-icons/im';
-import { ImPrevious2 } from 'react-icons/im';
-
+import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material"
+import { Button, Checkbox, TextField, Typography, FormControl, InputLabel } from "@mui/material"
+import { Select, MenuItem } from "@mui/material"
+import SearchIcon from '@mui/icons-material/Search';
+import Pagination from '@mui/material/Pagination';
 interface Todolist<T> {
 
 }
 
+const columns = [
+  { id: 'name', label: 'Name', minWidth: 170, align: 'left' },
+  { id: 'price', label: 'Price', minWidth: 100, align: 'left' },
+  { id: 'quantity', label: 'Quantity', minWidth: 170, align: 'left' },
+  { id: '', label: 'Handle', minWidth: 170, align: 'center' },
+];
+const rows = [
+  { _id: 1, name: "test1", price: 100, quantity: 10 },
+  { _id: 2, name: "test12", price: 100, quantity: 10 },
+  { _id: 3, name: "test123", price: 100, quantity: 10 }
+];
 const Todolist: React.FC<Todolist<any>> = ({ ...props }) => {
-    return (
-        <>
-            <div className="todo_main">
-                <h3>Todolist</h3>
-                <div className="listToDo">
-                    <table>
-                        <thead className="thead_mobie">
-                            <tr className="col thead_mobie_extend">
-                                <th><button className="btn btn-primary">Add Todo</button></th>
-                                <th className="col-2"></th>
-                                <th><select>
-                                    <option value="">Chọn trạng thái</option>
-                                    <option value="hienthi">Hiển thị</option>
-                                    <option value="chuahienthi">Chưa hiển thị</option>
-                                </select>
-                                </th>
-                                <th>
-                                    <div className="search_main">
-                                        <input type="text" placeholder="Tìm kiếm" />
-                                        <AiOutlineSearch className="col-icon" />
-                                    </div>
-                                </th>
-                            </tr>
-                            <tr className="col">
-                                <th><input type="number" min="0" /></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                            </tr>
 
-                            <tr className="col title-table">
-                                <th>ID</th>
-                                <th>Name</th>
-                                <th>Trạng thái</th>
-                                <th>Hành động</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr className="col">
-                                <td data-label="ID">1</td>
-                                <td data-label="Name">Name 1</td>
-                                <td data-label="Trạng thái" className="status"><button className="btn btn-primary">Hiển thị</button></td>
-                                <td data-label="Hành động" className="rows">
-                                    <button className="btn btn-primary">Sửa</button>
-                                    <button className="btn btn-danger">Xóa</button>
-                                </td>
-                            </tr>
-                            <tr className="col">
-                                <td data-label="ID">1</td>
-                                <td data-label="Name" >Name 1</td>
-                                <td data-label="Trạng thái" className="status"><button className="btn btn-danger">Chưa hiển thị</button></td>
-                                <td data-label="Hành động" className="rows">
-                                    <button className="btn btn-primary">Sửa</button>
-                                    <button className="btn btn-danger">Xóa</button>
-                                </td>
-                            </tr>
-                            <tr className="col">
-                                <td data-label="ID" >1</td>
-                                <td data-label="Name" >Name 1</td>
-                                <td data-label="Trạng thái" className="status"><button className="btn btn-primary">Hiển thị</button></td>
-                                <td data-label="Hành động" className="rows">
-                                    <button className="btn btn-primary">Sửa</button>
-                                    <button className="btn btn-danger">Xóa</button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div className="pagination">
-                        <a href="#"><ImPrevious2/></a>
-                        <a href="#">&laquo;</a>
-                        <a href="#">1</a>
-                        <a href="#">2</a>
-                        <a href="#">3</a>
-                        <a href="#">4</a>
-                        <a href="#">&raquo;</a>
-                        <a href="#"><ImNext2/></a>
-                    </div>
-                </div>
-            </div>
-        </>
-    )
+  return (
+    <>
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '80%' }}>
+        <div style={{ flexBasis: 1000, margin: "0 auto" }}>
+          <Paper sx={{ width: '100%' }}>
+            <TableContainer style={{ padding: 20 }}>
+              <Typography style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                <TextField
+                  multiline
+                  // sx={{ m: 1, width: '25ch' }}
+                  InputProps={{
+                    startAdornment: <SearchIcon></SearchIcon>,
+                    placeholder: "awdawd"
+                  }}
+                  size="small"
+                />
+                <Select
+                  labelId="demosimpleselectlabel"
+                  id="demosimpleselect"
+                  label="Age"
+                  value={10}
+                  size="small"
+                  style={{ width: 200 }}
+                >
+                  <MenuItem value={10}>Ten</MenuItem>
+                  <MenuItem value={20}>Twenty</MenuItem>
+                  <MenuItem value={30}>Thirty</MenuItem>
+                </Select>
+              </Typography>
+
+              <Table stickyHeader >
+                <TableHead>
+                  <TableRow>
+                    <TableCell
+                      key="awd"
+                      align='left'
+                      style={{ minWidth: 170 }}
+                    >
+                      <Checkbox />
+                    </TableCell>
+                    {columns.map((column) => (
+                      <TableCell
+                        key={column.id}
+                        align={column.align as any}
+                        style={{ minWidth: column.minWidth }}
+                      >
+                        {column.label}
+                      </TableCell>
+                    ))}
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {rows.map((row) => {
+                    return (
+                      <TableRow hover role="checkbox" key={row._id}>
+                        <TableCell key={row._id} align='left'>
+                          <Checkbox />
+                        </TableCell>
+                        <TableCell key={row._id} align='left'>
+                          {row.name}
+                        </TableCell>
+                        <TableCell key={row._id} align='left'>
+                          {row.price}
+                        </TableCell>
+                        <TableCell key={row._id} align='left'>
+                          {row.quantity}
+                        </TableCell>
+                        <TableCell key={row._id} align='center'>
+                          <Button variant="contained" color="error" style={{ marginRight: 5 }}>Contained</Button>
+                          <Button variant="contained" color="primary">Contained</Button>
+                        </TableCell>
+                      </TableRow>
+                    );
+                  })}
+                </TableBody>
+              </Table>
+              <Pagination count={10} style={{ padding: 10, paddingTop: 20 }} />
+            </TableContainer>
+
+          </Paper>
+        </div>
+      </div>
+
+    </>
+  )
 }
 
 export default Todolist
