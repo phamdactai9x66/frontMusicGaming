@@ -1,5 +1,9 @@
-import React from "react";
 
+
+export const genderOption = [
+    { value: true, label: "Female" },
+    { value: false, label: "Male" }
+]
 export const stateForm = [
     {
         userName: "",
@@ -8,12 +12,12 @@ export const stateForm = [
     {
         first_name: "",
         last_name: "",
-        avatar: "",
-        gender: "",
+        image: "",
+        gender: genderOption[0].value,
         email: "",
         address: "",
         userName: "",
         passWord: "",
-        confirmPassword: "",
+        confirmPassWord: "",
     }
 ]

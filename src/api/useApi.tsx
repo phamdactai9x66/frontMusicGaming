@@ -18,5 +18,9 @@ class userApi {
         let url: string = "/user/login/google";
         return Axios.post(url, form)
     }
+    Signup(form: any): Promise<any> {
+        let url: string = "/user/signUp";
+        return AxiosFormdata.post(url, form)
+    }
 }
 export default new userApi()

@@ -1,7 +1,10 @@
+import React, { useState } from "react"
 import { FormikContextType } from "formik";
-import { InputText } from "../../../../../component/customField/index";
+import { InputText, RadioField, FileField } from "../../../../../component/customField/index";
 import { Link } from 'react-router-dom';
-export const signIn = <T extends FormikContextType<any>>(formik: T) => {
+import { LoadingButton } from "@mui/lab"
+import { genderOption } from "../component/stateForm";
+export const SignIn = <T extends FormikContextType<any>>(formik: T) => {
 
   return (
     <>
@@ -11,24 +14,52 @@ export const signIn = <T extends FormikContextType<any>>(formik: T) => {
       <InputText name="passWord" type="password" other={{ placeholder: "passWord" }} />
 
       <Link className="forgot_pass" to="/forgotpassword">Forgot password ?</Link>
+      <LoadingButton loading={formik.isSubmitting}
+        variant="outlined" type="submit">
+        Sign in
+      </LoadingButton>
     </>
   )
 }
-export const signUp = <T extends FormikContextType<any>>(formik: T) => {
+
+export const SignUp = <T extends FormikContextType<any>>(formik: T) => {
+
   return (
     <>
-      <input placeholder="E-mail" type="text" />
-      <label htmlFor="">Gender</label>
-      <div className="gender">
-        <div style={{ display: "flex" }}>
-          <span>Male</span><input type="radio" name="gender" checked />
-        </div>
-        <div style={{ display: "flex" }}>
-          <span>Female</span><input type="radio" name="gender" />
-        </div>
+      {/* {JSON.stringify(formik.values)} */}
+      {/* <input placeholder="E-mail" type="text" /> */}
+      <div>
+        <InputText name="first_name" label="First Name" type="text" other={{ placeholder: "First Name" }} />
       </div>
-      <input placeholder="Password" type="text" />
-      <input placeholder="Comfirm Password" type="text" />
+      <div>
+        <InputText name="last_name" label="Last Name" type="text" other={{ placeholder: "Last Name" }} />
+      </div>
+      <div>
+        <InputText name="email" label="Email" type="email" other={{ placeholder: "Email" }} />
+      </div>
+      <div>
+        <RadioField name="gender" label="gender" data={genderOption} />
+      </div>
+      <div>
+        <FileField name="image" label="avatar" type="file" />
+      </div>
+      <div>
+        <InputText name="address" label="address" type="text" other={{ placeholder: "address" }} />
+
+      </div>
+      <div>
+        <InputText name="userName" label="userName" type="text" />
+      </div>
+      <div>
+        <InputText name="passWord" label="passWord" type="password" />
+      </div>
+      <div>
+        <InputText name="confirmPassWord" label="confirmPassword" type="password" />
+      </div>
+      <LoadingButton loading={formik.isSubmitting}
+        variant="outlined" type="submit">
+        Sign up
+      </LoadingButton>
     </>
   )
 }

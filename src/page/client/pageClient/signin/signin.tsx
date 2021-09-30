@@ -4,13 +4,13 @@ import LoginGoogle from './component/loginGoogle';
 import { Formik, Form, FormikContextType } from "formik";
 import validateSchema from "./component/handleForm";
 import { stateForm } from "./component/stateForm";
-import { signIn, signUp } from "./component/formLocal";
+import { SignIn, SignUp } from "./component/formLocal";
 import userApi from "../../../../api/useApi";
 import LoadingButton from '@mui/lab/LoadingButton';
 import Alert from '@mui/material/Alert'
 import { saveInfo } from "../../../../redux/user/actionUser";
 import { RouteComponentProps } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 interface Signin<T> extends RouteComponentProps {
 
 }
@@ -30,13 +30,13 @@ const Signin: React.FC<Signin<any>> = ({ history, ...props }) => {
   const renderForm = <T extends number>(step: T, formik: FormikContextType<any>): JSX.Element => {
     switch (step) {
       case 0: {
-        return signIn<FormikContextType<any>>(formik)
+        return SignIn<FormikContextType<any>>(formik)
       }
       case 1: {
-        return signUp<FormikContextType<any>>(formik)
+        return SignUp<FormikContextType<any>>(formik)
       }
       default: {
-        return signIn<FormikContextType<any>>(formik)
+        return SignIn<FormikContextType<any>>(formik)
       }
     }
   }
@@ -61,20 +61,33 @@ const Signin: React.FC<Signin<any>> = ({ history, ...props }) => {
   }
   const handleSignIn = async (data: any, action: any) => {
     const handleForm = new FormData(form.current);
+    if (!step.displayForm) {
 
-    const loginUser = await userApi.Login(handleForm);
+      const loginUser = await userApi.Login(handleForm);
+
+      if (loginUser.status !== "failed") {
+
+        dispatchUser(saveInfo(loginUser))
+
+        return history.replace("/");
+      }
+
+      displayAlert(loginUser.message)
+    }
+    const loginUser = await userApi.Signup(handleForm);
 
     if (loginUser.status !== "failed") {
 
-      dispatchUser(saveInfo(loginUser))
+      // dispatchUser(saveInfo(loginUser))
 
-      return history.replace("/");
+      return
     }
-
-    displayAlert(loginUser.message)
+    console.log(loginUser)
+    // displayAlert(loginUser.message)
+    // console.log(loginUser)
 
   }
-  const displayAlert = (messageError: string) => {
+  const displayAlert = (messageError: string = "We have some error !") => {
     setalertError({ display: true, message: messageError })
   }
   return (
@@ -106,10 +119,10 @@ const Signin: React.FC<Signin<any>> = ({ history, ...props }) => {
                     {renderForm<number>(step.displayForm, formik)}
 
                     <div className="btn_login">
-                      <LoadingButton loading={formik.isSubmitting}
+                      {/* <LoadingButton loading={formik.isSubmitting}
                         variant="outlined" type="submit">
                         {!step.displayForm ? "Sign in" : "Sign up"}
-                      </LoadingButton>
+                      </LoadingButton> */}
 
 
                       {!step.displayForm ? <>
