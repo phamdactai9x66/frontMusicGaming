@@ -29,7 +29,7 @@ const Todolist: React.FC<Todolist<any>> = ({ ...props }) => {
             <TableContainer style={{ padding: 20 }}>
               <Typography style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                 <TextField
-                  multiline
+                 // multiline
                   // sx={{ m: 1, width: '25ch' }}
                   InputProps={{
                     startAdornment: <SearchIcon></SearchIcon>,
