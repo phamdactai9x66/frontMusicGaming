@@ -10,7 +10,7 @@ interface Header<T> {
 
 const Header: React.FC<Header<any>> = ({ ...props }) => {
     return (
-        <header>
+        <header className="header">
                 <div className="search">
                     <BiSearch className="icon"/>
                    <input type="text" placeholder="Nhập tên bài hát, nghệ sĩ hoặc MV"/>
