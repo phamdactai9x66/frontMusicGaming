@@ -6,8 +6,9 @@ import HomeAdmin from "./page/admin/pageAdmin/home/home";
 import AddMusic from "./page/admin/pageAdmin/addMusic/addMusic";
 import NotFoundAdmin from "./page/admin/pageAdmin/notFound/notFoundAdmin";
 import Todolist from "./page/admin/pageAdmin/todolist/todolist";
-import Canhan from "./page/client/pageClient/canhan/canhan";
+import Personal from "./page/client/pageClient/personal/personal";
 import Signin from "./page/client/pageClient/signin/signin";
+import ForgotPassword from "./page/client/pageClient/forgotPassword/forgotPassword";
 
 
 export interface propertyPage {
@@ -47,13 +48,18 @@ const Client: propertyPage[] = [
         exact: true
     },
     {
-        path: "/canhan",
-        component: Canhan,
+        path: "/personal",
+        component: Personal,
         exact: true
     },
     {
         path: "/signin",
         component: Signin,
+        exact: true
+    },
+    {
+        path: "/forgotpassword",
+        component: ForgotPassword,
         exact: true
     },
     {

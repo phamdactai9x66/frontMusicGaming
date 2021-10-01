@@ -127,7 +127,7 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                   <div className="content_flex">
                     <div>Name 3</div> <input className="checkbox_name" type="checkbox" />
                   </div>
-                  <div style={{ display: "flex", justifyContent: "right", marginTop: "1rem" }}>
+                  <div style={{ display: "flex", justifyContent: "flex-end", marginTop: "1rem" }}>
                 <button className="btn" style={{
                   background: "#37AFBF",
                   padding: "0.4rem 1rem 0.4rem 1rem",
@@ -162,7 +162,7 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                   <div className="content_flex">
                     <div>Name 3</div> <input className="checkbox_name" type="checkbox" />
                   </div>
-                  <div style={{ display: "flex", justifyContent: "right", marginTop: "1rem" }}>
+                  <div style={{ display: "flex", justifyContent: "flex-end", marginTop: "1rem" }}>
                 <button className="btn" style={{
                   background: "#37AFBF",
                   padding: "0.4rem 1rem 0.4rem 1rem",
@@ -198,7 +198,7 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                   <div className="content_flex">
                     <div>Name 3</div> <input className="checkbox_name" type="checkbox" />
                   </div>
-                  <div style={{ display: "flex", justifyContent: "right", marginTop: "1rem" }}>
+                  <div style={{ display: "flex", justifyContent: "flex-end", marginTop: "1rem" }}>
                 <button className="btn" style={{
                   background: "#37AFBF",
                   padding: "0.4rem 1rem 0.4rem 1rem",
@@ -232,7 +232,7 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                   <div className="content_flex">
                     <div>Name 3</div> <input className="checkbox_name" type="checkbox" />
                   </div>
-                  <div style={{ display: "flex", justifyContent: "right", marginTop: "1rem" }}>
+                  <div style={{ display: "flex", justifyContent: "flex-end", marginTop: "1rem" }}>
                 <button className="btn" style={{
                   background: "#37AFBF",
                   padding: "0.4rem 1rem 0.4rem 1rem",
@@ -268,7 +268,7 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                   <div className="content_flex">
                     <div>Name 3</div> <input className="checkbox_name" type="checkbox" />
                   </div>
-                  <div style={{ display: "flex", justifyContent: "right", marginTop: "1rem" }}>
+                  <div style={{ display: "flex", justifyContent: "flex-end", marginTop: "1rem" }}>
                 <button className="btn" style={{
                   background: "#37AFBF",
                   padding: "0.4rem 1rem 0.4rem 1rem",
@@ -304,7 +304,7 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                   <div className="content_flex">
                     <div>Name 3</div> <input className="checkbox_name" type="checkbox" />
                   </div>
-                  <div style={{ display: "flex", justifyContent: "right", marginTop: "1rem" }}>
+                  <div style={{ display: "flex", justifyContent: "flex-end", marginTop: "1rem" }}>
                 <button className="btn" style={{
                   background: "#37AFBF",
                   padding: "0.4rem 1rem 0.4rem 1rem",
@@ -340,7 +340,7 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                   <div className="content_flex">
                     <div>Name 3</div> <input className="checkbox_name" type="checkbox" />
                   </div>
-                  <div style={{ display: "flex", justifyContent: "right", marginTop: "1rem" }}>
+                  <div style={{ display: "flex", justifyContent: "flex-end", marginTop: "1rem" }}>
                 <button className="btn" style={{
                   background: "#37AFBF",
                   padding: "0.4rem 1rem 0.4rem 1rem",
