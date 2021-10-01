@@ -1,10 +1,10 @@
 import { Axios, AxiosFormdata } from "./configApi";
 
-class testApi {
+class albumsApi {
 
     getAll<T extends object>(query: T): Promise<any> {
-        let url: string = "/songs";
+        let url: string = "/albums";
         return Axios.get(url, { params: { query } })
     }
 }
-export default new testApi()
+export default new albumsApi()
