@@ -3,7 +3,7 @@ import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow
 import { Button, Checkbox, TextField, Typography, FormControl, InputLabel } from "@mui/material"
 import { Select, MenuItem, Pagination } from "@mui/material"
 import SearchIcon from '@mui/icons-material/Search';
-// import {} from "../../../../"
+import apiAlbum from "api/albumApi";
 
 interface Todolist<T> {
 
@@ -23,6 +23,7 @@ const rows = [
 const Todolist: React.FC<Todolist<any>> = ({ ...props }) => {
   // const [state, dispatch] = useReducer(reducer, initialState, init)
 
+  console.log(apiAlbum.getAll)
   return (
     <>
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '80%' }}>

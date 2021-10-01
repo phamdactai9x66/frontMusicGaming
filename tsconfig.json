@@ -19,8 +19,10 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    // "strictPropertyInitialization": false
-    
+    "baseUrl": "src",
+    "paths": {
+      "api/*": ["api/*"]
+    }
   },
   "include": [
     "src"
