@@ -2,8 +2,21 @@
     padding: 2rem;
     .slider-banner {
         div img {
+            border-radius: 0.4rem;
             width: 100%;
             cursor: grab;
+            transform: scale(0.85) translateY(0);
+            box-shadow: 1rem 1rem 1rem 0.2rem rgba(0, 0, 0, 0.438);
+            animation-name: banner;
+            animation-duration: 1s;
+            @keyframes banner {
+                from {
+                    transform: scale(0.9) translateY(-7rem);
+                }
+                to {
+                    transform: scale(0.85) translateY(0);
+                }
+            }
         }
         .slick-prev:before,
         .slick-next:before {
@@ -16,38 +29,38 @@
         .slick-prev {
             position: absolute;
             z-index: 1;
-            left: 0.5rem;
+            transform: translateX(-3.3rem);
+            transition: 0.5s;
         }
         .slick-next {
             position: absolute;
             z-index: 1;
-            right: 2rem;
+            transform: translateX(2rem);
+            transition: 0.5s;
+        }
+        &:hover .slick-next {
+            transform: translateX(-3.3rem);
+        }
+        &:hover .slick-prev {
+            transform: translateX(2rem); 
         }
         .slick-dots li button:before {
-            font-size: 0.8rem;
-            color: rgb(134, 227, 240);
-        }
-        .slick-dots li.slick-active button:before {
-            opacity: 0.75;
-            font-size: 0.8rem;
-            color: rgb(134, 227, 240);
+            font-size: 0.7rem;
+            color: #fff;
+            border: 0.1rem solid rgb(152, 252, 255);
+            border-radius: 100%;
         }
     }
-    .category {
+    .list-slider {
         margin-top: 2rem;
-        h2 {
+        h4 {
             color: #fff;
         }
         div {
-            .box {
-                .img {
-                    display: flex;
-                    gap: 1rem;
-                    img {
-                        cursor: grab;
-                        flex-basis: 100%;
-                    }
-                }
+            img {
+                box-shadow: 0 3px 7px rgba(0, 0, 0, 0.795);
+                border-radius: 0.3rem;
+                cursor: grab;
             }
             .slick-prev:before {
                 content: "\003c";
@@ -75,7 +88,7 @@
     }
     .list-music {
         margin-top: 2rem;
-        h3 {
+        h4 {
             color: #fff;
         }
         .main1 {
@@ -92,12 +105,17 @@
                         width: 60px;
                         height: 60px;
                     }
+                    margin-right: 0.5rem;
                     border-radius: 0.3rem;
                     color: #fff;
                     border: 0.1rem solid rgb(43, 147, 165);
                     background: #122244;
                     display: grid;
                     grid-template-columns: 4.5rem 2fr 1fr 5rem;
+                    transition: 0.3s;
+                    &:hover {
+                        background: #253d72;
+                    }
                     div .icon {
                         margin-left: 0.4rem;
                         font-size: 1.1rem;
@@ -105,53 +123,174 @@
                     }
                 }
             }
-            .limit-items .items li:nth-of-type(n + 2) {
+            .limit-items .items div:nth-of-type(n + 6) {
                 display: none;
             }
-            .limit-items #show-all:checked ~ .items li {
-                display: list-item;
+            .limit-items #show-all:checked ~ .items div {
+                display: block;
             }
             .limit-items #show-all ~ label[for="show-all"] {
                 display: none;
             }
             .limit-items #show-all:checked ~ .text-hide {
-                display: inline-block;
+                display: block;
             }
             .limit-items #show-all:not(:checked) ~ .text-show {
-                display: inline-block;
+                display: block;
             }
             .limit-items {
                 color: #fff;
                 position: relative;
-                padding-bottom: 2em;
-                width: 10em;
-                font-family: sans-serif;
+                margin-top: -2.4rem;
+                %handel_show {
+                    font-size: 1.2rem;
+                    position: absolute;
+                    top: 0.2rem;
+                    right: 2rem;
+                    cursor: pointer;
+                }
+                .text-show {
+                    @extend %handel_show;
+                }
+                .text-hide {
+                    @extend %handel_show;
+                }
+                .items {
+                    height: 23rem;
+                    overflow: auto;
+                    section {
+                        display: grid;
+                        margin-right: 3.5rem;
+                        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+                        %handel_img {
+                            width: 4.5rem;
+                            height: 4.5rem;
+                            border-radius: 100%;
+                            margin: 0 0 1.3rem 0;
+                            cursor: pointer;
+                        }
+                        div {
+                            @extend %handel_img;
+                            overflow: hidden;
+                            img {
+                                @extend %handel_img;
+                                &:hover {
+                                    transform: scale(1.1);
+                                    transition: 0.4s;
+                                    filter: brightness(70%);
+                                }
+                            }
+                        }
+                    }
+                }
             }
             .limit-items #show-all {
                 display: none;
             }
-            .limit-items label[for="show-all"] {
-                position: absolute;
-                box-sizing: border-box;
-                width: 100%;
-                bottom: 0;
-                font-size: 0.75em;
-                text-align: center;
-                line-height: 1em;
-                border: 1px solid #ddd;
-                padding: 0.5em;
-                cursor: pointer;
-                text-transform: uppercase;
-                color: #444;
+        }
+    }
+    .music-charts {
+        width: 100%;
+        height: 24rem;
+        background: linear-gradient(to bottom right, rgb(15, 15, 41), rgb(126, 148, 209));
+        border-radius: 0.4rem;
+        margin: 2rem 0 2rem 0;
+        display: grid;
+        grid-template-columns: 40% 65%;
+        padding: 1rem;
+        h4 {
+            color: rgb(226, 226, 226);
+        }
+        .box-chart {
+            width: 100%;
+            height: 5rem;
+            background-color: #4b8ec44f;
+            box-shadow: 0 3px 7px rgba(0, 0, 0, 0.473);
+            border-radius: 0.3rem;
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 0.7rem;
+            padding-left: 1rem;
+            &:hover {
+                background-color: #3977a0;
             }
-            .limit-items label[for="show-all"]:hover {
-                border: 1px solid #aaa;
+            .stt,
+            .tyle {
+                color: rgba(74, 144, 226, 0);
+                line-height: 5rem;
+                font-size: 1.5rem;
+                -webkit-text-stroke: 1px #6ed1ff;
+                padding-right: 0.5rem;
             }
-            .limit-items label[for="show-all"]:active {
-                border: 1px solid #222;
-                background-color: #222;
-                color: #fff;
+            img {
+                border-radius: 0.3rem;
+                margin-top: 0.6rem;
+            }
+            .name {
+                flex-grow: 1;
+                h6 {
+                    color: #fff;
+                    margin-top: 0.4rem;
+                }
             }
         }
+        .chart {
+            text {
+                fill: rgb(194, 194, 194) !important;
+            }
+            flex-grow: 1;
+            .chartMusic {
+                width: 90%;
+                height: 20rem;
+            }
+        }
+        button {
+            border-radius: 4rem;
+            padding: 0.3rem 2.2rem;
+            background: rgb(71, 194, 231);
+        }
+    }
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+
+}
+@media only screen and (max-width: 700px) {
+    .home {
+        .slider-banner div img {
+            height: 15rem;
+        }
+        .list-music {
+            .main1 {
+           grid-template-columns: 100%;
+           .limit-items {
+               margin-top: 1rem;
+               .items {
+                   height: 9rem;
+                section {
+                    grid-template-columns: 1fr 1fr 1fr 1fr;
+                    div {
+                        transform: scale(0.9);
+                        margin-bottom: 0;
+                    }
+                   }
+               }
+
+           }
+       }
+        } 
+        .music-charts {
+            grid-template-columns: 100%;
+            height: 44rem;
+            gap: 2rem;
+        }
+        .list-slider div{
+            .slick-prev {
+                left: 88%;
+            }
+           img {
+            width: 100%;
+        } 
+        }
+         
     }
 }

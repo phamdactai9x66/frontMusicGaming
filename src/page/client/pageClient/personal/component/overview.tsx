@@ -32,10 +32,7 @@ const Overview = () => {
                                 <img src="https://socbay.mobi/publics/uploads/3-2020/post/0065007200320_hinh-nen-cuc-chat-danh-cho-game-thu-phan-1.jpg" alt="" />
                             </div>
                             <div>
-                                <img src="https://bizweb.dktcdn.net/100/248/398/files/alan-walker-dj-min.jpg?v=1514559370965" alt="" />
-                            </div>
-                            <div>
-                                <img src="https://2.bp.blogspot.com/-tziLAVIos1c/XNjwlXhYSRI/AAAAAAAAPww/ZmfO9Wa3jiEU004Hx1x3Qq39FXVENPwggCLcBGAs/s1600/11.jpg" alt="" />
+                                <img src="https://gamek.mediacdn.vn/133514250583805952/2020/1/16/1-15791579653801179133828.png" alt="" />
                             </div>
                         </Slider>
                     </div>

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material"
-import { Button, Checkbox, TextField, Typography, FormControl, InputLabel } from "@mui/material"
+import { Button, Checkbox, TextField, Typography } from "@mui/material"
 import { Select, MenuItem } from "@mui/material"
 import SearchIcon from '@mui/icons-material/Search';
 import Pagination from '@mui/material/Pagination';
@@ -23,14 +23,12 @@ const Todolist: React.FC<Todolist<any>> = ({ ...props }) => {
 
   return (
     <>
-      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '80%' }}>
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '80%',width: "100%" }}>
         <div style={{ flexBasis: 1000, margin: "0 auto" }}>
           <Paper sx={{ width: '100%' }}>
             <TableContainer style={{ padding: 20 }}>
               <Typography style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                 <TextField
-                 // multiline
-                  // sx={{ m: 1, width: '25ch' }}
                   InputProps={{
                  startAdornment: <SearchIcon style={{ marginRight: 10 }}></SearchIcon>,
                     placeholder: "searching"

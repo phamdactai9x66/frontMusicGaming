@@ -34,48 +34,39 @@
         }
         .overview {
             h3 {
-                color: $color_while;
+                color: rgb(231, 231, 231);
             }
             .main1 {
                 display: grid;
-                grid-template-columns: 40% 60%;
+                grid-template-columns: 30% 70%;
                 gap: 1rem;
                 margin-bottom: 2rem;
                 .box-slider {
-                    height: 362px;
+                    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.452);
+                    height: 262px;
                     div {
-                        img {
+                        img {  
+                            border-radius: 0.3rem;
                             width: 100%;
-                            height: 362px;
+                            height: 262px;
                             cursor: grab;
                         }
                         .slick-prev:before,
                         .slick-next:before {
-                            font-family: "slick";
-                            font-size: 35px;
-                            line-height: 1;
-                            opacity: 0.75;
-                            color: rgb(152, 252, 255);
-                        }
-                        .slick-prev {
-                            position: absolute;
-                            z-index: 1;
-                            left: 0.5rem;
-                        }
-                        .slick-next {
-                            position: absolute;
-                            z-index: 1;
-                            right: 1.3rem;
+                            display: none;
                         }
                     }
                    
                 }
                 .box-music {
                     overflow: auto;
-                    height: 362px;
+                    height: 262px;
                     .music_item {
+                        box-shadow: 0 3px 5px rgba(0, 0, 0, 0.452);
                         margin-bottom: 1rem;
+                        margin-right: 0.5rem;
                         img {
+                            cursor: pointer;
                             width: 60px;
                             height: 60px;
                         }
@@ -85,6 +76,10 @@
                         background: #122244;
                         display: grid;
                         grid-template-columns: 4.5rem 2fr 1fr 5rem;
+                        transition: 0.3s;
+                        &:hover {
+                            background: #253d72;
+                        }
                         div .icon {
                             margin-left: 0.4rem;
                             font-size: 1.1rem;
@@ -102,6 +97,7 @@
                     gap: 1rem;
                     grid-template-columns: 1fr 1fr 1fr 1fr;
                     .add {
+                        box-shadow: 0 3px 5px rgba(0, 0, 0, 0.452);
                         cursor: pointer;
                         background: #131f31;
                         width: 100%;
@@ -118,6 +114,7 @@
                         overflow: hidden;
                         border-radius: 0.4rem;
                         img {
+                            box-shadow: 0 3px 5px rgba(0, 0, 0, 0.452);
                             cursor: pointer;
                             width: 100%;
                             height: 12rem;
@@ -237,6 +234,10 @@
                 }
                 .main3 {
                     .main3_nhacsi {
+                        .box_nhacsi {
+                            transform: scale(0.8);
+                        }
+                        gap: 0rem;
                         grid-template-columns: 1fr 1fr;
                     }
                 }

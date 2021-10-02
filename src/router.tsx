@@ -9,6 +9,7 @@ import Todolist from "./page/admin/pageAdmin/todolist/todolist";
 import Personal from "./page/client/pageClient/personal/personal";
 import Signin from "./page/client/pageClient/signin/signin";
 import ForgotPassword from "./page/client/pageClient/forgotPassword/forgotPassword";
+import Recently from "./page/client/pageClient/recently/recently";
 
 
 export interface propertyPage {
@@ -50,6 +51,11 @@ const Client: propertyPage[] = [
     {
         path: "/personal",
         component: Personal,
+        exact: true
+    },
+    {
+        path: "/recently",
+        component: Recently,
         exact: true
     },
     {
