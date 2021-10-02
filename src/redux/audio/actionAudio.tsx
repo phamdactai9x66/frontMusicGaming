@@ -10,7 +10,7 @@ const sliceAudio = createSlice({
     initialState: stateAudio,
     reducers: {
         playSong(state: formStateAudio, action: PayloadAction) {
-
+            state.audio = "hihi"
         },
         pauseSong(state: formStateAudio, action: PayloadAction) {
             console.log("pause song");

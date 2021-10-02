@@ -1,5 +1,4 @@
 import { Route } from "react-router-dom"
-
 import Home from "./page/client/pageClient/home/home"
 import NotFound from "./page/client/pageClient/notFound/notFound";
 
@@ -7,7 +6,7 @@ import HomeAdmin from "./page/admin/pageAdmin/home/home";
 import AddMusic from "./page/admin/pageAdmin/addMusic/addMusic";
 import NotFoundAdmin from "./page/admin/pageAdmin/notFound/notFoundAdmin";
 import Todolist from "./page/admin/pageAdmin/todolist/todolist";
-import Canhan from "./page/client/pageClient/canhan/canhan";
+// import Canhan from "./page/client/pageClient/canhan/canhan";
 import TopThinhHanh from "./page/client/pageClient/topthinhthanh/topThinhHanh";
 import YeuThich from "./page/client/pageClient/yeuthich/yeuthich";
 import NhacMoi from "./page/client/pageClient/nhacmoi/nhacmoi";
@@ -16,6 +15,11 @@ import TheLoai from "./page/client/pageClient/theloai/theloai";
 import BlogDetail from "./page/client/pageClient/blogdetail/blogDetail";
 import Playlist from "./page/client/pageClient/playlist/playlist";
 import Chart from "./page/client/pageClient/chart/Chart";
+import Personal from "./page/client/pageClient/personal/personal";
+import Signin from "./page/client/pageClient/signin/signin";
+import ForgotPassword from "./page/client/pageClient/forgotPassword/forgotPassword";
+
+
 export interface propertyPage {
     path: string,
     component: any,
@@ -53,8 +57,18 @@ const Client: propertyPage[] = [
         exact: true
     },
     {
-        path: "/canhan",
-        component: Canhan,
+        path: "/personal",
+        component: Personal,
+        exact: true
+    },
+    {
+        path: "/signin",
+        component: Signin,
+        exact: true
+    },
+    {
+        path: "/forgotpassword",
+        component: ForgotPassword,
         exact: true
     },
     {
@@ -109,7 +123,6 @@ function handlePage<T extends propertyPage[]>(Page: T): JSX.Element[] {
 
     return Page.map((currenValue, index) => {
         let { path, component, exact } = currenValue;
-        console.log(exact, path)
         return (
             <Route key={index}
                 path={path}

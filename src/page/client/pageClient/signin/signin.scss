@@ -1,0 +1,103 @@
+.handleForm {
+    display: flex;
+    justify-content: center;
+    img {
+        border-radius:0.5rem 0  0 0.5rem;
+    }
+    .tab_login {
+        border-radius: 0 0.5rem 0.5rem 0 ;
+        background: #3D5983;
+       .link_handel {
+         display: grid;
+         grid-template-columns: 1fr 1fr;
+         section {
+           padding: 1.5rem 4rem 1.5rem 4rem;
+           border-radius: 0 0.5rem 0 0;
+           border-bottom: 0.2rem solid rgb(160, 159, 159);
+           a {
+             color: #fff;
+             text-decoration: none;
+             font-weight: 500;
+             font-size: 1.5rem;
+             vertical-align: middle;
+             margin: 0;
+
+           }
+         }
+       }
+        .form-input {
+          margin: 1.5rem;
+          form input{
+            display: flex;
+            margin-top: 1rem;
+            background: none;
+            outline: none;
+            border: none;
+            color: #fff;
+            width: 100%;
+            padding: 0.6rem;
+            font-size: 1em;
+            border-bottom: 0.1rem solid #7196ce;
+            &::placeholder {
+              color: rgb(221, 221, 221);
+            }
+            
+
+         }
+         label {
+            color: rgb(221, 221, 221);
+            padding-left: 0.5rem;
+            margin-top: 1.3rem;
+            }
+         .gender {
+            display: grid;
+            grid-template-columns: 4rem 5rem;
+            border-bottom: 0.1rem solid #7196ce;
+            padding-left: 8rem;
+            margin-top: -0.7rem;
+            div {
+               span {
+                color: rgb(221, 221, 221);
+                
+            } 
+            input {
+                margin-top: 0.4rem;
+            }
+            }
+        }
+         .btn_login {
+           button {
+            padding: 0.6rem 3rem 0.6rem 3rem;
+            margin-top: 2rem;
+            border: none;
+            border-radius: 0.3rem;
+            background: #fff;
+            font-weight: bold;
+            margin-right: 1rem;
+           }
+           .icon:nth-of-type(1) {
+             font-size: 3.3rem;
+             color: #8BEAFF;
+             margin-top: -0.3rem;
+             cursor: pointer;
+           }
+           .icon:nth-of-type(2) {
+            font-size: 2.6rem;
+            color: #8BEAFF;
+            margin-top: -0.3rem;
+            margin-left: 0.4rem;
+            cursor: pointer;
+          }
+         }
+         .loginThirdParty{
+           
+         }
+         .forgot_pass {
+           color: #fff;
+           text-decoration: none;
+           font-size: 1rem;
+         }
+        }
+    }  
+}
+

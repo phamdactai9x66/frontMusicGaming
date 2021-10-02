@@ -1,15 +1,13 @@
 import { Link } from 'react-router-dom'
 import React, { useCallback, useState ,useEffect } from "react";
-import {ReactComponent as File} from './files.svg'
+import {ReactComponent as File} from './component/files.svg'
 
 interface AddMusic<T> {
 
 };
 
 const AddMusic: React.FC<AddMusic<any>> = ({ ...props }) => {
-// useEffect (()=>{
-    
-// },[])
+
   return (
     <>
         <div className="admin-pageAdd">
@@ -29,10 +27,12 @@ const AddMusic: React.FC<AddMusic<any>> = ({ ...props }) => {
                                 <div className="input-add-tt bg-input ">
                                     <p>Tên bài hát</p>
                                     <input type="text" className="width-input" />
+                                    <p className="err">not empy</p>
                                 </div>
                                 <div className="input-add-tt bt-margin">
                                     <p>Người thể hiện</p>
                                 <input type="text" className="width-input" />
+                                <p className="err">not empy</p>
                                 </div>
                             </div>
                         </div>
@@ -48,14 +48,17 @@ const AddMusic: React.FC<AddMusic<any>> = ({ ...props }) => {
                                 <div className="input-add-tt bg-input ">
                                     <p>Ngày phát hành</p>
                                     <input type="text" className="width-input"  />
+                                    <p className="err">not empy</p>
                                 </div>
                                 <div className="input-add-tt">
                                     <p>Giới thiệu bài hát</p>
                                     <textarea name="" className="width-input textarea-1" id="" ></textarea>
+                                    <p className="err">not empy</p>
                                 </div>
                                 <div className="input-add-tt bt-margin">
                                     <p>Lời bài hát</p>
                                     <textarea name="" className="width-input textarea-2" id="" ></textarea>
+                                    <p className="err">not empy</p>
                                 </div>
                             </div>
                         </div>
@@ -105,6 +108,7 @@ const AddMusic: React.FC<AddMusic<any>> = ({ ...props }) => {
                                        <input type="file" className="custom-file-input width-input"  />
                                        
                                     </div>
+                                    <p className="err">not empy</p>
                                     <div className="bia-bai-hat-image">
                                         <img src={'https://image.freepik.com/free-vector/user-icon_126283-435.jpg'} alt="" />
                                     </div>

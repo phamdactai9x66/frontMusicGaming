@@ -123,7 +123,6 @@
             border-radius: 5px;
             width: 100%;
             background: #1d2d47;
-            // margin-right: 10px;
             padding-bottom: 20px;
             .grid-main4-col2{
                 display: grid;
@@ -305,10 +304,14 @@
 .chart_music {
     width: 99%;
     height: 300px;
+
 }
 .chart_user {
- width: 99%;
- height: 300px;
+ width: 99% !important;
+ height: 290px !important;  
+ .line_chart {
+    height: 300px !important;  
+ }
 }
   .cutting_string {
     width: 500px;

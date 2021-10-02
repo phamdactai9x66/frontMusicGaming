@@ -1,6 +1,6 @@
 
 import React from 'react'
-import imgAdmin from '../../public_image/img_admin/admin.png'
+import imgAdmin from './image/admin.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { Link, RouteChildrenProps, withRouter } from "react-router-dom";

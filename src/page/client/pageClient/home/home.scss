@@ -1,12 +1,157 @@
-$test1:"red";
-:root{
-    --vartest1:rgb(252, 0, 0);
-}
-.test1{
-    color: red;
-    background-color: blue;
-}
-.test123{
-    font-size: 2rem;
-    color: var(--vartest1);
+.home {
+    padding: 2rem;
+    .slider-banner {
+        div img {
+            width: 100%;
+            cursor: grab;
+        }
+        .slick-prev:before,
+        .slick-next:before {
+            font-family: "slick";
+            font-size: 45px;
+            line-height: 1;
+            opacity: 0.75;
+            color: rgb(152, 252, 255);
+        }
+        .slick-prev {
+            position: absolute;
+            z-index: 1;
+            left: 0.5rem;
+        }
+        .slick-next {
+            position: absolute;
+            z-index: 1;
+            right: 2rem;
+        }
+        .slick-dots li button:before {
+            font-size: 0.8rem;
+            color: rgb(134, 227, 240);
+        }
+        .slick-dots li.slick-active button:before {
+            opacity: 0.75;
+            font-size: 0.8rem;
+            color: rgb(134, 227, 240);
+        }
+    }
+    .category {
+        margin-top: 2rem;
+        h2 {
+            color: #fff;
+        }
+        div {
+            .box {
+                .img {
+                    display: flex;
+                    gap: 1rem;
+                    img {
+                        cursor: grab;
+                        flex-basis: 100%;
+                    }
+                }
+            }
+            .slick-prev:before {
+                content: "\003c";
+                font-size: 2rem;
+                font-weight: bold;
+            }
+            .slick-next:before {
+                content: "\003e";
+                font-size: 2rem;
+                font-weight: bold;
+            }
+            .slick-prev {
+                position: absolute;
+                z-index: 1;
+                left: 94%;
+                top: -15%;
+            }
+            .slick-next {
+                position: absolute;
+                z-index: 1;
+                left: 98%;
+                top: -15%;
+            }
+        }
+    }
+    .list-music {
+        margin-top: 2rem;
+        h3 {
+            color: #fff;
+        }
+        .main1 {
+            display: grid;
+            grid-template-columns: 50% 50%;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            .box-music {
+                overflow: auto;
+                height: 362px;
+                .music_item {
+                    margin-bottom: 1rem;
+                    img {
+                        width: 60px;
+                        height: 60px;
+                    }
+                    border-radius: 0.3rem;
+                    color: #fff;
+                    border: 0.1rem solid rgb(43, 147, 165);
+                    background: #122244;
+                    display: grid;
+                    grid-template-columns: 4.5rem 2fr 1fr 5rem;
+                    div .icon {
+                        margin-left: 0.4rem;
+                        font-size: 1.1rem;
+                        cursor: pointer;
+                    }
+                }
+            }
+            .limit-items .items li:nth-of-type(n + 2) {
+                display: none;
+            }
+            .limit-items #show-all:checked ~ .items li {
+                display: list-item;
+            }
+            .limit-items #show-all ~ label[for="show-all"] {
+                display: none;
+            }
+            .limit-items #show-all:checked ~ .text-hide {
+                display: inline-block;
+            }
+            .limit-items #show-all:not(:checked) ~ .text-show {
+                display: inline-block;
+            }
+            .limit-items {
+                color: #fff;
+                position: relative;
+                padding-bottom: 2em;
+                width: 10em;
+                font-family: sans-serif;
+            }
+            .limit-items #show-all {
+                display: none;
+            }
+            .limit-items label[for="show-all"] {
+                position: absolute;
+                box-sizing: border-box;
+                width: 100%;
+                bottom: 0;
+                font-size: 0.75em;
+                text-align: center;
+                line-height: 1em;
+                border: 1px solid #ddd;
+                padding: 0.5em;
+                cursor: pointer;
+                text-transform: uppercase;
+                color: #444;
+            }
+            .limit-items label[for="show-all"]:hover {
+                border: 1px solid #aaa;
+            }
+            .limit-items label[for="show-all"]:active {
+                border: 1px solid #222;
+                background-color: #222;
+                color: #fff;
+            }
+        }
+    }
 }

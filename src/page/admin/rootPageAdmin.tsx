@@ -5,14 +5,14 @@ import Header from "../partials/admin/header";
 import Footer from "../partials/admin/footer";
 import Sidebar from "../partials/admin/sidebar";
 import { Link } from 'react-router-dom';
-interface rootPageAdmin<T> {
+interface RootPageAdmin<T> {
 
 }
 
-const rootPageAdmin: React.FC<rootPageAdmin<any>> = ({ ...props }) => {
+const RootPageAdmin: React.FC<RootPageAdmin<any>> = ({ ...props }) => {
     return (
         <>
-             <div className="container-admin">
+            <div className="container-admin">
                 <input hidden type="checkbox" name="" className="nav__check" id="nav-input" />
                 <label className="toggle" htmlFor="nav-input"></label>
                 <Link className="header_content_mobie" to="/">
@@ -38,4 +38,4 @@ const rootPageAdmin: React.FC<rootPageAdmin<any>> = ({ ...props }) => {
     )
 }
 
-export default rootPageAdmin
+export default RootPageAdmin
