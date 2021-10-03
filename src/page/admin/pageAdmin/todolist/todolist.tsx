@@ -31,11 +31,6 @@ const Todolist: React.FC<Todolist<any>> = ({ ...props }) => {
             <TableContainer style={{ padding: 20 }}>
               <Typography style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                 <TextField
-<<<<<<< HEAD
-                  // multiline
-                  // sx={{ m: 1, width: '25ch' }}
-=======
->>>>>>> 6f127aab0ee9a3c338863df5f194cc6a136566c3
                   InputProps={{
                     startAdornment: <SearchIcon style={{ marginRight: 10 }}></SearchIcon>,
                     placeholder: "searching"
