@@ -76,9 +76,9 @@ const Signin: React.FC<Signin<any>> = ({ history, ...props }) => {
         dispatchUser(saveInfo(loginUser))
 
         history.replace("/");
-        return displayAlert(loginUser.message)
+        displayAlert(loginUser.message)
       }
-
+      return
 
     }
     const loginUser = await userApi.Signup(handleForm);

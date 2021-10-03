@@ -25,8 +25,8 @@ const Todolist: React.FC<Todolist<any>> = ({ ...props }) => {
       const [data, error] = await HandleGet(apiAlbum.getAll, query);
 
       const [dataStatic] = await HandleGet(apiAlbum.getAll, query);
-      console.log(data)
-      if (data.status === variableCommon.statusF) dispatch(pustAction(typeAciton.reset))
+
+      if (data?.status === variableCommon.statusF) dispatch(pustAction(typeAciton.reset))
 
       setTimeout(() => {
         dispatch(pustAction(typeAciton.getData, { Data: data.data, dataStatic: dataStatic.data }))
