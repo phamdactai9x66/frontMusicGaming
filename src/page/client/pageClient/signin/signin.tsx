@@ -6,11 +6,12 @@ import validateSchema from "./component/handleForm";
 import { stateForm } from "./component/stateForm";
 import { SignIn, SignUp } from "./component/formLocal";
 import userApi from "../../../../api/useApi";
-import LoadingButton from '@mui/lab/LoadingButton';
 import Alert from '@mui/material/Alert'
 import { saveInfo } from "../../../../redux/user/actionUser";
 import { RouteComponentProps } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import CryptoJS from "crypto-js"
+
 interface Signin<T> extends RouteComponentProps {
 
 }
@@ -63,16 +64,22 @@ const Signin: React.FC<Signin<any>> = ({ history, ...props }) => {
     const handleForm = new FormData(form.current);
     if (!step.displayForm) {
 
+      const secretKey = (process.env as any).REACT_APP_SECRET_KEY;
+
+      const getPassword = handleForm.get("passWord") as string;
+      handleForm.set("passWord", CryptoJS.AES.encrypt(getPassword, secretKey).toString());
+
       const loginUser = await userApi.Login(handleForm);
 
       if (loginUser.status !== "failed") {
 
         dispatchUser(saveInfo(loginUser))
 
-        return history.replace("/");
+        history.replace("/");
+        return displayAlert(loginUser.message)
       }
 
-      displayAlert(loginUser.message)
+
     }
     const loginUser = await userApi.Signup(handleForm);
 
@@ -82,10 +89,6 @@ const Signin: React.FC<Signin<any>> = ({ history, ...props }) => {
 
       return
     }
-    console.log(loginUser)
-    // displayAlert(loginUser.message)
-    // console.log(loginUser)
-
   }
   const displayAlert = (messageError: string = "We have some error !") => {
     setalertError({ display: true, message: messageError })

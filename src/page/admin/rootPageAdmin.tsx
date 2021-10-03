@@ -24,7 +24,7 @@ const RootPageAdmin: React.FC<RootPageAdmin<any>> = ({ ...props }) => {
                     </aside>
                     <article>
                         <Header />
-                        <main>
+                        <main >
                             {
                                 props.children
                             }

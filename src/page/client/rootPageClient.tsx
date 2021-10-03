@@ -12,13 +12,13 @@ const RootPageClient: React.FC<RootPageClient<any>> = ({ ...props }) => {
     return (
         <>
             <div className="container-client">
-                <aside><Sidebar/></aside>
-                <header><Header/></header>
+                <aside><Sidebar /></aside>
+                <header><Header /></header>
                 <main>
                     {props.children}
                 </main>
                 <footer>
-                    <Footer/>
+                    <Footer />
                 </footer>
             </div>
         </>

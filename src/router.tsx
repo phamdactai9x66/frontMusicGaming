@@ -37,12 +37,12 @@ const Admin: propertyPage[] = [
     {
         path: "/admin/AddMusic",
         component: AddMusic,
-        exact: true
+        exact: false
     },
     {
         path: "/admin/todolist",
         component: Todolist,
-        exact: true
+        exact: false
     },
     {
         path: "/admin/:pathNotFound",
@@ -61,17 +61,17 @@ const Client: propertyPage[] = [
     {
         path: "/recently",
         component: Recently,
-        exact: true
+        exact: false
     },
     {
         path: "/signin",
         component: Signin,
-        exact: true
+        exact: false
     },
     {
         path: "/forgotpassword",
         component: ForgotPassword,
-        exact: true
+        exact: false
     },
     {
         path: "/toptrending",
@@ -91,7 +91,7 @@ const Client: propertyPage[] = [
     {
         path: "/blog",
         component: Blog,
-        exact: true
+        exact: false
     },
     {
         path: "/category",
@@ -101,7 +101,7 @@ const Client: propertyPage[] = [
     {
         path: "/blogDetail",
         component: BlogDetail,
-        exact: true
+        exact: false
     },
     {
         path: "/playlistDetail",
@@ -111,7 +111,7 @@ const Client: propertyPage[] = [
     {
         path: "/chart",
         component: Chart,
-        exact: true
+        exact: false
     },
      {
         path: "/overview",
@@ -143,9 +143,10 @@ const Client: propertyPage[] = [
         component: NotFound,
         exact: false
     }
+    
 ]
-function handlePage<T extends propertyPage[]>(Page: T): JSX.Element[] {
-    if (Page == undefined || Page == null) return [];
+function handlePage<T extends propertyPage[]>(Page: T): JSX.Element[] | null {
+    if ([undefined, null].includes(Page as any)) return null;
 
     return Page.map((currenValue, index) => {
         let { path, component, exact } = currenValue;
