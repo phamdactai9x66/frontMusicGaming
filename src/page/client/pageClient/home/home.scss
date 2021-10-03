@@ -29,12 +29,14 @@
         .slick-prev {
             position: absolute;
             z-index: 1;
+            top: 45%;
             transform: translateX(-3.3rem);
             transition: 0.5s;
         }
         .slick-next {
             position: absolute;
             z-index: 1;
+            top: 45%;
             transform: translateX(2rem);
             transition: 0.5s;
         }
@@ -236,7 +238,7 @@
         }
         .chart {
             text {
-                fill: rgb(194, 194, 194) !important;
+                fill: rgb(233, 232, 232) !important;
             }
             flex-grow: 1;
             .chartMusic {
@@ -285,10 +287,14 @@
         }
         .list-slider div{
             .slick-prev {
-                left: 88%;
+                left: 86%;
+            }
+            .slick-next {
+                left: 95%;
             }
            img {
             width: 100%;
+            height: 16rem;
         } 
         }
          
