@@ -5,7 +5,7 @@ import "slick-carousel/slick/slick-theme.css";
 import { AiOutlineDownload, AiFillHeart } from 'react-icons/ai';
 import { IoMdAdd } from 'react-icons/io';
 import { MdNavigateNext } from 'react-icons/md';
-import { Button } from '@material-ui/core';
+import Button from '@mui/material/Button';
 import { BiPlayCircle } from 'react-icons/bi';
 import ChartMusic from './component/chartMusic';
 
@@ -102,7 +102,7 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                             </div>
                             <div>
                                 4:50
-                </div>
+                            </div>
                             <div className="icon_item">
                                 <AiOutlineDownload className="icon" />
                                 <AiFillHeart className="icon" />
@@ -117,7 +117,7 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                             </div>
                             <div>
                                 4:50
-                </div>
+                            </div>
                             <div className="icon_item">
                                 <AiOutlineDownload className="icon" />
                                 <AiFillHeart className="icon" />
@@ -132,7 +132,7 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                             </div>
                             <div>
                                 4:50
-                </div>
+                            </div>
                             <div className="icon_item">
                                 <AiOutlineDownload className="icon" />
                                 <AiFillHeart className="icon" />
@@ -147,7 +147,7 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                             </div>
                             <div>
                                 4:50
-                </div>
+                            </div>
                             <div className="icon_item">
                                 <AiOutlineDownload className="icon" />
                                 <AiFillHeart className="icon" />
@@ -162,7 +162,7 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                             </div>
                             <div>
                                 4:50
-                </div>
+                            </div>
                             <div className="icon_item">
                                 <AiOutlineDownload className="icon" />
                                 <AiFillHeart className="icon" />
@@ -351,7 +351,7 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                         <img width={60} height={60} src="https://i.ytimg.com/vi/x2xblVxi_c4/maxresdefault.jpg" alt="" />
                         <div className="name">
                             <h6>Tên bài hát</h6>
-                            <div style={{ fontSize: "0.7rem", marginTop: "-0.2rem",color: "#ccc" }}>Nghệ sĩ</div>
+                            <div style={{ fontSize: "0.7rem", marginTop: "-0.2rem", color: "#ccc" }}>Nghệ sĩ</div>
                         </div>
                         <h6 className="tyle">41%</h6>
                     </div>
@@ -360,7 +360,7 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                         <img width={60} height={60} src="https://i.ytimg.com/vi/x2xblVxi_c4/maxresdefault.jpg" alt="" />
                         <div className="name">
                             <h6>Tên bài hát</h6>
-                            <div style={{ fontSize: "0.7rem", marginTop: "-0.2rem",color: "#ccc" }}>Nghệ sĩ</div>
+                            <div style={{ fontSize: "0.7rem", marginTop: "-0.2rem", color: "#ccc" }}>Nghệ sĩ</div>
                         </div>
                         <h6 className="tyle">41%</h6>
                     </div>
@@ -369,11 +369,11 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                         <img width={60} height={60} src="https://i.ytimg.com/vi/x2xblVxi_c4/maxresdefault.jpg" alt="" />
                         <div className="name">
                             <h6>Tên bài hát</h6>
-                            <div style={{ fontSize: "0.7rem", marginTop: "-0.2rem",color: "#ccc" }}>Nghệ sĩ</div>
+                            <div style={{ fontSize: "0.7rem", marginTop: "-0.2rem", color: "#ccc" }}>Nghệ sĩ</div>
                         </div>
                         <h6 className="tyle">41%</h6>
                     </div>
-                    <Button>Xem thêm</Button>
+                    <Button variant="text">Text</Button>
                 </div>
                 <div className="chart">
                     <ChartMusic />

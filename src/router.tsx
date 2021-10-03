@@ -124,8 +124,8 @@ const Client: propertyPage[] = [
     }
 
 ]
-function handlePage<T extends propertyPage[]>(Page: T): JSX.Element[] {
-    if (Page == undefined || Page == null) return [];
+function handlePage<T extends propertyPage[]>(Page: T): JSX.Element[] | null {
+    if ([undefined, null].includes(Page as any)) return null;
 
     return Page.map((currenValue, index) => {
         let { path, component, exact } = currenValue;
