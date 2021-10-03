@@ -1,5 +1,4 @@
 import { FunctionsTwoTone } from "@mui/icons-material"
-import react from "react"
 
 export const HandleGet = async (functionPromise: Function, params = {}) => {
     try {
@@ -13,6 +12,7 @@ export const initialReducer = {
     Data: [],
     DataStatic: [],
     Display: false,
+    checkAll: false,
     Pagination: {
         _limit: 6,
         _page: 1,
@@ -23,20 +23,38 @@ export const initialReducer = {
         _page: 1,
     }
 }
-const typeAciton = {
-    getData: 'getData'
+export const typeAciton = {
+    getData: 'getData',
+    reset: "reset"
 }
-const pustAction = (name: string, payload: any = {}) => {
-    return { name, payload }
+export function pustAction(type: string, payload?: any): any {
+    payload = payload ?? {};
+    return { type, payload }
+}
+const addIndexToArray = (array = []) => {
+    return array.map((currenValue: any, index) => ({ ...currenValue, indexElement: index }))
 }
 
-function Reducer(state: any, action: { payload: any, type: string }) {
+export function handleReducer(state: any, action: { type: string, payload?: any }) {
     switch (action.type) {
-        case "":
-
-            break;
-
-        default:
-            break;
+        case typeAciton.getData: {
+            const { Data, dataStatic } = action.payload;
+            return {
+                ...state,
+                Data,
+                DataStatic: addIndexToArray(dataStatic),
+                Display: true,
+                Pagination: {
+                    ...state.Pagination,
+                    rows: dataStatic.length
+                }
+            }
+        }
+        case typeAciton.reset: {
+            return { ...state, Display: true }
+        }
+        default: {
+            return state
+        }
     }
 }
