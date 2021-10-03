@@ -1,12 +1,11 @@
 import React, { useReducer, useEffect } from 'react'
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material"
 import { Button, Checkbox, TextField, Typography, CircularProgress, Box } from "@mui/material"
-import { Select, MenuItem, Pagination } from "@mui/material"
+import { Select, MenuItem, Pagination, Avatar } from "@mui/material"
 import SearchIcon from '@mui/icons-material/Search';
 import apiAlbum from "api/albumApi";
 import { initialReducer, handleReducer, HandleGet, typeAciton, pustAction } from "component/MethodCommon";
 import { variableCommon } from "component/variableCommon";
-
 interface Todolist<T> {
 
 }
@@ -31,7 +30,7 @@ const Todolist: React.FC<Todolist<any>> = ({ ...props }) => {
 
       setTimeout(() => {
         dispatch(pustAction(typeAciton.getData, { Data: data.data, dataStatic: dataStatic.data }))
-      }, 500);
+      }, 1000);
 
     })()
     return () => {
@@ -40,7 +39,9 @@ const Todolist: React.FC<Todolist<any>> = ({ ...props }) => {
   }, [])
   return (
     <>
-      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '80%', width: "100%" }}>
+      <div style={{
+        display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '600px', width: "100%"
+      }}>
         <div style={{ flexBasis: 1000, margin: "0 auto" }}>
           <Paper sx={{ width: '100%' }}>
             <TableContainer style={{ padding: 20 }}>
@@ -88,34 +89,39 @@ const Todolist: React.FC<Todolist<any>> = ({ ...props }) => {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {/* {rows.map((row) => {
-                    return (
-                      <TableRow hover role="checkbox" key={row._id}>
-                        <TableCell align='left'>
-                          <Checkbox />
-                        </TableCell>
-                        <TableCell align='left'>
-                          {row.name}
-                        </TableCell>
-                        <TableCell align='left'>
-                          {row.price}
-                        </TableCell>
-                        <TableCell align='left'>
-                          {row.quantity}
-                        </TableCell>
-                        <TableCell align='center'>
-                          <Button variant="contained" color="error" style={{ marginRight: 5 }}>Contained</Button>
-                          <Button variant="contained" color="primary">Contained</Button>
+                  {
+                    state.Data.length && state.Display ?
+                      state.Data.map((row: any, index: any) => {
+                        const { title, image, id_Artist } = row;
+                        return (
+                          <TableRow hover role="checkbox" key={row._id}>
+                            <TableCell align='left'>
+                              <Checkbox />
+                            </TableCell>
+                            <TableCell align='left'>
+                              {title}
+                            </TableCell>
+                            <TableCell align='left'>
+                              <Avatar alt="Remy Sharp" variant="rounded" src={image} />
+                              {row.price}
+                            </TableCell>
+                            <TableCell align='left'>
+                              {id_Artist}
+                            </TableCell>
+                            <TableCell align='center'>
+                              <Button variant="contained" color="error" style={{ marginRight: 5 }}>Contained</Button>
+                              <Button variant="contained" color="primary">Contained</Button>
+                            </TableCell>
+                          </TableRow>
+                        );
+                      }) :
+                      state.Display ? null : <TableRow >
+                        <TableCell align='center' colSpan={12} >
+                          <CircularProgress />
                         </TableCell>
                       </TableRow>
-                    );
-                  })} */}
-                  <TableRow >
-                    <TableCell align='center' colSpan={12} >
-                      <CircularProgress />
-                    </TableCell>
-                  </TableRow>
 
+                  }
 
                 </TableBody>
               </Table>
