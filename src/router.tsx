@@ -36,12 +36,12 @@ const Admin: propertyPage[] = [
     {
         path: "/admin/AddMusic",
         component: AddMusic,
-        exact: true
+        exact: false
     },
     {
         path: "/admin/todolist",
         component: Todolist,
-        exact: true
+        exact: false
     },
     {
         path: "/admin/:pathNotFound",
@@ -60,62 +60,62 @@ const Client: propertyPage[] = [
     {
         path: "/personal",
         component: Personal,
-        exact: true
+        exact: false
     },
     {
         path: "/recently",
         component: Recently,
-        exact: true
+        exact: false
     },
     {
         path: "/signin",
         component: Signin,
-        exact: true
+        exact: false
     },
     {
         path: "/forgotpassword",
         component: ForgotPassword,
-        exact: true
+        exact: false
     },
     {
         path: "/topThinhHanh",
         component: TopThinhHanh,
-        exact: true
+        exact: false
     },
     {
         path: "/yeuThich",
         component: YeuThich,
-        exact: true
+        exact: false
     },
     {
         path: "/nhacMoi",
         component: NhacMoi,
-        exact: true
+        exact: false
     },
     {
         path: "/blog",
         component: Blog,
-        exact: true
+        exact: false
     },
     {
         path: "/theLoai",
         component: TheLoai,
-        exact: true
+        exact: false
     },
     {
         path: "/blogDetail",
         component: BlogDetail,
-        exact: true
+        exact: false
     },
     {
         path: "/playlist",
         component: Playlist,
-        exact: true
+        exact: false
     },
     {
         path: "/chart",
         component: Chart,
-        exact: true
+        exact: false
     },
     {
         path: "/:pathNotFound",
