@@ -1,0 +1,180 @@
+.container-yeuthich{
+    margin: 0 40px ;
+    margin-bottom: 400px;
+    // width: 100%;
+    .title-yeuthich-tt{
+    margin-top: 20px;
+    margin-bottom: 15px;
+        .text-title-yeuthich-tt{
+            .color-yeuthich-tt{
+                color: #a8eff9;
+            }
+            
+        
+        }
+        .div-svg{
+              width: 36px;
+                height: 36px;
+                border: 2px solid #a8eff9;
+                margin-left: 20px; 
+                background: #a8eff9;
+                border-radius: 50%; 
+                text-align: center; 
+            .svg{
+                margin-top: 2px;
+                width: 30px;
+                height: 30px;
+                color: #a8eff9;
+
+            }
+        
+        }
+        // .div-svg:hover{
+        //   @include hoverAllyt();
+        // }
+        
+    }
+     .title-yeuthich-tt:hover{
+        .text-title-yeuthich-tt{
+            .color-yeuthich-tt{
+                color: #00dffe;
+                text-shadow: 0 0 5px #00afc7;
+            }
+        }
+        .div-svg{
+            border: 2px solid #00afc7;
+            box-shadow:  0 0 5px #dbf5ff;
+        
+        }
+    }
+    
+    
+    .grid-2{
+        display:  flex;
+    }
+    .yeuthich-tt-main{
+        .grid-4-yeuthich-tt{
+            width: 100%;
+            display:  grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: 25px;
+            
+            .box-yeuthich-tt{
+                // width: 100%;
+            .link-yeuthich-tt{
+                text-decoration: none;
+                color: white;
+                .yeuthich-width-heght-image{
+                    width: 100%;
+                    height: 200px;
+                    object-fit: cover;
+                    margin-bottom: 5px;
+                    border: 3px solid #29e5ff;
+                    border-radius: 2px;
+                    
+                  } 
+                .text-box-yeuthich-tt{
+                    color: white;
+                    margin-top: 5px;
+                 
+                }
+           
+            }
+        }.box-yeuthich-tt:hover{
+            .yeuthich-width-heght-image{
+                // border: 3px solid #38c7ff;
+                // border-radius: 2px;
+                // box-shadow: 0 0 8px #38c7ff;
+                //  opacity: 80%;
+                border: 3px solid #dbf5ff;
+                border-radius: 2px;
+                box-shadow: 0 0 8px #dbf5ff;
+            }.text-box-yeuthich-tt{
+                color: #29e5ff;
+                margin-top: 5px;
+                
+             
+            }
+        }
+           
+        } 
+    }.yeuthich-grid-tg {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        gap: 65px;
+        text-align: center;
+       
+        .yeuthich-box-tg{
+            .image-yt-tg{
+                width: 178px;
+                height: 178px;
+                object-fit: cover;
+                border-radius: 50%;
+                border: 3px solid #29e5ff;
+                
+            }.text-yt-tg-white{
+                color: white;
+            }
+            .button-quan-tam{
+                padding: 0 10px;
+                border-radius: 20px;
+            }
+            .button-quan-tam:hover{
+                background: #29e5ff;
+                border:2px solid #0e192a ;
+                box-shadow: 0 0 8px #dbf5ff;
+            }
+            .image-yt-tg:hover{
+                border: 3px solid #dbf5ff;
+                box-shadow: 0 0 5px #dbf5ff;
+            }
+        }
+
+    }
+
+    
+    }
+    @media screen and(min-width:768px) and  (max-width:1024px) {
+        .container-yeuthich{
+            margin: 0 20px ;
+            .yeuthich-tt-main{
+                .grid-4-yeuthich-tt{
+                    display:  grid;
+                    grid-template-columns: 1fr 1fr ;
+                    gap: 20px;
+                }
+            }
+            .yeuthich-grid-tg{
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr;
+                gap: 25px;
+            }
+        }
+    }
+    @media screen and (max-width:767px) {
+        .container-yeuthich{
+            // width: 100%;
+            margin: 0 10px ;
+            .yeuthich-tt-main{
+                .grid-4-yeuthich-tt{
+                    display:  grid;
+                    grid-template-columns: 1fr;
+                   
+                   
+                }
+            }.yeuthich-grid-tg{
+            display: grid;
+            grid-template-columns: 1fr;
+
+            .yeuthich-box-tg{
+                padding-bottom: 10px;
+                border-bottom: 1px solid #dbf5ff;
+            }
+           
+        }
+        }
+        
+        
+    }
+  
+   

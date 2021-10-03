@@ -6,6 +6,15 @@ import HomeAdmin from "./page/admin/pageAdmin/home/home";
 import AddMusic from "./page/admin/pageAdmin/addMusic/addMusic";
 import NotFoundAdmin from "./page/admin/pageAdmin/notFound/notFoundAdmin";
 import Todolist from "./page/admin/pageAdmin/todolist/todolist";
+// import Canhan from "./page/client/pageClient/canhan/canhan";
+import TopThinhHanh from "./page/client/pageClient/topthinhthanh/topThinhHanh";
+import YeuThich from "./page/client/pageClient/yeuthich/yeuthich";
+import NhacMoi from "./page/client/pageClient/nhacmoi/nhacmoi";
+import Blog from "./page/client/pageClient/blog/blog";
+import TheLoai from "./page/client/pageClient/theloai/theloai";
+import BlogDetail from "./page/client/pageClient/blogdetail/blogDetail";
+import Playlist from "./page/client/pageClient/playlist/playlist";
+import Chart from "./page/client/pageClient/chart/Chart";
 import Personal from "./page/client/pageClient/personal/personal";
 import Signin from "./page/client/pageClient/signin/signin";
 import ForgotPassword from "./page/client/pageClient/forgotPassword/forgotPassword";
@@ -66,6 +75,46 @@ const Client: propertyPage[] = [
     {
         path: "/forgotpassword",
         component: ForgotPassword,
+        exact: true
+    },
+    {
+        path: "/topThinhHanh",
+        component: TopThinhHanh,
+        exact: true
+    },
+    {
+        path: "/yeuThich",
+        component: YeuThich,
+        exact: true
+    },
+    {
+        path: "/nhacMoi",
+        component: NhacMoi,
+        exact: true
+    },
+    {
+        path: "/blog",
+        component: Blog,
+        exact: true
+    },
+    {
+        path: "/theLoai",
+        component: TheLoai,
+        exact: true
+    },
+    {
+        path: "/blogDetail",
+        component: BlogDetail,
+        exact: true
+    },
+    {
+        path: "/playlist",
+        component: Playlist,
+        exact: true
+    },
+    {
+        path: "/chart",
+        component: Chart,
         exact: true
     },
     {

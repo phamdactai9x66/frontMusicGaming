@@ -1,9 +1,10 @@
 import React from 'react'
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material"
-import { Button, Checkbox, TextField, Typography } from "@mui/material"
-import { Select, MenuItem } from "@mui/material"
+import { Button, Checkbox, TextField, Typography, FormControl, InputLabel } from "@mui/material"
+import { Select, MenuItem, Pagination } from "@mui/material"
 import SearchIcon from '@mui/icons-material/Search';
-import Pagination from '@mui/material/Pagination';
+// import {} from "../../../../"
+
 interface Todolist<T> {
 
 }
@@ -20,17 +21,18 @@ const rows = [
   { _id: 3, name: "test123", price: 100, quantity: 10 }
 ];
 const Todolist: React.FC<Todolist<any>> = ({ ...props }) => {
+  // const [state, dispatch] = useReducer(reducer, initialState, init)
 
   return (
     <>
-      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '80%',width: "100%" }}>
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '80%', width: "100%" }}>
         <div style={{ flexBasis: 1000, margin: "0 auto" }}>
           <Paper sx={{ width: '100%' }}>
             <TableContainer style={{ padding: 20 }}>
               <Typography style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                 <TextField
                   InputProps={{
-                 startAdornment: <SearchIcon style={{ marginRight: 10 }}></SearchIcon>,
+                    startAdornment: <SearchIcon style={{ marginRight: 10 }}></SearchIcon>,
                     placeholder: "searching"
                   }}
                   size="small"
@@ -74,19 +76,19 @@ const Todolist: React.FC<Todolist<any>> = ({ ...props }) => {
                   {rows.map((row) => {
                     return (
                       <TableRow hover role="checkbox" key={row._id}>
-                        <TableCell key={row._id} align='left'>
+                        <TableCell align='left'>
                           <Checkbox />
                         </TableCell>
-                        <TableCell key={row._id} align='left'>
+                        <TableCell align='left'>
                           {row.name}
                         </TableCell>
-                        <TableCell key={row._id} align='left'>
+                        <TableCell align='left'>
                           {row.price}
                         </TableCell>
-                        <TableCell key={row._id} align='left'>
+                        <TableCell align='left'>
                           {row.quantity}
                         </TableCell>
-                        <TableCell key={row._id} align='center'>
+                        <TableCell align='center'>
                           <Button variant="contained" color="error" style={{ marginRight: 5 }}>Contained</Button>
                           <Button variant="contained" color="primary">Contained</Button>
                         </TableCell>
@@ -95,7 +97,7 @@ const Todolist: React.FC<Todolist<any>> = ({ ...props }) => {
                   })}
                 </TableBody>
               </Table>
-              <Pagination count={10} style={{ padding: 10, paddingTop: 20 }} />
+              <Pagination count={10} onClick={() => { console.log() }} style={{ padding: 10, paddingTop: 20 }} />
             </TableContainer>
 
           </Paper>

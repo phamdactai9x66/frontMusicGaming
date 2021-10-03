@@ -119,10 +119,6 @@ const Signin: React.FC<Signin<any>> = ({ history, ...props }) => {
                     {renderForm<number>(step.displayForm, formik)}
 
                     <div className="btn_login">
-                      {/* <LoadingButton loading={formik.isSubmitting}
-                        variant="outlined" type="submit">
-                        {!step.displayForm ? "Sign in" : "Sign up"}
-                      </LoadingButton> */}
 
 
                       {!step.displayForm ? <>
