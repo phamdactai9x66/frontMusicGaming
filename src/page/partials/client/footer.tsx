@@ -5,10 +5,10 @@ import { FiRepeat } from 'react-icons/fi';
 import { MdSkipNext } from 'react-icons/md';
 import { MdSkipPrevious } from 'react-icons/md';
 import { RiPauseMiniLine } from 'react-icons/ri';
-import { BiShuffle } from 'react-icons/bi';
 import { BsFillPlayFill } from 'react-icons/bs';
 import { HiVolumeUp } from 'react-icons/hi';
-import { AiFillSetting } from 'react-icons/ai';
+import { BsFillSkipBackwardFill,BsSkipForwardFill } from 'react-icons/bs';
+
 interface Footer<T> {
 
 }
@@ -17,7 +17,7 @@ const Footer: React.FC<Footer<any>> = ({ ...props }) => {
     const [value, setValue] = useState(0);
     const [play, setPlay] = useState(true);
     return (
-        <footer>
+        <div className="footer">
             <div className="author">
                 <img width={50} height={50} src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJdulnc1hxmzx9izhgHHRQGhssK6KshlS6bypOagn9_lVhJ6ntqiCFNislU1nOb7NjJeY&usqp=CAU" />
                 <div>
@@ -26,11 +26,11 @@ const Footer: React.FC<Footer<any>> = ({ ...props }) => {
                 </div>
             </div>
             <div className="icon_play-music">
-                <FiRepeat className="icon" />
+                 <BsFillSkipBackwardFill className="icon" />
                 <MdSkipPrevious className="icon" />                
                 {play ? <RiPauseMiniLine onClick={() => {setPlay(!play)}} className="icon"/>  : <BsFillPlayFill onClick={() => {setPlay(!play)}} className="icon"/>}                      
                 <MdSkipNext className="icon" />
-                <BiShuffle className="icon" />
+                <BsSkipForwardFill className="icon" />
             </div>
             <div className="audio-run">
             <div className="time">1:{value}</div>
@@ -45,7 +45,8 @@ const Footer: React.FC<Footer<any>> = ({ ...props }) => {
                     onChange={(e: any) => setValue(e.target.value)}
                 />
             </div>
-            <div className="time">&ensp;&ensp;1:50</div>
+            <div className="time">&ensp;&ensp;1:50</div>  
+            <FiRepeat className="icon" />
             </div>
             <div className="volum-setting">
                 <HiVolumeUp/>
@@ -55,9 +56,8 @@ const Footer: React.FC<Footer<any>> = ({ ...props }) => {
                     type="range"
                     className="styled-range"
                 />
-                <AiFillSetting/>
             </div>
-        </footer>
+        </div>
     )
 }
 

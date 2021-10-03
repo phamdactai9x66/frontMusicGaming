@@ -11,20 +11,16 @@ interface RootPageClient<T> {
 const RootPageClient: React.FC<RootPageClient<any>> = ({ ...props }) => {
     return (
         <>
-        <div className="container-client">
-          <div className="container-main">
-              <aside>
-                  <Sidebar />
-              </aside>
-              <article>
-              <Header />
-                    <main>
-                        {props.children}
-                    </main>
-              </article>
+            <div className="container-client">
+                <aside><Sidebar/></aside>
+                <header><Header/></header>
+                <main>
+                    {props.children}
+                </main>
+                <footer>
+                    <Footer/>
+                </footer>
             </div>
-             <Footer />
-        </div>
         </>
     )
 }

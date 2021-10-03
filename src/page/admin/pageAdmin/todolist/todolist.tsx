@@ -25,14 +25,17 @@ const Todolist: React.FC<Todolist<any>> = ({ ...props }) => {
 
   return (
     <>
-      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '80%' }}>
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '80%', width: "100%" }}>
         <div style={{ flexBasis: 1000, margin: "0 auto" }}>
           <Paper sx={{ width: '100%' }}>
             <TableContainer style={{ padding: 20 }}>
               <Typography style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                 <TextField
+<<<<<<< HEAD
                   // multiline
                   // sx={{ m: 1, width: '25ch' }}
+=======
+>>>>>>> 6f127aab0ee9a3c338863df5f194cc6a136566c3
                   InputProps={{
                     startAdornment: <SearchIcon style={{ marginRight: 10 }}></SearchIcon>,
                     placeholder: "searching"

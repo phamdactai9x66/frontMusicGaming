@@ -1,12 +1,296 @@
-$test1:"red";
-:root{
-    --vartest1:rgb(252, 0, 0);
+.home {
+    padding: 2rem;
+    .slider-banner {
+        div img {
+            border-radius: 0.4rem;
+            width: 100%;
+            cursor: grab;
+            transform: scale(0.85) translateY(0);
+            box-shadow: 1rem 1rem 1rem 0.2rem rgba(0, 0, 0, 0.438);
+            animation-name: banner;
+            animation-duration: 1s;
+            @keyframes banner {
+                from {
+                    transform: scale(0.9) translateY(-7rem);
+                }
+                to {
+                    transform: scale(0.85) translateY(0);
+                }
+            }
+        }
+        .slick-prev:before,
+        .slick-next:before {
+            font-family: "slick";
+            font-size: 45px;
+            line-height: 1;
+            opacity: 0.75;
+            color: rgb(152, 252, 255);
+        }
+        .slick-prev {
+            position: absolute;
+            z-index: 1;
+            transform: translateX(-3.3rem);
+            transition: 0.5s;
+        }
+        .slick-next {
+            position: absolute;
+            z-index: 1;
+            transform: translateX(2rem);
+            transition: 0.5s;
+        }
+        &:hover .slick-next {
+            transform: translateX(-3.3rem);
+        }
+        &:hover .slick-prev {
+            transform: translateX(2rem); 
+        }
+        .slick-dots li button:before {
+            font-size: 0.7rem;
+            color: #fff;
+            border: 0.1rem solid rgb(152, 252, 255);
+            border-radius: 100%;
+        }
+    }
+    .list-slider {
+        margin-top: 2rem;
+        h4 {
+            color: #fff;
+        }
+        div {
+            img {
+                box-shadow: 0 3px 7px rgba(0, 0, 0, 0.795);
+                border-radius: 0.3rem;
+                cursor: grab;
+            }
+            .slick-prev:before {
+                content: "\003c";
+                font-size: 2rem;
+                font-weight: bold;
+            }
+            .slick-next:before {
+                content: "\003e";
+                font-size: 2rem;
+                font-weight: bold;
+            }
+            .slick-prev {
+                position: absolute;
+                z-index: 1;
+                left: 94%;
+                top: -15%;
+            }
+            .slick-next {
+                position: absolute;
+                z-index: 1;
+                left: 98%;
+                top: -15%;
+            }
+        }
+    }
+    .list-music {
+        margin-top: 2rem;
+        h4 {
+            color: #fff;
+        }
+        .main1 {
+            display: grid;
+            grid-template-columns: 50% 50%;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            .box-music {
+                overflow: auto;
+                height: 362px;
+                .music_item {
+                    margin-bottom: 1rem;
+                    img {
+                        width: 60px;
+                        height: 60px;
+                    }
+                    margin-right: 0.5rem;
+                    border-radius: 0.3rem;
+                    color: #fff;
+                    border: 0.1rem solid rgb(43, 147, 165);
+                    background: #122244;
+                    display: grid;
+                    grid-template-columns: 4.5rem 2fr 1fr 5rem;
+                    transition: 0.3s;
+                    &:hover {
+                        background: #253d72;
+                    }
+                    div .icon {
+                        margin-left: 0.4rem;
+                        font-size: 1.1rem;
+                        cursor: pointer;
+                    }
+                }
+            }
+            .limit-items .items div:nth-of-type(n + 6) {
+                display: none;
+            }
+            .limit-items #show-all:checked ~ .items div {
+                display: block;
+            }
+            .limit-items #show-all ~ label[for="show-all"] {
+                display: none;
+            }
+            .limit-items #show-all:checked ~ .text-hide {
+                display: block;
+            }
+            .limit-items #show-all:not(:checked) ~ .text-show {
+                display: block;
+            }
+            .limit-items {
+                color: #fff;
+                position: relative;
+                margin-top: -2.4rem;
+                %handel_show {
+                    font-size: 1.2rem;
+                    position: absolute;
+                    top: 0.2rem;
+                    right: 2rem;
+                    cursor: pointer;
+                }
+                .text-show {
+                    @extend %handel_show;
+                }
+                .text-hide {
+                    @extend %handel_show;
+                }
+                .items {
+                    height: 23rem;
+                    overflow: auto;
+                    section {
+                        display: grid;
+                        margin-right: 3.5rem;
+                        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+                        %handel_img {
+                            width: 4.5rem;
+                            height: 4.5rem;
+                            border-radius: 100%;
+                            margin: 0 0 1.3rem 0;
+                            cursor: pointer;
+                        }
+                        div {
+                            @extend %handel_img;
+                            overflow: hidden;
+                            img {
+                                @extend %handel_img;
+                                &:hover {
+                                    transform: scale(1.1);
+                                    transition: 0.4s;
+                                    filter: brightness(70%);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            .limit-items #show-all {
+                display: none;
+            }
+        }
+    }
+    .music-charts {
+        width: 100%;
+        height: 24rem;
+        background: linear-gradient(to bottom right, rgb(15, 15, 41), rgb(126, 148, 209));
+        border-radius: 0.4rem;
+        margin: 2rem 0 2rem 0;
+        display: grid;
+        grid-template-columns: 40% 65%;
+        padding: 1rem;
+        h4 {
+            color: rgb(226, 226, 226);
+        }
+        .box-chart {
+            width: 100%;
+            height: 5rem;
+            background-color: #4b8ec44f;
+            box-shadow: 0 3px 7px rgba(0, 0, 0, 0.473);
+            border-radius: 0.3rem;
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 0.7rem;
+            padding-left: 1rem;
+            &:hover {
+                background-color: #3977a0;
+            }
+            .stt,
+            .tyle {
+                color: rgba(74, 144, 226, 0);
+                line-height: 5rem;
+                font-size: 1.5rem;
+                -webkit-text-stroke: 1px #6ed1ff;
+                padding-right: 0.5rem;
+            }
+            img {
+                border-radius: 0.3rem;
+                margin-top: 0.6rem;
+            }
+            .name {
+                flex-grow: 1;
+                h6 {
+                    color: #fff;
+                    margin-top: 0.4rem;
+                }
+            }
+        }
+        .chart {
+            text {
+                fill: rgb(194, 194, 194) !important;
+            }
+            flex-grow: 1;
+            .chartMusic {
+                width: 90%;
+                height: 20rem;
+            }
+        }
+        button {
+            border-radius: 4rem;
+            padding: 0.3rem 2.2rem;
+            background: rgb(71, 194, 231);
+        }
+    }
 }
-.test1{
-    color: red;
-    background-color: blue;
+@media (min-width: 768px) and (max-width: 1024px) {
+
 }
-.test123{
-    font-size: 2rem;
-    color: var(--vartest1);
+@media only screen and (max-width: 700px) {
+    .home {
+        .slider-banner div img {
+            height: 15rem;
+        }
+        .list-music {
+            .main1 {
+           grid-template-columns: 100%;
+           .limit-items {
+               margin-top: 1rem;
+               .items {
+                   height: 9rem;
+                section {
+                    grid-template-columns: 1fr 1fr 1fr 1fr;
+                    div {
+                        transform: scale(0.9);
+                        margin-bottom: 0;
+                    }
+                   }
+               }
+
+           }
+       }
+        } 
+        .music-charts {
+            grid-template-columns: 100%;
+            height: 44rem;
+            gap: 2rem;
+        }
+        .list-slider div{
+            .slick-prev {
+                left: 88%;
+            }
+           img {
+            width: 100%;
+        } 
+        }
+         
+    }
 }

@@ -1,0 +1,227 @@
+.container-nhacmoi{
+    margin: 0 40px ;
+    margin-bottom: 400px;
+    .title-nhacmoi-tt{
+        margin-top: 20px;
+        margin-bottom: 15px;
+            .text-title-nhacmoi-tt{
+                .color-nhacmoi-tt{
+                    color: #a8eff9;
+                }
+            }
+            .div-svg{
+                width: 36px;
+                  height: 36px;
+                  border: 2px solid #a8eff9;
+                  margin-left: 20px; 
+                  background: #a8eff9;
+                  border-radius: 50%; 
+                  text-align: center; 
+              .svg{
+                 margin: auto;
+                  width: 30px;
+                  height: 30px;
+                  color: #a8eff9;
+    
+              }
+          
+          }
+            
+        }
+        .title-nhacmoi-tt:hover{
+            .text-title-nhacmoi-tt{
+             .color-nhacmoi-tt{
+                color: #00dffe;
+                text-shadow: 0 0 5px #00afc7;
+            }   
+            } .div-svg{
+                border: 2px solid #00afc7;
+                box-shadow:  0 0 5px #dbf5ff;
+            
+            }
+            
+        }
+        .grid-2{
+            display:  flex;
+        }
+        ///////
+        .nhacmoi{
+          .grid-nhacmoi-4{
+              margin-top: 30px;
+              border: 1px solid #56ccf2;
+              padding: 5px;
+             display: grid;
+             grid-template-columns: 5% 12% 63% 1fr;
+             gap: 10px;
+             border-radius: 5px;
+             background: #0e192a;
+             .image-nhacmoi{
+                 img{
+                    width: 100%;
+                    height: 90px;
+                    object-fit: cover;
+                 }
+                
+             }
+             .stt{
+                 text-align: center;
+                 h3{
+                     color:#56ccf2 ;
+                     margin-top: 50%;
+                 }
+             }
+             .text-nhacmoi{
+                 color: white;
+                 padding-top: 10px;
+                 
+             }.flex-nhacmoi{
+                 
+                   
+                    display: flex;
+                    align-items: center;
+                 .microphone{
+                    margin: 0 20px;
+                    
+                 }.heart{
+                    margin: 0 20px;
+                 }.more{
+                    margin: 0 20px;
+
+                 }.microphone:hover{
+                    border: 1px solid #00afc7;
+                    border-radius: 3px;
+                }.heart:hover{
+                    border: 1px solid #00afc7;
+                    border-radius: 3px;
+                }.more:hover{
+                    border: 1px solid #00afc7;
+                    border-radius: 3px;
+                }
+             }
+                
+             
+            }.grid-nhacmoi-4:hover{
+                border: 2px solid #dbf5ff;
+                box-shadow: 0 0 5px #dbf5ff;
+                background: #dbf5ff;
+               
+                .text-nhacmoi{
+                    .title, .nhacmoi-tacgia{
+                    color: black;
+                    }
+               
+                }
+            } 
+        }
+        
+        /////
+        .nhacmoi-tt-buttom{
+            text-align: center;
+            margin-top: 55px;
+            .text-butom-nhacmoi-tt{
+              
+                color: black;
+                font-size: 25px;
+                text-decoration: none;
+                 text-align: center;
+                padding: 5px 50px;
+                background: #56ccf2;
+                border-radius: 18px;
+                
+            }
+            .text-butom-nhacmoi-tt:hover{
+                background: #222f44;
+                border: 2px solid #dbf5ff;
+                color: white;
+                box-shadow: 0 0 5px #dbf5ff;
+            }
+        }
+        
+}
+@media screen and(min-width:768px) and  (max-width:1024px) {
+    .container-nhacmoi{
+        margin: 0 20px ;
+        .nhacmoi{
+            .grid-nhacmoi-4{
+                display: grid;
+                grid-template-columns: 5% 20% 55% 1fr;
+                gap: 5px;
+                .image-nhacmoi{
+                    img{
+                       width: 100%;
+                       height: 100%;
+                       object-fit: cover;
+                    }
+                   
+                }
+                .flex-nhacmoi{
+                    align-items: flex-start;
+                    margin-top: 5px;
+                    .microphone{
+                        margin: 0 7px;
+                        
+                     }.heart{
+                        margin: 0 7px;
+                     }.more{
+                        margin: 0 7px;
+    
+                     }
+                } .stt{
+                    text-align: center;
+                    h3{
+                        color:#56ccf2 ;
+                        margin-top: 5px;
+                        border-bottom: 1px solid #56ccf2;
+                        padding-bottom: 3px;
+                    }
+                }
+            }
+        }
+    }
+}
+@media screen and (max-width:767px) {
+    .container-nhacmoi{
+        margin: 0 10px;
+        .nhacmoi{
+            .grid-nhacmoi-4{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                .image-nhacmoi{
+                    text-align: center;
+                    img{
+                       width: 95%;
+                       height: 150px;
+                       object-fit: cover;
+                       border-radius: 5px;
+                    }
+                   
+                }
+                .flex-nhacmoi{
+                    display: none;
+                  
+                }
+                .stt{
+                    height: 20px;
+                    width: 20px;
+                    margin-top: 0px;
+                    margin-bottom: 5px;
+                    border: 1px solid white;
+                    border-radius: 50%;
+                    h3{
+                       font-size: 15px;
+                       margin: auto;
+                       
+                    }
+                }
+                .text-nhacmoi{
+                    
+                    color: white;
+                    padding: 0 10px;
+                    
+                }
+            }
+        }
+    }
+    
+}
