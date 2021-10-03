@@ -8,6 +8,7 @@ import { MdNavigateNext } from 'react-icons/md';
 import { Button } from '@material-ui/core';
 import { BiPlayCircle } from 'react-icons/bi';
 import ChartMusic from './component/chartMusic';
+import { Link } from 'react-router-dom';
 
 
 interface Home<T> {
@@ -16,10 +17,14 @@ interface Home<T> {
 
 const Home: React.FC<Home<any>> = ({ ...props }) => {
     var settings_banner = {
+        autoplay: true,
+        autoplaySpeed: 3000,
         dots: true,
         fade: true,
     };
     var settings_category = {
+        autoplay: true,
+        autoplaySpeed: 3000,
         responsive: [
             {
                 breakpoint: 50000,
@@ -63,29 +68,31 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                 <h4>Thể loại <MdNavigateNext className="icon" /></h4>
                 <div>
                     <Slider {...settings_category}>
+                        <Link to="/playlistDetail">
                         <div className="box">
-                            <img width={250} height={200} src="https://i.ytimg.com/vi/Yije8O6eGn8/maxresdefault.jpg" alt="" />
+                            <img src="https://i.ytimg.com/vi/Yije8O6eGn8/maxresdefault.jpg" alt="" />
+                        </div>
+                        </Link>
+                        <div className="box">
+                            <img src="https://i.ytimg.com/vi/O8_tb1pDU8g/maxresdefault.jpg" alt="" />
                         </div>
                         <div className="box">
-                            <img width={250} height={200} src="https://i.ytimg.com/vi/O8_tb1pDU8g/maxresdefault.jpg" alt="" />
+                            <img src="https://i.ytimg.com/vi/DxOB2t7X84A/maxresdefault.jpg" alt="" />
                         </div>
                         <div className="box">
-                            <img width={250} height={200} src="https://i.ytimg.com/vi/DxOB2t7X84A/maxresdefault.jpg" alt="" />
+                            <img src="https://i.ytimg.com/vi/X1QfihWHfBo/maxresdefault.jpg" alt="" />
                         </div>
                         <div className="box">
-                            <img width={250} height={200} src="https://i.ytimg.com/vi/X1QfihWHfBo/maxresdefault.jpg" alt="" />
+                            <img src="https://i.ytimg.com/vi/x2xblVxi_c4/maxresdefault.jpg" alt="" />
                         </div>
                         <div className="box">
-                            <img width={250} height={200} src="https://i.ytimg.com/vi/x2xblVxi_c4/maxresdefault.jpg" alt="" />
+                            <img src="https://i.ytimg.com/vi/swztQOTZbpU/maxresdefault.jpg" alt="" />
                         </div>
                         <div className="box">
-                            <img width={250} height={200} src="https://i.ytimg.com/vi/swztQOTZbpU/maxresdefault.jpg" alt="" />
+                            <img src="https://i.ytimg.com/vi/jKLTbxHe9k8/maxresdefault.jpg" alt="" />
                         </div>
                         <div className="box">
-                            <img width={250} height={200} src="https://i.ytimg.com/vi/jKLTbxHe9k8/maxresdefault.jpg" alt="" />
-                        </div>
-                        <div className="box">
-                            <img width={250} height={200} src="https://i.ytimg.com/vi/naQWLyxs76I/maxresdefault.jpg" alt="" />
+                            <img src="https://i.ytimg.com/vi/naQWLyxs76I/maxresdefault.jpg" alt="" />
                         </div>
                     </Slider>
                 </div>
@@ -193,28 +200,28 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                 <div>
                     <Slider {...settings_category}>
                         <div className="box">
-                            <img width={250} height={200} src="https://i.ytimg.com/vi/Yije8O6eGn8/maxresdefault.jpg" alt="" />
+                            <img src="https://i.ytimg.com/vi/Yije8O6eGn8/maxresdefault.jpg" alt="" />
                         </div>
                         <div className="box">
-                            <img width={250} height={200} src="https://i.ytimg.com/vi/O8_tb1pDU8g/maxresdefault.jpg" alt="" />
+                            <img src="https://i.ytimg.com/vi/O8_tb1pDU8g/maxresdefault.jpg" alt="" />
                         </div>
                         <div className="box">
-                            <img width={250} height={200} src="https://i.ytimg.com/vi/DxOB2t7X84A/maxresdefault.jpg" alt="" />
+                            <img src="https://i.ytimg.com/vi/DxOB2t7X84A/maxresdefault.jpg" alt="" />
                         </div>
                         <div className="box">
-                            <img width={250} height={200} src="https://i.ytimg.com/vi/X1QfihWHfBo/maxresdefault.jpg" alt="" />
+                            <img src="https://i.ytimg.com/vi/X1QfihWHfBo/maxresdefault.jpg" alt="" />
                         </div>
                         <div className="box">
-                            <img width={250} height={200} src="https://i.ytimg.com/vi/x2xblVxi_c4/maxresdefault.jpg" alt="" />
+                            <img src="https://i.ytimg.com/vi/x2xblVxi_c4/maxresdefault.jpg" alt="" />
                         </div>
                         <div className="box">
-                            <img width={250} height={200} src="https://i.ytimg.com/vi/swztQOTZbpU/maxresdefault.jpg" alt="" />
+                            <img src="https://i.ytimg.com/vi/swztQOTZbpU/maxresdefault.jpg" alt="" />
                         </div>
                         <div className="box">
-                            <img width={250} height={200} src="https://i.ytimg.com/vi/jKLTbxHe9k8/maxresdefault.jpg" alt="" />
+                            <img src="https://i.ytimg.com/vi/jKLTbxHe9k8/maxresdefault.jpg" alt="" />
                         </div>
                         <div className="box">
-                            <img width={250} height={200} src="https://i.ytimg.com/vi/naQWLyxs76I/maxresdefault.jpg" alt="" />
+                            <img src="https://i.ytimg.com/vi/naQWLyxs76I/maxresdefault.jpg" alt="" />
                         </div>
                     </Slider>
                 </div>
@@ -224,28 +231,28 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                 <div>
                     <Slider {...settings_category}>
                         <div className="box">
-                            <img width={250} height={200} src="https://i.ytimg.com/vi/Yije8O6eGn8/maxresdefault.jpg" alt="" />
+                            <img src="https://i.ytimg.com/vi/Yije8O6eGn8/maxresdefault.jpg" alt="" />
                         </div>
                         <div className="box">
-                            <img width={250} height={200} src="https://i.ytimg.com/vi/O8_tb1pDU8g/maxresdefault.jpg" alt="" />
+                            <img src="https://i.ytimg.com/vi/O8_tb1pDU8g/maxresdefault.jpg" alt="" />
                         </div>
                         <div className="box">
-                            <img width={250} height={200} src="https://i.ytimg.com/vi/DxOB2t7X84A/maxresdefault.jpg" alt="" />
+                            <img src="https://i.ytimg.com/vi/DxOB2t7X84A/maxresdefault.jpg" alt="" />
                         </div>
                         <div className="box">
-                            <img width={250} height={200} src="https://i.ytimg.com/vi/X1QfihWHfBo/maxresdefault.jpg" alt="" />
+                            <img src="https://i.ytimg.com/vi/X1QfihWHfBo/maxresdefault.jpg" alt="" />
                         </div>
                         <div className="box">
-                            <img width={250} height={200} src="https://i.ytimg.com/vi/x2xblVxi_c4/maxresdefault.jpg" alt="" />
+                            <img src="https://i.ytimg.com/vi/x2xblVxi_c4/maxresdefault.jpg" alt="" />
                         </div>
                         <div className="box">
-                            <img width={250} height={200} src="https://i.ytimg.com/vi/swztQOTZbpU/maxresdefault.jpg" alt="" />
+                            <img src="https://i.ytimg.com/vi/swztQOTZbpU/maxresdefault.jpg" alt="" />
                         </div>
                         <div className="box">
-                            <img width={250} height={200} src="https://i.ytimg.com/vi/jKLTbxHe9k8/maxresdefault.jpg" alt="" />
+                            <img src="https://i.ytimg.com/vi/jKLTbxHe9k8/maxresdefault.jpg" alt="" />
                         </div>
                         <div className="box">
-                            <img width={250} height={200} src="https://i.ytimg.com/vi/naQWLyxs76I/maxresdefault.jpg" alt="" />
+                            <img src="https://i.ytimg.com/vi/naQWLyxs76I/maxresdefault.jpg" alt="" />
                         </div>
                     </Slider>
                 </div>
@@ -255,28 +262,28 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                 <div>
                     <Slider {...settings_category}>
                         <div className="box">
-                            <img width={250} height={200} src="https://i.ytimg.com/vi/Yije8O6eGn8/maxresdefault.jpg" alt="" />
+                            <img src="https://i.ytimg.com/vi/Yije8O6eGn8/maxresdefault.jpg" alt="" />
                         </div>
                         <div className="box">
-                            <img width={250} height={200} src="https://i.ytimg.com/vi/O8_tb1pDU8g/maxresdefault.jpg" alt="" />
+                            <img src="https://i.ytimg.com/vi/O8_tb1pDU8g/maxresdefault.jpg" alt="" />
                         </div>
                         <div className="box">
-                            <img width={250} height={200} src="https://i.ytimg.com/vi/DxOB2t7X84A/maxresdefault.jpg" alt="" />
+                            <img src="https://i.ytimg.com/vi/DxOB2t7X84A/maxresdefault.jpg" alt="" />
                         </div>
                         <div className="box">
-                            <img width={250} height={200} src="https://i.ytimg.com/vi/X1QfihWHfBo/maxresdefault.jpg" alt="" />
+                            <img src="https://i.ytimg.com/vi/X1QfihWHfBo/maxresdefault.jpg" alt="" />
                         </div>
                         <div className="box">
-                            <img width={250} height={200} src="https://i.ytimg.com/vi/x2xblVxi_c4/maxresdefault.jpg" alt="" />
+                            <img src="https://i.ytimg.com/vi/x2xblVxi_c4/maxresdefault.jpg" alt="" />
                         </div>
                         <div className="box">
-                            <img width={250} height={200} src="https://i.ytimg.com/vi/swztQOTZbpU/maxresdefault.jpg" alt="" />
+                            <img src="https://i.ytimg.com/vi/swztQOTZbpU/maxresdefault.jpg" alt="" />
                         </div>
                         <div className="box">
-                            <img width={250} height={200} src="https://i.ytimg.com/vi/jKLTbxHe9k8/maxresdefault.jpg" alt="" />
+                            <img src="https://i.ytimg.com/vi/jKLTbxHe9k8/maxresdefault.jpg" alt="" />
                         </div>
                         <div className="box">
-                            <img width={250} height={200} src="https://i.ytimg.com/vi/naQWLyxs76I/maxresdefault.jpg" alt="" />
+                            <img src="https://i.ytimg.com/vi/naQWLyxs76I/maxresdefault.jpg" alt="" />
                         </div>
                     </Slider>
                 </div>
@@ -286,28 +293,28 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                 <div>
                     <Slider {...settings_category}>
                         <div className="box">
-                            <img width={250} height={200} src="https://i.ytimg.com/vi/Yije8O6eGn8/maxresdefault.jpg" alt="" />
+                            <img src="https://i.ytimg.com/vi/Yije8O6eGn8/maxresdefault.jpg" alt="" />
                         </div>
                         <div className="box">
-                            <img width={250} height={200} src="https://i.ytimg.com/vi/O8_tb1pDU8g/maxresdefault.jpg" alt="" />
+                            <img src="https://i.ytimg.com/vi/O8_tb1pDU8g/maxresdefault.jpg" alt="" />
                         </div>
                         <div className="box">
-                            <img width={250} height={200} src="https://i.ytimg.com/vi/DxOB2t7X84A/maxresdefault.jpg" alt="" />
+                            <img src="https://i.ytimg.com/vi/DxOB2t7X84A/maxresdefault.jpg" alt="" />
                         </div>
                         <div className="box">
-                            <img width={250} height={200} src="https://i.ytimg.com/vi/X1QfihWHfBo/maxresdefault.jpg" alt="" />
+                            <img src="https://i.ytimg.com/vi/X1QfihWHfBo/maxresdefault.jpg" alt="" />
                         </div>
                         <div className="box">
-                            <img width={250} height={200} src="https://i.ytimg.com/vi/x2xblVxi_c4/maxresdefault.jpg" alt="" />
+                            <img src="https://i.ytimg.com/vi/x2xblVxi_c4/maxresdefault.jpg" alt="" />
                         </div>
                         <div className="box">
-                            <img width={250} height={200} src="https://i.ytimg.com/vi/swztQOTZbpU/maxresdefault.jpg" alt="" />
+                            <img src="https://i.ytimg.com/vi/swztQOTZbpU/maxresdefault.jpg" alt="" />
                         </div>
                         <div className="box">
-                            <img width={250} height={200} src="https://i.ytimg.com/vi/jKLTbxHe9k8/maxresdefault.jpg" alt="" />
+                            <img src="https://i.ytimg.com/vi/jKLTbxHe9k8/maxresdefault.jpg" alt="" />
                         </div>
                         <div className="box">
-                            <img width={250} height={200} src="https://i.ytimg.com/vi/naQWLyxs76I/maxresdefault.jpg" alt="" />
+                            <img src="https://i.ytimg.com/vi/naQWLyxs76I/maxresdefault.jpg" alt="" />
                         </div>
                     </Slider>
                 </div>
@@ -317,28 +324,28 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                 <div>
                     <Slider {...settings_category}>
                         <div className="box">
-                            <img width={250} height={200} src="https://i.ytimg.com/vi/Yije8O6eGn8/maxresdefault.jpg" alt="" />
+                            <img src="https://i.ytimg.com/vi/Yije8O6eGn8/maxresdefault.jpg" alt="" />
                         </div>
                         <div className="box">
-                            <img width={250} height={200} src="https://i.ytimg.com/vi/O8_tb1pDU8g/maxresdefault.jpg" alt="" />
+                            <img src="https://i.ytimg.com/vi/O8_tb1pDU8g/maxresdefault.jpg" alt="" />
                         </div>
                         <div className="box">
-                            <img width={250} height={200} src="https://i.ytimg.com/vi/DxOB2t7X84A/maxresdefault.jpg" alt="" />
+                            <img src="https://i.ytimg.com/vi/DxOB2t7X84A/maxresdefault.jpg" alt="" />
                         </div>
                         <div className="box">
-                            <img width={250} height={200} src="https://i.ytimg.com/vi/X1QfihWHfBo/maxresdefault.jpg" alt="" />
+                            <img src="https://i.ytimg.com/vi/X1QfihWHfBo/maxresdefault.jpg" alt="" />
                         </div>
                         <div className="box">
-                            <img width={250} height={200} src="https://i.ytimg.com/vi/x2xblVxi_c4/maxresdefault.jpg" alt="" />
+                            <img src="https://i.ytimg.com/vi/x2xblVxi_c4/maxresdefault.jpg" alt="" />
                         </div>
                         <div className="box">
-                            <img width={250} height={200} src="https://i.ytimg.com/vi/swztQOTZbpU/maxresdefault.jpg" alt="" />
+                            <img src="https://i.ytimg.com/vi/swztQOTZbpU/maxresdefault.jpg" alt="" />
                         </div>
                         <div className="box">
-                            <img width={250} height={200} src="https://i.ytimg.com/vi/jKLTbxHe9k8/maxresdefault.jpg" alt="" />
+                            <img src="https://i.ytimg.com/vi/jKLTbxHe9k8/maxresdefault.jpg" alt="" />
                         </div>
                         <div className="box">
-                            <img width={250} height={200} src="https://i.ytimg.com/vi/naQWLyxs76I/maxresdefault.jpg" alt="" />
+                            <img src="https://i.ytimg.com/vi/naQWLyxs76I/maxresdefault.jpg" alt="" />
                         </div>
                     </Slider>
                 </div>

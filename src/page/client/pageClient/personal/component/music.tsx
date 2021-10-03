@@ -2,11 +2,14 @@ import React from 'react'
 import { AiOutlineDownload, AiFillHeart } from 'react-icons/ai';
 import { IoMdAdd } from 'react-icons/io';
 import { MdNavigateNext } from 'react-icons/md';
-
+import Tabed from './tabed';
 
 const Music = () => {
     return (
-        <div className="overview">
+        <div className="Personal">
+ <Tabed/>
+
+    <div className="overview">
                 <h3>Bài hát <MdNavigateNext className="icon" /></h3>
                 <div className="main1"  style={{gridTemplateColumns: "100%"}}>
                     <div className="box-music">
@@ -105,6 +108,7 @@ const Music = () => {
                
 
                 </div>
+</div>
            
     )
 }

@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react'
-import "./topThinhHanh.scss"
+import "./toptrending.scss"
 import {Link} from "react-router-dom"
 import {ReactComponent as Play} from './play.svg'
-interface topThinhHanh<T> {
+interface Toptrending<T> {
 
 }
 
-const TopThinhHanh: React.FC<topThinhHanh<any>> = ({ ...props }) => {
+const Toptrending: React.FC<Toptrending<any>> = ({ ...props }) => {
 
 
     return (
@@ -81,4 +81,4 @@ const TopThinhHanh: React.FC<topThinhHanh<any>> = ({ ...props }) => {
     )
 }
 
-export default TopThinhHanh
+export default Toptrending

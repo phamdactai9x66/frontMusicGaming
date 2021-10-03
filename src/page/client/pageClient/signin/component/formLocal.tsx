@@ -12,10 +12,11 @@ export const SignIn = <T extends FormikContextType<any>>(formik: T) => {
       <InputText name="userName" type="text" other={{ placeholder: "userName" }} />
 
       <InputText name="passWord" type="password" other={{ placeholder: "passWord" }} />
-
+      <br/>
       <Link className="forgot_pass" to="/forgotpassword">Forgot password ?</Link>
-      <LoadingButton loading={formik.isSubmitting}
-        variant="outlined" type="submit">
+      <br/><br/>
+      <LoadingButton style={{padding: "0.5rem 3rem",marginBottom: "1rem"}} loading={formik.isSubmitting}
+        variant="contained" color="secondary" type="submit">
         Sign in
       </LoadingButton>
     </>

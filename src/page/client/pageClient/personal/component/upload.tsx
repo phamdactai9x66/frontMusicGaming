@@ -2,9 +2,12 @@ import React from 'react'
 import { AiOutlineDownload, AiFillHeart } from 'react-icons/ai';
 import { IoMdAdd } from 'react-icons/io';
 import { MdNavigateNext } from 'react-icons/md';
+import Tabed from './tabed';
 
 const Upload = () => {
     return (
+        <div className="Personal">
+        <Tabed />
         <div className="overview">
         <h3>Danh sách tải lên <MdNavigateNext className="icon" /></h3>
         <div className="main1"  style={{gridTemplateColumns: "100%"}}>
@@ -103,6 +106,7 @@ const Upload = () => {
         </div>
        
 
+        </div>
         </div>
     )
 }

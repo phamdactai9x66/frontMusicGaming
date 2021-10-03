@@ -24,7 +24,6 @@ const LoginFacebook: React.FC<LoginFacebook<any>> = ({ history, displayAlert, ..
 
     return (
         <FacebookLogin
-
             appId="199739805546279"
             autoLoad={false}
             fields="name,email,picture"

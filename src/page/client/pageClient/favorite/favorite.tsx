@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react'
-import "./yeuthich.scss"
+import "./favorite.scss"
 import {Link} from "react-router-dom"
 import {ReactComponent as Header} from './heart.svg'
 import {ReactComponent as Tacgia} from './tacgia.svg'
 
-interface yeuThich<T> {
+interface Favorite<T> {
 
 }
 
-const YeuThich: React.FC<yeuThich<any>> = ({ ...props }) => {
+const Favorite: React.FC<Favorite<any>> = ({ ...props }) => {
 
 
     return (
@@ -112,4 +112,4 @@ const YeuThich: React.FC<yeuThich<any>> = ({ ...props }) => {
     )
 }
 
-export default YeuThich
+export default Favorite

@@ -19,29 +19,29 @@ const Sidebar: React.FC<Sidebar<any>> = ({ ...props }) => {
       <div className="sidebar">
         <h5>MUSIC GAME</h5>
         <ul>
-          <li><BsMusicNoteBeamed className="icon" /><Link to="/personal">Cá nhân</Link></li>
+          <li><BsMusicNoteBeamed className="icon" /><Link to="/overview">Cá nhân</Link></li>
           <li><RiFolderMusicFill className="icon" /><Link to="/">Khám phá</Link></li>
-          <li><FaChartPie className="icon" /> Music chart</li>
-          <li><FaBlogger className="icon" /> Blog</li>
+          <li><FaChartPie className="icon" /><Link to="/chart">Music chart</Link></li>
+          <li><FaBlogger className="icon" /><Link to="/blog">Blog</Link></li>
         </ul>
         <div className="library-sidebar">
           <ul>
-            <li><BsMusicNoteBeamed className="icon" /> Nhạc mới</li>
-            <li><BsListUl className="icon" /> Thể loại</li>
-            <li><AiFillStar className="icon" /> Top thịnh hành</li>
+            <li><BsMusicNoteBeamed className="icon" /><Link to="/newmusic">Nhạc mới</Link></li>
+            <li><BsListUl className="icon" /><Link to="/category">Thể loại</Link></li>
+            <li><AiFillStar className="icon" /><Link to="/toptrending">Top thịnh hành</Link></li>
           </ul>
           <ul>
             <h6>Thư viện</h6>
-            <li><AiOutlineHeart className="icon" /> Yêu thích</li>
-            <li><BsMusicNoteBeamed className="icon" /> Bài hát</li>
-            <li><BiPlayCircle className="icon" /> Playlist</li>
+            <li><AiOutlineHeart className="icon" /><Link to="/favorite">Yêu thích</Link></li>
+            <li><BsMusicNoteBeamed className="icon" /><Link to="/music">Bài hát</Link></li>
+            <li><BiPlayCircle className="icon" /><Link to="/playlist">Playlist</Link></li>
             <li><BiTimeFive className="icon" /><Link to="/recently">Gần đây</Link></li>
           </ul>
           <ul>
-            <li>● Nhạc trẻ remix</li>
-            <li>● Nhạc trẻ remix</li>
-            <li>● Nhạc trẻ remix</li>
-            <li>● Nhạc trẻ remix</li>
+            <li><Link to="/playlistDetail">● Nhạc trẻ remix</Link></li>
+            <li><Link to="/playlistDetail">● Nhạc trẻ remix</Link></li>
+            <li><Link to="/playlistDetail">● Nhạc trẻ remix</Link></li>
+            <li><Link to="/playlistDetail">● Nhạc trẻ remix</Link></li>
           </ul>
         </div>
         <div className="popup-playlist">

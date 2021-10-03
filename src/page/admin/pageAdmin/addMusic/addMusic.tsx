@@ -89,16 +89,16 @@ const AddMusic: React.FC<AddMusic<any>> = ({ ...props }) => {
                                 <div className="input-add-tt bg-input custom-select ">
                                     <p>Thể loại</p>
                                     <select name="" id="" className="add-seclect" >
-                                        <option value="" className="add-theloai">quaybarrr</option>
-                                        <option value="" className="add-theloai">edm remix</option>
-                                        <option value="" className="add-theloai">edm remix</option>
+                                        <option value="" className="add-category">quaybarrr</option>
+                                        <option value="" className="add-category">edm remix</option>
+                                        <option value="" className="add-category">edm remix</option>
                                     </select>
                                 </div>
                                 <div className="input-add-tt bg-input ">
                                     <p>Trang thái</p>
                                     <select name="" id="" className="add-seclect ">
-                                        <option value="" className="add-theloai">Hoại động</option>
-                                        <option value="" className="add-theloai">Không hoạt đông</option>
+                                        <option value="" className="add-category">Hoại động</option>
+                                        <option value="" className="add-category">Không hoạt đông</option>
                                     </select>
                                 </div>
                                 <div className="input-add-tt bg-input  bt-margin ">

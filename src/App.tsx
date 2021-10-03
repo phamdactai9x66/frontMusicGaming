@@ -27,7 +27,6 @@ function App() {
                 <RootClient>
                   <Switch>
                     {handlePage<propertyPage[]>(Client)}
-
                   </Switch>
                 </RootClient>
               </Route>

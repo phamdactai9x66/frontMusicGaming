@@ -1,6 +1,6 @@
 .Personal {
     $color_while: rgb(228, 228, 228);
-    padding: 2rem;
+    padding-top: 2rem;
     .info_Personal {
         display: flex;
         justify-content: center;
@@ -15,7 +15,6 @@
             }
         }
     }
-    .Tabs_info {
         .tab_Personal {
             display: flex;
             justify-content: center;
@@ -27,8 +26,11 @@
                 margin-top: 2rem;
                 li {
                     display: inline;
-                    padding: 3rem;
-                    cursor: pointer;
+                    padding: 2rem;
+                    a {
+                        color: $color_while;
+                        text-decoration: none;
+                    }
                 }
             }
         }
@@ -187,12 +189,10 @@
             }
             //end main3
         }
-    }
 }
 // tabed
 
 @mixin handel_Personal {
-    .Tabs_info {
         .tab_Personal {
             .tab_item {
                 li {
@@ -202,13 +202,11 @@
                     font-size: 0.8rem;
                 }
             }
-        }
-    }
+        }  
 }
 @media (min-width: 768px) and (max-width: 1024px) {
     .Personal {
         @include handel_Personal();
-        .Tabs_info {
             .overview {
                 .main3 {
                     .main3_nhacsi {
@@ -216,13 +214,11 @@
                     }
                 }
             }
-        }
     }
 }
 @media only screen and (max-width: 700px) {
     .Personal {
         @include handel_Personal();
-        .Tabs_info {
             .overview {
                 .main1 {
                     grid-template-columns: 100%;
@@ -242,6 +238,5 @@
                     }
                 }
             }
-        }
     }
 }

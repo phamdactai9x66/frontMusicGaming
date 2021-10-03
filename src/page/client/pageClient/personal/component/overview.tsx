@@ -8,9 +8,11 @@ import { Button } from '@material-ui/core';
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import Tabed from './tabed';
 const Overview = () => {
     var settings = {
-        dots: false,
+        autoplay: true,
+        autoplaySpeed: 2000,
         infinite: true,
         vertical: true,
         fade: true,
@@ -23,7 +25,9 @@ const Overview = () => {
     };
     return (
         <>
-            <div className="overview">
+             <div className="Personal">
+                 <Tabed/>
+                    <div className="overview">
                 <h3>Bài hát <MdNavigateNext className="icon" /></h3>
                 <div className="main1">
                     <div className="box-slider">
@@ -130,7 +134,7 @@ const Overview = () => {
                     </div>
                 </div>
                 <div className="main2">
-                    <h3>Playlist</h3>
+                    <h3>Playlist <MdNavigateNext className="icon" /></h3>
                     <div className="main2_add">
                         <Popup
                             modal
@@ -233,6 +237,8 @@ const Overview = () => {
                     </div>
 
                 </div>
+            </div>
+
             </div>
         </>
     )

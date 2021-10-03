@@ -1,15 +1,11 @@
 import React, { useEffect } from 'react'
-import './playlist.scss'
+import './playlistDetail.scss'
 import {Link} from "react-router-dom"
-// import Slider from "react-slick";
 
-// import { BiCircle, BiSearch, BiUpload, BiUserCircle } from 'react-icons/bi';
-// import Tamtrang from './tamtrang';
-
-interface playlist<T> {
+interface PlaylistDetail<T> {
 
 }
-const Playlist: React.FC<playlist<any>> = ({ ...props }) => {
+const PlaylistDetail: React.FC<PlaylistDetail<any>> = ({ ...props }) => {
    
     return (
         <>
@@ -215,4 +211,4 @@ const Playlist: React.FC<playlist<any>> = ({ ...props }) => {
         </>
     )}
     
-    export default Playlist
+    export default PlaylistDetail

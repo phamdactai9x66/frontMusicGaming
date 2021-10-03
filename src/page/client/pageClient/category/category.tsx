@@ -1,15 +1,14 @@
 import React, { useEffect } from 'react'
-import './theloai.scss'
+import './category.scss'
 import {Link} from "react-router-dom"
 
 import { BiCircle, BiSearch, BiUpload, BiUserCircle } from 'react-icons/bi';
-// import Tamtrang from './tamtrang';
 
-interface theloadu<T> {
+interface Category<T> {
 
 }
 
-const TheLoai: React.FC<theloadu<any>> = ({ ...props }) => {
+const Category: React.FC<Category<any>> = ({ ...props }) => {
     return (
      <div className="container-category">
       <div className="banner-category">
@@ -102,4 +101,4 @@ const TheLoai: React.FC<theloadu<any>> = ({ ...props }) => {
     )
 }
 
-export default TheLoai
+export default Category
