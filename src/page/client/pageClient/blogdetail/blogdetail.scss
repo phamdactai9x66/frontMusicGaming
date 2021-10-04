@@ -25,10 +25,8 @@
             width: 100%;
             height: 315px;
             object-fit: cover;
-            margin-bottom: 5px;
-            box-shadow: 0 3px 7px rgba(0, 0, 0, 0.795);
-            border-radius: 0.3rem;
-            cursor: grab;
+            border: 1px solid #a8eff9 ;
+            border-radius: 4px;
         }
     }
     ///
@@ -57,11 +55,10 @@
                 .image-detail{
                    img{
                     width: 100%;
-                    height: 11.5rem;
+                    height: 202px;
                     object-fit: cover;
-                    box-shadow: 0 3px 7px rgba(0, 0, 0, 0.795);
-            border-radius: 0.3rem;
-            cursor: grab;
+                    border: 1px solid #a8eff9 ;
+                    border-radius: 4px;
                    }
                 }
             }.blogdetail-video{
@@ -102,11 +99,10 @@
             .box-grid-lienquan{
                 img{
                     width: 100%;
-                    height: 11.5rem;
+                    height: 202px;
                     object-fit: cover;
-                    box-shadow: 0 3px 7px rgba(0, 0, 0, 0.795);
-                    border-radius: 0.3rem;
-                    cursor: grab;
+                    border: 1px solid #a8eff9;
+                    border-radius: 4px ;
                 }
                 p{
                     color: white;
@@ -114,8 +110,8 @@
                 }
             }.box-grid-lienquan:hover{
                 img{
-                    border: 2px solid #dbf5ff;
-                    border-radius: 0.3rem;
+                    border: 3px solid #dbf5ff;
+                    border-radius: 2px;
                     box-shadow: 0 0 8px #dbf5ff;
                    }
                    p{
@@ -233,12 +229,9 @@
               background: white;
               align-items: center;
               border: 0.1px solid gray;
+               border-radius: 3px;
               margin-left: 5px;
               margin-right: 5px;
-              box-shadow: 0 3px 7px rgba(0, 0, 0, 0.795);
-              border-radius: 0.3rem;
-              cursor: grab;
-              color: black;
           }.left{
               margin-right: 5px;
           }.right{
@@ -288,8 +281,8 @@
             grid-template-columns: 1fr 1fr 1fr 1fr;
             gap: 10px;
             .box-grid-lienquan{
+              
                 img{
-                     
                     height: 130px;
                 }
             }

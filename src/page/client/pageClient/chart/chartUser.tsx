@@ -58,7 +58,7 @@ interface ChartUser<T> {
 
 }
 
-const ChartUser: React.FC<ChartUser<any>> = ({ ...props }) => {
+const ChartUsers: React.FC<ChartUser<any>> = ({ ...props }) => {
     return (
       <>  
     <div className="chart_user">
@@ -86,4 +86,4 @@ const ChartUser: React.FC<ChartUser<any>> = ({ ...props }) => {
     )
 }
 
-export default ChartUser
+export default ChartUsers

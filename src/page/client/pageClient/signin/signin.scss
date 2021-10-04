@@ -1,27 +1,17 @@
 .handleForm {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
     justify-content: center;
-    margin: 4rem 10rem 4rem 10rem;
     img {
-        width: 100%;
-        object-fit: cover;
         border-radius:0.5rem 0  0 0.5rem;
     }
     .tab_login {
-        form {
-            color: rgb(245, 12, 12);
-        }
         border-radius: 0 0.5rem 0.5rem 0 ;
         background: #3D5983;
-        width: 100%;
        .link_handel {
-         display: flex;
+         display: grid;
+         grid-template-columns: 1fr 1fr;
          section {
-             flex-grow: 1;
-           text-align: center;
-           padding-top: 1.5rem;
-           padding-bottom: 1.5rem;
+           padding: 1.5rem 4rem 1.5rem 4rem;
            border-radius: 0 0.5rem 0 0;
            border-bottom: 0.2rem solid rgb(160, 159, 159);
            a {
@@ -29,37 +19,26 @@
              text-decoration: none;
              font-weight: 500;
              font-size: 1.5rem;
+             vertical-align: middle;
+             margin: 0;
+
            }
          }
        }
         .form-input {
-          margin: 1.3rem;
-          height: 360px;
-          .SignUp_overlow {
-            padding-right: 0.5rem;
-            overflow: auto;
-            height: 310px;
-          }
+          margin: 1.5rem;
           .input {
             width: 100%;
           }
-        
            label {
             color: rgb(221, 221, 221);
             }
            input{
-            padding: 13px 14px;
             color: #fff;          
-            border-bottom: 0.1rem solid #48c7b2;
-         }
-         .css-1hbvpl3-MuiSvgIcon-root {
-            color: aquamarine;
-         }
-         .css-11zohuh-MuiSvgIcon-root {
-             color: aquamarine;
-         }
-         .css-1d3z3hw-MuiOutlinedInput-notchedOutline {
-             border: none;
+            border-bottom: 0.1rem solid #65f0d9;
+        
+            
+
          }
          .gender {
             display: grid;
@@ -69,7 +48,8 @@
             margin-top: -0.7rem;
             div {
                span {
-                color: rgb(221, 221, 221);              
+                color: rgb(221, 221, 221);
+                
             } 
             input {
               width: 100%;
@@ -78,7 +58,6 @@
             }
         }
          .forgot_pass {
-            padding-top: 1rem !important;
            color: #fff;
            text-decoration: none;
            font-size: 1rem;
@@ -86,25 +65,9 @@
         }
         .kep-login-facebook {
           padding: 0.5rem;
-          margin-left: 1rem;
+          margin-left: 0.8rem;
           text-transform: none;
-          svg {
-              margin-right: 0.4rem;
-          }
         }
     }  
 }
-@media (min-width: 768px) and (max-width: 1024px) {
-  .handleForm {
-    margin: 2rem;
-  }
-}
-@media only screen and (max-width: 700px) {
-  .handleForm {
-    margin: 2rem;
-    grid-template-columns: 1fr;
-    img {
-      display: none;
-    }
-  }
-}
+
