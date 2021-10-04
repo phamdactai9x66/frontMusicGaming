@@ -3,6 +3,7 @@ import './chart.scss'
 import {Link} from "react-router-dom"
 import ChartUsers from './chartUser';
 
+
 interface chart<T> {
 
 }
@@ -16,7 +17,6 @@ const Chart: React.FC<chart<any>> = ({ ...props }) => {
                 </div>
                 <div className="gird-2-chart">
                 <div className="">
-                    
                     <div className="item-song">
                             <div className="song-desc">
                                 <div className="img">

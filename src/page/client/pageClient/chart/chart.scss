@@ -102,9 +102,15 @@
 }
 p{color: white;}
 .chart{
+  width: 100%;
     height: 400px;
     margin-top: 30px;
     box-shadow: 0 3px 7px rgba(0, 0, 0, 0.795);
            border-radius: 0.3rem;
            cursor: grab;
+           .chart_user{
+             padding: 10px;
+            width: 100%;
+            height: 400px;
+           }
 }
