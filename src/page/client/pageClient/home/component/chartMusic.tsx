@@ -71,10 +71,10 @@ export default function ChartMusic() {
     <Line
       type="monotone"
       dataKey="pv"
-      stroke="#8884d8"
+      stroke="#ff6ea7"
       activeDot={{ r: 8 }}
     />
-    <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
+    <Line type="monotone" dataKey="uv" stroke="#3ed6da" />
   </LineChart>
    </ResponsiveContainer>            
   </div> 

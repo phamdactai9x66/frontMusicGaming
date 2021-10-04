@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import "./nhacmoi.scss"
+import "./newmusic.scss"
 import {Link} from "react-router-dom"
 import {ReactComponent as Play} from './play.svg'
 import {ReactComponent as More} from './more.svg'
@@ -7,11 +7,11 @@ import {ReactComponent as Microphone} from './microphone.svg'
 import {ReactComponent as Heart} from './heart.svg'
 
 
-interface nhacMoi<T> {
+interface Newmusic<T> {
 
 }
 
-const NhacMoi: React.FC<nhacMoi<any>> = ({ ...props }) => {
+const Newmusic: React.FC<Newmusic<any>> = ({ ...props }) => {
 
 
     return (
@@ -129,4 +129,4 @@ const NhacMoi: React.FC<nhacMoi<any>> = ({ ...props }) => {
     )
 }
 
-export default NhacMoi
+export default Newmusic

@@ -1,25 +1,26 @@
 import { Route } from "react-router-dom"
 import Home from "./page/client/pageClient/home/home"
 import NotFound from "./page/client/pageClient/notFound/notFound";
-
 import HomeAdmin from "./page/admin/pageAdmin/home/home";
 import AddMusic from "./page/admin/pageAdmin/addMusic/addMusic";
 import NotFoundAdmin from "./page/admin/pageAdmin/notFound/notFoundAdmin";
 import Todolist from "./page/admin/pageAdmin/todolist/todolist";
-// import Canhan from "./page/client/pageClient/canhan/canhan";
-import TopThinhHanh from "./page/client/pageClient/topthinhthanh/topThinhHanh";
-import YeuThich from "./page/client/pageClient/yeuthich/yeuthich";
-import NhacMoi from "./page/client/pageClient/nhacmoi/nhacmoi";
+import Toptrending from "./page/client/pageClient/toptrending/toptrending";
+import Favorite from "./page/client/pageClient/favorite/favorite";
+import Newmusic from "./page/client/pageClient/newmusic/newmusic";
 import Blog from "./page/client/pageClient/blog/blog";
-import TheLoai from "./page/client/pageClient/theloai/theloai";
+import Category from "./page/client/pageClient/category/category";
 import BlogDetail from "./page/client/pageClient/blogdetail/blogDetail";
-import Playlist from "./page/client/pageClient/playlist/playlist";
+import PlaylistDetail from "./page/client/pageClient/playlistDetail/playlistDetail";
 import Chart from "./page/client/pageClient/chart/Chart";
-import Personal from "./page/client/pageClient/personal/personal";
 import Signin from "./page/client/pageClient/signin/signin";
 import ForgotPassword from "./page/client/pageClient/forgotPassword/forgotPassword";
 import Recently from "./page/client/pageClient/recently/recently";
-
+import Overview from "./page/client/pageClient/personal/component/overview";
+import Music from "./page/client/pageClient/personal/component/music";
+import Musician from "./page/client/pageClient/personal/component/musician";
+import Upload from "./page/client/pageClient/personal/component/upload";
+import Playlist from "./page/client/pageClient/personal/component/playlist";
 
 export interface propertyPage {
     path: string,
@@ -58,11 +59,6 @@ const Client: propertyPage[] = [
         exact: true
     },
     {
-        path: "/personal",
-        component: Personal,
-        exact: false
-    },
-    {
         path: "/recently",
         component: Recently,
         exact: false
@@ -78,19 +74,19 @@ const Client: propertyPage[] = [
         exact: false
     },
     {
-        path: "/topThinhHanh",
-        component: TopThinhHanh,
-        exact: false
+        path: "/toptrending",
+        component: Toptrending,
+        exact: true
     },
     {
-        path: "/yeuThich",
-        component: YeuThich,
-        exact: false
+        path: "/favorite",
+        component: Favorite,
+        exact: true
     },
     {
-        path: "/nhacMoi",
-        component: NhacMoi,
-        exact: false
+        path: "/newmusic",
+        component: Newmusic,
+        exact: true
     },
     {
         path: "/blog",
@@ -98,9 +94,9 @@ const Client: propertyPage[] = [
         exact: false
     },
     {
-        path: "/theLoai",
-        component: TheLoai,
-        exact: false
+        path: "/category",
+        component: Category,
+        exact: true
     },
     {
         path: "/blogDetail",
@@ -108,21 +104,46 @@ const Client: propertyPage[] = [
         exact: false
     },
     {
-        path: "/playlist",
-        component: Playlist,
-        exact: false
+        path: "/playlistDetail",
+        component: PlaylistDetail,
+        exact: true
     },
     {
         path: "/chart",
         component: Chart,
         exact: false
     },
+     {
+        path: "/overview",
+        component: Overview,
+        exact: true
+    },
+    {
+        path: "/music",
+        component: Music,
+        exact: true
+    },
+    {
+        path: "/musician",
+        component: Musician,
+        exact: true
+    },
+    {
+        path: "/playlist",
+        component: Playlist,
+        exact: true
+    },
+    {
+        path: "/upload",
+        component: Upload,
+        exact: true
+    },
     {
         path: "/:pathNotFound",
         component: NotFound,
         exact: false
     }
-
+    
 ]
 function handlePage<T extends propertyPage[]>(Page: T): JSX.Element[] | null {
     if ([undefined, null].includes(Page as any)) return null;

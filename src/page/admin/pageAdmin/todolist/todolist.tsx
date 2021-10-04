@@ -25,8 +25,8 @@ const Todolist: React.FC<Todolist<any>> = ({ ...props }) => {
       const [data, error] = await HandleGet(apiAlbum.getAll, query);
 
       const [dataStatic] = await HandleGet(apiAlbum.getAll, query);
-      console.log(data)
-      if (data.status === variableCommon.statusF) dispatch(pustAction(typeAciton.reset))
+
+      if (data?.status === variableCommon.statusF) dispatch(pustAction(typeAciton.reset))
 
       setTimeout(() => {
         dispatch(pustAction(typeAciton.getData, { Data: data.data, dataStatic: dataStatic.data }))
@@ -38,11 +38,11 @@ const Todolist: React.FC<Todolist<any>> = ({ ...props }) => {
     }
   }, [])
   return (
-    <>
-      <div style={{
-        display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '600px', width: "100%"
-      }}>
-        <div style={{ flexBasis: 1000, margin: "0 auto" }}>
+    <>  
+      <div className="todo">
+        <h3>Todo list</h3>
+        <br/>
+        <div>
           <Paper sx={{ width: '100%' }}>
             <TableContainer style={{ padding: 20 }}>
               <Typography style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
@@ -52,6 +52,7 @@ const Todolist: React.FC<Todolist<any>> = ({ ...props }) => {
                     placeholder: "searching"
                   }}
                   size="small"
+                  
                 />
                 <Select
                   labelId="demosimpleselectlabel"

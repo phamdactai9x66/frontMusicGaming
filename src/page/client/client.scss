@@ -9,13 +9,17 @@ main {
 }
 
 $color_li: rgb(187, 187, 187);
-$color_icon: #56ccf2;
-$color_aside: #0e192a;
+$color_icon: #00e5ce;
+$color_aside: linear-gradient(to bottom right, #0e192a, #1b375c);
 $color_main_header: #222f44;
 $color_footer: #0e192aa4;
 
 //handel container client
+
 .container-client {
+    img {
+        object-fit: cover;
+    }
     display: flex;
     header {
         background-color: $color_main_header;
@@ -57,47 +61,23 @@ $color_footer: #0e192aa4;
                 margin-top: 7px;
                 display: flex;
                 .icon {
+                    background: #070d1648;
+                    border-radius: 100%;
+                    border: 0.5rem solid #070d1648;
                     color: #fff;
-                    font-size: 1.5rem;
+                    font-size: 2.3rem;
                     margin-left: 1rem;
                     cursor: pointer;
                 }
-
-                .dropdown {
-                    top: -0.15rem;
-                    position: relative;
-                    display: inline-block;
+                // drop
+                .MuiInputBase-root {
+                    opacity: 0;
+                    margin-left: -2.3rem;
+                    margin-top: -1rem;
                 }
-
-                .dropdown-content {
-                    display: none;
-                    position: absolute;
-                    border-radius: 0.3rem;
-                    background-color: #0e192a;
-                    width: 160px;
-                    z-index: 1;
-                    right: 0;
-                    top: 2rem;
-                    ._icon {
-                        color: cyan;
-                        font-size: 1.4rem;
-                        margin-right: 0.5rem;
-                    }
-                }
-
-                .dropdown-content a {
-                    color: #fff;
-                    padding: 12px 16px;
+                a {
                     text-decoration: none;
-                    display: block;
-                    &:hover {
-                        background: rgb(25, 55, 99);
-                        border-bottom: 0.1rem solid cyan;
-                        transition: all ease 0.4s;
-                    }
-                }
-                .dropdown:hover .dropdown-content {
-                    display: block;
+                    color: #fff;
                 }
             }
         }
@@ -107,7 +87,7 @@ $color_footer: #0e192aa4;
         position: relative;
         z-index: 2;
         width: 250px;
-        background-color: $color_aside;
+        background: $color_aside;
         box-shadow: 0 3px 7px rgba(0, 0, 0, 0.692);
         .sidebar {
             overflow: hidden;
@@ -115,7 +95,10 @@ $color_footer: #0e192aa4;
             padding-bottom: 20rem;
             & h5 {
                 padding: 1.3rem 0 0 2.5rem;
-                color: #fff;
+                a {
+                    color: #fff;
+                    text-decoration: none;
+                }           
             }
             & ul {
                 h6 {
@@ -134,9 +117,11 @@ $color_footer: #0e192aa4;
                         color: $color_li;
                         text-decoration: none;
                         padding: 0.2rem;
+                        &:hover {
+                            color: #fff;
+                        }
                     }
                     &:hover {
-                        color: $color_icon;
                         transition: all ease-in 0.3s;
                     }
                     .icon {
@@ -147,7 +132,7 @@ $color_footer: #0e192aa4;
                 }
                 li:hover {
                     margin-left: -0.5rem;
-                    background: rgb(18, 47, 85);
+                    background: rgba(13, 106, 129, 0.815);                 
                 }
             }
             .library-sidebar {
@@ -165,6 +150,7 @@ $color_footer: #0e192aa4;
                 left: 0rem;
                 bottom: 6.5rem;
                 padding-top: 1rem;
+                padding-bottom: 1rem;
                 text-align: center;
                 color: $color_li;
                 cursor: pointer;
@@ -372,6 +358,25 @@ $color_footer: #0e192aa4;
         }
      }
 }
+// drop
+.MuiMenu-paper { 
+  .link {
+      color: #fff;
+      text-decoration: none;
+      font-size: 1.2rem;
+      padding-right: 3rem;
+      padding-bottom: 0.4rem;
+      margin-bottom: 0.4rem;
+      border-bottom: 0.1rem solid rgba(127, 255, 212, 0.322);
+      ._icon {
+          color: rgb(82, 240, 187);
+          margin-right: 0.6rem;
+      }
+      &:hover {
+          color:rgb(3, 190, 190);
+      }
+  }
+}
 // Query mobie
 @media only screen and (max-width: 700px) {
     .container-client {
@@ -391,6 +396,10 @@ $color_footer: #0e192aa4;
         }
     }
 }
+<<<<<<< HEAD
 p{
     font-size: 0.85rem;
 }
+=======
+
+>>>>>>> 51b94681c1fa1c209184057061b7ae166aefbe8e

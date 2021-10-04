@@ -6,9 +6,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 50px;
-    // width: 100%;
     .col-content {
-      //   padding: 0 10px;
       text-align: center;
       .img {
         width: 100%;
@@ -108,8 +106,6 @@
                 clear: both;
               }
             }
-
-            // height: auto;
           }
         }
       }

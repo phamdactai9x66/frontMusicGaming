@@ -1,10 +1,5 @@
 .container-topthanhhanh{
-    // margin-top: 70px;
-    // @mixin hoverAll {
-    //     border: 2px solid #dbf5ff;
-    //     box-shadow:  0 0 5px #dbf5ff;
-    // }
-    ////
+
     margin: 0 40px ;
     margin-bottom: 400px;
     .title-top-tt{
@@ -14,9 +9,6 @@
             .color-top-tt{
                 color: #a8eff9;
             }
-            // .color-top-tt:hover{
-            //     text-shadow: 0 0 5px #dbf5ff;
-            // }
         }
         .div-svg{
             width: 36px;
@@ -35,10 +27,6 @@
           }
       
       }
-    //   .div-svg:hover{
-    //     @include hoverAll();
-    //   }
-        
     }
     .title-top-tt:hover{
         .text-title-top-tt{

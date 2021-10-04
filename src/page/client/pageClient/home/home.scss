@@ -29,12 +29,14 @@
         .slick-prev {
             position: absolute;
             z-index: 1;
+            top: 45%;
             transform: translateX(-3.3rem);
             transition: 0.5s;
         }
         .slick-next {
             position: absolute;
             z-index: 1;
+            top: 45%;
             transform: translateX(2rem);
             transition: 0.5s;
         }
@@ -42,7 +44,7 @@
             transform: translateX(-3.3rem);
         }
         &:hover .slick-prev {
-            transform: translateX(2rem); 
+            transform: translateX(2rem);
         }
         .slick-dots li button:before {
             font-size: 0.7rem;
@@ -58,6 +60,8 @@
         }
         div {
             img {
+                width: 97%;
+                height: 230px;
                 box-shadow: 0 3px 7px rgba(0, 0, 0, 0.795);
                 border-radius: 0.3rem;
                 cursor: grab;
@@ -66,22 +70,30 @@
                 content: "\003c";
                 font-size: 2rem;
                 font-weight: bold;
+                padding: 0.3rem 1rem;
+                border-radius: 0.3rem;
+                background-color: rgba(21, 140, 196, 0.753);
+                box-shadow: 0 3px 7px rgba(0, 0, 0, 0.795);
             }
             .slick-next:before {
                 content: "\003e";
                 font-size: 2rem;
                 font-weight: bold;
+                padding: 0.3rem 1rem;
+                border-radius: 0.3rem;
+                background-color: rgba(21, 140, 196, 0.753);
+                box-shadow: 0 3px 7px rgba(0, 0, 0, 0.795);
             }
             .slick-prev {
                 position: absolute;
                 z-index: 1;
-                left: 94%;
+                left: 89%;
                 top: -15%;
             }
             .slick-next {
                 position: absolute;
                 z-index: 1;
-                left: 98%;
+                left: 95%;
                 top: -15%;
             }
         }
@@ -102,6 +114,7 @@
                 .music_item {
                     margin-bottom: 1rem;
                     img {
+                        cursor: pointer;
                         width: 60px;
                         height: 60px;
                     }
@@ -223,6 +236,7 @@
                 padding-right: 0.5rem;
             }
             img {
+                cursor: pointer;
                 border-radius: 0.3rem;
                 margin-top: 0.6rem;
             }
@@ -235,8 +249,9 @@
             }
         }
         .chart {
+            margin-top: 1.4rem;
             text {
-                fill: rgb(194, 194, 194) !important;
+                fill: rgb(233, 232, 232) !important;
             }
             flex-grow: 1;
             .chartMusic {
@@ -248,11 +263,19 @@
             border-radius: 4rem;
             padding: 0.3rem 2.2rem;
             background: rgb(71, 194, 231);
+            a {
+                color: black;
+                text-decoration: none;
+            }
         }
+    }
+    line {
+        stroke-dasharray: 3, 3;
+        stroke: rgba(32, 252, 234, 0.199);
+        fill: none;
     }
 }
 @media (min-width: 768px) and (max-width: 1024px) {
-
 }
 @media only screen and (max-width: 700px) {
     .home {
@@ -261,36 +284,37 @@
         }
         .list-music {
             .main1 {
-           grid-template-columns: 100%;
-           .limit-items {
-               margin-top: 1rem;
-               .items {
-                   height: 9rem;
-                section {
-                    grid-template-columns: 1fr 1fr 1fr 1fr;
-                    div {
-                        transform: scale(0.9);
-                        margin-bottom: 0;
+                grid-template-columns: 100%;
+                .limit-items {
+                    margin-top: 1rem;
+                    .items {
+                        height: 9rem;
+                        section {
+                            grid-template-columns: 1fr 1fr 1fr 1fr;
+                            div {
+                                transform: scale(0.9);
+                                margin-bottom: 0;
+                            }
+                        }
                     }
-                   }
-               }
-
-           }
-       }
-        } 
+                }
+            }
+        }
         .music-charts {
             grid-template-columns: 100%;
             height: 44rem;
             gap: 2rem;
         }
-        .list-slider div{
+        .list-slider div {
             .slick-prev {
-                left: 88%;
+                left: 86%;
             }
-           img {
-            width: 100%;
-        } 
+            .slick-next {
+                left: 95%;
+            }
+            img {
+                width: 100%;
+            }
         }
-         
     }
 }
