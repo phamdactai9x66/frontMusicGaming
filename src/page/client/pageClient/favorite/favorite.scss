@@ -33,7 +33,6 @@
         //   @include hoverAllyt();
         // }
         
-        
     }
      .title-yeuthich-tt:hover{
         .text-title-yeuthich-tt{
@@ -67,12 +66,11 @@
                 color: white;
                 .yeuthich-width-heght-image{
                     width: 100%;
-                    height: 11.5rem;
+                    height: 200px;
                     object-fit: cover;
                     margin-bottom: 5px;
-                    box-shadow: 0 3px 7px rgba(0, 0, 0, 0.795);
-                    border-radius: 0.3rem;
-                    cursor: grab;
+                    border: 3px solid #29e5ff;
+                    border-radius: 2px;
                     
                   } 
                 .text-box-yeuthich-tt{
@@ -88,8 +86,8 @@
                 // border-radius: 2px;
                 // box-shadow: 0 0 8px #38c7ff;
                 //  opacity: 80%;
-                border: 2px solid #dbf5ff;
-                border-radius: 0.3rem;
+                border: 3px solid #dbf5ff;
+                border-radius: 2px;
                 box-shadow: 0 0 8px #dbf5ff;
             }.text-box-yeuthich-tt{
                 color: #29e5ff;
@@ -112,9 +110,7 @@
                 height: 178px;
                 object-fit: cover;
                 border-radius: 50%;
-                border: 1px solid #29e5ff;
-                box-shadow: 0 3px 7px rgba(0, 0, 0, 0.795);
-                cursor: grab;
+                border: 3px solid #29e5ff;
                 
             }.text-yt-tg-white{
                 color: white;

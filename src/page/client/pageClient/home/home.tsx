@@ -380,7 +380,7 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                         </div>
                         <h6 className="tyle">41%</h6>
                     </div>
-                    <Button><Link to="/chart">XEM THÊM</Link></Button>
+                    <Button variant="text">Text</Button>
                 </div>
                 <div className="chart">
                     <ChartMusic />

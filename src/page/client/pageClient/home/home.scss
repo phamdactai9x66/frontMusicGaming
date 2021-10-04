@@ -70,30 +70,22 @@
                 content: "\003c";
                 font-size: 2rem;
                 font-weight: bold;
-                padding: 0.3rem 1rem;
-                border-radius: 0.3rem;
-                background-color: rgba(21, 140, 196, 0.753);
-                box-shadow: 0 3px 7px rgba(0, 0, 0, 0.795);
             }
             .slick-next:before {
                 content: "\003e";
                 font-size: 2rem;
                 font-weight: bold;
-                padding: 0.3rem 1rem;
-                border-radius: 0.3rem;
-                background-color: rgba(21, 140, 196, 0.753);
-                box-shadow: 0 3px 7px rgba(0, 0, 0, 0.795);
             }
             .slick-prev {
                 position: absolute;
                 z-index: 1;
-                left: 89%;
+                left: 94%;
                 top: -15%;
             }
             .slick-next {
                 position: absolute;
                 z-index: 1;
-                left: 95%;
+                left: 98%;
                 top: -15%;
             }
         }
@@ -263,16 +255,7 @@
             border-radius: 4rem;
             padding: 0.3rem 2.2rem;
             background: rgb(71, 194, 231);
-            a {
-                color: black;
-                text-decoration: none;
-            }
         }
-    }
-    line {
-        stroke-dasharray: 3, 3;
-        stroke: rgba(32, 252, 234, 0.199);
-        fill: none;
     }
 }
 @media (min-width: 768px) and (max-width: 1024px) {
