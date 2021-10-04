@@ -16,7 +16,7 @@ const RadioField: React.FC<RadioField<any>> = ({ label, ...props }) => {
         <>
             <FormControl component="fieldset">
                 <FormLabel component="legend">{label}</FormLabel>
-                <RadioGroup row aria-label="gender" {...props} {...props.other}
+                <RadioGroup row {...props} {...props.other}
                     {...formik.getFieldProps(props.name)}
                 >
                     {
