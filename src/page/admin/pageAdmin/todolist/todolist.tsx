@@ -38,11 +38,11 @@ const Todolist: React.FC<Todolist<any>> = ({ ...props }) => {
     }
   }, [])
   return (
-    <>
-      <div style={{
-        display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '600px', width: "100%"
-      }}>
-        <div style={{ flexBasis: 1000, margin: "0 auto" }}>
+    <>  
+      <div className="todo">
+        <h3>Todo list</h3>
+        <br/>
+        <div>
           <Paper sx={{ width: '100%' }}>
             <TableContainer style={{ padding: 20 }}>
               <Typography style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>

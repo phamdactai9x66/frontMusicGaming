@@ -96,7 +96,7 @@ const Signin: React.FC<Signin<any>> = ({ history, ...props }) => {
   return (
     <>
       <div className="handleForm">
-        <img width={420} height={530} src="https://colorlib.com/etc/regform/colorlib-regform-34/images/form-v8.jpg" alt="" />
+        <img height={500} src="https://colorlib.com/etc/regform/colorlib-regform-34/images/form-v8.jpg" alt="" />
         <div className="tab_login">
           {linkHandle()}
           <div className="form-input">
