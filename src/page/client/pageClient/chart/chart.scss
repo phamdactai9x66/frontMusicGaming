@@ -7,8 +7,10 @@
         gap: 25px;
         .item-song {
         padding: 5px;
-        border: 2px solid rgb(76, 195, 241);
-        border-radius: 4px;
+        border: 0.5px solid rgb(76, 195, 241);
+        box-shadow: 0 3px 7px rgba(0, 0, 0, 0.795);
+           border-radius: 0.3rem;
+           cursor: grab;
         display: flex;
         margin-top: 20px;
         .song-desc {
@@ -86,9 +88,10 @@
        .box-playlisst{
          img{
            width: 100%;
-           height: 202px;
-           border: 2px solid #a8eff9;
-           border-radius: 4px;
+           height: 11.5rem;
+           box-shadow: 0 3px 7px rgba(0, 0, 0, 0.795);
+           border-radius: 0.3rem;
+           cursor: grab;
          }
          p{
            margin-top: 5px;
@@ -100,6 +103,8 @@
 p{color: white;}
 .chart{
     height: 400px;
-    background: red;
     margin-top: 30px;
+    box-shadow: 0 3px 7px rgba(0, 0, 0, 0.795);
+           border-radius: 0.3rem;
+           cursor: grab;
 }
