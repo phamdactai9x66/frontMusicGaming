@@ -124,7 +124,7 @@ main {
 
 .nav__check:checked ~ .main_admin{
   margin-left: -12rem;
-  transition: 0.5s;
+  transition: 0.2s;
   ._sidebar h2 {
     text-align: left;
   }
@@ -133,7 +133,7 @@ main {
   }
   .info_admin img {
     margin-left: 11.85rem;
-    transition: 0.5s;
+    transition: 0.2s;
   }
   .main_search {
     display: none;
@@ -144,7 +144,7 @@ main {
 
  .tabs__item--icon {
    margin-left: 12.8rem;
-   transition: 0.5s;
+   transition: 0.2s;
    font-size: 1.7rem;
  }
  .add_item {

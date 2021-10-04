@@ -17,7 +17,7 @@ const Sidebar: React.FC<Sidebar<any>> = ({ ...props }) => {
   return (
     <>
       <div className="sidebar">
-        <h5>MUSIC GAME</h5>
+        <h5><Link to="/">MUSIC GAME</Link></h5>
         <ul>
           <li><BsMusicNoteBeamed className="icon" /><Link to="/overview">Cá nhân</Link></li>
           <li><RiFolderMusicFill className="icon" /><Link to="/">Khám phá</Link></li>
