@@ -28,7 +28,7 @@ const Blog: React.FC<blog<any>> = ({ ...props }) => {
                     <div className="box ">
                         <div className="blog-image">
                         <h4  className="color text-blog-none">Top 100 Bài Hát</h4>
-                        <img src="https://media.tinmoi.vn/resize_354x213/upload/honghanh/2021/04/05/cung-xuat-hien-tai-phim-truong-son-tung-va-jack-co-dang-ap-u-cuoc-chien-moi1617617664.jpg" alt="" />
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZZlyRwLsszVeOhyByhFiWqhLtLxaMLOmy3Q&usqp=CAU" alt="" />
                         </div>
                         <div className="title-blog">
                             <h4  className="color">Top 100 Bài Hát</h4>
