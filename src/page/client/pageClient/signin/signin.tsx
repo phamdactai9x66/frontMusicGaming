@@ -5,12 +5,13 @@ import { Formik, Form, FormikContextType } from "formik";
 import validateSchema from "./component/handleForm";
 import { stateForm } from "./component/stateForm";
 import { SignIn, SignUp } from "./component/formLocal";
-import userApi from "../../../../api/useApi";
+import userApi from "api/useApi";
 import Alert from '@mui/material/Alert'
 import { saveInfo } from "../../../../redux/user/actionUser";
 import { RouteComponentProps } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import CryptoJS from "crypto-js"
+import { variableCommon } from "component/variableCommon"
 
 interface Signin<T> extends RouteComponentProps {
 
@@ -71,7 +72,7 @@ const Signin: React.FC<Signin<any>> = ({ history, ...props }) => {
 
       const loginUser = await userApi.Login(handleForm);
 
-      if (loginUser.status !== "failed") {
+      if (loginUser.status !== variableCommon.statusF) {
 
         dispatchUser(saveInfo(loginUser))
 
@@ -82,9 +83,10 @@ const Signin: React.FC<Signin<any>> = ({ history, ...props }) => {
 
     }
     const loginUser = await userApi.Signup(handleForm);
+    console.log(loginUser)
+    if (loginUser.status !== variableCommon.statusF) {
 
-    if (loginUser.status !== "failed") {
-
+      console.log(loginUser)
       // dispatchUser(saveInfo(loginUser))
 
       return
