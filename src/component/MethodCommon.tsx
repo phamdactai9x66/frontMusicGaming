@@ -1,7 +1,6 @@
 import { FunctionsTwoTone } from "@mui/icons-material"
 
 export const HandleGet = async (functionPromise: Function, params = {}) => {
-    // console.log(params);
     try {
         const data = await functionPromise(params);
         return [data, null];
