@@ -13,7 +13,7 @@ const Upload = () => {
         <div className="main1"  style={{gridTemplateColumns: "100%"}}>
             <div className="box-music">
                 <div className="music_item">
-                    <img src="https://bizweb.dktcdn.net/100/248/398/files/alan-walker-dj-min.jpg?v=1514559370965" alt="" />
+                    <img src="https://anh.24h.com.vn/upload/4-2016/images/2016-12-06/1480992562-148098909683484-son-tung.jpg" alt="" />
                     <div>
                         <h6>Tên bài hát</h6>
                         <div style={{ fontSize: "0.7rem", marginTop: "-0.2rem" }}>Nghệ sĩ</div>
@@ -28,7 +28,7 @@ const Upload = () => {
                     </div>
                 </div>
                 <div className="music_item">
-                    <img src="https://bizweb.dktcdn.net/100/248/398/files/alan-walker-dj-min.jpg?v=1514559370965" alt="" />
+                    <img src="https://anh.24h.com.vn/upload/4-2016/images/2016-12-06/1480992562-148098909683484-son-tung.jpg" alt="" />
                     <div>
                         <h6>Tên bài hát</h6>
                         <div style={{ fontSize: "0.7rem", marginTop: "-0.2rem" }}>Nghệ sĩ</div>
@@ -43,7 +43,7 @@ const Upload = () => {
                     </div>
                 </div>
                 <div className="music_item">
-                    <img src="https://bizweb.dktcdn.net/100/248/398/files/alan-walker-dj-min.jpg?v=1514559370965" alt="" />
+                    <img src="https://anh.24h.com.vn/upload/4-2016/images/2016-12-06/1480992562-148098909683484-son-tung.jpg" alt="" />
                     <div>
                         <h6>Tên bài hát</h6>
                         <div style={{ fontSize: "0.7rem", marginTop: "-0.2rem" }}>Nghệ sĩ</div>
@@ -58,7 +58,7 @@ const Upload = () => {
                     </div>
                 </div>
                 <div className="music_item">
-                    <img src="https://bizweb.dktcdn.net/100/248/398/files/alan-walker-dj-min.jpg?v=1514559370965" alt="" />
+                    <img src="https://anh.24h.com.vn/upload/4-2016/images/2016-12-06/1480992562-148098909683484-son-tung.jpg" alt="" />
                     <div>
                         <h6>Tên bài hát</h6>
                         <div style={{ fontSize: "0.7rem", marginTop: "-0.2rem" }}>Nghệ sĩ</div>
@@ -73,7 +73,7 @@ const Upload = () => {
                     </div>
                 </div>
                 <div className="music_item">
-                    <img src="https://bizweb.dktcdn.net/100/248/398/files/alan-walker-dj-min.jpg?v=1514559370965" alt="" />
+                    <img src="https://anh.24h.com.vn/upload/4-2016/images/2016-12-06/1480992562-148098909683484-son-tung.jpg" alt="" />
                     <div>
                         <h6>Tên bài hát</h6>
                         <div style={{ fontSize: "0.7rem", marginTop: "-0.2rem" }}>Nghệ sĩ</div>
@@ -88,7 +88,7 @@ const Upload = () => {
                     </div>
                 </div>
                 <div className="music_item">
-                    <img src="https://bizweb.dktcdn.net/100/248/398/files/alan-walker-dj-min.jpg?v=1514559370965" alt="" />
+                    <img src="https://anh.24h.com.vn/upload/4-2016/images/2016-12-06/1480992562-148098909683484-son-tung.jpg" alt="" />
                     <div>
                         <h6>Tên bài hát</h6>
                         <div style={{ fontSize: "0.7rem", marginTop: "-0.2rem" }}>Nghệ sĩ</div>

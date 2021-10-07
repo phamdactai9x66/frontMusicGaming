@@ -17,9 +17,7 @@ $color_footer: #0e192aa4;
 //handel container client
 
 .container-client {
-    img {
-        object-fit: cover;
-    }
+    @import "./handeSame.scss";
     display: flex;
     header {
         background-color: $color_main_header;
@@ -60,6 +58,7 @@ $color_footer: #0e192aa4;
             .icon-main {
                 margin-top: 7px;
                 display: flex;
+                margin-right: -1.5rem;
                 .icon {
                     background: #070d1648;
                     border-radius: 100%;
@@ -68,6 +67,12 @@ $color_footer: #0e192aa4;
                     font-size: 2.3rem;
                     margin-left: 1rem;
                     cursor: pointer;
+                }
+                .drop_icon {
+                    font-size: 1.5rem;
+                    color: aqua;
+                    margin-top: 0.5rem;
+                    margin-left: -0.5rem;
                 }
                 // drop
                 .MuiInputBase-root {
@@ -376,8 +381,10 @@ $color_footer: #0e192aa4;
           color:rgb(3, 190, 190);
       }
   }
+  
 }
 // Query mobie
+
 @media only screen and (max-width: 700px) {
     .container-client {
        footer {
@@ -396,6 +403,4 @@ $color_footer: #0e192aa4;
         }
     }
 }
-p{
-    font-size: 0.85rem;
-}
+

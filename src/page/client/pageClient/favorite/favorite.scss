@@ -94,46 +94,10 @@
             }.text-box-yeuthich-tt{
                 color: #29e5ff;
                 margin-top: 5px;
-                
-             
             }
         }
            
         } 
-    }.yeuthich-grid-tg {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-        gap: 65px;
-        text-align: center;
-       
-        .yeuthich-box-tg{
-            .image-yt-tg{
-                width: 178px;
-                height: 178px;
-                object-fit: cover;
-                border-radius: 50%;
-                border: 1px solid #29e5ff;
-                box-shadow: 0 3px 7px rgba(0, 0, 0, 0.795);
-                cursor: grab;
-                
-            }.text-yt-tg-white{
-                color: white;
-            }
-            .button-quan-tam{
-                padding: 0 10px;
-                border-radius: 20px;
-            }
-            .button-quan-tam:hover{
-                background: #29e5ff;
-                border:2px solid #0e192a ;
-                box-shadow: 0 0 8px #dbf5ff;
-            }
-            .image-yt-tg:hover{
-                border: 3px solid #dbf5ff;
-                box-shadow: 0 0 5px #dbf5ff;
-            }
-        }
-
     }
 
     
@@ -148,11 +112,7 @@
                     gap: 20px;
                 }
             }
-            .yeuthich-grid-tg{
-                display: grid;
-                grid-template-columns: 1fr 1fr 1fr;
-                gap: 25px;
-            }
+          
         }
     }
     @media screen and (max-width:767px) {
@@ -166,16 +126,7 @@
                    
                    
                 }
-            }.yeuthich-grid-tg{
-            display: grid;
-            grid-template-columns: 1fr;
-
-            .yeuthich-box-tg{
-                padding-bottom: 10px;
-                border-bottom: 1px solid #dbf5ff;
             }
-           
-        }
         }
         
         

@@ -4,6 +4,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { AiOutlineDownload, AiFillHeart } from 'react-icons/ai';
 import { IoMdAdd } from 'react-icons/io';
+import { BsFillPlayFill } from 'react-icons/bs';
 import { MdNavigateNext } from 'react-icons/md';
 import Button from '@mui/material/Button';
 import { BiPlayCircle } from 'react-icons/bi';
@@ -102,7 +103,10 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                 <div className="main1">
                     <div className="box-music">
                         <div className="music_item">
-                            <img src="https://bizweb.dktcdn.net/100/248/398/files/alan-walker-dj-min.jpg?v=1514559370965" alt="" />
+                            <img src="https://anh.24h.com.vn/upload/4-2016/images/2016-12-06/1480992562-148098909683484-son-tung.jpg" alt="" />
+                            <div className="box-icon">
+                            <BsFillPlayFill/>
+                            </div>
                             <div>
                                 <h6>Tên bài hát</h6>
                                 <div style={{ fontSize: "0.7rem", marginTop: "-0.2rem" }}>Nghệ sĩ</div>
@@ -117,7 +121,10 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                             </div>
                         </div>
                         <div className="music_item">
-                            <img src="https://bizweb.dktcdn.net/100/248/398/files/alan-walker-dj-min.jpg?v=1514559370965" alt="" />
+                            <img src="https://anh.24h.com.vn/upload/4-2016/images/2016-12-06/1480992562-148098909683484-son-tung.jpg" alt="" />
+                            <div className="box-icon">
+                            <BsFillPlayFill/>
+                            </div>
                             <div>
                                 <h6>Tên bài hát</h6>
                                 <div style={{ fontSize: "0.7rem", marginTop: "-0.2rem" }}>Nghệ sĩ</div>
@@ -132,7 +139,10 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                             </div>
                         </div>
                         <div className="music_item">
-                            <img src="https://bizweb.dktcdn.net/100/248/398/files/alan-walker-dj-min.jpg?v=1514559370965" alt="" />
+                            <img src="https://anh.24h.com.vn/upload/4-2016/images/2016-12-06/1480992562-148098909683484-son-tung.jpg" alt="" />
+                            <div className="box-icon">
+                            <BsFillPlayFill/>
+                            </div>
                             <div>
                                 <h6>Tên bài hát</h6>
                                 <div style={{ fontSize: "0.7rem", marginTop: "-0.2rem" }}>Nghệ sĩ</div>
@@ -147,7 +157,10 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                             </div>
                         </div>
                         <div className="music_item">
-                            <img src="https://bizweb.dktcdn.net/100/248/398/files/alan-walker-dj-min.jpg?v=1514559370965" alt="" />
+                            <img src="https://anh.24h.com.vn/upload/4-2016/images/2016-12-06/1480992562-148098909683484-son-tung.jpg" alt="" />
+                            <div className="box-icon">
+                            <BsFillPlayFill/>
+                            </div>
                             <div>
                                 <h6>Tên bài hát</h6>
                                 <div style={{ fontSize: "0.7rem", marginTop: "-0.2rem" }}>Nghệ sĩ</div>
@@ -162,7 +175,10 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                             </div>
                         </div>
                         <div className="music_item">
-                            <img src="https://bizweb.dktcdn.net/100/248/398/files/alan-walker-dj-min.jpg?v=1514559370965" alt="" />
+                            <img src="https://anh.24h.com.vn/upload/4-2016/images/2016-12-06/1480992562-148098909683484-son-tung.jpg" alt="" />
+                            <div className="box-icon">
+                            <BsFillPlayFill/>
+                            </div>
                             <div>
                                 <h6>Tên bài hát</h6>
                                 <div style={{ fontSize: "0.7rem", marginTop: "-0.2rem" }}>Nghệ sĩ</div>
