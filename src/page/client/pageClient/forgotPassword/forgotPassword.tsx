@@ -1,5 +1,5 @@
-import { Button } from '@material-ui/core'
 import React from 'react'
+import { Button } from '@mui/material'
 interface ForgotPassword<T> {
 
 }
@@ -14,7 +14,7 @@ const ForgotPassword: React.FC<ForgotPassword<any>> = ({ ...props }) => {
               <form action="">
                  <input placeholder="Nhập email" type="email"/>
                  <p className="err">Vui lòng nhập</p>
-                 <Button className="btn_forgot">Gửi mail xác nhận</Button>
+                 <Button className="btn-forgot">Gửi mail xác nhận</Button>
               </form>
                 </div>
             </div>

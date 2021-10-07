@@ -28,7 +28,9 @@ const Blog: React.FC<blog<any>> = ({ ...props }) => {
                     <div className="box ">
                         <div className="blog-image">
                         <h4  className="color text-blog-none">Top 100 Bài Hát</h4>
+                        <Link to="/blogDetail">
                         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZZlyRwLsszVeOhyByhFiWqhLtLxaMLOmy3Q&usqp=CAU" alt="" />
+                        </Link>
                         </div>
                         <div className="title-blog">
                             <h4  className="color">Top 100 Bài Hát</h4>

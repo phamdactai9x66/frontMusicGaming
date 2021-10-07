@@ -54,36 +54,36 @@ import {
       amt: 2100
     }
   ];
-interface ChartUser<T> {
+interface ChartMusicTrending<T> {
 
 }
 
-const ChartUser: React.FC<ChartUser<any>> = ({ ...props }) => {
+const ChartMusicTrending: React.FC<ChartMusicTrending<any>> = ({ ...props }) => {
     return (
       <>  
-    <div className="chart_user">
-      <ResponsiveContainer>
-          <LineChart
-          className="line_chart"
-      data={data}
-    >
-      <CartesianGrid strokeDasharray="3 3" />
-      <XAxis dataKey="name" />
-      <YAxis />
-      <Tooltip />
-      <Legend />
-      <Line
-        type="monotone"
-        dataKey="pv"
-        stroke="#8884d8"
-        activeDot={{ r: 8 }}
-      />
-      <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
-    </LineChart>
-     </ResponsiveContainer>            
-    </div> 
+     <div className="chartMusic">
+    <ResponsiveContainer>
+        <LineChart
+        className="line_chart"
+    data={data}
+  >
+    <CartesianGrid strokeDasharray="3 3" />
+    <XAxis dataKey="name" />
+    <YAxis />
+    <Tooltip />
+    <Legend />
+    <Line
+      type="monotone"
+      dataKey="pv"
+      stroke="#ff6ea7"
+      activeDot={{ r: 8 }}
+    />
+    <Line type="monotone" dataKey="uv" stroke="#3ed6da" />
+  </LineChart>
+   </ResponsiveContainer>            
+  </div> 
       </>
     )
 }
 
-export default ChartUser
+export default ChartMusicTrending

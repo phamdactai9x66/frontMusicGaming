@@ -1,0 +1,217 @@
+// handel same
+.main3_nhacsi {
+    color: rgb(240, 239, 239);
+    display: grid;
+    gap: 3rem;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    .box_nhacsi {
+        width: 100%;
+        height: 15rem;
+        text-align: center;
+        .box-img {
+            margin: auto;
+            overflow: hidden;
+            width: 150px;
+            height: 150px;
+            border-radius: 100%;
+            .img-hover {
+                cursor: pointer;
+                position: relative;
+                img {
+                    width: 100%;
+                }
+                .icon {
+                    position: absolute;
+                    right: 37%;
+                    top: 39%;
+                    font-size: 2.5rem;
+                    display: none;
+                }
+                &:hover {
+                    filter: brightness(85%);
+                    transform: scale(1.1);
+                    transition: 0.8s;
+                }
+                &:hover .icon {
+                    display: block;
+                }
+            }
+        }
+        button {
+            box-shadow: 0 3px 5px 2px rgba(105, 165, 255, 0.247);
+            width: 10rem;
+            background: rgb(71, 150, 202);
+            border: none;
+            border-radius: 3rem;
+            padding: 0.5rem 1.2rem;
+            color: rgb(253, 254, 255);
+            &:hover {
+                background: rgb(55, 120, 163);
+            }
+        }
+    }
+}
+.box-music {
+    overflow: auto;
+    height: 350px;
+    .music_item {
+        box-shadow: 0 3px 5px rgba(0, 0, 0, 0.452);
+        margin-bottom: 1rem;
+        margin-right: 0.5rem;
+        position: relative;
+        img {
+            width: 45px;
+            height: 45px;
+            margin: 0.2rem;
+            border-radius: 0.3rem;
+        }
+        .box-icon {
+            cursor: pointer;
+            border-radius: 0.3rem;
+            position: absolute;
+            left: 0.2rem;
+            top: 0.1rem;
+            width: 45px;
+            height: 45px;
+            font-size: 1.5rem;
+            padding: 0.2rem 0.2rem 2.7rem 0.75rem;
+            display: none;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        &:hover .box-icon {
+            display: block;
+        }
+        border-radius: 0.3rem;
+        color: rgb(214, 244, 248);
+        border: 0.12rem solid rgb(43, 147, 165);
+        background: #122244;
+        display: grid;
+        grid-template-columns: 3.7rem 2fr 1fr 5rem;
+        transition: 0.3s;
+        &:hover {
+            background: #253d72;
+        }
+        div .icon {
+            margin-left: 0.4rem;
+            font-size: 1.1rem;
+            cursor: pointer;
+        }
+    }
+}
+.box-chart {
+    width: 100%;
+    height: 5rem;
+    background-color: #4b8ec44f;
+    box-shadow: 0 3px 7px rgba(0, 0, 0, 0.473);
+    border-radius: 0.3rem;
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 0.7rem;
+    padding-left: 1rem;
+    &:hover {
+        background-color: #3977a0;
+    }
+    .stt,
+    .tyle {
+        color: rgba(74, 144, 226, 0);
+        line-height: 5rem;
+        font-size: 1.5rem;
+        -webkit-text-stroke: 1px #6ed1ff;
+        padding-right: 0.5rem;
+    }
+    img {
+        cursor: pointer;
+        border-radius: 0.3rem;
+        margin-top: 0.6rem;
+    }
+    .name {
+        flex-grow: 1;
+        h6 {
+            color: #fff;
+            margin-top: 0.4rem;
+        }
+    }
+}
+.list-slider {
+    margin-top: 2rem;
+    h4 {
+        color: #fff;
+    }
+    div {
+        img {
+            width: 97%;
+            height: 230px;
+            box-shadow: 0 3px 7px rgba(0, 0, 0, 0.795);
+            border-radius: 0.3rem;
+            cursor: grab;
+        }
+        .slick-prev:before {
+            color: #6ee9ff;
+            content: "\003c";
+            font-size: 2rem;
+            font-weight: bold;
+            padding: 0.10rem 1rem 0.38rem 1rem;
+            border-radius: 0.3rem;
+            background-color: rgb(12, 16, 32);
+            box-shadow: 0 3px 7px rgba(0, 0, 0, 0.795);
+        }
+        .slick-next:before {
+            color: #6ee9ff;
+            content: "\003e";
+            font-size: 2rem;
+            font-weight: bold;
+            padding: 0.10rem 1rem 0.38rem 1rem;
+            border-radius: 0.3rem;
+            background-color: rgb(12, 16, 32);
+            box-shadow: 0 3px 7px rgba(0, 0, 0, 0.795);
+        }
+        .slick-prev {
+            position: absolute;
+            z-index: 1;
+            left: 89%;
+            top: -15%;
+        }
+        .slick-next {
+            position: absolute;
+            z-index: 1;
+            left: 95%;
+            top: -15%;
+        }
+    }
+}
+line {
+    stroke-dasharray: 3, 3;
+    stroke: rgba(32, 252, 234, 0.199);
+    fill: none;
+}
+img {
+    object-fit: cover;
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+    .main3_nhacsi {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+@media only screen and (max-width: 700px) {
+    .list-slider div {
+        .slick-prev {
+            left: 75%;
+        }
+        .slick-next {
+            left: 88%;
+        }
+        img {
+            width: 100%;
+        }
+    }
+    .main3_nhacsi {
+        .box_nhacsi {
+            transform: scale(0.8);
+        }
+        gap: 0rem;
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+//end  handel same

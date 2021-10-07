@@ -53,51 +53,6 @@
             border-radius: 100%;
         }
     }
-    .list-slider {
-        margin-top: 2rem;
-        h4 {
-            color: #fff;
-        }
-        div {
-            img {
-                width: 97%;
-                height: 230px;
-                box-shadow: 0 3px 7px rgba(0, 0, 0, 0.795);
-                border-radius: 0.3rem;
-                cursor: grab;
-            }
-            .slick-prev:before {
-                content: "\003c";
-                font-size: 2rem;
-                font-weight: bold;
-                padding: 0.3rem 1rem;
-                border-radius: 0.3rem;
-                background-color: rgba(21, 140, 196, 0.753);
-                box-shadow: 0 3px 7px rgba(0, 0, 0, 0.795);
-            }
-            .slick-next:before {
-                content: "\003e";
-                font-size: 2rem;
-                font-weight: bold;
-                padding: 0.3rem 1rem;
-                border-radius: 0.3rem;
-                background-color: rgba(21, 140, 196, 0.753);
-                box-shadow: 0 3px 7px rgba(0, 0, 0, 0.795);
-            }
-            .slick-prev {
-                position: absolute;
-                z-index: 1;
-                left: 89%;
-                top: -15%;
-            }
-            .slick-next {
-                position: absolute;
-                z-index: 1;
-                left: 95%;
-                top: -15%;
-            }
-        }
-    }
     .list-music {
         margin-top: 2rem;
         h4 {
@@ -108,34 +63,6 @@
             grid-template-columns: 50% 50%;
             gap: 1rem;
             margin-bottom: 2rem;
-            .box-music {
-                overflow: auto;
-                height: 362px;
-                .music_item {
-                    margin-bottom: 1rem;
-                    img {
-                        cursor: pointer;
-                        width: 60px;
-                        height: 60px;
-                    }
-                    margin-right: 0.5rem;
-                    border-radius: 0.3rem;
-                    color: #fff;
-                    border: 0.1rem solid rgb(43, 147, 165);
-                    background: #122244;
-                    display: grid;
-                    grid-template-columns: 4.5rem 2fr 1fr 5rem;
-                    transition: 0.3s;
-                    &:hover {
-                        background: #253d72;
-                    }
-                    div .icon {
-                        margin-left: 0.4rem;
-                        font-size: 1.1rem;
-                        cursor: pointer;
-                    }
-                }
-            }
             .limit-items .items div:nth-of-type(n + 6) {
                 display: none;
             }
@@ -214,40 +141,7 @@
         h4 {
             color: rgb(226, 226, 226);
         }
-        .box-chart {
-            width: 100%;
-            height: 5rem;
-            background-color: #4b8ec44f;
-            box-shadow: 0 3px 7px rgba(0, 0, 0, 0.473);
-            border-radius: 0.3rem;
-            display: flex;
-            gap: 0.5rem;
-            margin-bottom: 0.7rem;
-            padding-left: 1rem;
-            &:hover {
-                background-color: #3977a0;
-            }
-            .stt,
-            .tyle {
-                color: rgba(74, 144, 226, 0);
-                line-height: 5rem;
-                font-size: 1.5rem;
-                -webkit-text-stroke: 1px #6ed1ff;
-                padding-right: 0.5rem;
-            }
-            img {
-                cursor: pointer;
-                border-radius: 0.3rem;
-                margin-top: 0.6rem;
-            }
-            .name {
-                flex-grow: 1;
-                h6 {
-                    color: #fff;
-                    margin-top: 0.4rem;
-                }
-            }
-        }
+        
         .chart {
             margin-top: 1.4rem;
             text {
@@ -268,11 +162,6 @@
                 text-decoration: none;
             }
         }
-    }
-    line {
-        stroke-dasharray: 3, 3;
-        stroke: rgba(32, 252, 234, 0.199);
-        fill: none;
     }
 }
 @media (min-width: 768px) and (max-width: 1024px) {
@@ -304,17 +193,6 @@
             grid-template-columns: 100%;
             height: 44rem;
             gap: 2rem;
-        }
-        .list-slider div {
-            .slick-prev {
-                left: 86%;
-            }
-            .slick-next {
-                left: 95%;
-            }
-            img {
-                width: 100%;
-            }
         }
     }
 }
