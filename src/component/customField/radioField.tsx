@@ -17,14 +17,15 @@ const RadioField: React.FC<RadioField<any>> = ({ label, ...props }) => {
             <FormControl component="fieldset">
                 <FormLabel component="legend">{label}</FormLabel>
                 <RadioGroup row {...props} {...props.other}
-                    {...formik.getFieldProps(props.name)}
+                    {...formik.getFieldProps(field.name)}
                 >
-                    {
-                        props.data.map((currenValue, index) => (
+                    {props.data && props.data.map((currenValue, index) => {
+                        return (
                             <FormControlLabel value={currenValue?.value} control={<Radio />}
-                                checked={currenValue?.value === field.value}
+                                checked={(currenValue?.value + '') === field.value}
                                 label={currenValue.label} />
-                        ))
+                        )
+                    })
                     }
                 </RadioGroup>
                 <ErrorMessage name={field.name} />
