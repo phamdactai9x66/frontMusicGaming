@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react'
-import './playlistDetail.scss'
 import { AiOutlineDownload, AiFillHeart } from 'react-icons/ai';
 import { IoMdAdd } from 'react-icons/io';
 import { BsFillPlayFill } from 'react-icons/bs';

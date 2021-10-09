@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react'
-import "./favorite.scss"
 import {Link} from "react-router-dom"
 import { AiOutlineCheck } from 'react-icons/ai';
 import { MdNavigateNext } from 'react-icons/md';

@@ -1,10 +1,8 @@
 import React, { useEffect } from 'react'
-import './blogdetail.scss'
 import {Link} from "react-router-dom"
 import {ReactComponent as Sao1} from './sao1.svg'
 import {ReactComponent as Sao2} from './sao.svg'
 import { Pagination } from "@mui/material"
-
 
 
 interface blogDetail<T> {

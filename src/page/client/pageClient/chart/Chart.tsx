@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import { Link } from "react-router-dom"
-import './chart.scss'
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";

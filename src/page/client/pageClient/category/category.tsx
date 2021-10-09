@@ -1,8 +1,5 @@
 import React, { useEffect } from 'react'
-import './category.scss'
 import {Link} from "react-router-dom"
-
-import { BiCircle, BiSearch, BiUpload, BiUserCircle } from 'react-icons/bi';
 
 interface Category<T> {
 

@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react'
-import "./toptrending.scss"
 import {Link} from "react-router-dom"
 import {ReactComponent as Play} from './play.svg'
 import { Button } from '@mui/material'

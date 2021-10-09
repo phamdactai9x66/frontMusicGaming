@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react'
-import "./blog.scss"
 import {Link} from "react-router-dom"
 import { Pagination } from "@mui/material"
 import { BiCircle, BiSearch, BiUpload, BiUserCircle } from 'react-icons/bi';
