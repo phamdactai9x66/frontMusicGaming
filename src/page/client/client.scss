@@ -181,6 +181,10 @@ $color_footer: #0e192aa4;
         background-color: $color_main_header;
         padding: 70px 0 70px 0;
         height: 100vh;
+        .main-children {
+            height: 100vh;
+            overflow: auto;
+        }
     }
     footer {
         position: fixed;

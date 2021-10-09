@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import {Link} from "react-router-dom"
 import { AiOutlineCheck } from 'react-icons/ai';
-import { MdNavigateNext } from 'react-icons/md';
 import { BiPlayCircle } from 'react-icons/bi';
 import { Button } from '@material-ui/core';
 import {ReactComponent as Header} from './heart.svg'
@@ -12,7 +11,6 @@ interface Favorite<T> {
 }
 
 const Favorite: React.FC<Favorite<any>> = ({ ...props }) => {
-
 
     return (
         <div className="container-yeuthich">
