@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react'
-import './chart.scss'
+import { Link } from "react-router-dom"
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { Link } from "react-router-dom"
 import { BiPlayCircle } from 'react-icons/bi';
 import { AiOutlineDownload, AiFillHeart } from 'react-icons/ai';
 import { IoMdAdd } from 'react-icons/io';
@@ -42,7 +41,7 @@ const Chart: React.FC<chart<any>> = ({ ...props }) => {
     return (
         <>
             <div className="container-chart">
-                <h4>#Musichart <BiPlayCircle /></h4>
+            <h4 className="title_all">#Musichart <BiPlayCircle /></h4>
                 <div className="chart">
                     <ChartMusicTrending />
                 </div>
@@ -130,7 +129,7 @@ const Chart: React.FC<chart<any>> = ({ ...props }) => {
                     </div>
                 </div>
                 <div className="list-slider">
-                <h4>Bảng xếp hạng trong tuần </h4>
+                <h4 className="title_all">Bảng xếp hạng trong tuần </h4>
                 <div>
                     <Slider {...settings_category}>
                         <div className="box">

@@ -2,6 +2,8 @@
 import InputText from "./inputText";
 import RadioField from "./radioField";
 import FileField from "./fileField";
+import SelectField from "./selectField";
+
 export interface propsField {
     label?: string,
     name: string,
@@ -10,5 +12,6 @@ export interface propsField {
 export {
     InputText,
     RadioField,
-    FileField
+    FileField,
+    SelectField
 }

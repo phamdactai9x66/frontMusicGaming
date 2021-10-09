@@ -11,7 +11,7 @@ const Musician = () => {
             <Tabed />
             <div className="overview">
                 <div className="main3">
-                    <h3>Nhạc sĩ <MdNavigateNext className="icon" /></h3>
+                    <h4 className="title_all">Nhạc sĩ <MdNavigateNext className="icon" /></h4>
                     <div className="main3_nhacsi">
                         <div className="box_nhacsi">
                             <div className="box-img">

@@ -54,19 +54,22 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                 <div>
                     <Slider {...settings_banner}>
                         <div>
-                            <img height={362} src="https://i.pinimg.com/originals/82/82/81/828281959b3c108eda190afc561763ae.png" alt="" />
+                            <img height={362} src="https://ephoto360.com/uploads/effect-data/ephoto360.com/dwe3ayr00/Renekton4-min60a397f352d21.jpg" alt="" />
                         </div>
                         <div>
-                            <img height={362} src="https://i.redd.it/8lwm1c99d3751.jpg" alt="" />
+                            <img height={362} src="https://ephoto360.com/uploads/effect-data/ephoto360.com/dwe3ayr00/Wukong4-min60407fcb5fbe2.jpg" alt="" />
                         </div>
                         <div>
-                            <img height={362} src="https://en.ephoto360.com/uploads/effect-data/en.ephoto360.com/p3d1qswvw/Evelynn6-min60fa36d76e0f8.jpg" alt="" />
+                            <img height={362} src="https://ephoto360.com/uploads/effect-data/ephoto360.com/dwe3ayr00/Malphite4-min60fa35098ca0f.jpg" alt="" />
+                        </div>
+                        <div>
+                            <img height={362} src="https://ephoto360.com/uploads/effect-data/ephoto360.com/dwe3ayr00/zed6-min60c1b978ea671.jpg" alt="" />
                         </div>
                     </Slider>
                 </div>
             </div>
             <div className="list-slider">
-                <h4>Thể loại <MdNavigateNext className="icon" /></h4>
+                <h4 className="title_all">Thể loại <MdNavigateNext className="icon" /></h4>
                 <div>
                     <Slider {...settings_category}>
                         <Link to="/playlistDetail">
@@ -99,7 +102,7 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                 </div>
             </div>
             <div className="list-music">
-                <h4>Danh sách bài hát <MdNavigateNext className="icon" /></h4>
+                <h4 className="title_all">Danh sách bài hát <MdNavigateNext className="icon" /></h4>
                 <div className="main1">
                     <div className="box-music">
                         <div className="music_item">
@@ -194,7 +197,7 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                         </div>
                     </div>
                     <div className='limit-items'>
-                        <h4>Nhạc sĩ</h4>
+                        <h4 className="title_all">Nhạc sĩ</h4>
                         <input type='checkbox' id='show-all' />
                         <label htmlFor='show-all' className='text-show'>See all</label>
                         <label htmlFor='show-all' className='text-hide'>Hide</label>
@@ -212,7 +215,7 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                 </div>
             </div>
             <div className="list-slider">
-                <h4>Có thể bạn muốn nghe <MdNavigateNext className="icon" /></h4>
+                <h4 className="title_all">Có thể bạn muốn nghe <MdNavigateNext className="icon" /></h4>
                 <div>
                     <Slider {...settings_category}>
                         <div className="box">
@@ -243,7 +246,7 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                 </div>
             </div>
             <div className="list-slider">
-                <h4>Nghe gần đây <MdNavigateNext className="icon" /></h4>
+                <h4 className="title_all">Nghe gần đây <MdNavigateNext className="icon" /></h4>
                 <div>
                     <Slider {...settings_category}>
                         <div className="box">
@@ -274,7 +277,7 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                 </div>
             </div>
             <div className="list-slider">
-                <h4>Top thịnh hành <MdNavigateNext className="icon" /></h4>
+                <h4 className="title_all">Top thịnh hành <MdNavigateNext className="icon" /></h4>
                 <div>
                     <Slider {...settings_category}>
                         <div className="box">
@@ -305,7 +308,7 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                 </div>
             </div>
             <div className="list-slider">
-                <h4>Nhạc mới mỗi ngày <MdNavigateNext className="icon" /></h4>
+                <h4 className="title_all">Nhạc mới mỗi ngày <MdNavigateNext className="icon" /></h4>
                 <div>
                     <Slider {...settings_category}>
                         <div className="box">
@@ -336,7 +339,7 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                 </div>
             </div>
             <div className="list-slider">
-                <h4>Sắp diễn ra <MdNavigateNext className="icon" /></h4>
+                <h4 className="title_all">Sắp diễn ra <MdNavigateNext className="icon" /></h4>
                 <div>
                     <Slider {...settings_category}>
                         <div className="box">
@@ -368,7 +371,7 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
             </div>
             <div className="music-charts">
                 <div>
-                    <h4>#Musichart <BiPlayCircle /></h4>
+                    <h4 className="title_all">#Musichart <BiPlayCircle /></h4>
                     <div className="box-chart">
                         <h5 className="stt">1</h5>
                         <img width={60} height={60} src="https://i.ytimg.com/vi/x2xblVxi_c4/maxresdefault.jpg" alt="" />

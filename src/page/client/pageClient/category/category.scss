@@ -5,12 +5,11 @@
        text-align: center;
        margin-top: 60px;
         img{
-            height: 315px;
+            height: 380px;
             width: 100%; 
             object-fit: cover;
             box-shadow: 0 3px 7px rgba(0, 0, 0, 0.795);
             border-radius: 0.3rem;
-            cursor: grab;
         }      
    }
    .box-category{
@@ -32,7 +31,7 @@
                object-fit: cover;
                box-shadow: 0 3px 7px rgba(0, 0, 0, 0.795);
                border-radius: 0.3rem;
-               cursor: grab;
+               cursor: pointer;
            }
            p{
                color: white;
