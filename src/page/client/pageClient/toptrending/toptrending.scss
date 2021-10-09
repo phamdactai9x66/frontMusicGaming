@@ -1,127 +1,143 @@
-.container-topthanhhanh{
-
-    margin: 0 40px ;
+.container-topthanhhanh {
+    margin: 0 40px;
     margin-bottom: 400px;
-    .title-top-tt{
-    margin-top: 20px;
-    margin-bottom: 15px;
-        .text-title-top-tt{
-            .color-top-tt{
+    .title-top-tt {
+        margin-top: 20px;
+        margin-bottom: 15px;
+        .text-title-top-tt {
+            .color-top-tt {
                 color: #a8eff9;
             }
         }
-        .div-svg{
+        .div-svg {
             width: 36px;
-              height: 36px;
-              border: 2px solid #a8eff9;
-              margin-left: 20px; 
-              background: #a8eff9;
-              border-radius: 50%; 
-              text-align: center; 
-          .svg{
-             margin: auto;
-              width: 30px;
-              height: 30px;
-              color: #a8eff9;
-
-          }
-      
-      }
-    }
-    .title-top-tt:hover{
-        .text-title-top-tt{
-         .color-top-tt{
-            color: #00dffe;
-            text-shadow: 0 0 5px #00afc7;
-        }   
-        } .div-svg{
-            border: 2px solid #00afc7;
-            box-shadow:  0 0 5px #dbf5ff;
-        
+            height: 36px;
+            border: 2px solid #a8eff9;
+            margin-left: 20px;
+            background: #a8eff9;
+            border-radius: 50%;
+            text-align: center;
+            .svg {
+                margin: auto;
+                width: 30px;
+                height: 30px;
+                color: #a8eff9;
+            }
         }
-        
     }
-    
-    .grid-2{
-        display:  flex;
+    .title-top-tt:hover {
+        .text-title-top-tt {
+            .color-top-tt {
+                color: #00dffe;
+                text-shadow: 0 0 5px #00afc7;
+            }
+        }
+        .div-svg {
+            border: 2px solid #00afc7;
+            box-shadow: 0 0 5px #dbf5ff;
+        }
     }
-    .top-tt-main{
-        .grid-4-top-tt{
-            display:  grid;
+
+    .grid-2 {
+        display: flex;
+    }
+    .top-tt-main {
+        .grid-4-top-tt {
+            display: grid;
             grid-template-columns: 1fr 1fr 1fr 1fr;
             gap: 25px;
-            .box-top-tt{
-
-            .link-top-tt{
-                text-decoration: none;
-                color: white;
-                .top-width-heght-image{
-                    width: 100%;
-                    height: 11.5rem;
-                    object-fit: cover;
-                    margin-bottom: 5px;
-                    box-shadow: 0 3px 7px rgba(0, 0, 0, 0.795);
-                    border-radius: 0.3rem;
-                   cursor: pointer;
-                  } 
-                .text-box-top-tt{
+            .box-top-tt {
+                .link-top-tt {
+                    text-decoration: none;
                     color: white;
+                    .top-width-heght-image {
+                        width: 100%;
+                        height: 11.5rem;
+                        object-fit: cover;
+                        margin-bottom: 5px;
+                        box-shadow: 0 3px 7px rgba(0, 0, 0, 0.795);
+                        border-radius: 0.3rem;
+                        cursor: pointer;
+                    }
+                    .text-box-top-tt {
+                        color: white;
+                        margin-top: 5px;
+                    }
+                }
+            }
+            .box-top-tt:hover {
+                .top-width-heght-image {
+                    border: 2px solid #dbf5ff;
+                    border-radius: 0.3rem;
+                    box-shadow: 0 0 8px #dbf5ff;
+                }
+                .text-box-top-tt {
+                    color: #29e5ff;
                     margin-top: 5px;
-                 
                 }
-           
-            }
-        }.box-top-tt:hover{
-            .top-width-heght-image{
-                border: 2px solid #dbf5ff;
-                border-radius: 0.3rem;
-                box-shadow: 0 0 8px #dbf5ff;
-            }.text-box-top-tt{
-                color: #29e5ff;
-                margin-top: 5px;
-                
-             
             }
         }
-           
-        } 
-    }.top-tt-buttom{
-        text-align: center;
-        margin-top: 55px; 
-        button {
-            background: #1291b1;
-            color: #e1f2f5;
-            padding: 0.4rem 2rem;
-            border-radius: 3rem;
-        }
+    }
+    //See All---------------
 
+    .top-tt-main .grid-4-top-tt div:nth-of-type(n + 7) {
+        display: none;
     }
-    
+    .top-tt-main #show-all:checked ~ .grid-4-top-tt div {
+        display: block;
     }
-    @media screen and(min-width:768px) and  (max-width:1024px) {
-        .container-topthanhhanh{
-            margin: 0 20px ;
-            .top-tt-main{
-                .grid-4-top-tt{
-                    display:  grid;
-                    grid-template-columns: 1fr 1fr ;
-                    gap: 20px;
-                }
+    .top-tt-main #show-all ~ label[for="show-all"] {
+        display: none;
+    }
+    %handel_show {
+        display: block;
+        background: #061525;
+        color: #e1f2f5;
+        text-align: center;
+        border-radius: 3rem;
+        width: 12rem;
+        padding: 0.5rem 0 0.5rem 0;
+        border: 0.1rem solid aqua;
+        cursor: pointer;
+        position: absolute;
+        bottom: -3rem;
+    }
+    .top-tt-main {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        #show-all:checked ~ .text-hide {
+            @extend %handel_show;
+        }
+        #show-all:not(:checked) ~ .text-show {
+            @extend %handel_show;
+        }
+        #show-all {
+            display: none;
+        }
+    }
+    //End See All-----------
+}
+@media screen and(min-width:768px) and (max-width: 1024px) {
+    .container-topthanhhanh {
+        margin: 0 20px;
+        .top-tt-main {
+            .grid-4-top-tt {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 20px;
             }
         }
     }
-    @media screen and (max-width:767px) {
-        .container-topthanhhanh{
-            margin: 0 10px ;
-            .top-tt-main{
-                .grid-4-top-tt{
-                    display:  grid;
-                    grid-template-columns: 1fr;
-                   
-                }
+}
+@media screen and (max-width: 767px) {
+    .container-topthanhhanh {
+        margin: 0 10px;
+        .top-tt-main {
+            .grid-4-top-tt {
+                display: grid;
+                grid-template-columns: 1fr;
             }
         }
-        
     }
-  
-   
+}

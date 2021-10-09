@@ -1,23 +1,21 @@
 import React, { useEffect } from 'react'
 import "./blog.scss"
 import {Link} from "react-router-dom"
-import {ReactComponent as Right} from './right.svg'
-import {ReactComponent as Left} from './left.svg'
-
+import { Pagination } from "@mui/material"
 import { BiCircle, BiSearch, BiUpload, BiUserCircle } from 'react-icons/bi';
 
 interface blog<T> {
 
 }
 
-const Blog: React.FC<blog<any>> = ({ ...props }) => {
+const Blog: React.FC<blog<any>> = ({...props }) => {
 
 
     return (
         <div className="container-blog">
             <div className ="title-blog grid-2">
                 <div className="text-title-blog">
-                    <h2 className="color-blog">Danh Sách Blog</h2>
+                    <h2 className="color-blog title_all">Danh Sách Blog</h2>
                 </div>
                 <div className="div-hr">
                    <hr />
@@ -34,7 +32,7 @@ const Blog: React.FC<blog<any>> = ({ ...props }) => {
                         </div>
                         <div className="title-blog">
                             <h4  className="color">Top 100 Bài Hát</h4>
-                            <p className="color desc">Album Top 100 Bài Hát Nhạc Trẻ Hay Nhất Top 100 Nhạc Trẻ là danh sách 100 ca khúc hot nhất hiện tại của thể loại Nhạc Trẻ, được Zing MP3 tự động tổng hợp ...</p>
+                            <p className="color desc">Album Top 100 Bài Hát Nhạc Trẻ Hay Nhất Top 100 Nhạc Trẻ là danh sách 100 ca khúc hot nhất hiện tại của thể loại Nhạc Trẻ, được Zing MP3 tự động tổng hợp</p>
                             <p  className="color day">24/09/2021</p>
                         </div>   
                     </div>
@@ -45,7 +43,7 @@ const Blog: React.FC<blog<any>> = ({ ...props }) => {
                         </div>
                         <div className="title-blog">
                             <h4  className="color">Top 100 Bài Hát</h4>
-                            <p className="color desc">Album Top 100 Bài Hát Nhạc Trẻ Hay Nhất Top 100 Nhạc Trẻ là danh sách 100 ca khúc hot nhất hiện tại của thể loại Nhạc Trẻ, được Zing MP3 tự động tổng hợp ...</p>
+                            <p className="color desc">Album Top 100 Bài Hát Nhạc Trẻ Hay Nhất Top 100 Nhạc Trẻ là danh sách 100 ca khúc hot nhất hiện tại của thể loại Nhạc Trẻ, được Zing MP3 tự động tổng hợp</p>
                             <p  className="color day">24/09/2021</p>
                         </div>   
                     </div>
@@ -56,7 +54,7 @@ const Blog: React.FC<blog<any>> = ({ ...props }) => {
                         </div>
                         <div className="title-blog">
                             <h4  className="color">Top 100 Bài Hát</h4>
-                            <p className="color desc">Album Top 100 Bài Hát Nhạc Trẻ Hay Nhất Top 100 Nhạc Trẻ là danh sách 100 ca khúc hot nhất hiện tại của thể loại Nhạc Trẻ, được Zing MP3 tự động tổng hợp ...</p>
+                            <p className="color desc">Album Top 100 Bài Hát Nhạc Trẻ Hay Nhất Top 100 Nhạc Trẻ là danh sách 100 ca khúc hot nhất hiện tại của thể loại Nhạc Trẻ, được Zing MP3 tự động tổng hợp</p>
                             <p  className="color day">24/09/2021</p>
                         </div>   
                     </div>
@@ -69,15 +67,15 @@ const Blog: React.FC<blog<any>> = ({ ...props }) => {
                     </div>
                     <div className="box-1">
                         <h4 className="color">Bài viết gần đây</h4>
-                        <Link className="title-blog-name color" to="">Top 100 Bài Hát ...</Link>
-                        <Link className="title-blog-name color" to="">Top 100 Bài Hát ...</Link>
-                        <Link className="title-blog-name color" to="">Top 100 Bài Hát ...</Link>
+                        <Link className="title-blog-name color" to="">Top 100 Bài Hát</Link>
+                        <Link className="title-blog-name color" to="">Top 100 Bài Hát</Link>
+                        <Link className="title-blog-name color" to="">Top 100 Bài Hát</Link>
                     </div>
                     <div className="box-2">
                         <h4 className="color"> Bình luận gần đây</h4>
-                        <Link className="title-blog-name color"  to="">Top 100 Bài Hát ...</Link>
-                        <Link className="title-blog-name color" to="">Top 100 Bài Hát ...</Link>
-                        <Link className="title-blog-name color" to="">Top 100 Bài Hát ...</Link>
+                        <Link className="title-blog-name color"  to="">Top 100 Bài Hát</Link>
+                        <Link className="title-blog-name color" to="">Top 100 Bài Hát</Link>
+                        <Link className="title-blog-name color" to="">Top 100 Bài Hát</Link>
                     </div>
                     <div className="box-3">
                         <h4 className="color">Danh Mục</h4>
@@ -88,16 +86,8 @@ const Blog: React.FC<blog<any>> = ({ ...props }) => {
                 </div>
                 
             </div>
-            <div className="blog-buttom">
-                <div className="blog-flex-buttom">
-                    <p className="left"><Left className="a" /></p>
-                    <p className="page">1</p>
-                    <p className="page">2</p>
-                    <p className="page">3</p>
-                    <p className="page">4</p>
-                    <p className="page">5</p>
-                    <p className="right"><Right/></p>
-                </div>
+            <div className="Pagination">
+            <Pagination count={10} onClick={() => { console.log() }} style={{ padding: 10, paddingTop: 20,color: "#fff" }} />
             </div>
         
         </div>

@@ -19,7 +19,7 @@ const Favorite: React.FC<Favorite<any>> = ({ ...props }) => {
         <div className="container-yeuthich">
             <div className ="title-yeuthich-tt grid-2">
                 <div className="text-title-yeuthich-tt">
-                    <h2 className="color-yeuthich-tt">Yêu Thích</h2>
+                    <h2 className="color-yeuthich-tt title_all">Yêu Thích</h2>
                 </div>
                 <div className="div-svg">
                     <Header className="svg color-yeuthich-tt" />
@@ -83,7 +83,7 @@ const Favorite: React.FC<Favorite<any>> = ({ ...props }) => {
             <br />
             <div className ="title-yeuthich-tt grid-2 mt-2">
                 <div className="text-title-yeuthich-tt">
-                    <h2 className="color-yeuthich-tt">Tác Giả</h2>
+                    <h2 className="color-yeuthich-tt title_all">Tác Giả</h2>
                 </div>
                 <div className="div-svg">
                     <Tacgia className="svg color-yeuthich-tt" />

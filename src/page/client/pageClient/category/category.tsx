@@ -12,11 +12,11 @@ const Category: React.FC<Category<any>> = ({ ...props }) => {
     return (
      <div className="container-category">
       <div className="banner-category">
-        <img src="https://ozedm.com/wp-content/uploads/2015/02/nielsen-poll-edm-banner.jpg" alt="" />
+        <img src="https://html.nkdev.info/goodgames/assets/images/gallery-7.jpg" alt="" />
       </div>
       <div className="box-category">
         <div className="box-title-category">
-          <h4>Tâm trạng và hoạt động</h4>
+        <h4 className="title_all">Tâm trạng và hoạt động</h4>
         </div>
         <div className="box-grid-category">
           <div className="product-box-category">
@@ -43,7 +43,7 @@ const Category: React.FC<Category<any>> = ({ ...props }) => {
       </div>
       <div className="box-category">
         <div className="box-title-category">
-          <h4>Quốc gia</h4>
+        <h4 className="title_all">Quốc gia</h4>
         </div>
         <div className="box-grid-category">
           <div className="product-box-category">
@@ -70,7 +70,7 @@ const Category: React.FC<Category<any>> = ({ ...props }) => {
       </div>
       <div className="box-category">
         <div className="box-title-category">
-          <h4>EDM</h4>
+        <h4 className="title_all">EDM</h4>
         </div>
         <div className="box-grid-category">
           <div className="product-box-category">
