@@ -83,14 +83,12 @@ const Signin: React.FC<Signin<any>> = ({ history, ...props }) => {
 
     }
     const loginUser = await userApi.Signup(handleForm);
-    console.log(loginUser)
     if (loginUser.status !== variableCommon.statusF) {
 
-      console.log(loginUser)
       // dispatchUser(saveInfo(loginUser))
 
-      return
     }
+    displayAlert(loginUser.message)
   }
   const displayAlert = (messageError: string = "We have some error !") => {
     setalertError({ display: true, message: messageError })

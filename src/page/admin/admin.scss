@@ -7,8 +7,8 @@ main {
    display: none;
   }
   @import "./pageAdmin/home/home.scss";
-  @import "./pageAdmin/addMusic/add.scss";
-  @import "./pageAdmin/todolist/todolist.scss";
+  @import "./pageAdmin/todolist/page/add.scss";
+  @import "./pageAdmin/todolist/page/todolist.scss";
 }
 //=====Main import 
 
