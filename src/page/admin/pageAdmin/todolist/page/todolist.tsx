@@ -11,7 +11,8 @@ import { makeStyles } from "@mui/styles";
 import Modal from "component/Modal";
 import { page } from "../index";
 interface Todolist<T> {
-  changePage: any
+  changePage: any,
+  set_id: Function
 }
 const useStyle = makeStyles((theme) => ({
   styleBox: {
@@ -26,7 +27,7 @@ const columns = [
   { id: 'quantity', label: 'Quantity', minWidth: 170, align: 'left' },
   { id: '', label: 'Handle', minWidth: 170, align: 'center' },
 ];
-const Todolist: React.FC<Todolist<any>> = ({ changePage, ...props }) => {
+const Todolist: React.FC<Todolist<any>> = ({ changePage, set_id, ...props }) => {
   const classes = useStyle();
   const [state, dispatch] = useReducer(handleReducer, initialReducer);
   const [stateModal, setstateModal] = useState<any>({ display: false, _id: null })
@@ -67,8 +68,9 @@ const Todolist: React.FC<Todolist<any>> = ({ changePage, ...props }) => {
   const onClose = () => {
     setstateModal((value: any) => ({ ...value, display: false }))
   }
-  const navigatePage = () => {
-    changePage(page.add);
+  const navigatePage = <T extends string>(page: T, _id?: T): void => {
+    changePage(page);
+    if (_id) set_id(_id)
   }
   return (
     <>
@@ -155,7 +157,9 @@ const Todolist: React.FC<Todolist<any>> = ({ changePage, ...props }) => {
                                   dispatch(pustAction(typeAciton.deleteOne, { _id }))
                                 }}
                               >Delete</Button>
-                              <Button variant="contained" color="primary" size="small">Edit</Button>
+                              <Button variant="contained" color="primary" size="small"
+                                onClick={() => { navigatePage(page.update, _id) }}
+                              >Edit</Button>
                               <Button variant="contained" color="primary" size="small" style={{ marginLeft: 5 }}
                                 onClick={() => { onOpen<string>(_id) }}
                               >More</Button>
@@ -179,7 +183,7 @@ const Todolist: React.FC<Todolist<any>> = ({ changePage, ...props }) => {
                     dispatch(pustAction(typeAciton.deleteAll))
                   }}>Delete All</Button>
                   <Button variant="contained" size="small"
-                    style={{ marginLeft: 5 }} onClick={navigatePage} >Add</Button>
+                    style={{ marginLeft: 5 }} onClick={() => { navigatePage(page.add) }} >Add</Button>
                 </div>
                 <PaginationPage state={state} dispatch={dispatch} />
               </Box>

@@ -1,6 +1,6 @@
 import React from 'react'
 import { useFormikContext, useField, ErrorMessage, Field } from "formik";
-import { TextField } from "@mui/material";
+import { TextField, InputLabel } from "@mui/material";
 import { propsField } from "./index";
 
 interface CustomInputFile<T> extends propsField {
@@ -13,6 +13,7 @@ const CustomInputFile: React.FC<CustomInputFile<any>> = ({ label, ...props }) =>
     const formik = useFormikContext();
     return (
         <>
+            <InputLabel id="demo-simple-select-label">{label}</InputLabel>
             <TextField {...props} {...props.other} fullWidth
                 onChange={(event: Event | any) => {
                     const getFile = event.target.files[0] as File;

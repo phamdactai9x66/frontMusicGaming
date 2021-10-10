@@ -10,5 +10,13 @@ class albumsApi {
         const url: string = `/albums/${_id}`;
         return Axios.get(url)
     }
+    postOne<T extends FormData>(formdata: T): Promise<any> {
+        const url: string = "/albums/add";
+        return AxiosFormdata.post(url, formdata)
+    }
+    putOne<T extends FormData, Y extends string>(formdata: T, id: Y): Promise<any> {
+        const url: string = `/albums/${id}/update`;
+        return AxiosFormdata.put(url, formdata)
+    }
 }
 export default new albumsApi()

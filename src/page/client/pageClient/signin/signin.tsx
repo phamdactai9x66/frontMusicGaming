@@ -104,8 +104,8 @@ const Signin: React.FC<Signin<any>> = ({ history, ...props }) => {
               initialValues={stateForm[step.displayForm]}
               validationSchema={validateSchema[step.displayForm]}
               onSubmit={handleSignIn}
-              // validateOnBlur={false}
-              // validateOnChange={false}
+              validateOnBlur={false}
+              validateOnChange={false}
               enableReinitialize
             >
               {formik => {
@@ -122,7 +122,6 @@ const Signin: React.FC<Signin<any>> = ({ history, ...props }) => {
                     {renderForm<number>(step.displayForm, formik)}
 
                     <div className="btn_login">
-
 
                       {!step.displayForm ? <>
                         {/* <AiFillGoogleSquare className="icon" /> */}

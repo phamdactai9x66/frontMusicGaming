@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react'
 import { Select, MenuItem } from "@mui/material";
 import { ErrorMessage, Formik } from "formik";
 import apiAlbumes from "api/albumApi";
-import { HandleGet } from "component/MethodCommon";
+import { HandleGet, tranFormData } from "component/MethodCommon";
 import { useFormikContext } from "formik";
-
+import { SelectField } from "component/customField/index";
 interface SelectArtist<T> {
 
 }
@@ -17,26 +17,20 @@ const SelectArtist: React.FC<SelectArtist<any>> = ({ ...props }) => {
             if (Artist.display) return
             const query = {};
             const [data, error] = await HandleGet(apiAlbumes.getAll, query);
-            // console.log(data)
-            if (error) return setArtist(value => ({ ...value, display: true }));
+            if (error) return setArtist(value => ({ ...value, display: false }));
             setArtist(value => ({ ...value, data: data.data }));
 
         })()
         return () => {
-            setArtist(value => ({ ...value, display: true }));
+            setArtist(value => ({ ...value, display: false }));
         }
-    }, [])
+    }, [(formik?.values as any).id_Artist])
     return (
         <div>
-            <b>Artist</b>
-            <Select className="select"
-                {...formik.getFieldProps('id_Artist')}
-                variant="standard">
-                {Artist.data.map((currenValue: any, index) => (
-                    <MenuItem value={currenValue._id} key={index}>{currenValue.title}</MenuItem>
-                ))}
-            </Select>
-            <ErrorMessage className="err" name="image" />
+            <SelectField name="id_Artist" getId="id_Artist" label="Artist"
+                data={tranFormData(Artist.data, 'value', 'title')}
+                other={{ variant: 'standard' }}
+            />
         </div>
     )
 }

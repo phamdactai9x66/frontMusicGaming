@@ -5,28 +5,28 @@ import { FormControl, InputLabel, MenuItem, Select } from '@mui/material'
 
 interface SelectField<T> extends propsField {
       other?: any,
-      data: any[]
+      data: any[],
+      getId?: string | any
 }
 
-const SelectField: React.FC<SelectField<any>> = ({ label, ...props}) => {
+const SelectField: React.FC<SelectField<any>> = ({ label, getId, ...props }) => {
       const [field] = useField(props);
-      console.log(field.name) // 
       const formik = useFormikContext();
       return (
             <>
-                  <FormControl sx={{ m:1, width: 300}}>
+                  <FormControl fullWidth>
                         <InputLabel id="demo-simple-select-label">{label}</InputLabel>
-                        <Select 
+                        <Select
                               labelId="demo-simple-select-label"
                               id="demo-simple-select"
-                              {...props} 
-                              {...props.other} 
-                              {...formik.getFieldProps(field.name)} 
+                              {...props}
+                              {...props.other}
+                              {...formik.getFieldProps(field.name)}
                         >
                               {
                                     props.data.map((item, index) => {
                                           return (
-                                                <MenuItem key={index} value={item?.value}>
+                                                <MenuItem key={index} value={item?.[getId] ? item?.[getId] : item?._id} >
                                                       {item?.value}
                                                 </MenuItem>
                                           )
@@ -34,7 +34,7 @@ const SelectField: React.FC<SelectField<any>> = ({ label, ...props}) => {
                               }
                         </Select>
                         <ErrorMessage name={field.name} />
-                  </FormControl> 
+                  </FormControl>
             </>
       )
 }
