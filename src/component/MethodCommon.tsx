@@ -8,9 +8,12 @@ export const HandleGet = async (functionPromise: Function, params = {}) => {
         return [null, error];
     }
 }
-export const tranFormData = <T extends any[]>(data: T, key: string, findKey: string) => {
+export const tranFormData = <T extends any[]>(data: T, key: string, findKey: string, findKey2?: string | any) => {
     if ([undefined, null].includes(data as any)) return [];
-    return data.map(currenV => ({ ...currenV, [key]: currenV[findKey] }))
+    return data.map(currenV => {
+        const seconKey = (currenV[findKey2] ? currenV[findKey2] : '')
+        return { ...currenV, [key]: `${currenV[findKey]} ${seconKey}` }
+    })
 }
 export const initialReducer = {
     Data: [],
