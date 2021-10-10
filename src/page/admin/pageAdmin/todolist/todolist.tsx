@@ -80,7 +80,6 @@ const Todolist: React.FC<Todolist<any>> = ({ ...props }) => {
                   }}
                   onKeyDown={findName}
                   size="small"
-
                 />
                 <Select
                   labelId="demosimpleselectlabel"
