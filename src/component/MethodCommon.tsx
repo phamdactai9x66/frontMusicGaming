@@ -8,6 +8,10 @@ export const HandleGet = async (functionPromise: Function, params = {}) => {
         return [null, error];
     }
 }
+export const tranFormData = <T extends any[]>(data: T, key: string, findKey: string) => {
+    if ([undefined, null].includes(data as any)) return [];
+    return data.map(currenV => ({ ...currenV, [key]: currenV[findKey] }))
+}
 export const initialReducer = {
     Data: [],
     DataStatic: [],

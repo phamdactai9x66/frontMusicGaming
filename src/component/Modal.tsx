@@ -1,10 +1,6 @@
 import React, { useEffect } from 'react';
-import Backdrop from '@mui/material/Backdrop';
-import Box from '@mui/material/Box';
-import Modal from '@mui/material/Modal';
-import Fade from '@mui/material/Fade';
-import Typography from '@mui/material/Typography';
-
+import { Backdrop, Box, Modal, Fade, Typography } from "@mui/material";
+import apiAlbum from "api/albumApi"
 const style: any = {
     position: 'absolute',
     top: '50%',
@@ -18,18 +14,28 @@ const style: any = {
 };
 
 interface Modal<T> {
-    state: boolean,
+    state: { display?: boolean, _id?: string },
     onClose: any
 }
 
-const ComponentModal: React.FC<Modal<any>> = ({ state = false, onClose, ...props }) => {
+const ComponentModal: React.FC<Modal<any>> = ({ state, onClose, ...props }) => {
+    console.log(state)
+    useEffect(() => {
+        (async () => {
+            // const findAlbum = await apiAlbum.getOne<string>(state._id as any);
+            console.log(state._id);
+        })()
+        return () => {
+
+        }
+    }, [state])
     return (
         <div>
             {/* <Button onClick={handleOpen}>Open modal</Button> */}
             <Modal
                 aria-labelledby="transition-modal-title"
                 aria-describedby="transition-modal-description"
-                open={state}
+                open={state.display as any}
                 onClose={onClose}
                 closeAfterTransition
                 BackdropComponent={Backdrop}
@@ -37,7 +43,7 @@ const ComponentModal: React.FC<Modal<any>> = ({ state = false, onClose, ...props
                     timeout: 500,
                 }}
             >
-                <Fade in={state}>
+                <Fade in={state.display}>
                     <Box sx={style}>
                         <Typography id="transition-modal-title" variant="h6" component="h2">
                             Text in a modal
