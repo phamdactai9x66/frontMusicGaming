@@ -7,6 +7,9 @@
     }
     .form-input-add {
       padding: 1rem;
+      .inputForm{
+        margin: 10px 0;
+      }
     }
       .text-tt {
         border-radius: 0.3rem 0.3rem 0 0;
@@ -51,6 +54,7 @@
 
     }
       .bia-bai-hat-image{
+        margin-top: 1rem;
      text-align: center;
         img{
             width: 150px;

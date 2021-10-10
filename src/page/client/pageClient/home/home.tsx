@@ -64,13 +64,13 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
 
             </div>
             <div className="list-music">
-                <h4>Danh sách bài hát <MdNavigateNext className="icon" /></h4>
+                <h4 className="title_all">Danh sách bài hát <MdNavigateNext className="icon" /></h4>
                 <div className="main1">
                     
                     <HomeSongComponent/>
 
                     <div className='limit-items'>
-                        <h4>Nhạc sĩ</h4>
+                        <h4 className="title_all">Nhạc sĩ</h4>
                         <input type='checkbox' id='show-all' />
                         <label htmlFor='show-all' className='text-show'>Xem thêm</label>
                         <label htmlFor='show-all' className='text-hide'>Ẩn bớt</label>
@@ -88,7 +88,7 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                 </div>
             </div>
             <div className="list-slider">
-                <h4>Có thể bạn muốn nghe <MdNavigateNext className="icon" /></h4>
+                <h4 className="title_all">Có thể bạn muốn nghe <MdNavigateNext className="icon" /></h4>
                 <div>
                     <Slider {...settings_category}>
                         <div className="box">
@@ -119,7 +119,7 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                 </div>
             </div>
             <div className="list-slider">
-                <h4>Nghe gần đây <MdNavigateNext className="icon" /></h4>
+                <h4 className="title_all">Nghe gần đây <MdNavigateNext className="icon" /></h4>
                 <div>
                     <Slider {...settings_category}>
                         <div className="box">
@@ -150,7 +150,7 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                 </div>
             </div>
             <div className="list-slider">
-                <h4>Top thịnh hành <MdNavigateNext className="icon" /></h4>
+                <h4 className="title_all">Top thịnh hành <MdNavigateNext className="icon" /></h4>
                 <div>
                     <Slider {...settings_category}>
                         <div className="box">
@@ -181,7 +181,7 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                 </div>
             </div>
             <div className="list-slider">
-                <h4>Nhạc mới mỗi ngày <MdNavigateNext className="icon" /></h4>
+                <h4 className="title_all">Nhạc mới mỗi ngày <MdNavigateNext className="icon" /></h4>
                 <div>
                     <Slider {...settings_category}>
                         <div className="box">
@@ -212,7 +212,7 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                 </div>
             </div>
             <div className="list-slider">
-                <h4>Sắp diễn ra <MdNavigateNext className="icon" /></h4>
+                <h4 className="title_all">Sắp diễn ra <MdNavigateNext className="icon" /></h4>
                 <div>
                     <Slider {...settings_category}>
                         <div className="box">
@@ -244,7 +244,7 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
             </div>
             <div className="music-charts">
                 <div>
-                    <h4>#Musichart <BiPlayCircle /></h4>
+                    <h4 className="title_all">#Musichart <BiPlayCircle /></h4>
                     <div className="box-chart">
                         <h5 className="stt">1</h5>
                         <img width={60} height={60} src="https://i.ytimg.com/vi/x2xblVxi_c4/maxresdefault.jpg" alt="" />

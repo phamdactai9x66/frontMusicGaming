@@ -15,7 +15,6 @@
             height: 150px;
             border-radius: 100%;
             .img-hover {
-                cursor: pointer;
                 position: relative;
                 img {
                     width: 100%;
@@ -51,6 +50,14 @@
         }
     }
 }
+    .title_all::before {
+      content: "|";
+      color: #6ed1ff;
+      font-weight: bold;
+      width: 2rem;
+      margin-right: 1rem;
+    }
+
 .box-music {
     overflow: auto;
     height: 350px;
@@ -139,12 +146,15 @@
         color: #fff;
     }
     div {
-        img {
-            width: 97%;
-            height: 230px;
-            box-shadow: 0 3px 7px rgba(0, 0, 0, 0.795);
-            border-radius: 0.3rem;
-            cursor: grab;
+        .box {
+            padding: 0 0.8rem 0 0;
+            img {
+                width: 100%;
+                height: 230px;
+                box-shadow: 0 3px 7px rgba(0, 0, 0, 0.795);
+                border-radius: 0.3rem;
+                cursor: grab;
+            }
         }
         .slick-prev:before {
             color: #6ee9ff;
@@ -178,6 +188,21 @@
             left: 95%;
             top: -15%;
         }
+    }
+}
+.Pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+    nav ul li
+    {
+        button{
+        font-size: 1.1rem;
+        color: #fff;
+    } 
+    .css-1v2lvtn-MuiPaginationItem-root {
+        color: #fff;
+    }
     }
 }
 line {

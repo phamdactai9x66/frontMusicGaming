@@ -12,7 +12,8 @@ interface Recently<T> {
 const Recently: React.FC<Recently<any>> = ({ ...props }) => {
     return (
         <div className="overview">
-                <h3>Phát gần đây <MdNavigateNext className="icon" /></h3>
+                <h3 className="title_all">Phát gần đây <MdNavigateNext className="icon" /></h3>
+                <br/>
                 <div className="main1"  style={{gridTemplateColumns: "100%"}}>
                 <div className="box-music">
                         <div className="music_item">

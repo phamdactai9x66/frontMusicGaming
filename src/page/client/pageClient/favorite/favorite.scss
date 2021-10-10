@@ -7,7 +7,8 @@
     margin-bottom: 15px;
         .text-title-yeuthich-tt{
             .color-yeuthich-tt{
-                color: #a8eff9;
+                color: #00dffe;
+                text-shadow: 0 0 5px #00afc7;
             }
             
         
@@ -15,11 +16,12 @@
         .div-svg{
               width: 36px;
                 height: 36px;
-                border: 2px solid #a8eff9;
                 margin-left: 20px; 
                 background: #a8eff9;
                 border-radius: 50%; 
                 text-align: center; 
+                border: 2px solid #00afc7;
+                box-shadow:  0 0 5px #dbf5ff;
             .svg{
                 margin-top: 2px;
                 width: 30px;
@@ -29,27 +31,9 @@
             }
         
         }
-        // .div-svg:hover{
-        //   @include hoverAllyt();
-        // }
         
         
-    }
-     .title-yeuthich-tt:hover{
-        .text-title-yeuthich-tt{
-            .color-yeuthich-tt{
-                color: #00dffe;
-                text-shadow: 0 0 5px #00afc7;
-            }
-        }
-        .div-svg{
-            border: 2px solid #00afc7;
-            box-shadow:  0 0 5px #dbf5ff;
-        
-        }
-    }
-    
-    
+    }   
     .grid-2{
         display:  flex;
     }
@@ -61,7 +45,6 @@
             gap: 25px;
             
             .box-yeuthich-tt{
-                // width: 100%;
             .link-yeuthich-tt{
                 text-decoration: none;
                 color: white;
@@ -84,10 +67,6 @@
             }
         }.box-yeuthich-tt:hover{
             .yeuthich-width-heght-image{
-                // border: 3px solid #38c7ff;
-                // border-radius: 2px;
-                // box-shadow: 0 0 8px #38c7ff;
-                //  opacity: 80%;
                 border: 2px solid #dbf5ff;
                 border-radius: 0.3rem;
                 box-shadow: 0 0 8px #dbf5ff;

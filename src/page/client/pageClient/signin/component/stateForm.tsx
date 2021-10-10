@@ -1,8 +1,8 @@
 
 
 export const genderOption = [
-    { value: true, label: "Female" },
-    { value: false, label: "Male" }
+    { value: 'true', label: "Female" },
+    { value: 'false', label: "Male" }
 ]
 export const stateForm = [
     {
