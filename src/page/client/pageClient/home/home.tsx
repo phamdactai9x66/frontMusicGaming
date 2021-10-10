@@ -2,15 +2,14 @@ import React, { useEffect } from 'react'
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { AiOutlineDownload, AiFillHeart } from 'react-icons/ai';
-import { IoMdAdd } from 'react-icons/io';
-import { BsFillPlayFill } from 'react-icons/bs';
 import { MdNavigateNext } from 'react-icons/md';
 import Button from '@mui/material/Button';
 import { BiPlayCircle } from 'react-icons/bi';
 import ChartMusic from './component/chartMusic';
 import { Link } from 'react-router-dom';
-
+import VerticalSlider from './component/VerticalSlider';
+import HomeCategory from './component/HomeCategory';
+import HomeSongComponent from './component/HomeSongComponent';
 
 interface Home<T> {
 
@@ -48,156 +47,33 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
             }
         ]
     };
+
+
     return (
         <div className="home">
             <div className="slider-banner">
-                <div>
-                    <Slider {...settings_banner}>
-                        <div>
-                            <img height={362} src="https://i.pinimg.com/originals/82/82/81/828281959b3c108eda190afc561763ae.png" alt="" />
-                        </div>
-                        <div>
-                            <img height={362} src="https://i.redd.it/8lwm1c99d3751.jpg" alt="" />
-                        </div>
-                        <div>
-                            <img height={362} src="https://en.ephoto360.com/uploads/effect-data/en.ephoto360.com/p3d1qswvw/Evelynn6-min60fa36d76e0f8.jpg" alt="" />
-                        </div>
-                    </Slider>
-                </div>
+                
+                <VerticalSlider settings_banner={settings_banner} />
+
             </div>
+
+            {/* category */}
             <div className="list-slider">
-                <h4>Thể loại <MdNavigateNext className="icon" /></h4>
-                <div>
-                    <Slider {...settings_category}>
-                        <Link to="/playlistDetail">
-                        <div className="box">
-                            <img src="https://i.ytimg.com/vi/Yije8O6eGn8/maxresdefault.jpg" alt="" />
-                        </div>
-                        </Link>
-                        <div className="box">
-                            <img src="https://i.ytimg.com/vi/O8_tb1pDU8g/maxresdefault.jpg" alt="" />
-                        </div>
-                        <div className="box">
-                            <img src="https://i.ytimg.com/vi/DxOB2t7X84A/maxresdefault.jpg" alt="" />
-                        </div>
-                        <div className="box">
-                            <img src="https://i.ytimg.com/vi/X1QfihWHfBo/maxresdefault.jpg" alt="" />
-                        </div>
-                        <div className="box">
-                            <img src="https://i.ytimg.com/vi/x2xblVxi_c4/maxresdefault.jpg" alt="" />
-                        </div>
-                        <div className="box">
-                            <img src="https://i.ytimg.com/vi/swztQOTZbpU/maxresdefault.jpg" alt="" />
-                        </div>
-                        <div className="box">
-                            <img src="https://i.ytimg.com/vi/jKLTbxHe9k8/maxresdefault.jpg" alt="" />
-                        </div>
-                        <div className="box">
-                            <img src="https://i.ytimg.com/vi/naQWLyxs76I/maxresdefault.jpg" alt="" />
-                        </div>
-                    </Slider>
-                </div>
+                
+                <HomeCategory settings_category={settings_category}/>
+
             </div>
             <div className="list-music">
                 <h4>Danh sách bài hát <MdNavigateNext className="icon" /></h4>
                 <div className="main1">
-                    <div className="box-music">
-                        <div className="music_item">
-                            <img src="https://anh.24h.com.vn/upload/4-2016/images/2016-12-06/1480992562-148098909683484-son-tung.jpg" alt="" />
-                            <div className="box-icon">
-                            <BsFillPlayFill/>
-                            </div>
-                            <div>
-                                <h6>Tên bài hát</h6>
-                                <div style={{ fontSize: "0.7rem", marginTop: "-0.2rem" }}>Nghệ sĩ</div>
-                            </div>
-                            <div>
-                                4:50
-                            </div>
-                            <div className="icon_item">
-                                <AiOutlineDownload className="icon" />
-                                <AiFillHeart className="icon" />
-                                <IoMdAdd className="icon" />
-                            </div>
-                        </div>
-                        <div className="music_item">
-                            <img src="https://anh.24h.com.vn/upload/4-2016/images/2016-12-06/1480992562-148098909683484-son-tung.jpg" alt="" />
-                            <div className="box-icon">
-                            <BsFillPlayFill/>
-                            </div>
-                            <div>
-                                <h6>Tên bài hát</h6>
-                                <div style={{ fontSize: "0.7rem", marginTop: "-0.2rem" }}>Nghệ sĩ</div>
-                            </div>
-                            <div>
-                                4:50
-                            </div>
-                            <div className="icon_item">
-                                <AiOutlineDownload className="icon" />
-                                <AiFillHeart className="icon" />
-                                <IoMdAdd className="icon" />
-                            </div>
-                        </div>
-                        <div className="music_item">
-                            <img src="https://anh.24h.com.vn/upload/4-2016/images/2016-12-06/1480992562-148098909683484-son-tung.jpg" alt="" />
-                            <div className="box-icon">
-                            <BsFillPlayFill/>
-                            </div>
-                            <div>
-                                <h6>Tên bài hát</h6>
-                                <div style={{ fontSize: "0.7rem", marginTop: "-0.2rem" }}>Nghệ sĩ</div>
-                            </div>
-                            <div>
-                                4:50
-                            </div>
-                            <div className="icon_item">
-                                <AiOutlineDownload className="icon" />
-                                <AiFillHeart className="icon" />
-                                <IoMdAdd className="icon" />
-                            </div>
-                        </div>
-                        <div className="music_item">
-                            <img src="https://anh.24h.com.vn/upload/4-2016/images/2016-12-06/1480992562-148098909683484-son-tung.jpg" alt="" />
-                            <div className="box-icon">
-                            <BsFillPlayFill/>
-                            </div>
-                            <div>
-                                <h6>Tên bài hát</h6>
-                                <div style={{ fontSize: "0.7rem", marginTop: "-0.2rem" }}>Nghệ sĩ</div>
-                            </div>
-                            <div>
-                                4:50
-                            </div>
-                            <div className="icon_item">
-                                <AiOutlineDownload className="icon" />
-                                <AiFillHeart className="icon" />
-                                <IoMdAdd className="icon" />
-                            </div>
-                        </div>
-                        <div className="music_item">
-                            <img src="https://anh.24h.com.vn/upload/4-2016/images/2016-12-06/1480992562-148098909683484-son-tung.jpg" alt="" />
-                            <div className="box-icon">
-                            <BsFillPlayFill/>
-                            </div>
-                            <div>
-                                <h6>Tên bài hát</h6>
-                                <div style={{ fontSize: "0.7rem", marginTop: "-0.2rem" }}>Nghệ sĩ</div>
-                            </div>
-                            <div>
-                                4:50
-                            </div>
-                            <div className="icon_item">
-                                <AiOutlineDownload className="icon" />
-                                <AiFillHeart className="icon" />
-                                <IoMdAdd className="icon" />
-                            </div>
-                        </div>
-                    </div>
+                    
+                    <HomeSongComponent/>
+
                     <div className='limit-items'>
                         <h4>Nhạc sĩ</h4>
                         <input type='checkbox' id='show-all' />
-                        <label htmlFor='show-all' className='text-show'>See all</label>
-                        <label htmlFor='show-all' className='text-hide'>Hide</label>
+                        <label htmlFor='show-all' className='text-show'>Xem thêm</label>
+                        <label htmlFor='show-all' className='text-hide'>Ẩn bớt</label>
                         <div className='items'>
                             <section>
                                 <div><img src="https://i.ytimg.com/vi/x2xblVxi_c4/maxresdefault.jpg" alt="" /></div>
