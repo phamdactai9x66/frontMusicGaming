@@ -10,6 +10,10 @@ class albumsApi {
         const url: string = `/albums/${_id}`;
         return Axios.get(url)
     }
+    deleteOne<T extends string>(_id: T): Promise<any> {
+        const url: string = `/albums/${_id}/delete`;
+        return Axios.delete(url)
+    }
     postOne<T extends FormData>(formdata: T): Promise<any> {
         const url: string = "/albums/add";
         return AxiosFormdata.post(url, formdata)

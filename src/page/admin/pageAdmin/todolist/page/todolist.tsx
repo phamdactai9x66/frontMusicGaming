@@ -22,9 +22,9 @@ const useStyle = makeStyles((theme) => ({
   }
 }))
 const columns = [
-  { id: 'name', label: 'Name', minWidth: 170, align: 'left' },
-  { id: 'price', label: 'Price', minWidth: 100, align: 'left' },
-  { id: 'quantity', label: 'Quantity', minWidth: 170, align: 'left' },
+  { id: 'name', label: 'Name ablum', minWidth: 170, align: 'left' },
+  { id: 'price', label: 'Image', minWidth: 100, align: 'left' },
+  // { id: 'quantity', label: 'Quantity', minWidth: 170, align: 'left' },
   { id: '', label: 'Handle', minWidth: 170, align: 'center' },
 ];
 const Todolist: React.FC<Todolist<any>> = ({ changePage, set_id, ...props }) => {
@@ -56,7 +56,7 @@ const Todolist: React.FC<Todolist<any>> = ({ changePage, set_id, ...props }) => 
   }, [state.Filter])
 
   const findName = (event: Event | any) => {
-    const getValue = (event.target as HTMLInputElement).value
+    const getValue = ((event.target as HTMLInputElement).value).trim()
     if (event.keyCode === 13) {
       dispatch(pustAction(typeAciton.findName, { title: getValue }))
     }
@@ -71,6 +71,21 @@ const Todolist: React.FC<Todolist<any>> = ({ changePage, set_id, ...props }) => 
   const navigatePage = <T extends string>(page: T, _id?: T): void => {
     changePage(page);
     if (_id) set_id(_id)
+  }
+  const deleteOne = async (_id: string) => {
+    if (!_id) return;
+    dispatch(pustAction(typeAciton.deleteOne, { _id }))
+
+    await apiAlbum.deleteOne(_id);
+  }
+  const deleteAll = () => {
+    dispatch(pustAction(typeAciton.deleteAll))
+    state.Data.forEach(async (currenV: any) => {
+      const { _id, check } = currenV;
+      if (check) {
+        await apiAlbum.deleteOne(_id);
+      }
+    })
   }
   return (
     <>
@@ -148,13 +163,14 @@ const Todolist: React.FC<Todolist<any>> = ({ changePage, set_id, ...props }) => 
                             <TableCell align='left'>
                               <Avatar alt="Remy Sharp" variant="rounded" src={image} />
                             </TableCell>
-                            <TableCell align='left'>
+                            {/* <TableCell align='left'>
                               {id_Artist}
-                            </TableCell>
+                            </TableCell> */}
                             <TableCell align='center'>
                               <Button variant="contained" color="error" style={{ marginRight: 5 }} size="small"
                                 onClick={() => {
-                                  dispatch(pustAction(typeAciton.deleteOne, { _id }))
+                                  // dispatch(pustAction(typeAciton.deleteOne, { _id }))
+                                  deleteOne(_id)
                                 }}
                               >Delete</Button>
                               <Button variant="contained" color="primary" size="small"
@@ -179,9 +195,7 @@ const Todolist: React.FC<Todolist<any>> = ({ changePage, set_id, ...props }) => 
               </Table>
               <Box className={classes.styleBox}>
                 <div>
-                  <Button variant="contained" size="small" onClick={() => {
-                    dispatch(pustAction(typeAciton.deleteAll))
-                  }}>Delete All</Button>
+                  <Button variant="contained" size="small" onClick={deleteAll}>Delete All</Button>
                   <Button variant="contained" size="small"
                     style={{ marginLeft: 5 }} onClick={() => { navigatePage(page.add) }} >Add</Button>
                 </div>
