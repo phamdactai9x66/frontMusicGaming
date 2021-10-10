@@ -7,7 +7,7 @@ interface InputText<T> extends propsField {
     other?: any
 }
 
-const InputText: React.FC<InputText<any>> = ({ label, ...props }) => {
+const InputText: React.FC<InputText<any>> = ({ ...props }) => {
 
     const [field, meta, helpers] = useField(props);
     const formik = useFormikContext();

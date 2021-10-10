@@ -1,9 +1,8 @@
 import React from "react";
 // import * as Yup from "yup";
-import Yup from "../../../../../component/addMethodYup";
+import Yup from "component/addMethodYup";
+import { variableCommon } from "component/variableCommon"
 
-const extensionAudio = ["mp3", "wav", "flac", "aac"]
-const extensionImage = ["jpg", "jpeg", "bmp", "gif", "png"];
 const alertTypeFile = "We just allow file extension jpg, jpeg, bmp,gif, png"
 
 const validateForm = [
@@ -15,6 +14,7 @@ const validateForm = [
         first_name: Yup.string().trim().checkRequire(),
         last_name: Yup.string().trim().checkRequire(),
         avatar: Yup.mixed().test("checkFile", "", function (value, field) {
+            const { extensionImage } = variableCommon
             if ([null, undefined, ""].includes(value)) return true;
 
             const { path, createError } = this;

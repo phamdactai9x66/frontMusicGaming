@@ -6,11 +6,13 @@ import SearchIcon from '@mui/icons-material/Search';
 import apiAlbum from "api/albumApi";
 import { initialReducer, handleReducer, HandleGet, typeAciton, pustAction } from "component/MethodCommon";
 import { variableCommon } from "component/variableCommon";
-import PaginationPage from "./component/pagination";
+import PaginationPage from "../component/pagination";
 import { makeStyles } from "@mui/styles";
 import Modal from "component/Modal";
+import { page } from "../index";
 interface Todolist<T> {
-
+  changePage: any,
+  set_id: Function
 }
 const useStyle = makeStyles((theme) => ({
   styleBox: {
@@ -25,10 +27,11 @@ const columns = [
   { id: 'quantity', label: 'Quantity', minWidth: 170, align: 'left' },
   { id: '', label: 'Handle', minWidth: 170, align: 'center' },
 ];
-const Todolist: React.FC<Todolist<any>> = ({ ...props }) => {
+const Todolist: React.FC<Todolist<any>> = ({ changePage, set_id, ...props }) => {
   const classes = useStyle();
   const [state, dispatch] = useReducer(handleReducer, initialReducer);
-  const [stateModal, setstateModal] = useState<any>(false)
+  const [stateModal, setstateModal] = useState<any>({ display: false, _id: null })
+
   useEffect(() => {
     (async () => {
       const query = {
@@ -51,17 +54,23 @@ const Todolist: React.FC<Todolist<any>> = ({ ...props }) => {
       dispatch(pustAction(typeAciton.reset))
     }
   }, [state.Filter])
+
   const findName = (event: Event | any) => {
     const getValue = (event.target as HTMLInputElement).value
     if (event.keyCode === 13) {
       dispatch(pustAction(typeAciton.findName, { title: getValue }))
     }
   }
-  const onOpen = () => {
-    setstateModal(true)
+  const onOpen = <T extends string>(_id: T) => {
+    if ([undefined, null].includes(_id as any)) return;
+    setstateModal((value: any) => ({ _id, display: true }))
   }
   const onClose = () => {
-    setstateModal(false)
+    setstateModal((value: any) => ({ ...value, display: false }))
+  }
+  const navigatePage = <T extends string>(page: T, _id?: T): void => {
+    changePage(page);
+    if (_id) set_id(_id)
   }
   return (
     <>
@@ -148,9 +157,11 @@ const Todolist: React.FC<Todolist<any>> = ({ ...props }) => {
                                   dispatch(pustAction(typeAciton.deleteOne, { _id }))
                                 }}
                               >Delete</Button>
-                              <Button variant="contained" color="primary" size="small">Edit</Button>
+                              <Button variant="contained" color="primary" size="small"
+                                onClick={() => { navigatePage(page.update, _id) }}
+                              >Edit</Button>
                               <Button variant="contained" color="primary" size="small" style={{ marginLeft: 5 }}
-                                onClick={onOpen}
+                                onClick={() => { onOpen<string>(_id) }}
                               >More</Button>
                             </TableCell>
                           </TableRow>
@@ -171,7 +182,8 @@ const Todolist: React.FC<Todolist<any>> = ({ ...props }) => {
                   <Button variant="contained" size="small" onClick={() => {
                     dispatch(pustAction(typeAciton.deleteAll))
                   }}>Delete All</Button>
-                  <Button variant="contained" size="small" style={{ marginLeft: 5 }} >Add</Button>
+                  <Button variant="contained" size="small"
+                    style={{ marginLeft: 5 }} onClick={() => { navigatePage(page.add) }} >Add</Button>
                 </div>
                 <PaginationPage state={state} dispatch={dispatch} />
               </Box>

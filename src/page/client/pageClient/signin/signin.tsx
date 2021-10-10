@@ -83,14 +83,12 @@ const Signin: React.FC<Signin<any>> = ({ history, ...props }) => {
 
     }
     const loginUser = await userApi.Signup(handleForm);
-    console.log(loginUser)
     if (loginUser.status !== variableCommon.statusF) {
 
-      console.log(loginUser)
       // dispatchUser(saveInfo(loginUser))
 
-      return
     }
+    displayAlert(loginUser.message)
   }
   const displayAlert = (messageError: string = "We have some error !") => {
     setalertError({ display: true, message: messageError })
@@ -106,8 +104,8 @@ const Signin: React.FC<Signin<any>> = ({ history, ...props }) => {
               initialValues={stateForm[step.displayForm]}
               validationSchema={validateSchema[step.displayForm]}
               onSubmit={handleSignIn}
-              // validateOnBlur={false}
-              // validateOnChange={false}
+              validateOnBlur={false}
+              validateOnChange={false}
               enableReinitialize
             >
               {formik => {
@@ -124,7 +122,6 @@ const Signin: React.FC<Signin<any>> = ({ history, ...props }) => {
                     {renderForm<number>(step.displayForm, formik)}
 
                     <div className="btn_login">
-
 
                       {!step.displayForm ? <>
                         {/* <AiFillGoogleSquare className="icon" /> */}
