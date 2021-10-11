@@ -10,6 +10,10 @@ import { Link } from 'react-router-dom';
 import VerticalSlider from './component/VerticalSlider';
 import HomeCategory from './component/HomeCategory';
 import HomeSongComponent from './component/HomeSongComponent';
+import ArtistComponent from './component/ArtistComponent';
+import WantHearComponent from './component/WantHearComponent';
+import RecentlyComponent from './component/RecentlyComponent';
+import PopularComponent from './component/PopularComponent';
 
 interface Home<T> {
 
@@ -69,178 +73,35 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                     
                     <HomeSongComponent/>
 
-                    <div className='limit-items'>
-                        <h4 className="title_all">Nhạc sĩ</h4>
-                        <input type='checkbox' id='show-all' />
-                        <label htmlFor='show-all' className='text-show'>Xem thêm</label>
-                        <label htmlFor='show-all' className='text-hide'>Ẩn bớt</label>
-                        <div className='items'>
-                            <section>
-                                <div><img src="https://i.ytimg.com/vi/x2xblVxi_c4/maxresdefault.jpg" alt="" /></div>
-                                <div><img src="https://i.ytimg.com/vi/x2xblVxi_c4/maxresdefault.jpg" alt="" /></div>
-                                <div><img src="https://i.ytimg.com/vi/x2xblVxi_c4/maxresdefault.jpg" alt="" /></div>
-                                <div><img src="https://i.ytimg.com/vi/x2xblVxi_c4/maxresdefault.jpg" alt="" /></div>
-                                <div><img src="https://i.ytimg.com/vi/x2xblVxi_c4/maxresdefault.jpg" alt="" /></div>
-                                <div><img src="https://i.ytimg.com/vi/x2xblVxi_c4/maxresdefault.jpg" alt="" /></div>
-                            </section>
-                        </div>
-                    </div>
+                    {/* artist */}
+                    <ArtistComponent/>
                 </div>
             </div>
             <div className="list-slider">
                 <h4 className="title_all">Có thể bạn muốn nghe <MdNavigateNext className="icon" /></h4>
-                <div>
-                    <Slider {...settings_category}>
-                        <div className="box">
-                            <img src="https://i.ytimg.com/vi/Yije8O6eGn8/maxresdefault.jpg" alt="" />
-                        </div>
-                        <div className="box">
-                            <img src="https://i.ytimg.com/vi/O8_tb1pDU8g/maxresdefault.jpg" alt="" />
-                        </div>
-                        <div className="box">
-                            <img src="https://i.ytimg.com/vi/DxOB2t7X84A/maxresdefault.jpg" alt="" />
-                        </div>
-                        <div className="box">
-                            <img src="https://i.ytimg.com/vi/X1QfihWHfBo/maxresdefault.jpg" alt="" />
-                        </div>
-                        <div className="box">
-                            <img src="https://i.ytimg.com/vi/x2xblVxi_c4/maxresdefault.jpg" alt="" />
-                        </div>
-                        <div className="box">
-                            <img src="https://i.ytimg.com/vi/swztQOTZbpU/maxresdefault.jpg" alt="" />
-                        </div>
-                        <div className="box">
-                            <img src="https://i.ytimg.com/vi/jKLTbxHe9k8/maxresdefault.jpg" alt="" />
-                        </div>
-                        <div className="box">
-                            <img src="https://i.ytimg.com/vi/naQWLyxs76I/maxresdefault.jpg" alt="" />
-                        </div>
-                    </Slider>
-                </div>
+                
+                {/* get by {_limit: 20, view: 'desc', date: "desc"} */}
+                <WantHearComponent settings_category={settings_category} />
             </div>
             <div className="list-slider">
                 <h4 className="title_all">Nghe gần đây <MdNavigateNext className="icon" /></h4>
-                <div>
-                    <Slider {...settings_category}>
-                        <div className="box">
-                            <img src="https://i.ytimg.com/vi/Yije8O6eGn8/maxresdefault.jpg" alt="" />
-                        </div>
-                        <div className="box">
-                            <img src="https://i.ytimg.com/vi/O8_tb1pDU8g/maxresdefault.jpg" alt="" />
-                        </div>
-                        <div className="box">
-                            <img src="https://i.ytimg.com/vi/DxOB2t7X84A/maxresdefault.jpg" alt="" />
-                        </div>
-                        <div className="box">
-                            <img src="https://i.ytimg.com/vi/X1QfihWHfBo/maxresdefault.jpg" alt="" />
-                        </div>
-                        <div className="box">
-                            <img src="https://i.ytimg.com/vi/x2xblVxi_c4/maxresdefault.jpg" alt="" />
-                        </div>
-                        <div className="box">
-                            <img src="https://i.ytimg.com/vi/swztQOTZbpU/maxresdefault.jpg" alt="" />
-                        </div>
-                        <div className="box">
-                            <img src="https://i.ytimg.com/vi/jKLTbxHe9k8/maxresdefault.jpg" alt="" />
-                        </div>
-                        <div className="box">
-                            <img src="https://i.ytimg.com/vi/naQWLyxs76I/maxresdefault.jpg" alt="" />
-                        </div>
-                    </Slider>
-                </div>
+                
+                {/* get by {_limit: 20, view: 'desc', date: "desc"} */}
+                <RecentlyComponent settings_category={settings_category} />
             </div>
             <div className="list-slider">
                 <h4 className="title_all">Top thịnh hành <MdNavigateNext className="icon" /></h4>
-                <div>
-                    <Slider {...settings_category}>
-                        <div className="box">
-                            <img src="https://i.ytimg.com/vi/Yije8O6eGn8/maxresdefault.jpg" alt="" />
-                        </div>
-                        <div className="box">
-                            <img src="https://i.ytimg.com/vi/O8_tb1pDU8g/maxresdefault.jpg" alt="" />
-                        </div>
-                        <div className="box">
-                            <img src="https://i.ytimg.com/vi/DxOB2t7X84A/maxresdefault.jpg" alt="" />
-                        </div>
-                        <div className="box">
-                            <img src="https://i.ytimg.com/vi/X1QfihWHfBo/maxresdefault.jpg" alt="" />
-                        </div>
-                        <div className="box">
-                            <img src="https://i.ytimg.com/vi/x2xblVxi_c4/maxresdefault.jpg" alt="" />
-                        </div>
-                        <div className="box">
-                            <img src="https://i.ytimg.com/vi/swztQOTZbpU/maxresdefault.jpg" alt="" />
-                        </div>
-                        <div className="box">
-                            <img src="https://i.ytimg.com/vi/jKLTbxHe9k8/maxresdefault.jpg" alt="" />
-                        </div>
-                        <div className="box">
-                            <img src="https://i.ytimg.com/vi/naQWLyxs76I/maxresdefault.jpg" alt="" />
-                        </div>
-                    </Slider>
-                </div>
+                
+                {/* get by {_limit: 20, view: 'desc'} */}
+                <PopularComponent settings_category={settings_category} sort_by={{_limit: 20, view: 'desc'}} />
             </div>
             <div className="list-slider">
                 <h4 className="title_all">Nhạc mới mỗi ngày <MdNavigateNext className="icon" /></h4>
-                <div>
-                    <Slider {...settings_category}>
-                        <div className="box">
-                            <img src="https://i.ytimg.com/vi/Yije8O6eGn8/maxresdefault.jpg" alt="" />
-                        </div>
-                        <div className="box">
-                            <img src="https://i.ytimg.com/vi/O8_tb1pDU8g/maxresdefault.jpg" alt="" />
-                        </div>
-                        <div className="box">
-                            <img src="https://i.ytimg.com/vi/DxOB2t7X84A/maxresdefault.jpg" alt="" />
-                        </div>
-                        <div className="box">
-                            <img src="https://i.ytimg.com/vi/X1QfihWHfBo/maxresdefault.jpg" alt="" />
-                        </div>
-                        <div className="box">
-                            <img src="https://i.ytimg.com/vi/x2xblVxi_c4/maxresdefault.jpg" alt="" />
-                        </div>
-                        <div className="box">
-                            <img src="https://i.ytimg.com/vi/swztQOTZbpU/maxresdefault.jpg" alt="" />
-                        </div>
-                        <div className="box">
-                            <img src="https://i.ytimg.com/vi/jKLTbxHe9k8/maxresdefault.jpg" alt="" />
-                        </div>
-                        <div className="box">
-                            <img src="https://i.ytimg.com/vi/naQWLyxs76I/maxresdefault.jpg" alt="" />
-                        </div>
-                    </Slider>
-                </div>
+                <PopularComponent settings_category={settings_category} sort_by={{_limit: 20, date: 'desc'}} />
             </div>
             <div className="list-slider">
                 <h4 className="title_all">Sắp diễn ra <MdNavigateNext className="icon" /></h4>
-                <div>
-                    <Slider {...settings_category}>
-                        <div className="box">
-                            <img src="https://i.ytimg.com/vi/Yije8O6eGn8/maxresdefault.jpg" alt="" />
-                        </div>
-                        <div className="box">
-                            <img src="https://i.ytimg.com/vi/O8_tb1pDU8g/maxresdefault.jpg" alt="" />
-                        </div>
-                        <div className="box">
-                            <img src="https://i.ytimg.com/vi/DxOB2t7X84A/maxresdefault.jpg" alt="" />
-                        </div>
-                        <div className="box">
-                            <img src="https://i.ytimg.com/vi/X1QfihWHfBo/maxresdefault.jpg" alt="" />
-                        </div>
-                        <div className="box">
-                            <img src="https://i.ytimg.com/vi/x2xblVxi_c4/maxresdefault.jpg" alt="" />
-                        </div>
-                        <div className="box">
-                            <img src="https://i.ytimg.com/vi/swztQOTZbpU/maxresdefault.jpg" alt="" />
-                        </div>
-                        <div className="box">
-                            <img src="https://i.ytimg.com/vi/jKLTbxHe9k8/maxresdefault.jpg" alt="" />
-                        </div>
-                        <div className="box">
-                            <img src="https://i.ytimg.com/vi/naQWLyxs76I/maxresdefault.jpg" alt="" />
-                        </div>
-                    </Slider>
-                </div>
+                <PopularComponent settings_category={settings_category} sort_by={{_limit: 20, day_release: 'desc'}} />
             </div>
             <div className="music-charts">
                 <div>

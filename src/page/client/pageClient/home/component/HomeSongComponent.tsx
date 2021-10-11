@@ -1,14 +1,15 @@
 import songApi from 'api/songApi';
+import GetTimeAudio from 'page/client/common/GetTimeAudio';
 import React, { useEffect, useState } from 'react';
 import { AiFillHeart, AiOutlineDownload } from 'react-icons/ai';
 import { BsFillPlayFill } from 'react-icons/bs';
 import { IoMdAdd } from 'react-icons/io';
 
 
-interface HomeSongComponent<T> {
+interface HomeSongComponentIF<T> {
 
 }
-const HomeSongComponent: React.FC<HomeSongComponent<any>> = () => {
+const HomeSongComponent: React.FC<HomeSongComponentIF<any>> = () => {
     const [songs, setSongs] = useState([]);
 
     useEffect( () => {
@@ -18,16 +19,7 @@ const HomeSongComponent: React.FC<HomeSongComponent<any>> = () => {
         }
         getSongs();
     }, []);
-    
-    const getDuration = ( url: string ) => {
-        const audio = new Audio();
-        
-        audio.addEventListener("loadedmetadata", () => {
-            return audio.duration
-        })
-        audio.src = url;
-    }
-
+console.log(songs)
 
     return (
         <div className="box-music">
@@ -42,8 +34,7 @@ const HomeSongComponent: React.FC<HomeSongComponent<any>> = () => {
                         <div style={{ fontSize: "0.7rem", marginTop: "-0.2rem" }}>Nghệ sĩ</div>
                     </div>
                     <div>
-                        {getDuration(item.audio)}
-                        <span id="duration"></span>
+                        <GetTimeAudio url={item.audio}/>
                     </div>
                     <div className="icon_item">
                         <AiOutlineDownload className="icon" />
