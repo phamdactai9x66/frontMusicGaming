@@ -2,7 +2,7 @@ import { Route } from "react-router-dom"
 import Home from "./page/client/pageClient/home/home"
 import NotFound from "./page/client/pageClient/notFound/notFound";
 import HomeAdmin from "./page/admin/pageAdmin/home/home";
-import AddMusic from "./page/admin/pageAdmin/todolist/page/addMusic";
+import AddTodo from "./page/admin/pageAdmin/todolist/page/addTodo";
 import NotFoundAdmin from "./page/admin/pageAdmin/notFound/notFoundAdmin";
 import Todolist from "./page/admin/pageAdmin/todolist/index";
 import Toptrending from "./page/client/pageClient/toptrending/toptrending";
@@ -35,8 +35,8 @@ const Admin: propertyPage[] = [
         exact: true
     },
     {
-        path: "/admin/AddMusic",
-        component: AddMusic,
+        path: "/admin/addTodo",
+        component: AddTodo,
         exact: false
     },
     {

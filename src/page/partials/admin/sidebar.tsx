@@ -176,7 +176,7 @@ const Sidebar: React.FC<Sidebar<any>> = ({ ...props }) => {
                     <div className="tab-content">
                         <label className="add_item">
                             <BiMessageSquareAdd className="icon_item" />
-                            <span>Add Todo list</span>
+                            <Link to="/admin/addTodo"><span>Add Todo list</span></Link>
                         </label>
                     </div>
                 </div>
