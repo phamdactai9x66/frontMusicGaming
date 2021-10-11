@@ -8,7 +8,7 @@ import { initialReducer, handleReducer, HandleGet, typeAciton, pustAction } from
 import { variableCommon } from "component/variableCommon";
 import PaginationPage from "../component/pagination";
 import { makeStyles } from "@mui/styles";
-import Modal from "component/Modal";
+import Modal from "page/admin/pageAdmin/todolist/component/Modal";
 import { page } from "../index";
 interface Todolist<T> {
   changePage: any,
@@ -78,6 +78,7 @@ const Todolist: React.FC<Todolist<any>> = ({ changePage, set_id, ...props }) => 
 
     await apiAlbum.deleteOne(_id);
   }
+
   const deleteAll = () => {
     dispatch(pustAction(typeAciton.deleteAll))
     state.Data.forEach(async (currenV: any) => {
@@ -89,7 +90,7 @@ const Todolist: React.FC<Todolist<any>> = ({ changePage, set_id, ...props }) => 
   }
   return (
     <>
-      <Modal state={stateModal} onClose={onClose}></Modal>
+      {stateModal._id && <Modal state={stateModal} onClose={onClose}></Modal>}
       <div style={{
         display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '600px', width: "100%"
       }}>
