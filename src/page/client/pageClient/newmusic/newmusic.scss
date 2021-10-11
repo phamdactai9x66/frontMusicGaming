@@ -55,6 +55,9 @@
              gap: 10px;
              border-radius: 5px;
              background: #0e192a;
+             box-shadow: 0 3px 7px rgba(0, 0, 0, 0.795);
+             border-radius: 0.3rem;
+             cursor: grab;
              .image-nhacmoi{
                  img{
                     width: 100%;
@@ -101,9 +104,10 @@
                 
              
             }.grid-nhacmoi-4:hover{
-                border: 2px solid #dbf5ff;
-                box-shadow: 0 0 5px #dbf5ff;
-                background: #dbf5ff;
+                background: #253d72;
+                p{
+                    color: white;
+                }
                
                 .text-nhacmoi{
                     .title, .nhacmoi-tacgia{

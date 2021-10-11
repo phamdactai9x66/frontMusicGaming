@@ -7,7 +7,11 @@
         .box-music {
             overflow: auto;
             height: 305px;
+            
             .music_item {
+                box-shadow: 0 3px 7px rgba(0, 0, 0, 0.795);
+                border-radius: 0.3rem;
+                cursor: grab;
                 h3 {
                     margin-top: 0.8rem;
                     margin-left: 0.5rem;

@@ -107,7 +107,7 @@ const Favorite: React.FC<Favorite<any>> = ({ ...props }) => {
                         <button className="button-quan-tam">Đã quan tâm</button>
                     </div>
 
-                </div>
+            </div>
         </div>
     )
 }

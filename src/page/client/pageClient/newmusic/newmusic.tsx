@@ -5,7 +5,9 @@ import {ReactComponent as Play} from './play.svg'
 import {ReactComponent as More} from './more.svg'
 import {ReactComponent as Microphone} from './microphone.svg'
 import {ReactComponent as Heart} from './heart.svg'
-
+import { AiOutlineDownload, AiFillHeart } from 'react-icons/ai';
+import { IoMdAdd } from 'react-icons/io';
+import { MdNavigateNext } from 'react-icons/md';
 
 interface Newmusic<T> {
 
@@ -120,7 +122,7 @@ const Newmusic: React.FC<Newmusic<any>> = ({ ...props }) => {
                 </div>
 
             </div>
-            {/*  */}
+           
           
             <div className="nhacmoi-tt-buttom">
                 <Link to="" className="text-butom-nhacmoi-tt">Xem Thêm</Link>
