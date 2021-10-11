@@ -1,10 +1,10 @@
 import songApi from 'api/songApi';
 import GetTimeAudio from 'page/client/common/GetTimeAudio';
+import { handleLike, handleDownload, handleAddToPlaylist } from 'page/client/common/handle';
 import React, { useEffect, useState } from 'react';
 import { AiFillHeart, AiOutlineDownload } from 'react-icons/ai';
 import { BsFillPlayFill } from 'react-icons/bs';
 import { IoMdAdd } from 'react-icons/io';
-
 
 interface HomeSongComponentIF<T> {
 
@@ -19,7 +19,6 @@ const HomeSongComponent: React.FC<HomeSongComponentIF<any>> = () => {
         }
         getSongs();
     }, []);
-console.log(songs)
 
     return (
         <div className="box-music">
@@ -37,9 +36,9 @@ console.log(songs)
                         <GetTimeAudio url={item.audio}/>
                     </div>
                     <div className="icon_item">
-                        <AiOutlineDownload className="icon" />
-                        <AiFillHeart className="icon" />
-                        <IoMdAdd className="icon" />
+                        <AiOutlineDownload onClick={() => handleDownload(item._id)} className="icon" />
+                        <AiFillHeart onClick={() => handleLike(item._id, item._id)} className="icon" />
+                        <IoMdAdd className="icon" onClick={() => handleAddToPlaylist(item._id)} />
                     </div>
                 </div>
             ))}
