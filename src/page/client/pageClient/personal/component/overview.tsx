@@ -9,6 +9,8 @@ import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Tabed from './tabed';
+import { BsFillPlayFill } from 'react-icons/bs';
+
 const Overview = () => {
     var settings = {
         autoplay: true,
@@ -28,28 +30,31 @@ const Overview = () => {
              <div className="Personal">
                  <Tabed/>
                     <div className="overview">
-                <h3>Bài hát <MdNavigateNext className="icon" /></h3>
+                <h4 className="title_all">Bài hát <MdNavigateNext className="icon" /></h4>
                 <div className="main1">
                     <div className="box-slider">
                         <Slider {...settings}>
                             <div>
-                                <img src="https://socbay.mobi/publics/uploads/3-2020/post/0065007200320_hinh-nen-cuc-chat-danh-cho-game-thu-phan-1.jpg" alt="" />
+                                <img src="https://i.ytimg.com/vi/X1QfihWHfBo/maxresdefault.jpg" alt="" />
                             </div>
                             <div>
-                                <img src="https://gamek.mediacdn.vn/133514250583805952/2020/1/16/1-15791579653801179133828.png" alt="" />
+                                <img src="https://i.ytimg.com/vi/x2xblVxi_c4/maxresdefault.jpg" alt="" />
                             </div>
                         </Slider>
                     </div>
-                    <div className="box-music">
+                    <div className="box-music" style={{height: "305px"}}>
                         <div className="music_item">
-                            <img src="https://bizweb.dktcdn.net/100/248/398/files/alan-walker-dj-min.jpg?v=1514559370965" alt="" />
+                            <img src="https://anh.24h.com.vn/upload/4-2016/images/2016-12-06/1480992562-148098909683484-son-tung.jpg" alt="" />
+                            <div className="box-icon">
+                            <BsFillPlayFill/>
+                            </div>
                             <div>
                                 <h6>Tên bài hát</h6>
                                 <div style={{ fontSize: "0.7rem", marginTop: "-0.2rem" }}>Nghệ sĩ</div>
                             </div>
                             <div>
                                 4:50
-                      </div>
+                            </div>
                             <div className="icon_item">
                                 <AiOutlineDownload className="icon" />
                                 <AiFillHeart className="icon" />
@@ -57,14 +62,17 @@ const Overview = () => {
                             </div>
                         </div>
                         <div className="music_item">
-                            <img src="https://bizweb.dktcdn.net/100/248/398/files/alan-walker-dj-min.jpg?v=1514559370965" alt="" />
+                            <img src="https://anh.24h.com.vn/upload/4-2016/images/2016-12-06/1480992562-148098909683484-son-tung.jpg" alt="" />
+                            <div className="box-icon">
+                            <BsFillPlayFill/>
+                            </div>
                             <div>
                                 <h6>Tên bài hát</h6>
                                 <div style={{ fontSize: "0.7rem", marginTop: "-0.2rem" }}>Nghệ sĩ</div>
                             </div>
                             <div>
                                 4:50
-                      </div>
+                            </div>
                             <div className="icon_item">
                                 <AiOutlineDownload className="icon" />
                                 <AiFillHeart className="icon" />
@@ -72,14 +80,17 @@ const Overview = () => {
                             </div>
                         </div>
                         <div className="music_item">
-                            <img src="https://bizweb.dktcdn.net/100/248/398/files/alan-walker-dj-min.jpg?v=1514559370965" alt="" />
+                            <img src="https://anh.24h.com.vn/upload/4-2016/images/2016-12-06/1480992562-148098909683484-son-tung.jpg" alt="" />
+                            <div className="box-icon">
+                            <BsFillPlayFill/>
+                            </div>
                             <div>
                                 <h6>Tên bài hát</h6>
                                 <div style={{ fontSize: "0.7rem", marginTop: "-0.2rem" }}>Nghệ sĩ</div>
                             </div>
                             <div>
                                 4:50
-                </div>
+                            </div>
                             <div className="icon_item">
                                 <AiOutlineDownload className="icon" />
                                 <AiFillHeart className="icon" />
@@ -87,14 +98,17 @@ const Overview = () => {
                             </div>
                         </div>
                         <div className="music_item">
-                            <img src="https://bizweb.dktcdn.net/100/248/398/files/alan-walker-dj-min.jpg?v=1514559370965" alt="" />
+                            <img src="https://anh.24h.com.vn/upload/4-2016/images/2016-12-06/1480992562-148098909683484-son-tung.jpg" alt="" />
+                            <div className="box-icon">
+                            <BsFillPlayFill/>
+                            </div>
                             <div>
                                 <h6>Tên bài hát</h6>
                                 <div style={{ fontSize: "0.7rem", marginTop: "-0.2rem" }}>Nghệ sĩ</div>
                             </div>
                             <div>
                                 4:50
-                </div>
+                            </div>
                             <div className="icon_item">
                                 <AiOutlineDownload className="icon" />
                                 <AiFillHeart className="icon" />
@@ -102,29 +116,17 @@ const Overview = () => {
                             </div>
                         </div>
                         <div className="music_item">
-                            <img src="https://bizweb.dktcdn.net/100/248/398/files/alan-walker-dj-min.jpg?v=1514559370965" alt="" />
+                            <img src="https://anh.24h.com.vn/upload/4-2016/images/2016-12-06/1480992562-148098909683484-son-tung.jpg" alt="" />
+                            <div className="box-icon">
+                            <BsFillPlayFill/>
+                            </div>
                             <div>
                                 <h6>Tên bài hát</h6>
                                 <div style={{ fontSize: "0.7rem", marginTop: "-0.2rem" }}>Nghệ sĩ</div>
                             </div>
                             <div>
                                 4:50
-                </div>
-                            <div className="icon_item">
-                                <AiOutlineDownload className="icon" />
-                                <AiFillHeart className="icon" />
-                                <IoMdAdd className="icon" />
                             </div>
-                        </div>
-                        <div className="music_item">
-                            <img src="https://bizweb.dktcdn.net/100/248/398/files/alan-walker-dj-min.jpg?v=1514559370965" alt="" />
-                            <div>
-                                <h6>Tên bài hát</h6>
-                                <div style={{ fontSize: "0.7rem", marginTop: "-0.2rem" }}>Nghệ sĩ</div>
-                            </div>
-                            <div>
-                                4:50
-                </div>
                             <div className="icon_item">
                                 <AiOutlineDownload className="icon" />
                                 <AiFillHeart className="icon" />
@@ -134,7 +136,7 @@ const Overview = () => {
                     </div>
                 </div>
                 <div className="main2">
-                    <h3>Playlist <MdNavigateNext className="icon" /></h3>
+                    <h4 className="title_all">Playlist <MdNavigateNext className="icon" /></h4>
                     <div className="main2_add">
                         <Popup
                             modal
@@ -177,7 +179,7 @@ const Overview = () => {
                     </div>
                 </div>
                 <div className="main3">
-                    <h3>Nhạc sĩ <MdNavigateNext className="icon" /></h3>
+                    <h4 className="title_all">Nhạc sĩ <MdNavigateNext className="icon" /></h4>
                     <div className="main3_nhacsi">
                         <div className="box_nhacsi">
                             <div className="box-img">

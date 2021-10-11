@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react'
-import "./favorite.scss"
 import {Link} from "react-router-dom"
+import { AiOutlineCheck } from 'react-icons/ai';
+import { BiPlayCircle } from 'react-icons/bi';
+import { Button } from '@material-ui/core';
 import {ReactComponent as Header} from './heart.svg'
 import {ReactComponent as Tacgia} from './tacgia.svg'
 
@@ -10,12 +12,11 @@ interface Favorite<T> {
 
 const Favorite: React.FC<Favorite<any>> = ({ ...props }) => {
 
-
     return (
         <div className="container-yeuthich">
             <div className ="title-yeuthich-tt grid-2">
                 <div className="text-title-yeuthich-tt">
-                    <h2 className="color-yeuthich-tt">Yêu Thích</h2>
+                    <h2 className="color-yeuthich-tt title_all">Yêu Thích</h2>
                 </div>
                 <div className="div-svg">
                     <Header className="svg color-yeuthich-tt" />
@@ -79,7 +80,7 @@ const Favorite: React.FC<Favorite<any>> = ({ ...props }) => {
             <br />
             <div className ="title-yeuthich-tt grid-2 mt-2">
                 <div className="text-title-yeuthich-tt">
-                    <h2 className="color-yeuthich-tt">Tác Giả</h2>
+                    <h2 className="color-yeuthich-tt title_all">Tác Giả</h2>
                 </div>
                 <div className="div-svg">
                     <Tacgia className="svg color-yeuthich-tt" />
@@ -87,27 +88,63 @@ const Favorite: React.FC<Favorite<any>> = ({ ...props }) => {
               
             </div>
             <br />
-            <div className="yeuthich-grid-tg ">
-                    <div className="yeuthich-box-tg">
-                        <img className="image-yt-tg" src="https://cdn.baogiaothong.vn/upload/images/2020-3/article_social_image/2020-07-06/tung1-1594000950-width1200height630-1594000959-width1200height630-1594000964-width1200height630.png" alt="" />
-                        <h3 className="yt-name-tg text-yt-tg-white">Sơn tùng MTP</h3>
-                        <p className="yt-luotqtam text-yt-tg-white"> 20 triệu lượt</p>
-                        <button className="button-quan-tam">Đã quan tâm</button>
+            <div className="main3_nhacsi">
+                        <div className="box_nhacsi">
+                            <div className="box-img">
+                                <div className="img-hover">
+                                    <img height={150} src="https://2sao.vietnamnetjsc.vn/images/2021/07/08/16/13/st.jpg" alt="" />
+                                    <BiPlayCircle className="icon" />
+                                </div>
+                            </div>
+                            <h5>Tên nhạc sĩ</h5>
+                            <p>1.3k quan tâm</p>
+                            <Button><AiOutlineCheck /> Đã quan tâm</Button>
+                        </div>
+                        <div className="box_nhacsi">
+                            <div className="box-img">
+                                <div className="img-hover">
+                                    <img height={150} src="https://2sao.vietnamnetjsc.vn/images/2021/07/08/16/13/st.jpg" alt="" />
+                                    <BiPlayCircle className="icon" />
+                                </div>
+                            </div>
+                            <h5>Tên nhạc sĩ</h5>
+                            <p>1.3k quan tâm</p>
+                            <Button><AiOutlineCheck /> Đã quan tâm</Button>
+                        </div>
+                        <div className="box_nhacsi">
+                            <div className="box-img">
+                                <div className="img-hover">
+                                    <img height={150} src="https://2sao.vietnamnetjsc.vn/images/2021/07/08/16/13/st.jpg" alt="" />
+                                    <BiPlayCircle className="icon" />
+                                </div>
+                            </div>
+                            <h5>Tên nhạc sĩ</h5>
+                            <p>1.3k quan tâm</p>
+                            <Button><AiOutlineCheck /> Đã quan tâm</Button>
+                        </div>
+                        <div className="box_nhacsi">
+                            <div className="box-img">
+                                <div className="img-hover">
+                                    <img height={150} src="https://2sao.vietnamnetjsc.vn/images/2021/07/08/16/13/st.jpg" alt="" />
+                                    <BiPlayCircle className="icon" />
+                                </div>
+                            </div>
+                            <h5>Tên nhạc sĩ</h5>
+                            <p>1.3k quan tâm</p>
+                            <Button><AiOutlineCheck /> Đã quan tâm</Button>
+                        </div>
+                        <div className="box_nhacsi">
+                            <div className="box-img">
+                                <div className="img-hover">
+                                    <img height={150} src="https://2sao.vietnamnetjsc.vn/images/2021/07/08/16/13/st.jpg" alt="" />
+                                    <BiPlayCircle className="icon" />
+                                </div>
+                            </div>
+                            <h5>Tên nhạc sĩ</h5>
+                            <p>1.3k quan tâm</p>
+                            <Button><AiOutlineCheck /> Đã quan tâm</Button>
+                        </div>
                     </div>
-                    <div className="yeuthich-box-tg">
-                        <img className="image-yt-tg" src="https://cdn.baogiaothong.vn/upload/images/2020-3/article_social_image/2020-07-06/tung1-1594000950-width1200height630-1594000959-width1200height630-1594000964-width1200height630.png" alt="" />
-                        <h3 className="yt-name-tg text-yt-tg-white">Sơn tùng MTP</h3>
-                        <p className="yt-luotqtam text-yt-tg-white"> 20 triệu lượt</p>
-                        <button className="button-quan-tam">Đã quan tâm</button>
-                    </div>
-                    <div className="yeuthich-box-tg">
-                        <img className="image-yt-tg" src="https://cdn.baogiaothong.vn/upload/images/2020-3/article_social_image/2020-07-06/tung1-1594000950-width1200height630-1594000959-width1200height630-1594000964-width1200height630.png" alt="" />
-                        <h3 className="yt-name-tg text-yt-tg-white">Sơn tùng MTP</h3>
-                        <p className="yt-luotqtam text-yt-tg-white"> 20 triệu lượt</p>
-                        <button className="button-quan-tam">Đã quan tâm</button>
-                    </div>
-
-            </div>
         </div>
     )
 }

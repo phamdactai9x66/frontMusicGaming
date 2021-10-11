@@ -1,79 +1,33 @@
 .container-chart{
     margin:  0 40px;
     margin-bottom: 200px;
-    .gird-2-chart{
+    h4 {
+      margin-top: 2rem;
+      color: #a8eff9;
+    }
+    .list-box-musicChart {
+      overflow: auto;
+      height: 17rem;
+      padding-right: 0.5rem;
+      .box-chart { 
         display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 25px;
-        .item-song {
-        padding: 5px;
-        border: 0.5px solid rgb(76, 195, 241);
-        box-shadow: 0 3px 7px rgba(0, 0, 0, 0.795);
-           border-radius: 0.3rem;
-           cursor: grab;
-        display: flex;
-        margin-top: 20px;
-        .song-desc {
-          width: 100%;
-          display: flex;
-          // height: auto;
-          .img {
-            width: 70px;
-            height: 50px;
-            object-fit: cover;
-            overflow: hidden;
-            img {
-              width: 100px;
-            }
-          }
-          .desc {
-            margin-top: -5px;
-            margin-left: 10px;
-            line-height: 20px;
-            color: white;
-            .name-song {
-              display: block;
-              font-size: 16px;
-              font-weight: 500;
-            }
-            .name-artist {
-              display: block;
-              font-size: 14px;
-              margin-top: 5px;
-             
-            }
-          }
+        grid-template-columns: 2.5rem 4rem 50% 1fr 0.4fr;
+        height: 5rem;
+        %handel_time_icon {
+          color: #fff;
+          line-height: 5rem;
         }
-        .song-time {
-          width: 100px;
-          // height: auto;
+        .time_txt {
+          @extend %handel_time_icon;
         }
-        .list-box {
-          width: 130px;
-          ul {
-            float: right;
-            padding: 0 3px;
-            // display: inline-block;
-            align-items: center;
-         
-            border-radius: 3px;
-            li {
-              display: inline-block;
-              list-style: none;
-              padding: 0 5px;
-            }
-            &::before {
-              content: "";
-              clear: both;
-            }
+        .icon_item {
+          @extend %handel_time_icon;
+          .icon {
+            margin-right: 1rem;
           }
-
-          // height: auto;
         }
       }
-   
     }
-    
     .quantam{
         margin-top: 30px;
         .quantam-h4{
@@ -81,36 +35,37 @@
           margin-bottom: 20px;
         }
       }
-      .grid-box-playlist{
-       display: grid;
-       grid-template-columns: 1fr 1fr 1fr 1fr;
-       gap: 25px;
-       .box-playlisst{
-         img{
-           width: 100%;
-           height: 11.5rem;
-           box-shadow: 0 3px 7px rgba(0, 0, 0, 0.795);
-           border-radius: 0.3rem;
-           cursor: grab;
-         }
-         p{
-           margin-top: 5px;
-           color: white;
-         }
-       }
-         }
+         .chart {
+          box-shadow: 0 3px 7px rgba(0, 0, 0, 0.795);
+          margin-top: 1.4rem;
+          text {
+              fill: rgb(233, 232, 232) !important;
+          }
+          flex-grow: 1;
+          .chartMusic {
+              width: 99%;
+              height: 25rem;
+          }
+      }
 }
-p{color: white;}
-.chart{
-  width: 100%;
-    height: 400px;
-    margin-top: 30px;
-    box-shadow: 0 3px 7px rgba(0, 0, 0, 0.795);
-           border-radius: 0.3rem;
-           cursor: grab;
-           .chart_user{
-             padding: 10px;
-            width: 100%;
-            height: 400px;
-           }
+@media (min-width: 768px) and (max-width: 1024px) {
+  .container-chart{
+    .list-box-musicChart {
+      .box-chart { 
+        display: grid;
+        grid-template-columns: 2.5rem 4rem 40% 1fr 0.5fr;
+      }
+    }
+  }
 }
+@media only screen and (max-width: 700px) {
+  .container-chart{
+    .list-box-musicChart {
+      .box-chart { 
+        display: grid;
+        grid-template-columns: 2.5rem 4rem 25% 3.3rem 7rem;
+      }
+    }
+  }
+}
+

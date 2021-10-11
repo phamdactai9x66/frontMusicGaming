@@ -3,43 +3,4 @@
     h3 {
         color:  rgb(231, 231, 231);
     }
-    .main1 {
-        .box-music {
-            overflow: auto;
-            height: 305px;
-            
-            .music_item {
-                box-shadow: 0 3px 7px rgba(0, 0, 0, 0.795);
-                border-radius: 0.3rem;
-                cursor: grab;
-                h3 {
-                    margin-top: 0.8rem;
-                    margin-left: 0.5rem;
-                }
-                box-shadow: 0 3px 5px rgba(0, 0, 0, 0.452);
-                margin-bottom: 1rem;
-                margin-right: 0.5rem;
-                img {
-                    cursor: pointer;
-                    width: 60px;
-                    height: 60px;
-                }
-                border-radius: 0.3rem;
-                color:  rgb(231, 231, 231);
-                border: 0.1rem solid rgb(43, 147, 165);
-                background: #122244;
-                display: grid;
-                grid-template-columns: 3rem 4.5rem 2fr 1fr 5rem;
-                transition: 0.3s;
-                &:hover {
-                    background: #253d72;
-                }
-                div .icon {
-                    margin-left: 0.4rem;
-                    font-size: 1.1rem;
-                    cursor: pointer;
-                }
-            }
-        }
-    }
 }

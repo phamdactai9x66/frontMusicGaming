@@ -2,6 +2,7 @@
 import React from 'react'
 import { BiCircle, BiSearch, BiUpload, BiUserCircle } from 'react-icons/bi';
 import { RiAdminFill } from 'react-icons/ri';
+import { IoMdArrowDropdown } from 'react-icons/io';
 import { FaSignInAlt } from 'react-icons/fa';
 import { Select, MenuItem } from "@mui/material"
 import { Link, RouteChildrenProps, withRouter } from "react-router-dom";
@@ -35,6 +36,7 @@ const Header: React.FC<Header<any>> = ({ ...props }) => {
           </div>
 
       </Select>
+      <IoMdArrowDropdown className="drop_icon"/>
             </div>
         </div>
     )

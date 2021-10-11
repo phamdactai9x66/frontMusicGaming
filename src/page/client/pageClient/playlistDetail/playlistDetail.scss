@@ -1,20 +1,24 @@
 .container-playlist {
   color: white;
-  margin: 0 40px;
-  margin-bottom: 200px;
+  margin: 2rem;
   .playlist-content {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 50px;
+    grid-template-columns: 35% 65%;
+    grid-gap: 1rem;
     .col-content {
       text-align: center;
       .img {
-        width: 100%;
-        height: 400px;
-        object-fit: cover;
         overflow: hidden;
+        border-radius: 0.4rem;
         img {
+          cursor: pointer;
           width: 100%;
+          &:hover {
+            border-radius: 0.4rem;
+            transform: scale(1.1);
+            transition: 0.5s;
+            filter: brightness(50%);
+          }
         }
       }
       .name {
@@ -42,74 +46,7 @@
         }
       }
     }
-    .col-desc {
-      .desc-h {
-        font-size: 20px;
-        font-weight: bold;
-      }
-      .list-song {
-        .item-song {
-          padding: 5px;
-          border: 2px solid rgb(76, 195, 241);
-          border-radius: 4px;
-          display: flex;
-          margin-top: 20px;
-          .song-desc {
-            width: 100%;
-            display: flex;
-            // height: auto;
-            .img {
-              width: 70px;
-              height: 50px;
-              object-fit: cover;
-              overflow: hidden;
-              img {
-                width: 100px;
-              }
-            }
-            .desc {
-              margin-top: -5px;
-              margin-left: 10px;
-              line-height: 20px;
-              .name-song {
-                display: block;
-                font-size: 16px;
-                font-weight: 500;
-              }
-              .name-artist {
-                display: block;
-                font-size: 14px;
-                margin-top: 5px;
-              }
-            }
-          }
-          .song-time {
-            width: 100px;
-            // height: auto;
-          }
-          .list-box {
-            width: 130px;
-            ul {
-              float: right;
-              padding: 0 3px;
-              // display: inline-block;
-              align-items: center;
-           
-              border-radius: 3px;
-              li {
-                display: inline-block;
-                list-style: none;
-                padding: 0 5px;
-              }
-              &::before {
-                content: "";
-                clear: both;
-              }
-            }
-          }
-        }
-      }
-    }
+  // code here 
    
   } .quantam{
       .quantam-h4{
@@ -139,11 +76,10 @@
       margin: 0 20px;
       .playlist-content{
         .col-content{
-          .img{
             img{
               margin-top: 15px;
             }
-          }.name{
+          .name{
             margin-top: -150px;
           }
         }

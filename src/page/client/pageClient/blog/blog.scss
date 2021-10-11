@@ -42,7 +42,7 @@
                      height: 13.9rem;
                     box-shadow: 0 3px 7px rgba(0, 0, 0, 0.795);
                     border-radius: 0.3rem;
-                    cursor: grab;
+                    cursor: pointer;
                  }
                 
              }.title-blog{
@@ -55,26 +55,18 @@
                  .day{
                      align-items: flex-end;
                  }
+                 .desc {
+                    width: 350px;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    line-height: 25px;
+                    -webkit-line-clamp: 3;
+                    height: 75px;
+                    display: -webkit-box;
+                    -webkit-box-orient: vertical;
+                 }
              }
             }
-        //      .box:hover{
-        //      border:1px solid #a8eff9;
-        //      box-shadow:  0 0 5px #dbf5ff; border-radius: 4px;
-        //      .blog-image{
-        //         img{
-        //             border:1px solid #a8eff9;
-        //             box-shadow:  0 0 5px #dbf5ff;
-                   
-        //         }.title-blog{
-        //             .color{
-        //                 color: #0e192a;
-        //             }
-        //         }}
-        //  } 
-        //   .box-top{
-        //     margin-top: 30px;
-        // }
-            
          } .blog-2{
              width: 100%;
              margin-top: 10px;
@@ -97,7 +89,7 @@
                     width: 100%;
                     box-shadow: 0 3px 7px rgba(0, 0, 0, 0.795);
                     border-radius: 0.3rem;
-                    cursor: grab;
+                    cursor: pointer;
                 }
             }
              .box-1,.box-2,.box-3{
@@ -108,7 +100,7 @@
              margin-top: 30px;
              box-shadow: 0 3px 7px rgba(0, 0, 0, 0.795);
              border-radius: 0.3rem;
-             cursor: grab;
+             cursor: pointer;
              h4{
                  border-bottom: 1px solid white;
                  padding-bottom: 10px;
@@ -123,31 +115,6 @@
      }
      .color{
          color: white;
-     }.blog-buttom{
-         margin-top: 70px;
-        display: flex;
-         text-align: center;
-         .blog-flex-buttom{
-             display: flex;
-           justify-items: center;
-           margin: auto;
-           .page{
-               padding: 2px 15px;
-               background: white;
-               align-items: center;
-               border: 0.1px solid gray;
-             color: black;
-               margin-left: 5px;
-               margin-right: 5px;
-               box-shadow: 0 3px 7px rgba(0, 0, 0, 0.795);
-               border-radius: 0.3rem;
-               cursor: grab;
-           }.left{
-               margin-right: 5px;
-           }.right{
-               margin-left: 5px;
-           }
-         }
      }
 }
 @media screen and(min-width:768px) and  (max-width:1024px) {
