@@ -24,7 +24,7 @@
          .flex-blog{
              width: 100%;
             
-             .box{
+             .box_blog{
                  margin-top: 10px;
                 padding: 5px;
                 display: grid;
@@ -92,7 +92,7 @@
                     cursor: pointer;
                 }
             }
-             .box-1,.box-2,.box-3{
+             .box_blog-1,.box_blog-2,.box_blog-3{
              padding: 20px;
              display: flex;
              flex-direction: column;
@@ -123,7 +123,7 @@
         .blog-main{
             gap: 10px;
            .flex-blog{
-                 .box {
+                 .box_blog {
                      border-bottom: 1px solid white;
                      padding-bottom: 10px;
                      gap: 10px;
@@ -154,7 +154,7 @@
             display: grid;
             grid-template-columns: 1fr;
             .flex-blog{
-                .box {
+                .box_blog {
                     border-radius: 5px;
                     padding: 10px;
                   display: flex;
