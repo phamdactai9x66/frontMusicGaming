@@ -2,10 +2,14 @@ import React, { useEffect } from 'react'
 import {Link} from "react-router-dom"
 import { AiOutlineCheck } from 'react-icons/ai';
 import { BiPlayCircle } from 'react-icons/bi';
-import { Button } from '@material-ui/core';
+import { Button } from '@mui/material'
 import {ReactComponent as Header} from './heart.svg'
 import {ReactComponent as Tacgia} from './tacgia.svg'
-
+import { AiOutlineDownload, AiOutlineLink } from 'react-icons/ai';
+import { BiHeart } from 'react-icons/bi';
+import { FiPlayCircle } from 'react-icons/fi';
+import { HiOutlineDotsCircleHorizontal } from 'react-icons/hi';
+import { Select, MenuItem } from "@mui/material";
 interface Favorite<T> {
 
 }
@@ -24,56 +28,48 @@ const Favorite: React.FC<Favorite<any>> = ({ ...props }) => {
             </div>
             <div className="yeuthich-tt-main">
                 <div className="grid-4-yeuthich-tt">
-                    <div className="box-yeuthich-tt border-box">
-                        <Link className="link-yeuthich-tt" to="">
-                            <img className="yeuthich-width-heght-image" src="https://i.pinimg.com/originals/d6/d8/dc/d6d8dc47b9e441a131df8e250d007015.jpg" alt="ảnh cùa tóp thịnh hành" />
-                        <p className="text-box-yeuthich-tt">NHẠC TRẺ REMIX 2021 HAY NHẤT HIỆN NAY </p>   
-                        </Link>
-                    </div>
-                    <div className="box-yeuthich-tt border-box">
-                        <Link className="link-yeuthich-tt" to="">
-                            <img className="yeuthich-width-heght-image" src="https://i.pinimg.com/originals/d6/d8/dc/d6d8dc47b9e441a131df8e250d007015.jpg" alt="ảnh cùa tóp thịnh hành" />
-                        <p className="text-box-yeuthich-tt">NHẠC TRẺ REMIX 2021 HAY NHẤT HIỆN NAY </p>   
-                        </Link>
-                    </div>
-                    <div className="box-yeuthich-tt border-box">
-                        <Link className="link-yeuthich-tt" to="">
-                            <img className="yeuthich-width-heght-image" src="https://i.pinimg.com/originals/d6/d8/dc/d6d8dc47b9e441a131df8e250d007015.jpg" alt="ảnh cùa tóp thịnh hành" />
-                        <p className="text-box-yeuthich-tt">NHẠC TRẺ REMIX 2021 HAY NHẤT HIỆN NAY </p>   
-                        </Link>
-                    </div>
-                    <div className="box-yeuthich-tt border-box">
-                        <Link className="link-yeuthich-tt" to="">
-                            <img className="yeuthich-width-heght-image" src="https://i.pinimg.com/originals/d6/d8/dc/d6d8dc47b9e441a131df8e250d007015.jpg" alt="ảnh cùa tóp thịnh hành" />
-                        <p className="text-box-yeuthich-tt">NHẠC TRẺ REMIX 2021 HAY NHẤT HIỆN NAY </p>   
-                        </Link>
-                    </div>
-                    <div className="box-yeuthich-tt border-box">
-                        <Link className="link-yeuthich-tt" to="">
-                            <img className="yeuthich-width-heght-image" src="https://i.pinimg.com/originals/d6/d8/dc/d6d8dc47b9e441a131df8e250d007015.jpg" alt="ảnh cùa tóp thịnh hành" />
-                        <p className="text-box-yeuthich-tt">NHẠC TRẺ REMIX 2021 HAY NHẤT HIỆN NAY </p>   
-                        </Link>
-                    </div>
-                    <div className="box-yeuthich-tt border-box">
-                        <Link className="link-yeuthich-tt" to="">
-                            <img className="yeuthich-width-heght-image" src="https://i.pinimg.com/originals/d6/d8/dc/d6d8dc47b9e441a131df8e250d007015.jpg" alt="ảnh cùa tóp thịnh hành" />
-                        <p className="text-box-yeuthich-tt">NHẠC TRẺ REMIX 2021 HAY NHẤT HIỆN NAY </p>   
-                        </Link>
-                    </div>
-                    <div className="box-yeuthich-tt border-box">
-                        <Link className="link-yeuthich-tt" to="">
-                            <img className="yeuthich-width-heght-image" src="https://i.pinimg.com/originals/d6/d8/dc/d6d8dc47b9e441a131df8e250d007015.jpg" alt="ảnh cùa tóp thịnh hành" />
-                        <p className="text-box-yeuthich-tt">NHẠC TRẺ REMIX 2021 HAY NHẤT HIỆN NAY </p>   
-                        </Link>
-                    </div>
-                    <div className="box-yeuthich-tt border-box">
-                        <Link className="link-yeuthich-tt" to="">
-                            <img className="yeuthich-width-heght-image" src="https://i.pinimg.com/originals/d6/d8/dc/d6d8dc47b9e441a131df8e250d007015.jpg" alt="ảnh cùa tóp thịnh hành" />
-                        <p className="text-box-yeuthich-tt">NHẠC TRẺ REMIX 2021 HAY NHẤT HIỆN NAY </p>   
-                        </Link>
-                    </div>
-                  
-                
+                <div className="box">
+            <figure>
+              <img src="https://i.ytimg.com/vi/Yije8O6eGn8/maxresdefault.jpg" alt="" />
+            </figure>
+            <div className="icon-box">
+              <div>
+                <BiHeart className="icon" />
+                <FiPlayCircle className="icon" />
+                <HiOutlineDotsCircleHorizontal className="icon" />
+              </div>
+            </div>
+            <Select className="option">
+              <MenuItem>
+                <AiOutlineDownload /> Tải xuống
+                                    </MenuItem>
+              <MenuItem>
+                <AiOutlineLink /> Sao chép link
+                                    </MenuItem>
+            </Select>
+            <h6>Nhạc trẻ remix</h6>
+          </div>
+          <div className="box">
+            <figure>
+              <img src="https://i.ytimg.com/vi/Yije8O6eGn8/maxresdefault.jpg" alt="" />
+            </figure>
+            <div className="icon-box">
+              <div>
+                <BiHeart className="icon" />
+                <FiPlayCircle className="icon" />
+                <HiOutlineDotsCircleHorizontal className="icon" />
+              </div>
+            </div>
+            <Select className="option">
+              <MenuItem>
+                <AiOutlineDownload /> Tải xuống
+                                    </MenuItem>
+              <MenuItem>
+                <AiOutlineLink /> Sao chép link
+                                    </MenuItem>
+            </Select>
+            <h6>Nhạc trẻ remix</h6>
+          </div>
                 </div>
                 
             </div>

@@ -46,36 +46,6 @@
             display: grid;
             grid-template-columns: 1fr 1fr 1fr 1fr;
             gap: 25px;
-            .box-top-tt {
-                .link-top-tt {
-                    text-decoration: none;
-                    color: white;
-                    .top-width-heght-image {
-                        width: 100%;
-                        height: 11.5rem;
-                        object-fit: cover;
-                        margin-bottom: 5px;
-                        box-shadow: 0 3px 7px rgba(0, 0, 0, 0.795);
-                        border-radius: 0.3rem;
-                        cursor: pointer;
-                    }
-                    .text-box-top-tt {
-                        color: white;
-                        margin-top: 5px;
-                    }
-                }
-            }
-            .box-top-tt:hover {
-                .top-width-heght-image {
-                    border: 2px solid #dbf5ff;
-                    border-radius: 0.3rem;
-                    box-shadow: 0 0 8px #dbf5ff;
-                }
-                .text-box-top-tt {
-                    color: #29e5ff;
-                    margin-top: 5px;
-                }
-            }
         }
     }
     //See All---------------

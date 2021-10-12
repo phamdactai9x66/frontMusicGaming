@@ -22,7 +22,7 @@ const Blog: React.FC<blog<any>> = ({...props }) => {
             </div>
             <div className="blog-main">
                 <div className="flex-blog">
-                    <div className="box ">
+                    <div className="box_blog box-top ">
                         <div className="blog-image">
                         <h4  className="color text-blog-none">Top 100 Bài Hát</h4>
                         <Link to="/blogDetail">
@@ -35,7 +35,7 @@ const Blog: React.FC<blog<any>> = ({...props }) => {
                             <p  className="color day">24/09/2021</p>
                         </div>   
                     </div>
-                    <div className="box box-top">
+                    <div className="box_blog box-top">
                         <div className="blog-image">
                         <h4  className="color text-blog-none">Top 100 Bài Hát</h4>
                         <img src="https://media.tinmoi.vn/resize_354x213/upload/honghanh/2021/04/05/cung-xuat-hien-tai-phim-truong-son-tung-va-jack-co-dang-ap-u-cuoc-chien-moi1617617664.jpg" alt="" />
@@ -46,7 +46,7 @@ const Blog: React.FC<blog<any>> = ({...props }) => {
                             <p  className="color day">24/09/2021</p>
                         </div>   
                     </div>
-                    <div className="box box-top">
+                    <div className="box_blog box-top">
                         <div className="blog-image">
                         <h4  className="color text-blog-none">Top 100 Bài Hát</h4>
                         <img src="https://media.tinmoi.vn/resize_354x213/upload/honghanh/2021/04/05/cung-xuat-hien-tai-phim-truong-son-tung-va-jack-co-dang-ap-u-cuoc-chien-moi1617617664.jpg" alt="" />
@@ -64,19 +64,19 @@ const Blog: React.FC<blog<any>> = ({...props }) => {
                         <input placeholder="Search" type="text" />
                        
                     </div>
-                    <div className="box-1">
+                    <div className="box_blog-1">
                         <h4 className="color">Bài viết gần đây</h4>
                         <Link className="title-blog-name color" to="">Top 100 Bài Hát</Link>
                         <Link className="title-blog-name color" to="">Top 100 Bài Hát</Link>
                         <Link className="title-blog-name color" to="">Top 100 Bài Hát</Link>
                     </div>
-                    <div className="box-2">
+                    <div className="box_blog-2">
                         <h4 className="color"> Bình luận gần đây</h4>
                         <Link className="title-blog-name color"  to="">Top 100 Bài Hát</Link>
                         <Link className="title-blog-name color" to="">Top 100 Bài Hát</Link>
                         <Link className="title-blog-name color" to="">Top 100 Bài Hát</Link>
                     </div>
-                    <div className="box-3">
+                    <div className="box_blog-3">
                         <h4 className="color">Danh Mục</h4>
                         <Link className="title-blog-name color" to="">Top 100 Bài Hát</Link>
                         <Link className="title-blog-name color" to="">Top 100 Bài Hát </Link>

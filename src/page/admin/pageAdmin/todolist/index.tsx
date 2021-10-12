@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Todolist from "./page/todolist";
-import AddTodolist from "./page/addMusic";
+import AddTodolist from "./page/addTodo";
 import UpdateTodoList from "./page/update";
 export const page = {
     todolist: 'todolist',

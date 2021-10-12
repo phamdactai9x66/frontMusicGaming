@@ -1,8 +1,13 @@
 import React, { useEffect } from 'react'
-import { AiOutlineDownload, AiFillHeart } from 'react-icons/ai';
+import { Link } from "react-router-dom"
 import { IoMdAdd } from 'react-icons/io';
 import { BsFillPlayFill } from 'react-icons/bs';
-import { Link } from "react-router-dom"
+import { AiOutlineDownload, AiOutlineLink,AiFillHeart } from 'react-icons/ai';
+import { BiHeart } from 'react-icons/bi';
+import { FiPlayCircle } from 'react-icons/fi';
+import { HiOutlineDotsCircleHorizontal } from 'react-icons/hi';
+import { Select, MenuItem } from "@mui/material";
+
 
 interface PlaylistDetail<T> {
 
@@ -132,30 +137,48 @@ const PlaylistDetail: React.FC<PlaylistDetail<any>> = ({ ...props }) => {
                         <h4>Có thể quan tâm</h4>
                     </div>
                     <div className="grid-box-playlist">
-                        <div className="box-playlisst">
-                            <img src="https://media.istockphoto.com/photos/guitar-at-the-concert-picture-id591846326?s=612x612" alt="" />
-                            <p>
-                                Tạo ra hàng loạt font chữ unicode độc đáo để sao chép và dán lên Facebook, Twitter, vân vân.
-                            </p>
-                        </div>
-                        <div className="box-playlisst">
-                            <img src="https://media.istockphoto.com/photos/guitar-at-the-concert-picture-id591846326?s=612x612" alt="" />
-                            <p>
-                                Tạo ra hàng loạt font chữ unicode độc đáo để sao chép và dán lên Facebook, Twitter, vân vân.
-                            </p>
-                        </div>
-                        <div className="box-playlisst">
-                            <img src="https://media.istockphoto.com/photos/guitar-at-the-concert-picture-id591846326?s=612x612" alt="" />
-                            <p>
-                                Tạo ra hàng loạt font chữ unicode độc đáo để sao chép và dán lên Facebook, Twitter, vân vân.
-                            </p>
-                        </div>
-                        <div className="box-playlisst">
-                            <img src="https://media.istockphoto.com/photos/guitar-at-the-concert-picture-id591846326?s=612x612" alt="" />
-                            <p>
-                                Tạo ra hàng loạt font chữ unicode độc đáo để sao chép và dán lên Facebook, Twitter, vân vân.
-                            </p>
-                        </div>
+                    <div className="box">
+            <figure>
+              <img src="https://i.ytimg.com/vi/Yije8O6eGn8/maxresdefault.jpg" alt="" />
+            </figure>
+            <div className="icon-box">
+              <div>
+                <BiHeart className="icon" />
+                <FiPlayCircle className="icon" />
+                <HiOutlineDotsCircleHorizontal className="icon" />
+              </div>
+            </div>
+            <Select className="option">
+              <MenuItem>
+                <AiOutlineDownload /> Tải xuống
+                                    </MenuItem>
+              <MenuItem>
+                <AiOutlineLink /> Sao chép link
+                                    </MenuItem>
+            </Select>
+            <h6>Nhạc trẻ remix</h6>
+          </div>
+          <div className="box">
+            <figure>
+              <img src="https://i.ytimg.com/vi/Yije8O6eGn8/maxresdefault.jpg" alt="" />
+            </figure>
+            <div className="icon-box">
+              <div>
+                <BiHeart className="icon" />
+                <FiPlayCircle className="icon" />
+                <HiOutlineDotsCircleHorizontal className="icon" />
+              </div>
+            </div>
+            <Select className="option">
+              <MenuItem>
+                <AiOutlineDownload /> Tải xuống
+                                    </MenuItem>
+              <MenuItem>
+                <AiOutlineLink /> Sao chép link
+                                    </MenuItem>
+            </Select>
+            <h6>Nhạc trẻ remix</h6>
+          </div>
                     </div>
                 </div>
             </div>
