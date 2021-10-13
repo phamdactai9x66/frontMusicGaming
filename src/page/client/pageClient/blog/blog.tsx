@@ -2,7 +2,9 @@ import React, { useEffect } from 'react'
 import {Link} from "react-router-dom"
 import { Pagination } from "@mui/material"
 import { BiCircle, BiSearch, BiUpload, BiUserCircle } from 'react-icons/bi';
-
+import ListBlog from './component/ListBlog';
+import ListCategoryBlog from './component/listCategoryBlog';
+import PostNew from './component/PostNew';
 interface blog<T> {
 
 }
@@ -22,6 +24,7 @@ const Blog: React.FC<blog<any>> = ({...props }) => {
             </div>
             <div className="blog-main">
                 <div className="flex-blog">
+                  <ListBlog />
                     <div className="box_blog box-top ">
                         <div className="blog-image">
                         <h4  className="color text-blog-none">Top 100 Bài Hát</h4>
@@ -61,9 +64,11 @@ const Blog: React.FC<blog<any>> = ({...props }) => {
                 <div className="blog-2">
                     <div className="search" >
                         <BiSearch className="icon"/>
-                        <input placeholder="Search" type="text" />
+                        <input placeholder="Tìm kiếm" type="text" />
                        
                     </div>
+                  <ListCategoryBlog />
+                    <div className="box-2">
                     <div className="box_blog-1">
                         <h4 className="color">Bài viết gần đây</h4>
                         <Link className="title-blog-name color" to="">Top 100 Bài Hát</Link>
@@ -76,6 +81,8 @@ const Blog: React.FC<blog<any>> = ({...props }) => {
                         <Link className="title-blog-name color" to="">Top 100 Bài Hát</Link>
                         <Link className="title-blog-name color" to="">Top 100 Bài Hát</Link>
                     </div>
+                 <PostNew />
+               
                     <div className="box_blog-3">
                         <h4 className="color">Danh Mục</h4>
                         <Link className="title-blog-name color" to="">Top 100 Bài Hát</Link>
@@ -90,16 +97,6 @@ const Blog: React.FC<blog<any>> = ({...props }) => {
             </div>
         
         </div>
-
-
-
-
-
-
-
-
-
-
     )
 }
 

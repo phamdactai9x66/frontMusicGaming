@@ -6,20 +6,21 @@
         margin-bottom: 15px;
          .color-blog{
             color: #a8eff9;
+            font-size: 1rem;
          }
      }.grid-2{
          display: grid;
-         grid-template-columns: 30% 70%;
+         grid-template-columns: 18% 1fr;
      }.div-hr{
-        color: #a8eff9;
-        margin-top: 5px;
+        color: #2ce6ff;
+        margin-top: -0.3rem;
             hr{
                 padding: 2px 0;
                  background: #a8eff9;
             }
      }.blog-main{
          display: grid;
-         grid-template-columns: 70% 1fr;
+         grid-template-columns: 74% 1fr;
          gap: 25px;
          .flex-blog{
              width: 100%;
@@ -28,7 +29,7 @@
                  margin-top: 10px;
                 padding: 5px;
                 display: grid;
-                grid-template-columns: 45% 1fr;
+                grid-template-columns: 25% 1fr;
                 gap: 25px;
                     .blog-image{
                     width: 100%;
@@ -39,7 +40,7 @@
                     }
                      img{
                         width: 100%;
-                     height: 13.9rem;
+                     height: 9rem;
                     box-shadow: 0 3px 7px rgba(0, 0, 0, 0.795);
                     border-radius: 0.3rem;
                     cursor: pointer;
@@ -50,13 +51,23 @@
                  display: flex;
                  flex-direction: column;
                  h4{
-                     margin-top: -28px ;
+                     margin-top: -25px ;
+                     font-size: 0.9rem;
                  }
                  .day{
                      align-items: flex-end;
+                     font-size: 0.7rem;
+                     margin-bottom: 0.5rem;
+                     color: #bebebe;
+                     .fa-clock{
+                        width: 0.9rem;
+                        height: 0.9rem;
+                        margin-right: 0.5rem;
+                        color: #6b6bff;
+                     }
                  }
                  .desc {
-                    width: 350px;
+                   
                     overflow: hidden;
                     text-overflow: ellipsis;
                     line-height: 25px;
@@ -64,6 +75,7 @@
                     height: 75px;
                     display: -webkit-box;
                     -webkit-box-orient: vertical;
+                    font-size: 0.8rem;
                  }
              }
             }
@@ -83,7 +95,6 @@
                     padding-left: 9px;
                 }
                 input {
-                    border-radius: 4px;
                     padding: 0.5rem 0.5rem 0.5rem 3rem;
                     border: none;
                     width: 100%;
@@ -104,9 +115,11 @@
              h4{
                  border-bottom: 1px solid white;
                  padding-bottom: 10px;
+                 font-size: 1rem;
              }.title-blog-name{
                  text-decoration: none;
                  margin-top: 10px;
+                 font-size: 0.9rem;
              }
              
          }
@@ -115,6 +128,7 @@
      }
      .color{
          color: white;
+         
      }
 }
 @media screen and(min-width:768px) and  (max-width:1024px) {
