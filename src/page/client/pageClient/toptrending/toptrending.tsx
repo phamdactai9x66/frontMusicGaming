@@ -1,7 +1,11 @@
 import React, { useEffect } from 'react'
-import {Link} from "react-router-dom"
-import {ReactComponent as Play} from './play.svg'
-import { Button } from '@mui/material'
+import { Link } from "react-router-dom"
+import { ReactComponent as Play } from './play.svg'
+import { AiOutlineDownload, AiOutlineLink } from 'react-icons/ai';
+import { BiHeart } from 'react-icons/bi';
+import { FiPlayCircle } from 'react-icons/fi';
+import { HiOutlineDotsCircleHorizontal } from 'react-icons/hi';
+import { Select, MenuItem } from "@mui/material";
 interface Toptrending<T> {
 
 }
@@ -20,57 +24,177 @@ const Toptrending: React.FC<Toptrending<any>> = ({ ...props }) => {
                 </div>
             </div>
             <div className='top-tt-main'>
-                        <input type='checkbox' id='show-all' />
-                        <label htmlFor='show-all' className='text-show'>Xem Thêm</label>
-                        <label htmlFor='show-all' className='text-hide'>Ẩn bớt</label>
-                        <div className="grid-4-top-tt">
-                    <div className="box-top-tt border-box">
-                        <Link className="link-top-tt" to="/playlistDetail">
-                            <img className="top-width-heght-image" src="https://i.pinimg.com/originals/d6/d8/dc/d6d8dc47b9e441a131df8e250d007015.jpg" alt="ảnh cùa tóp thịnh hành" />
-                        <p className="text-box-top-tt">NHẠC TRẺ REMIX 2021 HAY NHẤT HIỆN NAY </p>   
-                        </Link>
+                <input type='checkbox' id='show-all' />
+                <label htmlFor='show-all' className='text-show'>Xem Thêm</label>
+                <label htmlFor='show-all' className='text-hide'>Ẩn bớt</label>
+                <div className="grid-4-top-tt">
+                <div className="box">
+                        <figure>
+                            <img src="https://i.ytimg.com/vi/Yije8O6eGn8/maxresdefault.jpg" alt="" />
+                        </figure>
+                        <div className="icon-box">
+                            <div>
+                                <BiHeart className="icon" />
+                                <FiPlayCircle className="icon" />
+                                <HiOutlineDotsCircleHorizontal className="icon" />
+                            </div>
+                        </div>
+                        <Select className="option">
+                            <MenuItem>
+                                <AiOutlineDownload /> Tải xuống
+                                    </MenuItem>
+                            <MenuItem>
+                                <AiOutlineLink /> Sao chép link
+                                    </MenuItem>
+                        </Select>
+                        <h6>Nhạc trẻ remix</h6>
                     </div>
-                    <div className="box-top-tt border-box">
-                        <Link className="link-top-tt" to="/playlistDetail">
-                            <img className="top-width-heght-image" src="https://i.pinimg.com/originals/d6/d8/dc/d6d8dc47b9e441a131df8e250d007015.jpg" alt="ảnh cùa tóp thịnh hành" />
-                        <p className="text-box-top-tt">NHẠC TRẺ REMIX 2021 HAY NHẤT HIỆN NAY </p>   
-                        </Link>
+                    <div className="box">
+                        <figure>
+                            <img src="https://i.ytimg.com/vi/Yije8O6eGn8/maxresdefault.jpg" alt="" />
+                        </figure>
+                        <div className="icon-box">
+                            <div>
+                                <BiHeart className="icon" />
+                                <FiPlayCircle className="icon" />
+                                <HiOutlineDotsCircleHorizontal className="icon" />
+                            </div>
+                        </div>
+                        <Select className="option">
+                            <MenuItem>
+                                <AiOutlineDownload /> Tải xuống
+                                    </MenuItem>
+                            <MenuItem>
+                                <AiOutlineLink /> Sao chép link
+                                    </MenuItem>
+                        </Select>
+                        <h6>Nhạc trẻ remix</h6>
                     </div>
-                    <div className="box-top-tt border-box">
-                        <Link className="link-top-tt" to="/playlistDetail">
-                            <img className="top-width-heght-image" src="https://i.pinimg.com/originals/d6/d8/dc/d6d8dc47b9e441a131df8e250d007015.jpg" alt="ảnh cùa tóp thịnh hành" />
-                        <p className="text-box-top-tt">NHẠC TRẺ REMIX 2021 HAY NHẤT HIỆN NAY </p>   
-                        </Link>
+                    <div className="box">
+                        <figure>
+                            <img src="https://i.ytimg.com/vi/Yije8O6eGn8/maxresdefault.jpg" alt="" />
+                        </figure>
+                        <div className="icon-box">
+                            <div>
+                                <BiHeart className="icon" />
+                                <FiPlayCircle className="icon" />
+                                <HiOutlineDotsCircleHorizontal className="icon" />
+                            </div>
+                        </div>
+                        <Select className="option">
+                            <MenuItem>
+                                <AiOutlineDownload /> Tải xuống
+                                    </MenuItem>
+                            <MenuItem>
+                                <AiOutlineLink /> Sao chép link
+                                    </MenuItem>
+                        </Select>
+                        <h6>Nhạc trẻ remix</h6>
                     </div>
-                    <div className="box-top-tt border-box">
-                        <Link className="link-top-tt" to="/playlistDetail">
-                            <img className="top-width-heght-image" src="https://i.pinimg.com/originals/d6/d8/dc/d6d8dc47b9e441a131df8e250d007015.jpg" alt="ảnh cùa tóp thịnh hành" />
-                        <p className="text-box-top-tt">NHẠC TRẺ REMIX 2021 HAY NHẤT HIỆN NAY </p>   
-                        </Link>
+                    <div className="box">
+                        <figure>
+                            <img src="https://i.ytimg.com/vi/Yije8O6eGn8/maxresdefault.jpg" alt="" />
+                        </figure>
+                        <div className="icon-box">
+                            <div>
+                                <BiHeart className="icon" />
+                                <FiPlayCircle className="icon" />
+                                <HiOutlineDotsCircleHorizontal className="icon" />
+                            </div>
+                        </div>
+                        <Select className="option">
+                            <MenuItem>
+                                <AiOutlineDownload /> Tải xuống
+                                    </MenuItem>
+                            <MenuItem>
+                                <AiOutlineLink /> Sao chép link
+                                    </MenuItem>
+                        </Select>
+                        <h6>Nhạc trẻ remix</h6>
                     </div>
-                    <div className="box-top-tt border-box">
-                        <Link className="link-top-tt" to="/playlistDetail">
-                            <img className="top-width-heght-image" src="https://i.pinimg.com/originals/d6/d8/dc/d6d8dc47b9e441a131df8e250d007015.jpg" alt="ảnh cùa tóp thịnh hành" />
-                        <p className="text-box-top-tt">NHẠC TRẺ REMIX 2021 HAY NHẤT HIỆN NAY </p>   
-                        </Link>
+                    <div className="box">
+                        <figure>
+                            <img src="https://i.ytimg.com/vi/Yije8O6eGn8/maxresdefault.jpg" alt="" />
+                        </figure>
+                        <div className="icon-box">
+                            <div>
+                                <BiHeart className="icon" />
+                                <FiPlayCircle className="icon" />
+                                <HiOutlineDotsCircleHorizontal className="icon" />
+                            </div>
+                        </div>
+                        <Select className="option">
+                            <MenuItem>
+                                <AiOutlineDownload /> Tải xuống
+                                    </MenuItem>
+                            <MenuItem>
+                                <AiOutlineLink /> Sao chép link
+                                    </MenuItem>
+                        </Select>
+                        <h6>Nhạc trẻ remix</h6>
                     </div>
-                    <div className="box-top-tt border-box">
-                        <Link className="link-top-tt" to="/playlistDetail">
-                            <img className="top-width-heght-image" src="https://i.pinimg.com/originals/d6/d8/dc/d6d8dc47b9e441a131df8e250d007015.jpg" alt="ảnh cùa tóp thịnh hành" />
-                        <p className="text-box-top-tt">NHẠC TRẺ REMIX 2021 HAY NHẤT HIỆN NAY </p>   
-                        </Link>
+                    <div className="box">
+                        <figure>
+                            <img src="https://i.ytimg.com/vi/Yije8O6eGn8/maxresdefault.jpg" alt="" />
+                        </figure>
+                        <div className="icon-box">
+                            <div>
+                                <BiHeart className="icon" />
+                                <FiPlayCircle className="icon" />
+                                <HiOutlineDotsCircleHorizontal className="icon" />
+                            </div>
+                        </div>
+                        <Select className="option">
+                            <MenuItem>
+                                <AiOutlineDownload /> Tải xuống
+                                    </MenuItem>
+                            <MenuItem>
+                                <AiOutlineLink /> Sao chép link
+                                    </MenuItem>
+                        </Select>
+                        <h6>Nhạc trẻ remix</h6>
                     </div>
-                    <div className="box-top-tt border-box">
-                        <Link className="link-top-tt" to="/playlistDetail">
-                            <img className="top-width-heght-image" src="https://i.pinimg.com/originals/d6/d8/dc/d6d8dc47b9e441a131df8e250d007015.jpg" alt="ảnh cùa tóp thịnh hành" />
-                        <p className="text-box-top-tt">NHẠC TRẺ REMIX 2021 HAY NHẤT HIỆN NAY </p>   
-                        </Link>
+                    <div className="box">
+                        <figure>
+                            <img src="https://i.ytimg.com/vi/Yije8O6eGn8/maxresdefault.jpg" alt="" />
+                        </figure>
+                        <div className="icon-box">
+                            <div>
+                                <BiHeart className="icon" />
+                                <FiPlayCircle className="icon" />
+                                <HiOutlineDotsCircleHorizontal className="icon" />
+                            </div>
+                        </div>
+                        <Select className="option">
+                            <MenuItem>
+                                <AiOutlineDownload /> Tải xuống
+                                    </MenuItem>
+                            <MenuItem>
+                                <AiOutlineLink /> Sao chép link
+                                    </MenuItem>
+                        </Select>
+                        <h6>Nhạc trẻ remix</h6>
                     </div>
-                    <div className="box-top-tt border-box">
-                        <Link className="link-top-tt" to="/playlistDetail">
-                            <img className="top-width-heght-image" src="https://i.pinimg.com/originals/d6/d8/dc/d6d8dc47b9e441a131df8e250d007015.jpg" alt="ảnh cùa tóp thịnh hành" />
-                        <p className="text-box-top-tt">NHẠC TRẺ REMIX 2021 HAY NHẤT HIỆN NAY </p>   
-                        </Link>
+                    <div className="box">
+                        <figure>
+                            <img src="https://i.ytimg.com/vi/Yije8O6eGn8/maxresdefault.jpg" alt="" />
+                        </figure>
+                        <div className="icon-box">
+                            <div>
+                                <BiHeart className="icon" />
+                                <FiPlayCircle className="icon" />
+                                <HiOutlineDotsCircleHorizontal className="icon" />
+                            </div>
+                        </div>
+                        <Select className="option">
+                            <MenuItem>
+                                <AiOutlineDownload /> Tải xuống
+                                    </MenuItem>
+                            <MenuItem>
+                                <AiOutlineLink /> Sao chép link
+                                    </MenuItem>
+                        </Select>
+                        <h6>Nhạc trẻ remix</h6>
                     </div>
                 </div>
             </div>

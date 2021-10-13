@@ -1,9 +1,14 @@
 import React from 'react'
 import Popup from '@titaui/reactjs-popup';
-import { IoMdAdd } from 'react-icons/io';
-import { Button } from '@material-ui/core';
+import { Button } from '@mui/material'
 import { MdNavigateNext } from 'react-icons/md';
 import Tabed from './tabed';
+import { AiOutlineDownload,AiOutlineLink } from 'react-icons/ai';
+import { IoMdAdd } from 'react-icons/io';
+import {  BiHeart } from 'react-icons/bi';
+import { FiPlayCircle } from 'react-icons/fi';
+import { HiOutlineDotsCircleHorizontal } from 'react-icons/hi';
+import { Select, MenuItem } from "@mui/material"
 
 const Playlist = () => {
     return (
@@ -40,17 +45,48 @@ const Playlist = () => {
                                 </div>
                             )}
                         </Popup>
-                        <div className="box_Playlist">
-                            <img height={150} src="https://gamek.mediacdn.vn/133514250583805952/2020/1/16/1-15791579653801179133828.png" alt="" />
-                            <h5>Tên bài hát</h5>
-                            <span>Tên tác giả</span>
-                        </div>
-
-                        <div className="box_Playlist">
-                            <img height={150} src="https://gamek.mediacdn.vn/133514250583805952/2020/1/16/1-15791579653801179133828.png" alt="" />
-                            <h5>Tên bài hát</h5>
-                            <span>Tên tác giả</span>
-                        </div>
+                        <div className="box">
+                                <figure>
+                                    <img src="https://i.ytimg.com/vi/Yije8O6eGn8/maxresdefault.jpg" alt="" />
+                                </figure>
+                                <div className="icon-box">
+                                    <div>
+                                        <BiHeart className="icon" />
+                                        <FiPlayCircle className="icon" />
+                                        <HiOutlineDotsCircleHorizontal className="icon" />
+                                    </div>
+                                </div>
+                                <Select className="option">
+                                    <MenuItem>
+                                        <AiOutlineDownload /> Tải xuống
+                                    </MenuItem>
+                                    <MenuItem>
+                                        <AiOutlineLink /> Sao chép link
+                                    </MenuItem>
+                                </Select>
+                                <h6>Nhạc trẻ remix</h6>
+                            </div>
+                            <div className="box">
+                                <figure>
+                                    <img src="https://i.ytimg.com/vi/Yije8O6eGn8/maxresdefault.jpg" alt="" />
+                                </figure>
+                                <div className="icon-box">
+                                    <div>
+                                        <BiHeart className="icon" />
+                                        <FiPlayCircle className="icon" />
+                                        <HiOutlineDotsCircleHorizontal className="icon" />
+                                    </div>
+                                </div>
+                                <Select className="option">
+                                    <MenuItem>
+                                        <AiOutlineDownload /> Tải xuống
+                                    </MenuItem>
+                                    <MenuItem>
+                                        <AiOutlineLink /> Sao chép link
+                                    </MenuItem>
+                                </Select>
+                                <h6>Nhạc trẻ remix</h6>
+                            </div>
                     </div>
                 </div>
             </div>
