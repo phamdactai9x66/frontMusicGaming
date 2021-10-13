@@ -8,7 +8,7 @@ import { BsMusicNoteBeamed, BsFillImageFill, BsChat } from 'react-icons/bs';
 import { setOriginalNode } from 'typescript';
 import { BiMessageSquareAdd, BiPieChart } from 'react-icons/bi';
 import { FiMenu } from 'react-icons/fi';
-import { FaChartPie, FaRegPlayCircle, FaUserAlt } from 'react-icons/fa';
+import { FaChartPie, FaRegPlayCircle, FaUserAlt, FaTshirt } from 'react-icons/fa';
 import { SiBlogger, SiTodoist } from 'react-icons/si';
 import { AiFillDashboard } from 'react-icons/ai';
 
@@ -24,7 +24,7 @@ const Sidebar: React.FC<Sidebar<any>> = ({ ...props }) => {
             <div className="main_info">
                 <div className="info_admin">
                     <img width={50} height={50} src={imgAdmin} alt="" />
-                    <div>Nguyễn Văn An</div>
+                    <div>Phạm Đắc Tài</div>
                 </div>
             </div>
             <div className="main_search">
@@ -262,6 +262,26 @@ const Sidebar: React.FC<Sidebar<any>> = ({ ...props }) => {
                         <label className="add_item">
                             <BiMessageSquareAdd className="icon_item" />
                             <span>Add Danh mục</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div className="tab">
+                    <input hidden type="checkbox" id="chck12" />
+                    <label className="tab-label" htmlFor="chck12">
+                        <div className="grid_item">
+                            <label className="tabs__item--icon">
+                            <FaTshirt />
+                            </label>
+                            <label className="button_text">Topic</label>
+                        </div>
+                        <div>&#10095;</div>
+                    </label>
+
+                    <div className="tab-content">
+                        <label className="add_item">
+                            <BiMessageSquareAdd className="icon_item" />
+                            <span>Add Topic</span>
                         </label>
                     </div>
                 </div>

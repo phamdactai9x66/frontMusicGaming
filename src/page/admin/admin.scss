@@ -64,9 +64,12 @@ main {
 
 .main_info {
     border-bottom: 0.1rem solid rgb(60, 206, 231);
-    & div {
+      img {
+        border-radius: 50%;
+      }
+      & div {
         display: flex;
-        grid-gap: 21px;
+        grid-gap: 2px;
         margin: 15px;
         & div {
             font-size: 18px;
@@ -79,6 +82,7 @@ main {
           cursor: pointer;
         }
     }
+
 }
 .main_search {
     display: flex;
