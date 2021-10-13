@@ -2,7 +2,7 @@ import React from 'react'
 import { AiOutlineCheck } from 'react-icons/ai';
 import { MdNavigateNext } from 'react-icons/md';
 import { BiPlayCircle } from 'react-icons/bi';
-import { Button } from '@material-ui/core';
+import { Button } from '@mui/material'
 import Tabed from './tabed';
 
 const Musician = () => {

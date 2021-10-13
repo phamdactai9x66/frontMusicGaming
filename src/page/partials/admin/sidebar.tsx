@@ -1,6 +1,6 @@
 
 import React from 'react'
-import imgAdmin from './image/admin.png'
+import imgAdmin from './image/admin2.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { Link, RouteChildrenProps, withRouter } from "react-router-dom";
@@ -176,7 +176,7 @@ const Sidebar: React.FC<Sidebar<any>> = ({ ...props }) => {
                     <div className="tab-content">
                         <label className="add_item">
                             <BiMessageSquareAdd className="icon_item" />
-                            <span>Add Todo list</span>
+                            <Link to="/admin/addTodo"><span>Add Todo list</span></Link>
                         </label>
                     </div>
                 </div>

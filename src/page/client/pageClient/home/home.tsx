@@ -2,9 +2,14 @@ import React, { useEffect } from 'react'
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { AiOutlineDownload, AiFillHeart,AiOutlineLink } from 'react-icons/ai';
+import { IoMdAdd } from 'react-icons/io';
+import { FiPlayCircle } from 'react-icons/fi';
+import { BsFillPlayFill } from 'react-icons/bs';
+import { HiOutlineDotsCircleHorizontal } from 'react-icons/hi';
 import { MdNavigateNext } from 'react-icons/md';
 import Button from '@mui/material/Button';
-import { BiPlayCircle } from 'react-icons/bi';
+import { BiPlayCircle, BiHeart } from 'react-icons/bi';
 import ChartMusic from './component/chartMusic';
 import { Link } from 'react-router-dom';
 import VerticalSlider from './component/VerticalSlider';
@@ -15,38 +20,52 @@ import WantHearComponent from './component/WantHearComponent';
 import RecentlyComponent from './component/RecentlyComponent';
 import PopularComponent from './component/PopularComponent';
 
+import { Select, MenuItem } from "@mui/material"
+
+
 interface Home<T> {
 
 }
 
 const Home: React.FC<Home<any>> = ({ ...props }) => {
     var settings_banner = {
-        autoplay: true,
-        autoplaySpeed: 3000,
         dots: true,
-        fade: true,
+        autoplay: true,
+        speed: 1000,
+        autoplaySpeed: 4000,
+        className: "center",
+        centerMode: true,
+        infinite: true,
+        slidesToShow: 1,
     };
     var settings_category = {
-        autoplay: true,
-        autoplaySpeed: 3000,
+        infinite: false,
+        slidesToShow: 4,
+        slidesToScroll: 4,
+        initialSlide: 0,
         responsive: [
             {
-                breakpoint: 50000,
-                settings: {
-                    slidesToShow: 4,
-                }
-            },
-            {
-                breakpoint: 1000,
+                breakpoint: 1024,
                 settings: {
                     slidesToShow: 3,
-
+                    slidesToScroll: 3,
+                    infinite: true,
+                    dots: true
                 }
             },
             {
                 breakpoint: 600,
                 settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 2,
+                    initialSlide: 2
+                }
+            },
+            {
+                breakpoint: 480,
+                settings: {
                     slidesToShow: 1,
+                    slidesToScroll: 1
                 }
             }
         ]
@@ -65,20 +84,179 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
             <div className="list-slider">
                 
                 <HomeCategory settings_category={settings_category}/>
+                <h4 className="title_all">Thể loại <MdNavigateNext className="icon" /></h4>
+                <div>
+                    <Slider {...settings_category}>
+                        <div className="box">
+                            <figure>
+                                <img src="https://i.ytimg.com/vi/Yije8O6eGn8/maxresdefault.jpg" alt="" />
+                            </figure>
+                            <div className="icon-box">
+                                <div>
+                                    <BiHeart className="icon" />
+                                    <FiPlayCircle className="icon" />
+                                    <HiOutlineDotsCircleHorizontal className="icon" />
+                                </div>
+                            </div>
+                            <Select className="option">
+                                <MenuItem>
+                                    <AiOutlineDownload/> Tải xuống
+                                    </MenuItem>
+                                <MenuItem>
+                                    <AiOutlineLink/> Sao chép link
+                                    </MenuItem>
+
+                            </Select>
+                            <h6>Nhạc trẻ remix</h6>
+                        </div>
+                        <div className="box">
+                            <figure>
+                                <img src="https://i.ytimg.com/vi/Yije8O6eGn8/maxresdefault.jpg" alt="" />
+                            </figure>
+                            <div className="icon-box">
+                                <div>
+                                    <BiHeart className="icon" />
+                                    <FiPlayCircle className="icon" />
+                                    <HiOutlineDotsCircleHorizontal className="icon" />
+                                </div>
+                            </div>
+                            <Select className="option">
+                                <MenuItem>
+                                    <AiOutlineDownload/> Tải xuống
+                                    </MenuItem>
+                                <MenuItem>
+                                    <AiOutlineLink/> Sao chép link
+                                    </MenuItem>
+                            </Select>
+                            <h6>Nhạc trẻ remix</h6>
+                        </div>
+                        
+                    </Slider>
+                </div>
 
             </div>
             <div className="list-music">
                 <h4 className="title_all">Danh sách bài hát <MdNavigateNext className="icon" /></h4>
                 <div className="main1">
+
                     
                     <HomeSongComponent/>
 
                     {/* artist */}
                     <ArtistComponent/>
+                    <div className="box-music">
+                        <div className="music_item">
+                            <img src="https://anh.24h.com.vn/upload/4-2016/images/2016-12-06/1480992562-148098909683484-son-tung.jpg" alt="" />
+                            <div className="box-icon">
+                                <BsFillPlayFill />
+                            </div>
+                            <div>
+                                <h6>Tên bài hát</h6>
+                                <div style={{ fontSize: "0.7rem", marginTop: "-0.2rem" }}>Nghệ sĩ</div>
+                            </div>
+                            <div>
+                                4:50
+                            </div>
+                            <div className="icon_item">
+                                <AiOutlineDownload className="icon" />
+                                <AiFillHeart className="icon" />
+                                <IoMdAdd className="icon" />
+                            </div>
+                        </div>
+                        <div className="music_item">
+                            <img src="https://anh.24h.com.vn/upload/4-2016/images/2016-12-06/1480992562-148098909683484-son-tung.jpg" alt="" />
+                            <div className="box-icon">
+                                <BsFillPlayFill />
+                            </div>
+                            <div>
+                                <h6>Tên bài hát</h6>
+                                <div style={{ fontSize: "0.7rem", marginTop: "-0.2rem" }}>Nghệ sĩ</div>
+                            </div>
+                            <div>
+                                4:50
+                            </div>
+                            <div className="icon_item">
+                                <AiOutlineDownload className="icon" />
+                                <AiFillHeart className="icon" />
+                                <IoMdAdd className="icon" />
+                            </div>
+                        </div>
+                        <div className="music_item">
+                            <img src="https://anh.24h.com.vn/upload/4-2016/images/2016-12-06/1480992562-148098909683484-son-tung.jpg" alt="" />
+                            <div className="box-icon">
+                                <BsFillPlayFill />
+                            </div>
+                            <div>
+                                <h6>Tên bài hát</h6>
+                                <div style={{ fontSize: "0.7rem", marginTop: "-0.2rem" }}>Nghệ sĩ</div>
+                            </div>
+                            <div>
+                                4:50
+                            </div>
+                            <div className="icon_item">
+                                <AiOutlineDownload className="icon" />
+                                <AiFillHeart className="icon" />
+                                <IoMdAdd className="icon" />
+                            </div>
+                        </div>
+                        <div className="music_item">
+                            <img src="https://anh.24h.com.vn/upload/4-2016/images/2016-12-06/1480992562-148098909683484-son-tung.jpg" alt="" />
+                            <div className="box-icon">
+                                <BsFillPlayFill />
+                            </div>
+                            <div>
+                                <h6>Tên bài hát</h6>
+                                <div style={{ fontSize: "0.7rem", marginTop: "-0.2rem" }}>Nghệ sĩ</div>
+                            </div>
+                            <div>
+                                4:50
+                            </div>
+                            <div className="icon_item">
+                                <AiOutlineDownload className="icon" />
+                                <AiFillHeart className="icon" />
+                                <IoMdAdd className="icon" />
+                            </div>
+                        </div>
+                        <div className="music_item">
+                            <img src="https://anh.24h.com.vn/upload/4-2016/images/2016-12-06/1480992562-148098909683484-son-tung.jpg" alt="" />
+                            <div className="box-icon">
+                                <BsFillPlayFill />
+                            </div>
+                            <div>
+                                <h6>Tên bài hát</h6>
+                                <div style={{ fontSize: "0.7rem", marginTop: "-0.2rem" }}>Nghệ sĩ</div>
+                            </div>
+                            <div>
+                                4:50
+                            </div>
+                            <div className="icon_item">
+                                <AiOutlineDownload className="icon" />
+                                <AiFillHeart className="icon" />
+                                <IoMdAdd className="icon" />
+                            </div>
+                        </div>
+                    </div>
+                    <div className='limit-items'>
+                        <h4 className="title_all">Nhạc sĩ</h4>
+                        <input type='checkbox' id='show-all' />
+                        <label htmlFor='show-all' className='text-show'>See all</label>
+                        <label htmlFor='show-all' className='text-hide'>Hide</label>
+                        <div className='items'>
+                            <section>
+                                <div><img src="https://i.ytimg.com/vi/x2xblVxi_c4/maxresdefault.jpg" alt="" /></div>
+                                <div><img src="https://i.ytimg.com/vi/x2xblVxi_c4/maxresdefault.jpg" alt="" /></div>
+                                <div><img src="https://i.ytimg.com/vi/x2xblVxi_c4/maxresdefault.jpg" alt="" /></div>
+                                <div><img src="https://i.ytimg.com/vi/x2xblVxi_c4/maxresdefault.jpg" alt="" /></div>
+                                <div><img src="https://i.ytimg.com/vi/x2xblVxi_c4/maxresdefault.jpg" alt="" /></div>
+                                <div><img src="https://i.ytimg.com/vi/x2xblVxi_c4/maxresdefault.jpg" alt="" /></div>
+                            </section>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div className="list-slider">
                 <h4 className="title_all">Có thể bạn muốn nghe <MdNavigateNext className="icon" /></h4>
+
                 
                 {/* get by {_limit: 20, view: 'desc', date: "desc"} */}
                 <WantHearComponent settings_category={settings_category} />
@@ -102,6 +280,258 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
             <div className="list-slider">
                 <h4 className="title_all">Sắp diễn ra <MdNavigateNext className="icon" /></h4>
                 <PopularComponent settings_category={settings_category} sort_by={{_limit: 20, day_release: 'desc'}} />
+                <div>
+                    <Slider {...settings_category}>
+                        <div className="box">
+                            <figure>
+                                <img src="https://i.ytimg.com/vi/Yije8O6eGn8/maxresdefault.jpg" alt="" />
+                            </figure>
+                            <div className="icon-box">
+                                <div>
+                                    <BiHeart className="icon" />
+                                    <FiPlayCircle className="icon" />
+                                    <HiOutlineDotsCircleHorizontal className="icon" />
+                                </div>
+                            </div>
+                            <Select className="option">
+                                <MenuItem>
+                                    <AiOutlineDownload/> Tải xuống
+                                    </MenuItem>
+                                <MenuItem>
+                                    <AiOutlineLink/> Sao chép link
+                                    </MenuItem>
+
+                            </Select>
+                            <h6>Nhạc trẻ remix</h6>
+                        </div>
+                        <div className="box">
+                            <figure>
+                                <img src="https://i.ytimg.com/vi/Yije8O6eGn8/maxresdefault.jpg" alt="" />
+                            </figure>
+                            <div className="icon-box">
+                                <div>
+                                    <BiHeart className="icon" />
+                                    <FiPlayCircle className="icon" />
+                                    <HiOutlineDotsCircleHorizontal className="icon" />
+                                </div>
+                            </div>
+                            <Select className="option">
+                                <MenuItem>
+                                    <AiOutlineDownload/> Tải xuống
+                                    </MenuItem>
+                                <MenuItem>
+                                    <AiOutlineLink/> Sao chép link
+                                    </MenuItem>
+                            </Select>
+                            <h6>Nhạc trẻ remix</h6>
+                        </div>
+                        
+                    </Slider>
+                </div>
+            </div>
+            <div className="list-slider">
+                <h4 className="title_all">Nghe gần đây <MdNavigateNext className="icon" /></h4>
+                <div>
+                    <Slider {...settings_category}>
+                        <div className="box">
+                            <figure>
+                                <img src="https://i.ytimg.com/vi/Yije8O6eGn8/maxresdefault.jpg" alt="" />
+                            </figure>
+                            <div className="icon-box">
+                                <div>
+                                    <BiHeart className="icon" />
+                                    <FiPlayCircle className="icon" />
+                                    <HiOutlineDotsCircleHorizontal className="icon" />
+                                </div>
+                            </div>
+                            <Select className="option">
+                                <MenuItem>
+                                    <AiOutlineDownload/> Tải xuống
+                                    </MenuItem>
+                                <MenuItem>
+                                    <AiOutlineLink/> Sao chép link
+                                    </MenuItem>
+
+                            </Select>
+                            <h6>Nhạc trẻ remix</h6>
+                        </div>
+                        <div className="box">
+                            <figure>
+                                <img src="https://i.ytimg.com/vi/Yije8O6eGn8/maxresdefault.jpg" alt="" />
+                            </figure>
+                            <div className="icon-box">
+                                <div>
+                                    <BiHeart className="icon" />
+                                    <FiPlayCircle className="icon" />
+                                    <HiOutlineDotsCircleHorizontal className="icon" />
+                                </div>
+                            </div>
+                            <Select className="option">
+                                <MenuItem>
+                                    <AiOutlineDownload/> Tải xuống
+                                    </MenuItem>
+                                <MenuItem>
+                                    <AiOutlineLink/> Sao chép link
+                                    </MenuItem>
+                            </Select>
+                            <h6>Nhạc trẻ remix</h6>
+                        </div>
+                        
+                    </Slider>
+                </div>
+            </div>
+            <div className="list-slider">
+                <h4 className="title_all">Top thịnh hành <MdNavigateNext className="icon" /></h4>
+                <div>
+                    <Slider {...settings_category}>
+                        <div className="box">
+                            <figure>
+                                <img src="https://i.ytimg.com/vi/Yije8O6eGn8/maxresdefault.jpg" alt="" />
+                            </figure>
+                            <div className="icon-box">
+                                <div>
+                                    <BiHeart className="icon" />
+                                    <FiPlayCircle className="icon" />
+                                    <HiOutlineDotsCircleHorizontal className="icon" />
+                                </div>
+                            </div>
+                            <Select className="option">
+                                <MenuItem>
+                                    <AiOutlineDownload/> Tải xuống
+                                    </MenuItem>
+                                <MenuItem>
+                                    <AiOutlineLink/> Sao chép link
+                                    </MenuItem>
+
+                            </Select>
+                            <h6>Nhạc trẻ remix</h6>
+                        </div>
+                        <div className="box">
+                            <figure>
+                                <img src="https://i.ytimg.com/vi/Yije8O6eGn8/maxresdefault.jpg" alt="" />
+                            </figure>
+                            <div className="icon-box">
+                                <div>
+                                    <BiHeart className="icon" />
+                                    <FiPlayCircle className="icon" />
+                                    <HiOutlineDotsCircleHorizontal className="icon" />
+                                </div>
+                            </div>
+                            <Select className="option">
+                                <MenuItem>
+                                    <AiOutlineDownload/> Tải xuống
+                                    </MenuItem>
+                                <MenuItem>
+                                    <AiOutlineLink/> Sao chép link
+                                    </MenuItem>
+                            </Select>
+                            <h6>Nhạc trẻ remix</h6>
+                        </div>
+                        
+                    </Slider>
+                </div>
+            </div>
+            <div className="list-slider">
+                <h4 className="title_all">Nhạc mới mỗi ngày <MdNavigateNext className="icon" /></h4>
+                <div>
+                    <Slider {...settings_category}>
+                        <div className="box">
+                            <figure>
+                                <img src="https://i.ytimg.com/vi/Yije8O6eGn8/maxresdefault.jpg" alt="" />
+                            </figure>
+                            <div className="icon-box">
+                                <div>
+                                    <BiHeart className="icon" />
+                                    <FiPlayCircle className="icon" />
+                                    <HiOutlineDotsCircleHorizontal className="icon" />
+                                </div>
+                            </div>
+                            <Select className="option">
+                                <MenuItem>
+                                    <AiOutlineDownload/> Tải xuống
+                                    </MenuItem>
+                                <MenuItem>
+                                    <AiOutlineLink/> Sao chép link
+                                    </MenuItem>
+
+                            </Select>
+                            <h6>Nhạc trẻ remix</h6>
+                        </div>
+                        <div className="box">
+                            <figure>
+                                <img src="https://i.ytimg.com/vi/Yije8O6eGn8/maxresdefault.jpg" alt="" />
+                            </figure>
+                            <div className="icon-box">
+                                <div>
+                                    <BiHeart className="icon" />
+                                    <FiPlayCircle className="icon" />
+                                    <HiOutlineDotsCircleHorizontal className="icon" />
+                                </div>
+                            </div>
+                            <Select className="option">
+                                <MenuItem>
+                                    <AiOutlineDownload/> Tải xuống
+                                    </MenuItem>
+                                <MenuItem>
+                                    <AiOutlineLink/> Sao chép link
+                                    </MenuItem>
+                            </Select>
+                            <h6>Nhạc trẻ remix</h6>
+                        </div>
+                        
+                    </Slider>
+                </div>
+            </div>
+            <div className="list-slider">
+                <h4 className="title_all">Sắp diễn ra <MdNavigateNext className="icon" /></h4>
+                <div>
+                    <Slider {...settings_category}>
+                        <div className="box">
+                            <figure>
+                                <img src="https://i.ytimg.com/vi/Yije8O6eGn8/maxresdefault.jpg" alt="" />
+                            </figure>
+                            <div className="icon-box">
+                                <div>
+                                    <BiHeart className="icon" />
+                                    <FiPlayCircle className="icon" />
+                                    <HiOutlineDotsCircleHorizontal className="icon" />
+                                </div>
+                            </div>
+                            <Select className="option">
+                                <MenuItem>
+                                    <AiOutlineDownload/> Tải xuống
+                                    </MenuItem>
+                                <MenuItem>
+                                    <AiOutlineLink/> Sao chép link
+                                    </MenuItem>
+
+                            </Select>
+                            <h6>Nhạc trẻ remix</h6>
+                        </div>
+                        <div className="box">
+                            <figure>
+                                <img src="https://i.ytimg.com/vi/Yije8O6eGn8/maxresdefault.jpg" alt="" />
+                            </figure>
+                            <div className="icon-box">
+                                <div>
+                                    <BiHeart className="icon" />
+                                    <FiPlayCircle className="icon" />
+                                    <HiOutlineDotsCircleHorizontal className="icon" />
+                                </div>
+                            </div>
+                            <Select className="option">
+                                <MenuItem>
+                                    <AiOutlineDownload/> Tải xuống
+                                    </MenuItem>
+                                <MenuItem>
+                                    <AiOutlineLink/> Sao chép link
+                                    </MenuItem>
+                            </Select>
+                            <h6>Nhạc trẻ remix</h6>
+                        </div>
+                        
+                    </Slider>
+                </div>
             </div>
             <div className="music-charts">
                 <div>
