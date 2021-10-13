@@ -15,7 +15,7 @@ const ListBlog: React.FC<ListBlogComponent<any>> = () => {
         }
         getBlog();
     }, []);
-
+///
 
     return (
         <>
