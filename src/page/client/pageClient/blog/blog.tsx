@@ -4,6 +4,7 @@ import { Pagination } from "@mui/material"
 import { BiCircle, BiSearch, BiUpload, BiUserCircle } from 'react-icons/bi';
 import ListBlog from './component/ListBlog';
 import ListCategoryBlog from './component/listCategoryBlog';
+import PostNew from './component/PostNew';
 interface blog<T> {
 
 }
@@ -28,7 +29,7 @@ const Blog: React.FC<blog<any>> = ({...props }) => {
                 <div className="blog-2">
                     <div className="search" >
                         <BiSearch className="icon"/>
-                        <input placeholder="Search" type="text" />
+                        <input placeholder="Tìm kiếm" type="text" />
                        
                     </div>
                   <ListCategoryBlog />
@@ -38,12 +39,8 @@ const Blog: React.FC<blog<any>> = ({...props }) => {
                         <Link className="title-blog-name color" to="">Top 100 Bài Hát</Link>
                         <Link className="title-blog-name color" to="">Top 100 Bài Hát</Link>
                     </div>
-                    <div className="box-3">
-                        <h4 className="color">Danh Mục</h4>
-                        <Link className="title-blog-name color" to="">Top 100 Bài Hát</Link>
-                        <Link className="title-blog-name color" to="">Top 100 Bài Hát </Link>
-                        <Link className="title-blog-name color" to="">Top 100 Bài Hát </Link>
-                    </div>
+                 <PostNew />
+               
                 </div>
                 
             </div>
@@ -52,16 +49,6 @@ const Blog: React.FC<blog<any>> = ({...props }) => {
             </div>
         
         </div>
-
-
-
-
-
-
-
-
-
-
     )
 }
 
