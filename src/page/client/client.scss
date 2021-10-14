@@ -196,7 +196,7 @@ $color_footer: #0e192aa4;
         z-index: 2;
         .footer {
             display: flex;
-            padding: 1.3rem;
+            padding: 20px 15px;
             .author {
                 margin-right: 1rem;
                 display: flex;
@@ -219,7 +219,9 @@ $color_footer: #0e192aa4;
             .icon_play-music {
                 cursor: pointer;
                 font-size: 1.6rem;
-                .icon {
+                display: flex;
+                align-items: center;
+                & > .icon {
                     margin-left: 1rem;
                     &:nth-child(1) {
                         font-size: 1rem;
@@ -244,7 +246,20 @@ $color_footer: #0e192aa4;
                         color: #fff;
                     }
                 }
+                div{
+                    .icon {
+                        margin-left: 1rem;
+                        font-size: 1rem;
+                         border-radius: 0.8rem 0 0.8rem 0;
+                            color: #00e5ce;
+                            width: 2.7rem;
+                            height: 2.7rem;
+                            padding: 0.5rem;
+                            background: rgb(5, 9, 22);
+                    }
+                }
             }
+
             .audio-run {
                 flex-grow: 1;
                 margin-top: 0.75rem;
@@ -269,7 +284,7 @@ $color_footer: #0e192aa4;
                 -webkit-appearance: none;
                 position: relative;
                 height: 6px;
-                width: 100%;
+                width: 80%;
                 cursor: pointer;
                 border-radius: 10px;
                 background: rgb(33, 43, 65);

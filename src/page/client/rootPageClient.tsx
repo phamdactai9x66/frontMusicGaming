@@ -1,7 +1,7 @@
 import React from 'react'
 import "./client.scss"
 import Header from "../partials/client/header";
-import Audio from "../partials/client/audio";
+import Enteraiment from './component/enteraiment';
 import Sidebar from '../partials/client/sidebar';
 interface RootPageClient<T> {
 
@@ -19,7 +19,7 @@ const RootPageClient: React.FC<RootPageClient<any>> = ({ ...props }) => {
                     </div>
                 </main>
                 <footer>
-                    <Audio />
+                    <Enteraiment />
                 </footer>
             </div>
         </>
