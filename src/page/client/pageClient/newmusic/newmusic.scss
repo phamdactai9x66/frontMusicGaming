@@ -45,76 +45,29 @@
             display:  flex;
         }
         ///////
-        .nhacmoi{
-          .grid-nhacmoi-4{
-              margin-top: 30px;
-              border: 1px solid #56ccf2;
-              padding: 5px;
-             display: grid;
-             grid-template-columns: 5% 12% 63% 1fr;
-             gap: 10px;
-             border-radius: 5px;
-             background: #0e192a;
-             .image-nhacmoi{
-                 img{
-                    width: 100%;
-                    height: 90px;
-                    object-fit: cover;
-                 }
-                
-             }
-             .stt{
-                 text-align: center;
-                 h3{
-                     color:#56ccf2 ;
-                     margin-top: 50%;
-                 }
-             }
-             .text-nhacmoi{
-                 color: white;
-                 padding-top: 10px;
-                 
-             }.flex-nhacmoi{
-                 
-                   
-                    display: flex;
-                    align-items: center;
-                 .microphone{
-                    margin: 0 20px;
-                    
-                 }.heart{
-                    margin: 0 20px;
-                 }.more{
-                    margin: 0 20px;
-
-                 }.microphone:hover{
-                    border: 1px solid #00afc7;
-                    border-radius: 3px;
-                }.heart:hover{
-                    border: 1px solid #00afc7;
-                    border-radius: 3px;
-                }.more:hover{
-                    border: 1px solid #00afc7;
-                    border-radius: 3px;
+        .list-box-musicChart {
+            overflow: auto;
+            height: 28rem;
+            padding-right: 0.5rem;
+            .box-chart { 
+              display: grid;
+              grid-template-columns: 2.5rem 4rem 50% 1fr 0.4fr;
+              height: 5rem;
+              %handel_time_icon {
+                color: #fff;
+                line-height: 5rem;
+              }
+              .time_txt {
+                @extend %handel_time_icon;
+              }
+              .icon_item {
+                @extend %handel_time_icon;
+                .icon {
+                  margin-right: 1rem;
                 }
-             }
-                
-             
-            }.grid-nhacmoi-4:hover{
-                border: 2px solid #dbf5ff;
-                box-shadow: 0 0 5px #dbf5ff;
-                background: #dbf5ff;
-               
-                .text-nhacmoi{
-                    .title, .nhacmoi-tacgia{
-                    color: black;
-                    }
-               
-                }
-            } 
-        }
-        
-        /////
+              }
+            }
+          }
         .nhacmoi-tt-buttom{
             text-align: center;
             margin-top: 55px;

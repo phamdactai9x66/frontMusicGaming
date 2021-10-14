@@ -6,7 +6,7 @@ const Tabed = () => {
         <>
             <div className="info_Personal">
                 <div className="info_main">
-                    <img width={100} src="https://pbs.twimg.com/profile_images/1240708436775632899/lHL8ty85_400x400.jpg" alt="" />
+                    <img width={100} height={100} src="http://localhost:3000/static/media/admin2.b721e1dd.png" alt="" />
                     <h2>Cau indo</h2>
                 </div>
             </div>

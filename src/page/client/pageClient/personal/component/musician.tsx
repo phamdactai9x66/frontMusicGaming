@@ -2,7 +2,7 @@ import React from 'react'
 import { AiOutlineCheck } from 'react-icons/ai';
 import { MdNavigateNext } from 'react-icons/md';
 import { BiPlayCircle } from 'react-icons/bi';
-import { Button } from '@material-ui/core';
+import { Button } from '@mui/material'
 import Tabed from './tabed';
 
 const Musician = () => {
@@ -11,7 +11,7 @@ const Musician = () => {
             <Tabed />
             <div className="overview">
                 <div className="main3">
-                    <h3>Nhạc sĩ <MdNavigateNext className="icon" /></h3>
+                    <h4 className="title_all">Nhạc sĩ <MdNavigateNext className="icon" /></h4>
                     <div className="main3_nhacsi">
                         <div className="box_nhacsi">
                             <div className="box-img">

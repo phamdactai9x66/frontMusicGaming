@@ -1,14 +1,19 @@
 import React from 'react'
-import { AiOutlineDownload, AiFillHeart, AiOutlineCheck } from 'react-icons/ai';
-import { IoMdAdd } from 'react-icons/io';
 import { MdNavigateNext } from 'react-icons/md';
-import { BiPlayCircle } from 'react-icons/bi';
 import Popup from '@titaui/reactjs-popup';
-import { Button } from '@material-ui/core';
+import { Button } from '@mui/material'
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Tabed from './tabed';
+import { BsFillPlayFill } from 'react-icons/bs';
+import { AiOutlineDownload, AiFillHeart,AiOutlineLink,AiOutlineCheck } from 'react-icons/ai';
+import { IoMdAdd } from 'react-icons/io';
+import { BiPlayCircle, BiHeart } from 'react-icons/bi';
+import { FiPlayCircle } from 'react-icons/fi';
+import { HiOutlineDotsCircleHorizontal } from 'react-icons/hi';
+import { Select, MenuItem } from "@mui/material"
+
 const Overview = () => {
     var settings = {
         autoplay: true,
@@ -28,7 +33,7 @@ const Overview = () => {
              <div className="Personal">
                  <Tabed/>
                     <div className="overview">
-                <h3>Bài hát <MdNavigateNext className="icon" /></h3>
+                <h4 className="title_all">Bài hát <MdNavigateNext className="icon" /></h4>
                 <div className="main1">
                     <div className="box-slider">
                         <Slider {...settings}>
@@ -43,13 +48,16 @@ const Overview = () => {
                     <div className="box-music" style={{height: "305px"}}>
                         <div className="music_item">
                             <img src="https://anh.24h.com.vn/upload/4-2016/images/2016-12-06/1480992562-148098909683484-son-tung.jpg" alt="" />
+                            <div className="box-icon">
+                            <BsFillPlayFill/>
+                            </div>
                             <div>
                                 <h6>Tên bài hát</h6>
                                 <div style={{ fontSize: "0.7rem", marginTop: "-0.2rem" }}>Nghệ sĩ</div>
                             </div>
                             <div>
                                 4:50
-                      </div>
+                            </div>
                             <div className="icon_item">
                                 <AiOutlineDownload className="icon" />
                                 <AiFillHeart className="icon" />
@@ -58,13 +66,16 @@ const Overview = () => {
                         </div>
                         <div className="music_item">
                             <img src="https://anh.24h.com.vn/upload/4-2016/images/2016-12-06/1480992562-148098909683484-son-tung.jpg" alt="" />
+                            <div className="box-icon">
+                            <BsFillPlayFill/>
+                            </div>
                             <div>
                                 <h6>Tên bài hát</h6>
                                 <div style={{ fontSize: "0.7rem", marginTop: "-0.2rem" }}>Nghệ sĩ</div>
                             </div>
                             <div>
                                 4:50
-                      </div>
+                            </div>
                             <div className="icon_item">
                                 <AiOutlineDownload className="icon" />
                                 <AiFillHeart className="icon" />
@@ -73,13 +84,16 @@ const Overview = () => {
                         </div>
                         <div className="music_item">
                             <img src="https://anh.24h.com.vn/upload/4-2016/images/2016-12-06/1480992562-148098909683484-son-tung.jpg" alt="" />
+                            <div className="box-icon">
+                            <BsFillPlayFill/>
+                            </div>
                             <div>
                                 <h6>Tên bài hát</h6>
                                 <div style={{ fontSize: "0.7rem", marginTop: "-0.2rem" }}>Nghệ sĩ</div>
                             </div>
                             <div>
                                 4:50
-                </div>
+                            </div>
                             <div className="icon_item">
                                 <AiOutlineDownload className="icon" />
                                 <AiFillHeart className="icon" />
@@ -88,13 +102,16 @@ const Overview = () => {
                         </div>
                         <div className="music_item">
                             <img src="https://anh.24h.com.vn/upload/4-2016/images/2016-12-06/1480992562-148098909683484-son-tung.jpg" alt="" />
+                            <div className="box-icon">
+                            <BsFillPlayFill/>
+                            </div>
                             <div>
                                 <h6>Tên bài hát</h6>
                                 <div style={{ fontSize: "0.7rem", marginTop: "-0.2rem" }}>Nghệ sĩ</div>
                             </div>
                             <div>
                                 4:50
-                </div>
+                            </div>
                             <div className="icon_item">
                                 <AiOutlineDownload className="icon" />
                                 <AiFillHeart className="icon" />
@@ -103,28 +120,16 @@ const Overview = () => {
                         </div>
                         <div className="music_item">
                             <img src="https://anh.24h.com.vn/upload/4-2016/images/2016-12-06/1480992562-148098909683484-son-tung.jpg" alt="" />
+                            <div className="box-icon">
+                            <BsFillPlayFill/>
+                            </div>
                             <div>
                                 <h6>Tên bài hát</h6>
                                 <div style={{ fontSize: "0.7rem", marginTop: "-0.2rem" }}>Nghệ sĩ</div>
                             </div>
                             <div>
                                 4:50
-                </div>
-                            <div className="icon_item">
-                                <AiOutlineDownload className="icon" />
-                                <AiFillHeart className="icon" />
-                                <IoMdAdd className="icon" />
                             </div>
-                        </div>
-                        <div className="music_item">
-                            <img src="https://anh.24h.com.vn/upload/4-2016/images/2016-12-06/1480992562-148098909683484-son-tung.jpg" alt="" />
-                            <div>
-                                <h6>Tên bài hát</h6>
-                                <div style={{ fontSize: "0.7rem", marginTop: "-0.2rem" }}>Nghệ sĩ</div>
-                            </div>
-                            <div>
-                                4:50
-                </div>
                             <div className="icon_item">
                                 <AiOutlineDownload className="icon" />
                                 <AiFillHeart className="icon" />
@@ -134,7 +139,7 @@ const Overview = () => {
                     </div>
                 </div>
                 <div className="main2">
-                    <h3>Playlist <MdNavigateNext className="icon" /></h3>
+                    <h4 className="title_all">Playlist <MdNavigateNext className="icon" /></h4>
                     <div className="main2_add">
                         <Popup
                             modal
@@ -163,21 +168,52 @@ const Overview = () => {
                                 </div>
                             )}
                         </Popup>
-                        <div className="box_Playlist">
-                            <img height={150} src="https://gamek.mediacdn.vn/133514250583805952/2020/1/16/1-15791579653801179133828.png" alt="" />
-                            <h5>Tên bài hát</h5>
-                            <span>Tên tác giả</span>
-                        </div>
-
-                        <div className="box_Playlist">
-                            <img height={150} src="https://gamek.mediacdn.vn/133514250583805952/2020/1/16/1-15791579653801179133828.png" alt="" />
-                            <h5>Tên bài hát</h5>
-                            <span>Tên tác giả</span>
-                        </div>
+                            <div className="box">
+                                <figure>
+                                    <img src="https://i.ytimg.com/vi/Yije8O6eGn8/maxresdefault.jpg" alt="" />
+                                </figure>
+                                <div className="icon-box">
+                                    <div>
+                                        <BiHeart className="icon" />
+                                        <FiPlayCircle className="icon" />
+                                        <HiOutlineDotsCircleHorizontal className="icon" />
+                                    </div>
+                                </div>
+                                <Select className="option">
+                                    <MenuItem>
+                                        <AiOutlineDownload /> Tải xuống
+                                    </MenuItem>
+                                    <MenuItem>
+                                        <AiOutlineLink /> Sao chép link
+                                    </MenuItem>
+                                </Select>
+                                <h6>Nhạc trẻ remix</h6>
+                            </div>
+                            <div className="box">
+                                <figure>
+                                    <img src="https://i.ytimg.com/vi/Yije8O6eGn8/maxresdefault.jpg" alt="" />
+                                </figure>
+                                <div className="icon-box">
+                                    <div>
+                                        <BiHeart className="icon" />
+                                        <FiPlayCircle className="icon" />
+                                        <HiOutlineDotsCircleHorizontal className="icon" />
+                                    </div>
+                                </div>
+                                <Select className="option">
+                                    <MenuItem>
+                                        <AiOutlineDownload /> Tải xuống
+                                    </MenuItem>
+                                    <MenuItem>
+                                        <AiOutlineLink /> Sao chép link
+                                    </MenuItem>
+                                </Select>
+                                <h6>Nhạc trẻ remix</h6>
+                            </div>
                     </div>
                 </div>
                 <div className="main3">
-                    <h3>Nhạc sĩ <MdNavigateNext className="icon" /></h3>
+                    <h4 className="title_all">Nhạc sĩ <MdNavigateNext className="icon" /></h4>
                     <div className="main3_nhacsi">
                         <div className="box_nhacsi">
                             <div className="box-img">

@@ -1,4 +1,3 @@
-import { FunctionsTwoTone } from "@mui/icons-material"
 
 export const HandleGet = async (functionPromise: Function, params = {}) => {
     try {
@@ -7,6 +6,17 @@ export const HandleGet = async (functionPromise: Function, params = {}) => {
     } catch (error) {
         return [null, error];
     }
+}
+export const getDate = (date: any) => {
+    const getDate = new Date(date || Date.now());
+    return `${getDate.getDate()}/${getDate.getMonth()}/${getDate.getFullYear()}`
+}
+export const tranFormData = <T extends any[]>(data: T, key: string, findKey: string, findKey2?: string | any) => {
+    if ([undefined, null].includes(data as any)) return [];
+    return data.map(currenV => {
+        const seconKey = (currenV[findKey2] ? currenV[findKey2] : '')
+        return { ...currenV, [key]: `${currenV[findKey]} ${seconKey}` }
+    })
 }
 export const initialReducer = {
     Data: [],

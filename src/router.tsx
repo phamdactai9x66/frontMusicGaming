@@ -2,9 +2,9 @@ import { Route } from "react-router-dom"
 import Home from "./page/client/pageClient/home/home"
 import NotFound from "./page/client/pageClient/notFound/notFound";
 import HomeAdmin from "./page/admin/pageAdmin/home/home";
-import AddMusic from "./page/admin/pageAdmin/addMusic/addMusic";
+import AddTodo from "./page/admin/pageAdmin/todolist/page/addTodo";
 import NotFoundAdmin from "./page/admin/pageAdmin/notFound/notFoundAdmin";
-import Todolist from "./page/admin/pageAdmin/todolist/todolist";
+import Todolist from "./page/admin/pageAdmin/todolist/index";
 import Toptrending from "./page/client/pageClient/toptrending/toptrending";
 import Favorite from "./page/client/pageClient/favorite/favorite";
 import Newmusic from "./page/client/pageClient/newmusic/newmusic";
@@ -35,8 +35,8 @@ const Admin: propertyPage[] = [
         exact: true
     },
     {
-        path: "/admin/AddMusic",
-        component: AddMusic,
+        path: "/admin/addTodo",
+        component: AddTodo,
         exact: false
     },
     {
@@ -113,7 +113,7 @@ const Client: propertyPage[] = [
         component: Chart,
         exact: false
     },
-     {
+    {
         path: "/overview",
         component: Overview,
         exact: true
@@ -143,7 +143,7 @@ const Client: propertyPage[] = [
         component: NotFound,
         exact: false
     }
-    
+
 ]
 function handlePage<T extends propertyPage[]>(Page: T): JSX.Element[] | null {
     if ([undefined, null].includes(Page as any)) return null;

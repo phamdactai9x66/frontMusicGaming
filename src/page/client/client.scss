@@ -6,6 +6,15 @@ main {
     @import "./pageClient/forgotPassword/forgotPassword.scss";
     @import "./pageClient/personal/personal.scss";
     @import "./pageClient/recently/recently.scss";
+    @import "./pageClient/toptrending/toptrending.scss";
+    @import './pageClient/playlistDetail/playlistDetail.scss';
+    @import "./pageClient/newmusic/newmusic.scss";
+    @import "./pageClient/newmusic/newmusic.scss";
+    @import "./pageClient/favorite/favorite.scss";
+    @import "./pageClient/chart/chart.scss";
+    @import "./pageClient/category/category.scss";
+    @import "./pageClient/blogdetail/blogdetail.scss";
+    @import "./pageClient/blog/blog.scss";
 }
 
 $color_li: rgb(187, 187, 187);
@@ -172,6 +181,10 @@ $color_footer: #0e192aa4;
         background-color: $color_main_header;
         padding: 70px 0 70px 0;
         height: 100vh;
+        .main-children {
+            height: 100vh;
+            overflow: auto;
+        }
     }
     footer {
         position: fixed;
@@ -403,4 +416,8 @@ $color_footer: #0e192aa4;
         }
     }
 }
+/// fict 
+// p {
+//     font-size: 0.85rem;
+// }
 

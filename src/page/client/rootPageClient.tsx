@@ -15,7 +15,9 @@ const RootPageClient: React.FC<RootPageClient<any>> = ({ ...props }) => {
                 <aside><Sidebar /></aside>
                 <header><Header /></header>
                 <main>
+                    <div className="main-children">
                     {props.children}
+                    </div>
                 </main>
                 <footer>
                     <Footer />

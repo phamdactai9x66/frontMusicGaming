@@ -38,7 +38,7 @@
         .overview {
             height: 100vh;
             margin-top: -2rem;
-            h3 {
+            h4 {
                 color: rgb(231, 231, 231);
             }
             .main1 {
@@ -87,23 +87,7 @@
                             font-size: 5rem;
                         }
                     }
-                    .box_Playlist {
-                        overflow: hidden;
-                        border-radius: 0.4rem;
-                        img {
-                            box-shadow: 0 3px 5px rgba(0, 0, 0, 0.452);
-                            cursor: pointer;
-                            width: 100%;
-                            height: 12rem;
-                            border-radius: 0.4rem;
-                            margin-bottom: 1rem;
-                            transition: 0.4s;
-                            &:hover {
-                                transform: scale(1.05);
-                                transition: 0.4s;
-                            }
-                        }
-                    }
+                   
                 }
             }
             // end main2

@@ -7,8 +7,8 @@ main {
    display: none;
   }
   @import "./pageAdmin/home/home.scss";
-  @import "./pageAdmin/addMusic/add.scss";
-  @import "./pageAdmin/todolist/todolist.scss";
+  @import "./pageAdmin/todolist/page/add.scss";
+  @import "./pageAdmin/todolist/page/todolist.scss";
 }
 //=====Main import 
 
@@ -64,9 +64,12 @@ main {
 
 .main_info {
     border-bottom: 0.1rem solid rgb(60, 206, 231);
-    & div {
+      img {
+        border-radius: 50%;
+      }
+      & div {
         display: flex;
-        grid-gap: 21px;
+        grid-gap: 2px;
         margin: 15px;
         & div {
             font-size: 18px;
@@ -79,6 +82,7 @@ main {
           cursor: pointer;
         }
     }
+
 }
 .main_search {
     display: flex;
@@ -377,6 +381,7 @@ header {
 }
 
 @media only screen and (max-width: 736px){
+
   .toggle {
     position: fixed;
     background-color: #21b8cc00;
@@ -405,24 +410,13 @@ header {
     font-size: 2rem;
   }
   .header__icons {
-    display: none !important;
+    transform: scale(0.8);
+    .search-box:hover > .search-input {
+      width: 6rem;
+    }
   }
   .header__content span {
     display: none;
-  }
-  .header__icons_mobie {
-    display: block;
-    position: fixed;
-    z-index: 1000;
-    right: 1rem;
-    top: 1.2rem;
-    transition: 0.5s;
-    .btn {
-      margin-right: -0.9rem;
-      & svg {
-        font-size: 2.1rem;
-      }
-    }
   }
   .header_content_mobie {
     display: block;
@@ -464,7 +458,7 @@ main .home-page .gird-main-3 .main5 .main5-table-flex3 div a {
 
 .modal-window {
   position: fixed;
-  background-color: rgba(0, 0, 0, 0.575);
+  background-color: rgba(0, 0, 0, 0.603);
   top: 0;
   right: 0;
   bottom: 0;
@@ -500,6 +494,7 @@ main .home-page .gird-main-3 .main5 .main5-table-flex3 div a {
       border: none;
       border-radius: 100%;
       padding: 0.3rem;
+      z-index: 1000;
       background: #304c79;
       .icon-search_mobie {
         padding: 0.3rem;
@@ -518,26 +513,6 @@ main .home-page .gird-main-3 .main5 .main5-table-flex3 div a {
       z-index: 1;
     }
   }
-}
-// phân trang 
-.pagination {
-  display: flex;
-  justify-content: right;
-  margin: 0.5rem 0 -1rem 0;
-}
-.pagination a {
-  display: block;
-  color: rgb(141, 206, 231);
-  float: left;
-  padding: 8px 16px;
-  text-decoration: none;
-  transition: background-color .3s;
-}
-
-
-.pagination a:hover {
-  background-color: rgb(31, 84, 145);
-  color: rgb(228, 245, 252);
 }
   
 }
