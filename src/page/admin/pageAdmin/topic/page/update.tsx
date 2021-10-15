@@ -3,10 +3,9 @@ import { Card } from "@material-ui/core";
 import LoadingButton from '@mui/lab/LoadingButton';
 import { Button, Alert } from "@mui/material"
 import { Formik, Form } from "formik";
-import SelectArtist from "../component/selectArtist";
 import { InputText, FileField } from "component/customField/index";
 import validateSchema from "../component/validateSchema";
-import albumApi from "api/albumApi";
+import apiTopic from "api/topicApi";
 import { variableCommon } from "component/variableCommon";
 import { HandleGet } from "component/MethodCommon";
 import { page } from "../index";
@@ -16,46 +15,46 @@ interface UpdateTodo<T> {
 };
 
 const initialValue = {
-    title: '',
-    image: '',
-    id_Artist: ''
+    name: '',
+    image: ''
 }
 
 const UpdateTodo: React.FC<UpdateTodo<any>> = ({ changePage, _id, ...props }) => {
     const refForm = useRef<HTMLFormElement | any>(null)
     const [alert, setalert] = useState({ display: false, message: "", type: "" })
-    const [dataAlbum, setdataAlbum] = useState({ data: null, display: true });
+    const [dataTopic, setdataTopic] = useState({ data: null, display: true });
     useEffect(() => {
         (async () => {
-            if (!dataAlbum.display) return navigatePage(page.todolist);
+            if (!dataTopic.display) return navigatePage(page.todolist);
 
-            const [data, error] = await HandleGet(albumApi.getOne, _id);
-
+            const [data, error] = await HandleGet(apiTopic.getOne, _id);
+            console.log(data);
+            
             if (error) return navigatePage(page.todolist);
-            setdataAlbum(value => ({ ...value, data: data.data }))
+            setdataTopic(value => ({ ...value, data: data.data }))
         })()
         return () => {
-            setdataAlbum(value => ({ ...value, display: false }))
+            setdataTopic(value => ({ ...value, display: false }))
         }
     }, [_id])
     const submitForm = (data: any, action: any) => {
 
         const getForm = new FormData(refForm.current);
         setTimeout(async () => {
-            const createAlbum = await albumApi.putOne<FormData, string>(getForm, _id);
-            if (createAlbum.status !== variableCommon.statusF) {
-                setdataAlbum(value => ({ ...value, data: createAlbum.data[0] }))
+            const createTopic = await apiTopic.putOne<FormData, string>(getForm, _id);
+            if (createTopic.status !== variableCommon.statusF) {
+                setdataTopic(value => ({ ...value, data: createTopic.data[0] }))
                 setalert(value => (
                     {
                         ...value, display: true,
-                        message: createAlbum.message,
+                        message: createTopic.message,
                         type: 'success'
                     }))
             } else {
                 setalert(value => (
                     {
                         ...value, display: true,
-                        message: createAlbum.message,
+                        message: createTopic.message,
                         type: 'error'
                     }))
             }
@@ -70,14 +69,14 @@ const UpdateTodo: React.FC<UpdateTodo<any>> = ({ changePage, _id, ...props }) =>
         <>
             <div className="admin-pageAdd">
                 <div className="text-name-add">
-                    <h3>Update Todo</h3><br />
+                    <h3>Update Topic</h3><br />
                 </div>
                 {alert.display && <Alert severity={alert.type as any} style={{ marginBottom: 5 }}>
                     {alert.message}
                 </Alert>}
 
                 <Formik
-                    initialValues={dataAlbum.data || initialValue}
+                    initialValues={dataTopic.data || initialValue}
                     onSubmit={submitForm}
                     validateOnChange={false}
                     // validateOnBlur={false}
@@ -89,10 +88,9 @@ const UpdateTodo: React.FC<UpdateTodo<any>> = ({ changePage, _id, ...props }) =>
                                 <div className="grid-addpage">
                                     <div className="section-add">
                                         <Card elevation={5}>
-
                                             <div className="form-input-add">
                                                 <div className="inputForm">
-                                                    <InputText name="title" label="Tên bài hát" other={{ variant: "standard" }} />
+                                                    <InputText name="name" label="Tên chủ đề" other={{ variant: "standard" }} />
                                                 </div>
                                             </div>
                                         </Card>
@@ -101,13 +99,10 @@ const UpdateTodo: React.FC<UpdateTodo<any>> = ({ changePage, _id, ...props }) =>
                                         <Card elevation={5}>
                                             <div className="form-input-add">
                                                 <div className="flex-image bg-file ">
-                                                    <FileField name="image" label="Image album" type="file" other={{ variant: 'standard' }} />
-                                                </div>
-                                                <div className="inputForm">
-                                                    <SelectArtist />
+                                                    <FileField name="image" label="Image Topic" type="file" other={{ variant: 'standard' }} />
                                                 </div>
                                                 <div className="bia-bai-hat-image">
-                                                    <img src={(dataAlbum.data as any)?.image} alt="" />
+                                                    <img src={(dataTopic.data as any)?.image} alt="" />
                                                 </div>
                                             </div>
                                         </Card>

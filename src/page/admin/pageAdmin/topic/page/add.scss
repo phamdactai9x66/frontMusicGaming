@@ -1,0 +1,91 @@
+.admin-pageAdd {
+    padding: 40px 40px 80px 40px;
+    .grid-addpage {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+    }
+    .form-input-add {
+      padding: 1rem;
+      .inputForm{
+        margin: 10px 0;
+      }
+    }
+      .text-tt {
+        border-radius: 0.3rem 0.3rem 0 0;
+        background: #eeeeee;
+        padding: 0.7rem;
+      }
+    
+
+    .err {
+      color: red;
+      height: 0.7rem;
+    }
+    .select {
+      width: 100%;
+    }
+    .width-audio{
+      font-size: 17px;
+      width: 100%;
+      height: 40px;
+  }
+    .flex-image {
+      background-color: #eeeeee;
+
+    .image-file{
+        width: 25px;
+        height: 25px;
+        background-color: #eeeeee;
+        border-radius: 3px;
+        margin-left: 0.5rem;
+    }
+
+      .custom-file-input::before {
+        content: '     Chọn file tải lên';
+        color: gray;
+        display: inline-block;
+        background-color: #eeeeee;
+        padding: 8px;
+        white-space: nowrap;
+        cursor: pointer;
+        width: 100%;
+      }
+
+    }
+      .bia-bai-hat-image{
+        margin-top: 1rem;
+     text-align: center;
+        img{
+            width: 150px;
+            height: 155px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+    }
+    .grid-button {
+        display: flex;
+        gap: 2rem;
+        margin-top: 40px;
+        button:nth-child(1) {
+           background: #3088c2;
+           color: #ffffff;
+        }
+        button:nth-child(2) {
+            background: #e60909;
+            color: #ffffff;
+         }
+    }
+}
+
+//////response
+@media screen and (max-width:700px) {
+    .admin-pageAdd {
+        padding-left: 20px;
+        padding-right: 20px;
+        .grid-addpage{
+            display: grid;
+            grid-template-columns: 1fr;
+        }
+    }
+}

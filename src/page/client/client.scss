@@ -15,11 +15,12 @@ main {
     @import "./pageClient/category/category.scss";
     @import "./pageClient/blogdetail/blogdetail.scss";
     @import "./pageClient/blog/blog.scss";
+    @import "./pageClient/categoryDetailPlaylist/categoryDetailPlaylist.scss";
 }
 
 $color_li: rgb(187, 187, 187);
 $color_icon: #00e5ce;
-$color_aside: linear-gradient(to bottom right, #0e192a, #1b375c);
+$color_aside: #0e192a;
 $color_main_header: #222f44;
 $color_footer: #0e192aa4;
 

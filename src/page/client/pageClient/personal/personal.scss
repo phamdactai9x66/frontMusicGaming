@@ -1,7 +1,7 @@
 .Personal {
     $color_while: rgb(228, 228, 228);
     padding-top: 2rem;
-    margin-bottom: 31rem;
+    margin-bottom: 2rem;
     .info_Personal {
         display: flex;
         justify-content: center;
@@ -36,7 +36,6 @@
             }
         }
         .overview {
-            height: 100vh;
             margin-top: -2rem;
             h4 {
                 color: rgb(231, 231, 231);

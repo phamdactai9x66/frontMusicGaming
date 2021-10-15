@@ -3,59 +3,42 @@ import { Card } from "@material-ui/core";
 import LoadingButton from '@mui/lab/LoadingButton';
 import { Button, Alert } from "@mui/material"
 import { Formik, Form } from "formik";
-import SelectArtist from "../component/selectArtist";
 import { InputText, FileField } from "component/customField/index";
 import validateSchema from "../component/validateSchema";
-import albumApi from "api/albumApi";
+import apiTopic from "api/topicApi";
 import { variableCommon } from "component/variableCommon";
-import { HandleGet } from "component/MethodCommon";
 import { page } from "../index";
-interface UpdateTodo<T> {
-    changePage: any,
-    _id: string | any
+interface AddTodo<T> {
+    changePage: any
 };
 
 const initialValue = {
-    title: '',
-    image: '',
-    id_Artist: ''
+    name: '',
+    image: ''
 }
 
-const UpdateTodo: React.FC<UpdateTodo<any>> = ({ changePage, _id, ...props }) => {
+const AddTodo: React.FC<AddTodo<any>> = ({ changePage, ...props }) => {
     const refForm = useRef<HTMLFormElement | any>(null)
     const [alert, setalert] = useState({ display: false, message: "", type: "" })
-    const [dataAlbum, setdataAlbum] = useState({ data: null, display: true });
-    useEffect(() => {
-        (async () => {
-            if (!dataAlbum.display) return navigatePage(page.todolist);
 
-            const [data, error] = await HandleGet(albumApi.getOne, _id);
-
-            if (error) return navigatePage(page.todolist);
-            setdataAlbum(value => ({ ...value, data: data.data }))
-        })()
-        return () => {
-            setdataAlbum(value => ({ ...value, display: false }))
-        }
-    }, [_id])
     const submitForm = (data: any, action: any) => {
 
         const getForm = new FormData(refForm.current);
         setTimeout(async () => {
-            const createAlbum = await albumApi.putOne<FormData, string>(getForm, _id);
-            if (createAlbum.status !== variableCommon.statusF) {
-                setdataAlbum(value => ({ ...value, data: createAlbum.data[0] }))
+            const createTopic = await apiTopic.postOne<FormData>(getForm);
+            if (createTopic.status !== variableCommon.statusF) {
+                action.resetForm();
                 setalert(value => (
                     {
                         ...value, display: true,
-                        message: createAlbum.message,
+                        message: createTopic.message,
                         type: 'success'
                     }))
             } else {
                 setalert(value => (
                     {
                         ...value, display: true,
-                        message: createAlbum.message,
+                        message: createTopic.message,
                         type: 'error'
                     }))
             }
@@ -70,19 +53,19 @@ const UpdateTodo: React.FC<UpdateTodo<any>> = ({ changePage, _id, ...props }) =>
         <>
             <div className="admin-pageAdd">
                 <div className="text-name-add">
-                    <h3>Update Todo</h3><br />
+                    <h3>Add Topic</h3><br />
                 </div>
                 {alert.display && <Alert severity={alert.type as any} style={{ marginBottom: 5 }}>
                     {alert.message}
                 </Alert>}
 
                 <Formik
-                    initialValues={dataAlbum.data || initialValue}
+                    initialValues={initialValue}
                     onSubmit={submitForm}
                     validateOnChange={false}
                     // validateOnBlur={false}
                     validationSchema={validateSchema}
-                    enableReinitialize >
+                >
                     {formik => {
                         return (
                             <Form ref={refForm}>
@@ -92,7 +75,7 @@ const UpdateTodo: React.FC<UpdateTodo<any>> = ({ changePage, _id, ...props }) =>
 
                                             <div className="form-input-add">
                                                 <div className="inputForm">
-                                                    <InputText name="title" label="Tên bài hát" other={{ variant: "standard" }} />
+                                                    <InputText name="name" label="Tên chủ đề" other={{ variant: "standard" }} />
                                                 </div>
                                             </div>
                                         </Card>
@@ -101,13 +84,7 @@ const UpdateTodo: React.FC<UpdateTodo<any>> = ({ changePage, _id, ...props }) =>
                                         <Card elevation={5}>
                                             <div className="form-input-add">
                                                 <div className="flex-image bg-file ">
-                                                    <FileField name="image" label="Image album" type="file" other={{ variant: 'standard' }} />
-                                                </div>
-                                                <div className="inputForm">
-                                                    <SelectArtist />
-                                                </div>
-                                                <div className="bia-bai-hat-image">
-                                                    <img src={(dataAlbum.data as any)?.image} alt="" />
+                                                    <FileField name="image" label="Image Topic" type="file" other={{ variant: 'standard' }} />
                                                 </div>
                                             </div>
                                         </Card>
@@ -115,7 +92,7 @@ const UpdateTodo: React.FC<UpdateTodo<any>> = ({ changePage, _id, ...props }) =>
                                         <LoadingButton loading={formik.isSubmitting} variant="contained"
                                             type="submit"
                                         >
-                                            thay đổi
+                                            Thêm chủ đề
                                         </LoadingButton>
                                         {/* <Button variant="contained" type="submit" color="primary">Thêm bài hát</Button> */}
                                         <Button variant="contained" color="error" style={{ marginLeft: 20 }}
@@ -133,4 +110,4 @@ const UpdateTodo: React.FC<UpdateTodo<any>> = ({ changePage, _id, ...props }) =>
     )
 }
 
-export default UpdateTodo
+export default AddTodo

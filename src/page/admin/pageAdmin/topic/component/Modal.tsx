@@ -1,10 +1,9 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Backdrop, Box, Modal, Fade, Typography, Grid, TextField } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import apiAlbum from "api/albumApi"
+import apiTopic from "api/topicApi";
 import { HandleGet, getDate } from "component/MethodCommon";
-import ArtistApi from "api/ArtistApi";
-import { variableCommon } from "component/variableCommon";
+
 const typeModal: any = {
     position: 'absolute',
     top: '50%',
@@ -33,14 +32,11 @@ interface Modal<T> {
 
 const ComponentModal: React.FC<Modal<any>> = ({ state, onClose, ...props }) => {
     const [dataAlbume, setdataAlbume] = useState<any>({ data: {}, error: false, display: false });
-    const nameArtist = useRef<any>('');
     const classes = useStyle();
     useEffect(() => {
         (async () => {
             if (dataAlbume.error) return;
-            const [data, error] = await HandleGet(apiAlbum.getOne, state._id);
-            if (error) setdataAlbume((value: any) => ({ ...value, error: true, display: false }));
-            await findArtist(data.data.id_Artist)
+            const [data, error] = await HandleGet(apiTopic.getOne, state._id);
             setdataAlbume({ error: false, data: data.data, display: true })
         })()
         return () => {
@@ -48,19 +44,8 @@ const ComponentModal: React.FC<Modal<any>> = ({ state, onClose, ...props }) => {
         }
     }, [state._id])
 
-    const findArtist = async <T extends string>(_id: T) => {
-        if (!_id) return;
-        const findArirst = await ArtistApi.getOne(_id);
-
-        if (findArirst.status !== variableCommon.statusF) {
-            const { first_Name, last_Name } = findArirst.data
-            return nameArtist.current = `${first_Name} ${last_Name}`
-        }
-        nameArtist.current = ''
-    }
     return (
         <div>
-            {/* <Button onClick={handleOpen}>Open modal</Button> */}
             {dataAlbume.display ?
                 <Modal
                     aria-labelledby="transition-modal-title"
@@ -83,12 +68,7 @@ const ComponentModal: React.FC<Modal<any>> = ({ state, onClose, ...props }) => {
                                 </Grid>
                                 <Grid item xs={12} md={6}>
                                     <Typography >
-                                        <TextField inputProps={{ readOnly: true, }} label="Title" value={dataAlbume.data?.title} variant="standard" fullWidth />
-                                    </Typography>
-                                </Grid>
-                                <Grid item xs={12} md={6}>
-                                    <Typography >
-                                        <TextField inputProps={{ readOnly: true, }} label="Artist" value={nameArtist.current} variant="standard" fullWidth />
+                                        <TextField inputProps={{ readOnly: true, }} label="name" value={dataAlbume.data?.name} variant="standard" fullWidth />
                                     </Typography>
                                 </Grid>
                                 <Grid item xs={12} md={6}>

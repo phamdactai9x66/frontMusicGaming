@@ -129,6 +129,10 @@ main {
 .nav__check:checked ~ .main_admin{
   margin-left: -12rem;
   transition: 0.2s;
+  .main1 {
+    width: 40rem;
+    margin: 2rem 0 0 -1.9rem;
+}
   ._sidebar h2 {
     text-align: left;
   }

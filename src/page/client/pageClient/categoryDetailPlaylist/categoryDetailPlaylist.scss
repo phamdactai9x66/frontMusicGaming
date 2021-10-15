@@ -1,0 +1,25 @@
+.CategoryDetailPlaylist {
+    margin: 2rem;
+    .img_banner {
+        position: relative;
+        margin-bottom: 2rem;
+        img {
+            border-radius: 0.3rem;
+            width: 100%;
+            height: 26rem;
+        }
+        &::before {
+            content: "";
+            position: absolute;
+            top: 80%;
+            width: 100%;
+            height: 100px;
+            background-image: linear-gradient(to top,#222f44,transparent);  
+        }
+    }
+
+    .box_cate_detail {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+}

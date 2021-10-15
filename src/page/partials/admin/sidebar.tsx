@@ -11,6 +11,7 @@ import { FiMenu } from 'react-icons/fi';
 import { FaChartPie, FaRegPlayCircle, FaUserAlt, FaTshirt } from 'react-icons/fa';
 import { SiBlogger, SiTodoist } from 'react-icons/si';
 import { AiFillDashboard } from 'react-icons/ai';
+import { RiUserHeartLine } from 'react-icons/ri';
 
 
 interface Sidebar<T> {
@@ -273,7 +274,7 @@ const Sidebar: React.FC<Sidebar<any>> = ({ ...props }) => {
                             <label className="tabs__item--icon">
                             <FaTshirt />
                             </label>
-                            <label className="button_text">Topic</label>
+                           <Link to="/admin/topic"><label className="button_text">Topic</label></Link> 
                         </div>
                         <div>&#10095;</div>
                     </label>
@@ -281,7 +282,26 @@ const Sidebar: React.FC<Sidebar<any>> = ({ ...props }) => {
                     <div className="tab-content">
                         <label className="add_item">
                             <BiMessageSquareAdd className="icon_item" />
-                            <span>Add Topic</span>
+                            <Link to="/admin/addTopic"><span>Add Topic</span></Link>
+                        </label>
+                    </div>
+                </div>
+                <div className="tab">
+                    <input hidden type="checkbox" id="chck13" />
+                    <label className="tab-label" htmlFor="chck13">
+                        <div className="grid_item">
+                            <label className="tabs__item--icon">
+                            <RiUserHeartLine />
+                            </label>
+                            <label className="button_text"><span>Nhạc</span>&nbsp;<span>sĩ</span></label>
+                        </div>
+                        <div>&#10095;</div>
+                    </label>
+
+                    <div className="tab-content">
+                        <label className="add_item">
+                            <BiMessageSquareAdd className="icon_item" />
+                            <span>Add Nhạc sĩ</span>
                         </label>
                     </div>
                 </div>
