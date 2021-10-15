@@ -197,7 +197,7 @@ $color_footer: #0e192aa4;
         z-index: 2;
         .footer {
             display: flex;
-            padding: 1.3rem;
+            padding: 20px 15px;
             .author {
                 margin-right: 1rem;
                 display: flex;
@@ -220,14 +220,16 @@ $color_footer: #0e192aa4;
             .icon_play-music {
                 cursor: pointer;
                 font-size: 1.6rem;
-                .icon {
+                display: flex;
+                align-items: center;
+                & > .icon {
                     margin-left: 1rem;
                     &:nth-child(1) {
-                        font-size: 1rem;
+                        font-size: 1.5rem;
                         color: #838383;
                     }
                     &:nth-child(5) {
-                        font-size: 1rem;
+                        font-size: 1.5rem;
                         color: #838383;
                     }
                     &:nth-child(2) {
@@ -245,13 +247,26 @@ $color_footer: #0e192aa4;
                         color: #fff;
                     }
                 }
+                div{
+                    .icon {
+                        margin-left: 1rem;
+                        font-size: 1rem;
+                         border-radius: 0.8rem 0 0.8rem 0;
+                            color: #00e5ce;
+                            width: 2.7rem;
+                            height: 2.7rem;
+                            padding: 0.5rem;
+                            background: rgb(5, 9, 22);
+                    }
+                }
             }
+
             .audio-run {
                 flex-grow: 1;
                 margin-top: 0.75rem;
                 margin-left: 3rem;
                 display: grid;
-                grid-template-columns: 2.5rem 1fr 3.2rem 2rem;
+                grid-template-columns: 3.7rem 1fr 4rem 2rem;
                 .time {
                     color: rgb(177, 177, 177);
                 }
@@ -271,6 +286,7 @@ $color_footer: #0e192aa4;
                 position: relative;
                 height: 6px;
                 width: 100%;
+                margin-top: 0.8rem;
                 cursor: pointer;
                 border-radius: 10px;
                 background: rgb(33, 43, 65);
@@ -383,9 +399,9 @@ $color_footer: #0e192aa4;
       color: #fff;
       text-decoration: none;
       font-size: 1.2rem;
-      padding-right: 3rem;
       padding-bottom: 0.4rem;
       margin-bottom: 0.4rem;
+      width: 10rem;
       border-bottom: 0.1rem solid rgba(127, 255, 212, 0.322);
       ._icon {
           color: rgb(82, 240, 187);
