@@ -11,12 +11,16 @@ import ArtistComponent from './component/ArtistComponent';
 import WantHearComponent from './component/WantHearComponent';
 import RecentlyComponent from './component/RecentlyComponent';
 import PopularComponent from './component/PopularComponent';
+import { LensTwoTone } from '@mui/icons-material';
+import { formStateUser } from 'redux/user/stateUser';
+import { useSelector } from 'react-redux';
 
 interface Home<T> {
-
+    userState: any,
 }
 
 const Home: React.FC<Home<any>> = ({ ...props }) => {
+    const userState = useSelector<{ user: any }>(state => state.user) as formStateUser;
     var settings_banner = {
         dots: true,
         autoplay: true,
@@ -79,7 +83,7 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                 <h4 className="title_all">Danh sách bài hát <MdNavigateNext className="icon" /></h4>
                 <div className="main1">
                
-                    <HomeSongComponent/>
+                    <HomeSongComponent userState={userState} />
 
                     {/* artist */}
                     <ArtistComponent/>

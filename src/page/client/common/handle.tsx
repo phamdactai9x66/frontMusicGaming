@@ -1,7 +1,22 @@
+import likeSongApi from "api/likeSongApi";
 import songPlaylistApi from "api/songPlaylistApi";
 
 export const handleLike = (idSong: string, idUser: string) => {
-    console.log("handle like => idSong: ", idSong, " => idUser: ", idUser);
+    let res;
+    try {
+        const addHandler = async () => {
+            const data = {
+                id_Songs: idSong,
+                id_User: idUser,
+            }
+            const response = await likeSongApi.addToLikeSong(data);
+            return response
+        }
+        res = addHandler();
+    } catch (error) {
+        console.error(error);
+    }
+    return res
 }
 
 export const handleDownload = (idSong: string) => {
@@ -17,17 +32,19 @@ export const handleDownload = (idSong: string) => {
     // link.remove();// xóa thẻ a
 }
 
-export const handleAddToPlaylist = (idSong: string, idUser: string = "6142f12f0d259d3634f367ff") => {
+export const handleAddToPlaylist = (idSong: string, idUser: string) => {
+    let res;
     try {
         const addHandler = async () => {
             const data = new FormData();
             data.append("id_Song", idSong);
             data.append("id_User_Playlist", idUser);
-            const abc = await songPlaylistApi.addToPlaylist(data);
-            console.log(abc)
+            const response = await songPlaylistApi.addToPlaylist(data);
+            return response;
         }
-        addHandler();
+        res = addHandler();
     } catch (error) {
-        console.log(error);
+        console.error(error);
     }
+    return res;
 }
