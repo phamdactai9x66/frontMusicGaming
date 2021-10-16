@@ -15,6 +15,49 @@ import { LensTwoTone } from '@mui/icons-material';
 import { formStateUser } from 'redux/user/stateUser';
 import { useSelector } from 'react-redux';
 
+var settings_banner = {
+    dots: true,
+    autoplay: true,
+    speed: 1000,
+    autoplaySpeed: 4000,
+    className: "center",
+    centerMode: true,
+    infinite: true,
+    slidesToShow: 1,
+};
+var settings_category = {
+    infinite: false,
+    slidesToShow: 4,
+    slidesToScroll: 4,
+    initialSlide: 0,
+    responsive: [
+        {
+            breakpoint: 1024,
+            settings: {
+                slidesToShow: 3,
+                slidesToScroll: 3,
+                infinite: true,
+                dots: true
+            }
+        },
+        {
+            breakpoint: 600,
+            settings: {
+                slidesToShow: 2,
+                slidesToScroll: 2,
+                initialSlide: 2
+            }
+        },
+        {
+            breakpoint: 480,
+            settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1
+            }
+        }
+    ]
+};
+
 interface Home<T> {
     userState: any,
 }
@@ -65,59 +108,63 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
     };
 
 
+
     return (
         <div className="home">
             <div className="slider-banner">
-                
                 <VerticalSlider settings_banner={settings_banner} />
-
             </div>
 
             {/* category */}
             <div className="list-slider">
                 <h4 className="title_all">Thể loại <MdNavigateNext className="icon" /></h4>
-                <HomeCategory settings_category={settings_category}/>
+                <HomeCategory settings_category={settings_category} />
 
             </div>
             <div className="list-music">
                 <h4 className="title_all">Danh sách bài hát <MdNavigateNext className="icon" /></h4>
                 <div className="main1">
+<<<<<<< HEAD
                
                     <HomeSongComponent userState={userState} />
+=======
+
+                    <HomeSongComponent />
+>>>>>>> 67669ae8d92545319243d44a30d9fefa941387de
 
                     {/* artist */}
-                    <ArtistComponent/>
+                    <ArtistComponent />
                 </div>
             </div>
             <div className="list-slider">
                 <h4 className="title_all">Có thể bạn muốn nghe <MdNavigateNext className="icon" /></h4>
 
-                
+
                 {/* get by {_limit: 20, view: 'desc', date: "desc"} */}
                 <WantHearComponent settings_category={settings_category} />
             </div>
             <div className="list-slider">
                 <h4 className="title_all">Nghe gần đây <MdNavigateNext className="icon" /></h4>
-                
+
                 {/* get by {_limit: 20, view: 'desc', date: "desc"} */}
                 <RecentlyComponent settings_category={settings_category} />
             </div>
             <div className="list-slider">
                 <h4 className="title_all">Top thịnh hành <MdNavigateNext className="icon" /></h4>
-                
+
                 {/* get by {_limit: 20, view: 'desc'} */}
-                <PopularComponent settings_category={settings_category} sort_by={{_limit: 20, view: 'desc'}} />
+                <PopularComponent settings_category={settings_category} sort_by={{ _limit: 20, view: 'desc' }} />
             </div>
             <div className="list-slider">
                 <h4 className="title_all">Nhạc mới mỗi ngày <MdNavigateNext className="icon" /></h4>
-                <PopularComponent settings_category={settings_category} sort_by={{_limit: 20, date: 'desc'}} />
+                <PopularComponent settings_category={settings_category} sort_by={{ _limit: 20, date: 'desc' }} />
             </div>
             <div className="list-slider">
                 <h4 className="title_all">Sắp diễn ra <MdNavigateNext className="icon" /></h4>
-                <PopularComponent settings_category={settings_category} sort_by={{_limit: 20, day_release: 'desc'}} />
+                <PopularComponent settings_category={settings_category} sort_by={{ _limit: 20, day_release: 'desc' }} />
 
             </div>
-            
+
             <div className="music-charts">
                 <div>
                     <h4 className="title_all">#Musichart <BiPlayCircle /></h4>
