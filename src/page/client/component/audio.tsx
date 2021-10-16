@@ -2,14 +2,18 @@
 import React, { useRef, useState, useEffect } from 'react'
 import { FiRepeat } from 'react-icons/fi';
 import { HiVolumeUp } from 'react-icons/hi';
-import { PlayArrow, Pause, NavigateNext, NavigateBefore, SkipNext, SkipPrevious, Loop } from '@mui/icons-material';
+import { PlayArrow, Pause, NavigateNext, NavigateBefore, SkipNext, SkipPrevious } from '@mui/icons-material';
+import CircularProgress from '@mui/material/CircularProgress';
 import { tranFormDuration } from "component/MethodCommon";
+import { formStateAudio } from "redux/audio/stateAudio";
+import { useSelector, useDispatch } from "react-redux";
 
 interface Audio<T> {
-
+    url?: string
 }
 
-const Audio: React.FC<Audio<any>> = ({ ...props }) => {
+const Audio: React.FC<Audio<any>> = ({ url, ...props }) => {
+    const state = useSelector<{ audio: any }>(state => state.audio) as formStateAudio;
     const [play, setPlay] = useState(false);
     const [duration, setduration] = useState(0);
     const [currentTime, setcurrentTime] = useState(0);
@@ -22,8 +26,9 @@ const Audio: React.FC<Audio<any>> = ({ ...props }) => {
     const volume = useRef<HTMLInputElement>(null);
 
     const changeTime = () => {
+        if (!url) return
         setcurrentTime(value => value + 1);
-        Range.current.value++;
+        Range.current?.value && Range.current.value++;
     }
     useEffect(() => {
         const getDuration = Math.ceil(AudioPlay.current?.duration as any);
@@ -31,6 +36,7 @@ const Audio: React.FC<Audio<any>> = ({ ...props }) => {
     }, [AudioPlay.current?.readyState]);
 
     useEffect(() => {
+
         if (!fakeRender) {
             setTimeout(() => {
                 //fake render
@@ -50,10 +56,17 @@ const Audio: React.FC<Audio<any>> = ({ ...props }) => {
             setcurrentTime(0)
             Range.current.value = 0
         }
-
     }, [currentTime, fakeRender])
+    useEffect(() => {
+        if (state.playing && fakeRender && AudioPlay.current) {
+            AudioPlay.current?.play();
+            stateCurrentTime.current = setInterval(changeTime, 1000)
+            setPlay(true);
+        }
+    }, [fakeRender])
 
     const playAudio = () => {
+        if (!url) return
         const stateAudio = !play;
         if (stateAudio) {
             AudioPlay.current?.play();
@@ -66,6 +79,7 @@ const Audio: React.FC<Audio<any>> = ({ ...props }) => {
         setPlay(stateAudio);
     }
     const changeCurrenT = () => {
+        if (!url) return
         const getValue = +(Range.current as HTMLInputElement).value as any;
         if (getValue >= 0 && getValue <= duration) {
             console.log(getValue)
@@ -74,6 +88,7 @@ const Audio: React.FC<Audio<any>> = ({ ...props }) => {
         }
     }
     const nextTime = (nextTime: number) => {
+        if (!url) return
         if (nextTime > 0 && nextTime < duration) {
             setcurrentTime(nextTime);
             (AudioPlay.current as any).currentTime = nextTime;
@@ -81,13 +96,14 @@ const Audio: React.FC<Audio<any>> = ({ ...props }) => {
         }
     }
     const changeVolume = () => {
+        if (!url) return
         const getValue = +(volume.current?.value as string) / 100;
         (AudioPlay.current as any).volume = getValue;
     }
 
     return (
         <div className="footer">
-            <audio ref={AudioPlay} src="https://firebasestorage.googleapis.com/v0/b/test12-873e4.appspot.com/o/test2%2FChoAnhTrongMua-ThuyChi_423u7.mp3?alt=media&token=f8a55d4a-e79d-4603-beef-eecc7eb80511"></audio>
+            <audio ref={AudioPlay} src={url}></audio>
             <div className="author">
                 <img width={50} height={50} src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJdulnc1hxmzx9izhgHHRQGhssK6KshlS6bypOagn9_lVhJ6ntqiCFNislU1nOb7NjJeY&usqp=CAU" />
                 <div>
@@ -99,6 +115,7 @@ const Audio: React.FC<Audio<any>> = ({ ...props }) => {
                 <SkipPrevious className="icon" />
                 <NavigateBefore className="icon" onClick={() => { nextTime(currentTime - 10) }} />
                 <div onClick={playAudio}>
+                    {/* {url ? play ? <Pause className="icon" /> : <PlayArrow className="icon" /> : <CircularProgress size="20px" />} */}
                     {play ? <Pause className="icon" /> : <PlayArrow className="icon" />}
                 </div>
                 <NavigateNext className="icon" onClick={() => { nextTime(currentTime + 10) }} />
