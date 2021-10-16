@@ -124,13 +124,8 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
             <div className="list-music">
                 <h4 className="title_all">Danh sách bài hát <MdNavigateNext className="icon" /></h4>
                 <div className="main1">
-<<<<<<< HEAD
                
                     <HomeSongComponent userState={userState} />
-=======
-
-                    <HomeSongComponent />
->>>>>>> 67669ae8d92545319243d44a30d9fefa941387de
 
                     {/* artist */}
                     <ArtistComponent />
