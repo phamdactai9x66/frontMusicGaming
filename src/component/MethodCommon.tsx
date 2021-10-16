@@ -26,6 +26,10 @@ export const tranFormDuration = <T extends number>(duration: T): string | void =
     const returnMinute = getMinute < 10 ? `0${getMinute}` : getMinute;
     return `${returnMinute}:${returnSecon}`;
 }
+export const tranFormdata = <T extends any[]>(data: T) => {
+    if (!data) return [];
+    return data.reduce((previousV, currenV) => ({ ...previousV, [currenV._id]: currenV }), [])
+}
 
 
 //method for todolist
