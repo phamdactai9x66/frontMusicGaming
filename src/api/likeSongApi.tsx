@@ -11,5 +11,10 @@ class likeSongApi {
         let url: string = "/likeSong/add";
         return Axios.post(url, data);
     }
+
+    unLikeSong<T extends object>(id: string): Promise<any> {
+        let url: string = `/likeSong/${id}/delete`;
+        return Axios.delete(url);
+    }
 }
 export default new likeSongApi()

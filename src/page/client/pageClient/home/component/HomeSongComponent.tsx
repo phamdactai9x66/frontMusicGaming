@@ -29,25 +29,29 @@ const HomeSongComponent: React.FC<HomeSongComponentIF<any>> = (props) => {
         getSongs();
     }, []);
 
-    const handleAdd = async (s: string, u: string, t: string) => {
+    const handleAdd = async <T extends string>(s: T, u: T, t: T) => {
         if(t === 'like'){
             let likeRes = await handleLike(s, u);
-            if(likeRes && likeRes.status === "successfully"){
-                console.log('okay, them roi nhe');
-            }else{
-                console.log('oops, khong them duoc roi')
+            if(likeRes && likeRes.status === "added"){
+                console.log('okay, them roi nhe. (Added)');
+            }else if(likeRes && likeRes.status === "deleted") {
+                console.log('okay, them roi nhe. (Deleted)');
+            } else{
+                console.log('oops, khong them duoc roi. (Error)')
             }
         }
         
         if(t === "playlist"){
+            //đang sai vì chưa lấy được playlist của user
             let playlistRes = await handleAddToPlaylist(s, u);
             if(playlistRes && playlistRes.status === "successfully"){
                 console.log('okay, them roi nhe');
+            }else if(playlistRes.status === "existed"){
+                console.log("Bài hát này đã tồn tại trong play list này của bạn.")
             }else{
-                console.log('oops, khong them duoc roi')
+                console.log('oops, khong them duoc roi');
             }
         }
-        console.error("type is not define")
     }
 
     const playAudio = <T extends string>(_id: T): void => {
@@ -72,7 +76,7 @@ const HomeSongComponent: React.FC<HomeSongComponentIF<any>> = (props) => {
                     <div className="icon_item">
                         <AiOutlineDownload onClick={() => handleDownload(item._id)} className="icon" />
                         <AiFillHeart onClick={() => handleAdd(item._id, user._id, "like")} className="icon" />
-                        <IoMdAdd className="icon" onClick={() => handleAdd(item._id, user._id, 'playlist')} />
+                        <IoMdAdd className="icon" onClick={() => handleAdd(item._id, user._id, "playlist")} />
                     </div>
                 </div>
             ))}
