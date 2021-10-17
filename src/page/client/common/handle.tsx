@@ -1,7 +1,27 @@
+import likeSongApi from "api/likeSongApi";
 import songPlaylistApi from "api/songPlaylistApi";
 
-export const handleLike = (idSong: string, idUser: string) => {
-    console.log("handle like => idSong: ", idSong, " => idUser: ", idUser);
+export const handleLike = <T extends string> (idSong: T, idUser: T) => {
+    let res;
+    try {
+        const getLikeSong = async () => {
+            const condition = { id_Songs: idSong, id_User: idUser };
+            let getResponse = await likeSongApi.getAll(condition);
+            
+            if(getResponse.data.length !== 0){
+                let response = await likeSongApi.unLikeSong(getResponse.data[0]._id);
+                return {response: response, status: "deleted"};
+            }else{
+                let response = await likeSongApi.addToLikeSong(condition);
+                return {response: response, status: "added"};
+            }
+        }
+        
+        res = getLikeSong();
+    } catch (error) {
+        console.error(error);
+    }
+    return res
 }
 
 export const handleDownload = (idSong: string) => {
@@ -17,17 +37,25 @@ export const handleDownload = (idSong: string) => {
     // link.remove();// xóa thẻ a
 }
 
-export const handleAddToPlaylist = (idSong: string, idUser: string = "6142f12f0d259d3634f367ff") => {
+export const handleAddToPlaylist = <T extends string> (idSong: T, idUser: T) => {
+    let res;
     try {
         const addHandler = async () => {
-            const data = new FormData();
-            data.append("id_Song", idSong);
-            data.append("id_User_Playlist", idUser);
-            const abc = await songPlaylistApi.addToPlaylist(data);
-            console.log(abc)
+            let getResponse = await songPlaylistApi.getAll( {id_Song: idSong, id_User_Playlist: idUser} );
+            
+            if(getResponse.data.length === 0){
+                const data = new FormData();
+                data.append("id_Song", idSong);
+                data.append("id_User_Playlist", idUser);
+                const response = await songPlaylistApi.addToPlaylist(data);
+                return response;
+            }else{
+                return { status: "existed"};
+            }
         }
-        addHandler();
+        res = addHandler();
     } catch (error) {
-        console.log(error);
+        console.error(error);
     }
+    return res;
 }

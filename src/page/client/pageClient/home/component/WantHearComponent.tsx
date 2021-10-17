@@ -10,7 +10,8 @@ import { HiOutlineDotsCircleHorizontal } from 'react-icons/hi';
 import {  BiHeart } from 'react-icons/bi';
 import { Select, MenuItem } from "@mui/material"
 interface WantHearComponentIF<T> {
-    settings_category: object
+    settings_category: object,
+    idPlaylist: string,
 }
 
 const WantHearComponent: React.FC<WantHearComponentIF<any>> = ({...props}) => {

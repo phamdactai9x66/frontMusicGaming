@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { MdNavigateNext } from 'react-icons/md';
 import Button from '@mui/material/Button';
 import { BiPlayCircle } from 'react-icons/bi';
@@ -11,6 +11,10 @@ import ArtistComponent from './component/ArtistComponent';
 import WantHearComponent from './component/WantHearComponent';
 import RecentlyComponent from './component/RecentlyComponent';
 import PopularComponent from './component/PopularComponent';
+import { LensTwoTone } from '@mui/icons-material';
+import { formStateUser } from 'redux/user/stateUser';
+import { useSelector } from 'react-redux';
+import playlistApi from 'api/playlistApi';
 
 var settings_banner = {
     dots: true,
@@ -56,12 +60,68 @@ var settings_category = {
 };
 
 interface Home<T> {
-
+    userState: any,
 }
 
 const Home: React.FC<Home<any>> = ({ ...props }) => {
+    const [playlists, setPlaylists] = useState([]);
+    const userState = useSelector<{ user: any }>(state => state.user) as formStateUser;
+    var settings_banner = {
+        dots: true,
+        autoplay: true,
+        speed: 1000,
+        autoplaySpeed: 4000,
+        className: "center",
+        centerMode: true,
+        infinite: true,
+        slidesToShow: 1,
+    };
+    var settings_category = {
+        infinite: false,
+        slidesToShow: 4,
+        slidesToScroll: 4,
+        initialSlide: 0,
+        responsive: [
+            {
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 3,
+                    infinite: true,
+                    dots: true
+                }
+            },
+            {
+                breakpoint: 600,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 2,
+                    initialSlide: 2
+                }
+            },
+            {
+                breakpoint: 480,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1
+                }
+            }
+        ]
+    };
 
+    const getPlaylists = async () => {
+        const responsePL = await playlistApi.getAll();
+        if(!responsePL || responsePL.status === "failed"){
+            console.error("Get playlist failed.");
+            return;
+        }
+        const { data } = responsePL;
+        setPlaylists(data)
+    }
 
+    useEffect( () => {
+        getPlaylists()
+    }, []);
 
     return (
         <div className="home">
@@ -78,30 +138,39 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
             <div className="list-music">
                 <h4 className="title_all">Danh sách bài hát <MdNavigateNext className="icon" /></h4>
                 <div className="main1">
-
-                    <HomeSongComponent />
+               
+                    <HomeSongComponent userState={userState} />
 
                     {/* artist */}
                     <ArtistComponent />
                 </div>
             </div>
-            <div className="list-slider">
+            
+            {playlists.length !== 0 && playlists.map( (item: any) => (
+                <div className="list-slider">
+                    <h4 className="title_all">{item.name} <MdNavigateNext className="icon" /></h4>
+                    
+                    <WantHearComponent settings_category={settings_category} idPlaylist={item._id} />
+                </div>
+            ))}
+
+            {/* <div className="list-slider">
                 <h4 className="title_all">Có thể bạn muốn nghe <MdNavigateNext className="icon" /></h4>
 
-
-                {/* get by {_limit: 20, view: 'desc', date: "desc"} */}
+                 get by {_limit: 20, view: 'desc', date: "desc"} 
                 <WantHearComponent settings_category={settings_category} />
             </div>
+            
             <div className="list-slider">
                 <h4 className="title_all">Nghe gần đây <MdNavigateNext className="icon" /></h4>
 
-                {/* get by {_limit: 20, view: 'desc', date: "desc"} */}
+                get by {_limit: 20, view: 'desc', date: "desc"}
                 <RecentlyComponent settings_category={settings_category} />
             </div>
             <div className="list-slider">
                 <h4 className="title_all">Top thịnh hành <MdNavigateNext className="icon" /></h4>
 
-                {/* get by {_limit: 20, view: 'desc'} */}
+                get by {_limit: 20, view: 'desc'}
                 <PopularComponent settings_category={settings_category} sort_by={{ _limit: 20, view: 'desc' }} />
             </div>
             <div className="list-slider">
@@ -112,7 +181,7 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                 <h4 className="title_all">Sắp diễn ra <MdNavigateNext className="icon" /></h4>
                 <PopularComponent settings_category={settings_category} sort_by={{ _limit: 20, day_release: 'desc' }} />
 
-            </div>
+            </div> */}
 
             <div className="music-charts">
                 <div>
