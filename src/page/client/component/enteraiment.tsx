@@ -9,7 +9,7 @@ interface Enteraiment<T> {
 }
 
 const Enteraiment: React.FC<Enteraiment<any>> = ({ ...props }) => {
-    const { audio: { audio: url }, display } = useSelector<{ audio: any }>(state => state.audio) as formStateAudio;
+    const { audio, display } = useSelector<{ audio: any }>(state => state.audio) as formStateAudio;
     const dispatch = useDispatch();
     window.addEventListener("beforeunload", function (event) {
         dispatch(pausePlaying())
@@ -20,11 +20,10 @@ const Enteraiment: React.FC<Enteraiment<any>> = ({ ...props }) => {
             dispatch(renderSong())
         }
     }, [display])
-    console.log(display)
     return (
         <>
             <footer >
-                {display ? <Audio url={url} /> : null}
+                {display ? <Audio audio={audio} /> : null}
             </footer>
         </>
     )
