@@ -49,7 +49,7 @@ const Blog: React.FC<blog<any>> = ({ ...props }) => {
             <div className="Pagination">
             <Pagination count={10} onClick={() => { console.log() }} style={{ padding: 10, paddingTop: 20,color: "#fff" }} />
             </div>
-        
+        </div>
         </div>
 
     )
