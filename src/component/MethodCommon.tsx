@@ -1,7 +1,8 @@
 
 export const HandleGet = async (functionPromise: Function, params = {}) => {
     try {
-        const data = await functionPromise(params);
+        console.log(params, 'test')
+        const data = await functionPromise({ ...params });
         return [data, null];
     } catch (error) {
         return [null, error];
