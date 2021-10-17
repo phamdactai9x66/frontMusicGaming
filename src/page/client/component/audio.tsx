@@ -7,7 +7,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import { tranFormDuration } from "component/MethodCommon";
 import { formStateAudio } from "redux/audio/stateAudio";
 import { useSelector, useDispatch } from "react-redux";
-import NameSongArtist from "./nameSongArtist";
+import NameSongArtist from "component/nameSongArtist";
 
 interface Audio<T> {
     audio?: any

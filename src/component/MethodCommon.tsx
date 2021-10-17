@@ -8,6 +8,13 @@ export const HandleGet = async (functionPromise: Function, params = {}) => {
         return [null, error];
     }
 }
+export const sortData = <Y extends string>(data: any[], key: Y, chooseSort: 'B' | 'S' = 'B') => {
+    if (!data) return [];
+    return data.sort((current1: any, current2) => {
+        return chooseSort === 'S' ? current1[key] - current2[key]
+            : current2[key] - current1[key];
+    })
+}
 export const getDate = (date: any) => {
     const getDate = new Date(date || Date.now());
     return `${getDate.getDate()}/${getDate.getMonth()}/${getDate.getFullYear()}`
