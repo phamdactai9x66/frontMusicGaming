@@ -1,8 +1,8 @@
 
 export const HandleGet = async (functionPromise: Function, params = {}) => {
     try {
-        console.log(params, 'test')
-        const data = await functionPromise({ ...params });
+        const getParams = (typeof params == "string" ? params : { ...params })
+        const data = await functionPromise(getParams);
         return [data, null];
     } catch (error) {
         return [null, error];
