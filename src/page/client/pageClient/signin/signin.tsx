@@ -77,8 +77,8 @@ const Signin: React.FC<Signin<any>> = ({ history, ...props }) => {
         dispatchUser(saveInfo(loginUser))
 
         history.replace("/");
-        displayAlert(loginUser.message)
       }
+      displayAlert(loginUser.message)
       return
 
     }
@@ -104,7 +104,7 @@ const Signin: React.FC<Signin<any>> = ({ history, ...props }) => {
               initialValues={stateForm[step.displayForm]}
               validationSchema={validateSchema[step.displayForm]}
               onSubmit={handleSignIn}
-              validateOnBlur={false}
+              // validateOnBlur={false}
               validateOnChange={false}
               enableReinitialize
             >

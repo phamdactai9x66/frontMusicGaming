@@ -27,7 +27,7 @@ export const SignUp = <T extends FormikContextType<any>>(formik: T) => {
 
   return (
     <>
-      {JSON.stringify(formik.values)}
+      {/* {JSON.stringify(formik.values)} */}
       {/* <input placeholder="E-mail" type="text" /> */}
       <div className="SignUp_overlow">
         <div>
