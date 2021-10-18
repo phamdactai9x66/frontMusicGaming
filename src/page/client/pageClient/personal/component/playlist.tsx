@@ -66,7 +66,7 @@ const Playlist = () => {
                                 </Select>
                                 <h6>Nhạc trẻ remix</h6>
                             </div>
-                            <div className="box">
+                        <div className="box">
                                 <figure>
                                     <img src="https://i.ytimg.com/vi/Yije8O6eGn8/maxresdefault.jpg" alt="" />
                                 </figure>

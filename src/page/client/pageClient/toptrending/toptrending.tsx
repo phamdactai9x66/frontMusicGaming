@@ -17,7 +17,7 @@ const Toptrending: React.FC<Toptrending<any>> = ({ ...props }) => {
         <div className="container-topthanhhanh">
             <div className="title-top-tt grid-2">
                 <div className="text-title-top-tt">
-                    <h2 className="color-top-tt title_all">Top Thịnh Hành</h2>
+                    <h3 className="color-top-tt title_all">Top Thịnh Hành</h3>
                 </div>
                 <div className="div-svg">
                     <Play className="svg color-top-tt" />

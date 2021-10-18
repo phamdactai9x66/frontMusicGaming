@@ -28,27 +28,29 @@ const WantHearComponent: React.FC<WantHearComponentIF<any>> = ({...props}) => {
         <div>
             <Slider {...props.settings_category}>
                 {songs.length !== 0 && songs.map( (item: any) => (
-                   <div className="box" key={item._id}>
-                      <figure>
-                          <img src={item.image} alt={item.image} />
-                      </figure>
-                      <div className="icon-box">
-                          <div>
-                              <BiHeart className="icon" />
-                              <FiPlayCircle className="icon" />
-                              <HiOutlineDotsCircleHorizontal className="icon" />
-                          </div>
-                      </div>
-                      <Select className="option">
-                          <MenuItem>
-                              <AiOutlineDownload/> Tải xuống
-                              </MenuItem>
-                          <MenuItem>
-                              <AiOutlineLink/> Sao chép link
-                              </MenuItem>
-                      </Select>
-                      <h6>{item.name}</h6>
-              </div>
+                     <div className="box" key={item._id}>
+                           <div className="box">
+                             <figure>
+                                 <img src={item.image} alt={item.image} />
+                             </figure>
+                             <div className="icon-box">
+                                 <div>
+                                     <BiHeart className="icon" />
+                                     <FiPlayCircle className="icon" />
+                                     <HiOutlineDotsCircleHorizontal className="icon" />
+                                 </div>
+                             </div>
+                             <Select className="option">
+                                 <MenuItem>
+                                     <AiOutlineDownload/> Tải xuống
+                                     </MenuItem>
+                                 <MenuItem>
+                                     <AiOutlineLink/> Sao chép link
+                                     </MenuItem>
+                             </Select>
+                             <h6>{item.name}</h6>
+                         </div>
+                     </div>
                 ))}
             </Slider>
         </div>

@@ -19,7 +19,7 @@ const Blog: React.FC<blog<any>> = ({ ...props }) => {
         <div className="container-blog">
             <div className="title-blog grid-2">
                 <div className="text-title-blog">
-                    <h2 className="color-blog">Danh Sách Blog</h2>
+                    <h3 className="color-blog title_all">Danh Sách Blog</h3>
                 </div>
                 <div className="div-hr">
                     <hr />

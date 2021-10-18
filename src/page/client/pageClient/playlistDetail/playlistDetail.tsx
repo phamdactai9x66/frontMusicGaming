@@ -27,9 +27,28 @@ const PlaylistDetail: React.FC<PlaylistDetail<any>> = ({ ...props }) => {
             <div className="container-playlist">
                 <div className="playlist-content">
                     <div className="col-content">
-                        <div className="img">
-                            <img src="https://media.istockphoto.com/photos/guitar-at-the-concert-picture-id591846326?s=612x612" alt="" />
-                        </div>
+                    <div className="box">
+            <figure>
+              <img src="https://i.ytimg.com/vi/Yije8O6eGn8/maxresdefault.jpg" alt="" />
+            </figure>
+            <div className="icon-box">
+              <div>
+                <BiHeart className="icon" />
+                <FiPlayCircle className="icon" />
+                <HiOutlineDotsCircleHorizontal className="icon" />
+              </div>
+            </div>
+            <Select className="option">
+              <MenuItem>
+                <AiOutlineDownload /> Tải xuống
+                                    </MenuItem>
+              <MenuItem>
+                <AiOutlineLink /> Sao chép link
+                                    </MenuItem>
+            </Select>
+            <h6>Nhạc trẻ remix</h6>
+                    </div>
+                    
                         <div className="name">
                             <p>Name playlist</p>
                             <span>
@@ -124,7 +143,7 @@ const PlaylistDetail: React.FC<PlaylistDetail<any>> = ({ ...props }) => {
                 </div>
                 <div className="quantam">
                     <div className="quantam-h4">
-                        <h4>Có thể quan tâm</h4>
+                        <h4 className="title_all">Có thể quan tâm</h4>
                     </div>
                     <div className="grid-box-playlist">
                     <div className="box">
@@ -147,8 +166,8 @@ const PlaylistDetail: React.FC<PlaylistDetail<any>> = ({ ...props }) => {
                                     </MenuItem>
             </Select>
             <h6>Nhạc trẻ remix</h6>
-          </div>
-          <div className="box">
+                    </div>
+                    <div className="box">
             <figure>
               <img src="https://i.ytimg.com/vi/Yije8O6eGn8/maxresdefault.jpg" alt="" />
             </figure>
@@ -168,7 +187,7 @@ const PlaylistDetail: React.FC<PlaylistDetail<any>> = ({ ...props }) => {
                                     </MenuItem>
             </Select>
             <h6>Nhạc trẻ remix</h6>
-          </div>
+                    </div>
                     </div>
                 </div>
             </div>
