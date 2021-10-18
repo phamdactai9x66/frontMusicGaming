@@ -1,82 +1,94 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { HandleGet, sortData } from "component/MethodCommon";
+import { variableCommon } from "component/variableCommon";
+import { BiPlayCircle } from 'react-icons/bi';
+import { Link } from 'react-router-dom';
+import Button from '@mui/material/Button';
+import NameSongArtist from "component/nameSongArtist"
 import {
-  LineChart,
   Line,
   XAxis,
   YAxis,
   CartesianGrid,
   Tooltip,
   Legend,
-  ResponsiveContainer
+  ResponsiveContainer,
+  BarChart,
+  Bar
 } from "recharts";
+import songApi from "api/songApi";
 
-const data = [
-  {
-    name: "Page A",
-    uv: 4000,
-    pv: 2400,
-    amt: 2400
-  },
-  {
-    name: "Page B",
-    uv: 3000,
-    pv: 1398,
-    amt: 2210
-  },
-  {
-    name: "Page C",
-    uv: 2000,
-    pv: 9800,
-    amt: 2290
-  },
-  {
-    name: "Page D",
-    uv: 2780,
-    pv: 3908,
-    amt: 2000
-  },
-  {
-    name: "Page E",
-    uv: 1890,
-    pv: 4800,
-    amt: 2181
-  },
-  {
-    name: "Page F",
-    uv: 2390,
-    pv: 3800,
-    amt: 2500
-  },
-  {
-    name: "Page G",
-    uv: 3490,
-    pv: 4300,
-    amt: 2100
-  }
-];
+
 
 export default function ChartMusic() {
+  const [state, setstate] = useState({ data: [], display: true });
+
+  useEffect(() => {
+    (async () => {
+      if (!state.display) return
+      const [data, error] = await HandleGet(songApi.getAll, {});
+      if (data[variableCommon.statusF]) return;
+      const tranformData = sortData<string>(data.data, 'view').slice(0, 3) as any;
+      setstate({ display: true, data: tranformData });
+    })()
+    return () => {
+      setstate(value => ({ ...value, display: false }));
+    }
+  }, [])
+
   return (
-    <div className="chartMusic">
-    <ResponsiveContainer>
-        <LineChart
-        className="line_chart"
-    data={data}
-  >
-    <CartesianGrid strokeDasharray="3 3" />
-    <XAxis dataKey="name" />
-    <YAxis />
-    <Tooltip />
-    <Legend />
-    <Line
-      type="monotone"
-      dataKey="pv"
-      stroke="#ff6ea7"
-      activeDot={{ r: 8 }}
-    />
-    <Line type="monotone" dataKey="uv" stroke="#3ed6da" />
-  </LineChart>
-   </ResponsiveContainer>            
-  </div> 
+    <>
+      <div className="music-charts">
+        <div>
+          <h4 className="title_all">#Musichart <BiPlayCircle /></h4>
+          {state.data.map((current, index) => {
+            const { title, image, _id } = current;
+            return (
+              <div className="box-chart" key={index}>
+                <h5 className="stt">{index}</h5>
+                <img width={60} height={60} src={image} alt="" />
+                <div className="box-icon">
+                    ▶
+                </div>
+                <div className="name">
+                  <h6>{title}</h6>
+                  <div style={{ fontSize: "0.7rem", marginTop: "-0.2rem", color: "#ccc" }}>
+                    <NameSongArtist _id={_id} />
+                  </div>
+                </div>
+                <h6 className="tyle">41%</h6>
+              </div>
+            )
+          })}
+
+          <Button><Link to="/chart">XEM THÊM</Link></Button>
+        </div>
+        <div className="chart">
+          <div className="chartMusic">
+            <ResponsiveContainer>
+              <BarChart
+                className="line_chart"
+                data={state.data}
+              >
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="title" />
+                <YAxis />
+                <Tooltip />
+                <Legend />
+                <Bar
+                  type="monotone"
+                  dataKey="view"
+                  stroke="#ff6ea7"
+                  fill="#ff6ea7"
+                // activeDot={{ r: 8 }}
+                />
+                <Line type="monotone" dataKey="uv" stroke="#3ed6da" />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+      </div>
+
+    </>
   );
 }

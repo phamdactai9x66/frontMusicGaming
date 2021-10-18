@@ -5,24 +5,35 @@ import { IoMdArrowDropdown } from 'react-icons/io';
 import { FaSignInAlt } from 'react-icons/fa';
 import { Select, MenuItem } from "@mui/material";
 import { Link, RouteChildrenProps, withRouter } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { formStateUser } from 'redux/user/stateUser';
 import Topic from './component/topic/topic';
 import Upload from './component/upload/upload';
-interface Header<T> {
+import { Logout } from "redux/user/actionUser";
+interface HeaderClient extends RouteChildrenProps {
 
 }
-const Header: React.FC<Header<any>> = ({ ...props }) => {
+const HeaderClient: React.FC<HeaderClient> = ({ ...props }) => {
   const state = useSelector<{ user: any }>(state => state.user) as formStateUser;
+  const dispatch = useDispatch();
+  const logOut = () => {
+    dispatch(Logout());
+    // props.history.replace('/signin');
+  }
+  const checkAdmin = () => {
+    return (state.user.role >= 1) ? (
+      <MenuItem value={20}>
+        <Link to="/admin" className="link"><RiAdminFill className="_icon" /> Admin</Link>
+      </MenuItem>
+    ) : null
+  }
   const checkUser = () => {
     return (
       <>
         <MenuItem value={10}>
-          <Link to="/signin" className="link"><FaSignInAlt className="_icon" />Sign out</Link>
+          <span className="link" onClick={logOut}><FaSignInAlt className="_icon" />Sign out</span>
         </MenuItem>
-        <MenuItem value={20}>
-          <Link to="/admin" className="link"><RiAdminFill className="_icon" /> Admin</Link>
-        </MenuItem>
+        {checkAdmin()}
         <MenuItem value={10}>
           <Link to="/overview" className="link"><FaSignInAlt className="_icon" />Main Profile</Link>
         </MenuItem>
@@ -34,9 +45,6 @@ const Header: React.FC<Header<any>> = ({ ...props }) => {
       <>
         <MenuItem value={10}>
           <Link to="/signin" className="link"><FaSignInAlt className="_icon" />Sign in</Link>
-        </MenuItem>
-        <MenuItem value={20}>
-          <Link to="/admin" className="link"><RiAdminFill className="_icon" /> Admin</Link>
         </MenuItem>
       </>
     )
@@ -53,7 +61,7 @@ const Header: React.FC<Header<any>> = ({ ...props }) => {
         <BiUserCircle className="icon" />
         <Select>
           <div style={{ background: "#101929", margin: "-0.5rem 0 -0.5rem 0" }}>
-            {state ? checkUser() : checkGuest()}
+            {(state.user && state.token) ? checkUser() : checkGuest()}
           </div>
         </Select>
         <IoMdArrowDropdown className="drop_icon" />
@@ -62,4 +70,4 @@ const Header: React.FC<Header<any>> = ({ ...props }) => {
   )
 }
 
-export default Header
+export default withRouter(HeaderClient as any)

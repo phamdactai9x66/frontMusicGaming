@@ -1,11 +1,19 @@
 
 export const HandleGet = async (functionPromise: Function, params = {}) => {
     try {
-        const data = await functionPromise(params);
+        const getParams = (typeof params == "string" ? params : { ...params })
+        const data = await functionPromise(getParams);
         return [data, null];
     } catch (error) {
         return [null, error];
     }
+}
+export const sortData = <Y extends string>(data: any[], key: Y, chooseSort: 'B' | 'S' = 'B') => {
+    if (!data) return [];
+    return data.sort((current1: any, current2) => {
+        return chooseSort === 'S' ? current1[key] - current2[key]
+            : current2[key] - current1[key];
+    })
 }
 export const getDate = (date: any) => {
     const getDate = new Date(date || Date.now());
@@ -25,6 +33,10 @@ export const tranFormDuration = <T extends number>(duration: T): string | void =
     const returnSecon = getSecon < 10 ? `0${getSecon}` : getSecon;
     const returnMinute = getMinute < 10 ? `0${getMinute}` : getMinute;
     return `${returnMinute}:${returnSecon}`;
+}
+export const tranFormdata = <T extends any[]>(data: T) => {
+    if (!data) return [];
+    return data.reduce((previousV, currenV) => ({ ...previousV, [currenV._id]: currenV }), [])
 }
 
 

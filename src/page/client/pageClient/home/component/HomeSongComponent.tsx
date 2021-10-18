@@ -8,10 +8,13 @@ import { MenuItem } from "@mui/material";
 import { AiOutlineDownload, AiFillHeart } from 'react-icons/ai';
 import { IoMdAdd } from 'react-icons/io';
 import { Popover } from "@material-ui/core";
-interface HomeSongComponentIF<T> {
+import { useDispatch } from "react-redux";
+import { getlistAudio, playSong } from "redux/audio/actionAudio"
 
+interface HomeSongComponentIF<T> {
+    userState: any,
 }
-const HomeSongComponent: React.FC<HomeSongComponentIF<any>> = () => {
+const HomeSongComponent: React.FC<HomeSongComponentIF<any>> = (props) => {
     const [anchor, setAnchor] = useState(null);
     const openPopover = (event: any) => {
         setAnchor(event.currentTarget);
@@ -20,34 +23,70 @@ const HomeSongComponent: React.FC<HomeSongComponentIF<any>> = () => {
     const openPopover2 = (event: any) => {
         setAnchor2(event.currentTarget);
     };
+    const { user } = props.userState;
     const [songs, setSongs] = useState([]);
+    const dispatch = useDispatch()
+    useEffect(() => {
+        (async () => {
+            dispatch(getlistAudio())
+        })()
+    }, [])
 
-    useEffect( () => {
+    useEffect(() => {
         const getSongs = async () => {
-            const { data } = await songApi.getAll( {_limit: 20} );
+            const { data } = await songApi.getAll({ _limit: 20 });
             setSongs(data);
         }
         getSongs();
     }, []);
 
+    const handleAdd = async <T extends string>(s: T, u: T, t: T) => {
+        if(t === 'like'){
+            let likeRes = await handleLike(s, u);
+            if(likeRes && likeRes.status === "added"){
+                console.log('okay, them roi nhe. (Added)');
+            }else if(likeRes && likeRes.status === "deleted") {
+                console.log('okay, them roi nhe. (Deleted)');
+            } else{
+                console.log('oops, khong them duoc roi. (Error)')
+            }
+        }
+        
+        if(t === "playlist"){
+            //đang sai vì chưa lấy được playlist của user
+            let playlistRes = await handleAddToPlaylist(s, u);
+            if(playlistRes && playlistRes.status === "successfully"){
+                console.log('okay, them roi nhe');
+            }else if(playlistRes.status === "existed"){
+                console.log("Bài hát này đã tồn tại trong play list này của bạn.")
+            }else{
+                console.log('oops, khong them duoc roi');
+            }
+        }
+    }
+
+    const playAudio = <T extends string>(_id: T): void => {
+        dispatch(playSong({ _id }))
+        // console.log(_id);
+    }
     return (
         <div className="box-music">
-            {songs.length !== 0 && songs.map( (item: any) => (
-                <div className="music_item" key={item._id}>
+            {songs.length !== 0 && songs.map((item: any) => (
+                <div className="music_item" key={item._id} >
                     <img src={item.image} alt={item.name} />
                     <div className="box-icon">
-                        <BsFillPlayFill/>
+                        <BsFillPlayFill onClick={() => playAudio(item._id)} />
                     </div>
                     <div>
                         <h6>{item.title}</h6>
-                        <div style={{ fontSize: "0.7rem", marginTop: "-0.2rem" }}>Nghệ sĩ</div>
+                        <div style={{ fontSize: "0.7rem", marginTop: "-0.2rem" }}>{item.name_artist ? item.name_artist : "ten tac gia"}</div>
                     </div>
                     <div>
-                        <GetTimeAudio url={item.audio}/>
+                        <GetTimeAudio url={item.audio} />
                     </div>
                     <div className="icon_item">
                         <AiOutlineDownload onClick={() => handleDownload(item._id)} className="icon" />
-                        <AiFillHeart onClick={() => handleLike(item._id, item._id)} className="icon" />
+                        <AiFillHeart onClick={() => handleAdd(item._id, user._id, "like")} className="icon" />
                         <IoMdAdd className="icon" onClick={openPopover}/>
                         <Popover
                     open={Boolean(anchor)}
@@ -95,7 +134,7 @@ const HomeSongComponent: React.FC<HomeSongComponentIF<any>> = () => {
                             onClose={() => setAnchor2(null)}
                         >
                             <div className="item">
-                                <MenuItem className="list" onClick={() => handleAddToPlaylist(item._id)} >
+                                <MenuItem className="list" onClick={() => handleAdd(item._id, user._id, "playlist")} >
                                     <BiMusic /> &ensp;Nhạc trẻ remix
                             </MenuItem>
                             </div>
@@ -105,7 +144,7 @@ const HomeSongComponent: React.FC<HomeSongComponentIF<any>> = () => {
                     </div>
                 </div>
             ))}
-            
+
         </div>
     )
 }
