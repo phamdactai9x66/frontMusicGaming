@@ -7,7 +7,7 @@
     }
     .list-box-musicChart {
       overflow: auto;
-      height: 17rem;
+      height: 25rem;
       padding-right: 0.5rem;
       .box-chart { 
         display: grid;
@@ -24,6 +24,7 @@
           @extend %handel_time_icon;
           .icon {
             margin-right: 1rem;
+            cursor: pointer;
           }
         }
       }

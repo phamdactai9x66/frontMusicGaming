@@ -120,6 +120,9 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                     <div className="box-chart">
                         <h5 className="stt">1</h5>
                         <img width={60} height={60} src="https://i.ytimg.com/vi/x2xblVxi_c4/maxresdefault.jpg" alt="" />
+                        <div className="box-icon">
+                        ▶
+                        </div>
                         <div className="name">
                             <h6>Tên bài hát</h6>
                             <div style={{ fontSize: "0.7rem", marginTop: "-0.2rem", color: "#ccc" }}>Nghệ sĩ</div>
@@ -129,6 +132,9 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                     <div className="box-chart">
                         <h5 className="stt">2</h5>
                         <img width={60} height={60} src="https://i.ytimg.com/vi/x2xblVxi_c4/maxresdefault.jpg" alt="" />
+                        <div className="box-icon">
+                        ▶
+                        </div>
                         <div className="name">
                             <h6>Tên bài hát</h6>
                             <div style={{ fontSize: "0.7rem", marginTop: "-0.2rem", color: "#ccc" }}>Nghệ sĩ</div>
@@ -138,6 +144,9 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                     <div className="box-chart">
                         <h5 className="stt">3</h5>
                         <img width={60} height={60} src="https://i.ytimg.com/vi/x2xblVxi_c4/maxresdefault.jpg" alt="" />
+                        <div className="box-icon">
+                        ▶
+                        </div>
                         <div className="name">
                             <h6>Tên bài hát</h6>
                             <div style={{ fontSize: "0.7rem", marginTop: "-0.2rem", color: "#ccc" }}>Nghệ sĩ</div>

@@ -9,7 +9,7 @@ export const HandleGet = async (functionPromise: Function, params = {}) => {
 }
 export const getDate = (date: any) => {
     const getDate = new Date(date || Date.now());
-    return `${getDate.getDate()}/${getDate.getMonth()}/${getDate.getFullYear()}`
+    return `${getDate.getDate()}/${getDate.getMonth() + 1}/${getDate.getFullYear()}`
 }
 export const tranFormData = <T extends any[]>(data: T, key: string, findKey: string, findKey2?: string | any) => {
     if ([undefined, null].includes(data as any)) return [];

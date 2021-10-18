@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
-import { BiSearch, BiUpload, BiUserCircle, BiCircle } from 'react-icons/bi';
+import { BiSearch, BiUserCircle } from 'react-icons/bi';
 import { RiAdminFill } from 'react-icons/ri';
 import { IoMdArrowDropdown } from 'react-icons/io';
-import { FaSignInAlt, FaTshirt } from 'react-icons/fa';
-import { Select, MenuItem, Button } from "@mui/material";
-import { makeStyles } from "@material-ui/core/styles";
+import { FaSignInAlt } from 'react-icons/fa';
+import { Select, MenuItem } from "@mui/material";
 import { Link, RouteChildrenProps, withRouter } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { formStateUser } from 'redux/user/stateUser';
-import Topic from './topic/topic';
+import Topic from './component/topic/topic';
+import Upload from './component/upload/upload';
 interface Header<T> {
 
 }
@@ -48,14 +48,13 @@ const Header: React.FC<Header<any>> = ({ ...props }) => {
         <input type="text" placeholder="Nhập tên bài hát, nghệ sĩ hoặc MV..." />
       </div>
       <div className="icon-main">
-        <BiUpload className="icon" />
+        <Upload />
         <Topic />
         <BiUserCircle className="icon" />
         <Select>
           <div style={{ background: "#101929", margin: "-0.5rem 0 -0.5rem 0" }}>
             {state ? checkUser() : checkGuest()}
           </div>
-
         </Select>
         <IoMdArrowDropdown className="drop_icon" />
       </div>

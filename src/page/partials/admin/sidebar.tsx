@@ -1,312 +1,200 @@
 
 import React from 'react'
-import imgAdmin from './image/admin2.png'
+import { Link } from "react-router-dom";
+import imgAdmin from './image/admin.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
-import { Link, RouteChildrenProps, withRouter } from "react-router-dom";
-import { BsMusicNoteBeamed, BsFillImageFill, BsChat } from 'react-icons/bs';
-import { setOriginalNode } from 'typescript';
-import { BiMessageSquareAdd, BiPieChart } from 'react-icons/bi';
-import { FiMenu } from 'react-icons/fi';
-import { FaChartPie, FaRegPlayCircle, FaUserAlt, FaTshirt } from 'react-icons/fa';
-import { SiBlogger, SiTodoist } from 'react-icons/si';
-import { AiFillDashboard } from 'react-icons/ai';
-import { RiUserHeartLine } from 'react-icons/ri';
-
+import Accordion from "@material-ui/core/Accordion";
+import AccordionDetails from "@material-ui/core/AccordionDetails";
+import AccordionSummary from "@material-ui/core/AccordionSummary";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 interface Sidebar<T> {
-
 }
 
 const Sidebar: React.FC<Sidebar<any>> = ({ ...props }) => {
+    const [expanded, setExpanded] = React.useState("");
+  
+    const handleChange = (panel: any) => (event: any, isExpanded: any) => {
+      console.log(panel)
+      console.log(isExpanded)
+      setExpanded(isExpanded ? panel : false);
+    };
+    
+  const data = [
+    {
+      icon: "fa fa-pie-chart",
+      name: "Chart",
+      iconAdd: "fa fa-plus-circle",
+      details: "Add Chart",
+      link: "/admin/",
+      subLink: "/admin/"
+    },
+    {
+      icon: "fa fa-music",
+      name: "Music",
+      iconAdd: "fa fa-plus-circle",
+      details: "Add Music",
+      link: "/admin/",
+      subLink: "/admin/"
+    },
+    {
+      icon: "fa fa-list",
+      name: "Thể loại",
+      iconAdd: "fa fa-plus-circle",
+      details: "Add Thể Loại",
+      link: "/admin/",
+      subLink: "/admin/"
+    },
+    {
+      icon: "fa fa-play-circle",
+      name: "Playlist",
+      iconAdd: "fa fa-plus-circle",
+      details: "Add Playlist",
+      link: "/admin/",
+      subLink: "/admin/"
+    },
+     {
+      icon: "fa fa-file-image-o",
+      name: "Slider",
+      iconAdd: "fa fa-plus-circle",
+      details: "Add Slider",
+      link: "/admin/",
+      subLink: "/admin/"
+    },
+     {
+      icon: "fa fa-calendar-check-o",
+      name: "Todo list",
+      iconAdd: "fa fa-plus-circle",
+      details: "Add Todolist",
+      link: "/admin/todolist",
+      subLink: "/admin/addTodo"
+    },
+    {
+     icon: "fa fa-users",
+     name: "User",
+     iconAdd: "fa fa-plus-circle",
+     details: "Add User",
+     link: "/admin/",
+     subLink: "/admin/"
+   },
+   {
+    icon: "fa fa-commenting",
+    name: "Comment",
+    iconAdd: "fa fa-plus-circle",
+    details: "Chart Comment",
+    link: "/admin/",
+    subLink: "/admin/"
+  },
+  {
+   icon: "fa fa-book",
+   name: "Blog",
+   iconAdd: "fa fa-plus-circle",
+   details: "Add Blog",
+   link: "/admin/",
+   subLink: "/admin/"
+ },
+ {
+  icon: "fa fa-calendar",
+  name: "Danh mục blog",
+  iconAdd: "fa fa-plus-circle",
+  details: "Add Danh Mục",
+  link: "/admin/",
+  subLink: "/admin/"
+},
+{
+ icon: "fa fa-lightbulb-o",
+ name: "Topic",
+ iconAdd: "fa fa-plus-circle",
+ details: "Add Topic",
+ link: "/admin/topic",
+ subLink: "/admin/addTopic"
+}
+,
+{
+ icon: "fa fa-address-book",
+ name: "Nhạc sĩ",
+ iconAdd: "fa fa-plus-circle",
+ details: "Add Nhạc Sĩ",
+ link: "/admin/topic",
+ subLink: "/admin/addTopic"
+}
+  ];
     return (
-        <div className="_sidebar">
+    <div className="_sidebar">
             <h2>ADMIN MUSIC GAME</h2>
             <div className="main_info">
                 <div className="info_admin">
                     <img width={50} height={50} src={imgAdmin} alt="" />
-                    <div>Phạm Đắc Tài</div>
+                    <div>Lò Văn An</div>
                 </div>
             </div>
             <div className="main_search">
                 <FontAwesomeIcon icon={faSearch} className="icon_search" />
-                <input type="text" placeholder="search" className="_search" />
+                <input type="text" placeholder="Search..." className="_search" />
             </div>
-
-            {/* Tab item */}
             <nav className="tabs">
-
-                <div className="tab">
-                    <label className="tab-label" htmlFor="chck1">
+            <Link to="/admin">
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon style={{color: "aqua"}}/>}
+              aria-controls="panel1bh-content"
+              id="panel1bh-header"
+              style={{background: "#1d2d47",height: "3.6rem"}}
+            >
+             <div className="tab">
+                    <label className="tab-label">
                         <div className="grid_item">
-                        <Link to="/admin">
                             <label className="tabs__item--icon">
-                                <AiFillDashboard />
+                            <i className="fa fa-tachometer" aria-hidden="true"></i>
                             </label>
-                            </Link>
-                            <Link to="/admin">
                             <label className="button_text">Dashboard</label>
-                            </Link>
                         </div>
-                        <div>&#10095;</div>
                     </label>
                 </div>
-
-                <div className="tab">
-                    <input hidden type="checkbox" id="chck2" />
-                    <label className="tab-label" htmlFor="chck2">
+            </AccordionSummary>
+            </Link>
+            {data.map(accordion => {
+        const { icon } = accordion;
+        return (
+          <Link to={`${accordion.link}`}>
+          <Accordion
+            expanded={expanded == icon}
+            key={icon}
+            onChange={handleChange(icon)}
+          >
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon style={{color: "aqua"}}/>}
+              aria-controls="panel1bh-content"
+              id="panel1bh-header"
+              style={{background: "#1d2d47",height: "3.6rem"}}
+            >
+             <div className="tab">
+                    <label className="tab-label">
                         <div className="grid_item">
                             <label className="tabs__item--icon">
-                                <BiPieChart />
+                            <i className={`${accordion.icon}`} aria-hidden="true"></i>
                             </label>
-                            <label className="button_text">Chart</label>
+                            <label className="button_text">{accordion.name}</label>
                         </div>
-                        <div>&#10095;</div>
                     </label>
-
-                    <div className="tab-content">
+                </div>
+            </AccordionSummary>
+            <Link to={`${accordion.subLink}`}>
+            <AccordionDetails style={{height: "3.5rem",background: "#121a34"}}>
+              
+            <div className="tab-content">
                         <label className="add_item">
-                            <BiMessageSquareAdd className="icon_item" />
-                            <span>Add Chart</span>
+                          <i className={`${accordion.iconAdd} icon_item`} aria-hidden="true"></i>
+                            <div>{accordion.details}</div>
                         </label>
                     </div>
-                </div>
-
-                <div className="tab">
-                    <input hidden type="checkbox" id="chck3" />
-                    <label className="tab-label" htmlFor="chck3">
-                        <div className="grid_item">
-                            <label className="tabs__item--icon">
-                                <BsMusicNoteBeamed />
-                            </label>
-                            <label className="button_text">Music</label>
-                        </div>
-                        <div>&#10095;</div>
-                    </label>
-
-                    <div className="tab-content">
-                        <label className="add_item">
-                        <Link to="/admin/AddMusic">
-                            <BiMessageSquareAdd className="icon_item" />
-                            </Link>
-                            <Link to="/admin/AddMusic"><span>Add Music</span></Link>
-                        </label>
-                    </div>
-                </div>
-
-                <div className="tab">
-                    <input hidden type="checkbox" id="chck4" />
-                    <label className="tab-label" htmlFor="chck4">
-                        <div className="grid_item">
-                            <label className="tabs__item--icon">
-                                <FiMenu />
-                            </label>
-                            <label className="button_text"><span>Thể</span>&nbsp;<span>loại</span></label>
-                        </div>
-                        <div>&#10095;</div>
-                    </label>
-
-                    <div className="tab-content">
-                        <label className="add_item">
-                            <BiMessageSquareAdd className="icon_item" />
-                            <span>Add Thể loại</span>
-                        </label>
-                    </div>
-                </div>
-
-                <div className="tab">
-                    <input hidden type="checkbox" id="chck5" />
-                    <label className="tab-label" htmlFor="chck5">
-                        <div className="grid_item">
-                            <label className="tabs__item--icon">
-                                <FaRegPlayCircle />
-                            </label>
-                            <label className="button_text">Playlist</label>
-                        </div>
-                        <div>&#10095;</div>
-                    </label>
-
-                    <div className="tab-content">
-                        <label className="add_item">
-                            <BiMessageSquareAdd className="icon_item" />
-                            <span>Add Playlist</span>
-                        </label>
-                    </div>
-                </div>
-
-                <div className="tab">
-                    <input hidden type="checkbox" id="chck6" />
-                    <label className="tab-label" htmlFor="chck6">
-                        <div className="grid_item">
-                            <label className="tabs__item--icon">
-                                <BsFillImageFill />
-                            </label>
-
-                            <label className="button_text">Slider</label>
-
-                        </div>
-                        <div>&#10095;</div>
-                    </label>
-
-                    <div className="tab-content">
-                        <label className="add_item">
-                            <BiMessageSquareAdd className="icon_item" />
-                            <span>Add Slider</span>
-                        </label>
-                    </div>
-                </div>
-
-
-                <div className="tab">
-                    <input hidden type="checkbox" id="chck7" />
-                    <label className="tab-label" htmlFor="chck7">
-                        <div className="grid_item">
-                        <Link to="/admin/todolist">
-                            <label className="tabs__item--icon">
-                                <SiTodoist />
-                            </label>
-                            </Link>
-                            <Link to="/admin/todolist">
-                            <label className="button_text"><span>Todo</span>&nbsp; <span>list</span></label>
-                            </Link>
-
-                        </div>
-                        <div>&#10095;</div>
-                    </label>
-
-                    <div className="tab-content">
-                        <label className="add_item">
-                            <BiMessageSquareAdd className="icon_item" />
-                            <Link to="/admin/addTodo"><span>Add Todo list</span></Link>
-                        </label>
-                    </div>
-                </div>
-
-                <div className="tab">
-                    <input hidden type="checkbox" id="chck8" />
-                    <label className="tab-label" htmlFor="chck8">
-                        <div className="grid_item">
-                            <label className="tabs__item--icon">
-                                <FaUserAlt />
-                            </label>
-
-                            <label className="button_text">User</label>
-
-                        </div>
-                        <div>&#10095;</div>
-                    </label>
-
-                    <div className="tab-content">
-                        <label className="add_item">
-                            <BiMessageSquareAdd className="icon_item" />
-                            <span>Add User</span>
-                        </label>
-                    </div>
-                </div>
-
-                <div className="tab">
-                    <input hidden type="checkbox" id="chck9" />
-                    <label className="tab-label" htmlFor="chck9">
-                        <div className="grid_item">
-                            <label className="tabs__item--icon">
-                                <BsChat />
-                            </label>
-
-                            <label className="button_text">Comment</label>
-
-                        </div>
-                        <div>&#10095;</div>
-                    </label>
-                    <div className="tab-content">
-                        <label className="add_item">
-                            <FaChartPie className="icon_item" />
-                            <span>Chart Comment</span>
-                        </label>
-                    </div>
-                </div>
-
-                <div className="tab">
-                    <input hidden type="checkbox" id="chck10" />
-                    <label className="tab-label" htmlFor="chck10">
-                        <div className="grid_item">
-                            <label className="tabs__item--icon">
-                                <SiBlogger />
-                            </label>
-
-                            <label className="button_text">Blog</label>
-
-                        </div>
-                        <div>&#10095;</div>
-                    </label>
-                    <div className="tab-content">
-                        <label className="add_item">
-                            <BiMessageSquareAdd className="icon_item" />
-                            <span>Add Blog</span>
-                        </label>
-                    </div>
-                </div>
-
-                <div className="tab">
-                    <input hidden type="checkbox" id="chck11" />
-                    <label className="tab-label" htmlFor="chck11">
-                        <div className="grid_item">
-                            <label className="tabs__item--icon">
-                                <FiMenu />
-                            </label>
-
-                            <label className="button_text"><span>Danh</span>&nbsp;<span>mục</span>&nbsp;<span>blog</span></label>
-
-                        </div>
-                        <div>&#10095;</div>
-                    </label>
-                    <div className="tab-content">
-                        <label className="add_item">
-                            <BiMessageSquareAdd className="icon_item" />
-                            <span>Add Danh mục</span>
-                        </label>
-                    </div>
-                </div>
-
-                <div className="tab">
-                    <input hidden type="checkbox" id="chck12" />
-                    <label className="tab-label" htmlFor="chck12">
-                        <div className="grid_item">
-                            <label className="tabs__item--icon">
-                            <FaTshirt />
-                            </label>
-                           <Link to="/admin/topic"><label className="button_text">Topic</label></Link> 
-                        </div>
-                        <div>&#10095;</div>
-                    </label>
-
-                    <div className="tab-content">
-                        <label className="add_item">
-                            <BiMessageSquareAdd className="icon_item" />
-                            <Link to="/admin/addTopic"><span>Add Topic</span></Link>
-                        </label>
-                    </div>
-                </div>
-                <div className="tab">
-                    <input hidden type="checkbox" id="chck13" />
-                    <label className="tab-label" htmlFor="chck13">
-                        <div className="grid_item">
-                            <label className="tabs__item--icon">
-                            <RiUserHeartLine />
-                            </label>
-                            <label className="button_text"><span>Nhạc</span>&nbsp;<span>sĩ</span></label>
-                        </div>
-                        <div>&#10095;</div>
-                    </label>
-
-                    <div className="tab-content">
-                        <label className="add_item">
-                            <BiMessageSquareAdd className="icon_item" />
-                            <span>Add Nhạc sĩ</span>
-                        </label>
-                    </div>
-                </div>
-            </nav>
-
+            </AccordionDetails>
+            </Link>
+          </Accordion>
+          </Link>
+        );
+      })}
+    </nav>
         </div>
     )
 }
