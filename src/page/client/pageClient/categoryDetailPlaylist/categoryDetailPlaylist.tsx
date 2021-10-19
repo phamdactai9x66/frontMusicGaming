@@ -1,6 +1,7 @@
 import React from 'react';
 import { AiOutlineDownload,AiOutlineLink } from 'react-icons/ai';
 import { FiPlayCircle } from 'react-icons/fi';
+import { Link } from "react-router-dom"
 import { HiOutlineDotsCircleHorizontal } from 'react-icons/hi';
 import {  BiHeart } from 'react-icons/bi';
 import { Select, MenuItem } from "@mui/material"
@@ -38,6 +39,7 @@ const CategoryDetailPlaylist: React.FC<CategoryDetailPlaylist<any>> = ({ ...prop
                         </Select>
                         <h6>Nhạc trẻ remix</h6>
                     </div>
+                    <Link to="/playlistDetail">
                      <div className="box">
                         <figure>
                             <img src="https://i.ytimg.com/vi/Yije8O6eGn8/maxresdefault.jpg" alt="" />
@@ -59,7 +61,7 @@ const CategoryDetailPlaylist: React.FC<CategoryDetailPlaylist<any>> = ({ ...prop
                         </Select>
                         <h6>Nhạc trẻ remix</h6>
                     </div>
-                    
+                    </Link>
                 </div>
           </div>
         </>

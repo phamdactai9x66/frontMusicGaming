@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { MdNavigateNext } from 'react-icons/md';
+import { Link } from "react-router-dom"
 import Popup from '@titaui/reactjs-popup';
 import { Button } from '@mui/material'
 import Slider from 'react-slick';
@@ -187,6 +188,7 @@ const Overview = () => {
                                     </div>
                                 )}
                             </Popup>
+                            <Link to="/playlistDetail">
                                 <div className="box">
                                     <figure>
                                         <img src="https://i.ytimg.com/vi/Yije8O6eGn8/maxresdefault.jpg" alt="" />
@@ -208,6 +210,7 @@ const Overview = () => {
                                     </Select>
                                     <h6>Nhạc trẻ remix</h6>
                                 </div>
+                            </Link>
                                 <div className="box">
                                     <figure>
                                         <img src="https://i.ytimg.com/vi/Yije8O6eGn8/maxresdefault.jpg" alt="" />

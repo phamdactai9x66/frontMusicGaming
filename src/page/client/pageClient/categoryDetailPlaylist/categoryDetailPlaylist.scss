@@ -21,11 +21,13 @@
     .box_cate_detail {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr;
+        gap: 1rem;
     }
     @media only screen and (max-width: 700px) { 
         .box_cate_detail {
             display: grid;
             grid-template-columns: 1fr 1fr;
+            gap: 1rem;
         }
     }
 }

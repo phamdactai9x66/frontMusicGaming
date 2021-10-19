@@ -8,6 +8,7 @@
         width: 100%;
         height: 15rem;
         text-align: center;
+        cursor: pointer;
         .box-img {
             margin: auto;
             overflow: hidden;
@@ -184,6 +185,7 @@
 .slick-track {
     margin-left: 0 !important;
 }
+
 .box {
     h6 {
         color: #ffffff;
@@ -230,7 +232,7 @@
         opacity: 1 !important; 
         div {
           @extend %handel_category;
-          background: linear-gradient(to top, #5c5757, transparent);
+          background: linear-gradient(to top, #1f495cbe, transparent);
         }
     }
     .icon-box {
@@ -258,6 +260,9 @@
 }
 
 .list-slider {
+    .slick-slide {
+        border-right: 0.8rem solid #00000000;
+      }
     margin-top: 2rem;
     h4 {
         color: #fff;

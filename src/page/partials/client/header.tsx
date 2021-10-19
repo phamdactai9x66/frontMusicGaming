@@ -64,6 +64,7 @@ const HeaderClient: React.FC<HeaderClient> = ({ ...props }) => {
             {(state.user && state.token) ? checkUser() : checkGuest()}
           </div>
         </Select>
+        <i className="text-light" style={{margin: "6px 10px 6px -0.3rem"}}>Hi! Name</i>
         <IoMdArrowDropdown className="drop_icon" />
       </div>
     </div>

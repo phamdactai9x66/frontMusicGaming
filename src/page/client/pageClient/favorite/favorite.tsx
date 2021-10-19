@@ -29,6 +29,7 @@ const Favorite: React.FC<Favorite<any>> = ({ ...props }) => {
             <div className="yeuthich-tt-main">
                 <div className="grid-4-yeuthich-tt">
                     <div className="box">
+                    <Link to="/playlistDetail">
             <figure>
               <img src="https://i.ytimg.com/vi/Yije8O6eGn8/maxresdefault.jpg" alt="" />
             </figure>
@@ -48,6 +49,7 @@ const Favorite: React.FC<Favorite<any>> = ({ ...props }) => {
                                     </MenuItem>
             </Select>
             <h6>Nhạc trẻ remix</h6>
+            </Link>
                     </div>
                     <div className="box">
             <figure>

@@ -106,7 +106,7 @@ $color_footer: #0e192abb;
         box-shadow: 0 3px 7px rgba(0, 0, 0, 0.692);
         .sidebar {
             overflow: hidden;
-            height: calc(100vh - 50px);
+            height: calc(100vh - 40px);
             padding-bottom: 20rem;
             & h5 {
                 padding: 1.3rem 0 0 2.5rem;
@@ -152,6 +152,7 @@ $color_footer: #0e192abb;
                
             }
             .library-sidebar {
+                margin-top: -1rem;
                 overflow: auto;
                 height: 100%;
                 ul:nth-child(3) {
