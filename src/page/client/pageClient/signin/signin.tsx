@@ -125,8 +125,8 @@ const Signin: React.FC<Signin<any>> = ({ history, ...props }) => {
 
                       {!step.displayForm ? <>
                         {/* <AiFillGoogleSquare className="icon" /> */}
-                        <LoginGoogle />
-                        <LoginFacebook />
+                        <LoginGoogle displayAlert={displayAlert} />
+                        <LoginFacebook displayAlert={displayAlert} />
 
                       </> : ''}
                     </div>
