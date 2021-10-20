@@ -30,7 +30,7 @@ const Chart: React.FC<chart<any>> = ({ ...props }) => {
                 <div className="list-box-musicChart">
                     <div className="box-chart">
                         <h5 className="stt">1-</h5>
-                        <img width={60} height={60} src="https://i.ytimg.com/vi/x2xblVxi_c4/maxresdefault.jpg" alt="" />
+                        <img width={45} height={45} src="https://i.ytimg.com/vi/x2xblVxi_c4/maxresdefault.jpg" alt="" />
                         <div className="box-icon" style={{left: "4rem"}}>
                          ▶
                         </div>

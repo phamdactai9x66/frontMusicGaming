@@ -44,9 +44,9 @@ export default function ChartMusic() {
           {state.data.map((current, index) => {
             const { title, image, _id } = current;
             return (
-              <div className="box-chart" key={index}>
-                <h5 className="stt">{index}</h5>
-                <img width={60} height={60} src={image} alt="" />
+              <div className="box-chart mt-3" key={index}>
+                <h5 className="stt">{index}-</h5>
+                <img width={45} height={45} src={image} alt="" />
                 <div className="box-icon">
                     ▶
                 </div>
@@ -61,7 +61,7 @@ export default function ChartMusic() {
             )
           })}
 
-          <Button><Link to="/chart">XEM THÊM</Link></Button>
+          <Button className="mt-4"><Link to="/chart">XEM THÊM</Link></Button>
         </div>
         <div className="chart">
           <div className="chartMusic">
