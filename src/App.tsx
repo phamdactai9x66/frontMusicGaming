@@ -5,9 +5,9 @@ import { Provider } from "react-redux";
 import storeGlobal, { storePersiser } from './store';
 import { PersistGate } from 'redux-persist/integration/react'
 import { handlePage, Client, propertyPage, Admin } from "./router";
-import { ProtectAdmin, ProtectRoute } from "auth/index"
+import { ProtectAdmin, ProtectRoute, CheckLogin } from "auth/index"
 import Signin from "./page/client/pageClient/signin/signin";
-
+import Overview from "./page/client/pageClient/personal/index";
 
 function App() {
   return (
@@ -28,6 +28,7 @@ function App() {
                 <RootClient>
                   <Switch>
                     <ProtectRoute path="/signin" component={Signin} exact={false} />
+                    <CheckLogin path="/overview" component={Overview} exact={false} />
                     {handlePage<propertyPage[]>(Client)}
                   </Switch>
                 </RootClient>

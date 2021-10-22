@@ -38,8 +38,6 @@ export const tranFormdata = <T extends any[]>(data: T) => {
     if (!data) return [];
     return data.reduce((previousV, currenV) => ({ ...previousV, [currenV._id]: currenV }), [])
 }
-
-
 //method for todolist
 export const initialReducer = {
     Data: [],
