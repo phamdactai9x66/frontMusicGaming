@@ -12,7 +12,6 @@ const typeModal: any = {
     transform: 'translate(-50%, -50%)',
     minWidth: 700,
     bgcolor: 'background.paper',
-    // border: '2px solid #000',,
     borderRadius: 1,
     boxShadow: 24,
     p: 4,
@@ -41,8 +40,8 @@ const ComponentModal: React.FC<Modal<any>> = ({ state, onClose, ...props }) => {
             if (dataAlbume.error) return;
             const [data, error] = await HandleGet(apiAlbum.getOne, state._id);
             if (error) setdataAlbume((value: any) => ({ ...value, error: true, display: false }));
-            await findArtist(data.data.id_Artist)
-            setdataAlbume({ error: false, data: data.data, display: true })
+            await findArtist(data?.data?.id_Artist)
+            setdataAlbume({ error: false, data: data?.data, display: true })
         })()
         return () => {
             setdataAlbume((value: any) => ({ ...value, display: false }))

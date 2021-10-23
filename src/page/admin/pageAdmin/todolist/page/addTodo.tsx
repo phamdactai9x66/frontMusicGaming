@@ -9,7 +9,7 @@ import validateSchema from "../component/validateSchema";
 import albumApi from "api/albumApi";
 import { variableCommon } from "component/variableCommon";
 import { page } from "../index";
-interface AddMusic<T> {
+interface AddTodo<T> {
     changePage: any
 };
 
@@ -19,7 +19,7 @@ const initialValue = {
     id_Artist: ''
 }
 
-const AddMusic: React.FC<AddMusic<any>> = ({ changePage, ...props }) => {
+const AddTodo: React.FC<AddTodo<any>> = ({ changePage, ...props }) => {
     const refForm = useRef<HTMLFormElement | any>(null)
     const [alert, setalert] = useState({ display: false, message: "", type: "" })
 
@@ -97,7 +97,7 @@ const AddMusic: React.FC<AddMusic<any>> = ({ changePage, ...props }) => {
                                         <LoadingButton loading={formik.isSubmitting} variant="contained"
                                             type="submit"
                                         >
-                                            Thêm bài hát
+                                            Thêm Todo
                                         </LoadingButton>
                                         {/* <Button variant="contained" type="submit" color="primary">Thêm bài hát</Button> */}
                                         <Button variant="contained" color="error" style={{ marginLeft: 20 }}
@@ -115,4 +115,4 @@ const AddMusic: React.FC<AddMusic<any>> = ({ changePage, ...props }) => {
     )
 }
 
-export default AddMusic
+export default AddTodo

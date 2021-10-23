@@ -6,7 +6,7 @@ interface ListBlogComponent<T> {
 
 }
 const ListBlog: React.FC<ListBlogComponent<any>> = () => {
-    const [blos, setBlogs] = useState([]);
+    const [blog, setBlogs] = useState([]);
 
     useEffect( () => {
         const getBlog = async () => {
@@ -20,9 +20,9 @@ const ListBlog: React.FC<ListBlogComponent<any>> = () => {
     return (
         <>
         {
-            blos.map((item:any ,index)=>{
+            blog.map((item:any ,index)=>{
                 return(
-                    <div className="box " key={index}>
+                    <div className="box_blog " key={index}>
                         <div className="blog-image">
                             <h4  className="color text-blog-none">{item.title}</h4>
                             <Link to="/blogDetail">

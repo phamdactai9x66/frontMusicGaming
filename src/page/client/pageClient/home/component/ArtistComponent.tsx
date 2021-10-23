@@ -11,6 +11,7 @@ interface ItemArtistIF<T>{
     image: T,
     gender: boolean,
     birth: T,
+    _id: T,
 }
 
 const ArtistComponent: React.FC<ArtistComponentIF<any>> = () => {
@@ -33,7 +34,7 @@ const ArtistComponent: React.FC<ArtistComponentIF<any>> = () => {
             <div className='items'>
                 <section>
                     {getArtist.length !== 0 && getArtist.map( (item: ItemArtistIF<string>) => (
-                        <div><img src={item.image} alt={handleNameArtist(item.first_Name, item.last_name)} /></div>
+                        <div key={item._id}><img src={item.image} alt={handleNameArtist(item.first_Name, item.last_name)} /></div>
                     ))}
                     
                 </section>

@@ -4,8 +4,6 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import categoryApi from '../../../../../api/categoryApi';
 import { Link } from 'react-router-dom';
-import { MdNavigateNext } from 'react-icons/md';
-
 
 interface HomeCategory<T> {
     settings_category: object
@@ -17,10 +15,10 @@ interface CategoryIF {
     id_Topic: string,
 }
 
-const HomeCategory: React.FC<HomeCategory<any>> = ({...props}) => {
+const HomeCategory: React.FC<HomeCategory<any>> = ({ ...props }) => {
     const [categories, setCategories] = useState([]);
 
-    useEffect( () => {
+    useEffect(() => {
         const getCategories = async () => {
             const { data } = await categoryApi.getAll();
             setCategories(data);
@@ -30,13 +28,19 @@ const HomeCategory: React.FC<HomeCategory<any>> = ({...props}) => {
 
     return (
         <>
-            <h4>Thể loại <MdNavigateNext className="icon" /></h4>
             <div>
                 <Slider {...props.settings_category}>
-                    {categories.length !== 0 && categories.map( (item: CategoryIF) => (
-                        <Link to={`/playlistDetail/${item._id}`} key={item._id}>
+                    {categories.length !== 0 && categories.map((item: CategoryIF) => (
+                        <Link to={`/categoryDetailPlaylist/${item._id}`} key={item._id}>
                             <div className="box">
-                                <img src={item.image} alt={item.name} />
+                                <figure>
+                                    <img src={item.image} alt={item.image} />
+                                </figure>
+                                <div className="icon-box_category">
+                                    <div>
+                                        <h6 className="icon">{item.name}</h6>
+                                    </div>
+                                </div>
                             </div>
                         </Link>
                     ))}

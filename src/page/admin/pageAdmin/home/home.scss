@@ -103,13 +103,15 @@
     ////section 2
     .grid-main-2{
         display: grid;
-       grid-template-columns: 1fr 1fr;
-       gap: 20px;
-      margin: 3px 0 32px 0;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        margin: 3px 0 32px 0;
       .main1 {
+          width: 33rem;
           margin: 2rem 0 0 -1.9rem;
       }
         .main2{
+            width: 1fr;
             background: rgb(255, 255, 255);
             height: 340px;
         }
@@ -182,6 +184,7 @@
     display: grid;
     grid-template-columns: 1fr;
     .main1{
+        width: 100%;
         margin-right: 0px;
     }
     .main2{
@@ -307,7 +310,7 @@
 
 }
 .chart_user {
- width: 99% !important;
+ width: 100% !important;
  height: 290px !important;  
  .line_chart {
     height: 300px !important;  
@@ -323,6 +326,10 @@
         .grid-main-2{
             display: grid;
             grid-template-columns: 1fr;
+            .main1{
+                width: 100%;
+                margin-right: 0px;
+            }
             .main2{
                 margin-top: -20px;
                 margin-bottom: 7.4em;

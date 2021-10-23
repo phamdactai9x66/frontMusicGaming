@@ -1,92 +1,73 @@
-
-import React, {useState} from 'react'
-import { BiSearch, BiUpload, BiUserCircle } from 'react-icons/bi';
+import React, { useState } from 'react'
+import { BiSearch, BiUserCircle } from 'react-icons/bi';
 import { RiAdminFill } from 'react-icons/ri';
 import { IoMdArrowDropdown } from 'react-icons/io';
-import { FaSignInAlt,FaTshirt } from 'react-icons/fa';
-import { Select, MenuItem, Button } from "@mui/material";
-import Modal from "@material-ui/core/Modal";
-import { makeStyles } from "@material-ui/core/styles";
+import { FaSignInAlt } from 'react-icons/fa';
+import { Select, MenuItem } from "@mui/material";
 import { Link, RouteChildrenProps, withRouter } from "react-router-dom";
-
-interface Header<T> {
+import { useSelector, useDispatch } from "react-redux";
+import { formStateUser } from 'redux/user/stateUser';
+import Topic from './component/topic/topic';
+import Upload from './component/upload/upload';
+import { Logout } from "redux/user/actionUser";
+interface HeaderClient extends RouteChildrenProps {
 
 }
-const useStyles = makeStyles(theme => ({
-    modal: {
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
-      justifyContent: "center"
-    },
-    topic: {
-        background: "#2c5491",
-        borderRadius: "0.3rem",
-        padding: "2rem",
-        color: "#fff",
-        display: "flex",
-        gap: "2rem"
-    },
-    topic_color: {
-       width: "100%",
-       height: "13rem",
-       borderRadius: "0.3rem",
-       padding: "1rem",
-       background: "#ffd6ba",
-       boxShadow: "0px 3px 4px 1px rgb(0 0 0 / 50%)"
-    }
-  }));
-const Header: React.FC<Header<any>> = ({ ...props }) => {
-    const [open, setOpen] = useState(false);
-    const classes = useStyles();
-    return (
-        <div className="header">
-            <div className="search">
-                <BiSearch className="icon" />
-                <input type="text" placeholder="Nhập tên bài hát, nghệ sĩ hoặc MV..." />
-            </div>
-            <div className="icon-main">
-                <BiUpload className="icon" />
-                <FaTshirt className="icon" onClick={() => {
-          setOpen(!open);
-        }} />
-                <div>
-      <Modal
-        open={open}
-        onClose={() => {
-          setOpen(false);
-        }}
-        className={classes.modal}
-      >
-       <div className={classes.topic}>
-         <img width={300} src="https://i.pinimg.com/736x/6e/f3/7d/6ef37da810d9bff3a983198a178f8390.jpg" alt=""/>
-           <div>
-           <h3>Chọn chủ đề của bạn <FaTshirt className="icon" /></h3>
-       <input type="color" className={classes.topic_color}/>
-       <br/><br/>
-       <Button variant="contained" color="error">Chosse</Button>
-           </div>
-           
-       </div>
-      </Modal>
-    </div>
-                <BiUserCircle className="icon"/>
-                <Select>
-          <div style={{background: "#101929",margin: "-0.5rem 0 -0.5rem 0"}}>
-          <MenuItem  value={10}>
-        <Link to="/signin" className="link"><FaSignInAlt className="_icon"/>Sign in</Link>
-                        
-        </MenuItem>
-        <MenuItem  value={20}>
+const HeaderClient: React.FC<HeaderClient> = ({ ...props }) => {
+  const state = useSelector<{ user: any }>(state => state.user) as formStateUser;
+  const dispatch = useDispatch();
+  const logOut = () => {
+    dispatch(Logout());
+    // props.history.replace('/signin');
+  }
+  const checkAdmin = () => {
+    return (state.user.role >= 1) ? (
+      <MenuItem value={20}>
         <Link to="/admin" className="link"><RiAdminFill className="_icon" /> Admin</Link>
+      </MenuItem>
+    ) : null
+  }
+  const checkUser = () => {
+    return (
+      <>
+        <MenuItem value={10}>
+          <span className="link" onClick={logOut}><FaSignInAlt className="_icon" />Sign out</span>
         </MenuItem>
-          </div>
-
-      </Select>
-      <IoMdArrowDropdown className="drop_icon"/>
-            </div>
-        </div>
+        {checkAdmin()}
+        <MenuItem value={10}>
+          <Link to="/overview" className="link"><FaSignInAlt className="_icon" />Main Profile</Link>
+        </MenuItem>
+      </>
     )
+  }
+  const checkGuest = () => {
+    return (
+      <>
+        <MenuItem value={10}>
+          <Link to="/signin" className="link"><FaSignInAlt className="_icon" />Sign in</Link>
+        </MenuItem>
+      </>
+    )
+  }
+  return (
+    <div className="header">
+      <div className="search">
+        <BiSearch className="icon" />
+        <input type="text" placeholder="Nhập tên bài hát, nghệ sĩ hoặc MV..." />
+      </div>
+      <div className="icon-main">
+        <Upload />
+        <Topic />
+        <BiUserCircle className="icon" />
+        <Select>
+          <div style={{ background: "#101929", margin: "-0.5rem 0 -0.5rem 0" }}>
+            {(state.user && state.token) ? checkUser() : checkGuest()}
+          </div>
+        </Select>
+        <IoMdArrowDropdown className="drop_icon" />
+      </div>
+    </div>
+  )
 }
 
-export default Header
+export default withRouter(HeaderClient as any)

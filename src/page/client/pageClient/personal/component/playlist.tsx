@@ -1,5 +1,6 @@
 import React from 'react'
 import Popup from '@titaui/reactjs-popup';
+import { Link } from "react-router-dom"
 import { Button } from '@mui/material'
 import { MdNavigateNext } from 'react-icons/md';
 import Tabed from './tabed';
@@ -45,6 +46,7 @@ const Playlist = () => {
                                 </div>
                             )}
                         </Popup>
+                         <Link to="/playlistDetail">
                         <div className="box">
                                 <figure>
                                     <img src="https://i.ytimg.com/vi/Yije8O6eGn8/maxresdefault.jpg" alt="" />
@@ -66,7 +68,8 @@ const Playlist = () => {
                                 </Select>
                                 <h6>Nhạc trẻ remix</h6>
                             </div>
-                            <div className="box">
+                            </Link>
+                        <div className="box">
                                 <figure>
                                     <img src="https://i.ytimg.com/vi/Yije8O6eGn8/maxresdefault.jpg" alt="" />
                                 </figure>

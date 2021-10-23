@@ -4,8 +4,9 @@ import RootAdmin from "./page/admin/rootPageAdmin";
 import { Provider } from "react-redux";
 import storeGlobal, { storePersiser } from './store';
 import { PersistGate } from 'redux-persist/integration/react'
-
 import { handlePage, Client, propertyPage, Admin } from "./router";
+import { ProtectAdmin, ProtectRoute } from "auth/index"
+import Signin from "./page/client/pageClient/signin/signin";
 
 
 function App() {
@@ -15,17 +16,18 @@ function App() {
         <Provider store={storeGlobal}>
           <PersistGate loading={null} persistor={storePersiser}>
             <Switch>
-              <Route path="/admin" >
+              <ProtectAdmin path="/admin" >
                 <RootAdmin>
                   <Switch>
                     {handlePage<propertyPage[]>(Admin)}
                   </Switch>
                 </RootAdmin>
-              </Route>
+              </ProtectAdmin>
 
               <Route path="">
                 <RootClient>
                   <Switch>
+                    <ProtectRoute path="/signin" component={Signin} exact={false} />
                     {handlePage<propertyPage[]>(Client)}
                   </Switch>
                 </RootClient>

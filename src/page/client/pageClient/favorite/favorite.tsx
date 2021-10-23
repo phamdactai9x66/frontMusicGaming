@@ -10,6 +10,7 @@ import { BiHeart } from 'react-icons/bi';
 import { FiPlayCircle } from 'react-icons/fi';
 import { HiOutlineDotsCircleHorizontal } from 'react-icons/hi';
 import { Select, MenuItem } from "@mui/material";
+
 interface Favorite<T> {
 
 }
@@ -20,7 +21,7 @@ const Favorite: React.FC<Favorite<any>> = ({ ...props }) => {
         <div className="container-yeuthich">
             <div className ="title-yeuthich-tt grid-2">
                 <div className="text-title-yeuthich-tt">
-                    <h2 className="color-yeuthich-tt title_all">Yêu Thích</h2>
+                    <h3 className="color-yeuthich-tt title_all">Yêu thích</h3>
                 </div>
                 <div className="div-svg">
                     <Header className="svg color-yeuthich-tt" />
@@ -28,7 +29,8 @@ const Favorite: React.FC<Favorite<any>> = ({ ...props }) => {
             </div>
             <div className="yeuthich-tt-main">
                 <div className="grid-4-yeuthich-tt">
-                <div className="box">
+                    <div className="box yeuthich-box">
+                    <Link to="/playlistDetail" className="link">
             <figure>
               <img src="https://i.ytimg.com/vi/Yije8O6eGn8/maxresdefault.jpg" alt="" />
             </figure>
@@ -48,35 +50,15 @@ const Favorite: React.FC<Favorite<any>> = ({ ...props }) => {
                                     </MenuItem>
             </Select>
             <h6>Nhạc trẻ remix</h6>
-          </div>
-          <div className="box">
-            <figure>
-              <img src="https://i.ytimg.com/vi/Yije8O6eGn8/maxresdefault.jpg" alt="" />
-            </figure>
-            <div className="icon-box">
-              <div>
-                <BiHeart className="icon" />
-                <FiPlayCircle className="icon" />
-                <HiOutlineDotsCircleHorizontal className="icon" />
-              </div>
-            </div>
-            <Select className="option">
-              <MenuItem>
-                <AiOutlineDownload /> Tải xuống
-                                    </MenuItem>
-              <MenuItem>
-                <AiOutlineLink /> Sao chép link
-                                    </MenuItem>
-            </Select>
-            <h6>Nhạc trẻ remix</h6>
-          </div>
+            </Link>
                 </div>
-                
+                  
+                </div>
             </div>
             <br />
             <div className ="title-yeuthich-tt grid-2 mt-2">
                 <div className="text-title-yeuthich-tt">
-                    <h2 className="color-yeuthich-tt title_all">Tác Giả</h2>
+                    <h3 className="color-yeuthich-tt title_all">Nhạc sĩ</h3>
                 </div>
                 <div className="div-svg">
                     <Tacgia className="svg color-yeuthich-tt" />
