@@ -95,6 +95,28 @@ const Sidebar: React.FC<Sidebar<any>> = ({ ...props }) => {
                 </div>
 
                 <div className="tab">
+                    <input hidden type="checkbox" id="chck14" />
+                    <label className="tab-label" htmlFor="chck14">
+                        <div className="grid_item">
+                            <label className="tabs__item--icon">
+                                <BsMusicNoteBeamed />
+                            </label>
+                            <Link to="/admin/songCate">
+                                <label className="button_text">Category</label>
+                            </Link>
+                        </div>
+                        <div>&#10095;</div>
+                    </label>
+
+                    <div className="tab-content">
+                        <label className="add_item">
+                            <BiMessageSquareAdd className="icon_item" />
+                            <Link to="/admin/addCate"><span>Add Category</span></Link>
+                        </label>
+                    </div>
+                </div>
+
+                <div className="tab">
                     <input hidden type="checkbox" id="chck4" />
                     <label className="tab-label" htmlFor="chck4">
                         <div className="grid_item">
@@ -274,7 +296,7 @@ const Sidebar: React.FC<Sidebar<any>> = ({ ...props }) => {
                             <label className="tabs__item--icon">
                             <FaTshirt />
                             </label>
-                           <Link to="/admin/topic"><label className="button_text">Topic</label></Link> 
+                            <Link to="/admin/topic"><label className="button_text">Topic</label></Link> 
                         </div>
                         <div>&#10095;</div>
                     </label>
