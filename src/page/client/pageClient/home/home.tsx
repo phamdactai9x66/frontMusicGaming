@@ -12,6 +12,8 @@ import WantHearComponent from './component/WantHearComponent';
 import { formStateUser } from 'redux/user/stateUser';
 import { useSelector } from 'react-redux';
 import playlistApi from 'api/playlistApi';
+import songApi from 'api/songApi';
+import { tranFormdata } from "component/MethodCommon";
 
 
 interface Home<T> {
@@ -21,6 +23,9 @@ interface Home<T> {
 const Home: React.FC<Home<any>> = ({ ...props }) => {
     const [playlists, setPlaylists] = useState([]);
     const userState = useSelector<{ user: any }>(state => state.user) as formStateUser;
+    const [songs, setSongs] = useState([]);
+    const [songsTransform, setSongsTransform] = useState([]);
+
     var settings_banner = {
         dots: true,
         autoplay: true,
@@ -73,9 +78,16 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
         const { data } = responsePL;
         setPlaylists(data)
     }
+    const getSongs = async () => {
+        const responseSong = await songApi.getAll({});
+        const resSongsTransform = await tranFormdata(responseSong.data);
+        setSongs(responseSong.data);
+        setSongsTransform(resSongsTransform);
+    }
 
     useEffect(() => {
-        getPlaylists()
+        getPlaylists();
+        getSongs();
     }, []);
 
     return (
@@ -101,13 +113,13 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                 </div>
             </div>
 
-            {playlists.length !== 0 && playlists.map((item: any) => (
+            {/* {playlists.length !== 0 && playlists.map((item: any) => (
                 <div className="list-slider">
                     <h4 className="title_all">{item.name} <MdNavigateNext className="icon" /></h4>
 
-                    <WantHearComponent settings_category={settings_category} idPlaylist={item._id} />
+                    <WantHearComponent settings_category={settings_category} songs={songsTransform} idPlaylist={item._id} />
                 </div>
-            ))}
+            ))} */}
 
             {/* <div className="list-slider">
                 <h4 className="title_all">Có thể bạn muốn nghe <MdNavigateNext className="icon" /></h4>

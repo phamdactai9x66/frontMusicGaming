@@ -1,4 +1,3 @@
-import songApi from 'api/songApi';
 import React, { useEffect, useState } from 'react';
 import Slider from 'react-slick';
 
@@ -8,26 +7,42 @@ import { AiOutlineDownload,AiOutlineLink } from 'react-icons/ai';
 import { FiPlayCircle } from 'react-icons/fi';
 import { HiOutlineDotsCircleHorizontal } from 'react-icons/hi';
 import {  BiHeart } from 'react-icons/bi';
-import { Select, MenuItem } from "@mui/material"
+import { Select, MenuItem } from "@mui/material";
+import { HandleGet, tranFormdata } from "component/MethodCommon";
+import playlistSongApi from 'api/playlistSongApi';
+
+
 interface WantHearComponentIF<T> {
     settings_category: object,
     idPlaylist: string,
+    songs: any,
 }
 
 const WantHearComponent: React.FC<WantHearComponentIF<any>> = ({...props}) => {
-    const [songs, setSongs] = useState([]);
+    const [PLS, setPLS] = useState([]);
+
+
+    const getPLS = async () => {
+        const query = { id_PlayList: props.idPlaylist };
+        const [data, err] = await HandleGet(playlistSongApi.getAll, query);
+
+        let findSong: any[] = [];
+        data.data.map( (item: any) => {
+            const { id_Songs } = item;
+            if(props.songs[id_Songs]){
+                findSong.push(props.songs[id_Songs])
+            }
+        })
+        return findSong;
+    }
 
     useEffect( () => {
-        const getSongs = async () => {
-            const { data } = await songApi.getAll( {_limit: 20, view: 'desc', date: "desc"} );
-            setSongs(data);
-        }
-        getSongs();
-    }, []);
+        getPLS();
+    }, [props.songs]);
     return (
         <div>
             <Slider {...props.settings_category}>
-                {songs.length !== 0 && songs.map( (item: any) => (
+                {PLS.length !== 0 && PLS.map( (item: any) => (
                      <div className="box" key={item._id}>
                            <div className="box">
                              <figure>
@@ -52,6 +67,7 @@ const WantHearComponent: React.FC<WantHearComponentIF<any>> = ({...props}) => {
                          </div>
                      </div>
                 ))}
+                {PLS.length === 0 && "Không có bài hát nào trong playlist này"}
             </Slider>
         </div>
     )
