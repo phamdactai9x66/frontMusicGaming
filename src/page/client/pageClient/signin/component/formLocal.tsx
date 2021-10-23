@@ -9,9 +9,9 @@ export const SignIn = <T extends FormikContextType<any>>(formik: T) => {
   return (
     <>
       {/* {JSON.stringify(formik.values)} */}
-      <InputText name="userName" type="text" other={{ placeholder: "userName" }} />
+      <InputText name="userName" type="text" label="userName" other={{ placeholder: "userName" }} />
 
-      <InputText name="passWord" type="password" other={{ placeholder: "passWord" }} />
+      <InputText name="passWord" type="password" label="passWord" other={{ placeholder: "passWord" }} />
       <br /><br />
       <Link className="forgot_pass" to="/forgotpassword">Forgot password ?</Link>
       <br /><br />
@@ -27,7 +27,7 @@ export const SignUp = <T extends FormikContextType<any>>(formik: T) => {
 
   return (
     <>
-      {JSON.stringify(formik.values)}
+      {/* {JSON.stringify(formik.values)} */}
       {/* <input placeholder="E-mail" type="text" /> */}
       <div className="SignUp_overlow">
         <div>
@@ -43,7 +43,7 @@ export const SignUp = <T extends FormikContextType<any>>(formik: T) => {
           <RadioField name="gender" data={genderOption} />
         </div>
         <div style={{ borderTop: "0.1rem solid #48c7b2" }}>
-          <FileField name="image" label="avatar" type="file" />
+          <FileField name="image" type="file" />
         </div>
         <div>
           <InputText name="address" label="address" type="text" other={{ placeholder: "address" }} />

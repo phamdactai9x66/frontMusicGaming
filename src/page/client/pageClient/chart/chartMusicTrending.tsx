@@ -1,15 +1,16 @@
 import React from 'react'
 import { RouteChildrenProps, withRouter } from "react-router-dom";
 import {
-    LineChart,
-    Line,
-    XAxis,
-    YAxis,
-    CartesianGrid,
-    Tooltip,
-    Legend,
-    ResponsiveContainer
-  } from "recharts";
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+  BarChart,
+  Bar
+} from "recharts";
   const data = [
     {
       name: "Page A",
@@ -62,25 +63,26 @@ const ChartMusicTrending: React.FC<ChartMusicTrending<any>> = ({ ...props }) => 
     return (
       <>  
      <div className="chartMusic">
-    <ResponsiveContainer>
-        <LineChart
-        className="line_chart"
-    data={data}
-  >
-    <CartesianGrid strokeDasharray="3 3" />
-    <XAxis dataKey="name" />
-    <YAxis />
-    <Tooltip />
-    <Legend />
-    <Line
-      type="monotone"
-      dataKey="pv"
-      stroke="#ff6ea7"
-      activeDot={{ r: 8 }}
-    />
-    <Line type="monotone" dataKey="uv" stroke="#3ed6da" />
-  </LineChart>
-   </ResponsiveContainer>            
+     <ResponsiveContainer>
+              <BarChart
+                className="line_chart"
+                data={data}
+              >
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="title" />
+                <YAxis />
+                <Tooltip />
+                <Legend />
+                <Bar
+                  type="monotone"
+                  dataKey="view"
+                  stroke="#ff6ea7"
+                  fill="#ff6ea7"
+                // activeDot={{ r: 8 }}
+                />
+                <Line type="monotone" dataKey="uv" stroke="#3ed6da" />
+              </BarChart>
+            </ResponsiveContainer>           
   </div> 
       </>
     )

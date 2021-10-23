@@ -1,9 +1,6 @@
 import { createSlice, PayloadAction, createAsyncThunk } from "@reduxjs/toolkit";
 import stateUser, { formStateUser } from "./stateUser";
 
-// export const getlistAudio: any = createAsyncThunk("audio/getListAUdio", async (params, thunkAPi) => {
-//     return { name: "pham dac tai" }
-// })
 
 const sliceUser = createSlice({
     name: "user",
@@ -13,6 +10,10 @@ const sliceUser = createSlice({
             const { token, user } = action.payload
             state.token = token;
             state.user = user
+        },
+        Logout(state: formStateUser, action: PayloadAction) {
+            state.token = '';
+            state.user = ''
         }
 
     },
@@ -23,5 +24,5 @@ const sliceUser = createSlice({
     }
 })
 
-export const { saveInfo } = sliceUser.actions;
+export const { saveInfo, Logout } = sliceUser.actions;
 export default sliceUser.reducer

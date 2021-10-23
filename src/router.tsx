@@ -2,9 +2,7 @@ import { Route } from "react-router-dom"
 import Home from "./page/client/pageClient/home/home"
 import NotFound from "./page/client/pageClient/notFound/notFound";
 import HomeAdmin from "./page/admin/pageAdmin/home/home";
-import AddTodo from "./page/admin/pageAdmin/todolist/page/addTodo";
 import NotFoundAdmin from "./page/admin/pageAdmin/notFound/notFoundAdmin";
-import Todolist from "./page/admin/pageAdmin/todolist/index";
 import Toptrending from "./page/client/pageClient/toptrending/toptrending";
 import Favorite from "./page/client/pageClient/favorite/favorite";
 import Newmusic from "./page/client/pageClient/newmusic/newmusic";
@@ -21,6 +19,11 @@ import Music from "./page/client/pageClient/personal/component/music";
 import Musician from "./page/client/pageClient/personal/component/musician";
 import Upload from "./page/client/pageClient/personal/component/upload";
 import Playlist from "./page/client/pageClient/personal/component/playlist";
+import CategoryDetailPlaylist from "page/client/pageClient/categoryDetailPlaylist/categoryDetailPlaylist";
+import AddTodo from "./page/admin/pageAdmin/todolist/page/addTodo";
+import Todolist from "./page/admin/pageAdmin/todolist/index";
+import AddTopic from "./page/admin/pageAdmin/topic/page/addTodo";
+import Topic from "./page/admin/pageAdmin/topic/index";
 
 export interface propertyPage {
     path: string,
@@ -42,6 +45,16 @@ const Admin: propertyPage[] = [
     {
         path: "/admin/todolist",
         component: Todolist,
+        exact: false
+    },
+    {
+        path: "/admin/addTopic",
+        component: AddTopic,
+        exact: false
+    },
+    {
+        path: "/admin/topic",
+        component: Topic,
         exact: false
     },
     {
@@ -76,17 +89,17 @@ const Client: propertyPage[] = [
     {
         path: "/toptrending",
         component: Toptrending,
-        exact: true
+        exact: false
     },
     {
         path: "/favorite",
         component: Favorite,
-        exact: true
+        exact: false
     },
     {
         path: "/newmusic",
         component: Newmusic,
-        exact: true
+        exact: false
     },
     {
         path: "/blog",
@@ -96,7 +109,12 @@ const Client: propertyPage[] = [
     {
         path: "/category",
         component: Category,
-        exact: true
+        exact: false
+    },
+    {
+        path: "/categoryDetailPlaylist",
+        component: CategoryDetailPlaylist,
+        exact: false
     },
     {
         path: "/blogDetail",
@@ -106,7 +124,7 @@ const Client: propertyPage[] = [
     {
         path: "/playlistDetail",
         component: PlaylistDetail,
-        exact: true
+        exact: false
     },
     {
         path: "/chart",
@@ -116,27 +134,27 @@ const Client: propertyPage[] = [
     {
         path: "/overview",
         component: Overview,
-        exact: true
+        exact: false
     },
     {
         path: "/music",
         component: Music,
-        exact: true
+        exact: false
     },
     {
         path: "/musician",
         component: Musician,
-        exact: true
+        exact: false
     },
     {
         path: "/playlist",
         component: Playlist,
-        exact: true
+        exact: false
     },
     {
         path: "/upload",
         component: Upload,
-        exact: true
+        exact: false
     },
     {
         path: "/:pathNotFound",

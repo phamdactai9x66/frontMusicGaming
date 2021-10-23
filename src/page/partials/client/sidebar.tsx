@@ -19,29 +19,29 @@ const Sidebar: React.FC<Sidebar<any>> = ({ ...props }) => {
       <div className="sidebar">
         <h5><Link to="/">MUSIC GAME</Link></h5>
         <ul>
-          <li><BsMusicNoteBeamed className="icon" /><Link to="/overview">Cá nhân</Link></li>
-          <li><RiFolderMusicFill className="icon" /><Link to="/">Khám phá</Link></li>
-          <li><FaChartPie className="icon" /><Link to="/chart">Music chart</Link></li>
-          <li><FaBlogger className="icon" /><Link to="/blog">Blog</Link></li>
+        <Link to="/overview"><li><BsMusicNoteBeamed className="icon" />Cá nhân</li></Link>
+        <Link to="/"><li><RiFolderMusicFill className="icon" />Khám phá</li></Link>
+        <Link to="/chart"><li><FaChartPie className="icon" />Music chart</li></Link>
+        <Link to="/blog"><li><FaBlogger className="icon" />Blog</li></Link>
         </ul>
         <div className="library-sidebar">
           <ul>
-            <li><BsMusicNoteBeamed className="icon" /><Link to="/newmusic">Nhạc mới</Link></li>
-            <li><BsListUl className="icon" /><Link to="/category">Thể loại</Link></li>
-            <li><AiFillStar className="icon" /><Link to="/toptrending">Top thịnh hành</Link></li>
+            <Link to="/newmusic"><li><BsMusicNoteBeamed className="icon" />Nhạc mới</li></Link>
+            <Link to="/category"><li><BsListUl className="icon" />Thể loại</li></Link>
+            <Link to="/toptrending"><li><AiFillStar className="icon" />Top thịnh hành</li></Link>
           </ul>
           <ul>
             <h6>Thư viện</h6>
-            <li><AiOutlineHeart className="icon" /><Link to="/favorite">Yêu thích</Link></li>
-            <li><BsMusicNoteBeamed className="icon" /><Link to="/music">Bài hát</Link></li>
-            <li><BiPlayCircle className="icon" /><Link to="/playlist">Playlist</Link></li>
-            <li><BiTimeFive className="icon" /><Link to="/recently">Gần đây</Link></li>
+            <Link to="/favorite"><li><AiOutlineHeart className="icon" />Yêu thích</li></Link>
+            <Link to="/music"><li><BsMusicNoteBeamed className="icon" />Bài hát</li></Link>
+            <Link to="/playlist"><li><BiPlayCircle className="icon" />Playlist</li></Link>
+            <Link to="/recently"><li><BiTimeFive className="icon" />Gần đây</li></Link>
           </ul>
           <ul>
-            <li><Link to="/playlistDetail">● Nhạc trẻ remix</Link></li>
-            <li><Link to="/playlistDetail">● Nhạc trẻ remix</Link></li>
-            <li><Link to="/playlistDetail">● Nhạc trẻ remix</Link></li>
-            <li><Link to="/playlistDetail">● Nhạc trẻ remix</Link></li>
+            <Link to="/playlistDetail"><li>● Nhạc trẻ remix</li></Link>
+            <Link to="/playlistDetail"><li>● Nhạc trẻ remix</li></Link>
+            <Link to="/playlistDetail"><li>● Nhạc trẻ remix</li></Link>
+            <Link to="/playlistDetail"><li>● Nhạc trẻ remix</li></Link>
           </ul>
         </div>
         <div className="popup-playlist">

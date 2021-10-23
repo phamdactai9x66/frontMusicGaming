@@ -17,7 +17,7 @@ const Toptrending: React.FC<Toptrending<any>> = ({ ...props }) => {
         <div className="container-topthanhhanh">
             <div className="title-top-tt grid-2">
                 <div className="text-title-top-tt">
-                    <h2 className="color-top-tt title_all">Top Thịnh Hành</h2>
+                    <h3 className="color-top-tt title_all">Top Thịnh Hành</h3>
                 </div>
                 <div className="div-svg">
                     <Play className="svg color-top-tt" />
@@ -29,6 +29,7 @@ const Toptrending: React.FC<Toptrending<any>> = ({ ...props }) => {
                 <label htmlFor='show-all' className='text-hide'>Ẩn bớt</label>
                 <div className="grid-4-top-tt">
                 <div className="box">
+                <Link to="/playlistDetail">
                         <figure>
                             <img src="https://i.ytimg.com/vi/Yije8O6eGn8/maxresdefault.jpg" alt="" />
                         </figure>
@@ -48,7 +49,8 @@ const Toptrending: React.FC<Toptrending<any>> = ({ ...props }) => {
                                     </MenuItem>
                         </Select>
                         <h6>Nhạc trẻ remix</h6>
-                    </div>
+                     </Link>
+                </div>
                     <div className="box">
                         <figure>
                             <img src="https://i.ytimg.com/vi/Yije8O6eGn8/maxresdefault.jpg" alt="" />

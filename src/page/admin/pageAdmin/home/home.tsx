@@ -104,8 +104,78 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                 </div>
               </div>
               <div className="_tab">
-                <input hidden type="checkbox" id="chck13" />
-                <label className="_tab-label" htmlFor="chck13">
+                <input hidden type="checkbox" id="chck14" />
+                <label className="_tab-label" htmlFor="chck14">
+                  <div className="_grid_item">
+                    <label className="_button_text">Nhạc sĩ</label>
+                    <div style={{ display: "flex", gridGap: "2rem" }}>
+                      <div className="_icon_drop">&#10095;</div>
+                      <input className="checkbox_name" type="checkbox" />
+                    </div>
+
+                  </div>
+
+                </label>
+
+                <div className="_tab-content">
+                  <div className="content_flex">
+                    <div>Name 1</div> <input className="checkbox_name" type="checkbox" />
+                  </div>
+                  <div className="content_flex">
+                    <div>Name 2</div> <input className="checkbox_name" type="checkbox" />
+                  </div>
+                  <div className="content_flex">
+                    <div>Name 3</div> <input className="checkbox_name" type="checkbox" />
+                  </div>
+                  <div style={{ display: "flex", justifyContent: "flex-end", marginTop: "1rem" }}>
+                <button className="btn" style={{
+                  background: "#37AFBF",
+                  padding: "0.4rem 1rem 0.4rem 1rem",
+                  borderRadius: "0.2rem",
+                  border: "none",
+                  color: "#fff"
+                }}>Check Pass</button>
+              </div>
+                </div>
+              </div>
+              <div className="_tab">
+                <input hidden type="checkbox" id="chck15" />
+                <label className="_tab-label" htmlFor="chck15">
+                  <div className="_grid_item">
+                    <label className="_button_text">Topic</label>
+                    <div style={{ display: "flex", gridGap: "2rem" }}>
+                      <div className="_icon_drop">&#10095;</div>
+                      <input className="checkbox_name" type="checkbox" />
+                    </div>
+
+                  </div>
+
+                </label>
+
+                <div className="_tab-content">
+                  <div className="content_flex">
+                    <div>Name 1</div> <input className="checkbox_name" type="checkbox" />
+                  </div>
+                  <div className="content_flex">
+                    <div>Name 2</div> <input className="checkbox_name" type="checkbox" />
+                  </div>
+                  <div className="content_flex">
+                    <div>Name 3</div> <input className="checkbox_name" type="checkbox" />
+                  </div>
+                  <div style={{ display: "flex", justifyContent: "flex-end", marginTop: "1rem" }}>
+                <button className="btn" style={{
+                  background: "#37AFBF",
+                  padding: "0.4rem 1rem 0.4rem 1rem",
+                  borderRadius: "0.2rem",
+                  border: "none",
+                  color: "#fff"
+                }}>Check Pass</button>
+              </div>
+                </div>
+              </div>
+              <div className="_tab">
+                <input hidden type="checkbox" id="chck16" />
+                <label className="_tab-label" htmlFor="chck16">
                   <div className="_grid_item">
                     <label className="_button_text">Music</label>
                     <div style={{ display: "flex", gridGap: "2rem" }}>
@@ -139,116 +209,10 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                 </div>
               </div>
               <div className="_tab">
-                <input hidden type="checkbox" id="chck14" />
-                <label className="_tab-label" htmlFor="chck14">
-                  <div className="_grid_item">
-                    <label className="_button_text">Playlist</label>
-                    <div style={{ display: "flex", gridGap: "2rem" }}>
-                      <div className="_icon_drop">&#10095;</div>
-                      <input className="checkbox_name" type="checkbox" />
-                    </div>
-
-                  </div>
-
-                </label>
-
-                <div className="_tab-content">
-                  <div className="content_flex">
-                    <div>Name 1</div> <input className="checkbox_name" type="checkbox" />
-                  </div>
-                  <div className="content_flex">
-                    <div>Name 2</div> <input className="checkbox_name" type="checkbox" />
-                  </div>
-                  <div className="content_flex">
-                    <div>Name 3</div> <input className="checkbox_name" type="checkbox" />
-                  </div>
-                  <div style={{ display: "flex", justifyContent: "flex-end", marginTop: "1rem" }}>
-                <button className="btn" style={{
-                  background: "#37AFBF",
-                  padding: "0.4rem 1rem 0.4rem 1rem",
-                  borderRadius: "0.2rem",
-                  border: "none",
-                  color: "#fff"
-                }}>Check Pass</button>
-              </div>
-                </div>
-
-              </div>
-              <div className="_tab">
-                <input hidden type="checkbox" id="chck15" />
-                <label className="_tab-label" htmlFor="chck15">
-                  <div className="_grid_item">
-                    <label className="_button_text">Thể loại</label>
-                    <div style={{ display: "flex", gridGap: "2rem" }}>
-                      <div className="_icon_drop">&#10095;</div>
-                      <input className="checkbox_name" type="checkbox" />
-                    </div>
-
-                  </div>
-
-                </label>
-
-                <div className="_tab-content">
-                  <div className="content_flex">
-                    <div>Name 1</div> <input className="checkbox_name" type="checkbox" />
-                  </div>
-                  <div className="content_flex">
-                    <div>Name 2</div> <input className="checkbox_name" type="checkbox" />
-                  </div>
-                  <div className="content_flex">
-                    <div>Name 3</div> <input className="checkbox_name" type="checkbox" />
-                  </div>
-                  <div style={{ display: "flex", justifyContent: "flex-end", marginTop: "1rem" }}>
-                <button className="btn" style={{
-                  background: "#37AFBF",
-                  padding: "0.4rem 1rem 0.4rem 1rem",
-                  borderRadius: "0.2rem",
-                  border: "none",
-                  color: "#fff"
-                }}>Check Pass</button>
-              </div>
-                </div>
-
-              </div>
-              <div className="_tab">
-                <input hidden type="checkbox" id="chck16" />
-                <label className="_tab-label" htmlFor="chck16">
-                  <div className="_grid_item">
-                    <label className="_button_text">Slider</label>
-                    <div style={{ display: "flex", gridGap: "2rem" }}>
-                      <div className="_icon_drop">&#10095;</div>
-                      <input className="checkbox_name" type="checkbox" />
-                    </div>
-                  </div>
-                </label>
-
-                <div className="_tab-content">
-                  <div className="content_flex">
-                    <div>Name 1</div> <input className="checkbox_name" type="checkbox" />
-                  </div>
-                  <div className="content_flex">
-                    <div>Name 2</div> <input className="checkbox_name" type="checkbox" />
-                  </div>
-                  <div className="content_flex">
-                    <div>Name 3</div> <input className="checkbox_name" type="checkbox" />
-                  </div>
-                  <div style={{ display: "flex", justifyContent: "flex-end", marginTop: "1rem" }}>
-                <button className="btn" style={{
-                  background: "#37AFBF",
-                  padding: "0.4rem 1rem 0.4rem 1rem",
-                  borderRadius: "0.2rem",
-                  border: "none",
-                  color: "#fff"
-                }}>Check Pass</button>
-              </div>
-                </div>
-
-              </div>
-              <div className="_tab">
                 <input hidden type="checkbox" id="chck17" />
                 <label className="_tab-label" htmlFor="chck17">
                   <div className="_grid_item">
-                    <label className="_button_text">Users</label>
+                    <label className="_button_text">Playlist</label>
                     <div style={{ display: "flex", gridGap: "2rem" }}>
                       <div className="_icon_drop">&#10095;</div>
                       <input className="checkbox_name" type="checkbox" />
@@ -284,7 +248,7 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                 <input hidden type="checkbox" id="chck18" />
                 <label className="_tab-label" htmlFor="chck18">
                   <div className="_grid_item">
-                    <label className="_button_text">Blogs</label>
+                    <label className="_button_text">Thể loại</label>
                     <div style={{ display: "flex", gridGap: "2rem" }}>
                       <div className="_icon_drop">&#10095;</div>
                       <input className="checkbox_name" type="checkbox" />
@@ -319,6 +283,112 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
               <div className="_tab">
                 <input hidden type="checkbox" id="chck19" />
                 <label className="_tab-label" htmlFor="chck19">
+                  <div className="_grid_item">
+                    <label className="_button_text">Slider</label>
+                    <div style={{ display: "flex", gridGap: "2rem" }}>
+                      <div className="_icon_drop">&#10095;</div>
+                      <input className="checkbox_name" type="checkbox" />
+                    </div>
+                  </div>
+                </label>
+
+                <div className="_tab-content">
+                  <div className="content_flex">
+                    <div>Name 1</div> <input className="checkbox_name" type="checkbox" />
+                  </div>
+                  <div className="content_flex">
+                    <div>Name 2</div> <input className="checkbox_name" type="checkbox" />
+                  </div>
+                  <div className="content_flex">
+                    <div>Name 3</div> <input className="checkbox_name" type="checkbox" />
+                  </div>
+                  <div style={{ display: "flex", justifyContent: "flex-end", marginTop: "1rem" }}>
+                <button className="btn" style={{
+                  background: "#37AFBF",
+                  padding: "0.4rem 1rem 0.4rem 1rem",
+                  borderRadius: "0.2rem",
+                  border: "none",
+                  color: "#fff"
+                }}>Check Pass</button>
+              </div>
+                </div>
+
+              </div>
+              <div className="_tab">
+                <input hidden type="checkbox" id="chck20" />
+                <label className="_tab-label" htmlFor="chck20">
+                  <div className="_grid_item">
+                    <label className="_button_text">Users</label>
+                    <div style={{ display: "flex", gridGap: "2rem" }}>
+                      <div className="_icon_drop">&#10095;</div>
+                      <input className="checkbox_name" type="checkbox" />
+                    </div>
+
+                  </div>
+
+                </label>
+
+                <div className="_tab-content">
+                  <div className="content_flex">
+                    <div>Name 1</div> <input className="checkbox_name" type="checkbox" />
+                  </div>
+                  <div className="content_flex">
+                    <div>Name 2</div> <input className="checkbox_name" type="checkbox" />
+                  </div>
+                  <div className="content_flex">
+                    <div>Name 3</div> <input className="checkbox_name" type="checkbox" />
+                  </div>
+                  <div style={{ display: "flex", justifyContent: "flex-end", marginTop: "1rem" }}>
+                <button className="btn" style={{
+                  background: "#37AFBF",
+                  padding: "0.4rem 1rem 0.4rem 1rem",
+                  borderRadius: "0.2rem",
+                  border: "none",
+                  color: "#fff"
+                }}>Check Pass</button>
+              </div>
+                </div>
+
+              </div>
+              <div className="_tab">
+                <input hidden type="checkbox" id="chck21" />
+                <label className="_tab-label" htmlFor="chck21">
+                  <div className="_grid_item">
+                    <label className="_button_text">Blogs</label>
+                    <div style={{ display: "flex", gridGap: "2rem" }}>
+                      <div className="_icon_drop">&#10095;</div>
+                      <input className="checkbox_name" type="checkbox" />
+                    </div>
+
+                  </div>
+
+                </label>
+
+                <div className="_tab-content">
+                  <div className="content_flex">
+                    <div>Name 1</div> <input className="checkbox_name" type="checkbox" />
+                  </div>
+                  <div className="content_flex">
+                    <div>Name 2</div> <input className="checkbox_name" type="checkbox" />
+                  </div>
+                  <div className="content_flex">
+                    <div>Name 3</div> <input className="checkbox_name" type="checkbox" />
+                  </div>
+                  <div style={{ display: "flex", justifyContent: "flex-end", marginTop: "1rem" }}>
+                <button className="btn" style={{
+                  background: "#37AFBF",
+                  padding: "0.4rem 1rem 0.4rem 1rem",
+                  borderRadius: "0.2rem",
+                  border: "none",
+                  color: "#fff"
+                }}>Check Pass</button>
+              </div>
+                </div>
+
+              </div>
+              <div className="_tab">
+                <input hidden type="checkbox" id="chck22" />
+                <label className="_tab-label" htmlFor="chck22">
                   <div className="_grid_item">
                     <label className="_button_text">Danh mục blog</label>
                     <div style={{ display: "flex", gridGap: "2rem" }}>

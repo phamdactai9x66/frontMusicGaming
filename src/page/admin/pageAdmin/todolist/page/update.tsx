@@ -10,7 +10,7 @@ import albumApi from "api/albumApi";
 import { variableCommon } from "component/variableCommon";
 import { HandleGet } from "component/MethodCommon";
 import { page } from "../index";
-interface AddMusic<T> {
+interface UpdateTodo<T> {
     changePage: any,
     _id: string | any
 };
@@ -21,7 +21,7 @@ const initialValue = {
     id_Artist: ''
 }
 
-const AddMusic: React.FC<AddMusic<any>> = ({ changePage, _id, ...props }) => {
+const UpdateTodo: React.FC<UpdateTodo<any>> = ({ changePage, _id, ...props }) => {
     const refForm = useRef<HTMLFormElement | any>(null)
     const [alert, setalert] = useState({ display: false, message: "", type: "" })
     const [dataAlbum, setdataAlbum] = useState({ data: null, display: true });
@@ -70,7 +70,7 @@ const AddMusic: React.FC<AddMusic<any>> = ({ changePage, _id, ...props }) => {
         <>
             <div className="admin-pageAdd">
                 <div className="text-name-add">
-                    <h3>Update Music</h3><br />
+                    <h3>Update Todo</h3><br />
                 </div>
                 {alert.display && <Alert severity={alert.type as any} style={{ marginBottom: 5 }}>
                     {alert.message}
@@ -133,4 +133,4 @@ const AddMusic: React.FC<AddMusic<any>> = ({ changePage, _id, ...props }) => {
     )
 }
 
-export default AddMusic
+export default UpdateTodo

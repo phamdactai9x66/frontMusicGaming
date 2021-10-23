@@ -15,13 +15,14 @@ main {
     @import "./pageClient/category/category.scss";
     @import "./pageClient/blogdetail/blogdetail.scss";
     @import "./pageClient/blog/blog.scss";
+    @import "./pageClient/categoryDetailPlaylist/categoryDetailPlaylist.scss";
 }
 
 $color_li: rgb(187, 187, 187);
 $color_icon: #00e5ce;
-$color_aside: linear-gradient(to bottom right, #0e192a, #1b375c);
+$color_aside: #0e192a;
 $color_main_header: #222f44;
-$color_footer: #0e192aa4;
+$color_footer: #0e192abb;
 
 //handel container client
 
@@ -105,7 +106,7 @@ $color_footer: #0e192aa4;
         box-shadow: 0 3px 7px rgba(0, 0, 0, 0.692);
         .sidebar {
             overflow: hidden;
-            height: calc(100vh - 90px);
+            height: calc(100vh - 40px);
             padding-bottom: 20rem;
             & h5 {
                 padding: 1.3rem 0 0 2.5rem;
@@ -115,41 +116,43 @@ $color_footer: #0e192aa4;
                 }           
             }
             & ul {
+                margin-top: 1rem;
                 h6 {
                     color: rgb(238, 238, 238);
                     margin-left: 0.7rem;
                 }
                 padding-bottom: 1em;
                 border-bottom: 1px solid $color_icon;
-                li {
-                    list-style: none;
+                a {
                     color: $color_li;
-                    font-size: 0.9rem;
-                    padding: 0.7rem;
-                    cursor: pointer;
-                    a {
+                    text-decoration: none;
+                    li {
+                        list-style: none;
                         color: $color_li;
-                        text-decoration: none;
-                        padding: 0.2rem;
+                        font-size: 0.9rem;
+                        padding: 0.4rem;
+                        cursor: pointer;
+                        .icon {
+                            color: $color_icon;
+                            font-size: 1.2rem;
+                            margin-top: -0.2rem;
+                            margin-right: 1rem;
+                        }
+                        transition: ease-in all 0.2s;
+                    }
+                    li:hover {
+                        margin-left: -0.5rem;
+                        background: rgba(13, 106, 129, 0.815);   
                         &:hover {
                             color: #fff;
-                        }
+                        }              
                     }
-                    &:hover {
-                        transition: all ease-in 0.3s;
-                    }
-                    .icon {
-                        color: $color_icon;
-                        font-size: 1.2rem;
-                        margin-top: -0.2rem;
-                    }
+
                 }
-                li:hover {
-                    margin-left: -0.5rem;
-                    background: rgba(13, 106, 129, 0.815);                 
-                }
+               
             }
             .library-sidebar {
+                margin-top: -1rem;
                 overflow: auto;
                 height: 100%;
                 ul:nth-child(3) {
@@ -162,7 +165,8 @@ $color_footer: #0e192aa4;
                 border-top: 1px solid $color_icon;
                 position: sticky;
                 left: 0rem;
-                bottom: 6.5rem;
+                top: 2rem;
+                bottom: 0;
                 padding-top: 1rem;
                 padding-bottom: 1rem;
                 text-align: center;
@@ -196,7 +200,7 @@ $color_footer: #0e192aa4;
         z-index: 2;
         .footer {
             display: flex;
-            padding: 1.3rem;
+            padding: 20px 15px;
             .author {
                 margin-right: 1rem;
                 display: flex;
@@ -219,14 +223,16 @@ $color_footer: #0e192aa4;
             .icon_play-music {
                 cursor: pointer;
                 font-size: 1.6rem;
-                .icon {
+                display: flex;
+                align-items: center;
+                & > .icon {
                     margin-left: 1rem;
                     &:nth-child(1) {
-                        font-size: 1rem;
+                        font-size: 1.5rem;
                         color: #838383;
                     }
                     &:nth-child(5) {
-                        font-size: 1rem;
+                        font-size: 1.5rem;
                         color: #838383;
                     }
                     &:nth-child(2) {
@@ -244,13 +250,26 @@ $color_footer: #0e192aa4;
                         color: #fff;
                     }
                 }
+                div{
+                    .icon {
+                        margin-left: 1rem;
+                        font-size: 1rem;
+                         border-radius: 0.8rem 0 0.8rem 0;
+                            color: #00e5ce;
+                            width: 2.7rem;
+                            height: 2.7rem;
+                            padding: 0.5rem;
+                            background: rgb(5, 9, 22);
+                    }
+                }
             }
+
             .audio-run {
                 flex-grow: 1;
                 margin-top: 0.75rem;
                 margin-left: 3rem;
                 display: grid;
-                grid-template-columns: 2.5rem 1fr 3.2rem 2rem;
+                grid-template-columns: 3.7rem 1fr 4rem 2rem 2rem;
                 .time {
                     color: rgb(177, 177, 177);
                 }
@@ -270,13 +289,14 @@ $color_footer: #0e192aa4;
                 position: relative;
                 height: 6px;
                 width: 100%;
+                margin-top: 0.8rem;
                 cursor: pointer;
                 border-radius: 10px;
                 background: rgb(33, 43, 65);
               }
               .styled-range::-webkit-slider-thumb {
                 -webkit-appearance: none;
-                width: 10px;
+                width: 0;
                 height: 15px;
                 background-color: #00e5ce;
                 box-shadow: -100vw 0 0 100vw #00e5ce;
@@ -292,6 +312,17 @@ $color_footer: #0e192aa4;
                   input {
                       width: 60%;
                       margin: 0.5rem 0 0 0.4rem;
+                  }
+                  .icon {
+                      margin-top: -0.25rem;
+                      cursor: pointer;
+                  }
+                  .option {
+                      opacity: 0;
+                      transform: scale(0.35);
+                      position: absolute;
+                      right: 1.3rem;
+                      top: 1rem;
                   }
               }
         }
@@ -382,9 +413,9 @@ $color_footer: #0e192aa4;
       color: #fff;
       text-decoration: none;
       font-size: 1.2rem;
-      padding-right: 3rem;
       padding-bottom: 0.4rem;
       margin-bottom: 0.4rem;
+      width: 10rem;
       border-bottom: 0.1rem solid rgba(127, 255, 212, 0.322);
       ._icon {
           color: rgb(82, 240, 187);
@@ -416,8 +447,26 @@ $color_footer: #0e192aa4;
         }
     }
 }
-/// fict 
-// p {
-//     font-size: 0.85rem;
-// }
+
+.item {
+    background: #101929;
+    box-shadow: 0 3px 7px rgba(0, 0, 0, 0.692);
+    border-radius: 0.2rem;
+    height: 10rem;
+    overflow: auto;   
+    color: #fff; 
+    .list {
+        margin: 0.2rem;
+        &:hover {
+            background: #20304b;
+        }
+    }    
+}
+
+
+  
+
+
+
+
 

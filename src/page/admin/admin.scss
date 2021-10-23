@@ -44,14 +44,6 @@ main {
     height: 100vh;
     overflow: auto;
     transition: 0.5s;
-    &::-webkit-scrollbar {
-      width: 7px;
-      height: 0.2rem;
-    }
-    &::-webkit-scrollbar-thumb {
-      background: #1977a3d5; 
-      border-radius: 10px;
-    }
     & h2 {
         font-weight: 400;
         font-size: 20px;
@@ -91,19 +83,24 @@ main {
         font-size: 20px;
         color: #4ea9af;
         position: absolute;
-        top: 1.5rem;
+        top: 1.7rem;
         left: 1.6rem;
         cursor: pointer;
     }
     & ._search{
         width: 286px;
-        height: 34px;
+        height: 40px;
         margin: 17px;
         background-color: #121a34;
         border: 1px solid #1b5b6e;
         border-radius: 0.2rem;
         padding-left: 2.3rem;
         color: rgb(255, 255, 255);
+        &::placeholder {
+          color: #419096;
+          position: relative;
+          top: -0.05rem;
+        }
      }
 }
 .main_admin {
@@ -125,10 +122,25 @@ main {
 .nav__check {
   @extend %toggleStyle;
 }
-
+.tabs {
+margin-bottom: 2rem;
+}
 .nav__check:checked ~ .main_admin{
   margin-left: -12rem;
   transition: 0.2s;
+  .tabs {
+    .MuiAccordion-root.Mui-expanded {
+      margin: 0 !important;
+  }
+
+  .MuiIconButton-edgeEnd {
+    width: 1rem !important;
+  }
+  }
+  .main1 {
+    width: 40rem;
+    margin: 2rem 0 0 -1.9rem;
+}
   ._sidebar h2 {
     text-align: left;
   }
@@ -136,7 +148,7 @@ main {
     display: none;
   }
   .info_admin img {
-    margin-left: 11.85rem;
+    margin-left: 12rem;
     transition: 0.2s;
   }
   .main_search {
@@ -147,18 +159,18 @@ main {
   }
 
  .tabs__item--icon {
-   margin-left: 12.8rem;
-   transition: 0.2s;
+   margin-left: 11.9rem;
    font-size: 1.7rem;
  }
  .add_item {
-  margin-left: 12.8rem;
+  margin-left: 12rem;
   & .icon_item {
+    margin-top: -0.1rem;
     cursor: pointer;
     font-size: 1.5rem;
     color: #5c9db1;
   }
-  & span {
+  & div {
     display: none;
   }
  }
@@ -169,30 +181,26 @@ main {
     font-size: 0.8rem;
   }
  }
- .tab-label:hover {
-    background: #121a34;
-    transition: all 0.7s;
-}
+
  }
 
 //  drop start
-.tabs {
-  margin-bottom: 2rem;
-}
+
 .grid_item {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 10rem;
+  margin-left: -0.1rem;
 } 
 
 .tabs__item--icon {
   color: #72d0ec;
   font-size: 1.35rem;
-  margin-top: -0.47rem;
+  margin-top: -0.37rem;
   margin-right: 1rem;
-  margin-left: 2.3rem;
+  margin-left: 0rem;
   cursor: pointer;
 }
 .button_text {
-  display: flex;
   color: #bdbbbb;
   cursor: pointer;
 }
@@ -217,10 +225,6 @@ main {
     background: #1d2d47;
     cursor: pointer;
     /* Icon */
-    &:hover {
-      background: #121a34;
-      transition: all 0.5s;
-    }
   }
   &-content {
     max-height: 0;
@@ -232,14 +236,16 @@ main {
       background: #253a5c;
     }
     & .add_item {
-      margin-left: 4rem;
+      display: flex;
+      margin-top: 0.6rem;
+      margin-left: 3rem;
       & .icon_item {
         color: #4ddce0;
         font-size: 1.3rem;
         margin-right: 1rem;
-        margin-top: -0.3rem;
+        margin-top: 0.15rem;
       }
-      & span {
+      & div {
         color: #b6b6b6;
         cursor: pointer;
       }
@@ -249,23 +255,7 @@ main {
 }
 
 // :checked
-.tab input:checked {
-  ~ .tab-label {
-    background: #121a34;
-    .button_text { 
-       color: #fff;
-    }
-    & div:nth-child(2) {
-      transform: rotate(90deg) translateX(0.4rem);
-    }
-  }
 
-  ~ .tab-content {
-    max-height: 100vh;
-    padding: 1em;
-    color: #fff;
-  }
-}
 
 //=====Sidebar 
 
@@ -342,6 +332,10 @@ header {
   position: relative;
   bottom: 0.7rem;
   left: 0.7rem;
+  &::placeholder {
+    position: relative;
+    top: -0.13rem;
+  }
 }
 
 .search-box:hover > .search-input {
@@ -516,6 +510,10 @@ main .home-page .gird-main-3 .main5 .main5-table-flex3 div a {
 }
   
 }
+.MuiAccordionSummary-root.Mui-expanded {
+  min-height: 0px !important;
+}
+
 /* End Styles Admin*/
 
 
