@@ -26,7 +26,7 @@ const LikeSong: React.FC<LikeSong<any>> = ({ ...props }) => {
                     const { id_User, id_Songs } = curren;
                     return stateAudio.audio._id === id_Songs && state.user._id === id_User
                 })
-                debugger
+                // debugger
                 if (checkLike) setHeart(true)
                 return setstateLike({ data: data.data, display: checkLike })
             }
