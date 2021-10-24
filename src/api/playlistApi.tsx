@@ -1,4 +1,4 @@
-import { Axios } from "./configApi";
+import { Axios, AxiosFormdata } from "./configApi";
 
 class playlistApi {
 
@@ -6,5 +6,6 @@ class playlistApi {
         const url: string = "/playlist";
         return Axios.get(url);
     }
+
 }
 export default new playlistApi();
