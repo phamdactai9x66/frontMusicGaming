@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction, createAsyncThunk, current } from "@reduxjs/toolkit";
 import stateAudio, { formStateAudio } from "./stateAudio";
 import songApi from "api/songApi";
-import { tranFormdata } from "component/MethodCommon";
+import { tranFormDataId } from "component/MethodCommon";
 export const getlistAudio: any = createAsyncThunk("audio/getListAUdio", async (params, thunkAPi) => {
     const getAllSong = await songApi.getAll({});
     return getAllSong?.data
@@ -32,7 +32,7 @@ const sliceAudio = createSlice({
     },
     extraReducers: {
         [getlistAudio.fulfilled]: (state: formStateAudio, action) => {
-            state.likstStaticAudio = tranFormdata([...action.payload])
+            state.likstStaticAudio = tranFormDataId([...action.payload])
             // console.log(action.payload)
         }
     }
