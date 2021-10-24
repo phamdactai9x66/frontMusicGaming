@@ -20,7 +20,7 @@ const HomeCategory: React.FC<HomeCategory<any>> = ({ ...props }) => {
 
     useEffect(() => {
         const getCategories = async () => {
-            const { data } = await categoryApi.getAll();
+            const { data } = await categoryApi.getAll({ _limit: 20 });
             setCategories(data);
         }
         getCategories();
