@@ -4,7 +4,7 @@ main {
   overflow: auto;
   // height: 100vh;
   &::-webkit-scrollbar {
-   display: none;
+    display: none;
   }
   @import "./pageAdmin/home/home.scss";
   @import "./pageAdmin/todolist/page/add.scss";

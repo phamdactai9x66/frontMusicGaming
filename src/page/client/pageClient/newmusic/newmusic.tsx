@@ -24,7 +24,7 @@ const Newmusic: React.FC<Newmusic<any>> = ({ ...props }) => {
         <div className="container-nhacmoi">
             <div className ="title-nhacmoi-tt grid-2">
                 <div className="text-title-nhacmoi-tt">
-                    <h2 className="color-nhacmoi-tt title_all">Nhạc Mới</h2>
+                    <h3 className="color-nhacmoi-tt title_all">Nhạc mới</h3>
                 </div>
                 <div className="div-svg">
                     <Play className="svg color-nhacmoi-tt" />
@@ -33,7 +33,7 @@ const Newmusic: React.FC<Newmusic<any>> = ({ ...props }) => {
             <div className="list-box-musicChart">
             <div className="box-chart">
                         <h5 className="stt">1-</h5>
-                        <img width={60} height={60} src="https://i.ytimg.com/vi/x2xblVxi_c4/maxresdefault.jpg" alt="" />
+                        <img width={45} height={45} src="https://i.ytimg.com/vi/x2xblVxi_c4/maxresdefault.jpg" alt="" />
                         <div className="box-icon" style={{left: "4rem"}}>
                          ▶
                         </div>

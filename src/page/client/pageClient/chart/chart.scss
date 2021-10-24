@@ -5,30 +5,7 @@
       margin-top: 2rem;
       color: #a8eff9;
     }
-    .list-box-musicChart {
-      overflow: auto;
-      height: 25rem;
-      padding-right: 0.5rem;
-      .box-chart { 
-        display: grid;
-        grid-template-columns: 2.5rem 4rem 50% 1fr 0.4fr;
-        height: 5rem;
-        %handel_time_icon {
-          color: #fff;
-          line-height: 5rem;
-        }
-        .time_txt {
-          @extend %handel_time_icon;
-        }
-        .icon_item {
-          @extend %handel_time_icon;
-          .icon {
-            margin-right: 1rem;
-            cursor: pointer;
-          }
-        }
-      }
-    }
+    
     .quantam{
         margin-top: 30px;
         .quantam-h4{

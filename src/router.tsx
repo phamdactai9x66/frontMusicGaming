@@ -7,7 +7,6 @@ import Toptrending from "./page/client/pageClient/toptrending/toptrending";
 import Favorite from "./page/client/pageClient/favorite/favorite";
 import Newmusic from "./page/client/pageClient/newmusic/newmusic";
 import Blog from "./page/client/pageClient/blog/blog";
-import Category from "./page/client/pageClient/category/category";
 import BlogDetail from "./page/client/pageClient/blogdetail/blogDetail";
 import PlaylistDetail from "./page/client/pageClient/playlistDetail/playlistDetail";
 import Chart from "./page/client/pageClient/chart/Chart";
@@ -24,6 +23,10 @@ import AddTodo from "./page/admin/pageAdmin/todolist/page/addTodo";
 import Todolist from "./page/admin/pageAdmin/todolist/index";
 import AddTopic from "./page/admin/pageAdmin/topic/page/addTodo";
 import Topic from "./page/admin/pageAdmin/topic/index";
+import Category from "./page/client/pageClient/category/category";
+import AddCategory from "./page/admin/pageAdmin/categories/page/AddCategory";
+import Categories from "page/admin/pageAdmin/categories/index";
+
 
 export interface propertyPage {
     path: string,
@@ -55,6 +58,16 @@ const Admin: propertyPage[] = [
     {
         path: "/admin/topic",
         component: Topic,
+        exact: false
+    },
+    {
+        path: "/admin/songCate",
+        component: Categories,
+        exact: false
+    },
+    {
+        path: "/admin/addCate",
+        component: AddCategory,
         exact: false
     },
     {
