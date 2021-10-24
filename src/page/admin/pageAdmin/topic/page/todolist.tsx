@@ -58,7 +58,7 @@ const Todolist: React.FC<Todolist<any>> = ({ changePage, set_id, ...props }) => 
   const findName = (event: Event | any) => {
     const getValue = ((event.target as HTMLInputElement).value).trim()
     if (event.keyCode === 13) {
-      dispatch(pustAction(typeAciton.findName, { title: getValue }))
+      dispatch(pustAction(typeAciton.findName, { name: getValue }))
     }
   }
   const onOpen = <T extends string>(_id: T) => {

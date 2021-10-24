@@ -1,15 +1,23 @@
 
 export const HandleGet = async (functionPromise: Function, params = {}) => {
     try {
-        const data = await functionPromise(params);
+        const getParams = (typeof params == "string" ? params : { ...params })
+        const data = await functionPromise(getParams);
         return [data, null];
     } catch (error) {
         return [null, error];
     }
 }
+export const sortData = <Y extends string>(data: any[], key: Y, chooseSort: 'B' | 'S' = 'B') => {
+    if (!data) return [];
+    return data.sort((current1: any, current2) => {
+        return chooseSort === 'S' ? current1[key] - current2[key]
+            : current2[key] - current1[key];
+    })
+}
 export const getDate = (date: any) => {
     const getDate = new Date(date || Date.now());
-    return `${getDate.getDate()}/${getDate.getMonth()}/${getDate.getFullYear()}`
+    return `${getDate.getDate()}/${getDate.getMonth() + 1}/${getDate.getFullYear()}`
 }
 export const tranFormData = <T extends any[]>(data: T, key: string, findKey: string, findKey2?: string | any) => {
     if ([undefined, null].includes(data as any)) return [];

@@ -31,7 +31,7 @@ const HomeCategory: React.FC<HomeCategory<any>> = ({ ...props }) => {
             <div>
                 <Slider {...props.settings_category}>
                     {categories.length !== 0 && categories.map((item: CategoryIF) => (
-                        <Link to={`/playlistDetail/${item._id}`} key={item._id}>
+                        <Link to={`/categoryDetailPlaylist/${item._id}`} key={item._id}>
                             <div className="box">
                                 <figure>
                                     <img src={item.image} alt={item.image} />

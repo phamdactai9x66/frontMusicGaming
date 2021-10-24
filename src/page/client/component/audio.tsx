@@ -1,18 +1,20 @@
 
-import React, { useRef, useState, useEffect } from 'react'
+import React, { useRef, useState, useEffect, memo } from 'react'
 import { FiRepeat } from 'react-icons/fi';
 import { HiVolumeUp } from 'react-icons/hi';
 import { PlayArrow, Pause, NavigateNext, NavigateBefore, SkipNext, SkipPrevious } from '@mui/icons-material';
-import CircularProgress from '@mui/material/CircularProgress';
 import { tranFormDuration } from "component/MethodCommon";
 import { formStateAudio } from "redux/audio/stateAudio";
 import { useSelector, useDispatch } from "react-redux";
+import NameSongArtist from "component/nameSongArtist";
+import OptionAudio from "./optionAudio";
+import LikeSong from "./likeSong";
 
 interface Audio<T> {
-    url?: string
+    audio?: any
 }
 
-const Audio: React.FC<Audio<any>> = ({ url, ...props }) => {
+const Audio: React.FC<Audio<any>> = ({ audio: { audio: url, title, image, _id }, ...props }) => {
     const state = useSelector<{ audio: any }>(state => state.audio) as formStateAudio;
     const [play, setPlay] = useState(false);
     const [duration, setduration] = useState(0);
@@ -105,10 +107,10 @@ const Audio: React.FC<Audio<any>> = ({ url, ...props }) => {
         <div className="footer">
             <audio ref={AudioPlay} src={url}></audio>
             <div className="author">
-                <img width={50} height={50} src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJdulnc1hxmzx9izhgHHRQGhssK6KshlS6bypOagn9_lVhJ6ntqiCFNislU1nOb7NjJeY&usqp=CAU" />
+                <img width={50} height={50} src={image} />
                 <div>
-                    <h5>Shape of you</h5>
-                    <span>Ed Sheeran</span>
+                    <h5>{title ? title : 'Shape of you'}</h5>
+                    <NameSongArtist _id={_id} />
                 </div>
             </div>
             <div className="icon_play-music">
@@ -135,6 +137,7 @@ const Audio: React.FC<Audio<any>> = ({ url, ...props }) => {
                 <FiRepeat className="icon" color={loop ? 'red' : ''}
                     onClick={() => { setloop(value => !value) }}
                 />
+                <LikeSong />
             </div>
             <div className="volum-setting" >
                 <HiVolumeUp />
@@ -146,9 +149,10 @@ const Audio: React.FC<Audio<any>> = ({ url, ...props }) => {
                     ref={volume}
                     onChange={changeVolume}
                 />
+                <OptionAudio />
             </div>
         </div>
     )
 }
 
-export default Audio
+export default memo(Audio)
