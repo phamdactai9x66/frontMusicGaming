@@ -113,13 +113,13 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                 </div>
             </div>
 
-            {/* {playlists.length !== 0 && playlists.map((item: any) => (
+            {playlists.length !== 0 && playlists.map((item: any) => (
                 <div className="list-slider">
                     <h4 className="title_all">{item.name} <MdNavigateNext className="icon" /></h4>
 
                     <WantHearComponent settings_category={settings_category} songs={songsTransform} idPlaylist={item._id} />
                 </div>
-            ))} */}
+            ))}
 
             {/* <div className="list-slider">
                 <h4 className="title_all">Có thể bạn muốn nghe <MdNavigateNext className="icon" /></h4>

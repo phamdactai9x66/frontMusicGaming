@@ -19,8 +19,7 @@ interface WantHearComponentIF<T> {
 }
 
 const WantHearComponent: React.FC<WantHearComponentIF<any>> = ({...props}) => {
-    const [PLS, setPLS] = useState([]);
-
+    const [PLS, setPLS] = useState<any[]>([]);
 
     const getPLS = async () => {
         const query = { id_PlayList: props.idPlaylist };
@@ -33,41 +32,41 @@ const WantHearComponent: React.FC<WantHearComponentIF<any>> = ({...props}) => {
                 findSong.push(props.songs[id_Songs])
             }
         })
-        return findSong;
+        setPLS(findSong);
     }
 
     useEffect( () => {
         getPLS();
     }, [props.songs]);
+
     return (
         <div>
             <Slider {...props.settings_category}>
-                {PLS.length !== 0 && PLS.map( (item: any) => (
-                     <div className="box" key={item._id}>
-                           <div className="box">
-                             <figure>
-                                 <img src={item.image} alt={item.image} />
-                             </figure>
-                             <div className="icon-box">
-                                 <div>
-                                     <BiHeart className="icon" />
-                                     <FiPlayCircle className="icon" />
-                                     <HiOutlineDotsCircleHorizontal className="icon" />
-                                 </div>
-                             </div>
-                             <Select className="option">
-                                 <MenuItem>
-                                     <AiOutlineDownload/> Tải xuống
-                                     </MenuItem>
-                                 <MenuItem>
-                                     <AiOutlineLink/> Sao chép link
-                                     </MenuItem>
-                             </Select>
-                             <h6>{item.name}</h6>
-                         </div>
-                     </div>
-                ))}
-                {PLS.length === 0 && "Không có bài hát nào trong playlist này"}
+                {PLS.length !== 0 ? PLS.map( (item: any) => (
+                    <div className="box" key={item._id}>
+                        <div className="box">
+                            <figure>
+                                <img src={item.image} alt={item.title} />
+                            </figure>
+                            <div className="icon-box">
+                                <div>
+                                    <BiHeart className="icon" />
+                                    <FiPlayCircle className="icon" />
+                                    <HiOutlineDotsCircleHorizontal className="icon" />
+                                </div>
+                            </div>
+                            <Select className="option">
+                                <MenuItem>
+                                    <AiOutlineDownload/> Tải xuống
+                                </MenuItem>
+                                <MenuItem>
+                                    <AiOutlineLink/> Sao chép link
+                                </MenuItem>
+                            </Select>
+                            <h6>{item.title}</h6>
+                        </div>
+                    </div>
+                )) : (<div>Không có bài hat nào.</div>) }
             </Slider>
         </div>
     )
