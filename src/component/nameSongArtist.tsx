@@ -1,6 +1,6 @@
 import React, { memo, useEffect, useState } from 'react'
 import SongArtistAPi from "api/songArtistAPi";
-import { HandleGet, tranFormdata } from "component/MethodCommon";
+import { HandleGet, tranFormDataId } from "component/MethodCommon";
 import ArtistApi from "api/ArtistApi";
 import { current } from '@reduxjs/toolkit';
 
@@ -19,7 +19,7 @@ const NameSongArtist: React.FC<NameSongArtist<any>> = ({ ...props }) => {
             const [data, error] = await HandleGet(SongArtistAPi.getAll, query);
             const [dataArtist, errorArtist] = await HandleGet(ArtistApi.getAll, {});
             // debugger;
-            const dataTranFormArtist = tranFormdata(dataArtist.data);
+            const dataTranFormArtist = tranFormDataId(dataArtist?.data);
             let findArtist: any[] = []
             data?.data.forEach((currenA: any) => {
                 const { id_Artist } = currenA;

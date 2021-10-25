@@ -10,14 +10,8 @@ import Blog from "./page/client/pageClient/blog/blog";
 import BlogDetail from "./page/client/pageClient/blogdetail/blogDetail";
 import PlaylistDetail from "./page/client/pageClient/playlistDetail/playlistDetail";
 import Chart from "./page/client/pageClient/chart/Chart";
-import Signin from "./page/client/pageClient/signin/signin";
 import ForgotPassword from "./page/client/pageClient/forgotPassword/forgotPassword";
 import Recently from "./page/client/pageClient/recently/recently";
-import Overview from "./page/client/pageClient/personal/component/overview";
-import Music from "./page/client/pageClient/personal/component/music";
-import Musician from "./page/client/pageClient/personal/component/musician";
-import Upload from "./page/client/pageClient/personal/component/upload";
-import Playlist from "./page/client/pageClient/personal/component/playlist";
 import CategoryDetailPlaylist from "page/client/pageClient/categoryDetailPlaylist/categoryDetailPlaylist";
 import AddTodo from "./page/admin/pageAdmin/todolist/page/addTodo";
 import Todolist from "./page/admin/pageAdmin/todolist/index";
@@ -90,11 +84,6 @@ const Client: propertyPage[] = [
         exact: false
     },
     {
-        path: "/signin",
-        component: Signin,
-        exact: false
-    },
-    {
         path: "/forgotpassword",
         component: ForgotPassword,
         exact: false
@@ -142,31 +131,6 @@ const Client: propertyPage[] = [
     {
         path: "/chart",
         component: Chart,
-        exact: false
-    },
-    {
-        path: "/overview",
-        component: Overview,
-        exact: false
-    },
-    {
-        path: "/music",
-        component: Music,
-        exact: false
-    },
-    {
-        path: "/musician",
-        component: Musician,
-        exact: false
-    },
-    {
-        path: "/playlist",
-        component: Playlist,
-        exact: false
-    },
-    {
-        path: "/upload",
-        component: Upload,
         exact: false
     },
     {
