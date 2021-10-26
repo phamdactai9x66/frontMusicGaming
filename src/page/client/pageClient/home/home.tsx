@@ -13,7 +13,8 @@ import { formStateUser } from 'redux/user/stateUser';
 import { useSelector } from 'react-redux';
 import playlistApi from 'api/playlistApi';
 import songApi from 'api/songApi';
-import { tranFormdata } from "component/MethodCommon";
+import { tranFormDataId } from "component/MethodCommon";
+import artistApi from 'api/ArtistApi';
 
 
 interface Home<T> {
@@ -25,6 +26,7 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
     const userState = useSelector<{ user: any }>(state => state.user) as formStateUser;
     const [songs, setSongs] = useState([]);
     const [songsTransform, setSongsTransform] = useState([]);
+    const [artists, setArtists] = useState([]);
 
     var settings_banner = {
         dots: true,
@@ -80,9 +82,12 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
     }
     const getSongs = async () => {
         const responseSong = await songApi.getAll({});
-        const resSongsTransform = await tranFormdata(responseSong.data);
+        const resSongsTransform = await tranFormDataId(responseSong.data);
         setSongs(responseSong.data);
         setSongsTransform(resSongsTransform);
+
+        const dataArtists = await artistApi.getAll( {} );
+        setArtists(dataArtists.data);
     }
 
     useEffect(() => {
@@ -109,7 +114,7 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                     <HomeSongComponent userState={userState} />
 
                     {/* artist */}
-                    <ArtistComponent />
+                    <ArtistComponent artists={artists} />
                 </div>
             </div>
 

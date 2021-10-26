@@ -16,39 +16,38 @@ import { useHistory } from 'react-router';
 import Popup from '@titaui/reactjs-popup';
 import ModalLogged from 'component/clientComponent/ModalLogged';
 import { Link } from 'react-router-dom';
+import NameSongArtist from 'component/nameSongArtist';
 
 interface HomeSongComponentIF<T> {
     userState: any,
 }
 const HomeSongComponent: React.FC<HomeSongComponentIF<any>> = (props) => {
     const history = useHistory();
-    const [anchor, setAnchor] = useState(null);
     const [userPlaylists, setUserPlaylists] = useState([]);
     const [isLogged, setIsLogged] = useState(false);
-
+    const { user } = props.userState;
+    const [songs, setSongs] = useState([]);
+    const dispatch = useDispatch();
+    const [anchor, setAnchor] = useState(null);
+    const [anchor2, setAnchor2] = useState(null);
+    
     const openPopover = (event: any) => {
         setAnchor(event.currentTarget);
     };
-    const [anchor2, setAnchor2] = useState(null);
     const openPopover2 = (event: any) => {
         setAnchor2(event.currentTarget);
     };
-    const { user } = props.userState;
-    const [songs, setSongs] = useState([]);
-    const dispatch = useDispatch()
+
     useEffect(() => {
         (async () => {
             dispatch(getlistAudio())
-        })()
-    }, [])
-
-    useEffect(() => {
-        const getSongs = async () => {
-            const { data } = await songApi.getAll({ _limit: 20 });
-            setSongs(data);
-        }
+        })();
         getSongs();
-    }, []);
+    }, [])
+    const getSongs = async () => {
+        const { data } = await songApi.getAll({ _limit: 20 });
+        setSongs(data);
+    }
 
     const handleAdd = async <T extends string>(s: T, u: T, t: T) => {
         if(u === undefined){
@@ -78,7 +77,6 @@ const HomeSongComponent: React.FC<HomeSongComponentIF<any>> = (props) => {
             }
         }
     }
-
     
     const getUserPlaylists = async () => {
         if(user === "" || user === undefined){
@@ -97,6 +95,7 @@ const HomeSongComponent: React.FC<HomeSongComponentIF<any>> = (props) => {
     const handleLogged = () => {
         setIsLogged(false);
     }
+
     return (
         <div className="box-music">
             {isLogged && <ModalLogged isLogged={isLogged} handleLogged={handleLogged} />}
@@ -108,7 +107,9 @@ const HomeSongComponent: React.FC<HomeSongComponentIF<any>> = (props) => {
                     </div>
                     <div>
                         <h6>{item.title}</h6>
-                        <div style={{ fontSize: "0.7rem", marginTop: "-0.2rem" }}>{item.name_artist ? item.name_artist : "ten tac gia"}</div>
+                        <div style={{ fontSize: "0.7rem", marginTop: "-0.2rem" }}>
+                            <NameSongArtist _id={item._id} />
+                        </div>
                     </div>
                     <div>
                         <GetTimeAudio url={item.audio} />
@@ -146,32 +147,6 @@ const HomeSongComponent: React.FC<HomeSongComponentIF<any>> = (props) => {
                                 <MenuItem className="add list">
                                     <IoMdAdd className="icon"/> &ensp; Tạo playlist mới
                                 </MenuItem>
-                                {/* <Popup
-                                    modal
-                                    overlayStyle={{ background: "rgba(255,255,255,0.98" }}
-                                    closeOnDocumentClick={false}
-                                    trigger={() =>
-                                        <MenuItem className="add list" onClick={() => setAnchor(null)}>
-                                            <IoMdAdd className="icon"/> &ensp; Tạo playlist mới
-                                        </MenuItem>
-                                    }
-                                >
-                                    {(close: any) => (
-                                        <div className="modal-playlis">
-                                            <div className="content-modal">
-                                                <button className="close" onClick={close}>
-                                                    X
-                                                </button>
-                                                <h5 className="text-center">Tạo playlist mới</h5>
-                                                <form action="">
-                                                    <input type="text" placeholder="Nhập tên playlist" />
-                                                    <p className="err">err</p>
-                                                    <Button className="create_playlist">TẠO MỚI</Button>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    )}
-                                </Popup> */}
 
                                 {userPlaylists.length === 0 && <MenuItem className="list" onClick={() => handleAdd(item._id, user._id, "playlist")} >
                                     <BsMusicNoteList /> &ensp; Bạn chưa có Playlist nào.

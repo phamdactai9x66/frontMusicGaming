@@ -44,7 +44,7 @@ const NameSongArtist: React.FC<NameSongArtist<any>> = ({ ...props }) => {
     return (
         <>
 
-            <span> {handleArtist.data ? handleArtist.data : 'Ed Sheeran'}</span>
+            <span> {handleArtist.data ? handleArtist.data : 'Chưa xác định'}</span>
         </>
     )
 }

@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import artistApi from 'api/ArtistApi';
 import { handleNameArtist } from 'page/client/common/handleName';
 
 interface ArtistComponentIF<T> {
-    
+    artists: Array<any>,
 }
 interface ItemArtistIF<T>{
     first_Name: T,
@@ -14,16 +13,9 @@ interface ItemArtistIF<T>{
     _id: T,
 }
 
-const ArtistComponent: React.FC<ArtistComponentIF<any>> = () => {
-    const [getArtist, setGetArtist] = useState([]);
+const ArtistComponent: React.FC<ArtistComponentIF<any>> = (props) => {
 
-    useEffect( () => {
-        const getSongs = async () => {
-            const { data } = await artistApi.getAll( {_limit: 20} );
-            setGetArtist(data);
-        }
-        getSongs();
-    }, []);
+    const artistsTransform = props.artists.slice(0, 20);
 
     return (
         <div className='limit-items'>
@@ -33,7 +25,7 @@ const ArtistComponent: React.FC<ArtistComponentIF<any>> = () => {
             <label htmlFor='show-all' className='text-hide'>Ẩn bớt</label>
             <div className='items'>
                 <section>
-                    {getArtist.length !== 0 && getArtist.map( (item: ItemArtistIF<string>) => (
+                    {artistsTransform.length !== 0 && artistsTransform.map( (item: ItemArtistIF<string>) => (
                         <div key={item._id}><img src={item.image} alt={handleNameArtist(item.first_Name, item.last_name)} /></div>
                     ))}
                     
