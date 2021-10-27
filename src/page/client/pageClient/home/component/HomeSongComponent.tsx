@@ -17,6 +17,7 @@ import Popup from '@titaui/reactjs-popup';
 import ModalLogged from 'component/clientComponent/ModalLogged';
 import { Link } from 'react-router-dom';
 import NameSongArtist from 'component/nameSongArtist';
+import AlertComponent from 'component/clientComponent/Alert';
 
 interface HomeSongComponentIF<T> {
     userState: any,
@@ -30,6 +31,7 @@ const HomeSongComponent: React.FC<HomeSongComponentIF<any>> = (props) => {
     const dispatch = useDispatch();
     const [anchor, setAnchor] = useState(null);
     const [anchor2, setAnchor2] = useState(null);
+    const [handleStatus, setHandleStatus] = useState( {status: "", content: ""} )
     
     const openPopover = (event: any) => {
         setAnchor(event.currentTarget);
@@ -57,11 +59,11 @@ const HomeSongComponent: React.FC<HomeSongComponentIF<any>> = (props) => {
         if(t === 'like'){
             let likeRes = await handleLike(s, u);
             if(likeRes && likeRes.status === "added"){
-                console.log('okay, them roi nhe. (Added)');
+                setHandleStatus( {status: "success", content: "Thêm vào yêu thích thành công."} );
             }else if(likeRes && likeRes.status === "deleted") {
-                console.log('okay, them roi nhe. (Deleted)');
+                setHandleStatus( {status: "success", content: "Hủy bỏ yêu thích thành công."} );
             } else{
-                console.log('oops, khong them duoc roi. (Error)')
+                setHandleStatus( {status: "failed", content: "Thêm vào yêu thích thất bại."} );
             }
         }
         
@@ -69,11 +71,11 @@ const HomeSongComponent: React.FC<HomeSongComponentIF<any>> = (props) => {
             //đang sai vì chưa lấy được playlist của user
             let playlistRes = await handleAddToPlaylist(s, u);
             if(playlistRes && playlistRes.status === "successfully"){
-                console.log('okay, them roi nhe');
+                setHandleStatus( {status: "success", content: "Thêm vào playlist thành công."} );
             }else if(playlistRes.status === "existed"){
-                console.log("Bài hát này đã tồn tại trong play list này của bạn.")
+                setHandleStatus( {status: "failed", content: "Bài hát đã tồn tại trong playlist."} );
             }else{
-                console.log('oops, khong them duoc roi');
+                setHandleStatus( {status: "failed", content: "Thêm vào playlist thất bại."} );
             }
         }
     }
@@ -96,9 +98,17 @@ const HomeSongComponent: React.FC<HomeSongComponentIF<any>> = (props) => {
         setIsLogged(false);
     }
 
+    if(handleStatus.status !== ""){
+        setTimeout(() => {
+            setHandleStatus( {status: "", content: ""} );
+        }, 3000);
+    }
+
     return (
         <div className="box-music">
             {isLogged && <ModalLogged isLogged={isLogged} handleLogged={handleLogged} />}
+            {handleStatus.status !== "" && <AlertComponent status={handleStatus.status} content={handleStatus.content} />}
+
             {songs.length !== 0 && songs.map((item: any) => (
                 <div className="music_item" key={item._id} >
                     <img src={item.image} alt={item.name} />
@@ -152,7 +162,7 @@ const HomeSongComponent: React.FC<HomeSongComponentIF<any>> = (props) => {
                                     <BsMusicNoteList /> &ensp; Bạn chưa có Playlist nào.
                                 </MenuItem>}
                                 {userPlaylists.length !== 0 && userPlaylists.map( (_: any) => (
-                                    <MenuItem className="list" onClick={() => handleAdd(_._id, user._id, "playlist")} >
+                                    <MenuItem className="list" onClick={() => handleAdd(item._id, _._id, "playlist")} >
                                         <BsMusicNoteList /> &ensp; {_.name}
                                     </MenuItem>
                                 ))}
