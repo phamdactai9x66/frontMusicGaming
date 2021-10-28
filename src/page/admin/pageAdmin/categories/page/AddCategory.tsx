@@ -60,7 +60,7 @@ const AddCategory: React.FC<AddCategory<any>> = ({ changePage, ...props }) => {
     <>
       <div className="admin-pageAdd">
         <div className="text-name-add">
-          <h3>Add Category</h3><br />
+          <h3>Add thể loại</h3><br />
         </div>
         {alert.display && <Alert severity={alert.type as any} style={{ marginBottom: 5 }}>
           {alert.message}
@@ -76,53 +76,38 @@ const AddCategory: React.FC<AddCategory<any>> = ({ changePage, ...props }) => {
             return (
               <Form ref={refForm}>
                 <div className="grid-addpage">
-                  <div className="section-add">
-                    <Card elevation={5}>
-                      <div className="form-input-add">
-                          <div className="inputForm">
-                            <InputText 
-                              name="name" 
-                              label="Danh mục bài hát" 
-                              other={{ variant: "standard" }} 
-                            />
-                          </div>
-                      </div>
-                      <div>
-                        <Card elevation={5}>
-                          <div className="form-input-add">
-                            <div className="flex-image bg-file">
-                              <FileField 
-                                name="image" 
-                                label="Image Category" 
-                                type="file" 
-                                other={{ variant: 'standard' }}
-                              />
+                                    <div className="section-add">
+                                        <Card elevation={5}>
+                                            <div className="form-input-add">
+                                                <div className="inputForm">
+                                                    <InputText name="name" label="Tên thể loại" other={{ variant: "standard" }} />
+                                                </div>
+                                            </div>
+                                        </Card>
+                                    </div>
+                                    <div>
+                                        <Card elevation={5}>
+                                            <div className="form-input-add">
+                                                <div className="flex-image bg-file ">
+                                                    <FileField name="image" label="Image album" type="file" other={{ variant: 'standard' }} />
+                                                </div>
+                                                <div className="inputForm">
+                                                    <SelectTopic />
+                                                </div>
+                                            </div>
+                                        </Card>
+                                        <br />
+                                        <LoadingButton loading={formik.isSubmitting} variant="contained"
+                                            type="submit"
+                                        >
+                                            Thêm Thể Loại
+                                        </LoadingButton>
+                                        {/* <Button variant="contained" type="submit" color="primary">Thêm bài hát</Button> */}
+                                        <Button variant="contained" color="error" style={{ marginLeft: 20 }}
+                                            onClick={() => { navigatePage(page.ListCategory) }}
+                                        >Hủy</Button>
+                                    </div>
                             </div>
-                            <div className="inputForm">
-                              <SelectTopic />
-                            </div>
-                          </div>
-                        </Card>
-                        <br />
-                        <LoadingButton 
-                          loading={formik.isSubmitting} 
-                          variant="contained" 
-                          type="submit"
-                        >
-                          Thêm danh mục
-                        </LoadingButton>
-                        <Button 
-                          variant="contained" 
-                          color="error" 
-                          style={{ marginLeft: 20 }}
-                          onClick={() => { navigatePage(page.ListCategory) }}
-                        >
-                          Hủy
-                        </Button>
-                      </div>
-                    </Card>
-                  </div>
-                </div>
               </Form>
             )
           }}

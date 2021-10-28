@@ -142,36 +142,30 @@ const HomeSongComponent: React.FC<HomeSongComponentIF<any>> = (props) => {
                                     </div>
                                 </div>
                                 <hr style={{ margin: "-0.1rem 0 0.5rem 0" }} />
-
-                                <MenuItem className="add list">
+                                <MenuItem className="add list" onClick={openPopover2}>
                                     <IoMdAdd className="icon"/> &ensp; Tạo playlist mới
                                 </MenuItem>
-                                {/* <Popup
-                                    modal
-                                    overlayStyle={{ background: "rgba(255,255,255,0.98" }}
-                                    closeOnDocumentClick={false}
-                                    trigger={() =>
-                                        <MenuItem className="add list" onClick={() => setAnchor(null)}>
-                                            <IoMdAdd className="icon"/> &ensp; Tạo playlist mới
-                                        </MenuItem>
-                                    }
+                                <Popover
+                                    open={Boolean(anchor2)}
+                                    anchorEl={anchor2}
+                                    anchorOrigin={{
+                                        vertical: "top",
+                                        horizontal: "left",
+                                    }}
+                                    transformOrigin={{
+                                        vertical: "bottom",
+                                        horizontal: "right",
+                                    }}
+                                    onClose={() => setAnchor2(null)}
                                 >
-                                    {(close: any) => (
-                                        <div className="modal-playlis">
-                                            <div className="content-modal">
-                                                <button className="close" onClick={close}>
-                                                    X
-                                                </button>
-                                                <h5 className="text-center">Tạo playlist mới</h5>
-                                                <form action="">
-                                                    <input type="text" placeholder="Nhập tên playlist" />
-                                                    <p className="err">err</p>
-                                                    <Button className="create_playlist">TẠO MỚI</Button>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    )}
-                                </Popup> */}
+                                    <div className="item p-3">
+                                      <form>
+                                      <input type="text" className="mb-2 p-2 text-light" style={{background: "#0d141f", border: "0.1rem solid #0e5353"}} placeholder="Thêm playlist..."/>
+                                      <br/>
+                                      <Button color="primary" variant="contained">Thêm playlist</Button>
+                                      </form>
+                                    </div>
+                                </Popover>
 
                                 {userPlaylists.length === 0 && <MenuItem className="list" onClick={() => handleAdd(item._id, user._id, "playlist")} >
                                     <BsMusicNoteList /> &ensp; Bạn chưa có Playlist nào.

@@ -13,7 +13,7 @@ const typeModal: any = {
   left: '50%',
   transform: 'translate(-50%, -50%)',
   minWidth: 700,
-  bgColor: 'background.paper',
+  bgcolor: 'background.paper',
   borderRadius: 1,
   boxShadow: 24,
   p: 4,
@@ -87,7 +87,7 @@ const ModalCategory: React.FC<Modal<any>> = ({ state, onClose, ...props }) => {
 
                 <Grid item xs={12} md={6}>
                   <Typography>
-                    <TextField inputProps={{ readOnly: true }} label="Name" value={dataCategory.data?.title} variant="standard" fullWidth />
+                    <TextField inputProps={{ readOnly: true }} label="Name" value={dataCategory.data?.name} variant="standard" fullWidth />
                   </Typography>
                 </Grid>
 

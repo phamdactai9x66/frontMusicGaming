@@ -78,7 +78,7 @@ const UpdateCategory: React.FC<UpdateCategory<any>> = ({ changePage, _id, ...pro
     <>
       <div className="admin-pageAdd">
         <div className="text-name-add">
-          <h3>Update Category</h3><br />
+          <h3>Update thể loại</h3><br />
         </div>
         {alert.display && <Alert severity={alert.type as any} style={{ marginBottom: 5 }}>
           {alert.message}

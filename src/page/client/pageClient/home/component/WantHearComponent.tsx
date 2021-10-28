@@ -66,7 +66,7 @@ const WantHearComponent: React.FC<WantHearComponentIF<any>> = ({...props}) => {
                             <h6>{item.title}</h6>
                         </div>
                     </div>
-                )) : (<div>Không có bài hat nào.</div>) }
+                )) : (<div>Không có bài hát nào.</div>) }
             </Slider>
         </div>
     )

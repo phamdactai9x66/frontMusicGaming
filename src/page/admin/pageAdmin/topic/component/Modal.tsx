@@ -63,12 +63,12 @@ const ComponentModal: React.FC<Modal<any>> = ({ state, onClose, ...props }) => {
                             <Grid container spacing={2}>
                                 <Grid item xs={12} md={6}>
                                     <Typography >
-                                        <img src={dataAlbume.data?.image} className={classes.styleImage} alt="" />
+                                        <img src={(dataAlbume.data?.[0] as any)?.image} className={classes.styleImage} alt="" />
                                     </Typography>
                                 </Grid>
                                 <Grid item xs={12} md={6}>
                                     <Typography >
-                                        <TextField inputProps={{ readOnly: true, }} label="name" value={dataAlbume.data?.name} variant="standard" fullWidth />
+                                        <TextField inputProps={{ readOnly: true, }} label="name" value={(dataAlbume.data?.[0] as any)?.name} variant="standard" fullWidth />
                                     </Typography>
                                 </Grid>
                                 <Grid item xs={12} md={6}>
