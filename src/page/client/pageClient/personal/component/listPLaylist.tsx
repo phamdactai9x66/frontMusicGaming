@@ -15,7 +15,6 @@ interface ListPLaylist<T> {
 
 const ListPLaylist: React.FC<ListPLaylist<any>> = ({ render, ...props }) => {
     const { user: { _id: id_User } } = useSelector<{ user: any }>(state => state.user) as formStateUser;
-    console.log(render)
     const [state, setstate] = useState({ display: false, data: [] });
     useEffect(() => {
         (async () => {
@@ -35,7 +34,7 @@ const ListPLaylist: React.FC<ListPLaylist<any>> = ({ render, ...props }) => {
             {state.display ?
                 state.data.map((current: any, index: number) => {
                     return (
-                        <Link to="/playlistDetail" key={index}>
+                        <Link to={`/playlistDetail/${current?._id}`} key={index}>
                             <div className="box">
                                 <figure>
                                     <img src="https://i.ytimg.com/vi/Yije8O6eGn8/maxresdefault.jpg" alt="" />
