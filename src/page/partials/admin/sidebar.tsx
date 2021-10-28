@@ -116,8 +116,8 @@ const Sidebar: React.FC<Sidebar<any>> = ({ ...props }) => {
       name: "Nhạc sĩ",
       iconAdd: "fa fa-plus-circle",
       details: "Add Nhạc Sĩ",
-      link: "/admin/topic",
-      subLink: "/admin/addTopic"
+      link: "/admin/",
+      subLink: "/admin/"
     }
   ];
   return (
