@@ -124,7 +124,7 @@ const Client: propertyPage[] = [
         exact: false
     },
     {
-        path: "/playlistDetail",
+        path: "/playlistDetail/:idPlaylist",
         component: PlaylistDetail,
         exact: false
     },

@@ -1,7 +1,5 @@
 import React, { useState } from 'react'
 import { MdNavigateNext } from 'react-icons/md';
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import { PropsPersonal } from "../index";
 import LikeSong from "../component/likeSong";
 import ListArtist from "./listArtist";
