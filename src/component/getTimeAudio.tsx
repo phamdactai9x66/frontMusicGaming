@@ -15,7 +15,7 @@ const GetTimeAudio: React.FC<GetTimeAudio<any>> = ({ audio, ...props }) => {
                 const durationAudio = getAudio?.current?.duration as number;
                 setcount(1);
                 setgetDuration(+durationAudio);
-            }, 500);
+            }, 800);
         }
     }, [count, getAudio.current?.readyState])
     return (
