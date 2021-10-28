@@ -13,8 +13,8 @@ import Chart from "./page/client/pageClient/chart/Chart";
 import ForgotPassword from "./page/client/pageClient/forgotPassword/forgotPassword";
 import Recently from "./page/client/pageClient/recently/recently";
 import CategoryDetailPlaylist from "page/client/pageClient/categoryDetailPlaylist/categoryDetailPlaylist";
-import AddTodo from "./page/admin/pageAdmin/todolist/page/addTodo";
-import Todolist from "./page/admin/pageAdmin/todolist/index";
+import AddAlbum from "./page/admin/pageAdmin/todolist/page/addTodo";
+import Album from "./page/admin/pageAdmin/todolist/index";
 import AddTopic from "./page/admin/pageAdmin/topic/page/addTodo";
 import Topic from "./page/admin/pageAdmin/topic/index";
 import Category from "./page/client/pageClient/category/category";
@@ -35,13 +35,13 @@ const Admin: propertyPage[] = [
         exact: true
     },
     {
-        path: "/admin/addTodo",
-        component: AddTodo,
+        path: "/admin/addAlbum",
+        component: AddAlbum,
         exact: false
     },
     {
-        path: "/admin/todolist",
-        component: Todolist,
+        path: "/admin/album",
+        component: Album,
         exact: false
     },
     {

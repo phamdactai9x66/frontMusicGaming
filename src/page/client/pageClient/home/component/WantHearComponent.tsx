@@ -9,6 +9,7 @@ import { HiOutlineDotsCircleHorizontal } from 'react-icons/hi';
 import {  BiHeart } from 'react-icons/bi';
 import { Select, MenuItem } from "@mui/material";
 import { HandleGet, tranFormDataId } from "component/MethodCommon";
+
 import playlistSongApi from 'api/playlistSongApi';
 
 
@@ -66,7 +67,7 @@ const WantHearComponent: React.FC<WantHearComponentIF<any>> = ({...props}) => {
                             <h6>{item.title}</h6>
                         </div>
                     </div>
-                )) : (<div>Không có bài hat nào.</div>) }
+  )) : (<div>Không có bài hát nào.</div>) }
             </Slider>
         </div>
     )

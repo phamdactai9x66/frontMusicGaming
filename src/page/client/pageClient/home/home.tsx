@@ -28,6 +28,7 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
     const [songsTransform, setSongsTransform] = useState([]);
     const [artists, setArtists] = useState([]);
 
+
     var settings_banner = {
         dots: true,
         autoplay: true,
