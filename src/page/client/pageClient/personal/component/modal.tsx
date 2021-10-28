@@ -24,7 +24,7 @@ const Modal: React.FC<Modal<any>> = ({ renderComponent, ...props }) => {
             getForm.set('id_User', _idUser)
             const createPlaylist = await userPlaylistApi.postOne<FormData>(getForm);
             if (createPlaylist.status !== variableCommon.statusF) {
-                console.log(createPlaylist)
+
                 methodAction.resetForm()
                 renderComponent()
                 return setalert({ display: true, message: createPlaylist.message, status: 'success' })
