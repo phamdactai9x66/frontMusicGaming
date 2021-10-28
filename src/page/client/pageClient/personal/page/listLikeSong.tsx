@@ -12,7 +12,7 @@ const ListLikeSong: React.FC<ListLikeSong<any>> = ({ ...props }) => {
 
     return (
         <>
-            <h4 className="title_all">Bài hát<MdNavigateNext className="icon" /></h4>
+            <h4 className="title_all">Bài hát <MdNavigateNext className="icon" /></h4>
             <div className="main1" style={{ gridTemplateColumns: "100%" }}>
                 <div className="box-music">
                     <ListLikeSongComponent />

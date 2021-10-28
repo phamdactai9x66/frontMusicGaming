@@ -10,7 +10,6 @@ export const SignIn = <T extends FormikContextType<any>>(formik: T) => {
     <>
       {/* {JSON.stringify(formik.values)} */}
       <InputText name="userName" type="text" label="userName" other={{ placeholder: "userName" }} />
-
       <InputText name="passWord" type="password" label="passWord" other={{ placeholder: "passWord" }} />
       <br /><br />
       <Link className="forgot_pass" to="/forgotpassword">Forgot password ?</Link>
