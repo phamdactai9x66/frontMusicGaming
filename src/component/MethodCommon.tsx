@@ -26,6 +26,7 @@ export const tranFormData = <T extends any[]>(data: T, key: string, findKey: str
         return { ...currenV, [key]: `${currenV[findKey]} ${seconKey}` }
     })
 }
+//get date of duration
 export const tranFormDuration = <T extends number>(duration: T): string | void => {
     if (!duration) return `00:00`;
     const getSecon = Math.floor(duration % 60);
@@ -34,12 +35,10 @@ export const tranFormDuration = <T extends number>(duration: T): string | void =
     const returnMinute = getMinute < 10 ? `0${getMinute}` : getMinute;
     return `${returnMinute}:${returnSecon}`;
 }
-export const tranFormdata = <T extends any[]>(data: T) => {
+export const tranFormDataId = <T extends any[]>(data: T) => {
     if (!data) return [];
     return data.reduce((previousV, currenV) => ({ ...previousV, [currenV._id]: currenV }), [])
 }
-
-
 //method for todolist
 export const initialReducer = {
     Data: [],

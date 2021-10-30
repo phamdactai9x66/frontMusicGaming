@@ -22,13 +22,12 @@ const initialValue = {
 const UpdateTodo: React.FC<UpdateTodo<any>> = ({ changePage, _id, ...props }) => {
     const refForm = useRef<HTMLFormElement | any>(null)
     const [alert, setalert] = useState({ display: false, message: "", type: "" })
-    const [dataTopic, setdataTopic] = useState({ data: null, display: true });
+    const [dataTopic, setdataTopic] = useState<{data:any[],display:boolean}>({ data: [], display: true });
     useEffect(() => {
         (async () => {
             if (!dataTopic.display) return navigatePage(page.todolist);
 
             const [data, error] = await HandleGet(apiTopic.getOne, _id);
-            console.log(data);
             
             if (error) return navigatePage(page.todolist);
             setdataTopic(value => ({ ...value, data: data.data }))
@@ -38,23 +37,23 @@ const UpdateTodo: React.FC<UpdateTodo<any>> = ({ changePage, _id, ...props }) =>
         }
     }, [_id])
     const submitForm = (data: any, action: any) => {
-
         const getForm = new FormData(refForm.current);
         setTimeout(async () => {
-            const createTopic = await apiTopic.putOne<FormData, string>(getForm, _id);
-            if (createTopic.status !== variableCommon.statusF) {
-                setdataTopic(value => ({ ...value, data: createTopic.data[0] }))
+            const editTopic = await apiTopic.putOne<FormData, string>(getForm, _id);
+            if (editTopic.status !== variableCommon.statusF) {
+                console.log(editTopic.data)
+                setdataTopic(value => ({ ...value, data: [editTopic.data] }))      
                 setalert(value => (
                     {
                         ...value, display: true,
-                        message: createTopic.message,
+                        message: editTopic.message,
                         type: 'success'
                     }))
             } else {
                 setalert(value => (
                     {
                         ...value, display: true,
-                        message: createTopic.message,
+                        message: editTopic.message,
                         type: 'error'
                     }))
             }
@@ -76,7 +75,7 @@ const UpdateTodo: React.FC<UpdateTodo<any>> = ({ changePage, _id, ...props }) =>
                 </Alert>}
 
                 <Formik
-                    initialValues={dataTopic.data || initialValue}
+                    initialValues={dataTopic.data?.[0] || initialValue}
                     onSubmit={submitForm}
                     validateOnChange={false}
                     // validateOnBlur={false}
@@ -102,7 +101,7 @@ const UpdateTodo: React.FC<UpdateTodo<any>> = ({ changePage, _id, ...props }) =>
                                                     <FileField name="image" label="Image Topic" type="file" other={{ variant: 'standard' }} />
                                                 </div>
                                                 <div className="bia-bai-hat-image">
-                                                    <img src={(dataTopic.data as any)?.image} alt="" />
+                                                    <img src={(dataTopic.data?.[0] as any)?.image} alt="" />
                                                 </div>
                                             </div>
                                         </Card>

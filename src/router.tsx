@@ -7,23 +7,20 @@ import Toptrending from "./page/client/pageClient/toptrending/toptrending";
 import Favorite from "./page/client/pageClient/favorite/favorite";
 import Newmusic from "./page/client/pageClient/newmusic/newmusic";
 import Blog from "./page/client/pageClient/blog/blog";
-import Category from "./page/client/pageClient/category/category";
 import BlogDetail from "./page/client/pageClient/blogdetail/blogDetail";
 import PlaylistDetail from "./page/client/pageClient/playlistDetail/playlistDetail";
 import Chart from "./page/client/pageClient/chart/Chart";
-import Signin from "./page/client/pageClient/signin/signin";
 import ForgotPassword from "./page/client/pageClient/forgotPassword/forgotPassword";
 import Recently from "./page/client/pageClient/recently/recently";
-import Overview from "./page/client/pageClient/personal/component/overview";
-import Music from "./page/client/pageClient/personal/component/music";
-import Musician from "./page/client/pageClient/personal/component/musician";
-import Upload from "./page/client/pageClient/personal/component/upload";
-import Playlist from "./page/client/pageClient/personal/component/playlist";
 import CategoryDetailPlaylist from "page/client/pageClient/categoryDetailPlaylist/categoryDetailPlaylist";
-import AddTodo from "./page/admin/pageAdmin/todolist/page/addTodo";
-import Todolist from "./page/admin/pageAdmin/todolist/index";
+import AddAlbum from "./page/admin/pageAdmin/todolist/page/addTodo";
+import Album from "./page/admin/pageAdmin/todolist/index";
 import AddTopic from "./page/admin/pageAdmin/topic/page/addTodo";
 import Topic from "./page/admin/pageAdmin/topic/index";
+import Category from "./page/client/pageClient/category/category";
+import AddCategory from "./page/admin/pageAdmin/categories/page/AddCategory";
+import Categories from "page/admin/pageAdmin/categories/index";
+
 
 export interface propertyPage {
     path: string,
@@ -38,13 +35,13 @@ const Admin: propertyPage[] = [
         exact: true
     },
     {
-        path: "/admin/addTodo",
-        component: AddTodo,
+        path: "/admin/addAlbum",
+        component: AddAlbum,
         exact: false
     },
     {
-        path: "/admin/todolist",
-        component: Todolist,
+        path: "/admin/album",
+        component: Album,
         exact: false
     },
     {
@@ -55,6 +52,16 @@ const Admin: propertyPage[] = [
     {
         path: "/admin/topic",
         component: Topic,
+        exact: false
+    },
+    {
+        path: "/admin/songCate",
+        component: Categories,
+        exact: false
+    },
+    {
+        path: "/admin/addCate",
+        component: AddCategory,
         exact: false
     },
     {
@@ -74,11 +81,6 @@ const Client: propertyPage[] = [
     {
         path: "/recently",
         component: Recently,
-        exact: false
-    },
-    {
-        path: "/signin",
-        component: Signin,
         exact: false
     },
     {
@@ -122,38 +124,13 @@ const Client: propertyPage[] = [
         exact: false
     },
     {
-        path: "/playlistDetail",
+        path: "/playlistDetail/:idPlaylist",
         component: PlaylistDetail,
         exact: false
     },
     {
         path: "/chart",
         component: Chart,
-        exact: false
-    },
-    {
-        path: "/overview",
-        component: Overview,
-        exact: false
-    },
-    {
-        path: "/music",
-        component: Music,
-        exact: false
-    },
-    {
-        path: "/musician",
-        component: Musician,
-        exact: false
-    },
-    {
-        path: "/playlist",
-        component: Playlist,
-        exact: false
-    },
-    {
-        path: "/upload",
-        component: Upload,
         exact: false
     },
     {

@@ -55,7 +55,7 @@ const AddTodo: React.FC<AddTodo<any>> = ({ changePage, ...props }) => {
         <>
             <div className="admin-pageAdd">
                 <div className="text-name-add">
-                    <h3>Add Todo</h3><br />
+                    <h3>Add Albums</h3><br />
                 </div>
                 {alert.display && <Alert severity={alert.type as any} style={{ marginBottom: 5 }}>
                     {alert.message}
@@ -97,7 +97,7 @@ const AddTodo: React.FC<AddTodo<any>> = ({ changePage, ...props }) => {
                                         <LoadingButton loading={formik.isSubmitting} variant="contained"
                                             type="submit"
                                         >
-                                            Thêm Todo
+                                            Thêm Albums
                                         </LoadingButton>
                                         {/* <Button variant="contained" type="submit" color="primary">Thêm bài hát</Button> */}
                                         <Button variant="contained" color="error" style={{ marginLeft: 20 }}
