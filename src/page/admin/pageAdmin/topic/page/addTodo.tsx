@@ -58,6 +58,7 @@ const AddTodo: React.FC<AddTodo<any>> = ({ changePage, ...props }) => {
                 {alert.display && <Alert severity={alert.type as any} style={{ marginBottom: 5 }}>
                     {alert.message}
                 </Alert>}
+                
 
                 <Formik
                     initialValues={initialValue}

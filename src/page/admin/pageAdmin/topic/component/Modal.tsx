@@ -14,7 +14,6 @@ const typeModal: any = {
     borderRadius: 1,
     boxShadow: 24,
     p: 4,
-
 }
 const useStyle = makeStyles({
     styleImage: {

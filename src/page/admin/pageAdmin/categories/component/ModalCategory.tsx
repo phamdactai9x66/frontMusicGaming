@@ -43,11 +43,11 @@ const ModalCategory: React.FC<Modal<any>> = ({ state, onClose, ...props }) => {
       if (dataCategory.error) return;
       const [data, error] = await HandleGet(categoryApi.getOne, state._id);
       if (error) setDataCategory((value: any) => ({ ...value, error: true, display: false }));
-      await findTopic(data.data.id_Topic)
-      setDataCategory({ error: false, data: data.data, display: true })
+      await findTopic(data?.data?.id_Topic)
+      setDataCategory({ error: false, data: data?.data, display: true })
     })()
     return () => {
-      setDataCategory((value: any) => ({...value, display: true}))
+      setDataCategory((value: any) => ({...value, display: false}))
     }
   }, [state._id])
 

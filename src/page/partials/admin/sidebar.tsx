@@ -10,6 +10,7 @@ import AccordionSummary from "@material-ui/core/AccordionSummary";
 import { ExpandMore } from "@material-ui/icons";
 
 interface Sidebar<T> {
+
 }
 
 const Sidebar: React.FC<Sidebar<any>> = ({ ...props }) => {
@@ -43,16 +44,16 @@ const Sidebar: React.FC<Sidebar<any>> = ({ ...props }) => {
       name: "Thể loại",
       iconAdd: "fa fa-plus-circle",
       details: "Add Thể Loại",
-      link: "/admin/",
-      subLink: "/admin/"
+      link: "/admin/songCate",
+      subLink: "/admin/addCate"
     },
     {
       icon: "fa fa-play-circle",
       name: "Playlist",
       iconAdd: "fa fa-plus-circle",
       details: "Add Playlist",
-      link: "/admin/",
-      subLink: "/admin/"
+      link: "/admin/playList",
+      subLink: "/admin/addPlayList"
     },
     {
       icon: "fa fa-file-image-o",

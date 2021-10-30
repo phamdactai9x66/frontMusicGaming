@@ -65,7 +65,7 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
     };
 
     const getPlaylists = async () => {
-        const responsePL = await playlistApi.getAll();
+        const responsePL = await playlistApi.getAll(); // đoạn này nó yêu cầu chuyền tham số vào, ông chuyền vào nhé 😍
         if (!responsePL || responsePL.status === "failed") {
             console.error("Get playlist failed.");
             return;
