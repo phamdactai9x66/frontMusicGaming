@@ -15,6 +15,12 @@ export const sortData = <Y extends string>(data: any[], key: Y, chooseSort: 'B' 
             : current2[key] - current1[key];
     })
 }
+export const limitSentence = <T extends string>(words: T, limit: number = 5): string | undefined => {
+    if (!words) return ''
+    const getWords = words?.split(" ") || [''];
+    if (getWords?.length < limit) return words;
+    return getWords?.slice(0, limit).join(' ') + '...';
+}
 export const getDate = (date: any) => {
     const getDate = new Date(date || Date.now());
     return `${getDate.getDate()}/${getDate.getMonth() + 1}/${getDate.getFullYear()}`

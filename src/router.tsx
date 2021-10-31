@@ -119,7 +119,7 @@ const Client: propertyPage[] = [
         exact: false
     },
     {
-        path: "/blogDetail",
+        path: "/blogDetail/:idBlog",
         component: BlogDetail,
         exact: false
     },
