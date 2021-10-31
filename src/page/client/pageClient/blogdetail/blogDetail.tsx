@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { ReactComponent as Sao1 } from './sao1.svg'
 import { ReactComponent as Sao2 } from './sao.svg'
 import { Pagination } from "@mui/material"
 import { RouteComponentProps } from 'react-router-dom'
@@ -7,6 +6,8 @@ import BlogApi from "api/BlogApi"
 import { variableCommon } from "component/variableCommon";
 import { getDate } from "component/MethodCommon";
 import DetailBlog from "./component/detailBlog";
+import Comment from "./component/comment"
+import { Rating } from "@mui/material";
 
 interface blogDetail<T> extends RouteComponentProps {
 
@@ -67,45 +68,12 @@ const BlogDetail: React.FC<blogDetail<any>> = ({ match, history, ...props }) => 
                 <div className="hr2">
                     <hr />
                 </div>
-                <div className="comment">
-                    <div className="grid-3-cmt-detail">
-                        <div className="img-user">
-                            <img src="https://lms.yamaha-motor.com.vn/root/update/images/avatar-default.png" alt="" />
-                        </div>
-                        <div className="desc-user-cmt">
-                            <h5>Nguyễn văn a</h5>
-                            <p className="p-user">Đánh giá :  <span><Sao1 className="sao1" /><Sao1 className="sao1" /><Sao1 className="sao1" /><Sao1 className="sao1" /><Sao2 className="sao2" /></span></p>
-                            <div className="flex-desc-cmt">
-                                <p className="p1">9:24</p>
-                                <p className="p2">EDM COMPILATION VOLUME 6 BANNER DATES-1 Only the Best MusicEDM COMPILATION </p>
-                            </div>
-                        </div>
-                        <div className="button-repply-detail">
-                            <button>repply</button>
-                        </div>
-                    </div>
-                    <div className="grid-3-cmt-detail">
-                        <div className="img-user">
-                            <img src="https://lms.yamaha-motor.com.vn/root/update/images/avatar-default.png" alt="" />
-                        </div>
-                        <div className="desc-user-cmt">
-                            <h5>Nguyễn văn a</h5>
-                            <p className="p-user">Đánh giá : <span><Sao1 className="sao1" /><Sao1 className="sao1" /><Sao1 className="sao1" /><Sao1 className="sao1" /><Sao2 className="sao2" /></span></p>
-                            <div className="flex-desc-cmt">
-                                <p className="p1">9:24</p>
-                                <p className="p2">EDM COMPILATION VOLUME 6 BANNER DATES-1 Only the Best MusicEDM COMPILATION </p>
-                            </div>
-                        </div>
-                        <div className="button-repply-detail">
-                            <button>repply</button>
-                        </div>
-                    </div>
+                {blog.data?._id && <Comment id_Blog={blog.data?._id} />}
 
-                </div>
                 <div className="desc-comment">
                     <div className="danhgia">
                         <h5>Đánh giá</h5>
-                        <span><Sao2 className="sao2" /><Sao2 className="sao2" /><Sao2 className="sao2" /><Sao2 className="sao2" /><Sao2 className="sao2" /></span>
+                        <span><Rating value={5} /></span>
                     </div>
                     <form action="" className="form">
                         <textarea name="" id="" cols={30} rows={10} placeholder="Message"></textarea>

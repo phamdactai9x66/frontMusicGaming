@@ -3,7 +3,7 @@ import { Axios, AxiosFormdata } from "./configApi";
 class userApi {
 
     getAll<T extends object>(query: T): Promise<any> {
-        let url: string = "/songs";
+        let url: string = "/user";
         return Axios.get(url, { params: { query } })
     }
     Login<T extends FormData>(form: T): Promise<any> {
