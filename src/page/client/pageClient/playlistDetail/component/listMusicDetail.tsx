@@ -11,10 +11,11 @@ import { useDispatch } from "react-redux";
 import { playSong } from "redux/audio/actionAudio";
 interface ListMusicDetail<T> {
     current: any,
-    index: number
+    index: number,
+    listIdSong: any
 }
 
-const ListMusicDetail: React.FC<ListMusicDetail<any>> = ({ current, index, ...props }) => {
+const ListMusicDetail: React.FC<ListMusicDetail<any>> = ({ current, index, listIdSong, ...props }) => {
     const { audio, image, title, _id } = current;
     const [anchor, setAnchor] = useState(null);
     const dispatch = useDispatch()
@@ -32,7 +33,7 @@ const ListMusicDetail: React.FC<ListMusicDetail<any>> = ({ current, index, ...pr
                 <div className="music_item">
                     <img src={image} alt="" />
                     <div className="box-icon">
-                        <BsFillPlayFill onClick={() => { dispatch(playSong(current)) }} />
+                        <BsFillPlayFill onClick={() => { dispatch(playSong({ _id: current._id, listIdSong })) }} />
                     </div>
                     <div>
                         <h6>{title}</h6>

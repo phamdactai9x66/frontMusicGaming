@@ -16,7 +16,7 @@ const MusicDetail: React.FC<MusicDetail<any>> = ({ state, ...props }) => {
                     const { id_Song } = current;
                     const findSong = state.dataSong[id_Song];
                     return (
-                        <ListMusicDetail current={findSong} index={index} />
+                        <ListMusicDetail current={findSong} listIdSong={state.data} index={index} />
                     )
                 })}
             </div>

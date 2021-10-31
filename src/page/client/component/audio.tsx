@@ -6,6 +6,7 @@ import { PlayArrow, Pause, NavigateNext, NavigateBefore, SkipNext, SkipPrevious 
 import { tranFormDuration } from "component/MethodCommon";
 import { formStateAudio } from "redux/audio/stateAudio";
 import { useSelector, useDispatch } from "react-redux";
+import { playSong } from "redux/audio/actionAudio";
 import NameSongArtist from "component/nameSongArtist";
 import OptionAudio from "./optionAudio";
 import LikeSong from "./likeSong";
@@ -16,6 +17,7 @@ interface Audio<T> {
 
 const Audio: React.FC<Audio<any>> = ({ audio: { audio: url, title, image, _id }, ...props }) => {
     const state = useSelector<{ audio: any }>(state => state.audio) as formStateAudio;
+    const dispatch = useDispatch();
     const [play, setPlay] = useState(false);
     const [duration, setduration] = useState(0);
     const [currentTime, setcurrentTime] = useState(0);
@@ -51,8 +53,25 @@ const Audio: React.FC<Audio<any>> = ({ audio: { audio: url, title, image, _id },
                 AudioPlay.current?.play();
                 setPlay(true)
             } else {
-                setPlay(false)
-                clearInterval(stateCurrentTime.current)
+                if (state.listAudio.length) {
+                    // console.log(state.listAudio)
+                    const findIndex = state.listAudio.findIndex((current: any) => {
+                        return current._id === state.audio?._id
+                    })
+                    const nextSong = findIndex + 1;
+                    if (nextSong < state.listAudio.length) {
+                        AudioPlay.current?.play();
+                        setPlay(true)
+                        dispatch(playSong({ _id: state.listAudio[nextSong]._id, listIdSong: state.listAudio }))
+                    } else {
+                        setPlay(false)
+                        clearInterval(stateCurrentTime.current)
+                    }
+                } else {
+                    setPlay(false)
+                    clearInterval(stateCurrentTime.current)
+                }
+
             }
             setduration(0)
             setcurrentTime(0)
