@@ -29,75 +29,13 @@ $color_footer: #0e192abb;
 .container-client {
     @import "./handeSame.scss";
     display: flex;
-    header {
-        background-color: $color_main_header;
-        box-shadow: 0 3px 5px rgba(0, 0, 0, 0.452);
-        position: fixed;
-        left: 250px;
-        top: 0;
-        right: 0;
-        height: 70px;
-        padding: 15px 50px;
+    .header_ui {
+        flex-grow: 1;
+        position: fixed !important;
+        left: 250px !important;
+        right: 0 !important;
         z-index: 2;
-        .header {
-            display: flex;
-            justify-content: space-between;
-            .search {
-                display: flex;
-                .icon {
-                    font-size: 1.5rem;
-                    color: #56ccf2;
-                    margin: 0.5rem -2.2rem 0 0;
-                    z-index: 1;
-                    cursor: pointer;
-                }
-                input {
-                    border: 0.1rem solid rgb(3, 190, 190) !important;
-                    background: #101929;
-                    border-radius: 3rem;
-                    padding: 0.5rem 0.5rem 0.5rem 3rem;
-                    border: none;
-                    width: 24rem;
-                    height: 2.3rem;
-                    color: rgb(255, 255, 255);
-                    &::placeholder {
-                        color: rgb(173, 173, 173);
-                    }
-                }
-            }
-            .icon-main {
-                margin-top: 7px;
-                display: flex;
-                margin-right: -1.5rem;
-                .icon {
-                    background: #070d1648;
-                    border-radius: 100%;
-                    border: 0.5rem solid #070d1648;
-                    color: #fff;
-                    font-size: 2.3rem;
-                    margin-left: 1rem;
-                    cursor: pointer;
-                }
-                .drop_icon {
-                    font-size: 1.5rem;
-                    color: aqua;
-                    margin-top: 0.5rem;
-                    margin-left: -0.5rem;
-                }
-                // drop
-                .MuiInputBase-root {
-                    opacity: 0;
-                    margin-left: -2.3rem;
-                    margin-top: -1rem;
-                }
-                a {
-                    text-decoration: none;
-                    color: #fff;
-                }
-            }
-        }
-        // end header
-    }
+      }
     aside {
         position: relative;
         z-index: 2;
@@ -186,7 +124,7 @@ $color_footer: #0e192abb;
         padding: 70px 0 70px 0;
         height: 100vh;
         .main-children {
-            height: 100vh;
+            height: 100%;
             overflow: auto;
         }
     }
@@ -382,9 +320,9 @@ $color_footer: #0e192abb;
         aside {
         display: none;
         }
-        header {
-            left: 0;
-        }
+        .header_ui {
+            left: 0 !important;
+          }
         footer {
             .author {
                 flex-basis: 30%;
@@ -410,19 +348,19 @@ $color_footer: #0e192abb;
 // drop
 .MuiMenu-paper { 
   .link {
-      color: #fff;
+      color: rgb(0, 0, 0);
       text-decoration: none;
       font-size: 1.2rem;
       padding-bottom: 0.4rem;
       margin-bottom: 0.4rem;
       width: 10rem;
-      border-bottom: 0.1rem solid rgba(127, 255, 212, 0.322);
+      border-bottom: 0.1rem solid rgba(0, 0, 0, 0.322);
       ._icon {
-          color: rgb(82, 240, 187);
+          color: rgb(0, 0, 0);
           margin-right: 0.6rem;
       }
       &:hover {
-          color:rgb(3, 190, 190);
+          color:rgb(60, 170, 243);
       }
   }
   
@@ -434,13 +372,9 @@ $color_footer: #0e192abb;
        footer {
         display: none;
        }
-       header {
-        left: 0;
-        .header .search input {
-            width: 12rem;
-            margin-right: 3rem;
-        }
-    }
+       .header_ui {
+        left: 0 !important;
+      }
        aside {
         //  transform: translateX(-10rem);
         display: none;
