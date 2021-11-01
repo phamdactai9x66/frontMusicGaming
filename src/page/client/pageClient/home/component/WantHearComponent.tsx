@@ -11,6 +11,8 @@ import { Select, MenuItem } from "@mui/material";
 import { HandleGet, tranFormDataId } from "component/MethodCommon";
 
 import playlistSongApi from 'api/playlistSongApi';
+import { playSong } from "redux/audio/actionAudio"
+import { useDispatch } from 'react-redux';
 
 
 interface WantHearComponentIF<T> {
@@ -21,6 +23,7 @@ interface WantHearComponentIF<T> {
 
 const WantHearComponent: React.FC<WantHearComponentIF<any>> = ({...props}) => {
     const [PLS, setPLS] = useState<any[]>([]);
+    const dispatch = useDispatch();
 
     const getPLS = async () => {
         const query = { id_PlayList: props.idPlaylist };
@@ -52,7 +55,7 @@ const WantHearComponent: React.FC<WantHearComponentIF<any>> = ({...props}) => {
                             <div className="icon-box">
                                 <div>
                                     <BiHeart className="icon" />
-                                    <FiPlayCircle className="icon" />
+                                    <FiPlayCircle onClick={() => dispatch(playSong( {_id: item._id} ))} className="icon" />
                                     <HiOutlineDotsCircleHorizontal className="icon" />
                                 </div>
                             </div>

@@ -42,7 +42,6 @@ export const handleAddToPlaylist = <T extends string> (idSong: T, idUser: T) => 
     try {
         const addHandler = async () => {
             let getResponse = await songPlaylistApi.getAll( {id_Song: idSong, id_User_Playlist: idUser} );
-            
             if(getResponse.data.length === 0){
                 const data = new FormData();
                 data.append("id_Song", idSong);
