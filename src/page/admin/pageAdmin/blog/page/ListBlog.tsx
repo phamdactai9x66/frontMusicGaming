@@ -1,17 +1,17 @@
 import React, { useReducer, useState, useEffect } from 'react'
 import { page } from '../index'
-import categoryApi from 'api/categoryApi'
+import blogApi from 'api/BlogApi'
+import { makeStyles } from "@mui/styles"
 import { Select, MenuItem, Avatar } from "@mui/material"
 import SearchIcon from '@mui/icons-material/Search'
 import { variableCommon } from "component/variableCommon"
-import PaginationCategory from "../component/PaginationCategory"
-import { makeStyles } from "@mui/styles"
-import ModalCategory from "page/admin/pageAdmin/categories/component/ModalCategory"
+import PaginationBlog from '../component/PaginationBlog'
+import ModalBlog from '../component/ModalBlog'
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material"
 import { Button, Checkbox, TextField, Typography, CircularProgress, Box } from "@mui/material"
 import { initialReducer, handleReducer, HandleGet, typeAciton, pustAction } from "component/MethodCommon";
 
-interface ListCategory<T> {
+interface ListBlog<T> {
   changePage: any,
   set_id: Function
 }
@@ -30,23 +30,23 @@ const columns = [
   { id: '', label: 'Handle', minWidth: 170, align: 'center' }
 ]
 
-const ListCategory: React.FC<ListCategory<any>> = ({ changePage, set_id, ...props }) => {
+const ListBlog: React.FC<ListBlog<any>> = ({ changePage, set_id, ...props }) => {
   const classes = useStyle();
   const [state, dispatch] = useReducer(handleReducer, initialReducer);
-  const [stateModalCategory, setStateModalCategory] = useState<any>({ display: false, _id: null });
-  
+  const [stateModalBlog, setStateModalBlog] = useState<any>({ display: false, _id: null });
+
   useEffect(() => {
     (async () => {
       const query = {
         ...state.Filter
       }
-      const [data, error] = await HandleGet(categoryApi.getAll, query);
+      const [data, error] = await HandleGet(blogApi.getAll, query);
       
       delete query._limit;
       delete query._page;
       
       const checkFindName = Object.entries(query).length;
-      var [dataStatic] = await HandleGet(categoryApi.getAll, checkFindName ? { ...query } : {});
+      var [dataStatic] = await HandleGet(blogApi.getAll, checkFindName ? { ...query } : {});
 
       if (data?.status !== variableCommon.statusS) return dispatch(pustAction(typeAciton.error));
 
@@ -63,17 +63,17 @@ const ListCategory: React.FC<ListCategory<any>> = ({ changePage, set_id, ...prop
   const findName = (event: Event | any) => {
     const getValue = ((event.target as HTMLInputElement).value).trim();
     if (event.keyCode === 13) {
-      dispatch(pustAction(typeAciton.findName, { name: getValue }))
+      dispatch(pustAction(typeAciton.findName, { title: getValue }))
     }
   }
 
   const onOpen = <T extends string>(_id: T) => {
     if ([undefined,  null].includes(_id as any)) return;
-    setStateModalCategory((value: any) => ({ _id, display: true}))
+    setStateModalBlog((value: any) => ({ _id, display: true}))
   }
 
   const onClose = () => {
-    setStateModalCategory((value: any) => ({ ...value, display: false }))
+    setStateModalBlog((value: any) => ({ ...value, display: false }))
   }
 
   const navigatePage = <T extends string>(page: T, _id?: T): void => {
@@ -84,7 +84,7 @@ const ListCategory: React.FC<ListCategory<any>> = ({ changePage, set_id, ...prop
   const deleteOne = async (_id: string) => {
     if (!_id) return;
     dispatch(pustAction(typeAciton.deleteOne, {_id}));
-    await categoryApi.deleteOne(_id);
+    await blogApi.deleteOne(_id);
   }
 
   const deleteAll = () => {
@@ -92,25 +92,24 @@ const ListCategory: React.FC<ListCategory<any>> = ({ changePage, set_id, ...prop
     state.Data.forEach(async (currenV: any) => {
       const { _id, check } = currenV;
       if (check) {
-        await categoryApi.deleteOne(_id)
+        await blogApi.deleteOne(_id)
       }
     })
   }
-
+  
   return (
     <>
-      {stateModalCategory._id && <ModalCategory state={stateModalCategory} onClose={onClose}></ModalCategory>}
+      {stateModalBlog._id && <ModalBlog state={stateModalBlog} onClose={onClose}></ModalBlog>}
       <div 
         style={{
           display: 'flex', 
           justifyContent: 'center', 
           alignItems: 'center', 
-          minHeight: '800px', 
+          minHeight: '600px', 
           width: '100%'
         }}
       >
         <div style={{ flexBasis: 1000, margin: '0 auto'}}>
-        <h2 className="mb-5">Thể loại</h2>
           <Paper sx={{ width: '100%' }}>
             <TableContainer style={{ padding: 20 }}>
               <Typography style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -162,57 +161,61 @@ const ListCategory: React.FC<ListCategory<any>> = ({ changePage, set_id, ...prop
 
                 <TableBody>
                   {
-                    state.Data.length && state.Display ? 
-                      state.Data.map((row: any, index: any) => {
-                        const { name, image, id_Topic, check, _id } = row;
-                        return (
-                          <TableRow hover role="checkbox" key={index}>
-                            <TableCell align="left">
-                              <Checkbox checked={check} onClick={() => {
-                                dispatch(pustAction(typeAciton.checkOne, { _id }))
-                              }} />
-                            </TableCell>
-                            <TableCell align="left">{name}</TableCell>
-                            <TableCell align="left">
-                              <Avatar alt={name} variant="rounded" src={image} />
-                            </TableCell>
-                            <TableCell align='center'>
-                              <Button variant="contained" color="error" style={{ marginRight: 5 }} size="small"
-                                onClick={() => {
-                                  // dispatch(pustAction(typeAciton.deleteOne, { _id }))
-                                  deleteOne(_id)
-                                }}
-                              >Delete</Button>
-                              <Button variant="contained" color="primary" size="small"
-                                onClick={() => { navigatePage(page.UpdateCategory, _id) }}
-                              >Edit</Button>
-                              <Button variant="contained" color="primary" size="small" style={{ marginLeft: 5 }}
-                                onClick={() => { onOpen<string>(_id) }}
-                              >More</Button>
-                            </TableCell>
-                          </TableRow>
-                        );
-                      }) :
-                      state.Display ? null : <TableRow>
-                        <TableCell align="center" colSpan={12}>
-                          <CircularProgress />
-                        </TableCell>
-                      </TableRow>
+                    state.Data.length && state.Display ?
+                    state.Data.map((row: any, index: any) => {
+                      const { title, image, content, status, view, id_User, id_CategoryBlog, check, _id } = row;
+                      return (
+                        <TableRow hover role="checkbox" key={index}>
+                          <TableCell align="left">
+                            <Checkbox checked={check} onClick={() => {
+                              dispatch(pustAction(typeAciton.checkOne, { _id }))
+                            }} />
+                          </TableCell>
+                          <TableCell align="left">{title}</TableCell>
+                          <TableCell align="left">
+                            <Avatar alt={title} variant="rounded" src={image} />
+                          </TableCell>
+                          <TableCell align="left">{content}</TableCell>
+                          <TableCell align="left">{status}</TableCell>
+                          <TableCell align="left">{view}</TableCell>
+                          <TableCell align='center'>
+                            <Button 
+                              variant="contained" 
+                              color="error" 
+                              style={{ marginRight: 5 }} size="small"
+                              onClick={() => { deleteOne(_id) }}
+                            >
+                              Delete
+                            </Button>
+                            <Button variant="contained" color="primary" size="small"
+                                onClick={() => { navigatePage(page.UpdateBlog, _id) }}
+                            >Edit</Button>
+                            <Button variant="contained" color="primary" size="small" style={{ marginLeft: 5 }}
+                              onClick={() => { onOpen<string>(_id) }}
+                            >More</Button>
+                          </TableCell>
+                        </TableRow>
+                      )
+                    }) : state.Display ? null : <TableRow>
+                      <TableCell align="center" colSpan={12}>
+                        <CircularProgress />
+                      </TableCell>
+                    </TableRow>
                   }
                 </TableBody>
               </Table>
               <Box className={classes.styleBox}>
-                <div>
-                  <Button variant="contained" size="small" onClick={deleteAll}>Delete All</Button>
-                  <Button 
-                    variant="contained" 
-                    size="small"
-                    style={{ marginLeft: 5 }} onClick={() => { navigatePage(page.AddCategory) }}
-                  >
-                    Add
-                  </Button>
-                </div>
-                <PaginationCategory state={state} dispatch={dispatch} />
+                  <div>
+                    <Button variant="contained" size="small" onClick={deleteAll}>Delete All</Button>
+                    <Button 
+                      variant="contained" 
+                      size="small"
+                      style={{ marginLeft: 5 }} onClick={() => { navigatePage(page.AddBlog) }}
+                    >
+                      Add
+                    </Button>
+                  </div>
+                  <PaginationBlog state={state} dispatch={dispatch} />
               </Box>
             </TableContainer>
           </Paper>
@@ -222,4 +225,4 @@ const ListCategory: React.FC<ListCategory<any>> = ({ changePage, set_id, ...prop
   )
 }
 
-export default ListCategory
+export default ListBlog

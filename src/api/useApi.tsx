@@ -6,6 +6,10 @@ class userApi {
         let url: string = "/user";
         return Axios.get(url, { params: { query } })
     }
+    getOne<T extends string>(_id: T): Promise<any> {
+        const url: string = `/user/${_id}`;
+        return Axios.get(url)
+    }
     Login<T extends FormData>(form: T): Promise<any> {
         let url: string = "/user/login";
         return AxiosFormdata.post(url, form)

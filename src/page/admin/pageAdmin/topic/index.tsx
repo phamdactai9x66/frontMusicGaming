@@ -34,7 +34,7 @@ const IndexTodolist: React.FC<IndexTodolist<any>> = ({ ...props }) => {
                 return <AddTodolist changePage={changePage} />
             }
             case page.update: {
-                return <UpdateTodoList changePage={changePage} _id={find_id} />
+                return <UpdateTodoList changePage={changePage} _id={find_id} /> 
             }
             default: {
                 return <Todolist changePage={changePage} set_id={set_id} />
