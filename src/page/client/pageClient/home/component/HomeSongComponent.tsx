@@ -11,11 +11,12 @@ import { IoMdAdd } from 'react-icons/io';
 import { Popover } from "@material-ui/core";
 import { useDispatch } from "react-redux";
 import { getlistAudio, playSong } from "redux/audio/actionAudio"
-import userPlaylistApi from 'api/userPlaylistApi';
+import userPlaylistApi from 'api/userPlaylist';
 import { useHistory } from 'react-router';
 import ModalLogged from 'component/clientComponent/ModalLogged';
 import { Link } from 'react-router-dom';
 import NameSongArtist from 'component/nameSongArtist';
+import AlertComponent from 'component/clientComponent/Alert';
 
 
 interface HomeSongComponentIF<T> {
@@ -23,20 +24,24 @@ interface HomeSongComponentIF<T> {
 }
 const HomeSongComponent: React.FC<HomeSongComponentIF<any>> = (props) => {
     const history = useHistory();
+    const [playlistName, setPlaylistName] = useState('');
     const [anchor, setAnchor] = useState(null);
-    const [userPlaylists, setUserPlaylists] = useState([]);
+    const [anchor2, setAnchor2] = useState(null);
+    const [userPlaylists, setUserPlaylists] = useState<any[]>([]);
     const [isLogged, setIsLogged] = useState(false);
-
+    const { user } = props.userState;
+    const [songs, setSongs] = useState([]);
+    const dispatch = useDispatch();
+    const [handleStatus, setHandleStatus] = useState( {status: "", content: ""} )
+    
     const openPopover = (event: any) => {
         setAnchor(event.currentTarget);
     };
-    const [anchor2, setAnchor2] = useState(null);
+    
     const openPopover2 = (event: any) => {
         setAnchor2(event.currentTarget);
     };
-    const { user } = props.userState;
-    const [songs, setSongs] = useState([]);
-    const dispatch = useDispatch()
+
     useEffect(() => {
         (async () => {
             dispatch(getlistAudio())
@@ -59,23 +64,24 @@ const HomeSongComponent: React.FC<HomeSongComponentIF<any>> = (props) => {
         if(t === 'like'){
             let likeRes = await handleLike(s, u);
             if(likeRes && likeRes.status === "added"){
-                console.log('okay, them roi nhe. (Added)');
+                setHandleStatus( {status: "success", content: "Thêm vào yêu thích thành công."} );
             }else if(likeRes && likeRes.status === "deleted") {
-                console.log('okay, them roi nhe. (Deleted)');
+                setHandleStatus( {status: "success", content: "Hủy bỏ yêu thích thành công."} );
             } else{
-                console.log('oops, khong them duoc roi. (Error)')
+                setHandleStatus( {status: "failed", content: "Thêm vào yêu thích thất bại."} );
             }
         }
         
         if(t === "playlist"){
-            //đang sai vì chưa lấy được playlist của user
             let playlistRes = await handleAddToPlaylist(s, u);
             if(playlistRes && playlistRes.status === "successfully"){
-                console.log('okay, them roi nhe');
+                setHandleStatus( {status: "success", content: "Thêm vào playlist thành công."} );
+                setAnchor(null);
             }else if(playlistRes.status === "existed"){
-                console.log("Bài hát này đã tồn tại trong play list này của bạn.")
+                setHandleStatus( {status: "failed", content: "Bài hát đã tồn tại trong playlist."} );
+                setAnchor(null);
             }else{
-                console.log('oops, khong them duoc roi');
+                setHandleStatus( {status: "failed", content: "Thêm vào playlist thất bại."} );
             }
         }
     }
@@ -98,24 +104,63 @@ const HomeSongComponent: React.FC<HomeSongComponentIF<any>> = (props) => {
     const handleLogged = () => {
         setIsLogged(false);
     }
+
+    if(handleStatus.status !== ""){
+        setTimeout(() => {
+            setHandleStatus( {status: "", content: ""} );
+        }, 3000);
+    }
+
+    const handleCreatePlaylist = async () => {
+        if(!playlistName) {
+            setHandleStatus({
+                status: "failed",
+                content: "Playlist không được để trống"
+            })
+            return;
+        }
+        let form = new FormData;
+        form.append("name", playlistName);
+        form.append("id_User", user._id);
+
+        const isCreatedPlaylist = await userPlaylistApi.postOne(form);
+        if(isCreatedPlaylist.status === "successfully"){
+            setUserPlaylists([...userPlaylists, ...isCreatedPlaylist.data]);
+            setHandleStatus({
+                status: "success",
+                content: "Tạo mới Playlist thành công"
+            });
+            setAnchor2(null);
+        }else{
+            setHandleStatus({
+                status: "failed",
+                content: "Không tạo được Playlist"
+            })
+        }
+    }
+
     return (
         <div className="box-music">
-        {isLogged && <ModalLogged isLogged={isLogged} handleLogged={handleLogged} />}
-        {songs.length !== 0 && songs.map((item: any) => (
-            <div className="music_item" key={item._id} >
-                <img src={item.image} alt={item.name} />
-                <div className="box-icon">
-                    <BsFillPlayFill onClick={() => playAudio(item._id)} />
-                </div>
-                <div>
-                    <h6>{item.title}</h6>
-                    <div style={{ fontSize: "0.7rem", marginTop: "-0.2rem" }}>
-                        <NameSongArtist _id={item._id} />
+            {isLogged && <ModalLogged isLogged={isLogged} handleLogged={handleLogged} />}
+            {handleStatus.status !== "" && <AlertComponent status={handleStatus.status} content={handleStatus.content} />}
+
+            {songs.length !== 0 && songs.map((item: any) => (
+                <>
+                <div className="music_item" key={item._id} >
+                    <img src={item.image} alt={item.name} />
+                    <div className="box-icon">
+                        <BsFillPlayFill onClick={() => playAudio(item._id)} />
                     </div>
-                </div>
-                <div>
-                    <GetTimeAudio url={item.audio} />
-                </div>
+                    <div>
+                        <h6>{item.title}</h6>
+                        <div style={{ fontSize: "0.7rem", marginTop: "-0.2rem" }}>
+                            <NameSongArtist _id={item._id} />
+                        </div>
+                    </div>
+                    <div>
+                        <GetTimeAudio url={item.audio} />
+                    </div>
+                    
                 <div className="icon_item">
                     <AiOutlineDownload onClick={() => handleDownload(item._id)} className="icon" />
                     <AiFillHeart onClick={() => handleAdd(item._id, user._id, "like")} className="icon" />
@@ -146,7 +191,7 @@ const HomeSongComponent: React.FC<HomeSongComponentIF<any>> = (props) => {
                             </div>
                             <hr style={{ margin: "-0.1rem 0 0.5rem 0" }} />
                                 <MenuItem className="add list" onClick={openPopover2}>
-                                    <IoMdAdd className="icon"/> &ensp; Tạo playlist mới
+                                    <IoMdAdd className="icon"/> &ensp; Tạo Playlist mới
                                 </MenuItem>
                                 <Popover
                                     open={Boolean(anchor2)}
@@ -163,9 +208,9 @@ const HomeSongComponent: React.FC<HomeSongComponentIF<any>> = (props) => {
                                 >
                                     <div className="item p-3">
                                       <form>
-                                      <input type="text" className="mb-2 p-2 text-light" style={{background: "#0d141f", border: "0.1rem solid #0e5353"}} placeholder="Thêm playlist..."/>
+                                      <input type="text" onChange={(e) => setPlaylistName(e.target.value)} className="mb-2 p-2 text-light" style={{background: "#0d141f", border: "0.1rem solid #0e5353"}} placeholder="Nhập tên Playlist"/>
                                       <br/>
-                                      <Button color="primary" variant="contained">Thêm playlist</Button>
+                                      <Button color="primary" onClick={handleCreatePlaylist} variant="contained">Tạo mới Playlist</Button>
                                       </form>
                                     </div>
                                 </Popover>
@@ -183,6 +228,7 @@ const HomeSongComponent: React.FC<HomeSongComponentIF<any>> = (props) => {
                         </Popover>
                     </div>
                 </div>
+                </>
             ))}
 
         </div>
