@@ -73,7 +73,7 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
     };
 
     const getPlaylists = async () => {
-        const responsePL = await playlistApi.getAll(); // đoạn này nó yêu cầu chuyền tham số vào, ông chuyền vào nhé 😍
+        const responsePL = await playlistApi.getAll({}); // đoạn này nó yêu cầu chuyền tham số vào, ông chuyền vào nhé 😍
         if (!responsePL || responsePL.status === "failed") {
             console.error("Get playlist failed.");
             return;
@@ -87,7 +87,7 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
         setSongs(responseSong.data);
         setSongsTransform(resSongsTransform);
 
-        const dataArtists = await artistApi.getAll( {} );
+        const dataArtists = await artistApi.getAll({});
         setArtists(dataArtists.data);
     }
 
