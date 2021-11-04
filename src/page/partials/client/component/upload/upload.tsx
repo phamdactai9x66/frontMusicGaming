@@ -6,7 +6,7 @@ const useStyles = makeStyles(theme => ({
    file: {
       width: "2rem",
       height: "2.7rem",
-      marginRight: "-3.1rem",
+      position: "absolute",
       zIndex: 1,
       opacity: 0
    }
@@ -18,8 +18,10 @@ const Upload: React.FC<Upload<any>> = ({ ...props }) => {
   const classes = useStyles();
     return (
         <>
-            <input type="file" className={classes.file}/>
-          <BiUpload className="icon" /> 
+        <div style={{position: "relative"}}>
+        <input type="file" className={classes.file}/>
+          <BiUpload className="icon" style={{marginTop: "-0.3rem"}}/> 
+        </div>        
         </>
     )
 }

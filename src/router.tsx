@@ -20,6 +20,8 @@ import Topic from "./page/admin/pageAdmin/topic/index";
 import Category from "./page/client/pageClient/category/category";
 import AddCategory from "./page/admin/pageAdmin/categories/page/AddCategory";
 import Categories from "page/admin/pageAdmin/categories/index";
+import PlayList from "page/admin/pageAdmin/playlist/index";
+import AddPlayList from "page/admin/pageAdmin/playlist/page/AddPlayList";
 
 
 export interface propertyPage {
@@ -62,6 +64,16 @@ const Admin: propertyPage[] = [
     {
         path: "/admin/addCate",
         component: AddCategory,
+        exact: false
+    },
+    {
+        path: "/admin/playList",
+        component: PlayList,
+        exact: false
+    },
+    {
+        path: "admin/addPlayList",
+        component: AddPlayList,
         exact: false
     },
     {
@@ -119,7 +131,7 @@ const Client: propertyPage[] = [
         exact: false
     },
     {
-        path: "/blogDetail",
+        path: "/blogDetail/:idBlog",
         component: BlogDetail,
         exact: false
     },

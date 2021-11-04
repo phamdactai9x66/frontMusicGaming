@@ -9,6 +9,7 @@ import UserPlaylist from "api/userPlaylist";
 import { useSelector } from "react-redux";
 import { formStateUser } from 'redux/user/stateUser';
 import { HandleGet } from "component/MethodCommon";
+import ImagePlaylist from "./imagePlaylist";
 interface ListPLaylist<T> {
     render: number
 }
@@ -36,9 +37,7 @@ const ListPLaylist: React.FC<ListPLaylist<any>> = ({ render, ...props }) => {
                     return (
                         <Link to={`/playlistDetail/${current?._id}`} key={index}>
                             <div className="box">
-                                <figure>
-                                    <img src="https://i.ytimg.com/vi/Yije8O6eGn8/maxresdefault.jpg" alt="" />
-                                </figure>
+                                <ImagePlaylist idPlaylist={current?._id} />
                                 <div className="icon-box">
                                     <div>
                                         <BiHeart className="icon" />

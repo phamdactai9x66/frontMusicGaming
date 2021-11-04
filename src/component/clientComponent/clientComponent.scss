@@ -11,3 +11,28 @@
     justify-content: center;
     align-items: center;
 }
+
+.parent-alert{
+    position: fixed;
+    background-color: #0e192a;
+    height: 3.5rem;
+    z-index: 30;
+    bottom: 8rem;
+    right: 2rem;
+    text-align: center;
+    border-radius: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 1.6rem;
+    box-shadow: 0px 0 8px #202a39;
+}
+
+.alert-span-danger{
+    color: #ff6464;
+    font-weight: 500;
+}
+.alert-span-success{
+    color: #64ff70;
+    font-weight: 500;
+}

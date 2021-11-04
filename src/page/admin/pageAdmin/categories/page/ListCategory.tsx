@@ -33,7 +33,7 @@ const columns = [
 const ListCategory: React.FC<ListCategory<any>> = ({ changePage, set_id, ...props }) => {
   const classes = useStyle();
   const [state, dispatch] = useReducer(handleReducer, initialReducer);
-  const [stateModalCategory, setStateModalCategory] = useState<any>({ display: false, _id: null })
+  const [stateModalCategory, setStateModalCategory] = useState<any>({ display: false, _id: null });
   
   useEffect(() => {
     (async () => {
