@@ -87,7 +87,7 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
         setSongs(responseSong.data);
         setSongsTransform(resSongsTransform);
 
-        const dataArtists = await artistApi.getAll( {} );
+        const dataArtists = await artistApi.getAll({});
         setArtists(dataArtists.data);
     }
 
