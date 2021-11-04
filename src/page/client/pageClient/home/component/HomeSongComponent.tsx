@@ -108,7 +108,7 @@ const HomeSongComponent: React.FC<HomeSongComponentIF<any>> = (props) => {
     if(handleStatus.status !== ""){
         setTimeout(() => {
             setHandleStatus( {status: "", content: ""} );
-        }, 3000);
+        }, 4000);
     }
 
     const handleCreatePlaylist = async () => {
