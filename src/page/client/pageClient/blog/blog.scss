@@ -4,6 +4,7 @@
      .title-blog{
         margin-top: 20px;
         margin-bottom: 15px;
+        font-size: 1.3rem;
          .color-blog{
             color: #a8eff9;
          }
@@ -12,7 +13,7 @@
          grid-template-columns: 30% 70%;
      }.div-hr{
         color: #a8eff9;
-        margin-top: 5px;
+        margin-top: -4px;
             hr{
                 padding: 2px 0;
                  background: #a8eff9;
@@ -116,9 +117,11 @@
              h4{
                  border-bottom: 1px solid white;
                  padding-bottom: 10px;
+                 font-size: 1.05rem;
              }.title-blog-name{
                  text-decoration: none;
                  margin-top: 10px;
+                 font-size: 0.9rem;
              }
              
          }
