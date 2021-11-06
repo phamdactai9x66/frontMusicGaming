@@ -19,10 +19,10 @@ import NameSongArtist from 'component/nameSongArtist';
 import AlertComponent from 'component/clientComponent/Alert';
 
 
-interface HomeSongComponentIF<T> {
+interface ListMusicNew<T> {
     userState: any,
 }
-const HomeSongComponent: React.FC<HomeSongComponentIF<any>> = (props) => {
+const ListMusicNew: React.FC<ListMusicNew<any>> = (props) => {
     const history = useHistory();
     const [playlistName, setPlaylistName] = useState('');
     const [anchor, setAnchor] = useState(null);
@@ -140,26 +140,23 @@ const HomeSongComponent: React.FC<HomeSongComponentIF<any>> = (props) => {
     }
 
     return (
-        <div className="box-music">
+        <>
             {isLogged && <ModalLogged isLogged={isLogged} handleLogged={handleLogged} />}
             {handleStatus.status !== "" && <AlertComponent status={handleStatus.status} content={handleStatus.content} />}
-            {songs.length !== 0 && songs.map((item: any) => (
-                <>
-                <div className="music_item" key={item._id} >
-                    <img src={item.image} alt={item.name} />
-                    <div className="box-icon">
-                        <BsFillPlayFill onClick={() => playAudio(item._id)} />
-                    </div>
-                    <div>
-                        <h6>{item.title}</h6>
-                        <div style={{ fontSize: "0.7rem", marginTop: "-0.2rem" }}>
-                            <NameSongArtist _id={item._id} />
-                        </div>
-                    </div>
-                    <div>
-                        <GetTimeAudio url={item.audio} />
-                    </div>
-                    
+            {songs.length !== 0 && songs.map((item: any, index) => (
+                <div className="box-chart">
+                <h5 className="stt">{index + 1}</h5>
+                <img width={45} height={45} src={item.image} alt="" />
+                <div className="box-icon" style={{left: "4rem"}} onClick={() => playAudio(item._id)}>
+                    ▶
+                </div>
+                <div className="name">
+                    <h6>{item.title}</h6>
+                    <div style={{ fontSize: "0.7rem", marginTop: "-0.2rem", color: "#ccc" }}>Nghệ sĩ</div>
+                </div>
+                <div>
+                    <GetTimeAudio url={item.audio} />
+                </div>
                 <div className="icon_item">
                     <AiOutlineDownload onClick={() => handleDownload(item._id)} className="icon" />
                     <AiFillHeart onClick={() => handleAdd(item._id, user._id, "like")} className="icon" />
@@ -226,12 +223,10 @@ const HomeSongComponent: React.FC<HomeSongComponentIF<any>> = (props) => {
                             </div>
                         </Popover>
                 </div>
-                </div>
-                </>
+                </div> 
             ))}
-
-        </div>
+        </>
     )
 }
 
-export default HomeSongComponent
+export default ListMusicNew
