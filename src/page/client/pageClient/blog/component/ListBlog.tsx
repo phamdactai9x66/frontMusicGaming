@@ -3,9 +3,9 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 interface ListBlogComponent<T> {
-
+    searchRecommendResults: Array<any>,
 }
-const ListBlog: React.FC<ListBlogComponent<any>> = () => {
+const ListBlog: React.FC<ListBlogComponent<any>> = (props) => {
     const [blog, setBlogs] = useState([]);
 
     useEffect(() => {
@@ -20,7 +20,7 @@ const ListBlog: React.FC<ListBlogComponent<any>> = () => {
     return (
         <>
             {
-                blog.map((item: any, index) => {
+                (props.searchRecommendResults.length === 0 ? blog : props.searchRecommendResults).map((item: any, index) => {
                     return (
                         <div className="box_blog " key={index}>
                             <div className="blog-image">

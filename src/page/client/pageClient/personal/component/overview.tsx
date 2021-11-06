@@ -35,7 +35,7 @@ const Overview = () => {
     return (
         <>
             <div className="Personal">
-                <Tabed />
+                {/* <Tabed /> */}
                 <div className="overview">
                     <h4 className="title_all" style={{fontSize:'1.3rem'}}>Bài hát <MdNavigateNext className="icon" /></h4>
                     <div className="main1">

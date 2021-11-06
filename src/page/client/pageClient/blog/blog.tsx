@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { Link } from "react-router-dom"
 import { ReactComponent as Right } from './right.svg'
 import { ReactComponent as Left } from './left.svg'
@@ -8,13 +8,26 @@ import ListBlog from './component/ListBlog';
 import ListCategoryBlog from './component/listCategoryBlog';
 import PostNew from './component/PostNew';
 import './blog.scss'
+import { debounce } from '@material-ui/core';
+import BlogApi from 'api/BlogApi';
 interface blog<T> {
 
 }
 
 const Blog: React.FC<blog<any>> = ({ ...props }) => {
+    const [searchKeyword, setSearchKeyword] = useState('');
+    const [searchRecommendResults, setSearchRecommendResults] = useState([]);
 
+    const searchDebounced = useCallback<any>(debounce( async (value: any) => {
+        const { data } = await BlogApi.getAll( {title: value} )
+        setSearchRecommendResults(data)
+    }, 3000), [])
+    const handleSearch = (value: string) => {
+        setSearchKeyword(value);
+        searchDebounced(value);
+    }
 
+    console.log(searchRecommendResults)
     return (
         <div className="container-blog">
             <div className="title-blog grid-2">
@@ -27,12 +40,12 @@ const Blog: React.FC<blog<any>> = ({ ...props }) => {
             </div>
             <div className="blog-main">
                 <div className="flex-blog">
-                    <ListBlog />
+                    <ListBlog searchRecommendResults={searchRecommendResults} />
                 </div>
                 <div className="blog-2">
                     <div className="search" >
                         <BiSearch className="icon" />
-                        <input placeholder="Search" type="text" />
+                        <input placeholder="Search" onChange={(e) => handleSearch(e.target.value)} type="text" />
 
                     </div>
                     <ListCategoryBlog />
