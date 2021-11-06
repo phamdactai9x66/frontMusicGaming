@@ -70,7 +70,7 @@ const UpdateTodo: React.FC<UpdateTodo<any>> = ({ changePage, _id, ...props }) =>
         <>
             <div className="admin-pageAdd">
                 <div className="text-name-add">
-                    <h3>Update Todo</h3><br />
+                    <h3>Update Albums</h3><br />
                 </div>
                 {alert.display && <Alert severity={alert.type as any} style={{ marginBottom: 5 }}>
                     {alert.message}

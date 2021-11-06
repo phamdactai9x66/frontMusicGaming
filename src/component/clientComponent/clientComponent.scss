@@ -1,0 +1,26 @@
+.modal-logged-parent {
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    opacity: 0.8;
+}
+
+.parent-alert{
+    position: fixed;
+    z-index: 30;
+    bottom: 8rem;
+    right: 3rem;
+    animation-name: alert;
+    animation-duration: 0.5s;
+}
+
+@keyframes alert {
+    from {
+        right: -10rem;
+    }
+    to {
+        right: 3rem;
+    }
+}
+

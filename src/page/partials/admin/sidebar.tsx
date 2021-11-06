@@ -10,6 +10,7 @@ import AccordionSummary from "@material-ui/core/AccordionSummary";
 import { ExpandMore } from "@material-ui/icons";
 
 interface Sidebar<T> {
+
 }
 
 const Sidebar: React.FC<Sidebar<any>> = ({ ...props }) => {
@@ -43,16 +44,16 @@ const Sidebar: React.FC<Sidebar<any>> = ({ ...props }) => {
       name: "Thể loại",
       iconAdd: "fa fa-plus-circle",
       details: "Add Thể Loại",
-      link: "/admin/",
-      subLink: "/admin/"
+      link: "/admin/songCate",
+      subLink: "/admin/addCate"
     },
     {
       icon: "fa fa-play-circle",
       name: "Playlist",
       iconAdd: "fa fa-plus-circle",
       details: "Add Playlist",
-      link: "/admin/",
-      subLink: "/admin/"
+      link: "/admin/playList",
+      subLink: "/admin/addPlayList"
     },
     {
       icon: "fa fa-file-image-o",
@@ -63,12 +64,12 @@ const Sidebar: React.FC<Sidebar<any>> = ({ ...props }) => {
       subLink: "/admin/"
     },
     {
-      icon: "fa fa-calendar-check-o",
-      name: "Todo list",
+      icon: "fa fa-file-audio-o",
+      name: "Albums",
       iconAdd: "fa fa-plus-circle",
-      details: "Add Todolist",
-      link: "/admin/todolist",
-      subLink: "/admin/addTodo"
+      details: "Add Albums",
+      link: "/admin/album",
+      subLink: "/admin/addAlbum"
     },
     {
       icon: "fa fa-users",
@@ -116,8 +117,8 @@ const Sidebar: React.FC<Sidebar<any>> = ({ ...props }) => {
       name: "Nhạc sĩ",
       iconAdd: "fa fa-plus-circle",
       details: "Add Nhạc Sĩ",
-      link: "/admin/topic",
-      subLink: "/admin/addTopic"
+      link: "/admin/",
+      subLink: "/admin/"
     }
   ];
   return (

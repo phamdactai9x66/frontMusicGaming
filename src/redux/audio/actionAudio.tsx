@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction, createAsyncThunk, current } from "@reduxjs/toolkit";
 import stateAudio, { formStateAudio } from "./stateAudio";
 import songApi from "api/songApi";
-import { tranFormdata } from "component/MethodCommon";
+import { tranFormDataId } from "component/MethodCommon";
 export const getlistAudio: any = createAsyncThunk("audio/getListAUdio", async (params, thunkAPi) => {
     const getAllSong = await songApi.getAll({});
     return getAllSong?.data
@@ -11,9 +11,21 @@ const sliceAudio = createSlice({
     name: "audio",
     initialState: stateAudio,
     reducers: {
-        playSong(state: formStateAudio, action: PayloadAction<{ _id: string }>) {
-            const { _id } = action.payload;
+        playSong(state: formStateAudio, action: PayloadAction<{ _id: string, listIdSong?: any }>) {
+            const { _id, listIdSong } = action.payload;
             const findSong = state.likstStaticAudio[_id];
+            // debugger
+            if (listIdSong && listIdSong.length) {
+                let saveIdSong: any[] = []
+                listIdSong.forEach((current: any) => {
+                    if (state.likstStaticAudio[current?.id_Song]) {
+                        saveIdSong = [...saveIdSong, state.likstStaticAudio[current?.id_Song]];
+                    }
+                })
+                state.listAudio = saveIdSong
+            } else {
+                state.listAudio = []
+            }
             if (findSong) {
                 state.audio = findSong;
                 state.display = !state.display;
@@ -32,7 +44,7 @@ const sliceAudio = createSlice({
     },
     extraReducers: {
         [getlistAudio.fulfilled]: (state: formStateAudio, action) => {
-            state.likstStaticAudio = tranFormdata([...action.payload])
+            state.likstStaticAudio = tranFormDataId([...action.payload])
             // console.log(action.payload)
         }
     }

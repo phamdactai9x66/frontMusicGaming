@@ -12,6 +12,9 @@ import WantHearComponent from './component/WantHearComponent';
 import { formStateUser } from 'redux/user/stateUser';
 import { useSelector } from 'react-redux';
 import playlistApi from 'api/playlistApi';
+import songApi from 'api/songApi';
+import { tranFormDataId } from "component/MethodCommon";
+import artistApi from 'api/ArtistApi';
 
 
 interface Home<T> {
@@ -21,6 +24,11 @@ interface Home<T> {
 const Home: React.FC<Home<any>> = ({ ...props }) => {
     const [playlists, setPlaylists] = useState([]);
     const userState = useSelector<{ user: any }>(state => state.user) as formStateUser;
+    const [songs, setSongs] = useState([]);
+    const [songsTransform, setSongsTransform] = useState([]);
+    const [artists, setArtists] = useState([]);
+
+
     var settings_banner = {
         dots: true,
         autoplay: true,
@@ -65,7 +73,7 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
     };
 
     const getPlaylists = async () => {
-        const responsePL = await playlistApi.getAll();
+        const responsePL = await playlistApi.getAll({}); // đoạn này nó yêu cầu chuyền tham số vào, ông chuyền vào nhé 😍
         if (!responsePL || responsePL.status === "failed") {
             console.error("Get playlist failed.");
             return;
@@ -73,9 +81,19 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
         const { data } = responsePL;
         setPlaylists(data)
     }
+    const getSongs = async () => {
+        const responseSong = await songApi.getAll({});
+        const resSongsTransform = await tranFormDataId(responseSong.data);
+        setSongs(responseSong.data);
+        setSongsTransform(resSongsTransform);
+
+        const dataArtists = await artistApi.getAll({});
+        setArtists(dataArtists.data);
+    }
 
     useEffect(() => {
-        getPlaylists()
+        getPlaylists();
+        getSongs();
     }, []);
 
     return (
@@ -97,7 +115,7 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                     <HomeSongComponent userState={userState} />
 
                     {/* artist */}
-                    <ArtistComponent />
+                    <ArtistComponent artists={artists} />
                 </div>
             </div>
 
@@ -105,7 +123,7 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                 <div className="list-slider">
                     <h4 className="title_all">{item.name} <MdNavigateNext className="icon" /></h4>
 
-                    <WantHearComponent settings_category={settings_category} idPlaylist={item._id} />
+                    <WantHearComponent settings_category={settings_category} songs={songsTransform} idPlaylist={item._id} />
                 </div>
             ))}
 
