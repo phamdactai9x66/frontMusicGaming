@@ -3,6 +3,7 @@ import CommentApi from "api/commentApi"
 import UseApi from "api/useApi";
 import { tranFormDataId, getDate } from "component/MethodCommon";
 import { Rating, Avatar } from "@mui/material";
+import dataStorage from "component/dataStorage";
 interface Comment<T> {
     id_Blog: string
 }
@@ -10,9 +11,12 @@ interface Comment<T> {
 const Comment: React.FC<Comment<any>> = ({ id_Blog, ...props }) => {
     const [comment, setcomment] = useState({ display: true, data: [] });
     const [staticUser, setstaticUser] = useState<any>({});
+    const [renderComment, setRenderComment] = useState(false);
+    useEffect(() => {
+        (dataStorage.renderComment as any) = checkRenderComment
+    }, [])
     useEffect(() => {
         (async () => {
-            if (!comment.display) return
             const query = {
                 id_Blog
             }
@@ -21,10 +25,10 @@ const Comment: React.FC<Comment<any>> = ({ id_Blog, ...props }) => {
             setcomment({ display: true, data })
             setstaticUser(tranFormDataId(getAllUser?.data))
         })()
-        return () => {
-            setcomment(value => ({ ...value, display: false }));
-        }
-    }, [])
+    }, [renderComment])
+    const checkRenderComment = () => {
+        setRenderComment(value => !value);
+    }
     return (
         <>
             <div className="comment">
