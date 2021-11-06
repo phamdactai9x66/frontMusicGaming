@@ -1,5 +1,5 @@
 import songApi from 'api/songApi';
-import GetTimeAudio from 'page/client/common/GetTimeAudio';
+// import GetTimeAudio from 'page/client/common/GetTimeAudio';
 import { handleLike, handleDownload, handleAddToPlaylist } from 'page/client/common/handle';
 import React, { useEffect, useState } from 'react';
 import { BsFillPlayFill } from 'react-icons/bs';
@@ -16,6 +16,7 @@ import { useHistory } from 'react-router';
 import ModalLogged from 'component/clientComponent/ModalLogged';
 import { Link } from 'react-router-dom';
 import NameSongArtist from 'component/nameSongArtist';
+import GetTimeAudio from "component/getTimeAudio"
 
 
 interface HomeSongComponentIF<T> {
@@ -52,42 +53,42 @@ const HomeSongComponent: React.FC<HomeSongComponentIF<any>> = (props) => {
     }, []);
 
     const handleAdd = async <T extends string>(s: T, u: T, t: T) => {
-        if(u === undefined){
+        if (u === undefined) {
             setIsLogged(true);
             return;
         }
-        if(t === 'like'){
+        if (t === 'like') {
             let likeRes = await handleLike(s, u);
-            if(likeRes && likeRes.status === "added"){
+            if (likeRes && likeRes.status === "added") {
                 console.log('okay, them roi nhe. (Added)');
-            }else if(likeRes && likeRes.status === "deleted") {
+            } else if (likeRes && likeRes.status === "deleted") {
                 console.log('okay, them roi nhe. (Deleted)');
-            } else{
+            } else {
                 console.log('oops, khong them duoc roi. (Error)')
             }
         }
-        
-        if(t === "playlist"){
+
+        if (t === "playlist") {
             //đang sai vì chưa lấy được playlist của user
             let playlistRes = await handleAddToPlaylist(s, u);
-            if(playlistRes && playlistRes.status === "successfully"){
+            if (playlistRes && playlistRes.status === "successfully") {
                 console.log('okay, them roi nhe');
-            }else if(playlistRes.status === "existed"){
+            } else if (playlistRes.status === "existed") {
                 console.log("Bài hát này đã tồn tại trong play list này của bạn.")
-            }else{
+            } else {
                 console.log('oops, khong them duoc roi');
             }
         }
     }
 
-    
+
     const getUserPlaylists = async () => {
-        if(user === "" || user === undefined){
+        if (user === "" || user === undefined) {
             setAnchor(null);
             setIsLogged(true);
             return;
         }
-        const { data } = await userPlaylistApi.getAll( {id_User: user._id} );
+        const { data } = await userPlaylistApi.getAll({ id_User: user._id });
         setUserPlaylists(data);
     }
 
@@ -100,53 +101,53 @@ const HomeSongComponent: React.FC<HomeSongComponentIF<any>> = (props) => {
     }
     return (
         <div className="box-music">
-        {isLogged && <ModalLogged isLogged={isLogged} handleLogged={handleLogged} />}
-        {songs.length !== 0 && songs.map((item: any) => (
-            <div className="music_item" key={item._id} >
-                <img src={item.image} alt={item.name} />
-                <div className="box-icon">
-                    <BsFillPlayFill onClick={() => playAudio(item._id)} />
-                </div>
-                <div>
-                    <h6>{item.title}</h6>
-                    <div style={{ fontSize: "0.7rem", marginTop: "-0.2rem" }}>
-                        <NameSongArtist _id={item._id} />
+            {isLogged && <ModalLogged isLogged={isLogged} handleLogged={handleLogged} />}
+            {songs.length !== 0 && songs.map((item: any) => (
+                <div className="music_item" key={item._id} >
+                    <img src={item.image} alt={item.name} />
+                    <div className="box-icon">
+                        <BsFillPlayFill onClick={() => playAudio(item._id)} />
                     </div>
-                </div>
-                <div>
-                    <GetTimeAudio url={item.audio} />
-                </div>
-                <div className="icon_item">
-                    <AiOutlineDownload onClick={() => handleDownload(item._id)} className="icon" />
-                    <AiFillHeart onClick={() => handleAdd(item._id, user._id, "like")} className="icon" />
-                    <IoMdAdd className="icon" onClick={(e) => {
-                        openPopover(e);
-                        getUserPlaylists();
-                    }}/>
-                    <Popover
-                        open={Boolean(anchor)}
-                        anchorEl={anchor}
-                        anchorOrigin={{
-                            vertical: "top",
-                            horizontal: "left",
-                        }}
-                        transformOrigin={{
-                            vertical: "bottom",
-                            horizontal: "right",
-                        }}
-                        onClose={() => setAnchor(null)}
-                    >
-                        <div style={{ background: "#101929", margin: "", color: "#fff", width: "15rem" }}>
-                            <div className="d-flex gap-2 p-2">
-                                <img width={35} height={35} src={item.image} alt="" />
-                                <div>
-                                    <h6>{item.name}</h6>
-                                    <div style={{ marginTop: "-0.7rem" }}><span style={{ fontSize: "0.8rem" }}>205k </span><span style={{ fontSize: "0.8rem" }}> 3.8M</span></div>
+                    <div>
+                        <h6>{item.title}</h6>
+                        <div style={{ fontSize: "0.7rem", marginTop: "-0.2rem" }}>
+                            <NameSongArtist _id={item._id} />
+                        </div>
+                    </div>
+                    <div>
+                        <GetTimeAudio audio={item.audio} />
+                    </div>
+                    <div className="icon_item">
+                        <AiOutlineDownload onClick={() => handleDownload(item._id)} className="icon" />
+                        <AiFillHeart onClick={() => handleAdd(item._id, user._id, "like")} className="icon" />
+                        <IoMdAdd className="icon" onClick={(e) => {
+                            openPopover(e);
+                            getUserPlaylists();
+                        }} />
+                        <Popover
+                            open={Boolean(anchor)}
+                            anchorEl={anchor}
+                            anchorOrigin={{
+                                vertical: "top",
+                                horizontal: "left",
+                            }}
+                            transformOrigin={{
+                                vertical: "bottom",
+                                horizontal: "right",
+                            }}
+                            onClose={() => setAnchor(null)}
+                        >
+                            <div style={{ background: "#101929", margin: "", color: "#fff", width: "15rem" }}>
+                                <div className="d-flex gap-2 p-2">
+                                    <img width={35} height={35} src={item.image} alt="" />
+                                    <div>
+                                        <h6>{item.name}</h6>
+                                        <div style={{ marginTop: "-0.7rem" }}><span style={{ fontSize: "0.8rem" }}>205k </span><span style={{ fontSize: "0.8rem" }}> 3.8M</span></div>
+                                    </div>
                                 </div>
-                            </div>
-                            <hr style={{ margin: "-0.1rem 0 0.5rem 0" }} />
+                                <hr style={{ margin: "-0.1rem 0 0.5rem 0" }} />
                                 <MenuItem className="add list" onClick={openPopover2}>
-                                    <IoMdAdd className="icon"/> &ensp; Tạo playlist mới
+                                    <IoMdAdd className="icon" /> &ensp; Tạo playlist mới
                                 </MenuItem>
                                 <Popover
                                     open={Boolean(anchor2)}
@@ -162,23 +163,23 @@ const HomeSongComponent: React.FC<HomeSongComponentIF<any>> = (props) => {
                                     onClose={() => setAnchor2(null)}
                                 >
                                     <div className="item p-3">
-                                      <form>
-                                      <input type="text" className="mb-2 p-2 text-light" style={{background: "#0d141f", border: "0.1rem solid #0e5353"}} placeholder="Thêm playlist..."/>
-                                      <br/>
-                                      <Button color="primary" variant="contained">Thêm playlist</Button>
-                                      </form>
+                                        <form>
+                                            <input type="text" className="mb-2 p-2 text-light" style={{ background: "#0d141f", border: "0.1rem solid #0e5353" }} placeholder="Thêm playlist..." />
+                                            <br />
+                                            <Button color="primary" variant="contained">Thêm playlist</Button>
+                                        </form>
                                     </div>
                                 </Popover>
 
                                 {userPlaylists.length === 0 && <MenuItem className="list" onClick={() => handleAdd(item._id, user._id, "playlist")} >
                                     <BsMusicNoteList /> &ensp; Bạn chưa có Playlist nào.
                                 </MenuItem>}
-                                {userPlaylists.length !== 0 && userPlaylists.map( (_: any) => (
+                                {userPlaylists.length !== 0 && userPlaylists.map((_: any) => (
                                     <MenuItem className="list" onClick={() => handleAdd(_._id, user._id, "playlist")} >
                                         <BsMusicNoteList /> &ensp; {_.name}
                                     </MenuItem>
                                 ))}
-                                
+
                             </div>
                         </Popover>
                     </div>
