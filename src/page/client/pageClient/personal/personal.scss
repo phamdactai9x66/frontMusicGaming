@@ -40,6 +40,7 @@
             margin-top: -2rem;
             h4 {
                 color: rgb(231, 231, 231);
+                font-size: 1,3rem;
             }
             .main1 {
                 display: grid;
@@ -60,13 +61,12 @@
                 margin-bottom: 3rem;
                 .main2_add {
                     display: grid;
-                    gap: 1rem;
-                    grid-template-columns: 1fr 1fr 1fr 1fr;
+                    gap: 2rem;
+                    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
                     .add {
                         box-shadow: 0 3px 5px rgba(0, 0, 0, 0.452);
                         cursor: pointer;
                         background: #131f31;
-                        width: 100%;
                         border-radius: 0.4rem;
                         display: flex;
                         justify-content: center;
