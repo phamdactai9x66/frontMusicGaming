@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Button from '@mui/material/Button';
+import { Alert, AlertTitle } from '@mui/lab';
 
 interface ModalLoggedIF<T> {
     isLogged: boolean,
@@ -18,17 +19,14 @@ const ModalLogged: React.FC<ModalLoggedIF<any>> = (props) => {
             aria-labelledby="parent-modal-title"
             aria-describedby="parent-modal-description"
         >
-            <Box sx={{ width: 600 }}>
-                <h2 id="parent-modal-title">Bạn chưa đăng nhập</h2>
-                <p id="parent-modal-description">
-                    Vui lòng đăng nhập để thực hiện chức năng này.
-                </p>
-                <Button onClick={props.handleLogged}>Hủy</Button>
-                <Button>
-                    <Link to="/signin">Đăng nhập</Link>
-                </Button>
-            </Box>
-        </Modal>
+         <Alert severity="warning" style={{borderLeft: "0.3rem solid red", width: "33rem", margin: "1.5rem"}}>
+             <AlertTitle style={{textAlign: "left"}}>Vui lòng đăng nhập để thực hiện chức năng này.</AlertTitle>     
+             <div style={{display: "flex", gap: "3rem"}}>
+                <div style={{cursor: "pointer"}} onClick={props.handleLogged}>Hủy</div>
+                <Link to="/signin">Đăng nhập</Link>
+             </div>
+         </Alert>
+                 </Modal>
         {/* // <div className='modal-logged-parent'>
         //     <div className="modal-logged-child">
         //         <div className="modal-logged-content">
