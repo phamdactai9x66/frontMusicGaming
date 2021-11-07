@@ -33,7 +33,7 @@ export const tranFormData = <T extends any[]>(data: T, key: string, findKey: str
     })
 }
 //get date of duration
-export const tranFormDuration = <T extends number>(duration: T): string | void => {
+export const tranFormDuration = <T extends number>(duration: T): string => {
     if (!duration) return `00:00`;
     const getSecon = Math.floor(duration % 60);
     const getMinute = Math.floor(duration / 60);

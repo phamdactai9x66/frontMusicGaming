@@ -137,12 +137,11 @@ const HomeSongComponent: React.FC<HomeSongComponentIF<any>> = (props) => {
             })
         }
     }
-
     return (
         <div className="box-music">
             {isLogged && <ModalLogged isLogged={isLogged} handleLogged={handleLogged} />}
-            {songs.length !== 0 && songs.map((item: any) => (
-                <div className="music_item" key={item._id} >
+            {songs.length !== 0 && songs.map((item: any) => {
+                return (<div className="music_item" key={item._id} >
                     <img src={item.image} alt={item.name} />
                     <div className="box-icon">
                         <BsFillPlayFill onClick={() => playAudio(item._id)} />
@@ -154,7 +153,7 @@ const HomeSongComponent: React.FC<HomeSongComponentIF<any>> = (props) => {
                         </div>
                     </div>
                     <div>
-                        <GetTimeAudio audio={item.audio} />
+                        <GetTimeAudio audio={item?.audio} />
                     </div>
                     <div className="icon_item">
                         <AiOutlineDownload onClick={() => handleDownload(item._id)} className="icon" />
@@ -222,8 +221,10 @@ const HomeSongComponent: React.FC<HomeSongComponentIF<any>> = (props) => {
                             </div>
                         </Popover>
                     </div>
-                </div>
-            ))}
+                </div>)
+            }
+
+            )}
         </div>
     )
 }

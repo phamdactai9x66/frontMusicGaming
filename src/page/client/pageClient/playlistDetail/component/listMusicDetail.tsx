@@ -16,7 +16,6 @@ interface ListMusicDetail<T> {
 }
 
 const ListMusicDetail: React.FC<ListMusicDetail<any>> = ({ current, index, listIdSong, ...props }) => {
-    const { audio, image, title, _id } = current;
     const [anchor, setAnchor] = useState(null);
     const dispatch = useDispatch()
     const openPopover = (event: any) => {
@@ -31,17 +30,17 @@ const ListMusicDetail: React.FC<ListMusicDetail<any>> = ({ current, index, listI
             <div className="box-music" key={index}>
 
                 <div className="music_item">
-                    <img src={image} alt="" />
+                    <img src={current?.image} alt="" />
                     <div className="box-icon">
                         <BsFillPlayFill onClick={() => { dispatch(playSong({ _id: current._id, listIdSong })) }} />
                     </div>
                     <div>
-                        <h6>{title}</h6>
+                        <h6>{current?.title}</h6>
                         <div style={{ fontSize: "0.7rem", marginTop: "-0.2rem" }}>
-                            <NameSongArtist _id={_id} /></div>
+                            <NameSongArtist _id={current?._id} /></div>
                     </div>
                     <div>
-                        <GetTimeAudio audio={audio} />
+                        <GetTimeAudio audio={current?.audio} />
                     </div>
                     <div className="icon_item">
                         <AiOutlineDownload className="icon" />
