@@ -61,6 +61,21 @@ export const initialReducer = {
         _page: 1,
     }
 }
+export const initialReducer2 = {
+    Data: [],
+    DataStatic: [],
+    Display: false,
+    checkAll: false,
+    Pagination: {
+        _limit: 4,
+        _page: 1,
+        rows: 0,
+    },
+    Filter: {
+        _limit: 4,
+        _page: 1,
+    }
+}
 export const typeAciton = {
     getData: 'getData',
     reset: 'reset',

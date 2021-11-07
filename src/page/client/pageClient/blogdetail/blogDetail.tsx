@@ -27,11 +27,9 @@ const BlogDetail: React.FC<blogDetail<any>> = ({ match, history, ...props }) => 
             const query = {
                 _id: saveId.current
             }
-            console.log(query)
             const { data, status } = await BlogApi.getAll<object>(query)
             if (status === variableCommon.statusF) return history.goBack()
             setBlog({ display: true, data: { ...data[0] } })
-
         })()
         return () => {
             setBlog(value => ({ ...value, display: false }));

@@ -20,7 +20,7 @@ const DetailBlog: React.FC<DetailBlog<any>> = ({ id_Blog, ...props }) => {
         return () => {
             setdetailBlog(value => ({ ...value, display: false }))
         }
-    }, [])
+    }, [id_Blog])
     return (
         <>
             {

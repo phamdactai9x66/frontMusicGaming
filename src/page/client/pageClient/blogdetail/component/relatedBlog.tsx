@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useReducer } from 'react'
 import { Pagination } from "@mui/material"
 import BlogApi from "api/BlogApi";
-import { HandleGet } from "component/MethodCommon";
+import { HandleGet, handleReducer, initialReducer2, typeAciton, pustAction } from "component/MethodCommon";
 import { RouteComponentProps, withRouter } from "react-router-dom";
 interface RelatedBlog<T> extends RouteComponentProps {
     id_CategoryBlog: string
@@ -9,22 +9,33 @@ interface RelatedBlog<T> extends RouteComponentProps {
 
 const RelatedBlog: React.FC<RelatedBlog<any>> = ({ id_CategoryBlog, history, ...props }) => {
     const [blogs, setBlogs] = useState({ display: true, data: [] });
+    const [state, dispatch] = useReducer(handleReducer, initialReducer2);
+    const countPage = Math.ceil(state.DataStatic.length / state.Pagination._limit);
 
     useEffect(() => {
         if (!blogs.display) return;
         (async () => {
-            const [data, error] = await HandleGet(BlogApi.getAll, { id_CategoryBlog })
+            const query = {
+                id_CategoryBlog,
+                ...state.Filter
+            }
+            const [data, error] = await HandleGet(BlogApi.getAll, query)
+            const getAll = await BlogApi.getAll<object>({})
             if (error) return setBlogs(value => ({ ...value, display: false }));
+            dispatch(pustAction(typeAciton.getData, { Data: data.data, dataStatic: getAll.data }))
             setBlogs({ data: data?.data, display: true })
         })()
         return () => {
             setBlogs(value => ({ ...value, display: false }));
         }
-    }, [])
+    }, [state.Filter])
     const moveNextBlog = (_idSong: string) => {
-        // console.log(_idSong)
         if (!_idSong) return;
         history.push(`/blogDetail/${_idSong}`)
+    }
+    const movePage = (e: Event | any, newPage: number) => {
+        if (newPage === state.Filter._page) return
+        dispatch(pustAction(typeAciton.movePage, { nextPage: newPage }))
     }
     const listBlog = () => {
 
@@ -59,7 +70,7 @@ const RelatedBlog: React.FC<RelatedBlog<any>> = ({ id_CategoryBlog, history, ...
                 {listBlog()}
             </div>
             <div className="Pagination">
-                <Pagination count={10} onClick={() => { console.log() }} style={{ padding: 10, paddingTop: 20, color: "#fff" }} />
+                <Pagination count={countPage} onChange={movePage} style={{ padding: 10, paddingTop: 20, color: "#fff" }} />
             </div>
         </>
     )
