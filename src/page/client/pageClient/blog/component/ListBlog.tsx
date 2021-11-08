@@ -2,6 +2,7 @@ import blogApi from 'api/BlogApi';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
+
 interface ListBlogComponent<T> {
     searchRecommendResults: Array<any>,
 }
@@ -19,10 +20,15 @@ const ListBlog: React.FC<ListBlogComponent<any>> = (props) => {
 
     return (
         <>
+     
+          
             {
                 (props.searchRecommendResults.length === 0 ? blog : props.searchRecommendResults).map((item: any, index) => {
                     return (
+                        <>
+                     
                         <div className="box_blog " key={index}>
+                           
                             <div className="blog-image">
                                 <h4 className="color text-blog-none">{item.title}</h4>
                                 <Link to={`blogDetail/${item?._id}`} >
@@ -39,6 +45,7 @@ const ListBlog: React.FC<ListBlogComponent<any>> = (props) => {
 
                             </div>
                         </div>
+                        </>
                     )
                 })
             }
