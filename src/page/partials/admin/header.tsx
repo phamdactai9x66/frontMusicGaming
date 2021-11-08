@@ -15,6 +15,9 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSearch } from '@fortawesome/free-solid-svg-icons'
+
 
 const useStyles = makeStyles((theme) => ({
 	grow: {
@@ -108,7 +111,7 @@ export default function Header() {
 
 	const menuId = 'primary-search-account-menu';
 	const renderMenu = (
-		<Menu
+		<Menu 
 			anchorEl={anchorEl}
 			anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
 			id={menuId}
@@ -117,8 +120,8 @@ export default function Header() {
 			open={isMenuOpen}
 			onClose={handleMenuClose}
 		>
-			<MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-			<MenuItem onClick={handleMenuClose}>My account</MenuItem>
+			<MenuItem onClick={handleMenuClose}>Thông tin</MenuItem>
+			<MenuItem onClick={handleMenuClose}>Đăng xuất</MenuItem>
 		</Menu>
 	);
 
@@ -181,21 +184,11 @@ export default function Header() {
 					<Typography className={classes.title} variant='h6' noWrap>
 						<Link to="/" className="text-light">HOME</Link>
 					</Typography>
-					<div className={classes.search}>
-						<div className={classes.searchIcon}>
-							<SearchIcon />
-						</div>
-						<InputBase
-                            style={{position: 'relative',
-                            zIndex: 3000}}
-							placeholder='Tìm …'
-							classes={{
-								root: classes.inputRoot,
-								input: classes.inputInput,
-							}}
-							inputProps={{ 'aria-label': 'search' }}
-						/>
-					</div>
+			
+					 <div className="main_search">
+        <FontAwesomeIcon icon={faSearch} className="icon_search" />
+        <input type="text" placeholder="Search..." className="_search" />
+      </div>
 					<div className={classes.grow} />
 					<div className={classes.sectionDesktop}>
 						<IconButton
@@ -239,7 +232,10 @@ export default function Header() {
 				</Toolbar>
 			</AppBar>
 			{renderMobileMenu}
-			{renderMenu}
+			<div className="mt-5">
+			{renderMenu}	
+			</div>
+			
 		</div>
 	);
 }
