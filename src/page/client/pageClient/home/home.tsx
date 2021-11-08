@@ -120,41 +120,13 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
             </div>
 
             {playlists.length !== 0 && playlists.map((item: any) => (
-                <div className="list-slider">
+                <div className="list-slider border-1">
                     <h4 className="title_all">{item.name} <MdNavigateNext className="icon" /></h4>
 
                     <WantHearComponent settings_category={settings_category} songs={songsTransform} idPlaylist={item._id} />
                 </div>
             ))}
-
-            {/* <div className="list-slider">
-                <h4 className="title_all">Có thể bạn muốn nghe <MdNavigateNext className="icon" /></h4>
-
-                 get by {_limit: 20, view: 'desc', date: "desc"} 
-                <WantHearComponent settings_category={settings_category} />
-            </div>
-            
-            <div className="list-slider">
-                <h4 className="title_all">Nghe gần đây <MdNavigateNext className="icon" /></h4>
-
-                get by {_limit: 20, view: 'desc', date: "desc"}
-                <RecentlyComponent settings_category={settings_category} />
-            </div>
-            <div className="list-slider">
-                <h4 className="title_all">Top thịnh hành <MdNavigateNext className="icon" /></h4>
-
-                get by {_limit: 20, view: 'desc'}
-                <PopularComponent settings_category={settings_category} sort_by={{ _limit: 20, view: 'desc' }} />
-            </div>
-            <div className="list-slider">
-                <h4 className="title_all">Nhạc mới mỗi ngày <MdNavigateNext className="icon" /></h4>
-                <PopularComponent settings_category={settings_category} sort_by={{ _limit: 20, date: 'desc' }} />
-            </div>
-            <div className="list-slider">
-                <h4 className="title_all">Sắp diễn ra <MdNavigateNext className="icon" /></h4>
-                <PopularComponent settings_category={settings_category} sort_by={{ _limit: 20, day_release: 'desc' }} />
-
-            </div> */}
+         
             <ChartMusic />
         </div>
     )
