@@ -48,13 +48,11 @@ const Content: React.FC<any> = ({ state, ...props }) => {
     }
     const MapSong = <T extends number>(currentSong: any, index: T): JSX.Element => {
         const { id_Song } = currentSong;
-        // console.log(state.dataSong)
-        const { audio, image, _id } = state.dataSong[id_Song];
         const getSong = state.dataSong[id_Song];
         return (
             <div className="box" key={index}>
                 <figure>
-                    <img src={image} alt="" />
+                    <img src={getSong?.image} alt="" />
                 </figure>
                 <div className="icon-box">
                     <div>
