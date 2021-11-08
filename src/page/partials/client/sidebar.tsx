@@ -8,7 +8,6 @@ import { BsPlusCircle } from 'react-icons/bs';
 import { BiPlayCircle,BiTimeFive } from 'react-icons/bi';
 import { AiFillStar,AiOutlineHeart } from 'react-icons/ai';
 import Popup from '@titaui/reactjs-popup';
-
 interface Sidebar<T> {
 
 }

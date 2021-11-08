@@ -96,20 +96,22 @@ const HeaderClient: React.FC<HeaderClient> = ({ ...props }) => {
   const checkAdmin = () => {
     return (state.user.role >= 1) ? (
       <MenuItem value={20}>
-        <Link to="/admin" className="link"><RiAdminFill className="_icon" /> Admin</Link>
+        <Link to="/admin" className="link pb-0 border-1" style={{fontSize:'1rem'}}><RiAdminFill className="_icon" /> Quản trị</Link>
       </MenuItem>
     ) : null
   }
   const checkUser = () => {
     return (
       <>
-        <MenuItem value={10}>
-          <span className="link" onClick={logOut}><FaSignInAlt className="_icon" />Sign out</span>
+	    <MenuItem value={10}  >
+          <Link to="/overview" className="link rounded pb-0 border-1 " style={{fontSize:'1rem'}} ><FaSignInAlt className="_icon" />Thông tin</Link>
         </MenuItem>
-        {checkAdmin()}
+		{checkAdmin()}
         <MenuItem value={10}>
-          <Link to="/overview" className="link"><FaSignInAlt className="_icon" />Main Profile</Link>
+          <span className="link text-danger  rounded border-1 border-danger " style={{fontSize:'1rem'}} onClick={logOut}><FaSignInAlt className="text-danger _icon" />Đăng xuất</span>
         </MenuItem>
+      
+      
       </>
     )
   }
@@ -117,7 +119,7 @@ const HeaderClient: React.FC<HeaderClient> = ({ ...props }) => {
     return (
       <>
         <MenuItem value={10} onClick={handleMenuClose}>
-          <Link to="/signin" className="link"><FaSignInAlt className="_icon" />Sign in</Link>
+          <Link to="/signin" className="link rounded " style={{fontSize:'1rem'}}><FaSignInAlt className="_icon" />Đăng nhập</Link>
         </MenuItem>
       </>
     )
@@ -148,7 +150,7 @@ const HeaderClient: React.FC<HeaderClient> = ({ ...props }) => {
 
 	const menuId = 'primary-search-account-menu';
 	const renderMenu = (
-		<Menu
+		<Menu className="mt-5"
 			anchorEl={anchorEl}
 			anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
 			id={menuId}
