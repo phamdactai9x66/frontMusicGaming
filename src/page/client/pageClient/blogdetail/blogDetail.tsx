@@ -1,13 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { ReactComponent as Sao2 } from './sao.svg'
-import { Pagination } from "@mui/material"
 import { RouteComponentProps } from 'react-router-dom'
 import BlogApi from "api/BlogApi"
 import { variableCommon } from "component/variableCommon";
 import { getDate } from "component/MethodCommon";
 import DetailBlog from "./component/detailBlog";
 import Comment from "./component/comment"
-import { Rating } from "@mui/material";
+import AddComment from "./component/addComment";
+import RelatedBlog from "./component/relatedBlog";
 
 interface blogDetail<T> extends RouteComponentProps {
 
@@ -21,23 +20,21 @@ const BlogDetail: React.FC<blogDetail<any>> = ({ match, history, ...props }) => 
         if (!getId) return history.goBack();
         saveId.current = getId;
 
-    }, [])
+    }, [(match.params as any)?.idBlog])
 
     useEffect(() => {
         (async () => {
-            if (!blog.display) return
             const query = {
                 _id: saveId.current
             }
             const { data, status } = await BlogApi.getAll<object>(query)
             if (status === variableCommon.statusF) return history.goBack()
             setBlog({ display: true, data: { ...data[0] } })
-
         })()
         return () => {
             setBlog(value => ({ ...value, display: false }));
         }
-    }, [])
+    }, [(match.params as any)?.idBlog])
     return (
         <div className="container-blogdetail-blog">
             <div className="blogdetail-title-grid">
@@ -68,50 +65,12 @@ const BlogDetail: React.FC<blogDetail<any>> = ({ match, history, ...props }) => 
                 <div className="hr2">
                     <hr />
                 </div>
-                {blog.data?._id && <Comment id_Blog={blog.data?._id} />}
+                {blog.display ? (blog.data?._id && <Comment id_Blog={blog.data?._id} />) : null}
 
-                <div className="desc-comment">
-                    <div className="danhgia">
-                        <h5>Đánh giá</h5>
-                        <span><Rating value={5} /></span>
-                    </div>
-                    <form action="" className="form">
-                        <textarea name="" id="" cols={30} rows={10} placeholder="Message"></textarea>
-                        <button>Post comment</button>
-                    </form>
-                </div>
-                <div className="blog-lien-quan">
-                    <div className="title-blog-lienquan">
-                        <hr />
-                        <div>
-                            <h4>Blog liên quan</h4>
-                        </div>
-                        <hr />
-                    </div>
-                    <div className="grid-4-bloglienquan">
-                        <div className="box-grid-lienquan">
-                            <img src="https://thumbs.dreamstime.com/b/edm-club-music-party-template-dance-party-flyer-brochure-night-party-club-sound-banner-poster-72485529.jpg" alt="" />
-                            <p>EDM COMPILATION VOLUME 6 BANNER DATES-1 Only the Best MusicEDM COMPILATION </p>
-                        </div>
-                        <div className="box-grid-lienquan">
-                            <img src="https://thumbs.dreamstime.com/b/edm-club-music-party-template-dance-party-flyer-brochure-night-party-club-sound-banner-poster-72485529.jpg" alt="" />
-                            <p>EDM COMPILATION VOLUME 6 BANNER DATES-1 Only the Best MusicEDM COMPILATION </p>
-                        </div>
-                        <div className="box-grid-lienquan">
-                            <img src="https://thumbs.dreamstime.com/b/edm-club-music-party-template-dance-party-flyer-brochure-night-party-club-sound-banner-poster-72485529.jpg" alt="" />
-                            <p>EDM COMPILATION VOLUME 6 BANNER DATES-1 Only the Best MusicEDM COMPILATION </p>
-                        </div>
-                        <div className="box-grid-lienquan">
-                            <img src="https://thumbs.dreamstime.com/b/edm-club-music-party-template-dance-party-flyer-brochure-night-party-club-sound-banner-poster-72485529.jpg" alt="" />
-                            <p>EDM COMPILATION VOLUME 6 BANNER DATES-1 Only the Best MusicEDM COMPILATION </p>
-                        </div>
 
-                    </div>
-                </div>
-                <div className="Pagination">
-                    <Pagination count={10} onClick={() => { console.log() }} style={{ padding: 10, paddingTop: 20, color: "#fff" }} />
-                </div>
+                <AddComment idBlog={saveId.current} />
             </div>
+            {blog.data.id_CategoryBlog && <RelatedBlog id_CategoryBlog={blog.data.id_CategoryBlog} />}
         </div>
 
 
