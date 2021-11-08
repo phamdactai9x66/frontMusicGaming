@@ -169,17 +169,17 @@ const Overview = () => {
                                 trigger={() =>
                                     <div className="add">
                                         <IoMdAdd className="icon" />
-                                  Tạo playlist mới
+                                  Tạo danh sách phát mới
                             </div>
                                 }
                             >
                                 {(close: any) => (
-                                    <div className="modal-playlis">
+                                    <div className="modal-playlis w-75 h-50">
                                         <div className="content-modal">
                                             <button className="close" onClick={close}>
                                                 X
                                     </button>
-                                            <h5 className="text-center">Tạo playlist mới</h5>
+                                            <h5 className="text-center">Tạo danh sách phát mới</h5>
                                             <form action="">
                                                 <input type="text" placeholder="Nhập tên playlist" />
                                                 <p className="err">err</p>

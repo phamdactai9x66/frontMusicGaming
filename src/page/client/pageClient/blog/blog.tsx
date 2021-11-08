@@ -31,14 +31,14 @@ const Blog: React.FC<blog<any>> = ({ ...props }) => {
     console.log(searchRecommendResults)
     return (
         <>
-           {/* <div className=" w-100 h-100 d-flex position-fixed top-0" style={{left:"0px",zIndex:10,backgroundColor:"rgb(0 0 0 / 33%)"}}>
+           <div className=" w-100 h-100 d-flex position-fixed top-0" style={{left:"0px",zIndex:10,backgroundColor:"rgb(0 0 0 / 33%)"}}>
                <div className="mx-auto my-auto" >
                     <Lodding style={{width:"2.8rem",height:"2.8rem"}}
                     className="mx-auto my-auto" 
                     /> 
                </div>
          
-            </div> */}
+            </div>
         <div className="container-blog">
             <div className="title-blog grid-2">
                 <div className="text-title-blog">

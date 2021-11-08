@@ -25,10 +25,10 @@ const Recently: React.FC<Recently<any>> = ({ ...props }) => {
                 <h3 className="title_all">Phát gần đây <MdNavigateNext className="icon" /></h3>
                 <br/>
                 <div className="main1"  style={{gridTemplateColumns: "100%"}}>
-                <div className="box-music">
-                        <div className="music_item">
+                <div className="box-music ">
+                        <div className="music_item p-2 border-0" >
                             <img src="https://anh.24h.com.vn/upload/4-2016/images/2016-12-06/1480992562-148098909683484-son-tung.jpg" alt="" />
-                            <div className="box-icon">
+                            <div className="box-icon m-2 pt-1">
                             <BsFillPlayFill/>
                             </div>
                             <div>
@@ -43,18 +43,18 @@ const Recently: React.FC<Recently<any>> = ({ ...props }) => {
                                 <AiFillHeart className="icon" />
                                 <IoMdAdd className="icon" onClick={openPopover} />
                                 <Popover
-                    open={Boolean(anchor)}
-                    anchorEl={anchor}
-                    anchorOrigin={{
-                        vertical: "top",
-                        horizontal: "left",
-                    }}
-                    transformOrigin={{
-                        vertical: "bottom",
-                        horizontal: "right",
-                    }}
-                    onClose={() => setAnchor(null)}
-                >
+                                open={Boolean(anchor)}
+                                anchorEl={anchor}
+                                anchorOrigin={{
+                                    vertical: "top",
+                                    horizontal: "left",
+                                }}
+                                transformOrigin={{
+                                    vertical: "bottom",
+                                    horizontal: "right",
+                                }}
+                                onClose={() => setAnchor(null)}
+                            >
                     <div style={{ background: "#101929", margin: "", color: "#fff", width: "13rem" }}>
                         <div className="d-flex gap-2 p-2">
                             <img width={35} height={35} src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJdulnc1hxmzx9izhgHHRQGhssK6KshlS6bypOagn9_lVhJ6ntqiCFNislU1nOb7NjJeY&usqp=CAU" alt="" />
@@ -104,9 +104,9 @@ const Recently: React.FC<Recently<any>> = ({ ...props }) => {
                             </div>
                         </div>
                         {/* music_item */}
-                        <div className="music_item">
+                        <div className="music_item p-2 border-0">
                             <img src="https://anh.24h.com.vn/upload/4-2016/images/2016-12-06/1480992562-148098909683484-son-tung.jpg" alt="" />
-                            <div className="box-icon">
+                            <div className="box-icon m-2 pt-1">
                             <BsFillPlayFill/>
                             </div>
                             <div>
