@@ -52,11 +52,12 @@ const Signin: React.FC<Signin<any>> = ({ history, ...props }) => {
     return (
       <div className="link_handel">
         <section style={!step.displayForm ? step.addStyle : {}}>
-          <a href={" "} onClick={(event) => { navidateForm(event)(0) }}>Sign in</a>
+          <a href={" "} onClick={(event) => { navidateForm(event)(0) }} style={{fontSize:'1.1rem'}}>
+Đăng nhập</a>
         </section>
 
         <section style={step.displayForm ? step.addStyle : {}}>
-          <a href={" "} onClick={(event) => { navidateForm(event)(1) }}>Sign up</a>
+          <a href={" "} onClick={(event) => { navidateForm(event)(1) }} style={{fontSize:'1.1rem'}}>Đăng ký</a>
         </section >
       </div>
     )
