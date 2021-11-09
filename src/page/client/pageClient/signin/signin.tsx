@@ -30,8 +30,9 @@ const Signin: React.FC<Signin<any>> = ({ history, ...props }) => {
   const [alertError, setalertError] = useState<any>({ display: null, message: "" });
 
   const historyState: any = history.location.state;
+  
   useEffect(() => {
-    if(historyState){
+    if(historyState && historyState.step){
       setStep(historyState.step)
     };
   }, [historyState]);

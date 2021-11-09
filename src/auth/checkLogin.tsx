@@ -14,7 +14,7 @@ const UserLogin: React.FC<UserLogin<any>> = ({ location, children, ...props }) =
         <>
             <Route {...props}>
                 {(user && token) ? children :
-                    <Redirect to={{ pathname: '/', state: location.pathname }} />}
+                    <Redirect to={{ pathname: '/signin', state: location.pathname }} />}
             </Route>
         </>
     )

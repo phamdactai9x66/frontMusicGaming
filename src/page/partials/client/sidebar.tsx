@@ -1,9 +1,9 @@
 
-import React from 'react'
+import React, { useEffect } from 'react'
 import { BsMusicNoteBeamed,BsListUl } from 'react-icons/bs';
 import { FaBlogger, FaChartPie } from 'react-icons/fa';
 import { RiFolderMusicFill } from 'react-icons/ri';
-import { Link, RouteChildrenProps, withRouter } from "react-router-dom";
+import { Link, Redirect, RouteChildrenProps, withRouter, Route } from "react-router-dom";
 import { BsPlusCircle } from 'react-icons/bs';
 import { BiPlayCircle,BiTimeFive } from 'react-icons/bi';
 import { AiFillStar,AiOutlineHeart } from 'react-icons/ai';
