@@ -60,8 +60,8 @@ const Sidebar: React.FC<Sidebar<any>> = ({ ...props }) => {
       name: "Slider",
       iconAdd: "fa fa-plus-circle",
       details: "Add Slider",
-      link: "/admin/",
-      subLink: "/admin/"
+      link: "/admin/slide",
+      subLink: "/admin/addslide"
     },
     {
       icon: "fa fa-file-audio-o",
