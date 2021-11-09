@@ -97,7 +97,8 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
 
     return (
         <>
-   
+      
+        {/* // */}
           <div className="home">
             <div className="slider-banner">
                 <VerticalSlider settings_banner={settings_banner} />
