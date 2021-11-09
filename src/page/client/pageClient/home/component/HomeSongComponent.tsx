@@ -17,6 +17,7 @@ import { Link } from 'react-router-dom';
 import NameSongArtist from 'component/nameSongArtist';
 import GetTimeAudio from "component/getTimeAudio";
 import AlertComponent from 'component/clientComponent/Alert';
+import Notification from 'page/notificationModal/NotificationModal';
 
 
 
@@ -140,7 +141,7 @@ const HomeSongComponent: React.FC<HomeSongComponentIF<any>> = (props) => {
     }
     return (
         <div className="box-music mt-1">
-            {isLogged && <ModalLogged isLogged={isLogged} handleLogged={handleLogged} />}
+            {isLogged && <Notification handleLogged={handleLogged} />}
             {handleStatus.status !== "" && <AlertComponent status={handleStatus.status} content={handleStatus.content} />}
             {songs.length !== 0 && songs.map((item: any) => (
                 <div className="music_item border-0 p-2" key={item._id} >
