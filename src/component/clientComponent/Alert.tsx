@@ -13,13 +13,13 @@ const AlertComponent: React.FC<AlertComponentIF<any>> = (props) => {
         <div className='parent-alert'>
             {props.status !== "" && props.status === "success" ? 
              <Alert severity="success" style={{borderLeft: "0.3rem solid green"}}>
-             <AlertTitle style={{textAlign: "left"}}>Success</AlertTitle>
-             {props.content}
-         </Alert>
+                <AlertTitle style={{textAlign: "left"}}>Thành công</AlertTitle>
+                {props.content}
+            </Alert>
              : 
              <Alert severity="error"  style={{borderLeft: "0.3rem solid red"}}>
-                 <AlertTitle style={{textAlign: "left"}}>Error</AlertTitle>
-                 {props.content}
+                <AlertTitle style={{textAlign: "left"}}>Thất bại</AlertTitle>
+                {props.content}
              </Alert>
              }
         </div>

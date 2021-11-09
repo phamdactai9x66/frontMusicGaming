@@ -22,6 +22,8 @@ import AddCategory from "./page/admin/pageAdmin/categories/page/AddCategory";
 import Categories from "page/admin/pageAdmin/categories/index";
 import PlayList from "page/admin/pageAdmin/playlist/index";
 import AddPlayList from "page/admin/pageAdmin/playlist/page/AddPlayList";
+import Slide from './page/admin/pageAdmin/slide/index'
+import AddSlide from './page/admin/pageAdmin/slide/page/addSlide'
 import Profile from "page/admin/pageAdmin/profile/Profile";
 
 export interface propertyPage {
@@ -82,6 +84,16 @@ const Admin: propertyPage[] = [
         exact: false
     },
  
+    {
+        path: "/admin/slide",
+        component: Slide,
+        exact: false
+    },
+    {
+        path: "admin/addslide",
+        component: AddSlide,
+        exact: false
+    },
     {
         path: "/admin/:pathNotFound",
         component: NotFoundAdmin,
