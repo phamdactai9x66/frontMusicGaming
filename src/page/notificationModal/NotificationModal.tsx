@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react'
+import { Link } from 'react-router-dom';
 import avatar from './anc.png'
 interface notification<T> {
     handleLogged: any,
@@ -35,12 +36,23 @@ const Notification: React.FC<notification<any>> = ({ ...props }) => {
                 <p>Tính năng này chỉ dành cho người dùng đã có tài khoản Music Game</p>
                 
                 <div className="d-flex justify-content-center">
-                    <div className="" style={{marginRight:"0.2rem"}}>
+                    <Link to={{
+                        pathname: "/signin",
+                        state: {
+                            step: {
+                                displayForm: 1,
+                                addStyle: {
+                                    borderBottom: " 0.2rem solid rgb(65, 217, 228)"
+                                }
+                            }
+                        },
+                    }}
+                        className="" style={{marginRight:"0.2rem"}}>
                         <button type="button" className="btn btn-light">Đăng kí</button>
-                    </div>
-                    <div>
+                    </Link>
+                    <Link to='/signin'>
                         <button type="button" className="btn btn-primary"  style={{marginLeft:"0.2rem"}}>Đăng nhập</button>
-                    </div>
+                    </Link>
                 </div>
             </div>
 

@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import LoginFacebook from './component/loginFacebook';
 import LoginGoogle from './component/loginGoogle';
 import { Formik, Form, FormikContextType } from "formik";
@@ -27,7 +27,14 @@ const Signin: React.FC<Signin<any>> = ({ history, ...props }) => {
   })
   const dispatchUser = useDispatch();
   const form = useRef<HTMLFormElement | any>(null);
-  const [alertError, setalertError] = useState<any>({ display: null, message: "" })
+  const [alertError, setalertError] = useState<any>({ display: null, message: "" });
+
+  const historyState: any = history.location.state;
+  useEffect(() => {
+    if(historyState){
+      setStep(historyState.step)
+    };
+  }, [historyState]);
 
   const renderForm = <T extends number>(step: T, formik: FormikContextType<any>): JSX.Element => {
     switch (step) {
