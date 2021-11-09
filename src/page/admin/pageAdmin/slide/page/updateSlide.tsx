@@ -5,7 +5,6 @@ import { Button, Alert } from "@mui/material"
 import { Formik, Form } from "formik";
 import SelectSong from '../component/SelectSong'
 import { InputText, FileField } from "../../../../../component/customField/index"
-import validationChemaSlide from '../component/validateSchemaSlide'
 import { variableCommon } from "../../../../../component/variableCommon"
 import { page } from "../index"
 import { HandleGet } from "../../../../../component/MethodCommon"

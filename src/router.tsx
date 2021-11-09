@@ -24,7 +24,7 @@ import PlayList from "page/admin/pageAdmin/playlist/index";
 import AddPlayList from "page/admin/pageAdmin/playlist/page/AddPlayList";
 import Slide from './page/admin/pageAdmin/slide/index'
 import AddSlide from './page/admin/pageAdmin/slide/page/addSlide'
-
+import Profile from "page/admin/pageAdmin/profile/Profile";
 
 export interface propertyPage {
     path: string,
@@ -37,6 +37,11 @@ const Admin: propertyPage[] = [
         path: "/admin",
         component: HomeAdmin,
         exact: true
+    },
+    {
+        path: "admin/profile",
+        component: Profile,
+        exact: false
     },
     {
         path: "/admin/addAlbum",
@@ -78,6 +83,7 @@ const Admin: propertyPage[] = [
         component: AddPlayList,
         exact: false
     },
+ 
     {
         path: "/admin/slide",
         component: Slide,

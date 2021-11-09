@@ -8,6 +8,7 @@ export const HandleGet = async (functionPromise: Function, params = {}) => {
         return [null, error];
     }
 }
+
 export const sortData = <Y extends string>(data: any[], key: Y, chooseSort: 'B' | 'S' = 'B') => {
     if (!data) return [];
     return data.sort((current1: any, current2) => {
@@ -15,6 +16,7 @@ export const sortData = <Y extends string>(data: any[], key: Y, chooseSort: 'B' 
             : current2[key] - current1[key];
     })
 }
+
 export const limitSentence = <T extends string>(words: T, limit: number = 5): string | undefined => {
     if (!words) return ''
     const getWords = words?.split(" ") || [''];
@@ -33,7 +35,7 @@ export const tranFormData = <T extends any[]>(data: T, key: string, findKey: str
     })
 }
 //get date of duration
-export const tranFormDuration = <T extends number>(duration: T): string | void => {
+export const tranFormDuration = <T extends number>(duration: T): string => {
     if (!duration) return `00:00`;
     const getSecon = Math.floor(duration % 60);
     const getMinute = Math.floor(duration / 60);
@@ -58,6 +60,21 @@ export const initialReducer = {
     },
     Filter: {
         _limit: 5,
+        _page: 1,
+    }
+}
+export const initialReducer2 = {
+    Data: [],
+    DataStatic: [],
+    Display: false,
+    checkAll: false,
+    Pagination: {
+        _limit: 4,
+        _page: 1,
+        rows: 0,
+    },
+    Filter: {
+        _limit: 4,
         _page: 1,
     }
 }

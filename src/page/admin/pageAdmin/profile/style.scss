@@ -1,0 +1,11 @@
+.profile-grid{
+    display: grid;
+    grid-template-columns: 30% 1fr;
+    gap: 40px;
+    .profile-box1 .profile-box1{
+        box-shadow: 0 0 0.5rem;
+        border: 0.1rem  solid gray;
+    
+    }
+      
+}

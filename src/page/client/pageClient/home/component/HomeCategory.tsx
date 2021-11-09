@@ -28,7 +28,7 @@ const HomeCategory: React.FC<HomeCategory<any>> = ({ ...props }) => {
 
     return (
         <>
-            <div>
+            <div className="">
                 <Slider {...props.settings_category}>
                     {categories.length !== 0 && categories.map((item: CategoryIF) => (
                         <Link to={`/categoryDetailPlaylist/${item._id}`} key={item._id}>
@@ -38,7 +38,7 @@ const HomeCategory: React.FC<HomeCategory<any>> = ({ ...props }) => {
                                 </figure>
                                 <div className="icon-box_category">
                                     <div>
-                                        <h6 className="icon">{item.name}</h6>
+                                        <h6 className="icon " style={{fontSize:"1.3rem"}}>{item.name}</h6>
                                     </div>
                                 </div>
                             </div>
@@ -51,3 +51,4 @@ const HomeCategory: React.FC<HomeCategory<any>> = ({ ...props }) => {
 }
 
 export default HomeCategory
+ 
