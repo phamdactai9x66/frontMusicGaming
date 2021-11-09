@@ -17,6 +17,7 @@ import { Link } from 'react-router-dom';
 import NameSongArtist from 'component/nameSongArtist';
 import GetTimeAudio from "component/getTimeAudio";
 import AlertComponent from 'component/clientComponent/Alert';
+import Notification from 'page/notificationModal/NotificationModal';
 
 
 
@@ -65,11 +66,20 @@ const HomeSongComponent: React.FC<HomeSongComponentIF<any>> = (props) => {
         if (t === 'like') {
             let likeRes = await handleLike(s, u);
             if (likeRes && likeRes.status === "added") {
-                console.log('okay, them roi nhe. (Added)');
+                setHandleStatus({
+                    status: "success",
+                    content: "Thêm vào yêu thích thành công."
+                })
             } else if (likeRes && likeRes.status === "deleted") {
-                console.log('okay, them roi nhe. (Deleted)');
+                setHandleStatus({
+                    status: "success",
+                    content: "Bỏ yêu thích thành công."
+                })
             } else {
-                console.log('oops, khong them duoc roi. (Error)')
+                setHandleStatus({
+                    status: "failed",
+                    content: "Thêm vào yêu thích không thành công."
+                })
             }
         }
 
@@ -77,11 +87,20 @@ const HomeSongComponent: React.FC<HomeSongComponentIF<any>> = (props) => {
             //đang sai vì chưa lấy được playlist của user
             let playlistRes = await handleAddToPlaylist(s, u);
             if (playlistRes && playlistRes.status === "successfully") {
-                console.log('okay, them roi nhe');
+                setHandleStatus({
+                    status: "success",
+                    content: "Thêm vào Playlist thành công."
+                })
             } else if (playlistRes.status === "existed") {
-                console.log("Bài hát này đã tồn tại trong play list này của bạn.")
+                setHandleStatus({
+                    status: "failed",
+                    content: "Bài hát đã tồn tại trong Playlist của bạn."
+                })
             } else {
-                console.log('oops, khong them duoc roi');
+                setHandleStatus({
+                    status: "failed",
+                    content: "Thêm vào vào playlist không thành công."
+                })
             }
         }
     }
@@ -108,7 +127,7 @@ const HomeSongComponent: React.FC<HomeSongComponentIF<any>> = (props) => {
     if (handleStatus.status !== "") {
         setTimeout(() => {
             setHandleStatus({ status: "", content: "" });
-        }, 4000);
+        }, 2500);
     }
 
     const handleCreatePlaylist = async () => {
@@ -140,7 +159,7 @@ const HomeSongComponent: React.FC<HomeSongComponentIF<any>> = (props) => {
     }
     return (
         <div className="box-music mt-1">
-            {isLogged && <ModalLogged isLogged={isLogged} handleLogged={handleLogged} />}
+            {isLogged && <Notification handleLogged={handleLogged} />}
             {handleStatus.status !== "" && <AlertComponent status={handleStatus.status} content={handleStatus.content} />}
             {songs.length !== 0 && songs.map((item: any) => (
                 <div className="music_item border-0 p-2" key={item._id} >
@@ -204,9 +223,9 @@ const HomeSongComponent: React.FC<HomeSongComponentIF<any>> = (props) => {
                                 >
                                     <div className="item p-3">
                                         <form>
-                                            <input type="text" className="mb-2 p-2 text-light" style={{ background: "#0d141f", border: "0.1rem solid #0e5353" }} placeholder="Thêm playlist..." />
+                                            <input type="text" onChange={(e) => setPlaylistName(e.target.value)} className="mb-2 p-2 text-light" style={{ background: "#0d141f", border: "0.1rem solid #0e5353" }} placeholder="Thêm playlist..." />
                                             <br />
-                                            <Button color="primary" variant="contained">Thêm playlist</Button>
+                                            <Button color="primary" variant="contained" onClick={handleCreatePlaylist} >Thêm playlist</Button>
                                         </form>
                                     </div>
                                 </Popover>
