@@ -16,7 +16,7 @@ interface Sidebar<T> {
 const Sidebar: React.FC<Sidebar<any>> = ({ ...props }) => {
   const location = useLocation();
 
-  console.log("this is sidebar location: ", location)
+  // console.log("this is sidebar location: ", location)
   return (
     <>
       <div className="sidebar">

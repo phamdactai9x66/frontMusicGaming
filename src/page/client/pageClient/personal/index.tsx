@@ -30,13 +30,20 @@ const IndexPersonal: React.FC<IndexPersonal<any>> = ({ ...props }) => {
     const userState = useSelector<{ user: any }>(state => state.user) as formStateUser;
     const [isLogged, setIsLogged] = useState(false);
     const [page, setpage] = useState<string>("");
-    const history = useHistory();
+    const history: any = useHistory<any>();
+
+
+
+    useEffect( () => {
+        if(history.location.state){ 
+            setpage(history.location.state?.page);
+        }
+    }, [history.location.state]);
+
     if(userState.token === ''){
-        history.push('/', {isLogged: false});
+        history.push('/', {isLogged: true});
         return <></>;
     }
-
-    console.log(history)
 
     const renderPage = <T extends string>(page?: T) => {
         switch (page) {
