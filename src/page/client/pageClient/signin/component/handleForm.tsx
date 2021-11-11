@@ -7,25 +7,19 @@ const alertTypeFile = "We just allow file extension jpg, jpeg, bmp,gif, png"
 
 const validateForm = [
     Yup.object().shape({
-        userName: Yup.string().trim().checkRequire(),
+        userName: Yup.string().checkRequire(),
         passWord: Yup.string().checkRequire()
     }),
     Yup.object().shape({
         first_name: Yup.string().trim().checkRequire(),
         last_name: Yup.string().trim().checkRequire(),
-        avatar: Yup.mixed().test("checkFile", "", function (value, field) {
-            const { extensionImage } = variableCommon
-            if ([null, undefined, ""].includes(value)) return true;
-
-            const { path, createError } = this;
-
-            const getTypeFile: any = (value as File).name.split(".");
-
-            const savetype = getTypeFile.at(-1).toLowerCase()
-            if (!extensionImage.includes(savetype)) return createError({ path, message: alertTypeFile })
-
-            return true;
-        })
+        image: (Yup as any).mixed().requireFile().checkTypeFile().checkSizeFile(),
+        gender: Yup.string().checkRequire(),
+        email: Yup.string().checkRequire(),
+        address: Yup.string().checkRequire(),
+        userName: Yup.string().checkRequire(),
+        passWord: Yup.string().checkRequire(),
+        confirmPassWord: Yup.string().oneOf([Yup.ref('passWord')], 'password is not match'),
     })
 ]
 export default validateForm

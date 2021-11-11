@@ -18,7 +18,6 @@ Yup.addMethod(Yup.mixed, "requireFile", function (message: string = messageDefau
         if (typeof value === "string") value = value.trim();
         const { path, createError } = this;
         if ([undefined, null, ''].includes(value)) return createError({ path, message })
-
         return true;
     })
 })
