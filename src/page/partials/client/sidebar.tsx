@@ -21,6 +21,7 @@ const Sidebar: React.FC<Sidebar<any>> = ({ ...props }) => {
   const history = useHistory();
 
   const clickedOverview = (path: string) => {
+    console.log(path)
     if(userState.token){
       return history.push(path);
     }
@@ -37,7 +38,7 @@ const Sidebar: React.FC<Sidebar<any>> = ({ ...props }) => {
         {isLogged && <Notification handleLogged={handleLogged} />}
         <h5><Link to="/">MUSIC GAME</Link></h5>
         <ul>
-        <Link to="#" onClick={()=>clickedOverview('/')}><li><BsMusicNoteBeamed className="icon" />Cá nhân</li></Link>
+        <Link to="#" onClick={()=>clickedOverview('/overview')}><li><BsMusicNoteBeamed className="icon" />Cá nhân</li></Link>
         {/* <Link to="/overview"><li><BsMusicNoteBeamed className="icon" />Cá nhân</li></Link> */}
         <Link to="/"><li><RiFolderMusicFill className="icon" />Khám phá</li></Link>
         <Link to="/chart"><li><FaChartPie className="icon" />Music chart</li></Link>
