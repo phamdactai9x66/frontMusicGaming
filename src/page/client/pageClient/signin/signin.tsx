@@ -30,8 +30,9 @@ const Signin: React.FC<Signin<any>> = ({ history, ...props }) => {
   const [alertError, setalertError] = useState<any>({ display: null, message: "" });
 
   const historyState: any = history.location.state;
+  
   useEffect(() => {
-    if(historyState){
+    if(historyState && historyState.step){
       setStep(historyState.step)
     };
   }, [historyState]);
@@ -71,7 +72,7 @@ const Signin: React.FC<Signin<any>> = ({ history, ...props }) => {
   }
   const handleSignIn = async (data: any, action: any) => {
     const handleForm = new FormData(form.current);
-    console.log("b")
+    
     if (!step.displayForm) {
 
       const secretKey = (process.env as any).REACT_APP_SECRET_KEY;
@@ -91,7 +92,7 @@ const Signin: React.FC<Signin<any>> = ({ history, ...props }) => {
       return
 
     }
-    console.log("a")
+    
     const loginUser = await userApi.Signup(handleForm);
     if (loginUser.status !== variableCommon.statusF) {
 

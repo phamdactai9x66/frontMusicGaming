@@ -3,7 +3,7 @@ import { Card } from "@material-ui/core"
 import LoadingButton from '@mui/lab/LoadingButton'
 import { Button, Alert } from "@mui/material"
 import { Formik, Form } from "formik"
-import SelectSong from '../component/SelectSong'
+import SelectSong from '../component/selectSong'
 import { InputText, FileField } from "../../../../../component/customField/index";
 import validateChemaSlide from '../component/validateSchemaSlide'
 import { variableCommon } from "../../../../../component/variableCommon"

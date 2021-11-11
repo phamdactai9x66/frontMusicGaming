@@ -28,7 +28,6 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
     const [songsTransform, setSongsTransform] = useState([]);
     const [artists, setArtists] = useState([]);
 
-
     var settings_banner = {
         dots: true,
         autoplay: true,
@@ -107,12 +106,12 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
 
             {/* category */}
             <div className="list-slider">
-                <h4 className="title_all">Thể loại <MdNavigateNext className="icon" /></h4>
+                <h4 className="title_all mb-3">Thể loại <MdNavigateNext className="icon" /></h4>
                 <HomeCategory settings_category={settings_category} />
 
             </div>
             <div className="list-music">
-                <h4 className="title_all">Danh sách bài hát <MdNavigateNext className="icon" /></h4>
+                <h4 className="title_all mb-2">Danh sách bài hát <MdNavigateNext className="icon" /></h4>
                 <div className="main1">
 
                     <HomeSongComponent userState={userState} />

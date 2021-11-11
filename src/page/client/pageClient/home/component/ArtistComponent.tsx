@@ -19,10 +19,10 @@ const ArtistComponent: React.FC<ArtistComponentIF<any>> = (props) => {
 
     return (
         <div className='limit-items'>
-            <h4 className="title_all">Nhạc sĩ</h4>
+            <h4 className="title_all mb-4 " >Nhạc sĩ</h4>
             <input type='checkbox' id='show-all' />
-            <label htmlFor='show-all' className='text-show'>Xem thêm</label>
-            <label htmlFor='show-all' className='text-hide'>Ẩn bớt</label>
+            <label htmlFor='show-all' className='text-show  rounded-2 px-2 ' style={{fontSize:'1rem' , background:"#0c1020",boxShadow:"0 3px 7px rgb(0 0 0 / 80%)",color:"#6ee9ff"}}>Xem thêm</label>
+            <label htmlFor='show-all' className='text-hide  rounded-2 px-2 ' style={{fontSize:'1rem' , background:"#0c1020",boxShadow:"0 3px 7px rgb(0 0 0 / 80%)",color:"#6ee9ff"}} >Ẩn bớt</label>
             <div className='items'>
                 <section>
                     {artistsTransform.length !== 0 && artistsTransform.map( (item: ItemArtistIF<string>) => (

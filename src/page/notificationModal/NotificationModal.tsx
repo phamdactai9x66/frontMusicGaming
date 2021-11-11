@@ -48,10 +48,10 @@ const Notification: React.FC<notification<any>> = ({ ...props }) => {
                         },
                     }}
                         className="" style={{marginRight:"0.2rem"}}>
-                        <button type="button" className="btn btn-light">Đăng kí</button>
+                        <button onClick={()=>props.handleLogged()} type="button" className="btn btn-light">Đăng kí</button>
                     </Link>
                     <Link to='/signin'>
-                        <button type="button" className="btn btn-primary"  style={{marginLeft:"0.2rem"}}>Đăng nhập</button>
+                        <button onClick={()=>props.handleLogged()} type="button" className="btn btn-primary" style={{marginLeft:"0.2rem"}}>Đăng nhập</button>
                     </Link>
                 </div>
             </div>

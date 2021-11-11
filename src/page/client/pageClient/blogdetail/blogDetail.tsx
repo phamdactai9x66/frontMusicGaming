@@ -14,6 +14,7 @@ interface blogDetail<T> extends RouteComponentProps {
 
 const BlogDetail: React.FC<blogDetail<any>> = ({ match, history, ...props }) => {
     const saveId = useRef<string>('');
+    
     const [blog, setBlog] = useState<{ display: boolean, data: any }>({ display: true, data: {} });
     useEffect(() => {
         const getId = (match.params as any)?.idBlog;
@@ -35,6 +36,9 @@ const BlogDetail: React.FC<blogDetail<any>> = ({ match, history, ...props }) => 
             setBlog(value => ({ ...value, display: false }));
         }
     }, [(match.params as any)?.idBlog])
+
+    console.log(saveId)
+
     return (
         <div className="container-blogdetail-blog">
             <div className="blogdetail-title-grid">

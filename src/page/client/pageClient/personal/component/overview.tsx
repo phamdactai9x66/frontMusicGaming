@@ -86,9 +86,9 @@ const Overview = () => {
                             </Slider>
                         </div>
                         <div className="box-music" style={{ height: "305px" }}>
-                            <div className="music_item">
+                            <div className="music_item border-0 p-2">
                                 <img src="https://anh.24h.com.vn/upload/4-2016/images/2016-12-06/1480992562-148098909683484-son-tung.jpg" alt="" />
-                                <div className="box-icon">
+                                <div className="box-icon m-2 pt-1">
                                     <BsFillPlayFill />
                                 </div>
                                 <div>
@@ -182,7 +182,7 @@ const Overview = () => {
                                             <h5 className="text-center">Tạo danh sách phát mới</h5>
                                             <form action="">
                                                 <input type="text" placeholder="Nhập tên playlist" />
-                                                <p className="err">err</p>
+                                                {/* <p className="err">err</p> */}
                                                 <Button className="create_playlist">TẠO MỚI</Button>
                                             </form>
                                         </div>
