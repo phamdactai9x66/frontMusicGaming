@@ -27,15 +27,7 @@ const Signin: React.FC<Signin<any>> = ({ history, ...props }) => {
   })
   const dispatchUser = useDispatch();
   const form = useRef<HTMLFormElement | any>(null);
-  const [alertError, setalertError] = useState<any>({ display: null, message: "" });
-
-  const historyState: any = history.location.state;
-  
-  useEffect(() => {
-    if(historyState && historyState.step){
-      setStep(historyState.step)
-    };
-  }, [historyState]);
+  const [alertError, setalertError] = useState<any>({ display: false, message: "", type: '' })
 
   const renderForm = <T extends number>(step: T, formik: FormikContextType<any>): JSX.Element => {
     switch (step) {
@@ -53,6 +45,7 @@ const Signin: React.FC<Signin<any>> = ({ history, ...props }) => {
   const navidateForm = (event: Event | any) => {
     event.preventDefault();
     return (step: number) => {
+      setalertError((value: any) => ({ ...value, display: false }))
       setStep(value => ({ ...value, displayForm: step }))
     }
   }
@@ -60,19 +53,19 @@ const Signin: React.FC<Signin<any>> = ({ history, ...props }) => {
     return (
       <div className="link_handel">
         <section style={!step.displayForm ? step.addStyle : {}}>
-          <a href={" "} onClick={(event) => { navidateForm(event)(0) }} style={{fontSize:'1.1rem'}}>
-Đăng nhập</a>
+          <a href={" "} onClick={(event) => { navidateForm(event)(0) }} style={{ fontSize: '1.1rem' }}>
+            Đăng nhập</a>
         </section>
 
         <section style={step.displayForm ? step.addStyle : {}}>
-          <a href={" "} onClick={(event) => { navidateForm(event)(1) }} style={{fontSize:'1.1rem'}}>Đăng ký</a>
+          <a href={" "} onClick={(event) => { navidateForm(event)(1) }} style={{ fontSize: '1.1rem' }}>Đăng ký</a>
         </section >
       </div>
     )
   }
   const handleSignIn = async (data: any, action: any) => {
     const handleForm = new FormData(form.current);
-    
+
     if (!step.displayForm) {
 
       const secretKey = (process.env as any).REACT_APP_SECRET_KEY;
@@ -88,21 +81,19 @@ const Signin: React.FC<Signin<any>> = ({ history, ...props }) => {
 
         history.replace("/");
       }
-      displayAlert(loginUser.message)
-      return
-
+      return displayAlert(loginUser.message, 'error')
     }
-    
+
     const loginUser = await userApi.Signup(handleForm);
     if (loginUser.status !== variableCommon.statusF) {
 
       // dispatchUser(saveInfo(loginUser))
-
+      return displayAlert(loginUser.message, 'success')
     }
-    displayAlert(loginUser.message)
+    displayAlert(loginUser.message, 'error')
   }
-  const displayAlert = (messageError: string = "We have some error !") => {
-    setalertError({ display: true, message: messageError })
+  const displayAlert = (messageError: string = "We have some error !", type: string = 'info') => {
+    setalertError({ display: true, message: messageError, type })
   }
   return (
     <>
@@ -120,10 +111,11 @@ const Signin: React.FC<Signin<any>> = ({ history, ...props }) => {
               enableReinitialize
             >
               {formik => {
+                console.log(formik.errors)
                 return (
                   <Form ref={form}>
                     {alertError.display &&
-                      <Alert severity="error" style={{ cursor: "pointer" }}
+                      <Alert severity={alertError.type} style={{ cursor: "pointer", marginBottom: 5 }}
                         onClick={() => {
                           setalertError((value: any) => ({ ...value, display: null }))
                         }}
