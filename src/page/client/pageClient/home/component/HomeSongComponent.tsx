@@ -171,12 +171,12 @@ const HomeSongComponent: React.FC<HomeSongComponentIF<any>> = (props) => {
         setAddPlaylistLoading(false);
     }
     return (
-        <div className="box-music mt-1">
+        <div className="box-music mt-4">
             {isLogged && <Notification handleLogged={handleLogged} />}
             {locationLogged && <Notification handleLogged={handleLogged} />}
             {handleStatus.status !== "" && <AlertComponent status={handleStatus.status} content={handleStatus.content} />}
             {songs.length !== 0 && songs.map((item: any) => (
-                <div className="music_item border-0 p-2" key={item._id} >
+                <div className="music_item border-0 p-2" key={item._id}>
                     <img src={item.image} alt={item.name} />
                     <div className="box-icon m-2 pt-1">
                         <BsFillPlayFill onClick={() => playAudio(item._id)} />

@@ -35,9 +35,9 @@ const ListSong: React.FC<ListSong<any>> = ({ data, ...props }) => {
                         const getAudio = data.dataSong?.[idSong];
                         const song = data.dataSong?.[idSong];
                         return (
-                            <div className="music_item" key={index}>
+                            <div className="music_item border-0 p-2" key={index}>
                                 <img src={song?.image} alt="" />
-                                <div className="box-icon">
+                                <div className="box-icon m-2 pt-1">
                                     <BsFillPlayFill onClick={() => { playAudio(getAudio) }} />
                                 </div>
                                 <div>
