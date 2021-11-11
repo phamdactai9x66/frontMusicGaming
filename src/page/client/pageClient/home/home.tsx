@@ -3,7 +3,7 @@ import { MdNavigateNext } from 'react-icons/md';
 import Button from '@mui/material/Button';
 import { BiPlayCircle } from 'react-icons/bi';
 import ChartMusic from './component/chartMusic';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import VerticalSlider from './component/VerticalSlider';
 import HomeCategory from './component/HomeCategory';
 import HomeSongComponent from './component/HomeSongComponent';
@@ -27,6 +27,7 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
     const [songs, setSongs] = useState([]);
     const [songsTransform, setSongsTransform] = useState([]);
     const [artists, setArtists] = useState([]);
+    const location =  useLocation();
 
     var settings_banner = {
         dots: true,
