@@ -15,8 +15,7 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSearch } from '@fortawesome/free-solid-svg-icons'
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -186,7 +185,7 @@ export default function Header() {
 					</Typography>
 			
 					 <div className="main_search">
-        <FontAwesomeIcon icon={faSearch} className="icon_search" />
+        {/* <FontAwesomeIcon icon={faSearch} className="icon_search" /> */}
         <input type="text" placeholder="Search..." className="_search" />
       </div>
 					<div className={classes.grow} />

@@ -5,6 +5,7 @@ import { FaBlogger, FaChartPie } from 'react-icons/fa';
 import { RiFolderMusicFill } from 'react-icons/ri';
 import { Link, RouteChildrenProps, withRouter } from "react-router-dom";
 import { BsPlusCircle } from 'react-icons/bs';
+import { RiGroupFill } from 'react-icons/ri';
 import { BiPlayCircle,BiTimeFive } from 'react-icons/bi';
 import { AiFillStar,AiOutlineHeart } from 'react-icons/ai';
 import Popup from '@titaui/reactjs-popup';
@@ -28,6 +29,7 @@ const Sidebar: React.FC<Sidebar<any>> = ({ ...props }) => {
             <Link to="/newmusic"><li><BsMusicNoteBeamed className="icon" />Nhạc mới</li></Link>
             <Link to="/category"><li><BsListUl className="icon" />Thể loại</li></Link>
             <Link to="/toptrending"><li><AiFillStar className="icon" />Top thịnh hành</li></Link>
+            <Link to="/listenTogether"><li><RiGroupFill className="icon" />Nghe cùng nhau</li></Link>
           </ul>
           <ul>
             <h6>Thư viện</h6>
