@@ -20,9 +20,9 @@ const Sidebar: React.FC<Sidebar<any>> = ({ ...props }) => {
   const [isLogged, setIsLogged] = useState(false);
   const history = useHistory();
 
-  const clickedOverview = () => {
+  const clickedOverview = (path: string) => {
     if(userState.token){
-      return history.push('/overview');
+      return history.push(path);
     }
 
     setIsLogged(true)
@@ -37,7 +37,7 @@ const Sidebar: React.FC<Sidebar<any>> = ({ ...props }) => {
         {isLogged && <Notification handleLogged={handleLogged} />}
         <h5><Link to="/">MUSIC GAME</Link></h5>
         <ul>
-        <Link to="#" onClick={clickedOverview}><li><BsMusicNoteBeamed className="icon" />Cá nhân</li></Link>
+        <Link to="#" onClick={()=>clickedOverview('/')}><li><BsMusicNoteBeamed className="icon" />Cá nhân</li></Link>
         {/* <Link to="/overview"><li><BsMusicNoteBeamed className="icon" />Cá nhân</li></Link> */}
         <Link to="/"><li><RiFolderMusicFill className="icon" />Khám phá</li></Link>
         <Link to="/chart"><li><FaChartPie className="icon" />Music chart</li></Link>
@@ -51,9 +51,9 @@ const Sidebar: React.FC<Sidebar<any>> = ({ ...props }) => {
           </ul>
           <ul>
             <h6>Thư viện</h6>
-            <Link to="/favorite"><li><AiOutlineHeart className="icon" />Yêu thích</li></Link>
+            <Link to="#" onClick={()=>clickedOverview('/favorite')}><li><AiOutlineHeart className="icon" />Yêu thích</li></Link>
             <Link to="/music"><li><BsMusicNoteBeamed className="icon" />Bài hát</li></Link>
-            <Link to="/playlist"><li><BiPlayCircle className="icon" />Playlist</li></Link>
+            <Link to="#" onClick={()=>clickedOverview('/playlist')}><li><BiPlayCircle className="icon" />Playlist</li></Link>
             <Link to="/recently"><li><BiTimeFive className="icon" />Gần đây</li></Link>
           </ul>
           <ul>
