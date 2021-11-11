@@ -24,7 +24,7 @@ const LoginGoogle: React.FC<LoginGoogle<any>> = ({ history, displayAlert, ...pro
     return (
         <GoogleLogin
             clientId="778656568797-qela2gigufg47tagd18n55ng9jv7n87p.apps.googleusercontent.com"
-            buttonText="Login"
+            buttonText="Google Login"
             onSuccess={responseGoogle}
             onFailure={responseGoogle}
             cookiePolicy={'single_host_origin'}

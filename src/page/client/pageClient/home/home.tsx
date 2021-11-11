@@ -97,7 +97,27 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
     }, []);
 
     return (
-        <div className="home">
+        <>
+          <div className=" w-100 h-100 d-flex position-fixed top-0  text-center" style={{left:"0px",zIndex:10,backgroundColor:"rgb(0 0 0 / 25%)"}}>
+            <div className="my-auto mx-auto p-4 rounded-3" style={{backgroundColor:"#9cf6ff"}}>
+                <img 
+                className="w-25 h-25"
+                src="https://aux2.iconspalace.com/uploads/music-folder-circle-icon-256.png" alt="" />
+                <p style={{fontWeight:500}}>Hãy đăng nhập để có thể sử dụng tính năng này</p>
+                <p>Tính năng này chỉ dành cho người dùng đã có tài khoản Music Game</p>
+                <div className="d-flex justify-content-center">
+                <div className="" style={{marginRight:"0.2rem"}}>
+                      <button type="button" className="btn btn-light">Đăng kí</button>
+                  </div>
+                  <div>
+                  <button type="button" className="btn btn-primary"  style={{marginLeft:"0.2rem"}}>Đăng nhập</button>
+                  </div>
+                </div>
+            </div>
+
+        </div>
+        {/* // */}
+          <div className="home">
             <div className="slider-banner">
                 <VerticalSlider settings_banner={settings_banner} />
             </div>
@@ -120,43 +140,18 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
             </div>
 
             {playlists.length !== 0 && playlists.map((item: any) => (
-                <div className="list-slider">
+                <div className="list-slider ">
                     <h4 className="title_all">{item.name} <MdNavigateNext className="icon" /></h4>
 
                     <WantHearComponent settings_category={settings_category} songs={songsTransform} idPlaylist={item._id} />
                 </div>
             ))}
-
-            {/* <div className="list-slider">
-                <h4 className="title_all">Có thể bạn muốn nghe <MdNavigateNext className="icon" /></h4>
-
-                 get by {_limit: 20, view: 'desc', date: "desc"} 
-                <WantHearComponent settings_category={settings_category} />
-            </div>
-            
-            <div className="list-slider">
-                <h4 className="title_all">Nghe gần đây <MdNavigateNext className="icon" /></h4>
-
-                get by {_limit: 20, view: 'desc', date: "desc"}
-                <RecentlyComponent settings_category={settings_category} />
-            </div>
-            <div className="list-slider">
-                <h4 className="title_all">Top thịnh hành <MdNavigateNext className="icon" /></h4>
-
-                get by {_limit: 20, view: 'desc'}
-                <PopularComponent settings_category={settings_category} sort_by={{ _limit: 20, view: 'desc' }} />
-            </div>
-            <div className="list-slider">
-                <h4 className="title_all">Nhạc mới mỗi ngày <MdNavigateNext className="icon" /></h4>
-                <PopularComponent settings_category={settings_category} sort_by={{ _limit: 20, date: 'desc' }} />
-            </div>
-            <div className="list-slider">
-                <h4 className="title_all">Sắp diễn ra <MdNavigateNext className="icon" /></h4>
-                <PopularComponent settings_category={settings_category} sort_by={{ _limit: 20, day_release: 'desc' }} />
-
-            </div> */}
+         
             <ChartMusic />
         </div>
+        
+        </>
+      
     )
 }
 

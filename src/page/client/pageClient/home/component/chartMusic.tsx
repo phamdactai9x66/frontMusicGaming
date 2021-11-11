@@ -19,7 +19,6 @@ import {
 import songApi from "api/songApi";
 
 
-
 export default function ChartMusic() {
   const [state, setstate] = useState({ data: [], display: true });
 
@@ -29,6 +28,7 @@ export default function ChartMusic() {
       const [data, error] = await HandleGet(songApi.getAll, {});
       if (data[variableCommon.statusF]) return;
       const tranformData = sortData<string>(data.data, 'view').slice(0, 3) as any;
+      // console.log(tranformData)
       setstate({ display: true, data: tranformData });
     })()
     return () => {

@@ -8,6 +8,7 @@ export const HandleGet = async (functionPromise: Function, params = {}) => {
         return [null, error];
     }
 }
+
 export const sortData = <Y extends string>(data: any[], key: Y, chooseSort: 'B' | 'S' = 'B') => {
     if (!data) return [];
     return data.sort((current1: any, current2) => {
@@ -15,6 +16,7 @@ export const sortData = <Y extends string>(data: any[], key: Y, chooseSort: 'B' 
             : current2[key] - current1[key];
     })
 }
+
 export const limitSentence = <T extends string>(words: T, limit: number = 5): string | undefined => {
     if (!words) return ''
     const getWords = words?.split(" ") || [''];

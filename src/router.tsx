@@ -22,7 +22,7 @@ import AddCategory from "./page/admin/pageAdmin/categories/page/AddCategory";
 import Categories from "page/admin/pageAdmin/categories/index";
 import PlayList from "page/admin/pageAdmin/playlist/index";
 import AddPlayList from "page/admin/pageAdmin/playlist/page/AddPlayList";
-
+import Profile from "page/admin/pageAdmin/profile/Profile";
 
 export interface propertyPage {
     path: string,
@@ -35,6 +35,11 @@ const Admin: propertyPage[] = [
         path: "/admin",
         component: HomeAdmin,
         exact: true
+    },
+    {
+        path: "admin/profile",
+        component: Profile,
+        exact: false
     },
     {
         path: "/admin/addAlbum",
@@ -76,6 +81,7 @@ const Admin: propertyPage[] = [
         component: AddPlayList,
         exact: false
     },
+ 
     {
         path: "/admin/:pathNotFound",
         component: NotFoundAdmin,
