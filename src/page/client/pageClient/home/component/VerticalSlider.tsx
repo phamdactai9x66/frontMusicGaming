@@ -20,7 +20,7 @@ const VerticalSlider: React.FC<VerticalSlider<any>> = ({...props}) => {
 
     useEffect( () => {
         const getSliders = async () => {
-            const { data } = await slideApi.getAll();
+            const { data } = await slideApi.getAll({});
             setSliders(data);
         }
         getSliders();
