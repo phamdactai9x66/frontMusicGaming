@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { MdNavigateNext } from 'react-icons/md';
 import ChartMusic from './component/chartMusic';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import VerticalSlider from './component/VerticalSlider';
 import HomeCategory from './component/HomeCategory';
 import HomeSongComponent from './component/HomeSongComponent';
@@ -25,6 +25,7 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
     const [songs, setSongs] = useState([]);
     const [songsTransform, setSongsTransform] = useState([]);
     const [artists, setArtists] = useState([]);
+    const location =  useLocation();
     const [stoggleModal, setstoggleModal] = useState<boolean>(false);
 
     var settings_banner = {
