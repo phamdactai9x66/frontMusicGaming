@@ -147,14 +147,17 @@ const ListMusicNew: React.FC<ListMusicNew<any>> = (props) => {
                 <div className="box-chart">
                 <h5 className="stt">{index + 1}</h5>
                 <img width={45} height={45} src={item.image} alt="" />
-                <div className="box-icon" style={{left: "4rem"}} onClick={() => playAudio(item._id)}>
+                {/* <div className="box-icon" style={{left: "4rem",padding:"0.5rem 0.65rem"}} >
                     ▶
+                </div> */}
+                <div className="box-icon " style={{marginLeft:"0.7rem",padding:"0.1rem 0.58rem",fontSize:"1.5rem"}} onClick={() => playAudio(item._id)}>
+                    <BsFillPlayFill/>
                 </div>
                 <div className="name">
                     <h6>{item.title}</h6>
                     <div style={{ fontSize: "0.7rem", marginTop: "-0.2rem", color: "#ccc" }}>Nghệ sĩ</div>
                 </div>
-                <div>
+                <div className="text-white" style={{marginTop:"1.2rem"}}>
                     <GetTimeAudio url={item.audio} />
                 </div>
                 <div className="icon_item">
