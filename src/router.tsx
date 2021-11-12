@@ -25,6 +25,9 @@ import AddPlayList from "page/admin/pageAdmin/playlist/page/AddPlayList";
 import Slide from './page/admin/pageAdmin/slide/index'
 import AddSlide from './page/admin/pageAdmin/slide/page/addSlide'
 import Profile from "page/admin/pageAdmin/profile/Profile";
+import Search from "./page/client/pageClient/search/search";
+import ListenTogether from "./page/client/pageClient/listenTogether/listenTogether";
+
 
 export interface propertyPage {
     path: string,
@@ -107,6 +110,16 @@ const Client: propertyPage[] = [
         path: "/",
         component: Home,
         exact: true
+    },
+    {
+        path: "/search",
+        component: Search,
+        exact: false
+    },
+    {
+        path: "/listenTogether",
+        component: ListenTogether,
+        exact: false
     },
     {
         path: "/recently",

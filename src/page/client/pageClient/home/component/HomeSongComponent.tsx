@@ -254,7 +254,6 @@ const HomeSongComponent: React.FC<HomeSongComponentIF<any>> = (props) => {
                                         <BsMusicNoteList /> &ensp; {_.name}
                                     </MenuItem>
                                 ))}
-
                             </div>
                         </Popover>
                     </div>

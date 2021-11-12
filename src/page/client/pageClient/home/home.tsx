@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { MdNavigateNext } from 'react-icons/md';
-import Button from '@mui/material/Button';
-import { BiPlayCircle } from 'react-icons/bi';
 import ChartMusic from './component/chartMusic';
 import { Link, useLocation } from 'react-router-dom';
 import VerticalSlider from './component/VerticalSlider';
@@ -28,6 +26,7 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
     const [songsTransform, setSongsTransform] = useState([]);
     const [artists, setArtists] = useState([]);
     const location =  useLocation();
+    const [stoggleModal, setstoggleModal] = useState<boolean>(false);
 
     var settings_banner = {
         dots: true,
@@ -98,43 +97,61 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
 
     return (
         <>
-      
-        {/* // */}
-          <div className="home">
-            <div className="slider-banner">
-                <VerticalSlider settings_banner={settings_banner} />
-            </div>
-
-            {/* category */}
-            <div className="list-slider">
-                <h4 className="title_all mb-3">Thể loại <MdNavigateNext className="icon" /></h4>
-                <HomeCategory settings_category={settings_category} />
-
-            </div>
-            <div className="list-music">
-                <h4 className="title_all mb-2">Danh sách bài hát <MdNavigateNext className="icon" /></h4>
-                <div className="main1">
-
-                    <HomeSongComponent userState={userState} />
-
-                    {/* artist */}
-                    <ArtistComponent artists={artists} />
+            <div className=" w-100 h-100 d-flex position-fixed top-0  text-center" style={{ left: "0px", zIndex: 10, backgroundColor: "rgb(0 0 0 / 25%)" }}>
+                <div className="my-auto mx-auto p-4 rounded-3" style={{ backgroundColor: "#9cf6ff" }}>
+                    <img
+                        className="w-25 h-25"
+                        src="https://aux2.iconspalace.com/uploads/music-folder-circle-icon-256.png" alt="" />
+                    <p style={{ fontWeight: 500 }}>Hãy đăng nhập để có thể sử dụng tính năng này</p>
+                    <p>Tính năng này chỉ dành cho người dùng đã có tài khoản Music Game</p>
+                    <div className="d-flex justify-content-center">
+                        <div className="" style={{ marginRight: "0.2rem" }}>
+                            <button type="button" className="btn btn-light">Đăng kí</button>
+                        </div>
+                        <div>
+                            <button type="button" className="btn btn-primary" style={{ marginLeft: "0.2rem" }}>Đăng nhập</button>
+                        </div>
+                    </div>
                 </div>
+
             </div>
 
-            {playlists.length !== 0 && playlists.map((item: any) => (
-                <div className="list-slider ">
-                    <h4 className="title_all">{item.name} <MdNavigateNext className="icon" /></h4>
-
-                    <WantHearComponent settings_category={settings_category} songs={songsTransform} idPlaylist={item._id} />
+            {/* // */}
+            <div className="home">
+                <div className="slider-banner">
+                    <VerticalSlider settings_banner={settings_banner} />
                 </div>
-            ))}
-         
-            <ChartMusic />
-        </div>
-        
+
+                {/* category */}
+                <div className="list-slider">
+                    <h4 className="title_all">Thể loại <MdNavigateNext className="icon" /></h4>
+                    <HomeCategory settings_category={settings_category} />
+
+                </div>
+                <div className="list-music">
+                    <h4 className="title_all">Danh sách bài hát <MdNavigateNext className="icon" /></h4>
+                    <div className="main1">
+
+                        <HomeSongComponent userState={userState} />
+
+                        {/* artist */}
+                        <ArtistComponent artists={artists} />
+                    </div>
+                </div>
+
+                {playlists.length !== 0 && playlists.map((item: any) => (
+                    <div className="list-slider ">
+                        <h4 className="title_all">{item.name} <MdNavigateNext className="icon" /></h4>
+
+                        <WantHearComponent settings_category={settings_category} songs={songsTransform} idPlaylist={item._id} />
+                    </div>
+                ))}
+
+                <ChartMusic />
+            </div>
+
         </>
-      
+
     )
 }
 

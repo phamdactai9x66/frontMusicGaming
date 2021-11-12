@@ -12,6 +12,7 @@ const MusicDetail: React.FC<MusicDetail<any>> = ({ state, ...props }) => {
     return (
         <>
             <div className="musicDetail">
+                <div className="box-music">
                 {state.data.map((current: any, index: number) => {
                     const { id_Song } = current;
                     const findSong = state.dataSong[id_Song];
@@ -19,6 +20,7 @@ const MusicDetail: React.FC<MusicDetail<any>> = ({ state, ...props }) => {
                         <ListMusicDetail current={findSong} listIdSong={state.data} index={index} />
                     )
                 })}
+            </div>
             </div>
         </>
     )

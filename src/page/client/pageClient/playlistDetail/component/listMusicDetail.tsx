@@ -27,9 +27,7 @@ const ListMusicDetail: React.FC<ListMusicDetail<any>> = ({ current, index, listI
     };
     return (
         <>
-            <div className="box-music" key={index}>
-
-                <div className="music_item">
+                <div className="music_item" key={index}>
                     <img src={current?.image} alt="" />
                     <div className="box-icon">
                         <BsFillPlayFill onClick={() => { dispatch(playSong({ _id: current._id, listIdSong })) }} />
@@ -101,7 +99,6 @@ const ListMusicDetail: React.FC<ListMusicDetail<any>> = ({ current, index, listI
                         </Popover>
                     </div>
                 </div>
-            </div>
         </>
     )
 }

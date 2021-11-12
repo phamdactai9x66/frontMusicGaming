@@ -9,17 +9,10 @@ import Topic from "./component/topic/topic";
 import Upload from "./component/upload/upload";
 import { Logout } from "redux/user/actionUser";
 //
-import { fade, makeStyles } from "@material-ui/core/styles";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import IconButton from "@material-ui/core/IconButton";
-import InputBase from "@material-ui/core/InputBase";
-import Menu from "@material-ui/core/Menu";
-import SearchIcon from "@material-ui/icons/Search";
-import AccountCircle from "@material-ui/icons/AccountCircle";
-import MoreIcon from "@material-ui/icons/MoreVert";
+import { fade, makeStyles, AppBar, Toolbar, IconButton, InputBase, Menu } from '@material-ui/core';
+// import { Search, AccountCircle, MoreVert } from '@material-ui/icons';
 import AlertComponent from "component/clientComponent/Alert";
-import Loadings from '../../client/loading/loading';
+import Loadings from "page/client/loading/loading";
 
 interface HeaderClient extends RouteChildrenProps {}
 const useStyles = makeStyles((theme) => ({
@@ -91,12 +84,14 @@ const HeaderClient: React.FC<HeaderClient> = ({ ...props }) => {
         status: "",
         content: "",
     });
-	const [loading, setLoading] = useState(false);
-    const state = useSelector<{ user: any }>(
-        (state) => state.user
-    ) as formStateUser;
-    const dispatch = useDispatch();
+	const [loading, setLoading] = useState(false);  
 
+	const state = useSelector<{ user: any }>(state => state.user) as formStateUser;
+	const dispatch = useDispatch();
+    
+	const classes = useStyles();
+	const [anchorEl, setAnchorEl] = useState(null);
+	const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
     const logOut = () => {
 		setLoading(true);
@@ -132,6 +127,7 @@ const HeaderClient: React.FC<HeaderClient> = ({ ...props }) => {
             </MenuItem>
         ) : null;
     };
+
     const checkUser = () => {
         return (
             <>
@@ -159,25 +155,16 @@ const HeaderClient: React.FC<HeaderClient> = ({ ...props }) => {
             </>
         );
     };
-    const checkGuest = () => {
-        return (
-            <>
-                <MenuItem value={10} onClick={handleMenuClose}>
-                    <Link
-                        to="/signin"
-                        className="link rounded "
-                        style={{ fontSize: "1rem" }}
-                    >
-                        <FaSignInAlt className="_icon" />
-                        Đăng nhập
-                    </Link>
-                </MenuItem>
-            </>
-        );
-    };
-    const classes = useStyles();
-    const [anchorEl, setAnchorEl] = useState(null);
-    const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+
+	const checkGuest = () => {
+		return (
+			<>
+				<MenuItem value={10} onClick={handleMenuClose}>
+					<Link to="/signin" className="link rounded " style={{ fontSize: '1rem' }}><FaSignInAlt className="_icon" />Đăng nhập</Link>
+				</MenuItem>
+			</>
+		)
+	}
 
     const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);

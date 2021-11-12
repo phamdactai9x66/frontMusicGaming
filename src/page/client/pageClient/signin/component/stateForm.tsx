@@ -13,7 +13,7 @@ export const stateForm = [
         first_name: "",
         last_name: "",
         image: "",
-        gender: genderOption[0].value,
+        gender: "",
         email: "",
         address: "",
         userName: "",

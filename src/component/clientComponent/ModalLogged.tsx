@@ -14,19 +14,21 @@ const ModalLogged: React.FC<ModalLoggedIF<any>> = (props) => {
     return (
         <>
         <Modal
+        className='modal-logged-parent'
             open={props.isLogged}
             onClose={props.handleLogged}
             aria-labelledby="parent-modal-title"
             aria-describedby="parent-modal-description"
         >
-         <Alert severity="warning" style={{borderLeft: "0.3rem solid red", width: "33rem", margin: "1.5rem"}}>
-             <AlertTitle style={{textAlign: "left"}}>Vui lòng đăng nhập để thực hiện chức năng này.</AlertTitle>     
-             <div style={{display: "flex", gap: "3rem"}}>
+         <Alert severity="warning" className="check_login">
+         <h5 style={{textAlign: "center"}}>Bạn cần đăng nhập để tiếp tục.</h5>
+         <AlertTitle style={{textAlign: "center"}}>Vui lòng đăng nhập để thực hiện chức năng này.</AlertTitle>     
+             <div style={{display: "flex",justifyContent: "center", gridGap: "3rem"}}>
                 <div style={{cursor: "pointer"}} onClick={props.handleLogged}>Hủy</div>
                 <Link to="/signin">Đăng nhập</Link>
              </div>
          </Alert>
-                 </Modal>
+        </Modal>
         {/* // <div className='modal-logged-parent'>
         //     <div className="modal-logged-child">
         //         <div className="modal-logged-content">
