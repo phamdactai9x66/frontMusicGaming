@@ -25,7 +25,7 @@ interface HomeSongComponentIF<T> {
     userState: any,
 }
 const HomeSongComponent: React.FC<HomeSongComponentIF<any>> = (props) => {
-    const history = useHistory();
+    const history: any = useHistory<any>();
     const [playlistName, setPlaylistName] = useState('');
     const [anchor, setAnchor] = useState(null);
     const [anchor2, setAnchor2] = useState(null);
@@ -36,7 +36,12 @@ const HomeSongComponent: React.FC<HomeSongComponentIF<any>> = (props) => {
     const dispatch = useDispatch();
     const [handleStatus, setHandleStatus] = useState({ status: "", content: "" });
     const [addPlaylistLoading, setAddPlaylistLoading] = useState(false);
+    const [locationLogged, setLocationlogged] = useState(history.location.state?.isLogged ? history.location.state.isLogged : false);
+    
 
+    // if(history && history.location.state?.isLogged){
+    //     setIsLogged(true);
+    // }
     const openPopover = (event: any) => {
         setAnchor(event.currentTarget);
     };
@@ -58,6 +63,9 @@ const HomeSongComponent: React.FC<HomeSongComponentIF<any>> = (props) => {
         }
         getSongs();
     }, []);
+    // useEffect( () => {
+    //     let locationLogged = history.location.state?.isLogged ? history.location.state.isLogged : false;
+    // }, [history])
 
     const handleAdd = async <T extends string>(s: T, u: T, t: T) => {
         if (u === undefined) {
@@ -123,6 +131,7 @@ const HomeSongComponent: React.FC<HomeSongComponentIF<any>> = (props) => {
     }
     const handleLogged = () => {
         setIsLogged(false);
+        setLocationlogged(false);
     }
 
     if (handleStatus.status !== "") {
@@ -164,6 +173,7 @@ const HomeSongComponent: React.FC<HomeSongComponentIF<any>> = (props) => {
     return (
         <div className="box-music mt-4">
             {isLogged && <Notification handleLogged={handleLogged} />}
+            {locationLogged && <Notification handleLogged={handleLogged} />}
             {handleStatus.status !== "" && <AlertComponent status={handleStatus.status} content={handleStatus.content} />}
             {songs.length !== 0 && songs.map((item: any) => (
                 <div className="music_item border-0 p-2" key={item._id}>

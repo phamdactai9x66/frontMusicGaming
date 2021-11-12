@@ -10,11 +10,12 @@ interface UserLogin<T> extends RouteComponentProps {
 
 const UserLogin: React.FC<UserLogin<any>> = ({ location, children, ...props }) => {
     const { user, token } = useSelector<{ user: any }>(state => state.user) as formStateUser;
+    console.log("location: ", location)
     return (
         <>
             <Route {...props}>
                 {(user && token) ? children :
-                    <Redirect to={{ pathname: '/signin', state: location.pathname }} />}
+                    <Redirect to={{ pathname: location.pathname === '/overview' ? '/' : location.pathname, state: {isLogged: true} }} />}
             </Route>
         </>
     )
