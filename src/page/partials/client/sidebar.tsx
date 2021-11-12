@@ -23,7 +23,7 @@ const Sidebar: React.FC<Sidebar<any>> = ({ ...props }) => {
       <div className="sidebar">
         <h5><Link to="/">MUSIC GAME</Link></h5>
         <ul>
-        <Link to={{pathname: '/overview', state: {page: "OverView"}}}><li><BsMusicNoteBeamed className="icon" />Cá nhân</li></Link>
+        <Link to={{pathname: '/overview', state: {page: "OverView", lastLocation: location.pathname}}}><li><BsMusicNoteBeamed className="icon" />Cá nhân</li></Link>
         {/* <Link to="/overview"><li><BsMusicNoteBeamed className="icon" />Cá nhân</li></Link> */}
         <Link to="/"><li><RiFolderMusicFill className="icon" />Khám phá</li></Link>
         <Link to="/chart"><li><FaChartPie className="icon" />Music chart</li></Link>
