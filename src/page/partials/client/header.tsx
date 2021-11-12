@@ -9,15 +9,8 @@ import Topic from './component/topic/topic';
 import Upload from './component/upload/upload';
 import { Logout } from "redux/user/actionUser";
 //
-import { fade, makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
-import InputBase from '@material-ui/core/InputBase';
-import Menu from '@material-ui/core/Menu';
-import SearchIcon from '@material-ui/icons/Search';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import MoreIcon from '@material-ui/icons/MoreVert';
+import { fade, makeStyles, AppBar, Toolbar, IconButton, InputBase, Menu } from '@material-ui/core';
+import { Search, AccountCircle, MoreVert } from '@material-ui/icons';
 
 interface HeaderClient extends RouteChildrenProps {
 
@@ -87,44 +80,44 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 const HeaderClient: React.FC<HeaderClient> = ({ ...props }) => {
-  const state = useSelector<{ user: any }>(state => state.user) as formStateUser;
-  const dispatch = useDispatch();
-  const logOut = () => {
-    dispatch(Logout());
-    // props.history.replace('/signin');
-  }
-  const checkAdmin = () => {
-    return (state.user.role >= 1) ? (
-      <MenuItem value={20}>
-        <Link to="/admin" className="link pb-0 border-1" style={{fontSize:'1rem'}}><RiAdminFill className="_icon" /> Quản trị</Link>
-      </MenuItem>
-    ) : null
-  }
-  const checkUser = () => {
-    return (
-      <>
-	    <MenuItem value={10}  >
-          <Link to="/overview" className="link rounded pb-0 border-1 " style={{fontSize:'1rem'}} ><FaSignInAlt className="_icon" />Thông tin</Link>
-        </MenuItem>
-		{checkAdmin()}
-        <MenuItem value={10}>
-          <span className="link text-danger  rounded border-1 border-danger " style={{fontSize:'1rem'}} onClick={logOut}><FaSignInAlt className="text-danger _icon" />Đăng xuất</span>
-        </MenuItem>
-      
-      
-      </>
-    )
-  }
-  const checkGuest = () => {
-    return (
-      <>
-        <MenuItem value={10} onClick={handleMenuClose}>
-          <Link to="/signin" className="link rounded " style={{fontSize:'1rem'}}><FaSignInAlt className="_icon" />Đăng nhập</Link>
-        </MenuItem>
-      </>
-    )
-  }
-  const classes = useStyles();
+	const state = useSelector<{ user: any }>(state => state.user) as formStateUser;
+	const dispatch = useDispatch();
+	const logOut = () => {
+		dispatch(Logout());
+		props.history.replace('/signin');
+	}
+	const checkAdmin = () => {
+		return (state.user.role >= 1) ? (
+			<MenuItem value={20}>
+				<Link to="/admin" className="link pb-0 border-1" style={{ fontSize: '1rem' }}><RiAdminFill className="_icon" /> Quản trị</Link>
+			</MenuItem>
+		) : null
+	}
+	const checkUser = () => {
+		return (
+			<>
+				<MenuItem value={10}  >
+					<Link to="/overview" className="link rounded pb-0 border-1 " style={{ fontSize: '1rem' }} ><FaSignInAlt className="_icon" />Thông tin</Link>
+				</MenuItem>
+				{checkAdmin()}
+				<MenuItem value={10}>
+					<span className="link text-danger  rounded border-1 border-danger " style={{ fontSize: '1rem' }} onClick={logOut}><FaSignInAlt className="text-danger _icon" />Đăng xuất</span>
+				</MenuItem>
+
+
+			</>
+		)
+	}
+	const checkGuest = () => {
+		return (
+			<>
+				<MenuItem value={10} onClick={handleMenuClose}>
+					<Link to="/signin" className="link rounded " style={{ fontSize: '1rem' }}><FaSignInAlt className="_icon" />Đăng nhập</Link>
+				</MenuItem>
+			</>
+		)
+	}
+	const classes = useStyles();
 	const [anchorEl, setAnchorEl] = useState(null);
 	const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -159,10 +152,10 @@ const HeaderClient: React.FC<HeaderClient> = ({ ...props }) => {
 			open={isMenuOpen}
 			onClose={handleMenuClose}
 		>
-            {(state.user && state.token) ? checkUser() : checkGuest()}
+			{(state.user && state.token) ? checkUser() : checkGuest()}
 		</Menu>
 	);
-  const mobileMenuId = 'primary-search-account-menu-mobile';
+	const mobileMenuId = 'primary-search-account-menu-mobile';
 	const renderMobileMenu = (
 		<Menu
 			anchorEl={mobileMoreAnchorEl}
@@ -175,7 +168,7 @@ const HeaderClient: React.FC<HeaderClient> = ({ ...props }) => {
 		>
 			<MenuItem>
 				<IconButton aria-label='show 4 new mails' color='inherit'>
-					<Upload/>
+					<Upload />
 				</IconButton>
 				<div>Upload</div>
 			</MenuItem>
@@ -184,7 +177,7 @@ const HeaderClient: React.FC<HeaderClient> = ({ ...props }) => {
 					aria-label='show 11 new notifications'
 					color='inherit'
 				>
-					<Topic/>
+					<Topic />
 				</IconButton>
 				<div>Topic</div>
 			</MenuItem>
@@ -201,66 +194,66 @@ const HeaderClient: React.FC<HeaderClient> = ({ ...props }) => {
 			</MenuItem>
 		</Menu>
 	);
-  return (
-	<div className="header_ui">
-	<AppBar position='static' style={{background: "#222f44"}}>
-		<Toolbar>
-			<div className={classes.search}>
-				<div className={classes.searchIcon}>
-					<SearchIcon />
-				</div>
-				<InputBase
-					placeholder='Nhập tên bài hát, nghệ sĩ hoặc MV...'
-					classes={{
-						root: classes.inputRoot,
-						input: classes.inputInput,
-					}}
-					inputProps={{ 'aria-label': 'search' }}
-				/>
-			</div>
-			<div className={classes.grow} />
-			<div className={classes.sectionDesktop}>
-				<IconButton
-					aria-label='show 4 new mails'
-					color='inherit'
-				>
-					<Upload />
-       
-				</IconButton>
-				<IconButton
-					aria-label='show 18 new notifications'
-					color='inherit'
-				>
-					 <Topic />
-				</IconButton>
-				<IconButton
-					edge='end'
-					aria-label='account of current user'
-					aria-controls={menuId}
-					aria-haspopup='true'
-					onClick={handleProfileMenuOpen}
-					color='inherit'
-				>
-					<AccountCircle />
-				</IconButton>
-			</div>
-			<div className={classes.sectionMobile}>
-				<IconButton
-					aria-label='show more'
-					aria-controls={mobileMenuId}
-					aria-haspopup='true'
-					onClick={handleMobileMenuOpen}
-					color='inherit'
-				>
-					<MoreIcon />
-				</IconButton>
-			</div>
-		</Toolbar>
-	</AppBar>
-	{renderMobileMenu}
-	{renderMenu}
-</div>
-  )
+	return (
+		<div className="header_ui">
+			<AppBar position='static' style={{ background: "#222f44" }}>
+				<Toolbar>
+					<div className={classes.search}>
+						<div className={classes.searchIcon}>
+							<Search />
+						</div>
+						<InputBase
+							placeholder='Nhập tên bài hát, nghệ sĩ hoặc MV...'
+							classes={{
+								root: classes.inputRoot,
+								input: classes.inputInput,
+							}}
+							inputProps={{ 'aria-label': 'search' }}
+						/>
+					</div>
+					<div className={classes.grow} />
+					<div className={classes.sectionDesktop}>
+						<IconButton
+							aria-label='show 4 new mails'
+							color='inherit'
+						>
+							<Upload />
+
+						</IconButton>
+						<IconButton
+							aria-label='show 18 new notifications'
+							color='inherit'
+						>
+							<Topic />
+						</IconButton>
+						<IconButton
+							edge='end'
+							aria-label='account of current user'
+							aria-controls={menuId}
+							aria-haspopup='true'
+							onClick={handleProfileMenuOpen}
+							color='inherit'
+						>
+							<AccountCircle />
+						</IconButton>
+					</div>
+					<div className={classes.sectionMobile}>
+						<IconButton
+							aria-label='show more'
+							aria-controls={mobileMenuId}
+							aria-haspopup='true'
+							onClick={handleMobileMenuOpen}
+							color='inherit'
+						>
+							<MoreVert />
+						</IconButton>
+					</div>
+				</Toolbar>
+			</AppBar>
+			{renderMobileMenu}
+			{renderMenu}
+		</div>
+	)
 }
 
 export default withRouter(HeaderClient as any)
