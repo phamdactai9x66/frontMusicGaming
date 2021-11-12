@@ -25,8 +25,8 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
     const [songs, setSongs] = useState([]);
     const [songsTransform, setSongsTransform] = useState([]);
     const [artists, setArtists] = useState([]);
-    const [stoggleModal, setstoggleModal] = useState<boolean>(false);
     const location =  useLocation();
+    const [stoggleModal, setstoggleModal] = useState<boolean>(false);
 
     var settings_banner = {
         dots: true,
