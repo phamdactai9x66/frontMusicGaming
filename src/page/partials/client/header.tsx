@@ -8,6 +8,10 @@ import { formStateUser } from "redux/user/stateUser";
 import Topic from "./component/topic/topic";
 import Upload from "./component/upload/upload";
 import { Logout } from "redux/user/actionUser";
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import SearchIcon from '@material-ui/icons/Search';
+import MoreIcon from '@material-ui/icons/MoreVert';
+
 //
 import { fade, makeStyles, AppBar, Toolbar, IconButton, InputBase, Menu } from '@material-ui/core';
 // import { Search, AccountCircle, MoreVert } from '@material-ui/icons';
