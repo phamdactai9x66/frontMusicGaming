@@ -163,7 +163,7 @@ const ListMusicNew: React.FC<ListMusicNew<any>> = (props) => {
                     <IoMdAdd className="icon" onClick={(e) => {
                         openPopover(e);
                         getUserPlaylists();
-                    }}/>
+                    }} />
                     <Popover
                         open={Boolean(anchor)}
                         anchorEl={anchor}
@@ -176,7 +176,7 @@ const ListMusicNew: React.FC<ListMusicNew<any>> = (props) => {
                             horizontal: "right",
                         }}
                         onClose={() => setAnchor(null)}
-                    >
+                        >
                         <div style={{ background: "#101929", margin: "", color: "#fff", width: "15rem" }}>
                             <div className="d-flex gap-2 p-2">
                                 <img width={35} height={35} src={item.image} alt="" />
