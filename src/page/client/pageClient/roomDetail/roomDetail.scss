@@ -62,6 +62,17 @@
       grid-template-columns:  1fr 1fr 1fr 1fr 1fr 1fr;
       gap: 2rem;
   }
+  .search_user {
+    .css-aqpgxn-MuiFormLabel-root-MuiInputLabel-root {
+      color: #fff !important;
+    }
+    .css-1480iag-MuiInputBase-root-MuiInput-root:before {
+      border-bottom: 1px solid rgba(93, 217, 255, 0.562) !important;
+    }
+    .css-1480iag-MuiInputBase-root-MuiInput-root:after {
+      border-bottom: 1px solid rgb(102, 255, 209)!important;
+    }
+  }
   @media screen  and (max-width:915px){
     .romdetail {
         display: grid;
