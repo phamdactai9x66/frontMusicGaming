@@ -170,6 +170,7 @@ const HomeSongComponent: React.FC<HomeSongComponentIF<any>> = (props) => {
         }
         setAddPlaylistLoading(false);
     }
+    
     return (
         <div className="box-music mt-4">
             {isLogged && <Notification handleLogged={handleLogged} />}

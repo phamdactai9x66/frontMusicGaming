@@ -24,7 +24,7 @@ const PostNew: React.FC<postNewComponent<any>> = () => {
                     blos.map((item:any ,index)=>{
                         return(
                             <>
-                                <Link className="title-blog-name color" to="" key={index}>{item.title}</Link>
+                                <Link className="title-blog-name color" to={`blogDetail/${item?._id}`} key={index}>{item.title}</Link>
                             </>
                             )
                         })
