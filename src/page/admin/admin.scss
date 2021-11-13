@@ -73,14 +73,17 @@ main {
     display: flex;
     position: relative;
     & .icon_search {
-        font-size: 20px;
-        color: #4ea9af;
+        font-size: 26px;
         position: absolute;
-        top: 1.7rem;
+        top: 1.5rem;
         left: 1.6rem;
         cursor: pointer;
+        z-index: 2000;
+        color:rgb(108, 168, 247)
     }
     & ._search{
+      position: relative;
+      z-index: 1000;
         width: 286px;
         height: 40px;
         margin: 17px;
@@ -148,9 +151,7 @@ margin-bottom: 2rem;
     margin-left: 12rem;
     transition: 0.2s;
   }
-  .main_search {
-    display: none;
-  }
+
   .button_text {
     display: none;
   }
@@ -289,6 +290,11 @@ margin-bottom: 2rem;
 @media only screen and (max-width: 736px){
   .header_ui {
     left: 0 !important;
+    .main_search {
+      ._search {
+        width: 100% !important;
+      }
+    }
   }
   .toggle {
     position: fixed;

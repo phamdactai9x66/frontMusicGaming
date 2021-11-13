@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { MdNavigateNext } from 'react-icons/md';
 import ChartMusic from './component/chartMusic';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import VerticalSlider from './component/VerticalSlider';
 import HomeCategory from './component/HomeCategory';
 import HomeSongComponent from './component/HomeSongComponent';
@@ -25,7 +25,6 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
     const [songs, setSongs] = useState([]);
     const [songsTransform, setSongsTransform] = useState([]);
     const [artists, setArtists] = useState([]);
-    const location =  useLocation();
     const [stoggleModal, setstoggleModal] = useState<boolean>(false);
 
     var settings_banner = {
@@ -97,7 +96,7 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
 
     return (
         <>
-            <div className=" w-100 h-100 d-flex position-fixed top-0  text-center" style={{ left: "0px", zIndex: 10, backgroundColor: "rgb(0 0 0 / 25%)" }}>
+            {/* <div className=" w-100 h-100 d-flex position-fixed top-0  text-center" style={{ left: "0px", zIndex: 10, backgroundColor: "rgb(0 0 0 / 25%)" }}>
                 <div className="my-auto mx-auto p-4 rounded-3" style={{ backgroundColor: "#9cf6ff" }}>
                     <img
                         className="w-25 h-25"
@@ -114,7 +113,7 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                     </div>
                 </div>
 
-            </div>
+            </div> */}
 
             {/* // */}
             <div className="home">
