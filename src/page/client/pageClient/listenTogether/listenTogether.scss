@@ -83,3 +83,23 @@
     font-size: 0.6rem;
   }
 }
+
+.create_room{
+  display: block;
+  color: #fff;
+  .input_room{
+    input{
+      color: rgb(203, 252, 255);
+    }
+    width: 400px;
+    margin-bottom: 20px;
+    background-color: #06111C;
+    label{
+      color: #fff;
+    }
+  }
+  button {
+    display: block;
+    background-color: #249F9F;
+  }
+}
