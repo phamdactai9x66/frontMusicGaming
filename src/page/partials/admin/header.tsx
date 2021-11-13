@@ -5,7 +5,6 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import InputBase from '@material-ui/core/InputBase';
 import Badge from '@material-ui/core/Badge';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
@@ -47,15 +46,6 @@ const useStyles = makeStyles((theme) => ({
 			marginLeft: theme.spacing(3),
 			width: 'auto',
 		},
-	},
-	searchIcon: {
-		padding: theme.spacing(0, 2),
-		height: '100%',
-		position: 'absolute',
-		pointerEvents: 'none',
-		display: 'flex',
-		alignItems: 'center',
-		justifyContent: 'center',
 	},
 	inputRoot: {
 		color: 'inherit',
@@ -119,7 +109,7 @@ export default function Header() {
 			open={isMenuOpen}
 			onClose={handleMenuClose}
 		>
-			<MenuItem onClick={handleMenuClose}>Thông tin</MenuItem>
+			<MenuItem onClick={handleMenuClose}><Link to="/admin/profile">Thông tin</Link></MenuItem>
 			<MenuItem onClick={handleMenuClose}>Đăng xuất</MenuItem>
 		</Menu>
 	);
@@ -185,7 +175,7 @@ export default function Header() {
 					</Typography>
 			
 					 <div className="main_search">
-        {/* <FontAwesomeIcon icon={faSearch} className="icon_search" /> */}
+        <SearchIcon className="icon_search" /> 
         <input type="text" placeholder="Search..." className="_search" />
       </div>
 					<div className={classes.grow} />

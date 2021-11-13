@@ -32,7 +32,7 @@ const ListBlog: React.FC<ListBlogComponent<any>> = (props) => {
                             <div className="blog-image">
                                 <h4 className="color text-blog-none">{item.title}</h4>
                                 <Link to={`blogDetail/${item?._id}`} >
-                                    <img src={item.image == 0 ? item.image :'https://lh3.googleusercontent.com/proxy/BBBDqJ5u4wafvB5dQFq5nOoFYrjJvaa2FlzMuAuD2wF383V3KkMXQW_0e_v9nc0kHKHytdTWjwOHbj3DE4iVxZtO   ' } alt="image blog" />
+                                    <img src={item.image ? item.image :'https://lh3.googleusercontent.com/proxy/BBBDqJ5u4wafvB5dQFq5nOoFYrjJvaa2FlzMuAuD2wF383V3KkMXQW_0e_v9nc0kHKHytdTWjwOHbj3DE4iVxZtO'} alt="" />
                                 </Link>
                             </div>
                             <Link to={`blogDetail/${item?._id}`} className="title-blog">

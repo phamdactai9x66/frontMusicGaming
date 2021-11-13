@@ -8,8 +8,9 @@
         .info_main {
             text-align: center;
             flex-direction: column;
-            h2 {
+            h3 {
                 color: $color_while;
+                margin-top: 0.5rem;
             }
             img {
                 border-radius: 100%;

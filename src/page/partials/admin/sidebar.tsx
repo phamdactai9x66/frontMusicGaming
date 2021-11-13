@@ -6,6 +6,7 @@ import Accordion from "@material-ui/core/Accordion";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
 import AccordionSummary from "@material-ui/core/AccordionSummary";
 import { ExpandMore } from "@material-ui/icons";
+import SearchIcon from '@material-ui/icons/Search';
 
 interface Sidebar<T> {
 
@@ -129,7 +130,7 @@ const Sidebar: React.FC<Sidebar<any>> = ({ ...props }) => {
         </div>
       </div>
       <div className="main_search">
-        {/* <FontAwesomeIcon icon={faSearch} className="icon_search" /> */}
+        <SearchIcon className="icon_search" /> 
         <input type="text" placeholder="Search..." className="_search" />
       </div>
       <nav className="tabs">
