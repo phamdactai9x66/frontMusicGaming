@@ -27,6 +27,7 @@ import AddSlide from './page/admin/pageAdmin/slide/page/addSlide'
 import Profile from "page/admin/pageAdmin/profile/Profile";
 import Search from "./page/client/pageClient/search/search";
 import ListenTogether from "./page/client/pageClient/listenTogether/listenTogether";
+import Personal from "./page/client/pageClient/personal/index"
 
 
 export interface propertyPage {
@@ -86,7 +87,7 @@ const Admin: propertyPage[] = [
         component: AddPlayList,
         exact: false
     },
- 
+
     {
         path: "/admin/slide",
         component: Slide,
@@ -122,6 +123,11 @@ const Client: propertyPage[] = [
         exact: false
     },
     {
+        path: "/personal",
+        component: Personal,
+        exact: false
+    },
+    {
         path: "/recently",
         component: Recently,
         exact: false
@@ -152,13 +158,14 @@ const Client: propertyPage[] = [
         exact: false
     },
     {
+        path: "/category/SubCategory",
+        component: CategoryDetailPlaylist,
+        exact: false
+    }
+    ,
+    {
         path: "/category",
         component: Category,
-        exact: false
-    },
-    {
-        path: "/categoryDetailPlaylist",
-        component: CategoryDetailPlaylist,
         exact: false
     },
     {

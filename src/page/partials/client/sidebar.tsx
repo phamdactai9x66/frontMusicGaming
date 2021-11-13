@@ -1,13 +1,13 @@
 
 import React, { useEffect, useState } from 'react'
-import { BsMusicNoteBeamed,BsListUl } from 'react-icons/bs';
+import { BsMusicNoteBeamed, BsListUl } from 'react-icons/bs';
 import { FaBlogger, FaChartPie } from 'react-icons/fa';
 import { RiFolderMusicFill } from 'react-icons/ri';
 import { Link, Redirect, RouteChildrenProps, withRouter, Route, useHistory } from "react-router-dom";
 import { BsPlusCircle } from 'react-icons/bs';
 import { RiGroupFill } from 'react-icons/ri';
-import { BiPlayCircle,BiTimeFive } from 'react-icons/bi';
-import { AiFillStar,AiOutlineHeart } from 'react-icons/ai';
+import { BiPlayCircle, BiTimeFive } from 'react-icons/bi';
+import { AiFillStar, AiOutlineHeart } from 'react-icons/ai';
 import { useSelector } from 'react-redux';
 import { formStateUser } from 'redux/user/stateUser';
 import Popup from '@titaui/reactjs-popup';
@@ -22,7 +22,7 @@ const Sidebar: React.FC<Sidebar<any>> = ({ ...props }) => {
   const history = useHistory();
 
   const clickedOverview = (path: string) => {
-    if(userState.token){
+    if (userState.token) {
       return history.push(path);
     }
 
@@ -38,11 +38,11 @@ const Sidebar: React.FC<Sidebar<any>> = ({ ...props }) => {
         {isLogged && <Notification handleLogged={handleLogged} />}
         <h5><Link to="/">MUSIC GAME</Link></h5>
         <ul>
-        <Link to="#" onClick={()=>clickedOverview('/')}><li><BsMusicNoteBeamed className="icon" />Cá nhân</li></Link>
-        {/* <Link to="/overview"><li><BsMusicNoteBeamed className="icon" />Cá nhân</li></Link> */}
-        <Link to="/"><li><RiFolderMusicFill className="icon" />Khám phá</li></Link>
-        <Link to="/chart"><li><FaChartPie className="icon" />Music chart</li></Link>
-        <Link to="/blog"><li><FaBlogger className="icon" />Blog</li></Link>
+          <Link to="/personal"><li><BsMusicNoteBeamed className="icon" />Cá nhân</li></Link>
+          {/* <Link to="/overview"><li><BsMusicNoteBeamed className="icon" />Cá nhân</li></Link> */}
+          <Link to="/"><li><RiFolderMusicFill className="icon" />Khám phá</li></Link>
+          <Link to="/chart"><li><FaChartPie className="icon" />Music chart</li></Link>
+          <Link to="/blog"><li><FaBlogger className="icon" />Blog</li></Link>
         </ul>
         <div className="library-sidebar">
           <ul>
@@ -53,9 +53,9 @@ const Sidebar: React.FC<Sidebar<any>> = ({ ...props }) => {
           </ul>
           <ul>
             <h6>Thư viện</h6>
-            <Link to="#" onClick={()=>clickedOverview('/favorite')}><li><AiOutlineHeart className="icon" />Yêu thích</li></Link>
+            <Link to="favorite"><li><AiOutlineHeart className="icon" />Yêu thích</li></Link>
             <Link to="/music"><li><BsMusicNoteBeamed className="icon" />Bài hát</li></Link>
-            <Link to="#" onClick={()=>clickedOverview('/playlist')}><li><BiPlayCircle className="icon" />Playlist</li></Link>
+            <Link to="playlist" ><li><BiPlayCircle className="icon" />Playlist</li></Link>
             <Link to="/recently"><li><BiTimeFive className="icon" />Gần đây</li></Link>
           </ul>
           <ul>
@@ -80,9 +80,9 @@ const Sidebar: React.FC<Sidebar<any>> = ({ ...props }) => {
             {(close: any) => (
               <div className="modal-playlis">
                 <div className="content-modal">
-                <button className="close" onClick={close}>
-                  X
-                </button>
+                  <button className="close" onClick={close}>
+                    X
+                  </button>
                   <h5 className="text-center">Tạo playlist mới</h5>
                   <form action="">
                     <input type="text" placeholder="Nhập tên playlist" />

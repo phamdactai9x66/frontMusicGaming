@@ -96,7 +96,7 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
 
     return (
         <>
-            <div className=" w-100 h-100 d-flex position-fixed top-0  text-center" style={{ left: "0px", zIndex: 10, backgroundColor: "rgb(0 0 0 / 25%)" }}>
+            {/* <div className=" w-100 h-100 d-flex position-fixed top-0  text-center" style={{ left: "0px", zIndex: 10, backgroundColor: "rgb(0 0 0 / 25%)" }}>
                 <div className="my-auto mx-auto p-4 rounded-3" style={{ backgroundColor: "#9cf6ff" }}>
                     <img
                         className="w-25 h-25"
@@ -113,7 +113,7 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                     </div>
                 </div>
 
-            </div>
+            </div> */}
 
             {/* // */}
             <div className="home">

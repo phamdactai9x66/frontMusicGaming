@@ -1,5 +1,5 @@
 
-export const HandleGet = async (functionPromise: Function, params = {}) => {
+export const HandleGet = async <T extends Function>(functionPromise: T, params = {}) => {
     try {
         const getParams = (typeof params == "string" ? params : { ...params })
         const data = await functionPromise(getParams);
