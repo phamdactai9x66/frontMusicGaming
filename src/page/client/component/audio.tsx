@@ -56,10 +56,10 @@ const Audio: React.FC<Audio<any>> = ({ audio: { audio: url, title, image, _id },
                 if (state.listAudio.length) {
                     // console.log(state.listAudio)
                     const findIndex = state.listAudio.findIndex((current: any) => {
-                        return current._id === state.audio?._id
+                        return current?._id === state?.audio?._id
                     })
                     const nextSong = findIndex + 1;
-                    if (nextSong < state.listAudio.length) {
+                    if (nextSong <= state.listAudio.length - 1) {
                         AudioPlay.current?.play();
                         setPlay(true)
                         dispatch(playSong({ _id: state.listAudio[nextSong]._id, listIdSong: state.listAudio }))

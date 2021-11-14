@@ -6,8 +6,6 @@ import { RiFolderMusicFill } from 'react-icons/ri';
 import { Link, useLocation } from "react-router-dom";
 import { BsPlusCircle } from 'react-icons/bs';
 import { RiGroupFill } from 'react-icons/ri';
-import { useSelector } from 'react-redux';
-import { formStateUser } from 'redux/user/stateUser';
 import { BiPlayCircle, BiTimeFive } from 'react-icons/bi';
 import { AiFillStar, AiOutlineHeart } from 'react-icons/ai';
 import Popup from '@titaui/reactjs-popup';
