@@ -28,6 +28,7 @@ import Profile from "page/admin/pageAdmin/profile/Profile";
 import Search from "./page/client/pageClient/search/search";
 import ListenTogether from "./page/client/pageClient/listenTogether/listenTogether";
 import Personal from "./page/client/pageClient/personal/index"
+import RoomDetail from "./page/client/pageClient/roomDetail/roomDetail";
 
 
 export interface propertyPage {
@@ -43,7 +44,7 @@ const Admin: propertyPage[] = [
         exact: true
     },
     {
-        path: "admin/profile",
+        path: "/admin/profile",
         component: Profile,
         exact: false
     },
@@ -83,7 +84,7 @@ const Admin: propertyPage[] = [
         exact: false
     },
     {
-        path: "admin/addPlayList",
+        path: "/admin/addPlayList",
         component: AddPlayList,
         exact: false
     },
@@ -94,7 +95,7 @@ const Admin: propertyPage[] = [
         exact: false
     },
     {
-        path: "admin/addslide",
+        path: "/admin/addslide",
         component: AddSlide,
         exact: false
     },
@@ -115,6 +116,11 @@ const Client: propertyPage[] = [
     {
         path: "/search",
         component: Search,
+        exact: false
+    },
+    {
+        path: "/roomDetail",
+        component: RoomDetail,
         exact: false
     },
     {

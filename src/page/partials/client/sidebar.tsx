@@ -3,39 +3,23 @@ import React, { useEffect, useState } from 'react'
 import { BsMusicNoteBeamed, BsListUl } from 'react-icons/bs';
 import { FaBlogger, FaChartPie } from 'react-icons/fa';
 import { RiFolderMusicFill } from 'react-icons/ri';
-import { Link, Redirect, RouteChildrenProps, withRouter, Route, useHistory } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { BsPlusCircle } from 'react-icons/bs';
 import { RiGroupFill } from 'react-icons/ri';
-import { BiPlayCircle, BiTimeFive } from 'react-icons/bi';
-import { AiFillStar, AiOutlineHeart } from 'react-icons/ai';
 import { useSelector } from 'react-redux';
 import { formStateUser } from 'redux/user/stateUser';
+import { BiPlayCircle, BiTimeFive } from 'react-icons/bi';
+import { AiFillStar, AiOutlineHeart } from 'react-icons/ai';
 import Popup from '@titaui/reactjs-popup';
-import Notification from 'page/notificationModal/NotificationModal';
+
 interface Sidebar<T> {
 
 }
 
 const Sidebar: React.FC<Sidebar<any>> = ({ ...props }) => {
-  const userState = useSelector<{ user: any }>(state => state.user) as formStateUser;
-  const [isLogged, setIsLogged] = useState(false);
-  const history = useHistory();
-
-  const clickedOverview = (path: string) => {
-    if (userState.token) {
-      return history.push(path);
-    }
-
-    setIsLogged(true)
-  }
-  const handleLogged = () => {
-    setIsLogged(false);
-  }
-
   return (
     <>
       <div className="sidebar">
-        {isLogged && <Notification handleLogged={handleLogged} />}
         <h5><Link to="/">MUSIC GAME</Link></h5>
         <ul>
           <Link to="/personal"><li><BsMusicNoteBeamed className="icon" />Cá nhân</li></Link>
