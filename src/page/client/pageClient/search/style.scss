@@ -82,4 +82,10 @@ p{
     display: grid;
      grid-template-columns: 1fr 1fr 1fr;
      gap: 15px;
+     .hover:hover{
+         background: #6f84bebd;
+        transition: 0.3s;
+        border:none
+  
+    }
 }
