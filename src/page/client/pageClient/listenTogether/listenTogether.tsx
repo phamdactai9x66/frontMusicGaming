@@ -1,13 +1,14 @@
 
-import React, { useEffect, useState, useReducer } from 'react'
+import React, { useEffect, useState, useReducer, useRef } from 'react'
 import { Button, TextField } from '@mui/material';
 import roomApi from "api/roomApi";
-import { HandleGet, handleReducer, typeAciton, initialReducer, pustAction, tranFormDataId } from "component/MethodCommon"
+import { HandleGet, handleReducer, typeAciton, initialReducer, pustAction } from "component/MethodCommon"
 import { variableCommon } from "component/variableCommon";
 import ListRoom from "./component/listRoom"
 import roomUser from "api/roomUser";
 import userApi from "api/useApi";
 import Pagination from "./component/pagination";
+import FindRoom from "./component/findRoom";
 
 interface ListenTogether<T> {
 
@@ -16,6 +17,7 @@ interface ListenTogether<T> {
 const ListenTogether: React.FC<ListenTogether<any>> = ({ ...props }) => {
   const [state, dispatch] = useReducer(handleReducer, initialReducer, undefined);
   const [saveData, setSaveData] = useState({ user: [], roomUser: [], display: true });
+
   useEffect(() => {
     (async () => {
       if (!saveData.display) return;
@@ -33,8 +35,11 @@ const ListenTogether: React.FC<ListenTogether<any>> = ({ ...props }) => {
         ...state.Filter
       }
       const [data, error] = await HandleGet<Function>(roomApi.getAll, query);
-      const getAllRoom = await roomApi.getAll({});
+      delete query._page;
+      delete query._page;
+      const countLength = Object.entries(query).length;
       if (error || data.status === variableCommon.statusF) return;
+      const getAllRoom = await roomApi.getAll((countLength && query.name_Room) ? query : {});
       setTimeout(() => {
         dispatch(pustAction(typeAciton.getData, { Data: data.data, dataStatic: getAllRoom.data }))
       }, 500);
@@ -60,13 +65,7 @@ const ListenTogether: React.FC<ListenTogether<any>> = ({ ...props }) => {
     <>
       <div className="listenTogeter">
         <div className="room">
-          <div className="search">
-            <form action="">
-              <i className="fa fa-search" aria-hidden="true"></i>
-              <div className="search_hover"></div>
-              <input type="text" placeholder="Search..." />
-            </form>
-          </div>
+          <FindRoom dispatch={dispatch} />
           {
             state.Display ? listRoom() : null
           }
