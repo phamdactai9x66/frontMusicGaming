@@ -333,10 +333,38 @@ const Search: React.FC<Search<any>> = ({ ...props }) => {
                 <div className="Pagination mb-3" style={{ borderBottom:"0.1px solid #38939c"}}>
                     <Pagination count={10} onClick={() => { console.log() }} style={{ padding: 10, paddingTop: 20, color: "#fff" }} />
                 </div>
+                <h5 className="text-light mb-3 ">
+               Blog  <span style={{color:'#d0d0d0',fontSize:'1rem'}}>({'2'} kết quả trùng khớp)</span>
+               </h5>
+               <div>
+                   <div className="grid-blog-box">
+                       <div className="hover-blog">
+                           <img className="w-100 rounded-3 shadow-lg" style={{height:"150px"}} src="https://i.pinimg.com/564x/9e/07/4d/9e074da625f7726cef1d3c355869d6db.jpg" alt="" />
+                           <p className="mt-1">tên của blog được searh</p>
+                       </div>
+                       <div className="hover-blog">
+                           <img className="w-100 rounded-3 shadow-lg" style={{height:"150px"}} src="https://i.pinimg.com/564x/9e/07/4d/9e074da625f7726cef1d3c355869d6db.jpg" alt="" />
+                           <p className="mt-1">tên của blog được searh</p>
+                       </div>
+                       <div className="hover-blog">
+                           <img className="w-100 rounded-3 shadow-lg" style={{height:"150px"}} src="https://i.pinimg.com/564x/9e/07/4d/9e074da625f7726cef1d3c355869d6db.jpg" alt="" />
+                           <p className="mt-1">tên của blog được searh</p>
+                       </div>
+                       <div className="hover-blog">
+                           <img className="w-100 rounded-3 shadow-lg" style={{height:"150px"}} src="https://i.pinimg.com/564x/9e/07/4d/9e074da625f7726cef1d3c355869d6db.jpg" alt="" />
+                           <p className="mt-1">tên của blog được searh</p>
+                       </div>
+
+                   </div>
+               </div>
+               <div className="Pagination mb-3" style={{ borderBottom:"0.1px solid #38939c"}}>
+                    <Pagination count={10} onClick={() => { console.log() }} style={{ padding: 10, paddingTop: 20, color: "#fff" }} />
+                </div>
             </div>
+          
 
   
-            <div>
+            <div className="display-none">
                <h5 className="text-white search-text">Danh sách bài hát</h5>
                <div className="d-flex top-1 mb-3">
                   <div className="w-50" style={{position:"relative"}}>

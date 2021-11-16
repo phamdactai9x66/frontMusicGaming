@@ -316,9 +316,6 @@ const HeaderClient: React.FC<HeaderClient> = ({ ...props }) => {
                                             <p className="text-dark mb-0">tìm kiếm gần đây</p>
                                             <p className=" mb-0 hover-delete" onClick={()=>('sự kiến xóa ')}>xóa</p>  
                                         </div>
-                                    
-                            
-                            
                                     </div>
 
                                 </div>
