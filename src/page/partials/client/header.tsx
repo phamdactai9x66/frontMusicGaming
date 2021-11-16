@@ -12,6 +12,7 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import SearchIcon from '@material-ui/icons/Search';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import './style.scss'
+import { BiSearch ,BiTime,BiX} from "react-icons/bi"
 //
 import { fade, makeStyles, AppBar, Toolbar, IconButton, InputBase, Menu } from '@material-ui/core';
 // import { Search, AccountCircle, MoreVert } from '@material-ui/icons';
@@ -266,6 +267,14 @@ const HeaderClient: React.FC<HeaderClient> = ({ ...props }) => {
                         <div className={classes.searchIcon}>
                             <SearchIcon />
                         </div>
+                        {  modalSearh === false ? ''
+                         : (
+                            <> 
+                                <BiX className="hover-icon" style={{position:'absolute',fontSize:'30px',right:'0'}}/>
+                            </>
+                            )
+                        }
+                       
                         <InputBase
                         onClick={()=> handleOpendModal()}
                             placeholder="Nhập tên bài hát, nghệ sĩ hoăc blog..."
@@ -281,39 +290,40 @@ const HeaderClient: React.FC<HeaderClient> = ({ ...props }) => {
                                 <div className={"rounded-3 w-100 shadow-lg py-2"} style={{position:"absolute",background:"#e1f4ff"}}>
                                     <div>
                                         <div className="hover">
-                                            <Link to="" className="text-dark px-3">tìm kiếm mới</Link>
+                                           
+                                            <Link to="" className="text-dark px-3"> <BiSearch style={{marginRight:'2px'}} className="text-black" />tìm kiếm mới</Link>
                                         </div>
                                         <div className="hover">
-                                            <Link to="" className="text-dark px-3">tìm kiếm mới</Link>
+                                            <Link to="" className="text-dark px-3"> <BiSearch style={{marginRight:'2px'}} className="text-black" />tìm kiếm mới</Link>
                                         </div>
                                         <div className="hover">
-                                            <Link to="" className="text-dark px-3">tìm kiếm mới</Link>
+                                            <Link to="" className="text-dark px-3"> <BiSearch style={{marginRight:'2px'}} className="text-black" />tìm kiếm mới</Link>
                                         </div>
                                         <div className="hover">
-                                            <Link to="" className="text-dark px-3">tìm kiếm mới</Link>
+                                            <Link to="" className="text-dark px-3"> <BiSearch style={{marginRight:'2px'}} className="text-black" />tìm kiếm mới</Link>
                                         </div>
                                         <div className="hover">
-                                            <Link to="" className="text-dark px-3">tìm kiếm mới</Link>
+                                            <Link to="" className="text-dark px-3"> <BiSearch style={{marginRight:'2px'}} className="text-black" />tìm kiếm mới</Link>
                                         </div>
                                         <p className="border-bottom text-black"></p>
                                         <div className="d-flex justify-content-between px-3 hover">
-                                            <p className="text-dark mb-0">tìm kiếm gần đây</p>
+                                            <p className="text-dark mb-0"><BiTime style={{marginRight:'2px'}} className="text-black" />tìm kiếm gần đây</p>
                                             <p className=" mb-0 hover-delete" onClick={()=>('sự kiến xóa ')}>xóa</p>  
                                         </div>
                                         <div className="d-flex justify-content-between px-3 hover">
-                                            <p className="text-dark mb-0">tìm kiếm gần đây</p>
+                                            <p className="text-dark mb-0"><BiTime style={{marginRight:'2px'}} className="text-black" />tìm kiếm gần đây</p>
                                             <p className=" mb-0 hover-delete" onClick={()=>('sự kiến xóa ')}>xóa</p>  
                                         </div>
                                         <div className="d-flex justify-content-between px-3 hover">
-                                            <p className="text-dark mb-0">tìm kiếm gần đây</p>
+                                            <p className="text-dark mb-0"><BiTime style={{marginRight:'2px'}} className="text-black" />tìm kiếm gần đây</p>
                                             <p className=" mb-0 hover-delete" onClick={()=>('sự kiến xóa ')}>xóa</p>  
                                         </div>
                                         <div className="d-flex justify-content-between px-3 hover">
-                                            <p className="text-dark mb-0">tìm kiếm gần đây</p>
+                                            <p className="text-dark mb-0"><BiTime style={{marginRight:'2px'}} className="text-black" />tìm kiếm gần đây</p>
                                             <p className="mb-0 hover-delete " onClick={()=>('sự kiến xóa ')}>xóa</p>  
                                         </div>
                                         <div className="d-flex justify-content-between px-3 hover">
-                                            <p className="text-dark mb-0">tìm kiếm gần đây</p>
+                                            <p className="text-dark mb-0"><BiTime style={{marginRight:'2px'}} className="text-black" />tìm kiếm gần đây</p>
                                             <p className=" mb-0 hover-delete" onClick={()=>('sự kiến xóa ')}>xóa</p>  
                                         </div>
                                     </div>
