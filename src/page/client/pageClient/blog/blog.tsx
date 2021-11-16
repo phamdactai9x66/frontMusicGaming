@@ -9,7 +9,10 @@ import ListCategoryBlog from './component/listCategoryBlog';
 import PostNew from './component/PostNew';
 import './blog.scss'
 import { debounce } from '@material-ui/core';
-import BlogApi from 'api/BlogApi';
+import blogApi from 'api/BlogApi';
+import { current } from '@reduxjs/toolkit';
+
+
 interface blog<T> {
 
 }
@@ -17,9 +20,13 @@ interface blog<T> {
 const Blog: React.FC<blog<any>> = ({ ...props }) => {
     const [searchKeyword, setSearchKeyword] = useState('');
     const [searchRecommendResults, setSearchRecommendResults] = useState([]);
+    const [currentPage, setCurrenPage] = useState(1);
+    const [count, setCount] = useState(0);
+    const [blog, setBlog] = useState<Array<any>>([]);
+    const [allBlogs, setAllBlogs] = useState([])
 
     const searchDebounced = useCallback<any>(debounce( async (value: any) => {
-        const { data } = await BlogApi.getAll( {title: value} )
+        const { data } = await blogApi.getAll( {title: value} )
         setSearchRecommendResults(data)
     }, 3000), [])
     const handleSearch = (value: string) => {
@@ -27,7 +34,28 @@ const Blog: React.FC<blog<any>> = ({ ...props }) => {
         searchDebounced(value);
     }
 
-    console.log(searchRecommendResults)
+    const panigationChange = (e: any, page: number) => { 
+        const startBlog = 7 * (page - 1);
+        const newAllBlogs = [...allBlogs];
+        const showBlog = newAllBlogs.splice( startBlog, startBlog + 6)
+        setCurrenPage(page);
+        setBlog(showBlog);
+    }
+
+    useEffect(() => {
+        const getBlog = async () => {
+            const responseGetAll = await blogApi.getAll({});
+            setAllBlogs(responseGetAll.data);
+
+            const counts = Math.ceil(responseGetAll.data.length / 7);
+            setCount(counts); 
+            
+            const newData = [...responseGetAll.data];
+            setBlog(newData.splice(0, 7));
+        }
+        getBlog();
+    }, []);
+    
     return (
         <>
    
@@ -42,7 +70,7 @@ const Blog: React.FC<blog<any>> = ({ ...props }) => {
             </div>
             <div className="blog-main">
                 <div className="flex-blog">
-                    <ListBlog searchRecommendResults={searchRecommendResults} />
+                    <ListBlog blog={blog} searchRecommendResults={searchRecommendResults} />
                 </div>
                 <div className="blog-2">
                     <div className="search" >
@@ -62,7 +90,7 @@ const Blog: React.FC<blog<any>> = ({ ...props }) => {
 
             </div>
             <div className="Pagination">
-                <Pagination count={10} onClick={() => { console.log() }} style={{ padding: 10, paddingTop: 20, color: "#fff" }} />
+                <Pagination count={count} page={currentPage} onChange={panigationChange} style={{ padding: 10, paddingTop: 20, color: "#fff" }} />
             </div>
         </div>
         </>
