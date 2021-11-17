@@ -76,7 +76,7 @@ const Blog: React.FC<blog<any>> = ({ ...props }) => {
                 <div className="blog-2">
                     <div className="search" >
                         <BiSearch className="icon" />
-                        <input placeholder="Search" onChange={(e) => handleSearch(e.target.value)} type="text" />
+                        <input placeholder="Tìm kiếm Blogs" onChange={(e) => handleSearch(e.target.value)} type="text" />
 
                     </div>
                     <ListCategoryBlog />

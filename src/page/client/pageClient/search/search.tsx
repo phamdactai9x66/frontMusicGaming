@@ -26,12 +26,15 @@ import { Pagination } from '@mui/material'
 import Avatar from '@mui/material/Avatar';
 interface Search<T> {
    userState: any,
+   location: any,
+   history: any,
 }
 
 const Search: React.FC<Search<any>> = ({ ...props }) => {
-    document.title = "Tìm kiếm - Music Game"
+    const key = new URLSearchParams(props.history.location.search).get('key')
+    document.title = `Tìm kiếm "${key}" - Music Game`
 
-   const history: any = useHistory<any>();
+//    const history: any = useHistory<any>();
    const [playlistName, setPlaylistName] = useState('');
    const [anchor, setAnchor] = useState(null);
    const [anchor2, setAnchor2] = useState(null);
@@ -42,12 +45,8 @@ const Search: React.FC<Search<any>> = ({ ...props }) => {
    const dispatch = useDispatch();
    const [handleStatus, setHandleStatus] = useState({ status: "", content: "" });
    const [addPlaylistLoading, setAddPlaylistLoading] = useState(false);
-   const [locationLogged, setLocationlogged] = useState(history.location.state?.isLogged ? history.location.state.isLogged : false);
-   
-
-   // if(history && history.location.state?.isLogged){
-   //     setIsLogged(true);
-   // }
+   const [locationLogged, setLocationlogged] = useState(props.location.state?.isLogged ? props.location.state.isLogged : false);
+    
    const openPopover = (event: any) => {
        setAnchor(event.currentTarget);
    };
@@ -56,22 +55,22 @@ const Search: React.FC<Search<any>> = ({ ...props }) => {
        setAnchor2(event.currentTarget);
    };
 
-   useEffect(() => {
-       (async () => {
-           dispatch(getlistAudio())
-       })()
-   }, [])
+//    useEffect(() => {
+//        (async () => {
+//            dispatch(getlistAudio())
+//        })()
+//    }, [])
 
-   useEffect(() => {
-       const getSongs = async () => {
-           const { data } = await songApi.getAll({ _limit: 20 });
-           setSongs(data);
-       }
-       getSongs();
-   }, []);
-   // useEffect( () => {
-   //     let locationLogged = history.location.state?.isLogged ? history.location.state.isLogged : false;
-   // }, [history])
+//    useEffect(() => {
+//        const getSongs = async () => {
+//            const { data } = await songApi.getAll({ _limit: 20 });
+//            setSongs(data);
+//        }
+//        getSongs();
+//    }, []); 
+    useEffect( () => {
+
+    }, [props.location])
 
    const handleAdd = async <T extends string>(s: T, u: T, t: T) => {
        if (u === undefined) {

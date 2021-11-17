@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { RiAdminFill } from "react-icons/ri";
 import { FaSignInAlt } from "react-icons/fa";
 import { Select, MenuItem } from "@mui/material";
-import { Link, RouteChildrenProps, useHistory, withRouter } from "react-router-dom";
+import { Link, RouteChildrenProps, withRouter } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { formStateUser } from "redux/user/stateUser";
 import Topic from "./component/topic/topic";
@@ -97,7 +97,10 @@ const HeaderClient: React.FC<HeaderClient> = ({ ...props }) => {
 	const classes = useStyles();
 	const [anchorEl, setAnchorEl] = useState(null);
 	const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-    const [modalSearh,setModalSearh] =useState(false)
+    const [modalSearh,setModalSearh] =useState(false);
+
+    const [searchInp, setSearchInp] = useState('');
+    
     const handleOpendModal =()=>{
         if(modalSearh == false){
             setModalSearh(true)
@@ -117,7 +120,7 @@ const HeaderClient: React.FC<HeaderClient> = ({ ...props }) => {
 
         const requireLoginPath = ['/profile', '/listenTogether', '/personal','/roomDetail'];
         if(requireLoginPath.filter( item => item == props.history.location.pathname).length !== 0){
-            return props.history.replace('/signin');
+            return props.history.replace('/');
         }
         // props.history.replace('/signin');
     };
@@ -257,6 +260,15 @@ const HeaderClient: React.FC<HeaderClient> = ({ ...props }) => {
             </MenuItem>
         </Menu>
     );
+
+    const search = () => {
+        props.history.push(`/search?key=${searchInp}`)
+    } 
+    const enterToSearch = (e: any) => {
+        if(e.key === "Enter"){
+            search();
+        }
+    }
     return (
         <div className="header_ui">
             {handleStatus.status !== "" && (
@@ -270,27 +282,36 @@ const HeaderClient: React.FC<HeaderClient> = ({ ...props }) => {
                 <Toolbar>
                     <div className={classes.search} style={{position:"relative"}}>
                         <div className={classes.searchIcon}>
-                            <SearchIcon />
+                            <SearchIcon onClick={search} />
                         </div>
-                        {  modalSearh === false ? ''
-                         : (
+                        {/* {  modalSearh && (
                             <> 
                                 <BiX className="hover-icon" style={{position:'absolute',fontSize:'30px',right:'0'}}/>
                             </>
                             )
-                        }
+                        } */}
                        
+                        {  searchInp !== '' && (
+                            <> 
+                                <BiX className="hover-icon" onClick={() => setSearchInp("")} style={{position:'absolute',fontSize:'30px',right:'0', zIndex: 999}}/>
+                            </>
+                            )
+                        }
                         <InputBase
-                        onClick={()=> handleOpendModal()}
+                            onFocus={()=> setModalSearh(true)}
+                            onBlur={()=> setModalSearh(false)}
                             placeholder="Nhập tên bài hát, nghệ sĩ hoăc blog..."
                             classes={{
                                 root: classes.inputRoot,
                                 input: classes.inputInput,
                             }}
+                            value={searchInp}
                             inputProps={{ "aria-label": "search" }}
+                            onChange={(e) => setSearchInp(e.target.value)}
+                            onKeyDown={enterToSearch}
                         />
-                        {
-                            modalSearh === false ? '' : (
+                        {/* {
+                            modalSearh && (
                                 <>
                                 <div className={"rounded-3 w-100 shadow-lg py-2"} style={{position:"absolute",background:"#e1f4ff"}}>
                                     <div>
@@ -337,7 +358,7 @@ const HeaderClient: React.FC<HeaderClient> = ({ ...props }) => {
                                 </>
 
                             )
-                        }
+                        } */}
                             
                     
                     </div>

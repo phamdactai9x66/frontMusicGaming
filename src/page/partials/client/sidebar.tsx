@@ -47,9 +47,9 @@ const Sidebar: React.FC<Sidebar<any>> = ({ ...props }) => {
           </ul>
           <ul>
             <h6>Thư viện</h6>
-            <Link to="favorite"><li><AiOutlineHeart className="icon" />Yêu thích</li></Link>
+            <Link to="/favorite"><li><AiOutlineHeart className="icon" />Yêu thích</li></Link>
             <Link to="/music"><li><BsMusicNoteBeamed className="icon" />Bài hát</li></Link>
-            <Link to="playlist" ><li><BiPlayCircle className="icon" />Playlist</li></Link>
+            <Link to="/playlist" ><li><BiPlayCircle className="icon" />Playlist</li></Link>
             <Link to="/recently"><li><BiTimeFive className="icon" />Gần đây</li></Link>
           </ul>
           <ul>
