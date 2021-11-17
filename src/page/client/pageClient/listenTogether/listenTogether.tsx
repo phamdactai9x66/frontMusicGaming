@@ -19,18 +19,18 @@ const ListenTogether: React.FC<ListenTogether<any>> = ({ ...props }) => {
   const [saveData, setSaveData] = useState({ user: [], roomUser: [], display: true });
 
   useEffect(() => {
-    (async () => {
-      if (!saveData.display) return;
+    if (!saveData.display) return;
+    setTimeout(async () => {
       const { data: listRoomUser } = await roomUser.getAll({});
       const { data: listUserApi } = await userApi.getAll({});
       setSaveData({ display: true, user: listUserApi, roomUser: listRoomUser })
-    })()
+    }, 1000);
     return () => {
       setSaveData((value) => ({ ...value, display: false }))
     }
   }, [])
   useEffect(() => {
-    (async () => {
+    setTimeout(async () => {
       const query = {
         ...state.Filter
       }
@@ -42,7 +42,7 @@ const ListenTogether: React.FC<ListenTogether<any>> = ({ ...props }) => {
       const getAllRoom = await roomApi.getAll((countLength && query.name_Room) ? query : {});
 
       dispatch(pustAction(typeAciton.getData, { Data: data.data, dataStatic: getAllRoom.data }))
-    })()
+    }, 1000);
     return () => {
       dispatch(pustAction(typeAciton.reset))
     }

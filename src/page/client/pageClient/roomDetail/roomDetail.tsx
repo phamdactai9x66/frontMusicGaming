@@ -34,8 +34,9 @@ const RoomDetail: React.FC<RoomDetail<any>> = ({ match, ...props }) => {
                 const checkId = (props.location.state as any).idRoomUser;
                 const getUrl = new URL(window.location.href);
                 const findRoomDetail = getUrl.pathname.split('/').some(current => current === 'roomDetail');
-                if (!findRoomDetail) {
+                if (!findRoomDetail || checkId) {
                     const deleteUser = await roomUser.DeleteOne(checkId);
+                    console.log(deleteUser);
                 }
             })()
         }

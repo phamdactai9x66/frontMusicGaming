@@ -7,6 +7,7 @@ import { RouteComponentProps, withRouter } from "react-router-dom";
 import roomUserApi from "api/roomUser";
 import { useSelector } from "react-redux";
 import { formStateUser } from "redux/user/stateUser";
+import { variableCommon } from "component/variableCommon"
 interface ListRoom<T> extends RouteComponentProps {
     current: T,
     index: number,
@@ -42,9 +43,11 @@ const ListRoom: React.FC<ListRoom<any>> = ({ index, current, history, ...props }
             id_User: user._id
         }
         const addUserintoRoom = await roomUserApi.postOne<object>(data);
-        history.push(`/listenTogether/roomDetail/${current._id || ''}`, {
-            idRoomUser: addUserintoRoom?.data[0]._id
-        })
+        if (addUserintoRoom.status === variableCommon.statusS) {
+            history.push(`/listenTogether/roomDetail/${current?._id || ''}`, {
+                idRoomUser: addUserintoRoom?.data[0]._id
+            })
+        }
     }
 
     return (
