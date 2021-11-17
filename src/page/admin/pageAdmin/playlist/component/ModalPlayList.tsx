@@ -65,7 +65,7 @@ const ModalPlayList: React.FC<Modal<any>> = ({state, onClose, ...props}) => {
                 <Grid item xs={12} md={6}>
                   <Typography>
                     <img 
-                      src={dataPlay.data?.image} 
+                      src={(dataPlay.data?.[0] as any)?.image} 
                       className={classes.styleImage} 
                       alt="" 
                     />
@@ -76,7 +76,7 @@ const ModalPlayList: React.FC<Modal<any>> = ({state, onClose, ...props}) => {
                         <TextField 
                           inputProps={{ readOnly: true, }} 
                           label="name" 
-                          value={dataPlay.data?.name} 
+                          value={(dataPlay.data?.[0] as any)?.name} 
                           variant="standard" 
                           fullWidth 
                         />
