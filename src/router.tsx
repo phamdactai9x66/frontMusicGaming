@@ -119,7 +119,7 @@ const Client: propertyPage[] = [
         exact: false
     },
     {
-        path: "/roomDetail",
+        path: "/listenTogether/roomDetail/:idRoom",
         component: RoomDetail,
         exact: false
     },

@@ -3,7 +3,8 @@ import { Avatar, AvatarGroup, Button } from '@mui/material';
 import { FcKey } from 'react-icons/fc';
 import { Modal, Box } from "@material-ui/core";
 import { tranFormDataId } from "component/MethodCommon"
-interface ListRoom<T> {
+import { RouteComponentProps, withRouter } from "react-router-dom";
+interface ListRoom<T> extends RouteComponentProps {
     current: T,
     index: number,
     saveData: T
@@ -21,7 +22,7 @@ const style = {
     color: 'white',
 };
 
-const ListRoom: React.FC<ListRoom<any>> = ({ index, current, ...props }) => {
+const ListRoom: React.FC<ListRoom<any>> = ({ index, current, history, ...props }) => {
     const [open, setOpen] = useState<boolean>(false);
 
     const listUser = () => {
@@ -32,10 +33,13 @@ const ListRoom: React.FC<ListRoom<any>> = ({ index, current, ...props }) => {
             return <Avatar key={index} alt="Remy Sharp" src={getListId?.avatar} />
         })
     }
+    const navigateDetailRoom = () => {
+        history.push(`/listenTogether/roomDetail/${current._id || ''}`)
+    }
     return (
         <>
             <div className="room_box" key={index}>
-                <div className="name">
+                <div className="name" onClick={navigateDetailRoom}>
                     <h6>{current?.name_Room}</h6>
                     <div>
                         <AvatarGroup max={4}>
@@ -68,4 +72,4 @@ const ListRoom: React.FC<ListRoom<any>> = ({ index, current, ...props }) => {
     )
 }
 
-export default ListRoom
+export default withRouter(ListRoom)
