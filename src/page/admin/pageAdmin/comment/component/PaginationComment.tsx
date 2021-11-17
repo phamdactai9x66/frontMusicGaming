@@ -1,13 +1,13 @@
-import React, { useState } from 'react'
+import React, {useState} from 'react'
 import { Pagination } from '@mui/material'
 import { typeAciton, pustAction } from 'component/MethodCommon'
 
-interface PaginationCategory<T> {
+interface PaginationComment<T> {
   state: any,
   dispatch: any
 }
 
-const PaginationCategory: React.FC<PaginationCategory<any>> = ({ state, dispatch, ...props }) => {
+const PaginationComment: React.FC<PaginationComment<any>> = ({ state, dispatch, ...props }) => {
   const [page, setNextPage] = useState(state?.Filter?._page);
   
   const getTotalPage = (): number => {
@@ -33,4 +33,4 @@ const PaginationCategory: React.FC<PaginationCategory<any>> = ({ state, dispatch
   )
 }
 
-export default PaginationCategory
+export default PaginationComment

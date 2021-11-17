@@ -18,10 +18,18 @@ import Album from "./page/admin/pageAdmin/todolist/index";
 import AddTopic from "./page/admin/pageAdmin/topic/page/addTodo";
 import Topic from "./page/admin/pageAdmin/topic/index";
 import Category from "./page/client/pageClient/category/category";
-import AddCategory from "./page/admin/pageAdmin/categories/page/AddCategory";
 import Categories from "page/admin/pageAdmin/categories/index";
+import AddCategory from "./page/admin/pageAdmin/categories/page/AddCategory";
 import PlayList from "page/admin/pageAdmin/playlist/index";
 import AddPlayList from "page/admin/pageAdmin/playlist/page/AddPlayList";
+
+import BlogAdmin from "./page/admin/pageAdmin/blog/index";
+import AddBlog from "./page/admin/pageAdmin/blog/page/AddBlog";
+import UserPlaylist from "./page/admin/pageAdmin/userPlayList/index";
+import AddUserPlaylist from "./page/admin/pageAdmin/userPlayList/page/AddUserPlayList";
+import CategoryBlog from "./page/admin/pageAdmin/categoriesBlog/index";
+import AddCategoryBlog from "./page/admin/pageAdmin/categoriesBlog/page/AddCategoryBlog";
+
 import Slide from './page/admin/pageAdmin/slide/index'
 import AddSlide from './page/admin/pageAdmin/slide/page/addSlide'
 import Search from "./page/client/pageClient/search/search";
@@ -29,6 +37,7 @@ import ListenTogether from "./page/client/pageClient/listenTogether/listenTogeth
 import Personal from "./page/client/pageClient/personal/index"
 import RoomDetail from "./page/client/pageClient/roomDetail/roomDetail";
 import Profile from "page/client/pageClient/profile/Profile";
+
 
 
 export interface propertyPage {
@@ -93,6 +102,36 @@ const Admin: propertyPage[] = [
     {
         path: "/admin/addslide",
         component: AddSlide,
+        exact: false
+    },
+    {
+        path: "/admin/blog",
+        component: BlogAdmin,
+        exact: false
+    },
+    {
+        path: "/admin/addBlog",
+        component: AddBlog,
+        exact: false
+    },
+    {
+        path: "/admin/userPlayList",
+        component: UserPlaylist,
+        exact: false
+    },
+    {
+        path: "/admin/addUserPlayList",
+        component: AddUserPlaylist,
+        exact: false
+    },
+    {
+        path: "/admin/categoryBlog",
+        component: CategoryBlog,
+        exact: false
+    },
+    {
+        path: "/admin/addCategoryBlog",
+        component: AddCategoryBlog,
         exact: false
     },
     {
