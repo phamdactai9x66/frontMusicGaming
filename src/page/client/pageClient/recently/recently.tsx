@@ -12,6 +12,7 @@ interface Recently<T> {
 }
 
 const Recently: React.FC<Recently<any>> = ({ ...props }) => {
+    document.title = "Nghe gần đây - Music Game";
     const [anchor, setAnchor] = useState(null);
     const openPopover = (event: any) => {
         setAnchor(event.currentTarget);

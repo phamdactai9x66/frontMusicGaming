@@ -7,7 +7,8 @@ import { saveInfo } from "../../../../../redux/user/actionUser";
 import { RouteComponentProps, withRouter } from "react-router-dom";
 
 interface LoginFacebook<T> extends RouteComponentProps {
-    displayAlert?: any
+    displayAlert?: any,
+    lastLocation: string,
 }
 
 const LoginFacebook: React.FC<LoginFacebook<any>> = ({ history, displayAlert, ...props }) => {
@@ -17,7 +18,7 @@ const LoginFacebook: React.FC<LoginFacebook<any>> = ({ history, displayAlert, ..
 
         if (LoginFacebook.status !== "failed") {
             dispatchUser(saveInfo(LoginFacebook))
-            return history.replace("/")
+            return history.replace(props.lastLocation)
         }
         displayAlert(LoginFacebook.message)
     }

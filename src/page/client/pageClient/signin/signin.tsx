@@ -18,7 +18,7 @@ interface Signin<T> extends RouteComponentProps {
 }
 
 
-const Signin: React.FC<Signin<any>> = ({ history, ...props }) => {
+const Signin: React.FC<Signin<any>> = ({ history, ...props }: any) => {
   const [step, setStep] = useState({
     displayForm: 0,
     addStyle: {
@@ -28,6 +28,8 @@ const Signin: React.FC<Signin<any>> = ({ history, ...props }) => {
   const dispatchUser = useDispatch();
   const form = useRef<HTMLFormElement | any>(null);
   const [alertError, setalertError] = useState<any>({ display: false, message: "", type: '' })
+  
+  const lastLocation = history.location.state.lastLocation ? history.location.state.lastLocation : '/';
 
   const renderForm = <T extends number>(step: T, formik: FormikContextType<any>): JSX.Element => {
     switch (step) {
@@ -79,7 +81,8 @@ const Signin: React.FC<Signin<any>> = ({ history, ...props }) => {
 
         dispatchUser(saveInfo(loginUser))
 
-        history.replace("/");
+        history.replace(lastLocation);
+        history.push(lastLocation);
       }
       return displayAlert(loginUser.message, 'error')
     }
@@ -92,7 +95,7 @@ const Signin: React.FC<Signin<any>> = ({ history, ...props }) => {
     }
     displayAlert(loginUser.message, 'error')
   }
-  const displayAlert = (messageError: string = "We have some error !", type: string = 'info') => {
+  const displayAlert = (messageError: string = "Có lỗi xảy ra", type: string = 'info') => {
     setalertError({ display: true, message: messageError, type })
   }
   return (
@@ -128,8 +131,8 @@ const Signin: React.FC<Signin<any>> = ({ history, ...props }) => {
 
                       {!step.displayForm ? <>
                         {/* <AiFillGoogleSquare className="icon" /> */}
-                        <LoginGoogle displayAlert={displayAlert} />
-                        <LoginFacebook displayAlert={displayAlert} />
+                        <LoginGoogle lastLocation={lastLocation} displayAlert={displayAlert} />
+                        <LoginFacebook lastLocation={lastLocation} displayAlert={displayAlert} />
 
                       </> : ''}
                     </div>

@@ -11,6 +11,7 @@ interface chart<T> {
 
 }
 const Chart: React.FC<chart<any>> = ({ ...props }) => {
+    document.title = "Music Chart - Music Game";
     const [anchor, setAnchor] = useState(null);
     const openPopover = (event: any) => {
         setAnchor(event.currentTarget);

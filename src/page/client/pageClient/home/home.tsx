@@ -21,6 +21,7 @@ interface Home<T> {
 }
 
 const Home: React.FC<Home<any>> = ({ ...props }) => {
+    document.title = "Music Game";
     const [playlists, setPlaylists] = useState([]);
     const userState = useSelector<{ user: any }>(state => state.user) as formStateUser;
     const [songs, setSongs] = useState([]);
