@@ -4,6 +4,9 @@ import { FcKey } from 'react-icons/fc';
 import { Modal, Box } from "@material-ui/core";
 import { tranFormDataId } from "component/MethodCommon"
 import { RouteComponentProps, withRouter } from "react-router-dom";
+import roomUserApi from "api/roomUser";
+import { useSelector } from "react-redux";
+import { formStateUser } from "redux/user/stateUser";
 interface ListRoom<T> extends RouteComponentProps {
     current: T,
     index: number,
@@ -24,7 +27,7 @@ const style = {
 
 const ListRoom: React.FC<ListRoom<any>> = ({ index, current, history, ...props }) => {
     const [open, setOpen] = useState<boolean>(false);
-
+    const { user } = useSelector<{ user: any }>(state => state.user) as formStateUser;
     const listUser = () => {
         const { roomUser, user } = props.saveData as any;
         const findRoom = roomUser.filter((currentRU: any) => currentRU.id_Room === current._id)
@@ -33,9 +36,17 @@ const ListRoom: React.FC<ListRoom<any>> = ({ index, current, history, ...props }
             return <Avatar key={index} alt="Remy Sharp" src={getListId?.avatar} />
         })
     }
-    const navigateDetailRoom = () => {
-        history.push(`/listenTogether/roomDetail/${current._id || ''}`)
+    const navigateDetailRoom = async () => {
+        const data = {
+            id_Room: current._id,
+            id_User: user._id
+        }
+        const addUserintoRoom = await roomUserApi.postOne<object>(data);
+        history.push(`/listenTogether/roomDetail/${current._id || ''}`, {
+            idRoomUser: addUserintoRoom?.data[0]._id
+        })
     }
+
     return (
         <>
             <div className="room_box" key={index}>

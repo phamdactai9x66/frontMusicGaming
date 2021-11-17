@@ -14,7 +14,7 @@ import { tranFormDataId } from "component/MethodCommon";
 import { useDispatch } from "react-redux";
 import { playSong } from "redux/audio/actionAudio";
 import ListRoomUser from "./component/listRoomUser";
-
+import roomUser from "api/roomUser";
 interface RoomDetail<T> extends RouteComponentProps {
 }
 const RoomDetail: React.FC<RoomDetail<any>> = ({ match, ...props }) => {
@@ -23,7 +23,23 @@ const RoomDetail: React.FC<RoomDetail<any>> = ({ match, ...props }) => {
     const [songRoom, setSongRoom] = useState({ display: false, data: [] });
     const dispatch = useDispatch();
 
-    const saveSong = useRef<any>(null)
+    const saveSong = useRef<any>({})
+    // console.log(props.location)
+    useEffect(() => {
+
+        const checkId = (props.location.state as any).idRoomUser;
+        if (!checkId) return props.history.goBack();
+        return () => {
+            (async () => {
+                const checkId = (props.location.state as any).idRoomUser;
+                const getUrl = new URL(window.location.href);
+                const findRoomDetail = getUrl.pathname.split('/').some(current => current === 'roomDetail');
+                if (!findRoomDetail) {
+                    const deleteUser = await roomUser.DeleteOne(checkId);
+                }
+            })()
+        }
+    }, [])
 
     useEffect(() => {
         (async () => {
@@ -64,7 +80,7 @@ const RoomDetail: React.FC<RoomDetail<any>> = ({ match, ...props }) => {
         // console.log(songRoom)
         return songRoom.data.map((current: any, index: number) => {
             const finSong = saveSong?.current[current?.id_Song]
-            return (<div className="music_item border-0 p-2 ">
+            return (<div className="music_item border-0 p-2 " key={index}>
                 <img src={finSong?.image} alt={''} />
                 <div className="box-icon m-2 pt-1">
                     <BsFillPlayFill onClick={() => playAudio(finSong._id)} />
@@ -161,9 +177,7 @@ const RoomDetail: React.FC<RoomDetail<any>> = ({ match, ...props }) => {
                     {/*  */}
                     <h3 className="mt-3 text-white ps-3" style={{ borderLeft: '0.5rem solid #26a5ff', fontSize: '1.2rem' }}>Danh sách bài hát</h3>
                     <div className="box-music mt-4">
-
                         {listSongRoom()}
-
                     </div>
                     {/* /// */}
                     <div className="Pagination mt-5">

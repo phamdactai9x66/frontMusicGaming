@@ -40,9 +40,8 @@ const ListenTogether: React.FC<ListenTogether<any>> = ({ ...props }) => {
       const countLength = Object.entries(query).length;
       if (error || data.status === variableCommon.statusF) return;
       const getAllRoom = await roomApi.getAll((countLength && query.name_Room) ? query : {});
-      setTimeout(() => {
-        dispatch(pustAction(typeAciton.getData, { Data: data.data, dataStatic: getAllRoom.data }))
-      }, 500);
+
+      dispatch(pustAction(typeAciton.getData, { Data: data.data, dataStatic: getAllRoom.data }))
     })()
     return () => {
       dispatch(pustAction(typeAciton.reset))

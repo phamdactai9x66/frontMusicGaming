@@ -56,7 +56,9 @@ const ListRoomUser: React.FC<ListRoomUser<any>> = ({ match, ...props }) => {
             const idRoom = (match.params as any).idRoom;
             const [data, error] = await HandleGet(roomUser.getAll, { _idRoom: idRoom })
             if (error || data.status === variableCommon.statusF) return;
-            setUserRoom({ display: true, data: data.data })
+            setTimeout(() => {
+                setUserRoom({ display: true, data: data.data })
+            }, 1000);
         })()
         return () => {
             setUserRoom(value => ({ ...value, display: false }))
@@ -65,7 +67,7 @@ const ListRoomUser: React.FC<ListRoomUser<any>> = ({ match, ...props }) => {
     const listUserInRoom = () => {
         // console.log(userRoom.data)
         return userRoom.data.map((current: any, index: number) => {
-            const findUser = saveUser.current[current?.id_User];
+            const findUser = saveUser.current?.[current?.id_User];
             return (<div>
                 <StyledBadge
                     overlap="circular"
