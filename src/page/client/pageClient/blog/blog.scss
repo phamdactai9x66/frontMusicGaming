@@ -5,10 +5,28 @@
         margin-top: 20px;
         margin-bottom: 15px;
         font-size: 1.3rem;
+   
          .color-blog{
             color: #a8eff9;
          }
-     }.grid-2{
+       
+     }
+     .title-blog:hover{
+         .hover-text{
+            border-left:5px solid #00ecfd;
+            color: #56ccf2;
+            cursor: pointer;
+            padding-left: 0.4rem;
+            transition: ease-in all 0.2s;
+          
+         }.color{
+            color: #56ccf2;
+         }
+         p{
+             color: #56ccf2;
+         }
+     }
+     .grid-2{
          display: grid;
          grid-template-columns: 30% 70%;
      }.div-hr{
@@ -109,7 +127,7 @@
              padding: 20px;
              display: flex;
              flex-direction: column;
-             border: 1px solid #a8eff9;
+             border: 1px solid #005764;
              margin-top: 30px;
              box-shadow: 0 3px 7px rgba(0, 0, 0, 0.795);
              border-radius: 0.3rem;
@@ -122,6 +140,19 @@
                  text-decoration: none;
                  margin-top: 10px;
                  font-size: 0.9rem;
+                 padding: 0.3rem;
+                 border-bottom:1px;
+
+             }
+             .title-blog-name:hover{
+                 border-left:5px solid #00ecfd;
+                 border-radius: 0.1rem;
+                 padding-left: 0.5rem ;
+                 box-shadow: inset 0 0 3px #00ecfd;
+                     cursor: pointer;
+                transition: ease-in all 0.2s;
+
+                 
              }
              
          }

@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { MdNavigateNext } from 'react-icons/md';
-import Button from '@mui/material/Button';
-import { BiPlayCircle } from 'react-icons/bi';
 import ChartMusic from './component/chartMusic';
 import { Link } from 'react-router-dom';
 import VerticalSlider from './component/VerticalSlider';
@@ -15,6 +13,7 @@ import playlistApi from 'api/playlistApi';
 import songApi from 'api/songApi';
 import { tranFormDataId } from "component/MethodCommon";
 import artistApi from 'api/ArtistApi';
+import { utimes } from 'fs';
 
 
 interface Home<T> {
@@ -22,12 +21,14 @@ interface Home<T> {
 }
 
 const Home: React.FC<Home<any>> = ({ ...props }) => {
+    document.title = "Music Game";
     const [playlists, setPlaylists] = useState([]);
     const userState = useSelector<{ user: any }>(state => state.user) as formStateUser;
     const [songs, setSongs] = useState([]);
     const [songsTransform, setSongsTransform] = useState([]);
     const [artists, setArtists] = useState([]);
-
+    const [stoggleModal, setstoggleModal] = useState<boolean>(false);
+    const [isShowPLName, setIsShowPLName] = useState<Array<string>>([]);
 
     var settings_banner = {
         dots: true,
@@ -73,7 +74,7 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
     };
 
     const getPlaylists = async () => {
-        const responsePL = await playlistApi.getAll({}); // đoạn này nó yêu cầu chuyền tham số vào, ông chuyền vào nhé 😍
+        const responsePL = await playlistApi.getAll({}); 
         if (!responsePL || responsePL.status === "failed") {
             console.error("Get playlist failed.");
             return;
@@ -91,72 +92,77 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
         setArtists(dataArtists.data);
     }
 
+    const getPLNull = ( _id: string ) => {
+        setIsShowPLName([...isShowPLName, _id]);
+    }
+
     useEffect(() => {
         getPlaylists();
         getSongs();
     }, []);
 
     return (
-        <div className="home">
-            <div className="slider-banner">
-                <VerticalSlider settings_banner={settings_banner} />
-            </div>
-
-            {/* category */}
-            <div className="list-slider">
-                <h4 className="title_all">Thể loại <MdNavigateNext className="icon" /></h4>
-                <HomeCategory settings_category={settings_category} />
-
-            </div>
-            <div className="list-music">
-                <h4 className="title_all">Danh sách bài hát <MdNavigateNext className="icon" /></h4>
-                <div className="main1">
-
-                    <HomeSongComponent userState={userState} />
-
-                    {/* artist */}
-                    <ArtistComponent artists={artists} />
+        <>
+            {/* <div className=" w-100 h-100 d-flex position-fixed top-0  text-center" style={{ left: "0px", zIndex: 10, backgroundColor: "rgb(0 0 0 / 25%)" }}>
+                <div className="my-auto mx-auto p-4 rounded-3" style={{ backgroundColor: "#9cf6ff" }}>
+                    <img
+                        className="w-25 h-25"
+                        src="https://aux2.iconspalace.com/uploads/music-folder-circle-icon-256.png" alt="" />
+                    <p style={{ fontWeight: 500 }}>Hãy đăng nhập để có thể sử dụng tính năng này</p>
+                    <p>Tính năng này chỉ dành cho người dùng đã có tài khoản Music Game</p>
+                    <div className="d-flex justify-content-center">
+                        <div className="" style={{ marginRight: "0.2rem" }}>
+                            <button type="button" className="btn btn-light">Đăng kí</button>
+                        </div>
+                        <div>
+                            <button type="button" className="btn btn-primary" style={{ marginLeft: "0.2rem" }}>Đăng nhập</button>
+                        </div>
+                    </div>
                 </div>
-            </div>
-
-            {playlists.length !== 0 && playlists.map((item: any) => (
-                <div className="list-slider">
-                    <h4 className="title_all">{item.name} <MdNavigateNext className="icon" /></h4>
-
-                    <WantHearComponent settings_category={settings_category} songs={songsTransform} idPlaylist={item._id} />
-                </div>
-            ))}
-
-            {/* <div className="list-slider">
-                <h4 className="title_all">Có thể bạn muốn nghe <MdNavigateNext className="icon" /></h4>
-
-                 get by {_limit: 20, view: 'desc', date: "desc"} 
-                <WantHearComponent settings_category={settings_category} />
-            </div>
-            
-            <div className="list-slider">
-                <h4 className="title_all">Nghe gần đây <MdNavigateNext className="icon" /></h4>
-
-                get by {_limit: 20, view: 'desc', date: "desc"}
-                <RecentlyComponent settings_category={settings_category} />
-            </div>
-            <div className="list-slider">
-                <h4 className="title_all">Top thịnh hành <MdNavigateNext className="icon" /></h4>
-
-                get by {_limit: 20, view: 'desc'}
-                <PopularComponent settings_category={settings_category} sort_by={{ _limit: 20, view: 'desc' }} />
-            </div>
-            <div className="list-slider">
-                <h4 className="title_all">Nhạc mới mỗi ngày <MdNavigateNext className="icon" /></h4>
-                <PopularComponent settings_category={settings_category} sort_by={{ _limit: 20, date: 'desc' }} />
-            </div>
-            <div className="list-slider">
-                <h4 className="title_all">Sắp diễn ra <MdNavigateNext className="icon" /></h4>
-                <PopularComponent settings_category={settings_category} sort_by={{ _limit: 20, day_release: 'desc' }} />
 
             </div> */}
-            <ChartMusic />
-        </div>
+
+            {/* // */}
+            <div className="home">
+                <div className="slider-banner">
+                    <VerticalSlider settings_banner={settings_banner} />
+                </div>
+
+                {/* category */}
+                <div className="list-slider">
+                    <h4 className="title_all">Thể loại <MdNavigateNext className="icon" /></h4>
+                    <HomeCategory settings_category={settings_category} />
+
+                </div>
+                <div className="list-music">
+                    <h4 className="title_all">Danh sách bài hát <MdNavigateNext className="icon" /></h4>
+                    <div className="main1">
+
+                        <HomeSongComponent userState={userState} />
+
+                        {/* artist */}
+                        <ArtistComponent artists={artists} />
+                    </div>
+                </div>
+
+                {playlists.length !== 0 && playlists.map((item: any) => {
+                    if(isShowPLName.filter(_ => _ == item._id).length !== 0) {
+                        return null
+                    } ;
+                    return (
+                        <div className="list-slider " key={item._id}>
+                            <h4 className="title_all">{item.name} <MdNavigateNext className="icon" /></h4>
+    
+                            <WantHearComponent settings_category={settings_category} getPLNull={getPLNull} songs={songsTransform} idPlaylist={item._id} />
+                        </div>
+                    )
+                })}
+
+                <ChartMusic />
+            </div>
+
+        </>
+
     )
 }
 

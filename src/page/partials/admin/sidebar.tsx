@@ -2,12 +2,11 @@
 import React from 'react'
 import { Link } from "react-router-dom";
 import imgAdmin from './image/admin.png'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import Accordion from "@material-ui/core/Accordion";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
 import AccordionSummary from "@material-ui/core/AccordionSummary";
 import { ExpandMore } from "@material-ui/icons";
+import SearchIcon from '@material-ui/icons/Search';
 
 interface Sidebar<T> {
 
@@ -60,8 +59,8 @@ const Sidebar: React.FC<Sidebar<any>> = ({ ...props }) => {
       name: "Slider",
       iconAdd: "fa fa-plus-circle",
       details: "Add Slider",
-      link: "/admin/",
-      subLink: "/admin/"
+      link: "/admin/slide",
+      subLink: "/admin/addslide"
     },
     {
       icon: "fa fa-file-audio-o",
@@ -138,7 +137,7 @@ const Sidebar: React.FC<Sidebar<any>> = ({ ...props }) => {
         </div>
       </div>
       <div className="main_search">
-        <FontAwesomeIcon icon={faSearch} className="icon_search" />
+        <SearchIcon className="icon_search" /> 
         <input type="text" placeholder="Search..." className="_search" />
       </div>
       <nav className="tabs">

@@ -17,14 +17,15 @@ import { Link } from 'react-router-dom';
 import NameSongArtist from 'component/nameSongArtist';
 import GetTimeAudio from "component/getTimeAudio";
 import AlertComponent from 'component/clientComponent/Alert';
-
+import Notification from 'page/notificationModal/NotificationModal';
+import { ReactComponent as Spinner } from "../../../component/Spinner.svg";
 
 
 interface HomeSongComponentIF<T> {
     userState: any,
 }
 const HomeSongComponent: React.FC<HomeSongComponentIF<any>> = (props) => {
-    const history = useHistory();
+    const history: any = useHistory<any>();
     const [playlistName, setPlaylistName] = useState('');
     const [anchor, setAnchor] = useState(null);
     const [anchor2, setAnchor2] = useState(null);
@@ -33,8 +34,14 @@ const HomeSongComponent: React.FC<HomeSongComponentIF<any>> = (props) => {
     const { user } = props.userState;
     const [songs, setSongs] = useState([]);
     const dispatch = useDispatch();
-    const [handleStatus, setHandleStatus] = useState({ status: "", content: "" })
+    const [handleStatus, setHandleStatus] = useState({ status: "", content: "" });
+    const [addPlaylistLoading, setAddPlaylistLoading] = useState(false);
+    const [locationLogged, setLocationlogged] = useState(history.location.state?.isLogged ? history.location.state.isLogged : false);
+    
 
+    // if(history && history.location.state?.isLogged){
+    //     setIsLogged(true);
+    // }
     const openPopover = (event: any) => {
         setAnchor(event.currentTarget);
     };
@@ -56,6 +63,9 @@ const HomeSongComponent: React.FC<HomeSongComponentIF<any>> = (props) => {
         }
         getSongs();
     }, []);
+    // useEffect( () => {
+    //     let locationLogged = history.location.state?.isLogged ? history.location.state.isLogged : false;
+    // }, [history])
 
     const handleAdd = async <T extends string>(s: T, u: T, t: T) => {
         if (u === undefined) {
@@ -65,11 +75,20 @@ const HomeSongComponent: React.FC<HomeSongComponentIF<any>> = (props) => {
         if (t === 'like') {
             let likeRes = await handleLike(s, u);
             if (likeRes && likeRes.status === "added") {
-                console.log('okay, them roi nhe. (Added)');
+                setHandleStatus({
+                    status: "success",
+                    content: "Thêm vào yêu thích thành công."
+                })
             } else if (likeRes && likeRes.status === "deleted") {
-                console.log('okay, them roi nhe. (Deleted)');
+                setHandleStatus({
+                    status: "success",
+                    content: "Bỏ yêu thích thành công."
+                })
             } else {
-                console.log('oops, khong them duoc roi. (Error)')
+                setHandleStatus({
+                    status: "failed",
+                    content: "Thêm vào yêu thích không thành công."
+                })
             }
         }
 
@@ -77,11 +96,20 @@ const HomeSongComponent: React.FC<HomeSongComponentIF<any>> = (props) => {
             //đang sai vì chưa lấy được playlist của user
             let playlistRes = await handleAddToPlaylist(s, u);
             if (playlistRes && playlistRes.status === "successfully") {
-                console.log('okay, them roi nhe');
+                setHandleStatus({
+                    status: "success",
+                    content: "Thêm vào Playlist thành công."
+                })
             } else if (playlistRes.status === "existed") {
-                console.log("Bài hát này đã tồn tại trong play list này của bạn.")
+                setHandleStatus({
+                    status: "failed",
+                    content: "Bài hát đã tồn tại trong Playlist của bạn."
+                })
             } else {
-                console.log('oops, khong them duoc roi');
+                setHandleStatus({
+                    status: "failed",
+                    content: "Thêm vào vào playlist không thành công."
+                })
             }
         }
     }
@@ -103,20 +131,23 @@ const HomeSongComponent: React.FC<HomeSongComponentIF<any>> = (props) => {
     }
     const handleLogged = () => {
         setIsLogged(false);
+        setLocationlogged(false);
     }
 
     if (handleStatus.status !== "") {
         setTimeout(() => {
             setHandleStatus({ status: "", content: "" });
-        }, 4000);
+        }, 2500);
     }
 
     const handleCreatePlaylist = async () => {
+        setAddPlaylistLoading(true)
         if (!playlistName) {
             setHandleStatus({
                 status: "failed",
                 content: "Playlist không được để trống"
             })
+            setAddPlaylistLoading(false);
             return;
         }
         let form = new FormData;
@@ -135,28 +166,30 @@ const HomeSongComponent: React.FC<HomeSongComponentIF<any>> = (props) => {
             setHandleStatus({
                 status: "failed",
                 content: "Không tạo được Playlist"
-            })
+            });
         }
+        setAddPlaylistLoading(false);
     }
-
+    
     return (
-        <div className="box-music">
-            {isLogged && <ModalLogged isLogged={isLogged} handleLogged={handleLogged} />}
+        <div className="box-music mt-4">
+            {isLogged && <Notification handleLogged={handleLogged} />}
+            {locationLogged && <Notification handleLogged={handleLogged} />}
             {handleStatus.status !== "" && <AlertComponent status={handleStatus.status} content={handleStatus.content} />}
             {songs.length !== 0 && songs.map((item: any) => (
-                <div className="music_item" key={item._id} >
+                <div className="music_item border-0 p-2" key={item._id}>
                     <img src={item.image} alt={item.name} />
-                    <div className="box-icon">
+                    <div className="box-icon m-2 pt-1">
                         <BsFillPlayFill onClick={() => playAudio(item._id)} />
                     </div>
-                    <div>
+                    <div onClick={() => playAudio(item._id)} style={{cursor: "pointer"}}>
                         <h6>{item.title}</h6>
                         <div style={{ fontSize: "0.7rem", marginTop: "-0.2rem" }}>
                             <NameSongArtist _id={item._id} />
                         </div>
                     </div>
                     <div>
-                        <GetTimeAudio audio={item.audio} />
+                        <GetTimeAudio audio={item?.audio} />
                     </div>
                     <div className="icon_item">
                         <AiOutlineDownload onClick={() => handleDownload(item._id)} className="icon" />
@@ -205,9 +238,11 @@ const HomeSongComponent: React.FC<HomeSongComponentIF<any>> = (props) => {
                                 >
                                     <div className="item p-3">
                                         <form>
-                                            <input type="text" className="mb-2 p-2 text-light" style={{ background: "#0d141f", border: "0.1rem solid #0e5353" }} placeholder="Thêm playlist..." />
+                                            <input type="text" onChange={(e) => setPlaylistName(e.target.value)} className="mb-2 p-2 text-light" style={{ background: "#0d141f", border: "0.1rem solid #0e5353" }} placeholder="Thêm playlist..." />
                                             <br />
-                                            <Button color="primary" variant="contained">Thêm playlist</Button>
+                                            {addPlaylistLoading ? <Button color="primary" variant="contained" ><Spinner/></Button> : 
+                                                <Button color="primary" variant="contained" onClick={handleCreatePlaylist} >Thêm playlist</Button>
+                                            }
                                         </form>
                                     </div>
                                 </Popover>
@@ -220,10 +255,9 @@ const HomeSongComponent: React.FC<HomeSongComponentIF<any>> = (props) => {
                                         <BsMusicNoteList /> &ensp; {_.name}
                                     </MenuItem>
                                 ))}
-
                             </div>
                         </Popover>
-                </div>
+                    </div>
                 </div>
             ))}
         </div>

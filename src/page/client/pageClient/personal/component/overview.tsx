@@ -86,9 +86,9 @@ const Overview = () => {
                             </Slider>
                         </div>
                         <div className="box-music" style={{ height: "305px" }}>
-                            <div className="music_item">
+                            <div className="music_item border-0 p-2">
                                 <img src="https://anh.24h.com.vn/upload/4-2016/images/2016-12-06/1480992562-148098909683484-son-tung.jpg" alt="" />
-                                <div className="box-icon">
+                                <div className="box-icon m-2 pt-1">
                                     <BsFillPlayFill />
                                 </div>
                                 <div>
@@ -169,20 +169,20 @@ const Overview = () => {
                                 trigger={() =>
                                     <div className="add">
                                         <IoMdAdd className="icon" />
-                                  Tạo playlist mới
+                                  Tạo danh sách phát mới
                             </div>
                                 }
                             >
                                 {(close: any) => (
-                                    <div className="modal-playlis">
+                                    <div className="modal-playlis w-75 h-50">
                                         <div className="content-modal">
                                             <button className="close" onClick={close}>
                                                 X
                                     </button>
-                                            <h5 className="text-center">Tạo playlist mới</h5>
+                                            <h5 className="text-center">Tạo danh sách phát mới</h5>
                                             <form action="">
                                                 <input type="text" placeholder="Nhập tên playlist" />
-                                                <p className="err">err</p>
+                                                {/* <p className="err">err</p> */}
                                                 <Button className="create_playlist">TẠO MỚI</Button>
                                             </form>
                                         </div>

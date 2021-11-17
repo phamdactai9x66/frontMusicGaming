@@ -22,12 +22,21 @@ import Categories from "page/admin/pageAdmin/categories/index";
 import AddCategory from "./page/admin/pageAdmin/categories/page/AddCategory";
 import PlayList from "page/admin/pageAdmin/playlist/index";
 import AddPlayList from "page/admin/pageAdmin/playlist/page/AddPlayList";
+
 import BlogAdmin from "./page/admin/pageAdmin/blog/index";
 import AddBlog from "./page/admin/pageAdmin/blog/page/AddBlog";
 import UserPlaylist from "./page/admin/pageAdmin/userPlayList/index";
 import AddUserPlaylist from "./page/admin/pageAdmin/userPlayList/page/AddUserPlayList";
 import CategoryBlog from "./page/admin/pageAdmin/categoriesBlog/index";
 import AddCategoryBlog from "./page/admin/pageAdmin/categoriesBlog/page/AddCategoryBlog";
+
+import Slide from './page/admin/pageAdmin/slide/index'
+import AddSlide from './page/admin/pageAdmin/slide/page/addSlide'
+import Search from "./page/client/pageClient/search/search";
+import ListenTogether from "./page/client/pageClient/listenTogether/listenTogether";
+import Personal from "./page/client/pageClient/personal/index"
+import RoomDetail from "./page/client/pageClient/roomDetail/roomDetail";
+import Profile from "page/client/pageClient/profile/Profile";
 
 
 
@@ -43,6 +52,7 @@ const Admin: propertyPage[] = [
         component: HomeAdmin,
         exact: true
     },
+    
     {
         path: "/admin/addAlbum",
         component: AddAlbum,
@@ -79,8 +89,19 @@ const Admin: propertyPage[] = [
         exact: false
     },
     {
-        path: "admin/addPlayList",
+        path: "/admin/addPlayList",
         component: AddPlayList,
+        exact: false
+    },
+
+    {
+        path: "/admin/slide",
+        component: Slide,
+        exact: false
+    },
+    {
+        path: "/admin/addslide",
+        component: AddSlide,
         exact: false
     },
     {
@@ -128,6 +149,31 @@ const Client: propertyPage[] = [
         exact: true
     },
     {
+        path: "/search",
+        component: Search,
+        exact: false
+    },
+    {
+        path: "/listenTogether/roomDetail/:idRoom",
+        component: RoomDetail,
+        exact: false
+    },
+    {
+        path: "/listenTogether",
+        component: ListenTogether,
+        exact: false
+    },
+    {
+        path: "/profile",
+        component: Profile,
+        exact: false
+    },
+    {
+        path: "/personal",
+        component: Personal,
+        exact: false
+    },
+    {
         path: "/recently",
         component: Recently,
         exact: false
@@ -158,13 +204,14 @@ const Client: propertyPage[] = [
         exact: false
     },
     {
+        path: "/category/SubCategory",
+        component: CategoryDetailPlaylist,
+        exact: false
+    }
+    ,
+    {
         path: "/category",
         component: Category,
-        exact: false
-    },
-    {
-        path: "/categoryDetailPlaylist",
-        component: CategoryDetailPlaylist,
         exact: false
     },
     {

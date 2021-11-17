@@ -19,6 +19,7 @@ interface Newmusic<T> {
 }
 
 const Newmusic: React.FC<Newmusic<any>> = ({ ...props }) => {
+    document.title = "Nhạc mới - Music Game";
     const [songs, setSongs] = useState([]);
     const [songsTransform, setSongsTransform] = useState([]);
     const [artists, setArtists] = useState([]);

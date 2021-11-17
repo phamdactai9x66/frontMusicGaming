@@ -1,5 +1,5 @@
 
-export const HandleGet = async (functionPromise: Function, params = {}) => {
+export const HandleGet = async <T extends Function>(functionPromise: T, params = {}) => {
     try {
         const getParams = (typeof params == "string" ? params : { ...params })
         const data = await functionPromise(getParams);
@@ -35,13 +35,12 @@ export const tranFormData = <T extends any[]>(data: T, key: string, findKey: str
     })
 }
 //get date of duration
-export const tranFormDuration = <T extends number>(duration: T): string | void => {
-    if (!duration) return `00:00`;
-    const getSecon = Math.floor(duration % 60);
-    const getMinute = Math.floor(duration / 60);
-    const returnSecon = getSecon < 10 ? `0${getSecon}` : getSecon;
-    const returnMinute = getMinute < 10 ? `0${getMinute}` : getMinute;
-    return `${returnMinute}:${returnSecon}`;
+export const tranFormDuration = <T extends number>(duration: T): string => {
+    if (!duration) return "00 : 00";
+    const m = Math.floor(duration / 60);
+    const s = Math.floor(duration % 60);
+
+    return `${m <= 10 ? '0' + m : m} : ${s <= 10 ? "0" + s : s}`
 }
 export const tranFormDataId = <T extends any[]>(data: T) => {
     if (!data) return [];
@@ -60,6 +59,21 @@ export const initialReducer = {
     },
     Filter: {
         _limit: 5,
+        _page: 1,
+    }
+}
+export const initialReducer2 = {
+    Data: [],
+    DataStatic: [],
+    Display: false,
+    checkAll: false,
+    Pagination: {
+        _limit: 4,
+        _page: 1,
+        rows: 0,
+    },
+    Filter: {
+        _limit: 4,
         _page: 1,
     }
 }

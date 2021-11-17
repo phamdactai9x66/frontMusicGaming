@@ -56,7 +56,7 @@ const AddPlayList: React.FC<AddPlayList<any>> = ({changePage, ...props}) => {
     <>
       <div className="admin-pageAdd">
         <div className="text-name-add">
-          <h3>Add Play List</h3><br />
+          <h3>Thêm danh sách phát</h3><br />
         </div>
         {alert.display && <Alert severity={alert.type as any} style={{ marginBottom: 5 }}>
             {alert.message}

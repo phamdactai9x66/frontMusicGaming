@@ -5,7 +5,6 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import InputBase from '@material-ui/core/InputBase';
 import Badge from '@material-ui/core/Badge';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
@@ -15,6 +14,8 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
+
+
 
 const useStyles = makeStyles((theme) => ({
 	grow: {
@@ -45,15 +46,6 @@ const useStyles = makeStyles((theme) => ({
 			marginLeft: theme.spacing(3),
 			width: 'auto',
 		},
-	},
-	searchIcon: {
-		padding: theme.spacing(0, 2),
-		height: '100%',
-		position: 'absolute',
-		pointerEvents: 'none',
-		display: 'flex',
-		alignItems: 'center',
-		justifyContent: 'center',
 	},
 	inputRoot: {
 		color: 'inherit',
@@ -108,7 +100,7 @@ export default function Header() {
 
 	const menuId = 'primary-search-account-menu';
 	const renderMenu = (
-		<Menu
+		<Menu 
 			anchorEl={anchorEl}
 			anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
 			id={menuId}
@@ -117,8 +109,8 @@ export default function Header() {
 			open={isMenuOpen}
 			onClose={handleMenuClose}
 		>
-			<MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-			<MenuItem onClick={handleMenuClose}>My account</MenuItem>
+			<MenuItem onClick={handleMenuClose}><Link to="/admin/profile">Thông tin</Link></MenuItem>
+			<MenuItem onClick={handleMenuClose}>Đăng xuất</MenuItem>
 		</Menu>
 	);
 
@@ -139,7 +131,7 @@ export default function Header() {
 						<MailIcon />
 					</Badge>
 				</IconButton>
-				<p>Messages</p>
+				<p>Tin nhắn</p>
 			</MenuItem>
 			<MenuItem>
 				<IconButton
@@ -150,7 +142,7 @@ export default function Header() {
 						<NotificationsIcon />
 					</Badge>
 				</IconButton>
-				<p>Notifications</p>
+				<p>Thông báo</p>
 			</MenuItem>
 			<MenuItem onClick={handleProfileMenuOpen}>
 				<IconButton
@@ -161,7 +153,7 @@ export default function Header() {
 				>
 					<AccountCircle />
 				</IconButton>
-				<p>Profile</p>
+				<p>Thông tin</p>
 			</MenuItem>
 		</Menu>
 	);
@@ -179,23 +171,13 @@ export default function Header() {
 						<MenuIcon />
 					</IconButton>
 					<Typography className={classes.title} variant='h6' noWrap>
-						<Link to="/" className="text-light">HOME</Link>
+						<Link to="/" className="text-light">Trang chủ</Link>
 					</Typography>
-					<div className={classes.search}>
-						<div className={classes.searchIcon}>
-							<SearchIcon />
-						</div>
-						<InputBase
-                            style={{position: 'relative',
-                            zIndex: 3000}}
-							placeholder='Tìm …'
-							classes={{
-								root: classes.inputRoot,
-								input: classes.inputInput,
-							}}
-							inputProps={{ 'aria-label': 'search' }}
-						/>
-					</div>
+			
+					 <div className="main_search">
+        <SearchIcon className="icon_search" /> 
+        <input type="text" placeholder="Search..." className="_search" />
+      </div>
 					<div className={classes.grow} />
 					<div className={classes.sectionDesktop}>
 						<IconButton
@@ -239,7 +221,10 @@ export default function Header() {
 				</Toolbar>
 			</AppBar>
 			{renderMobileMenu}
-			{renderMenu}
+			<div className="mt-5">
+			{renderMenu}	
+			</div>
+			
 		</div>
 	);
 }
