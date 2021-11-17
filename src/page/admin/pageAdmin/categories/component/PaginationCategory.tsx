@@ -9,6 +9,7 @@ interface PaginationCategory<T> {
 
 const PaginationCategory: React.FC<PaginationCategory<any>> = ({ state, dispatch, ...props }) => {
   const [page, setNextPage] = useState(state?.Filter?._page);
+  
   const getTotalPage = (): number => {
     const { _limit, rows } = state?.Pagination;
     return Math.ceil(rows / _limit);

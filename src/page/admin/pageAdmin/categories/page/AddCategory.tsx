@@ -76,38 +76,38 @@ const AddCategory: React.FC<AddCategory<any>> = ({ changePage, ...props }) => {
             return (
               <Form ref={refForm}>
                 <div className="grid-addpage">
-                                    <div className="section-add">
-                                        <Card elevation={5}>
-                                            <div className="form-input-add">
-                                                <div className="inputForm">
-                                                    <InputText name="name" label="Tên thể loại" other={{ variant: "standard" }} />
-                                                </div>
-                                            </div>
-                                        </Card>
-                                    </div>
-                                    <div>
-                                        <Card elevation={5}>
-                                            <div className="form-input-add">
-                                                <div className="flex-image bg-file ">
-                                                    <FileField name="image" label="Image album" type="file" other={{ variant: 'standard' }} />
-                                                </div>
-                                                <div className="inputForm">
-                                                    <SelectTopic />
-                                                </div>
-                                            </div>
-                                        </Card>
-                                        <br />
-                                        <LoadingButton loading={formik.isSubmitting} variant="contained"
-                                            type="submit"
-                                        >
-                                            Thêm Thể Loại
-                                        </LoadingButton>
-                                        {/* <Button variant="contained" type="submit" color="primary">Thêm bài hát</Button> */}
-                                        <Button variant="contained" color="error" style={{ marginLeft: 20 }}
-                                            onClick={() => { navigatePage(page.ListCategory) }}
-                                        >Hủy</Button>
-                                    </div>
-                            </div>
+                    <div className="section-add">
+                      <Card elevation={5}>
+                        <div className="form-input-add">
+                          <div className="inputForm">
+                            <InputText name="name" label="Tên thể loại" other={{ variant: "standard" }} />
+                          </div>
+                        </div>
+                      </Card>
+                    </div>
+                    <div>
+                      <Card elevation={5}>
+                        <div className="form-input-add">
+                          <div className="flex-image bg-file ">
+                            <FileField name="image" label="Image album" type="file" other={{ variant: 'standard' }} />
+                          </div>
+                          <div className="inputForm">
+                            <SelectTopic />
+                          </div>
+                        </div>
+                      </Card>
+                      <br />
+                      <LoadingButton loading={formik.isSubmitting} variant="contained"
+                        type="submit"
+                      >
+                        Thêm Thể Loại
+                      </LoadingButton>
+                      {/* <Button variant="contained" type="submit" color="primary">Thêm bài hát</Button> */}
+                      <Button variant="contained" color="error" style={{ marginLeft: 20 }}
+                        onClick={() => { navigatePage(page.ListCategory) }}
+                      >Hủy</Button>
+                    </div>
+                  </div>
               </Form>
             )
           }}

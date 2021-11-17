@@ -13,6 +13,7 @@ import playlistApi from 'api/playlistApi';
 import songApi from 'api/songApi';
 import { tranFormDataId } from "component/MethodCommon";
 import artistApi from 'api/ArtistApi';
+import { utimes } from 'fs';
 
 
 interface Home<T> {
@@ -20,12 +21,14 @@ interface Home<T> {
 }
 
 const Home: React.FC<Home<any>> = ({ ...props }) => {
+    document.title = "Music Game";
     const [playlists, setPlaylists] = useState([]);
     const userState = useSelector<{ user: any }>(state => state.user) as formStateUser;
     const [songs, setSongs] = useState([]);
     const [songsTransform, setSongsTransform] = useState([]);
     const [artists, setArtists] = useState([]);
     const [stoggleModal, setstoggleModal] = useState<boolean>(false);
+    const [isShowPLName, setIsShowPLName] = useState<Array<string>>([]);
 
     var settings_banner = {
         dots: true,
@@ -71,7 +74,7 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
     };
 
     const getPlaylists = async () => {
-        const responsePL = await playlistApi.getAll({}); // đoạn này nó yêu cầu chuyền tham số vào, ông chuyền vào nhé 😍
+        const responsePL = await playlistApi.getAll({}); 
         if (!responsePL || responsePL.status === "failed") {
             console.error("Get playlist failed.");
             return;
@@ -87,6 +90,10 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
 
         const dataArtists = await artistApi.getAll({});
         setArtists(dataArtists.data);
+    }
+
+    const getPLNull = ( _id: string ) => {
+        setIsShowPLName([...isShowPLName, _id]);
     }
 
     useEffect(() => {
@@ -138,13 +145,18 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                     </div>
                 </div>
 
-                {playlists.length !== 0 && playlists.map((item: any) => (
-                    <div className="list-slider ">
-                        <h4 className="title_all">{item.name} <MdNavigateNext className="icon" /></h4>
-
-                        <WantHearComponent settings_category={settings_category} songs={songsTransform} idPlaylist={item._id} />
-                    </div>
-                ))}
+                {playlists.length !== 0 && playlists.map((item: any) => {
+                    if(isShowPLName.filter(_ => _ == item._id).length !== 0) {
+                        return null
+                    } ;
+                    return (
+                        <div className="list-slider " key={item._id}>
+                            <h4 className="title_all">{item.name} <MdNavigateNext className="icon" /></h4>
+    
+                            <WantHearComponent settings_category={settings_category} getPLNull={getPLNull} songs={songsTransform} idPlaylist={item._id} />
+                        </div>
+                    )
+                })}
 
                 <ChartMusic />
             </div>

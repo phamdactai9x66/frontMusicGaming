@@ -54,6 +54,7 @@ const SlideSong: React.FC<SlideSong<any>> = ({ data, ...props }) => {
                                 </MenuItem>
                             </Select>
                         </div>
+                           
                     )
                 })}
             </Slider>

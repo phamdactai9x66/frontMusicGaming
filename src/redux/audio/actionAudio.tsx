@@ -17,9 +17,15 @@ const sliceAudio = createSlice({
             // debugger
             if (listIdSong && listIdSong.length) {
                 let saveIdSong: any[] = []
-                listIdSong.forEach((current: any) => {
-                    if (state.likstStaticAudio[current?.id_Song]) {
-                        saveIdSong = [...saveIdSong, state.likstStaticAudio[current?.id_Song]];
+                listIdSong.forEach((currentAudio: any) => {
+                    if (state.likstStaticAudio[currentAudio?.id_Song]) {
+                        return saveIdSong = [...saveIdSong, state.likstStaticAudio[currentAudio?.id_Song]];
+                    }
+                    if (state.likstStaticAudio[currentAudio?._id]) {
+                        return saveIdSong = [...saveIdSong, state.likstStaticAudio[currentAudio?._id]];
+                    }
+                    if (state.likstStaticAudio[currentAudio]) {
+                        return saveIdSong = [...saveIdSong, state.likstStaticAudio[currentAudio]];
                     }
                 })
                 state.listAudio = saveIdSong

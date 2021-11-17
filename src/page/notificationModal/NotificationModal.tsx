@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import avatar from './anc.png'
 interface notification<T> {
     handleLogged: any,
@@ -9,6 +9,7 @@ interface notification<T> {
 
 const Notification: React.FC<notification<any>> = ({ ...props }) => {
     const wrapperRef = useRef(null);
+    const location = useLocation();
 
     const  useOutsideAlerter = (ref: any) => {
         useEffect(() => { 
@@ -44,13 +45,19 @@ const Notification: React.FC<notification<any>> = ({ ...props }) => {
                                 addStyle: {
                                     borderBottom: " 0.2rem solid rgb(65, 217, 228)"
                                 }
-                            }
+                            },
+                            lastLocation: location,
                         },
                     }}
                         className="" style={{marginRight:"0.2rem"}}>
                         <button onClick={()=>props.handleLogged()} type="button" className="btn btn-light">Đăng kí</button>
                     </Link>
-                    <Link to='/signin'>
+                    <Link to={{
+                        pathname: '/signin',
+                        state: {
+                            lastLocation: location,
+                        },
+                    }}>
                         <button onClick={()=>props.handleLogged()} type="button" className="btn btn-primary" style={{marginLeft:"0.2rem"}}>Đăng nhập</button>
                     </Link>
                 </div>

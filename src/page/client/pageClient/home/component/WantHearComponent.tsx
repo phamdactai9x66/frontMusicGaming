@@ -19,6 +19,7 @@ interface WantHearComponentIF<T> {
     settings_category: object,
     idPlaylist: string,
     songs: any,
+    getPLNull: any,
 }
 
 const WantHearComponent: React.FC<WantHearComponentIF<any>> = ({...props}) => {
@@ -29,6 +30,9 @@ const WantHearComponent: React.FC<WantHearComponentIF<any>> = ({...props}) => {
         const query = { id_PlayList: props.idPlaylist };
         const [data, err] = await HandleGet(playlistSongApi.getAll, query);
 
+        if(data.data.length === 0){
+            props.getPLNull(props.idPlaylist)
+        }
         let findSong: any[] = [];
         data.data.map( (item: any) => {
             const { id_Songs } = item;
@@ -46,7 +50,7 @@ const WantHearComponent: React.FC<WantHearComponentIF<any>> = ({...props}) => {
     return (
         <div>
             <Slider {...props.settings_category}>
-                {PLS.length !== 0 ? PLS.map( (item: any) => (
+                {PLS.length !== 0 && PLS.map( (item: any) => (
                     <div className="box" key={item._id}>
                         <div className="box">
                             <figure>
@@ -70,7 +74,7 @@ const WantHearComponent: React.FC<WantHearComponentIF<any>> = ({...props}) => {
                             <h6>{item.title}</h6>
                         </div>
                     </div>
-  )) : (<div>Không có bài hát nào.</div>) }
+  )) }
             </Slider>
         </div>
     )

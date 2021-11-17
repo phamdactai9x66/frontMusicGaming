@@ -53,7 +53,7 @@ const ListPLaylist: React.FC<ListPLaylist<any>> = ({ render, ...props }) => {
                                         <AiOutlineLink /> Sao chép link
                                     </MenuItem>
                                 </Select>
-                                <h6>{current.name}</h6>
+                                <h6>{current.name} </h6>
                             </div>
                         </Link>
                     )

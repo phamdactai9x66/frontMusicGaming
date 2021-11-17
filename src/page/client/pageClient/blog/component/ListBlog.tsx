@@ -1,29 +1,18 @@
-import blogApi from 'api/BlogApi';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 
 interface ListBlogComponent<T> {
     searchRecommendResults: Array<any>,
+    blog: Array<any>,
 }
 const ListBlog: React.FC<ListBlogComponent<any>> = (props) => {
-    const [blog, setBlogs] = useState([]);
-
-    useEffect(() => {
-        const getBlog = async () => {
-            const { data } = await blogApi.getAll({ _limit: 5 });
-            setBlogs(data);
-        }
-        getBlog();
-    }, []);
     ///
 
     return (
-        <>
-     
-          
+        <> 
             {
-                (props.searchRecommendResults.length === 0 ? blog : props.searchRecommendResults).map((item: any, index) => {
+                (props.searchRecommendResults.length === 0 ? props.blog : props.searchRecommendResults).map((item: any, index) => {
                     return (
                         <>
                      
@@ -50,9 +39,7 @@ const ListBlog: React.FC<ListBlogComponent<any>> = (props) => {
                         </>
                     )
                 })
-            }
-
-
+            } 
         </>
 
     )

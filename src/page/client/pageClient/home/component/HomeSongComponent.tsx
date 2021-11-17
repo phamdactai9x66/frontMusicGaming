@@ -182,7 +182,7 @@ const HomeSongComponent: React.FC<HomeSongComponentIF<any>> = (props) => {
                     <div className="box-icon m-2 pt-1">
                         <BsFillPlayFill onClick={() => playAudio(item._id)} />
                     </div>
-                    <div onClick={() => playAudio(item._id)}>
+                    <div onClick={() => playAudio(item._id)} style={{cursor: "pointer"}}>
                         <h6>{item.title}</h6>
                         <div style={{ fontSize: "0.7rem", marginTop: "-0.2rem" }}>
                             <NameSongArtist _id={item._id} />

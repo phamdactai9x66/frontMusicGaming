@@ -1,46 +1,55 @@
 
-import React from 'react'
-import { BsMusicNoteBeamed,BsListUl } from 'react-icons/bs';
+import React, { useEffect, useState } from 'react'
+import { BsMusicNoteBeamed, BsListUl } from 'react-icons/bs';
 import { FaBlogger, FaChartPie } from 'react-icons/fa';
 import { RiFolderMusicFill } from 'react-icons/ri';
 import { Link, useLocation } from "react-router-dom";
 import { BsPlusCircle } from 'react-icons/bs';
 import { RiGroupFill } from 'react-icons/ri';
-import { BiPlayCircle,BiTimeFive } from 'react-icons/bi';
-import { AiFillStar,AiOutlineHeart } from 'react-icons/ai';
+import { BiPlayCircle, BiTimeFive } from 'react-icons/bi';
+import { AiFillStar, AiOutlineHeart } from 'react-icons/ai';
 import Popup from '@titaui/reactjs-popup';
+import { useSelector } from 'react-redux';
+import { formStateUser } from 'redux/user/stateUser';
+import Notification from 'page/notificationModal/NotificationModal';
 
 interface Sidebar<T> {
 
 }
 
 const Sidebar: React.FC<Sidebar<any>> = ({ ...props }) => {
-  const location = useLocation();
+  const userState = useSelector<{ user: any }>(state => state.user) as formStateUser;
+  const [isLogin, setIsLogin] = useState(false);
 
-  // console.log("this is sidebar location: ", location)
+  const handleLogged = () => {
+    setIsLogin(false);
+  }
+
+
   return (
     <>
+      {isLogin && <Notification handleLogged={handleLogged} />}
       <div className="sidebar">
         <h5><Link to="/">MUSIC GAME</Link></h5>
         <ul>
-        <Link to={{pathname: '/overview', state: {page: "OverView", lastLocation: location.pathname}}}><li><BsMusicNoteBeamed className="icon" />Cá nhân</li></Link>
-        {/* <Link to="/overview"><li><BsMusicNoteBeamed className="icon" />Cá nhân</li></Link> */}
-        <Link to="/"><li><RiFolderMusicFill className="icon" />Khám phá</li></Link>
-        <Link to="/chart"><li><FaChartPie className="icon" />Music chart</li></Link>
-        <Link to="/blog"><li><FaBlogger className="icon" />Blog</li></Link>
+          {userState.token && userState.user ? <Link to="/personal"><li><BsMusicNoteBeamed className="icon" />Cá nhân</li></Link> : <a onClick={() => setIsLogin(true)}><li><BsMusicNoteBeamed className="icon" />Cá nhân</li></a>}
+          {/* <Link to="/overview"><li><BsMusicNoteBeamed className="icon" />Cá nhân</li></Link> */}
+          <Link to="/"><li><RiFolderMusicFill className="icon" />Khám phá</li></Link>
+          <Link to="/chart"><li><FaChartPie className="icon" />Music chart</li></Link>
+          <Link to="/blog"><li><FaBlogger className="icon" />Blog</li></Link>
         </ul>
         <div className="library-sidebar">
           <ul>
             <Link to="/newmusic"><li><BsMusicNoteBeamed className="icon" />Nhạc mới</li></Link>
             <Link to="/category"><li><BsListUl className="icon" />Thể loại</li></Link>
             <Link to="/toptrending"><li><AiFillStar className="icon" />Top thịnh hành</li></Link>
-            <Link to="/listenTogether"><li><RiGroupFill className="icon" />Nghe cùng nhau</li></Link>
+            {userState.token && userState.user ? <Link to="/listenTogether"><li><RiGroupFill className="icon" />Nghe cùng nhau</li></Link> : <a onClick={() => setIsLogin(true)}><li><RiGroupFill className="icon" />Nghe cùng nhau</li></a>}
           </ul>
           <ul>
             <h6>Thư viện</h6>
-            <Link to={{pathname: '/overview', state: {page: "OverView", lastLocation: location.pathname}}}><li><AiOutlineHeart className="icon" />Yêu thích</li></Link>
-            <Link to={{pathname: '/overview', state: {page: "Music", lastLocation: location.pathname}}}><li><BsMusicNoteBeamed className="icon" />Bài hát</li></Link>
-            <Link to={{pathname: '/overview', state: {page: "Playlist", lastLocation: location.pathname}}}><li><BiPlayCircle className="icon" />Playlist</li></Link>
+            <Link to="/favorite"><li><AiOutlineHeart className="icon" />Yêu thích</li></Link>
+            <Link to="/music"><li><BsMusicNoteBeamed className="icon" />Bài hát</li></Link>
+            <Link to="/playlist" ><li><BiPlayCircle className="icon" />Playlist</li></Link>
             <Link to="/recently"><li><BiTimeFive className="icon" />Gần đây</li></Link>
           </ul>
           <ul>
@@ -65,9 +74,9 @@ const Sidebar: React.FC<Sidebar<any>> = ({ ...props }) => {
             {(close: any) => (
               <div className="modal-playlis">
                 <div className="content-modal">
-                <button className="close" onClick={close}>
-                  X
-                </button>
+                  <button className="close" onClick={close}>
+                    X
+                  </button>
                   <h5 className="text-center">Tạo playlist mới</h5>
                   <form action="">
                     <input type="text" placeholder="Nhập tên playlist" />
