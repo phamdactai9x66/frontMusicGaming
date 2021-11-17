@@ -34,9 +34,9 @@ const IndexBlog: React.FC<IndexBlog<any>> = ({...props}) => {
       case page.AddBlog: {
         return <AddBlog changePage={changePage} />
       }
-      // case page.UpdateBlog: {
-      //   return <UpdateBlog changePage={changePage} _id={findId} />
-      // }
+      case page.UpdateBlog: {
+        return <UpdateBlog changePage={changePage} _id={findId} />
+      }
       default: {
         console.log(changePage);
         return <ListBlog changePage={changePage} set_id={set_id} />

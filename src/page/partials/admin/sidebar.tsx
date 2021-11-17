@@ -92,16 +92,24 @@ const Sidebar: React.FC<Sidebar<any>> = ({ ...props }) => {
       name: "Blog",
       iconAdd: "fa fa-plus-circle",
       details: "Add Blog",
-      link: "/admin/",
-      subLink: "/admin/"
+      link: "/admin/blog",
+      subLink: "/admin/addBlog"
     },
     {
       icon: "fa fa-calendar",
       name: "Danh mục blog",
       iconAdd: "fa fa-plus-circle",
       details: "Add Danh Mục",
-      link: "/admin/",
-      subLink: "/admin/"
+      link: "/admin/categoryBlog",
+      subLink: "/admin/addCategoryBlog"
+    },
+    {
+      icon: "fa fa-calendar",
+      name: "User play list",
+      iconAdd: "fa fa-plus-circle",
+      details: "Add User play list",
+      link: "/admin/userPlayList",
+      subLink: "/admin/addUserPlayList"
     },
     {
       icon: "fa fa-lightbulb-o",
@@ -110,8 +118,7 @@ const Sidebar: React.FC<Sidebar<any>> = ({ ...props }) => {
       details: "Add Topic",
       link: "/admin/topic",
       subLink: "/admin/addTopic"
-    }
-    ,
+    },
     {
       icon: "fa fa-address-book",
       name: "Nhạc sĩ",
