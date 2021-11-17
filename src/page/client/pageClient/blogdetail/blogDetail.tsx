@@ -31,13 +31,14 @@ const BlogDetail: React.FC<blogDetail<any>> = ({ match, history, ...props }) => 
             const { data, status } = await BlogApi.getAll<object>(query)
             if (status === variableCommon.statusF) return history.goBack()
             setBlog({ display: true, data: { ...data[0] } })
+            document.title = `${data[0]?.title} - Music Game`
         })()
         return () => {
             setBlog(value => ({ ...value, display: false }));
         }
     }, [(match.params as any)?.idBlog])
 
-    console.log(saveId)
+    // console.log(saveId)
 
     return (
         <div className="container-blogdetail-blog">

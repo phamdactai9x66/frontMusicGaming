@@ -28,6 +28,8 @@ interface Search<T> {
 }
 
 const Search: React.FC<Search<any>> = ({ ...props }) => {
+    document.title = "Tìm kiếm - Music Game"
+
    const history: any = useHistory<any>();
    const [playlistName, setPlaylistName] = useState('');
    const [anchor, setAnchor] = useState(null);
@@ -35,7 +37,6 @@ const Search: React.FC<Search<any>> = ({ ...props }) => {
    const [userPlaylists, setUserPlaylists] = useState<any[]>([]);
    const [isLogged, setIsLogged] = useState(false);
    const { user } =useSelector<{ user: any }>(state => state.user) as formStateUser;;
-   console.log(props)
    const [songs, setSongs] = useState([]);
    const dispatch = useDispatch();
    const [handleStatus, setHandleStatus] = useState({ status: "", content: "" });

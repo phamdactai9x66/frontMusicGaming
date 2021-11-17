@@ -18,6 +18,7 @@ interface blog<T> {
 }
 
 const Blog: React.FC<blog<any>> = ({ ...props }) => {
+    document.title = "Blogs - Music Game";
     const [searchKeyword, setSearchKeyword] = useState('');
     const [searchRecommendResults, setSearchRecommendResults] = useState([]);
     const [currentPage, setCurrenPage] = useState(1);
@@ -79,12 +80,12 @@ const Blog: React.FC<blog<any>> = ({ ...props }) => {
 
                     </div>
                     <ListCategoryBlog />
-                    <div className="box-2">
+                    {/* <div className="box-2">
                         <h4 className="color"> Bình luận gần đây</h4>
                         <Link className="title-blog-name color" to="">Top 100 Bài Hát ...</Link>
                         <Link className="title-blog-name color" to="">Top 100 Bài Hát ...</Link>
                         <Link className="title-blog-name color" to="">Top 100 Bài Hát ...</Link>
-                    </div>
+                    </div> */}
                     <PostNew />
                 </div>
 

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { RiAdminFill } from "react-icons/ri";
 import { FaSignInAlt } from "react-icons/fa";
 import { Select, MenuItem } from "@mui/material";
-import { Link, RouteChildrenProps, withRouter } from "react-router-dom";
+import { Link, RouteChildrenProps, useHistory, withRouter } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { formStateUser } from "redux/user/stateUser";
 import Topic from "./component/topic/topic";
@@ -104,8 +104,13 @@ const HeaderClient: React.FC<HeaderClient> = ({ ...props }) => {
 			status: "success",
 			content: "Đăng xuất thành công.",
 		})
-		setLoading(false)
-        setAnchorEl(null)
+		setLoading(false);
+        setAnchorEl(null);
+
+        const requireLoginPath = ['/profile', '/listenTogether', '/personal','/roomDetail'];
+        if(requireLoginPath.filter( item => item == props.history.location.pathname).length !== 0){
+            return props.history.replace('/signin');
+        }
         // props.history.replace('/signin');
     };
 
@@ -164,7 +169,7 @@ const HeaderClient: React.FC<HeaderClient> = ({ ...props }) => {
 		return (
 			<>
 				<MenuItem value={10} onClick={handleMenuClose}>
-					<Link to="/signin" className="link rounded " style={{ fontSize: '1rem' }}><FaSignInAlt className="_icon" />Đăng nhập</Link>
+					<Link to={{ pathname: "/signin", state: { lastLocation: props.history.location.pathname }}} className="link rounded " style={{ fontSize: '1rem' }}><FaSignInAlt className="_icon" />Đăng nhập</Link>
 				</MenuItem>
 			</>
 		)
