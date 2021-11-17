@@ -26,7 +26,12 @@ const ArtistComponent: React.FC<ArtistComponentIF<any>> = (props) => {
             <div className='items'>
                 <section>
                     {artistsTransform.length !== 0 && artistsTransform.map( (item: ItemArtistIF<string>) => (
-                        <div key={item._id}><img src={item.image} alt={handleNameArtist(item.first_Name, item.last_name)} /></div>
+                        <section style={{display: "flex", flexDirection: "column"}} key={item._id}>
+                        <div>
+                            <img src={item.image} alt={handleNameArtist(item.first_Name, item.last_name)} />     
+                        </div>
+                        <div className="text-center">{item.first_Name} {item.first_Name}</div>
+                        </section>
                     ))}
                     
                 </section>

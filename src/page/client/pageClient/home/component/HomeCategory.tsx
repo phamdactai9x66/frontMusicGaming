@@ -28,7 +28,7 @@ const HomeCategory: React.FC<HomeCategory<any>> = ({ ...props }) => {
 
     return (
         <>
-            <div className="">
+            <div>
                 <Slider {...props.settings_category}>
                     {categories.length !== 0 && categories.map((item: CategoryIF) => (
                         <Link to={`/categoryDetailPlaylist/${item._id}`} key={item._id}>
