@@ -131,7 +131,7 @@ export default function Header() {
 						<MailIcon />
 					</Badge>
 				</IconButton>
-				<p>Messages</p>
+				<p>Tin nhắn</p>
 			</MenuItem>
 			<MenuItem>
 				<IconButton
@@ -142,7 +142,7 @@ export default function Header() {
 						<NotificationsIcon />
 					</Badge>
 				</IconButton>
-				<p>Notifications</p>
+				<p>Thông báo</p>
 			</MenuItem>
 			<MenuItem onClick={handleProfileMenuOpen}>
 				<IconButton
@@ -153,7 +153,7 @@ export default function Header() {
 				>
 					<AccountCircle />
 				</IconButton>
-				<p>Profile</p>
+				<p>Thông tin</p>
 			</MenuItem>
 		</Menu>
 	);
@@ -171,7 +171,7 @@ export default function Header() {
 						<MenuIcon />
 					</IconButton>
 					<Typography className={classes.title} variant='h6' noWrap>
-						<Link to="/" className="text-light">HOME</Link>
+						<Link to="/" className="text-light">Trang chủ</Link>
 					</Typography>
 			
 					 <div className="main_search">

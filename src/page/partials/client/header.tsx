@@ -11,7 +11,8 @@ import { Logout } from "redux/user/actionUser";
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import SearchIcon from '@material-ui/icons/Search';
 import MoreIcon from '@material-ui/icons/MoreVert';
-
+import './style.scss'
+import { BiSearch ,BiTime,BiX} from "react-icons/bi"
 //
 import { fade, makeStyles, AppBar, Toolbar, IconButton, InputBase, Menu } from '@material-ui/core';
 // import { Search, AccountCircle, MoreVert } from '@material-ui/icons';
@@ -96,7 +97,14 @@ const HeaderClient: React.FC<HeaderClient> = ({ ...props }) => {
 	const classes = useStyles();
 	const [anchorEl, setAnchorEl] = useState(null);
 	const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-
+    const [modalSearh,setModalSearh] =useState(false)
+    const handleOpendModal =()=>{
+        if(modalSearh == false){
+            setModalSearh(true)
+        } else if(modalSearh == true){
+            setModalSearh(false)
+        }
+    }
     const logOut = () => {
 		setLoading(true);
         const isLogout = dispatch(Logout());
@@ -225,7 +233,7 @@ const HeaderClient: React.FC<HeaderClient> = ({ ...props }) => {
                 <IconButton aria-label="show 4 new mails" color="inherit">
                     <Upload />
                 </IconButton>
-                <div>Upload</div>
+                <div>Tải lên</div>
             </MenuItem>
             <MenuItem>
                 <IconButton
@@ -234,7 +242,7 @@ const HeaderClient: React.FC<HeaderClient> = ({ ...props }) => {
                 >
                     <Topic />
                 </IconButton>
-                <div>Topic</div>
+                <div>Đề tài</div>
             </MenuItem>
             <MenuItem onClick={handleProfileMenuOpen}>
                 <IconButton
@@ -245,7 +253,7 @@ const HeaderClient: React.FC<HeaderClient> = ({ ...props }) => {
                 >
                     <AccountCircle />
                 </IconButton>
-                <div>Profile</div>
+                <div>Thông tin</div>
             </MenuItem>
         </Menu>
     );
@@ -260,18 +268,78 @@ const HeaderClient: React.FC<HeaderClient> = ({ ...props }) => {
 			{loading && <Loadings/>}
             <AppBar position="static" style={{ background: "#222f44" }}>
                 <Toolbar>
-                    <div className={classes.search}>
+                    <div className={classes.search} style={{position:"relative"}}>
                         <div className={classes.searchIcon}>
                             <SearchIcon />
                         </div>
+                        {  modalSearh === false ? ''
+                         : (
+                            <> 
+                                <BiX className="hover-icon" style={{position:'absolute',fontSize:'30px',right:'0'}}/>
+                            </>
+                            )
+                        }
+                       
                         <InputBase
-                            placeholder="Nhập tên bài hát, nghệ sĩ hoặc MV..."
+                        onClick={()=> handleOpendModal()}
+                            placeholder="Nhập tên bài hát, nghệ sĩ hoăc blog..."
                             classes={{
                                 root: classes.inputRoot,
                                 input: classes.inputInput,
                             }}
                             inputProps={{ "aria-label": "search" }}
                         />
+                        {
+                            modalSearh === false ? '' : (
+                                <>
+                                <div className={"rounded-3 w-100 shadow-lg py-2"} style={{position:"absolute",background:"#e1f4ff"}}>
+                                    <div>
+                                        <div className="hover">
+                                           
+                                            <Link to="" className="text-dark px-3"> <BiSearch style={{marginRight:'2px'}} className="text-black" />tìm kiếm mới</Link>
+                                        </div>
+                                        <div className="hover">
+                                            <Link to="" className="text-dark px-3"> <BiSearch style={{marginRight:'2px'}} className="text-black" />tìm kiếm mới</Link>
+                                        </div>
+                                        <div className="hover">
+                                            <Link to="" className="text-dark px-3"> <BiSearch style={{marginRight:'2px'}} className="text-black" />tìm kiếm mới</Link>
+                                        </div>
+                                        <div className="hover">
+                                            <Link to="" className="text-dark px-3"> <BiSearch style={{marginRight:'2px'}} className="text-black" />tìm kiếm mới</Link>
+                                        </div>
+                                        <div className="hover">
+                                            <Link to="" className="text-dark px-3"> <BiSearch style={{marginRight:'2px'}} className="text-black" />tìm kiếm mới</Link>
+                                        </div>
+                                        <p className="border-bottom text-black"></p>
+                                        <div className="d-flex justify-content-between px-3 hover">
+                                            <p className="text-dark mb-0"><BiTime style={{marginRight:'2px'}} className="text-black" />tìm kiếm gần đây</p>
+                                            <p className=" mb-0 hover-delete" onClick={()=>('sự kiến xóa ')}>xóa</p>  
+                                        </div>
+                                        <div className="d-flex justify-content-between px-3 hover">
+                                            <p className="text-dark mb-0"><BiTime style={{marginRight:'2px'}} className="text-black" />tìm kiếm gần đây</p>
+                                            <p className=" mb-0 hover-delete" onClick={()=>('sự kiến xóa ')}>xóa</p>  
+                                        </div>
+                                        <div className="d-flex justify-content-between px-3 hover">
+                                            <p className="text-dark mb-0"><BiTime style={{marginRight:'2px'}} className="text-black" />tìm kiếm gần đây</p>
+                                            <p className=" mb-0 hover-delete" onClick={()=>('sự kiến xóa ')}>xóa</p>  
+                                        </div>
+                                        <div className="d-flex justify-content-between px-3 hover">
+                                            <p className="text-dark mb-0"><BiTime style={{marginRight:'2px'}} className="text-black" />tìm kiếm gần đây</p>
+                                            <p className="mb-0 hover-delete " onClick={()=>('sự kiến xóa ')}>xóa</p>  
+                                        </div>
+                                        <div className="d-flex justify-content-between px-3 hover">
+                                            <p className="text-dark mb-0"><BiTime style={{marginRight:'2px'}} className="text-black" />tìm kiếm gần đây</p>
+                                            <p className=" mb-0 hover-delete" onClick={()=>('sự kiến xóa ')}>xóa</p>  
+                                        </div>
+                                    </div>
+
+                                </div>
+                                </>
+
+                            )
+                        }
+                            
+                    
                     </div>
                     <div className={classes.grow} />
                     <div className={classes.sectionDesktop}>
