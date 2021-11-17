@@ -58,7 +58,7 @@ const ListLikeSong: React.FC<ListLikeSong<any>> = ({ ...props }) => {
                             <BsFillPlayFill onClick={() => { dispatch(playSong(getAudio)) }} />
                         </div>
                         <div>
-                            <h6>{title}t</h6>
+                            <h6>{title}</h6>
                             <div style={{ fontSize: "0.7rem", marginTop: "-0.2rem" }}>
                                 <NameSongArtist _id={_id} />
                             </div>

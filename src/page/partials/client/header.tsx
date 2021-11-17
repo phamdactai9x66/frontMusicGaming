@@ -281,8 +281,8 @@ const HeaderClient: React.FC<HeaderClient> = ({ ...props }) => {
             <AppBar position="static" style={{ background: "#222f44" }}>
                 <Toolbar>
                     <div className={classes.search} style={{position:"relative"}}>
-                        <div className={classes.searchIcon}>
-                            <SearchIcon onClick={search} />
+                        <div className={classes.searchIcon} style={{ zIndex: 999}} onClick={search}>
+                            <SearchIcon />
                         </div>
                         {/* {  modalSearh && (
                             <> 

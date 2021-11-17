@@ -1,9 +1,7 @@
-import { RouteChildrenProps, withRouter } from "react-router-dom";
 import songApi from 'api/songApi';
 import { handleLike, handleDownload, handleAddToPlaylist } from 'page/client/common/handle';
 import React, { useEffect, useState } from 'react';
 import { BsFillPlayFill } from 'react-icons/bs';
-import { BiMusic } from 'react-icons/bi';
 import { BsMusicNoteList } from 'react-icons/bs';
 import { Button, MenuItem } from "@mui/material";
 import { AiOutlineDownload, AiFillHeart } from 'react-icons/ai';
@@ -12,8 +10,6 @@ import { Popover } from "@material-ui/core";
 import { useDispatch, useSelector } from 'react-redux';
 import { getlistAudio, playSong } from "redux/audio/actionAudio"
 import userPlaylistApi from 'api/userPlaylist';
-import { useHistory } from 'react-router';
-import ModalLogged from 'component/clientComponent/ModalLogged';
 import { Link } from 'react-router-dom';
 import NameSongArtist from 'component/nameSongArtist';
 import GetTimeAudio from "component/getTimeAudio";
@@ -24,6 +20,8 @@ import { formStateUser } from '../../../../redux/user/stateUser';
 import './style.scss'
 import { Pagination } from '@mui/material'
 import Avatar from '@mui/material/Avatar';
+import ArtistApi from "api/ArtistApi";
+import BlogApi from "api/BlogApi";
 interface Search<T> {
    userState: any,
    location: any,
@@ -31,8 +29,8 @@ interface Search<T> {
 }
 
 const Search: React.FC<Search<any>> = ({ ...props }) => {
-    const key = new URLSearchParams(props.history.location.search).get('key')
-    document.title = `Tìm kiếm "${key}" - Music Game`
+    const key = new URLSearchParams(props.history.location.search).get('key');
+    document.title = `Tìm kiếm "${key}" - Music Game`;
 
 //    const history: any = useHistory<any>();
    const [playlistName, setPlaylistName] = useState('');
@@ -42,6 +40,8 @@ const Search: React.FC<Search<any>> = ({ ...props }) => {
    const [isLogged, setIsLogged] = useState(false);
    const { user } =useSelector<{ user: any }>(state => state.user) as formStateUser;;
    const [songs, setSongs] = useState([]);
+   const [artists, setArtists] = useState([]);
+   const [blogs, setBlogs] = useState([]);
    const dispatch = useDispatch();
    const [handleStatus, setHandleStatus] = useState({ status: "", content: "" });
    const [addPlaylistLoading, setAddPlaylistLoading] = useState(false);
@@ -53,23 +53,33 @@ const Search: React.FC<Search<any>> = ({ ...props }) => {
 
    const openPopover2 = (event: any) => {
        setAnchor2(event.currentTarget);
-   };
+   }; 
 
-//    useEffect(() => {
-//        (async () => {
-//            dispatch(getlistAudio())
-//        })()
-//    }, [])
-
-//    useEffect(() => {
-//        const getSongs = async () => {
-//            const { data } = await songApi.getAll({ _limit: 20 });
-//            setSongs(data);
-//        }
-//        getSongs();
-//    }, []); 
+   const searchSongs = async () => {
+       const conditionSong = {
+           name: key
+       }
+       const {data} = await songApi.getAll(conditionSong);
+       setSongs(data)
+   }
+   const searchArtists = async () => {
+       const conditionArtists = {
+           name: key,
+       }
+       const { data } = await ArtistApi.getAll(conditionArtists);
+       setArtists(data);
+   }
+   const searchBlogs = async () => {
+       const conditionBlogs = {
+           title: key,
+       }
+       const { data } = await BlogApi.getAll(conditionBlogs);
+       setBlogs(data);
+   }
     useEffect( () => {
-
+        searchSongs();
+        searchArtists();
+        searchBlogs();
     }, [props.location])
 
    const handleAdd = async <T extends string>(s: T, u: T, t: T) => {
@@ -181,7 +191,7 @@ const Search: React.FC<Search<any>> = ({ ...props }) => {
     
        <div>
          <h5 className="text-light mb-3">
-         Bài hát  <span style={{color:'#d0d0d0',fontSize:'1rem'}}>({'2'} kết quả trùng khớp)</span>
+         Bài hát  <span style={{color:'#d0d0d0',fontSize:'1rem'}}>({songs.length} kết quả trùng khớp)</span>
        </h5> 
        {isLogged && <Notification handleLogged={handleLogged} />}
             {locationLogged && <Notification handleLogged={handleLogged} />}
@@ -274,7 +284,7 @@ const Search: React.FC<Search<any>> = ({ ...props }) => {
                 <Pagination count={10} onClick={() => { console.log() }} style={{ padding: 10, paddingTop: 20, color: "#fff" }} />
             </div>
                <h5 className="text-light mb-3 ">
-               Tác giả  <span style={{color:'#d0d0d0',fontSize:'1rem'}}>({'2'} kết quả trùng khớp)</span>
+               Tác giả  <span style={{color:'#d0d0d0',fontSize:'1rem'}}>({artists.length} kết quả trùng khớp)</span>
                </h5>
                <div className="search-grid-2">
                   <div className="d-flex m-2 bg-gradient rounded-3 p-2 hover" style={{border:"0.1px solid #537ecae3"}}>
@@ -334,7 +344,7 @@ const Search: React.FC<Search<any>> = ({ ...props }) => {
                     <Pagination count={10} onClick={() => { console.log() }} style={{ padding: 10, paddingTop: 20, color: "#fff" }} />
                 </div>
                 <h5 className="text-light mb-3 ">
-               Blog  <span style={{color:'#d0d0d0',fontSize:'1rem'}}>({'2'} kết quả trùng khớp)</span>
+               Blog  <span style={{color:'#d0d0d0',fontSize:'1rem'}}>({blogs.length} kết quả trùng khớp)</span>
                </h5>
                <div>
                    <div className="grid-blog-box">
