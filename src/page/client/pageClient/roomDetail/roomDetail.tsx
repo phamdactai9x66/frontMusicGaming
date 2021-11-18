@@ -174,10 +174,12 @@ const RoomDetail: React.FC<RoomDetail<any>> = ({ match, ...props }) => {
                     </div>
                 </div>
                 <div className="search_user">
-                    <TextField id="standard-basic" label="Tìm kiếm" style={{ color: "#fff" }} variant="standard" />
+                    <div>
+                    <TextField style={{width: "100%"}} id="standard-basic" label="Tìm kiếm" variant="standard" />
                     <br /><br /><Button variant="contained" color="error">
                         Tìm bạn
                     </Button>
+                    </div>
                     <br /><br />
                     <h3 className="mt-3 text-white ps-3" style={{ borderLeft: '0.5rem solid #26a5ff', fontSize: '1.2rem' }}>Đang hoạt động</h3>
                     <div className="grid-user">

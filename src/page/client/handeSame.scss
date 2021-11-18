@@ -288,8 +288,11 @@
 }
 
 .list-slider {
+    .slick-track, .slick-slider .slick-list {
+        margin-left: -1.9rem;
+    }
     .slick-slide {
-        border-right: 2rem solid #00000000;
+        border-left: 2rem solid #00000000;
       }
     margin-top: 2rem;
     h4 {
