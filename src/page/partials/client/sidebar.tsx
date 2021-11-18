@@ -19,20 +19,26 @@ interface Sidebar<T> {
 
 const Sidebar: React.FC<Sidebar<any>> = ({ ...props }) => {
   const userState = useSelector<{ user: any }>(state => state.user) as formStateUser;
-  const [isLogin, setIsLogin] = useState(false);
+  const [isLogin, setIsLogin] = useState({
+    status: false,
+    path: '',
+  });
 
   const handleLogged = () => {
-    setIsLogin(false);
+    setIsLogin({
+      status: false,
+      path: '',
+    });
   }
 
 
   return (
     <>
-      {isLogin && <Notification handleLogged={handleLogged} />}
+      {isLogin.status && <Notification path={isLogin.path} handleLogged={handleLogged} />}
       <div className="sidebar">
         <h5><Link to="/">MUSIC GAME</Link></h5>
         <ul>
-          {userState.token && userState.user ? <Link to="/personal"><li><BsMusicNoteBeamed className="icon" />Cá nhân</li></Link> : <a onClick={() => setIsLogin(true)}><li><BsMusicNoteBeamed className="icon" />Cá nhân</li></a>}
+          {userState.token && userState.user ? <Link to="/personal"><li><BsMusicNoteBeamed className="icon" />Cá nhân</li></Link> : <a onClick={() => setIsLogin({ status: true, path: '/personal'})}><li><BsMusicNoteBeamed className="icon" />Cá nhân</li></a>}
           {/* <Link to="/overview"><li><BsMusicNoteBeamed className="icon" />Cá nhân</li></Link> */}
           <Link to="/"><li><RiFolderMusicFill className="icon" />Khám phá</li></Link>
           <Link to="/chart"><li><FaChartPie className="icon" />Music chart</li></Link>
@@ -43,7 +49,7 @@ const Sidebar: React.FC<Sidebar<any>> = ({ ...props }) => {
             <Link to="/newmusic"><li><BsMusicNoteBeamed className="icon" />Nhạc mới</li></Link>
             <Link to="/category"><li><BsListUl className="icon" />Thể loại</li></Link>
             <Link to="/toptrending"><li><AiFillStar className="icon" />Top thịnh hành</li></Link>
-            {userState.token && userState.user ? <Link to="/listenTogether"><li><RiGroupFill className="icon" />Nghe cùng nhau</li></Link> : <a onClick={() => setIsLogin(true)}><li><RiGroupFill className="icon" />Nghe cùng nhau</li></a>}
+            {userState.token && userState.user ? <Link to="/listenTogether"><li><RiGroupFill className="icon" />Nghe cùng nhau</li></Link> : <a onClick={() => setIsLogin({ status: true, path: '/listenTogether'})}><li><RiGroupFill className="icon" />Nghe cùng nhau</li></a>}
           </ul>
           <ul>
             <h6>Thư viện</h6>

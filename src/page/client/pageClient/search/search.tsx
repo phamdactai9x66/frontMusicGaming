@@ -12,9 +12,8 @@ import { AiOutlineDownload, AiFillHeart } from "react-icons/ai";
 import { IoMdAdd } from "react-icons/io";
 import { Popover } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
-import { getlistAudio, playSong } from "redux/audio/actionAudio";
+import { playSong } from "redux/audio/actionAudio";
 import userPlaylistApi from "api/userPlaylist";
-import { Link } from "react-router-dom";
 import NameSongArtist from "component/nameSongArtist";
 import GetTimeAudio from "component/getTimeAudio";
 import AlertComponent from "component/clientComponent/Alert";
@@ -27,11 +26,11 @@ import Avatar from "@mui/material/Avatar";
 import ArtistApi from "api/ArtistApi";
 import BlogApi from "api/BlogApi";
 import { handleNameArtist } from "page/client/common/handleName"; 
-
+import Loadings from '../../loading/loading';
 interface Search<T> {
     userState: any;
     location: any;
-    history: any;
+    history: T;
 }
 
 const Search: React.FC<Search<any>> = ({ ...props }) => {
@@ -48,9 +47,18 @@ const Search: React.FC<Search<any>> = ({ ...props }) => {
         (state) => state.user
     ) as formStateUser;
     const [topSongs, setTopSongs] = useState([]);
-    const [songs, setSongs] = useState([]);
-    const [artists, setArtists] = useState([]);
-    const [blogs, setBlogs] = useState([]);
+    const [songs, setSongs] = useState({
+        status: true,
+        data: [],
+    });
+    const [artists, setArtists] = useState({
+        status: true,
+        data: [],
+    });
+    const [blogs, setBlogs] = useState({
+        status: true,
+        data: [],
+    });
     const dispatch = useDispatch();
     const [handleStatus, setHandleStatus] = useState({
         status: "",
@@ -60,6 +68,8 @@ const Search: React.FC<Search<any>> = ({ ...props }) => {
     const [locationLogged, setLocationlogged] = useState(
         props.location.state?.isLogged ? props.location.state.isLogged : false
     );
+    // const [currentPage, setCurrenPage] = useState(1);
+    // const [count, setCount] = useState(0);
 
     const openPopover = (event: any) => {
         setAnchor(event.currentTarget);
@@ -74,21 +84,30 @@ const Search: React.FC<Search<any>> = ({ ...props }) => {
             name: key,
         };
         const { data } = await songApi.getAll(conditionSong);
-        setSongs(data);
+        setSongs({
+            status: false,
+            data: data,
+        });
     };
     const searchArtists = async () => {
         const conditionArtists = {
             name: key,
         };
         const { data } = await ArtistApi.getAll(conditionArtists);
-        setArtists(data);
+        setArtists({
+            status: false,
+            data: data,
+        });
     };
     const searchBlogs = async () => {
         const conditionBlogs = {
             title: key,
         };
         const { data } = await BlogApi.getAll(conditionBlogs);
-        setBlogs(data);
+        setBlogs({
+            status: false,
+            data: data,
+        });
     };
     useEffect(() => {
         searchSongs();
@@ -204,17 +223,26 @@ const Search: React.FC<Search<any>> = ({ ...props }) => {
         }
         setAddPlaylistLoading(false);
     };
+
+    // const panigationChange = (e: any, page: number) => { 
+    //     const startBlog = 7 * (page - 1);
+    //     const newAllBlogs = [...allBlogs];
+    //     const showBlog = newAllBlogs.splice( startBlog, startBlog + 6)
+    //     setCurrenPage(page);
+    //     setBlog(showBlog);
+    // };
     return (
         <>
+            {songs.status && artists.status && blogs.status && <Loadings />}
             <div className="m-4 grid-search">
                 <div>
                     <h5 className="text-light mb-3">
                         Bài hát
                         <span style={{ color: "#d0d0d0", fontSize: "1rem" }}>
                             (
-                            {songs.length === 0
+                            {songs.data.length === 0
                                 ? " Không tìm thấy bài hát nào phù hợp "
-                                : ` ${songs.length} bài hát được tìm thấy `}
+                                : ` ${songs.data.length} bài hát được tìm thấy `}
                             )
                         </span>
                     </h5>
@@ -228,8 +256,8 @@ const Search: React.FC<Search<any>> = ({ ...props }) => {
                             content={handleStatus.content}
                         />
                     )}
-                    {songs.length !== 0 &&
-                        songs.map((item: any) => (
+                    {songs.data.length !== 0 &&
+                        songs.data.map((item: any) => (
                             <div
                                 className="music_item border-0 p-2"
                                 key={item._id}
@@ -434,14 +462,19 @@ const Search: React.FC<Search<any>> = ({ ...props }) => {
                                 </div>
                             </div>
                         ))}
-                    {songs.length >= 7 && (
+                    {songs.data.length >= 7 && (
                         <div
                             className="Pagination mb-3"
                             style={{ borderBottom: "0.1px solid #38939c" }}
                         >
+                            {/* <Pagination
+                                count={count} page={currentPage} onChange={panigationChange} style={{ padding: 10, paddingTop: 20, color: "#fff" }}
+                            /> */}
                             <Pagination
                                 count={10}
-                                onClick={() => console.log("a")}
+                                onClick={() => {
+                                    console.log();
+                                }}
                                 style={{
                                     padding: 10,
                                     paddingTop: 20,
@@ -455,14 +488,14 @@ const Search: React.FC<Search<any>> = ({ ...props }) => {
                         Tác giả{" "}
                         <span style={{ color: "#d0d0d0", fontSize: "1rem" }}>
                             (
-                            {artists.length === 0
+                            {artists.data.length === 0
                                 ? " Không tìm thấy tác giả nào phù hợp "
-                                : ` ${artists.length} tác giả được tìm thấy `}
+                                : ` ${artists.data.length} tác giả được tìm thấy `}
                             )
                         </span>
                     </h5>
                     <div className="search-grid-2">
-                        {artists.map((item: any) => (
+                        {artists.data.map((item: any) => (
                             <div
                                 key={item._id}
                                 className="d-flex m-2 bg-gradient rounded-3 p-2 hover"
@@ -499,7 +532,7 @@ const Search: React.FC<Search<any>> = ({ ...props }) => {
                             </div>
                         ))}
                     </div>
-                    {artists.length >= 7 && (
+                    {artists.data.length >= 7 && (
                         <div
                             className="Pagination mb-3"
                             style={{ borderBottom: "0.1px solid #38939c" }}
@@ -522,15 +555,15 @@ const Search: React.FC<Search<any>> = ({ ...props }) => {
                         Blog{" "}
                         <span style={{ color: "#d0d0d0", fontSize: "1rem" }}>
                             (
-                            {blogs.length === 0
+                            {blogs.data.length === 0
                                 ? " Không tìm thấy bài viết nào phù hợp "
-                                : ` ${blogs.length} bài viết được tìm thấy `}
+                                : ` ${blogs.data.length} bài viết được tìm thấy `}
                             )
                         </span>
                     </h5>
                     <div>
                         <div className="grid-blog-box">
-                            {blogs.map((item: any) => (
+                            {blogs.data.map((item: any) => (
                                 <div className="hover-blog">
                                     <img
                                         className="w-100 rounded-3 shadow-lg"
@@ -543,7 +576,7 @@ const Search: React.FC<Search<any>> = ({ ...props }) => {
                             ))}
                         </div>
                     </div>
-                    {blogs.length >= 7 && (
+                    {blogs.data.length >= 7 && (
                         <div
                             className="Pagination mb-3"
                             style={{ borderBottom: "0.1px solid #38939c" }}
