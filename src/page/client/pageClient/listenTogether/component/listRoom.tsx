@@ -8,6 +8,7 @@ import roomUserApi from "api/roomUser";
 import { useSelector } from "react-redux";
 import { formStateUser } from "redux/user/stateUser";
 import { variableCommon } from "component/variableCommon"
+import { io } from "socket.io-client";
 interface ListRoom<T> extends RouteComponentProps {
     current: T,
     index: number,
@@ -29,6 +30,7 @@ const style = {
 const ListRoom: React.FC<ListRoom<any>> = ({ index, current, history, ...props }) => {
     const [open, setOpen] = useState<boolean>(false);
     const { user } = useSelector<{ user: any }>(state => state.user) as formStateUser;
+    const server = "http://localhost:5000";
     const listUser = () => {
         const { roomUser, user } = props.saveData as any;
         const findRoom = roomUser.filter((currentRU: any) => currentRU.id_Room === current._id)
@@ -44,9 +46,11 @@ const ListRoom: React.FC<ListRoom<any>> = ({ index, current, history, ...props }
         }
         const addUserintoRoom = await roomUserApi.postOne<object>(data);
         if (addUserintoRoom.status === variableCommon.statusS && addUserintoRoom?.data[0]._id) {
+            io(server).emit("JoinRoom")
             history.push(`/listenTogether/roomDetail/${current?._id || ''}`, {
                 idRoomUser: addUserintoRoom?.data[0]._id
             })
+
         }
     }
 

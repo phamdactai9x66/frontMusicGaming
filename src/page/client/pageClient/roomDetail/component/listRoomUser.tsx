@@ -6,6 +6,7 @@ import { HandleGet, tranFormDataId } from "component/MethodCommon"
 import { RouteComponentProps, withRouter } from "react-router-dom";
 import { variableCommon } from "component/variableCommon"
 import userApi from "api/useApi"
+import { io } from "socket.io-client";
 interface ListRoomUser<T> extends RouteComponentProps {
 
 }
@@ -40,8 +41,17 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 
 const ListRoomUser: React.FC<ListRoomUser<any>> = ({ match, ...props }) => {
     const [userRoom, setUserRoom] = useState({ display: true, data: [] });
-
+    const [renderUser, setrenderUser] = useState<number>(0)
     const saveUser = useRef<any>(null)
+    const server = "http://localhost:5000";
+    useEffect(() => {
+        io(server).on("joined", (date: number) => {
+            if (date) {
+                setrenderUser(date);
+            }
+        });
+    }, [])
+    console.log('xin chao')
 
     useEffect(() => {
         (async () => {
@@ -52,7 +62,7 @@ const ListRoomUser: React.FC<ListRoomUser<any>> = ({ match, ...props }) => {
     }, [])
     useEffect(() => {
         (async () => {
-            if (!userRoom.display) return
+            // if (!userRoom.display) return
             const idRoom = (match.params as any).idRoom;
             const [data, error] = await HandleGet(roomUser.getAll, { _idRoom: idRoom })
             if (error || data.status === variableCommon.statusF) return;
@@ -61,9 +71,9 @@ const ListRoomUser: React.FC<ListRoomUser<any>> = ({ match, ...props }) => {
             }, 1000);
         })()
         return () => {
-            setUserRoom(value => ({ ...value, display: false }))
+            // setUserRoom(value => ({ ...value, display: false }))
         }
-    }, [])
+    }, [renderUser])
     const listUserInRoom = () => {
         // console.log(userRoom.data)
         return userRoom.data.map((current: any, index: number) => {

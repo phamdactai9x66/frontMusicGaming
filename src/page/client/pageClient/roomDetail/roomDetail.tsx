@@ -36,6 +36,7 @@ const RoomDetail: React.FC<RoomDetail<any>> = ({ match, ...props }) => {
                 if (!findRoomDetail || checkId) {
                     const deleteUser = await roomUser.DeleteOne(checkId);
                     console.log(deleteUser);
+                    io(server).emit("JoinRoom");
                 }
             })()
         }
