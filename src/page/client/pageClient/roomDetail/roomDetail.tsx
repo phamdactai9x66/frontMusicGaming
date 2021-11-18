@@ -84,7 +84,7 @@ const RoomDetail: React.FC<RoomDetail<any>> = ({ match, ...props }) => {
             return (<div className="music_item border-0 p-2 " key={index}>
                 <img src={finSong?.image} alt={''} />
                 <div className="box-icon m-2 pt-1">
-                    <BsFillPlayFill onClick={() => playAudio(finSong._id)} />
+                    <BsFillPlayFill onClick={() => playAudio(finSong?._id)} />
                 </div>
                 <div >
                     <h6>{finSong?.title}</h6>

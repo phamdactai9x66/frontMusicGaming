@@ -25,12 +25,14 @@ const Enteraiment: React.FC<Enteraiment<any>> = ({ ...props }) => {
         setTimeout(async () => {
             const { data } = await roomUser.getAll({});
             saveUser.current = data.map((current: any) => current.id_User);
-        }, 1000);
+        }, 2000);
     }, [])
     useEffect(() => {
         io(server).on("Output", (data) => {
-            if (saveUser.current.includes(user._id)) {
-                dispatch(playSong({ _id: data.idSong }))
+            if (saveUser.current.length) {
+                if (saveUser.current.includes(user._id)) {
+                    dispatch(playSong({ _id: data.idSong }))
+                }
             }
 
         });
