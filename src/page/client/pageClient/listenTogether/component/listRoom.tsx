@@ -43,7 +43,7 @@ const ListRoom: React.FC<ListRoom<any>> = ({ index, current, history, ...props }
             id_User: user._id
         }
         const addUserintoRoom = await roomUserApi.postOne<object>(data);
-        if (addUserintoRoom.status === variableCommon.statusS) {
+        if (addUserintoRoom.status === variableCommon.statusS && addUserintoRoom?.data[0]._id) {
             history.push(`/listenTogether/roomDetail/${current?._id || ''}`, {
                 idRoomUser: addUserintoRoom?.data[0]._id
             })

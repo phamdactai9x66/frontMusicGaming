@@ -5,7 +5,8 @@ export interface formStateAudio {
     listAudio: any,
     display: boolean,
     likstStaticAudio: any,
-    playing: boolean
+    playing: boolean,
+    playRealTime: boolean
 }
 
 const stateAudio: formStateAudio = {
@@ -13,7 +14,8 @@ const stateAudio: formStateAudio = {
     listAudio: [],
     display: false,
     likstStaticAudio: [],
-    playing: false
+    playing: false,
+    playRealTime: false
 }
 
 export default stateAudio

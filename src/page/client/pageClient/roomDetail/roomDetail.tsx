@@ -11,18 +11,17 @@ import roomSong from "api/roomSong";
 import { RouteComponentProps } from "react-router-dom";
 import songApi from "api/songApi";
 import { tranFormDataId } from "component/MethodCommon";
-import { useDispatch } from "react-redux";
 import { playSong } from "redux/audio/actionAudio";
 import ListRoomUser from "./component/listRoomUser";
 import roomUser from "api/roomUser";
+import { io } from "socket.io-client";
 interface RoomDetail<T> extends RouteComponentProps {
 }
+const server = "http://localhost:5000";
 const RoomDetail: React.FC<RoomDetail<any>> = ({ match, ...props }) => {
     const [anchor, setAnchor] = useState(null);
     const [anchor2, setAnchor2] = useState(null);
     const [songRoom, setSongRoom] = useState({ display: false, data: [] });
-    const dispatch = useDispatch();
-
     const saveSong = useRef<any>({})
     // console.log(props.location)
     useEffect(() => {
@@ -74,7 +73,8 @@ const RoomDetail: React.FC<RoomDetail<any>> = ({ match, ...props }) => {
     };
     const playAudio = <T extends string>(_id: T): void => {
         if (!_id) return;
-        dispatch(playSong({ _id }))
+        const getIdRoom = (match.params as any).idRoom;
+        io(server).emit("test1", { idRoom: getIdRoom, idSong: _id });
     }
 
     const listSongRoom = () => {
