@@ -56,7 +56,7 @@ const ModalCategory: React.FC<Modal<any>> = ({ state, onClose, ...props }) => {
     const findTopics = await topicsApi.getOne(_id);
 
     if (findTopics.status !== variableCommon.statusF) {
-      const { name } = findTopics.data
+      const { name } = findTopics.data;
       return nameTopic.current = `${name}`
     }
     nameTopic.current = ''
