@@ -37,7 +37,7 @@ const IndexCategories: React.FC<IndexCategories<any>> = ({...props}) => {
         return <UpdateCategory changePage={changePage} _id={findId} />
       }
       default: {
-        console.log(changePage);
+        // console.log(changePage);
         return <ListCategory changePage={changePage} set_id={set_id} />
       }
     }

@@ -25,8 +25,11 @@ const useStyle = makeStyles((theme) => ({
 }))
 
 const columns = [
-  { id: 'name', label: 'Name category', minWidth: 170, align: 'left' },
+  { id: 'name', label: 'Title blog', minWidth: 170, align: 'left' },
   { id: 'price', label: 'Image', minWidth: 100, align: 'left' },
+  { id: 'content', label: 'Content', minWidth: 100, align: 'left' },
+  { id: 'status', label: 'Status', minWidth: 100, align: 'left' },
+  { id: 'view', label: 'View', minWidth: 100, align: 'left' },
   { id: '', label: 'Handle', minWidth: 170, align: 'center' }
 ]
 
@@ -176,7 +179,7 @@ const ListBlog: React.FC<ListBlog<any>> = ({ changePage, set_id, ...props }) => 
                             <Avatar alt={title} variant="rounded" src={image} />
                           </TableCell>
                           <TableCell align="left">{content}</TableCell>
-                          <TableCell align="left">{status}</TableCell>
+                          <TableCell align="left">{status === true ? 'Công khai' : 'Cá nhân'}</TableCell>
                           <TableCell align="left">{view}</TableCell>
                           <TableCell align='center'>
                             <Button 
