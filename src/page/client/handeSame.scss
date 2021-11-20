@@ -356,7 +356,47 @@ line {
 img {
     object-fit: cover;
 }
+.search_music {
+    position: relative;
+    .fa-search {
+        color: rgb(57, 160, 219);
+        position: absolute;
+        top: 0.8rem;
+        left: 0.5rem;
+        font-size: 1.4rem;
+        cursor: pointer;
+    }
+    .key_name {
+        width: 17rem;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+    input {
+        padding: 0.7rem 0.7rem 0.7rem 2.3rem; 
+        color: #d9f3ff;
+        width: 100%;
+        border-radius: 0.2rem;
+        background-color: rgb(12, 22, 41);
+        box-shadow: 0 3px 7px rgba(0, 0, 0, 0.692);
+        border: none;
+    }
+    input:focus + .results { display: block }
+}
+.search_music .results {
+    border-radius: 0 0 0.4rem 0.4rem;
+    background-color: rgb(8, 15, 27);
+    color: #cdefff;
+    position: absolute;
+    width: 100%;
+    display: none;
+    z-index: 1000;
+}
 
+
+.search_music .results a {
+    display: block;
+}
 @media (min-width: 768px) and (max-width: 1024px) {
     .main3_nhacsi {
         grid-template-columns: 1fr 1fr 1fr;
