@@ -1,4 +1,5 @@
 import axios, { AxiosResponse } from "axios";
+import dataStoreage from "component/dataStorage";
 
 const baseURL = 'http://localhost:5000'
 
@@ -6,13 +7,15 @@ const baseURL = 'http://localhost:5000'
 const Axios = axios.create({
     baseURL,
     headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        Authorization: dataStoreage.accessToken || ''
     }
 })
 const AxiosFormdata = axios.create({
     baseURL,
     headers: {
-        'Content-Type': 'application/form-data'
+        'Content-Type': 'application/form-data',
+        Authorization: dataStoreage.accessToken || ''
     }
 })
 Axios.interceptors.response.use((response: AxiosResponse) => {
