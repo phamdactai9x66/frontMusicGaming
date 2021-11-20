@@ -30,7 +30,7 @@ const ArtistComponent: React.FC<ArtistComponentIF<any>> = (props) => {
                         <div>
                             <img src={item.image} alt={handleNameArtist(item.first_Name, item.last_Name)} />     
                         </div>
-                        <div className="text-center">{handleNameArtist(item.first_Name, item.last_Name)}</div>
+                        <span className="text-center name">{handleNameArtist(item.first_Name, item.last_Name)}</span>
                         </section>
                     ))}
                     
