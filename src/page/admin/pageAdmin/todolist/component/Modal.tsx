@@ -51,9 +51,11 @@ const ComponentModal: React.FC<Modal<any>> = ({ state, onClose, ...props }) => {
     const findArtist = async <T extends string>(_id: T) => {
         if (!_id) return;
         const findArirst = await ArtistApi.getOne(_id);
+        // console.log('data topic : ', findArirst)
 
         if (findArirst.status !== variableCommon.statusF) {
-            const { first_Name, last_Name } = findArirst.data
+            const { first_Name, last_Name } = findArirst.data;
+            // console.log('name category ',  `${first_Name} ${last_Name}`)
             return nameArtist.current = `${first_Name} ${last_Name}`
         }
         nameArtist.current = ''

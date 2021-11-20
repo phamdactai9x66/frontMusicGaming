@@ -17,6 +17,7 @@ const typeModal: any = {
   borderRadius: 1,
   boxShadow: 24,
   p: 4,
+  background: 'gray'
 }
 
 const useStyle = makeStyles({
