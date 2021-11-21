@@ -10,14 +10,14 @@ const Axios = axios.create({
     baseURL,
     headers: {
         'Content-Type': 'application/json',
-        Authorization: dataStoreage.accessToken || getToken
+        Authorization: dataStoreage?.accessToken || getToken
     }
 })
 const AxiosFormdata = axios.create({
     baseURL,
     headers: {
         'Content-Type': 'application/form-data',
-        Authorization: dataStoreage.accessToken || getToken
+        Authorization: dataStoreage?.accessToken || getToken
     }
 })
 Axios.interceptors.response.use((response: AxiosResponse) => {
