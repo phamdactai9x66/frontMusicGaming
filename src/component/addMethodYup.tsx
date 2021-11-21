@@ -1,8 +1,8 @@
 import * as Yup from "yup";
 import { variableCommon } from "component/variableCommon";
-const messageDefault: string = 'this field is required !';
-const checkTypeFile: string = 'Your type must Image !';
-const checkSizeFile: string = 'the size of file must smaller 16m';
+const messageDefault: string = 'Không được để trống.';
+const checkTypeFile: string = 'File không đúng định dạng.';
+const checkSizeFile: string = 'Kích thước File nhỏ hơn 16MB.';
 
 Yup.addMethod(Yup.string, "checkRequire", function (message: string = messageDefault) {
     return this.test("checkRequire", message, function (value, field) {

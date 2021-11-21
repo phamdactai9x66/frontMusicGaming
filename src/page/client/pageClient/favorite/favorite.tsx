@@ -16,7 +16,7 @@ interface Favorite<T> {
 }
 
 const Favorite: React.FC<Favorite<any>> = ({ ...props }) => {
-
+    document.title = "Nhạc yêu thích - Music Game";
     return (
         <div className="container-yeuthich">
             <div className ="title-yeuthich-tt grid-2">

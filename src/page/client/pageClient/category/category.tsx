@@ -9,6 +9,7 @@ interface Category<T> {
 }
 
 const Category: React.FC<Category<any>> = ({ ...props }) => {
+  document.title = "Thể loại - Music Game"
   const [handle, setHandle] = useState({ data: { dataTopic: [], dataCate: [] }, display: true })
 
   useEffect(() => {

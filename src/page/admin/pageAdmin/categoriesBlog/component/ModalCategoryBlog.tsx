@@ -31,14 +31,14 @@ interface ModalCategoryBlog<T> {
 }
 
 const ModalCategoryBlog: React.FC<ModalCategoryBlog<any>> = ({ state, onClose, ...props}) => {
-  const [dataCategoryBlog, setDataCategoryBlog] = useState<any>({data: {}, error: false, display: false});
+  const [dataCategoryBlog, setDataCategoryBlog] = useState<any>({ data: {}, error: false, display: false });
   const classes = useStyle();
 
   useEffect(() => {
     (async () => {
       if (dataCategoryBlog.error) return;
       const [data, error] = await HandleGet(categoryBlogApi.getOne, state._id);
-      setDataCategoryBlog({error: false, data: data?.data, display: true})
+      setDataCategoryBlog({ error: false, data: data?.data, display: true })
     })()
     return () => {
       setDataCategoryBlog((value: any) => ({...value, display: false}))
@@ -69,7 +69,7 @@ const ModalCategoryBlog: React.FC<ModalCategoryBlog<any>> = ({ state, onClose, .
                       label="name"
                       variant="standard" 
                       fullWidth
-                      value={dataCategoryBlog.data?.name}
+                      value={(dataCategoryBlog.data?.[0] as any)?.name}
                     />
                   </Typography>
                 </Grid>

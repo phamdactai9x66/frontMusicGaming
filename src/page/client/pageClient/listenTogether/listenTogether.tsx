@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState, useReducer, useRef } from 'react'
 import { Button, TextField } from '@mui/material';
 import roomApi from "api/roomApi";
@@ -10,9 +9,7 @@ import userApi from "api/useApi";
 import Pagination from "./component/pagination";
 import FindRoom from "./component/findRoom";
 
-interface ListenTogether<T> {
-
-}
+interface ListenTogether<T> {} 
 
 const ListenTogether: React.FC<ListenTogether<any>> = ({ ...props }) => {
   const [state, dispatch] = useReducer(handleReducer, initialReducer, undefined);
@@ -76,7 +73,7 @@ const ListenTogether: React.FC<ListenTogether<any>> = ({ ...props }) => {
           <TextField label="Name" variant="filled" className="input_room" />
           <TextField label="Password" variant="filled" className="input_room" />
           <Button variant="contained" color="primary">
-            Create room
+            Tạo phòng
           </Button>
         </div>
       </div>
@@ -84,4 +81,4 @@ const ListenTogether: React.FC<ListenTogether<any>> = ({ ...props }) => {
   )
 }
 
-export default ListenTogether
+export default ListenTogether;

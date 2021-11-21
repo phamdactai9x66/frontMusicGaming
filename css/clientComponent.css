@@ -1,0 +1,65 @@
+.modal-logged-parent {
+  position: fixed;
+  z-index: 500;
+  top: 0;
+  left: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 100vh;
+}
+
+.check_login {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  border-top: 0.3rem solid red;
+  border-radius: 0.3rem;
+  background-color: #fff !important;
+}
+
+.parent-alert {
+  position: fixed;
+  z-index: 30;
+  bottom: 8rem;
+  right: 3rem;
+  -webkit-animation-name: alert;
+          animation-name: alert;
+  -webkit-animation-duration: 0.5s;
+          animation-duration: 0.5s;
+}
+
+@-webkit-keyframes alert {
+  from {
+    right: -10rem;
+  }
+  to {
+    right: 3rem;
+  }
+}
+
+@keyframes alert {
+  from {
+    right: -10rem;
+  }
+  to {
+    right: 3rem;
+  }
+}
+/*# sourceMappingURL=clientComponent.css.map */

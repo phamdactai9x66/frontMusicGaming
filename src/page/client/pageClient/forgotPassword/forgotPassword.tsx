@@ -5,6 +5,7 @@ interface ForgotPassword<T> {
 }
 
 const ForgotPassword: React.FC<ForgotPassword<any>> = ({ ...props }) => {
+    document.title = "Quên mật khẩu - Music Game";
     return (
         <>
             <div className="forgotPassword">

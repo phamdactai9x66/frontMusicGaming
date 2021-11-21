@@ -71,7 +71,7 @@ const AddCategory: React.FC<AddCategory<any>> = ({ changePage, ...props }) => {
         <Formik
           initialValues={initialValue}
           onSubmit={submitForm}
-          validationChemaCategory={validationChemaCategory}
+          validationSchema={validationChemaCategory}
           validateOnChange={false}
         >
           {formik => {
@@ -85,10 +85,6 @@ const AddCategory: React.FC<AddCategory<any>> = ({ changePage, ...props }) => {
                         <div className="inputForm">
                           <InputText name="name" label="Tên thể loại" other={{ variant: "standard" }} />
                         </div>
-                        <div className="inputForm">
-                          <PickDate name="date" label="date release" />
-                        </div>
-
                       </div>
                     </Card>
                   </div>
@@ -96,7 +92,7 @@ const AddCategory: React.FC<AddCategory<any>> = ({ changePage, ...props }) => {
                     <Card elevation={5}>
                       <div className="form-input-add">
                         <div className="flex-image bg-file ">
-                          <FileField name="image" label="Image album" type="file" other={{ variant: 'standard' }} />
+                          <FileField name="image" label="Image category" type="file" other={{ variant: 'standard' }} />
                         </div>
                         <div className="inputForm">
                           <SelectTopic />
@@ -109,7 +105,7 @@ const AddCategory: React.FC<AddCategory<any>> = ({ changePage, ...props }) => {
                     >
                       Thêm Thể Loại
                     </LoadingButton>
-                    {/* <Button variant="contained" type="submit" color="primary">Thêm bài hát</Button> */}
+
                     <Button variant="contained" color="error" style={{ marginLeft: 20 }}
                       onClick={() => { navigatePage(page.ListCategory) }}
                     >Hủy</Button>

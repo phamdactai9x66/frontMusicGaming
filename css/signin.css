@@ -1,0 +1,140 @@
+.handleForm {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin: 4rem 10rem 4rem 10rem;
+}
+
+.handleForm img {
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 0.5rem 0  0 0.5rem;
+}
+
+.handleForm .tab_login {
+  border-radius: 0 0.5rem 0.5rem 0;
+  background: #3D5983;
+  width: 100%;
+}
+
+.handleForm .tab_login form {
+  color: #f50c0c;
+}
+
+.handleForm .tab_login .link_handel {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.handleForm .tab_login .link_handel section {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  text-align: center;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-radius: 0 0.5rem 0 0;
+  border-bottom: 0.2rem solid #a09f9f;
+}
+
+.handleForm .tab_login .link_handel section a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1.5rem;
+}
+
+.handleForm .tab_login .form-input {
+  margin: 1.3rem;
+  height: 360px;
+}
+
+.handleForm .tab_login .form-input .SignUp_overlow {
+  padding-top: 0.1rem;
+  padding-right: 0.5rem;
+  overflow: auto;
+  height: 310px;
+}
+
+.handleForm .tab_login .form-input label {
+  color: #dddddd;
+  margin-top: 0.4rem;
+}
+
+.handleForm .tab_login .form-input input {
+  padding: 13px 14px;
+  color: #fff;
+  border-bottom: 0.1rem solid #48c7b2;
+}
+
+.handleForm .tab_login .form-input .css-1hbvpl3-MuiSvgIcon-root {
+  color: aquamarine;
+}
+
+.handleForm .tab_login .form-input .css-11zohuh-MuiSvgIcon-root {
+  color: aquamarine;
+}
+
+.handleForm .tab_login .form-input .css-1d3z3hw-MuiOutlinedInput-notchedOutline {
+  border: none;
+}
+
+.handleForm .tab_login .form-input .gender {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 4rem 5rem;
+      grid-template-columns: 4rem 5rem;
+  border-bottom: 0.1rem solid #7196ce;
+  padding-left: 8rem;
+  margin-top: -0.7rem;
+}
+
+.handleForm .tab_login .form-input .gender div span {
+  color: #dddddd;
+}
+
+.handleForm .tab_login .form-input .gender div input {
+  width: 100%;
+  margin-top: 0.4rem;
+}
+
+.handleForm .tab_login .form-input .forgot_pass {
+  padding-top: 1rem !important;
+  color: #fff;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.handleForm .tab_login .kep-login-facebook {
+  padding: 0.5rem;
+  margin-left: 0.3rem;
+  text-transform: none;
+}
+
+.handleForm .tab_login .kep-login-facebook svg {
+  margin-right: 0.4rem;
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .handleForm {
+    margin: 2rem;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .handleForm {
+    margin: 2rem;
+    -ms-grid-columns: 1fr;
+        grid-template-columns: 1fr;
+  }
+  .handleForm img {
+    display: none;
+  }
+}
+/*# sourceMappingURL=signin.css.map */

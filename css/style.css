@@ -1,0 +1,14 @@
+.hover:hover {
+  background: #c7d6e4;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+}
+
+.hover-delete:hover {
+  color: #ff2e5c;
+}
+
+.hover-delete {
+  color: #2c2cff;
+}
+/*# sourceMappingURL=style.css.map */

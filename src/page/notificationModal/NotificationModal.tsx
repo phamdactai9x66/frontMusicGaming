@@ -1,14 +1,16 @@
 import React, { useEffect, useRef } from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import avatar from './anc.png'
 interface notification<T> {
     handleLogged: any,
+    path?: string,
 }
 
 
 
 const Notification: React.FC<notification<any>> = ({ ...props }) => {
     const wrapperRef = useRef(null);
+    const location = useLocation();
 
     const  useOutsideAlerter = (ref: any) => {
         useEffect(() => { 
@@ -24,7 +26,7 @@ const Notification: React.FC<notification<any>> = ({ ...props }) => {
             };
         }, [ref]);
     }
-
+console.log('this is location: ', location)
     useOutsideAlerter(wrapperRef);
     return (
         <div className="w-100 h-100 d-flex position-fixed top-0 text-center" style={{left:"0px",zIndex:10,backgroundColor:"rgb(0 0 0 / 25%)"}}>
@@ -44,13 +46,19 @@ const Notification: React.FC<notification<any>> = ({ ...props }) => {
                                 addStyle: {
                                     borderBottom: " 0.2rem solid rgb(65, 217, 228)"
                                 }
-                            }
+                            },
+                            lastLocation: props.path ? props.path : location,
                         },
                     }}
                         className="" style={{marginRight:"0.2rem"}}>
                         <button onClick={()=>props.handleLogged()} type="button" className="btn btn-light">Đăng kí</button>
                     </Link>
-                    <Link to='/signin'>
+                    <Link to={{
+                        pathname: '/signin',
+                        state: {
+                            lastLocation: props.path ? props.path : location,
+                        },
+                    }}>
                         <button onClick={()=>props.handleLogged()} type="button" className="btn btn-primary" style={{marginLeft:"0.2rem"}}>Đăng nhập</button>
                     </Link>
                 </div>

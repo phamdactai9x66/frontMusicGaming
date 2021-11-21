@@ -9,18 +9,36 @@ import { RiGroupFill } from 'react-icons/ri';
 import { BiPlayCircle, BiTimeFive } from 'react-icons/bi';
 import { AiFillStar, AiOutlineHeart } from 'react-icons/ai';
 import Popup from '@titaui/reactjs-popup';
+import { useSelector } from 'react-redux';
+import { formStateUser } from 'redux/user/stateUser';
+import Notification from 'page/notificationModal/NotificationModal';
 
 interface Sidebar<T> {
 
 }
 
 const Sidebar: React.FC<Sidebar<any>> = ({ ...props }) => {
+  const userState = useSelector<{ user: any }>(state => state.user) as formStateUser;
+  const [isLogin, setIsLogin] = useState({
+    status: false,
+    path: '',
+  });
+
+  const handleLogged = () => {
+    setIsLogin({
+      status: false,
+      path: '',
+    });
+  }
+
+
   return (
     <>
+      {isLogin.status && <Notification path={isLogin.path} handleLogged={handleLogged} />}
       <div className="sidebar">
         <h5><Link to="/">MUSIC GAME</Link></h5>
         <ul>
-          <Link to="/personal"><li><BsMusicNoteBeamed className="icon" />Cá nhân</li></Link>
+          {userState.token && userState.user ? <Link to="/personal"><li><BsMusicNoteBeamed className="icon" />Cá nhân</li></Link> : <a onClick={() => setIsLogin({ status: true, path: '/personal'})}><li><BsMusicNoteBeamed className="icon" />Cá nhân</li></a>}
           {/* <Link to="/overview"><li><BsMusicNoteBeamed className="icon" />Cá nhân</li></Link> */}
           <Link to="/"><li><RiFolderMusicFill className="icon" />Khám phá</li></Link>
           <Link to="/chart"><li><FaChartPie className="icon" />Music chart</li></Link>
@@ -31,13 +49,13 @@ const Sidebar: React.FC<Sidebar<any>> = ({ ...props }) => {
             <Link to="/newmusic"><li><BsMusicNoteBeamed className="icon" />Nhạc mới</li></Link>
             <Link to="/category"><li><BsListUl className="icon" />Thể loại</li></Link>
             <Link to="/toptrending"><li><AiFillStar className="icon" />Top thịnh hành</li></Link>
-            <Link to="/listenTogether"><li><RiGroupFill className="icon" />Nghe cùng nhau</li></Link>
+            {userState.token && userState.user ? <Link to="/listenTogether"><li><RiGroupFill className="icon" />Nghe cùng nhau</li></Link> : <a onClick={() => setIsLogin({ status: true, path: '/listenTogether'})}><li><RiGroupFill className="icon" />Nghe cùng nhau</li></a>}
           </ul>
           <ul>
             <h6>Thư viện</h6>
-            <Link to="favorite"><li><AiOutlineHeart className="icon" />Yêu thích</li></Link>
+            <Link to="/favorite"><li><AiOutlineHeart className="icon" />Yêu thích</li></Link>
             <Link to="/music"><li><BsMusicNoteBeamed className="icon" />Bài hát</li></Link>
-            <Link to="playlist" ><li><BiPlayCircle className="icon" />Playlist</li></Link>
+            <Link to="/playlist" ><li><BiPlayCircle className="icon" />Playlist</li></Link>
             <Link to="/recently"><li><BiTimeFive className="icon" />Gần đây</li></Link>
           </ul>
           <ul>
