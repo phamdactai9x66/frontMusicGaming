@@ -16,7 +16,7 @@ const OverView: React.FC<OverView<any>> = ({ ...props }) => {
             <h4 className="title_all">Bài hát <MdNavigateNext className="icon" /></h4>
             <LikeSong />
             <PlaylistSong />
-            <ListArtist />
+            {/* <ListArtist /> */}
         </>
     )
 }

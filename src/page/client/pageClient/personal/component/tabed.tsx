@@ -13,7 +13,7 @@ const Tabed: React.FC<Tabed<any>> = ({ navigatePage, ...props }) => {
         <>
             <div className="info_Personal">
                 <div className="info_main">
-                    <img width={100} height={100} src={user.avatar} alt="" style={{border: "0.07rem solid aqua"}}/>
+                    <img width={100} height={100} src={user.avatar} alt="" style={{ border: "0.07rem solid aqua" }} />
                     <h3>{`${user?.first_name} ${user?.last_name}`}</h3>
                 </div>
             </div>
@@ -21,9 +21,9 @@ const Tabed: React.FC<Tabed<any>> = ({ navigatePage, ...props }) => {
                 <ul className="tab_item">
                     <li onClick={() => { navigatePage(AllPage.OverView) }}>Tổng quan</li>
                     <li onClick={() => { navigatePage(AllPage.Music) }}>Bài hát</li>
-                    <li onClick={() => { navigatePage(AllPage.Singer) }}>Nhạc sĩ</li>
+                    {/* <li onClick={() => { navigatePage(AllPage.Singer) }}>Nhạc sĩ</li> */}
                     <li onClick={() => { navigatePage(AllPage.Playlist) }}>Playlist</li>
-                    <li onClick={() => { navigatePage(AllPage.Upload) }}>Tải lên</li>
+                    {/* <li onClick={() => { navigatePage(AllPage.Upload) }}>Tải lên</li> */}
                 </ul>
             </div>
         </>
