@@ -7,6 +7,7 @@ import * as Yup from "yup";
 import RoomApi from "api/roomApi";
 import { variableCommon } from "component/variableCommon";
 import { RouteComponentProps, withRouter } from "react-router-dom";
+import { io } from "socket.io-client";
 const ValidateSchema = Yup.object().shape({
     password: Yup.string().required('this field is require.')
 })
@@ -34,6 +35,7 @@ const styleInput = {
 }
 const ModalRoom: React.FC<ModalRoom<any>> = ({ current, open, setOpen, ...props }) => {
     const [alertForm, setalertForm] = useState({ type: 'info', message: '', display: false })
+    const server = "http://localhost:5000";
     const handleForm = (value: any, formAction: FormikHelpers<any>): void | Promise<any> => {
         (async () => {
             const data = {
@@ -42,6 +44,7 @@ const ModalRoom: React.FC<ModalRoom<any>> = ({ current, open, setOpen, ...props 
             }
             const getRes = await RoomApi.enterRoom<object>(data);
             if (getRes.status === variableCommon.statusS && props.saveUser.current?.data[0]._id) {
+                io(server).emit("JoinRoom")
                 return props.history.push(`/listenTogether/roomDetail/${current?._id || ''}`, {
                     idRoomUser: props.saveUser.current?.data[0]._id
                 })
