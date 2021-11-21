@@ -15,7 +15,6 @@ const RootPageClient: React.FC<RootPageClient<any>> = ({ ...props }) => {
 
     useEffect(() => {
         state.token && (dataStorage.accessToken = state.token);
-        console.log(dataStorage.accessToken)
     }, [state])
     return (
         <>

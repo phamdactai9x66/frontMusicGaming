@@ -87,17 +87,6 @@ const Audio: React.FC<Audio<any>> = ({ audio: { audio: url, title, image, _id },
             }
         }
     }, [fakeRender])
-    useEffect(() => {
-        if (AudioPlay.current) {
-            // if (!state.playRealTime) {
-            //     AudioPlay.current?.pause();
-            //     clearInterval(stateCurrentTime.current)
-            //     return setPlay(false);
-            // }
-
-        }
-    }, [state.playRealTime])
-    console.log(state.playRealTime)
 
     const playAudio = () => {
         if (!url) return
