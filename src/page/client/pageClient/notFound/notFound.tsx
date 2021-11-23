@@ -1,11 +1,11 @@
 import React from 'react'
 import { RouteComponentProps } from "react-router-dom";
 
-interface NotFoundClient<T> extends RouteComponentProps {
+interface NotFoundClientIF<T> extends RouteComponentProps {
 
 }
 
-const NotFoundClient: React.FC<NotFoundClient<any>> = ({ location, ...props }) => {
+const NotFoundClient: React.FC<NotFoundClientIF<any>> = ({ location, ...props }) => {
     document.title = "Error 404, Page not found";
     return (
         <>

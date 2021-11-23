@@ -1,21 +1,21 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { AiOutlineDownload, AiOutlineLink, AiFillHeart } from 'react-icons/ai';
-import { BiHeart, BiMusic } from 'react-icons/bi';
+import { AiOutlineDownload, AiOutlineLink } from 'react-icons/ai';
+import { BiHeart } from 'react-icons/bi';
 import { FiPlayCircle } from 'react-icons/fi';
 import { HiOutlineDotsCircleHorizontal } from 'react-icons/hi';
-import { Select, MenuItem, Popover } from "@mui/material";
+import { Select, MenuItem } from "@mui/material";
 import { AnyRecord } from 'dns';
 import { useDispatch } from "react-redux";
 import { playSong } from "redux/audio/actionAudio"
 
-interface Content<T> {
-    state: any
+interface ContentIF<T> {
+    state: any | T,
 }
 //https://songdewnetwork.com/sgmedia/assets/images/default-album-art.png
-const Content: React.FC<any> = ({ state, ...props }) => {
+const Content: React.FC<ContentIF<any>> = ({ state, ...props }) => {
     var settings_overview = {
         autoplay: true,
         speed: 1000,

@@ -59,10 +59,10 @@ const useStyles = makeStyles(theme => ({
     position: "relative",
   }
 }));
-interface Topic<T> {
+interface TopicIF<T> {
 
 }
-const Topic: React.FC<Topic<any>> = ({ ...props }) => {
+const Topic: React.FC<TopicIF<any>> = ({ ...props }) => {
   const [open, setOpen] = useState(false);
   const classes = useStyles();
     return (

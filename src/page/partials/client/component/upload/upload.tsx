@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React from 'react'
 import { makeStyles } from "@material-ui/core/styles";
 import { BiUpload } from 'react-icons/bi';
 
@@ -11,10 +11,10 @@ const useStyles = makeStyles(theme => ({
       opacity: 0
    }
 }));
-interface Upload<T> {
+interface UploadIF<T> {
 
 }
-const Upload: React.FC<Upload<any>> = ({ ...props }) => {
+const Upload: React.FC<UploadIF<any>> = ({ ...props }) => {
   const classes = useStyles();
     return (
         <>

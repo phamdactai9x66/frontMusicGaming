@@ -8,11 +8,11 @@ import AccordionSummary from "@material-ui/core/AccordionSummary";
 import { ExpandMore } from "@material-ui/icons";
 import SearchIcon from '@material-ui/icons/Search';
 
-interface Sidebar<T> {
+interface SidebarIF<T> {
 
 }
 
-const Sidebar: React.FC<Sidebar<any>> = ({ ...props }) => {
+const Sidebar: React.FC<SidebarIF<any>> = ({ ...props }) => {
   const [expanded, setExpanded] = React.useState("");
 
   const handleChange = (panel: any) => (event: any, isExpanded: any) => {

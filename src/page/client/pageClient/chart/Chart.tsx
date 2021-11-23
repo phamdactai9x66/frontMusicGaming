@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from 'react'
+import React, { useState } from 'react'
 import { BiPlayCircle } from 'react-icons/bi';
 import ChartMusicTrending from './chartMusicTrending';
 import { AiOutlineDownload, AiFillHeart } from 'react-icons/ai';

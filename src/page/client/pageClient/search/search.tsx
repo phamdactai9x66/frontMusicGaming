@@ -27,13 +27,13 @@ import ArtistApi from "api/ArtistApi";
 import BlogApi from "api/BlogApi";
 import { handleNameArtist } from "page/client/common/handleName"; 
 import Loadings from '../../loading/loading';
-interface Search<T> {
+interface SearchIF<T> {
     userState: any;
     location: any;
     history: T;
 }
 
-const Search: React.FC<Search<any>> = ({ ...props }) => {
+const Search: React.FC<SearchIF<any>> = ({ ...props }) => {
     const key = new URLSearchParams(props.history.location.search).get("key");
     document.title = `Tìm kiếm "${key}" - Music Game`;
 

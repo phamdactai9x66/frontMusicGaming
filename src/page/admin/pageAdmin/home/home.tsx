@@ -1,14 +1,13 @@
 import { Link } from 'react-router-dom'
 import React, { useCallback, useState, useEffect } from "react";
-import { FaBlogger, FaMusic, FaUsers } from 'react-icons/fa';
-import { MdLibraryMusic } from 'react-icons/md';
-import ChartMusicHot from './component/chartMusicHot';
-import ChartUser from './component/chartUser';
-import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import songApi from '../../../../api/songApi'
 import playlistApi from '../../../../api/playlistApi'
 import userApi from '../../../../api/useApi'
 import BlogApi from '../../../../api/BlogApi'
+import ChartMusicHot from './component/chartMusicHot';
+import ChartUser from './component/chartUser';
+import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
+import StatisticalLength from './component/statisticalLength';
 
 interface Home<T> {
 
@@ -66,72 +65,7 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
       <div className="home-page">
         <section>
           <h3 className="Dashboarh">Dashboard</h3>
-          <div className="home-top">
-            <div className="box-bb bg-box-1 box-margin">
-              <Link to="/admin/song">
-                <div className="grid-db-filter">
-                  <div className="show-text">
-                    <h3>{song}</h3>
-                    <p>Music</p>
-                  </div>
-                  <div className="icon-music">
-                    <FaMusic style={{ fontSize: "4rem", color: "rgb(45 45 45 / 62%)", transform: "rotate(-0deg)" }} />
-                  </div>
-                </div>
-                <div className="more-info bg-more-info1">
-                  <p>More info <i className="fas fa-chevron-circle-right" /></p>
-                </div>
-              </Link>
-            </div>
-            <div className="box-bb bg-box-2 ">
-              <Link to="/admin/playList">
-                <div className="grid-db-filter">
-                  <div className="show-text">
-                    <h3>{playlist}</h3>
-                    <p>Play lists</p>
-                  </div>
-                  <div className="icon-music">
-                    <MdLibraryMusic style={{ fontSize: "4rem", color: "rgb(45 45 45 / 62%)", transform: "rotate(-0deg)" }} />
-                  </div>
-                </div>
-                <div className="more-info bg-more-info2">
-                  <p>More info <i className="fas fa-chevron-circle-right" /></p>
-                </div>
-              </Link>
-            </div>
-            <div className="box-bb bg-box-3">
-              <Link to="/admin/user">
-                <div className="grid-db-filter">
-                  <div className="show-text">
-                    <h3>{user.length}</h3>
-                    <p>Users</p>
-                  </div>
-                  <div className="icon-music">
-                    <FaUsers style={{ fontSize: "4rem", color: "rgb(45 45 45 / 62%)", transform: "rotate(-0deg)" }} />
-                  </div>
-                </div>
-                <div className="more-info bg-more-info3">
-                  <p>More info <i className="fas fa-chevron-circle-right" /></p>
-                </div>
-              </Link>
-            </div>
-            <div className="box-bb bg-box-4">
-              <Link to="/admin/blog">
-                <div className="grid-db-filter">
-                  <div className="show-text">
-                    <h3>{blog}</h3>
-                    <p>Blog</p>
-                  </div>
-                  <div className="icon-music">
-                    <FaBlogger style={{ fontSize: "4rem", color: "rgb(45 45 45 / 62%)", transform: "rotate(-0deg)" }} />
-                  </div>
-                </div>
-                <div className="more-info bg-more-info4">
-                  <p>More info <i className="fas fa-chevron-circle-right" /></p>
-                </div>
-              </Link>
-            </div>
-          </div>
+<StatisticalLength/>
         </section>
         <section>
           <div className="grid-main-2">
