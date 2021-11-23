@@ -1,0 +1,109 @@
+@charset "UTF-8";
+.admin-pageAdd {
+  padding: 40px 40px 80px 40px;
+}
+
+.admin-pageAdd .grid-addpage {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+.admin-pageAdd .form-input-add {
+  padding: 1rem;
+}
+
+.admin-pageAdd .form-input-add .inputForm {
+  margin: 10px 0;
+}
+
+.admin-pageAdd .text-tt {
+  border-radius: 0.3rem 0.3rem 0 0;
+  background: #eeeeee;
+  padding: 0.7rem;
+}
+
+.admin-pageAdd .err {
+  color: red;
+  height: 0.7rem;
+}
+
+.admin-pageAdd .select {
+  width: 100%;
+}
+
+.admin-pageAdd .width-audio {
+  font-size: 17px;
+  width: 100%;
+  height: 40px;
+}
+
+.admin-pageAdd .flex-image {
+  background-color: #eeeeee;
+}
+
+.admin-pageAdd .flex-image .image-file {
+  width: 25px;
+  height: 25px;
+  background-color: #eeeeee;
+  border-radius: 3px;
+  margin-left: 0.5rem;
+}
+
+.admin-pageAdd .flex-image .custom-file-input::before {
+  content: '     Chọn file tải lên';
+  color: gray;
+  display: inline-block;
+  background-color: #eeeeee;
+  padding: 8px;
+  white-space: nowrap;
+  cursor: pointer;
+  width: 100%;
+}
+
+.admin-pageAdd .bia-bai-hat-image {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.admin-pageAdd .bia-bai-hat-image img {
+  width: 150px;
+  height: 155px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 5px;
+}
+
+.admin-pageAdd .grid-button {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 2rem;
+  margin-top: 40px;
+}
+
+.admin-pageAdd .grid-button button:nth-child(1) {
+  background: #3088c2;
+  color: #ffffff;
+}
+
+.admin-pageAdd .grid-button button:nth-child(2) {
+  background: #e60909;
+  color: #ffffff;
+}
+
+@media screen and (max-width: 700px) {
+  .admin-pageAdd {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .admin-pageAdd .grid-addpage {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 1fr;
+        grid-template-columns: 1fr;
+  }
+}
+/*# sourceMappingURL=add.css.map */

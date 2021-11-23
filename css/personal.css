@@ -1,0 +1,146 @@
+.Personal {
+  padding-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.Personal .info_Personal {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.Personal .info_Personal .info_main {
+  text-align: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.Personal .info_Personal .info_main h3 {
+  color: #e4e4e4;
+  margin-top: 0.5rem;
+}
+
+.Personal .info_Personal .info_main img {
+  border-radius: 100%;
+}
+
+.Personal .tab_Personal {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.Personal .tab_Personal .tab_item {
+  border-radius: 4rem;
+  background: #3689a5;
+  padding: 0.5rem;
+  color: #e4e4e4;
+  margin-top: 2rem;
+}
+
+.Personal .tab_Personal .tab_item li {
+  cursor: pointer;
+  display: inline;
+  padding: 2rem;
+}
+
+.Personal .tab_Personal .tab_item li a {
+  color: #e4e4e4;
+  text-decoration: none;
+}
+
+.Personal .overview {
+  margin-top: -2rem;
+}
+
+.Personal .overview h4 {
+  color: #e7e7e7;
+  font-size: 1,3rem;
+}
+
+.Personal .overview .main1 {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 26% 74%;
+      grid-template-columns: 26% 74%;
+  gap: 1rem;
+  height: 270px;
+}
+
+.Personal .overview .main1 .box-slider {
+  cursor: pointer;
+}
+
+.Personal .overview .main1 .box-slider .slick-prev:before,
+.Personal .overview .main1 .box-slider .slick-next:before {
+  display: none;
+}
+
+.Personal .overview .main2 {
+  color: #e4e4e4;
+  margin-bottom: 3rem;
+}
+
+.Personal .overview .main2 .main2_add {
+  display: -ms-grid;
+  display: grid;
+  gap: 2rem;
+  -ms-grid-columns: 1fr 1fr 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+
+.Personal .overview .main2 .main2_add .add {
+  -webkit-box-shadow: 0 3px 5px rgba(0, 0, 0, 0.452);
+          box-shadow: 0 3px 5px rgba(0, 0, 0, 0.452);
+  cursor: pointer;
+  background: #131f31;
+  border-radius: 0.4rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.Personal .overview .main2 .main2_add .add .icon {
+  font-size: 5rem;
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .Personal .tab_Personal .tab_item li {
+    display: inline;
+    padding: 0.3rem;
+    cursor: pointer;
+    font-size: 0.8rem;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .Personal .tab_Personal .tab_item li {
+    display: inline;
+    padding: 0.3rem;
+    cursor: pointer;
+    font-size: 0.8rem;
+  }
+  .Personal .overview .main2 .main2_add {
+    -ms-grid-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
+  }
+}
+/*# sourceMappingURL=personal.css.map */

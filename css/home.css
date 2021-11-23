@@ -1,0 +1,270 @@
+.home {
+  padding: 2rem;
+}
+
+.home .slider-banner {
+  overflow: hidden;
+  height: 25rem;
+}
+
+.home .slider-banner div img {
+  margin-bottom: 2rem;
+  -webkit-transition: all ease-in 0.5s;
+  transition: all ease-in 0.5s;
+  border-radius: 0.4rem;
+  width: 100%;
+  cursor: -webkit-grab;
+  cursor: grab;
+  -webkit-transform: scale(0.7) translateY(0);
+          transform: scale(0.7) translateY(0);
+  -webkit-box-shadow: 1rem 1rem 1rem 0.2rem rgba(0, 0, 0, 0.438);
+          box-shadow: 1rem 1rem 1rem 0.2rem rgba(0, 0, 0, 0.438);
+  -webkit-animation-name: banner;
+          animation-name: banner;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+}
+
+@-webkit-keyframes banner {
+  from {
+    -webkit-transform: scale(0.9) translateY(-7rem);
+            transform: scale(0.9) translateY(-7rem);
+  }
+  to {
+    -webkit-transform: scale(0.85) translateY(0);
+            transform: scale(0.85) translateY(0);
+  }
+}
+
+@keyframes banner {
+  from {
+    -webkit-transform: scale(0.9) translateY(-7rem);
+            transform: scale(0.9) translateY(-7rem);
+  }
+  to {
+    -webkit-transform: scale(0.85) translateY(0);
+            transform: scale(0.85) translateY(0);
+  }
+}
+
+.home .slider-banner .slick-center img {
+  -webkit-transform: scale(0.93);
+          transform: scale(0.93);
+}
+
+.home .slider-banner .slick-prev:before,
+.home .slider-banner .slick-next:before {
+  font-family: "slick";
+  font-size: 45px;
+  line-height: 1;
+  opacity: 0.75;
+  color: #98fcff;
+}
+
+.home .slider-banner .slick-prev {
+  position: absolute;
+  z-index: 1;
+  top: 41%;
+  -webkit-transform: translateX(-3.3rem);
+          transform: translateX(-3.3rem);
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.home .slider-banner .slick-next {
+  position: absolute;
+  z-index: 1;
+  top: 41%;
+  -webkit-transform: translateX(2rem);
+          transform: translateX(2rem);
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.home .slider-banner:hover .slick-next {
+  -webkit-transform: translateX(-3.3rem);
+          transform: translateX(-3.3rem);
+}
+
+.home .slider-banner:hover .slick-prev {
+  -webkit-transform: translateX(2rem);
+          transform: translateX(2rem);
+}
+
+.home .slider-banner .slick-dots li button:before {
+  color: #fff;
+  font-size: 0.7rem;
+  margin-top: -1.5rem;
+}
+
+.home .list-music {
+  margin-top: 2rem;
+}
+
+.home .list-music h4 {
+  color: #fff;
+}
+
+.home .list-music .main1 {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 50% 50%;
+      grid-template-columns: 50% 50%;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.home .list-music .main1 .limit-items .items div:nth-of-type(n + 6) {
+  display: none;
+}
+
+.home .list-music .main1 .limit-items #show-all:checked ~ .items div {
+  display: block;
+}
+
+.home .list-music .main1 .limit-items #show-all ~ label[for="show-all"] {
+  display: none;
+}
+
+.home .list-music .main1 .limit-items #show-all:checked ~ .text-hide {
+  display: block;
+}
+
+.home .list-music .main1 .limit-items #show-all:not(:checked) ~ .text-show {
+  display: block;
+}
+
+.home .list-music .main1 .limit-items {
+  color: #fff;
+  position: relative;
+  margin-top: -2.4rem;
+}
+
+.home .list-music .main1 .limit-items .text-show, .home .list-music .main1 .limit-items .text-hide {
+  font-size: 1.2rem;
+  position: absolute;
+  top: 0.2rem;
+  right: 2rem;
+  cursor: pointer;
+}
+
+.home .list-music .main1 .limit-items .items {
+  height: 23rem;
+  overflow: auto;
+}
+
+.home .list-music .main1 .limit-items .items section {
+  display: -ms-grid;
+  display: grid;
+  margin-right: 3.5rem;
+  -ms-grid-columns: 1fr 1fr 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+
+.home .list-music .main1 .limit-items .items section div, .home .list-music .main1 .limit-items .items section div img {
+  width: 4.5rem;
+  height: 4.5rem;
+  border-radius: 100%;
+  margin: 0 0 1.3rem 0;
+  cursor: pointer;
+}
+
+.home .list-music .main1 .limit-items .items section div {
+  overflow: hidden;
+}
+
+.home .list-music .main1 .limit-items .items section div img:hover {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  -webkit-filter: brightness(70%);
+          filter: brightness(70%);
+}
+
+.home .list-music .main1 .limit-items .items section section .name {
+  width: 4.2rem;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.home .list-music .main1 .limit-items #show-all {
+  display: none;
+}
+
+.home .music-charts {
+  width: 100%;
+  background: -webkit-gradient(linear, left top, right bottom, from(#2a6392), to(#8198d6));
+  background: linear-gradient(to bottom right, #2a6392, #8198d6);
+  border-radius: 0.4rem;
+  margin: 2rem 0 2rem 0;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 40% 65%;
+      grid-template-columns: 40% 65%;
+  padding: 1rem;
+}
+
+.home .music-charts h4 {
+  color: #e2e2e2;
+}
+
+.home .music-charts .chart {
+  margin-top: 1.4rem;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+}
+
+.home .music-charts .chart text {
+  fill: #e9e8e8 !important;
+}
+
+.home .music-charts .chart .chartMusic {
+  width: 90%;
+  height: 20rem;
+}
+
+.home .music-charts button {
+  border-radius: 4rem;
+  padding: 0.3rem 2.2rem;
+  background: #47c2e7;
+}
+
+.home .music-charts button a {
+  color: black;
+  text-decoration: none;
+}
+
+@media only screen and (max-width: 700px) {
+  .home .slider-banner div img {
+    height: 15rem;
+  }
+  .home .list-music .main1 {
+    -ms-grid-columns: 100%;
+        grid-template-columns: 100%;
+  }
+  .home .list-music .main1 .limit-items {
+    margin-top: 1rem;
+  }
+  .home .list-music .main1 .limit-items .items {
+    height: 9rem;
+  }
+  .home .list-music .main1 .limit-items .items section {
+    -ms-grid-columns: 1fr 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+  .home .list-music .main1 .limit-items .items section div {
+    -webkit-transform: scale(0.9);
+            transform: scale(0.9);
+    margin-bottom: 0;
+  }
+  .home .music-charts {
+    -ms-grid-columns: 100%;
+        grid-template-columns: 100%;
+    height: 50rem;
+    gap: 2rem;
+  }
+}
+/*# sourceMappingURL=home.css.map */

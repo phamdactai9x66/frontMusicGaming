@@ -1,30 +1,28 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import { Avatar, AvatarGroup, Button } from '@mui/material';
-import { FcKey } from 'react-icons/fc';
-import { Modal, Box } from "@material-ui/core";
 import { tranFormDataId } from "component/MethodCommon"
 import { RouteComponentProps, withRouter } from "react-router-dom";
+import roomUserApi from "api/roomUser";
+import { useSelector } from "react-redux";
+import { formStateUser } from "redux/user/stateUser";
+import { variableCommon } from "component/variableCommon"
+import { io } from "socket.io-client";
+import roomApi from "api/roomApi";
+import { Formik, Form } from "formik";
+import TextField from '@mui/material/TextField';
+import Modal from "./Modal";
+// import Modal from "./Modal"
 interface ListRoom<T> extends RouteComponentProps {
     current: T,
     index: number,
     saveData: T
 }
-const style = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: 400,
-    bgcolor: '#2F6292',
-    borderRadius: 3,
-    border: 0,
-    p: 4,
-    color: 'white',
-};
 
 const ListRoom: React.FC<ListRoom<any>> = ({ index, current, history, ...props }) => {
     const [open, setOpen] = useState<boolean>(false);
-
+    const { user } = useSelector<{ user: any }>(state => state.user) as formStateUser;
+    const server = "http://localhost:5000";
+    const saveUser = useRef({});
     const listUser = () => {
         const { roomUser, user } = props.saveData as any;
         const findRoom = roomUser.filter((currentRU: any) => currentRU.id_Room === current._id)
@@ -33,9 +31,28 @@ const ListRoom: React.FC<ListRoom<any>> = ({ index, current, history, ...props }
             return <Avatar key={index} alt="Remy Sharp" src={getListId?.avatar} />
         })
     }
-    const navigateDetailRoom = () => {
-        history.push(`/listenTogether/roomDetail/${current._id || ''}`)
+    const navigateDetailRoom = async () => {
+        const data = {
+            id_Room: current._id,
+            id_User: user._id
+        }
+        // console.log(current._id)
+        const { data: findRoom } = await roomApi.getAll({ _id: current._id })
+        const addUserintoRoom = await roomUserApi.postOne<object>(data);
+        saveUser.current = addUserintoRoom
+        if (findRoom && !findRoom.status) {
+            if (addUserintoRoom.status === variableCommon.statusS && addUserintoRoom?.data[0]._id) {
+                io(server).emit("JoinRoom")
+                history.push(`/listenTogether/roomDetail/${current?._id || ''}`, {
+                    idRoomUser: addUserintoRoom?.data[0]._id
+                })
+
+            }
+        } else {
+            setOpen(true)
+        }
     }
+
     return (
         <>
             <div className="room_box" key={index}>
@@ -47,27 +64,9 @@ const ListRoom: React.FC<ListRoom<any>> = ({ index, current, history, ...props }
                         </AvatarGroup>
                     </div>
                 </div>
-                <div className="key">
-                    <FcKey className="key" id="myBtn" onClick={() => setOpen(true)} />
-                    {/* Modal */}
-                    <Modal
-                        open={open}
-                        onClose={() => setOpen(false)}
-                        aria-labelledby="modal-modal-title"
-                        aria-describedby="modal-modal-description"
-                    >
-                        <Box sx={style} className="box__room">
-                            <h5>Mời nhập Pass</h5>
-                            <input type="text" placeholder="Room ID" style={{
-                                width: 330, height: 40, marginTop: 15, marginBottom: 10,
-                                backgroundColor: "#06111C", borderRadius: 3, color: '#fff', border: 'none', paddingLeft: 10
-                            }} />
-                            <Button variant="contained" sx={{ width: 330 }}>Join room</Button>
-                        </Box>
-                    </Modal>
-                    {/* end */}
-                </div>
+                <Modal open={open} setOpen={setOpen} current={current} saveUser={saveUser} />
             </div>
+
         </>
     )
 }

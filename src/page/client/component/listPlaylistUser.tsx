@@ -1,26 +1,38 @@
 import React from 'react'
-import { MenuItem } from "@mui/material";
-import { BiHeart, BiDotsHorizontalRounded, BiMusic } from 'react-icons/bi';
-import { useSelector } from "react-redux";
-import { formStateUser } from 'redux/user/stateUser';
-interface ListPlaylistUser<T> {
-
+import { MenuItem, Stack, Button, Snackbar, Alert } from "@mui/material";
+import { BiMusic } from 'react-icons/bi';
+import { formStateAudio } from 'redux/audio/stateAudio';
+import { variableCommon } from "component/variableCommon"
+import songPlaylistApi from "api/songPlaylistApi"; interface ListPlaylistUser<T> {
+    listPlaylistUser: { display: boolean, data: any[] },
+    stateAudio: formStateAudio
 }
 
-const ListPlaylistUser: React.FC<ListPlaylistUser<any>> = ({ ...props }) => {
-    const state = useSelector<{ user: any }>(state => state.user) as formStateUser;
+const ListPlaylistUser: React.FC<ListPlaylistUser<any>> = ({ listPlaylistUser, stateAudio, ...props }) => {
+
+    const pushToPlaylist = async <T extends string>(_id: T): Promise<void> => {
+        const addForm = new FormData();
+        addForm.set('id_User_Playlist', _id)
+        addForm.set('id_Song', stateAudio.audio._id);
+        const addToPlaylist = await songPlaylistApi.addToPlaylist(addForm);
+        if (addToPlaylist.status === variableCommon.statusS) {
+            alert('add to playlist user successfully');
+        }
+    }
+    const listMenu = (): JSX.Element[] | null => {
+        return listPlaylistUser.display ? listPlaylistUser.data.map((current: any, index: number) => {
+            return (
+                <MenuItem className="list" key={index} onClick={() => pushToPlaylist<string>(current._id)}>
+                    <BiMusic />&ensp;{current?.name}
+                </MenuItem>
+            )
+        }) : null
+    }
+
     return (
         <>
             <div className="item">
-                <MenuItem className="list">
-                    <BiMusic /> &ensp;Nhạc trẻ remix
-                </MenuItem>
-                <MenuItem className="list">
-                    <BiMusic /> &ensp;Nhạc trẻ remix
-                </MenuItem>
-                <MenuItem className="list">
-                    <BiMusic /> &ensp;Nhạc trẻ remix
-                </MenuItem>
+                {listMenu()}
             </div>
         </>
     )

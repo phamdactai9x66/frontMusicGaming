@@ -10,10 +10,10 @@ const GetTimeAudio: React.FC<GetTimeAudio<any>> = ({ audio, ...props }) => {
     const getAudio = useRef<HTMLAudioElement>(null);
     const [getDuration, setgetDuration] = useState<number>(0);
     useEffect(() => {
-        if (!count) {
+        if (count <= 2) {
             setTimeout(() => {
                 const durationAudio = getAudio?.current?.duration as number;
-                setcount(1);
+                setcount(value => value + 1);
                 setgetDuration(+durationAudio);
             }, 1000);
         }

@@ -7,29 +7,41 @@ import { Popover } from "@material-ui/core";
 import NameSongArtist from 'component/nameSongArtist';
 import GetTimeAudio from "component/getTimeAudio";
 import { ReactComponent as Spinner } from "./Spinner.svg";
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
-import Avatar from '@mui/material/Avatar';
-import IconButton from '@mui/material/IconButton';
-import DeleteIcon from '@mui/icons-material/Delete';
 import roomSong from "api/roomSong";
 import { RouteComponentProps } from "react-router-dom";
 import songApi from "api/songApi";
 import { tranFormDataId } from "component/MethodCommon";
-import { useDispatch } from "react-redux";
 import { playSong } from "redux/audio/actionAudio";
 import ListRoomUser from "./component/listRoomUser";
-
+import roomUser from "api/roomUser";
+import { io } from "socket.io-client";
+import SearchSong from "./component/searchSong";
 interface RoomDetail<T> extends RouteComponentProps {
 }
+const server = "http://localhost:5000";
 const RoomDetail: React.FC<RoomDetail<any>> = ({ match, ...props }) => {
     const [anchor, setAnchor] = useState(null);
     const [anchor2, setAnchor2] = useState(null);
     const [songRoom, setSongRoom] = useState({ display: false, data: [] });
-    const dispatch = useDispatch();
+    const saveSong = useRef<any>({})
+    // console.log(props.location)
+    useEffect(() => {
 
-    const saveSong = useRef<any>(null)
+        const checkId = (props.location.state as any).idRoomUser;
+        if (!checkId) return props.history.goBack();
+        return () => {
+            (async () => {
+                const checkId = (props.location.state as any).idRoomUser;
+                const getUrl = new URL(window.location.href);
+                const findRoomDetail = getUrl.pathname.split('/').some(current => current === 'roomDetail');
+                if (!findRoomDetail || checkId) {
+                    const deleteUser = await roomUser.DeleteOne(checkId);
+                    console.log(deleteUser);
+                    io(server).emit("JoinRoom");
+                }
+            })()
+        }
+    }, [])
 
     useEffect(() => {
         (async () => {
@@ -63,17 +75,18 @@ const RoomDetail: React.FC<RoomDetail<any>> = ({ match, ...props }) => {
     };
     const playAudio = <T extends string>(_id: T): void => {
         if (!_id) return;
-        dispatch(playSong({ _id }))
+        const getIdRoom = (match.params as any).idRoom;
+        io(server).emit("test1", { idRoom: getIdRoom, idSong: _id });
     }
 
     const listSongRoom = () => {
         // console.log(songRoom)
         return songRoom.data.map((current: any, index: number) => {
             const finSong = saveSong?.current[current?.id_Song]
-            return (<div className="music_item border-0 p-2 ">
+            return (<div className="music_item border-0 p-2 " key={index}>
                 <img src={finSong?.image} alt={''} />
                 <div className="box-icon m-2 pt-1">
-                    <BsFillPlayFill onClick={() => playAudio(finSong._id)} />
+                    <BsFillPlayFill onClick={() => playAudio(finSong?._id)} />
                 </div>
                 <div >
                     <h6>{finSong?.title}</h6>
@@ -157,50 +170,11 @@ const RoomDetail: React.FC<RoomDetail<any>> = ({ match, ...props }) => {
         <>
             <div className="romdetail">
                 <div className="room">
-                <div className="search_music">
-                        <i className="fa fa-search" aria-hidden="true"></i>
-                        <input type="text" placeholder="Search..." />
-                        <ul className="results" >
-                        <List>
-         
-         <ListItem
-         style={{display: "flex",cursor: "pointer"}}
-           secondaryAction={
-             <IconButton edge="end" aria-label="delete">
-               <DeleteIcon style={{color: "#5ac0f0"}}/>
-             </IconButton>
-           }
-         >
-           <ListItemAvatar style={{marginLeft: "-2rem"}}>
-           <Avatar alt="Remy Sharp" sx={{width: "2.1rem", height: "2.1rem"}} src="https://i.pinimg.com/236x/c6/78/a6/c678a60f6c6127ba4d61ee6b9394cc58.jpg" />
-           </ListItemAvatar>
-           <div className="key_name">This is search jsncjnsdjkhcnjsdncjdsdcscdcdcsdcdc</div>
-         </ListItem>
-     </List>
-     <List>
-         
-         <ListItem
-         style={{display: "flex",cursor: "pointer"}}
-           secondaryAction={
-             <IconButton edge="end" aria-label="delete">
-               <DeleteIcon style={{color: "#5ac0f0"}}/>
-             </IconButton>
-           }
-         >
-           <ListItemAvatar style={{marginLeft: "-2rem"}}>
-           <Avatar alt="Remy Sharp" sx={{width: "2.1rem", height: "2.1rem"}} src="https://i.pinimg.com/236x/c6/78/a6/c678a60f6c6127ba4d61ee6b9394cc58.jpg" />
-           </ListItemAvatar>
-            <div className="key_name">This is search jsncjnsdjkhcnjsdncjdsdcscdcdcsdcdc</div>
-         </ListItem>
-     </List>
-		                </ul>
-            </div>
+                    <SearchSong />
                     {/*  */}
                     <h3 className="mt-3 text-white ps-3" style={{ borderLeft: '0.5rem solid #26a5ff', fontSize: '1.2rem' }}>Danh sách bài hát</h3>
                     <div className="box-music mt-4">
-
                         {listSongRoom()}
-
                     </div>
                     {/* /// */}
                     <div className="Pagination mt-5">
@@ -209,10 +183,10 @@ const RoomDetail: React.FC<RoomDetail<any>> = ({ match, ...props }) => {
                 </div>
                 <div className="search_user">
                     <div>
-                    <TextField style={{width: "100%"}} id="standard-basic" label="Tìm kiếm" variant="standard" />
-                    <br /><br /><Button variant="contained" color="error">
-                        Tìm bạn
-                    </Button>
+                        <TextField style={{ width: "100%" }} id="standard-basic" label="Tìm kiếm" variant="standard" />
+                        <br /><br /><Button variant="contained" color="error">
+                            Tìm bạn
+                        </Button>
                     </div>
                     <br /><br />
                     <h3 className="mt-3 text-white ps-3" style={{ borderLeft: '0.5rem solid #26a5ff', fontSize: '1.2rem' }}>Đang hoạt động</h3>

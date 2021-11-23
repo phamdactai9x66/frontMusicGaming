@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 import { formStateAudio } from 'redux/audio/stateAudio';
 import ListPlaylistUser from "./listPlaylistUser";
 import { formStateUser } from 'redux/user/stateUser';
+import userPlaylist from "api/userPlaylist"
 
 interface OptionAudio<T> {
 
@@ -17,10 +18,22 @@ const OptionAudio: React.FC<OptionAudio<any>> = ({ ...props }) => {
     const stateAudio = useSelector<{ audio: any }>(state => state.audio) as formStateAudio;
     const state = useSelector<{ user: any }>(state => state.user) as formStateUser;
     const [anchor, setAnchor] = useState(null);
+    const [anchor2, setAnchor2] = useState(null);
+
+    const { user, token } = useSelector<{ user: any }>(state => state.user) as formStateUser;
+    const [listPlaylistUser, setlistPlaylistUser] = useState({ display: true, data: [] });
+    useEffect(() => {
+        (async () => {
+            const { data } = await userPlaylist.getAll<object>({ id_User: user._id });
+            setlistPlaylistUser({ display: true, data });
+        })()
+        return () => {
+            setlistPlaylistUser(value => ({ ...value, display: false }));
+        }
+    }, [])
     const openPopover = (event: any) => {
         setAnchor(event.currentTarget);
     };
-    const [anchor2, setAnchor2] = useState(null);
     const openPopover2 = (event: any) => {
         setAnchor2(event.currentTarget);
     };
@@ -45,7 +58,7 @@ const OptionAudio: React.FC<OptionAudio<any>> = ({ ...props }) => {
                         <img width={35} height={35} src={stateAudio.audio?.image} alt="" />
                         <div>
                             <h6>{stateAudio.audio.title}</h6>
-                            <div style={{ marginTop: "-0.7rem" }}><span style={{ fontSize: "0.8rem" }}>{stateAudio.audio?.view}</span></div>
+                            <div style={{ marginTop: "-0.7rem" }}><span style={{ fontSize: "0.8rem" }}>view: {stateAudio.audio?.view}</span></div>
                         </div>
                     </div>
                     <hr style={{ margin: "-0.1rem 0 0.5rem 0" }} />
@@ -75,7 +88,7 @@ const OptionAudio: React.FC<OptionAudio<any>> = ({ ...props }) => {
                                 }}
                                 onClose={() => setAnchor2(null)}
                             >
-                                <ListPlaylistUser />
+                                <ListPlaylistUser listPlaylistUser={listPlaylistUser} stateAudio={stateAudio} />
 
                             </Popover>
                         </>

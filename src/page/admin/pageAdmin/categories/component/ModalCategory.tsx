@@ -47,24 +47,24 @@ const ModalCategory: React.FC<Modal<any>> = ({ state, onClose, ...props }) => {
       setDataCategory({ error: false, data: data?.data, display: true })
     })()
     return () => {
-      setDataCategory((value: any) => ({...value, display: false}))
+      setDataCategory((value: any) => ({ ...value, display: false }))
     }
   }, [state._id])
 
   const findTopic = async <T extends string>(_id: T) => {
-    if (!_id) return; 
+    if (!_id) return;
     const findTopics = await topicsApi.getOne(_id);
 
     if (findTopics.status !== variableCommon.statusF) {
-      const { name } = findTopics.data;
-      return nameTopic.current = `${name}`
+      const { name } = findTopics.data[0];
+      return nameTopic.current = name
     }
     nameTopic.current = ''
   }
 
   return (
     <div>
-      {dataCategory.display ? 
+      {dataCategory.display ?
         <Modal
           aria-labelledby="transition-modal-title"
           aria-describedby="transition-modal-description"
@@ -111,7 +111,7 @@ const ModalCategory: React.FC<Modal<any>> = ({ state, onClose, ...props }) => {
               </Grid>
             </Box>
           </Fade>
-      </Modal> : null }
+        </Modal> : null}
     </div>
   )
 }

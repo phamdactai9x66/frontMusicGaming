@@ -18,9 +18,9 @@ interface IndexPersonal<T> {
 export const AllPage = {
     OverView: 'OverView',
     Music: 'Music',
-    Singer: 'Singer',
+    // Singer: 'Singer',
     Playlist: 'Playlist',
-    Upload: 'Upload'
+    // Upload: 'Upload'
 }
 export interface PropsPersonal {
     navigatePage: (page: string) => void
@@ -34,14 +34,14 @@ const IndexPersonal: React.FC<IndexPersonal<any>> = ({ ...props }) => {
 
 
 
-    useEffect( () => {
-        if(history.location.state){ 
+    useEffect(() => {
+        if (history.location.state) {
             setpage(history.location.state?.page);
         }
     }, [history.location.state]);
 
-    if(userState.token === ''){
-        history.push('/', {isLogged: true});
+    if (userState.token === '') {
+        history.push('/', { isLogged: true });
         return <></>;
     }
 
@@ -50,8 +50,8 @@ const IndexPersonal: React.FC<IndexPersonal<any>> = ({ ...props }) => {
             case AllPage.OverView: return <OverView navigatePage={navigatePage} />
             case AllPage.Music: return <ListLikeSong />
             case AllPage.Playlist: return <Playlist />
-            case AllPage.Upload: return <Upload />
-            case AllPage.Singer: return <ListArtist />
+            // case AllPage.Upload: return <Upload />
+            // case AllPage.Singer: return <ListArtist />
             default: return <OverView navigatePage={navigatePage} />
         }
     }
@@ -66,7 +66,7 @@ const IndexPersonal: React.FC<IndexPersonal<any>> = ({ ...props }) => {
 
     return (
         <>
-        {isLogged && <Notification handleLogged={handleLogged} />}
+            {isLogged && <Notification handleLogged={handleLogged} />}
 
             <div className="Personal">
                 <Tabed navigatePage={navigatePage} />

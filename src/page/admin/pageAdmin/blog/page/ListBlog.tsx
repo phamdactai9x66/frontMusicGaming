@@ -179,7 +179,7 @@ const ListBlog: React.FC<ListBlog<any>> = ({ changePage, set_id, ...props }) => 
                             <Avatar alt={title} variant="rounded" src={image} />
                           </TableCell>
                           <TableCell align="left">{content}</TableCell>
-                          <TableCell align="left">{status}</TableCell>
+                          <TableCell align="left">{status === true ? 'Công khai' : 'Cá nhân'}</TableCell>
                           <TableCell align="left">{view}</TableCell>
                           <TableCell align='center'>
                             <Button 

@@ -3,8 +3,12 @@ import { Axios } from "./configApi";
 class RoomApi {
 
     getAll<T extends object>(query: T): Promise<any> {
-        let url: string = "/room";
+        const url: string = "/room";
         return Axios.get(url, { params: { ...query } })
+    }
+    enterRoom<T extends object>(data: T): Promise<any> {
+        const url: string = "/room/checkPassword";
+        return Axios.post(url, data)
     }
 }
 export default new RoomApi();

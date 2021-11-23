@@ -40,7 +40,7 @@ export const tranFormDuration = <T extends number>(duration: T): string => {
     const m = Math.floor(duration / 60);
     const s = Math.floor(duration % 60);
 
-    return `${m <= 10 ? '0' + m : m} : ${s <= 10 ? "0" + s : s}`
+    return `${m < 10 ? '0' + m : m} : ${s < 10 ? "0" + s : s}`
 }
 export const tranFormDataId = <T extends any[]>(data: T) => {
     if (!data) return [];
