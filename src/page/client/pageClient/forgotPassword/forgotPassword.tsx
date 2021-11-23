@@ -1,10 +1,10 @@
 import React from 'react'
 import { Button } from '@mui/material'
-interface ForgotPassword<T> {
+interface ForgotPasswordIF<T> {
 
 }
 
-const ForgotPassword: React.FC<ForgotPassword<any>> = ({ ...props }) => {
+const ForgotPassword: React.FC<ForgotPasswordIF<any>> = ({ ...props }) => {
     document.title = "Quên mật khẩu - Music Game";
     return (
         <>

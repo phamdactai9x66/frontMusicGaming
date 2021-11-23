@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React from 'react';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
@@ -7,11 +7,11 @@ import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 
 
-interface SearchSongs<T> {
+interface SearchSongsIF<T> {
 
 }
 
-const SearchSongs: React.FC<SearchSongs<any>> = ({ ...props }) => {
+const SearchSongs: React.FC<SearchSongsIF<any>> = ({ ...props }) => {
     return (
         <>
             <div className="search_music">

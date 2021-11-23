@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { AiOutlineDownload, AiOutlineLink } from 'react-icons/ai';
 import { FiPlayCircle } from 'react-icons/fi';
-import { Link, RouteComponentProps } from "react-router-dom"
+import { RouteComponentProps } from "react-router-dom"
 import { Select, MenuItem } from "@mui/material"
 import categoryApi from "api/categoryApi"
 import { variableCommon } from "component/variableCommon";
@@ -9,11 +9,11 @@ import SongApi from "api/songApi";
 import { HandleGet } from "component/MethodCommon";
 import { useDispatch } from "react-redux";
 import { playSong } from "redux/audio/actionAudio";
-interface CategoryDetailPlaylist<T> extends RouteComponentProps {
+interface CategoryDetailPlaylistIF<T> extends RouteComponentProps {
 
 }
 
-const CategoryDetailPlaylist: React.FC<CategoryDetailPlaylist<string>> = ({ match, ...props }) => {
+const CategoryDetailPlaylist: React.FC<CategoryDetailPlaylistIF<string>> = ({ match, ...props }) => {
     const [song, setSong] = useState({ display: true, data: [] });
     const cate = useRef(null);
     const dispatch = useDispatch();

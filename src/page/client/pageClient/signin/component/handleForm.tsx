@@ -1,9 +1,9 @@
-import React from "react";
+// import React from "react";
 // import * as Yup from "yup";
 import Yup from "component/addMethodYup";
-import { variableCommon } from "component/variableCommon"
+// import { variableCommon } from "component/variableCommon"
 
-const alertTypeFile = "We just allow file extension jpg, jpeg, bmp,gif, png"
+// const alertTypeFile = "We just allow file extension jpg, jpeg, bmp,gif, png"
 
 const validateForm = [
     Yup.object().shape({

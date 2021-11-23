@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react'
-import { Avatar, AvatarGroup, Button } from '@mui/material';
+import { Avatar, AvatarGroup } from '@mui/material';
 import { tranFormDataId } from "component/MethodCommon"
 import { RouteComponentProps, withRouter } from "react-router-dom";
 import roomUserApi from "api/roomUser";
@@ -8,17 +8,17 @@ import { formStateUser } from "redux/user/stateUser";
 import { variableCommon } from "component/variableCommon"
 import { io } from "socket.io-client";
 import roomApi from "api/roomApi";
-import { Formik, Form } from "formik";
-import TextField from '@mui/material/TextField';
+// import { Formik, Form } from "formik";
+// import TextField from '@mui/material/TextField';
 import Modal from "./Modal";
 // import Modal from "./Modal"
-interface ListRoom<T> extends RouteComponentProps {
+interface ListRoomIF<T> extends RouteComponentProps {
     current: T,
     index: number,
     saveData: T
 }
 
-const ListRoom: React.FC<ListRoom<any>> = ({ index, current, history, ...props }) => {
+const ListRoom: React.FC<ListRoomIF<any>> = ({ index, current, history, ...props }) => {
     const [open, setOpen] = useState<boolean>(false);
     const { user } = useSelector<{ user: any }>(state => state.user) as formStateUser;
     const server = "http://localhost:5000";

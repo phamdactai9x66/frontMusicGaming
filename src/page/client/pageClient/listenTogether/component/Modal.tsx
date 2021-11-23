@@ -11,11 +11,11 @@ import { io } from "socket.io-client";
 const ValidateSchema = Yup.object().shape({
     password: Yup.string().required('this field is require.')
 })
-interface ModalRoom<T> extends RouteComponentProps {
+interface ModalRoomIF<T> extends RouteComponentProps {
     open: boolean,
     setOpen: (T: boolean) => void,
     current: any,
-    saveUser: any
+    saveUser: any | T,
 }
 const style = {
     position: 'absolute',
@@ -33,7 +33,7 @@ const styleInput = {
     width: 330, height: 40, marginTop: 15, marginBottom: 10,
     backgroundColor: "#06111C", borderRadius: 3, color: '#fff', border: 'none', paddingLeft: 10
 }
-const ModalRoom: React.FC<ModalRoom<any>> = ({ current, open, setOpen, ...props }) => {
+const ModalRoom: React.FC<ModalRoomIF<any>> = ({ current, open, setOpen, ...props }) => {
     const [alertForm, setalertForm] = useState({ type: 'info', message: '', display: false })
     const server = "http://localhost:5000";
     const handleForm = (value: any, formAction: FormikHelpers<any>): void | Promise<any> => {

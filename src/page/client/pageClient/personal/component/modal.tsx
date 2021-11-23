@@ -7,13 +7,13 @@ import { useSelector } from "react-redux";
 import { formStateUser } from 'redux/user/stateUser';
 import userPlaylistApi from "api/userPlaylist";
 import { variableCommon } from "component/variableCommon";
-interface Modal<T> {
+interface ModalModal<T> {
     renderComponent: () => void
 }
 const initialForm = {
     namePlaylist: ""
 }
-const Modal: React.FC<Modal<any>> = ({ renderComponent, ...props }) => {
+const Modal: React.FC<ModalModal<any>> = ({ renderComponent, ...props }) => {
     const { user: { _id: _idUser } } = useSelector<{ user: any }>(state => state.user) as formStateUser;
     const [alert, setalert] = useState({ display: false, message: '', status: '' });
     const submitForm = (data: any, methodAction: any) => {
