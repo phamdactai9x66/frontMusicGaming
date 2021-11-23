@@ -1,5 +1,5 @@
 import React from 'react'
-import { RouteChildrenProps, withRouter } from "react-router-dom";
+// import { RouteChildrenProps, withRouter } from "react-router-dom";
 import {
   Line,
   XAxis,
@@ -55,11 +55,11 @@ import {
       amt: 2100
     }
   ];
-interface ChartMusicTrending<T> {
+interface ChartMusicTrendingIF<T> {
 
 }
 
-const ChartMusicTrending: React.FC<ChartMusicTrending<any>> = ({ ...props }) => {
+const ChartMusicTrending: React.FC<ChartMusicTrendingIF<any>> = ({ ...props }) => {
     return (
       <>  
      <div className="chartMusic">

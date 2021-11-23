@@ -1,14 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import ListMusicDetail from "./listMusicDetail";
 import { } from "component/MethodCommon";
 
 
-interface MusicDetail<T> {
-    state: any
-
+interface MusicDetailIF<T> {
+    state: any | T,
 }
 
-const MusicDetail: React.FC<MusicDetail<any>> = ({ state, ...props }) => {
+const MusicDetail: React.FC<MusicDetailIF<any>> = ({ state, ...props }) => {
     return (
         <>
             <div className="musicDetail">

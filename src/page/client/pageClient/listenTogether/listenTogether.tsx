@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useReducer, useRef } from 'react'
+import React, { useEffect, useState, useReducer } from 'react'
 import { Button, TextField } from '@mui/material';
 import roomApi from "api/roomApi";
 import { HandleGet, handleReducer, typeAciton, initialReducer, pustAction } from "component/MethodCommon"
@@ -9,9 +9,9 @@ import userApi from "api/useApi";
 import Pagination from "./component/pagination";
 import FindRoom from "./component/findRoom";
 
-interface ListenTogether<T> {} 
+interface ListenTogetherIF<T> {} 
 
-const ListenTogether: React.FC<ListenTogether<any>> = ({ ...props }) => {
+const ListenTogether: React.FC<ListenTogetherIF<any>> = ({ ...props }) => {
   const [state, dispatch] = useReducer(handleReducer, initialReducer, undefined);
   const [saveData, setSaveData] = useState({ user: [], roomUser: [], display: true });
 

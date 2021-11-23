@@ -1,19 +1,19 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { AiOutlineDownload, AiFillHeart, AiOutlineLink, AiOutlineCheck } from 'react-icons/ai';
+import { AiOutlineDownload, AiOutlineLink } from 'react-icons/ai';
 import { BiHeart } from 'react-icons/bi';
 import { FiPlayCircle } from 'react-icons/fi';
 import { HiOutlineDotsCircleHorizontal } from 'react-icons/hi';
-import { Select, MenuItem, Popover } from "@mui/material"
+import { Select, MenuItem } from "@mui/material"
 import { useDispatch } from "react-redux";
 import { playSong } from "redux/audio/actionAudio";
-interface SlideSong<T> {
+interface SlideSongIF<T> {
     data: any
 }
 
-const SlideSong: React.FC<SlideSong<any>> = ({ data, ...props }) => {
+const SlideSong: React.FC<SlideSongIF<any>> = ({ data, ...props }) => {
     const dispatch = useDispatch();
     var settings_overview = {
         autoplay: true,

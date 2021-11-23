@@ -11,15 +11,16 @@ import roomSong from "api/roomSong";
 import { RouteComponentProps } from "react-router-dom";
 import songApi from "api/songApi";
 import { tranFormDataId } from "component/MethodCommon";
-import { playSong } from "redux/audio/actionAudio";
+// import { playSong } from "redux/audio/actionAudio";
 import ListRoomUser from "./component/listRoomUser";
 import roomUser from "api/roomUser";
 import { io } from "socket.io-client";
 import SearchSong from "./component/searchSong";
-interface RoomDetail<T> extends RouteComponentProps {
+
+interface RoomDetailIF<T> extends RouteComponentProps {
 }
 const server = "http://localhost:5000";
-const RoomDetail: React.FC<RoomDetail<any>> = ({ match, ...props }) => {
+const RoomDetail: React.FC<RoomDetailIF<any>> = ({ match, ...props }) => {
     const [anchor, setAnchor] = useState(null);
     const [anchor2, setAnchor2] = useState(null);
     const [songRoom, setSongRoom] = useState({ display: false, data: [] });

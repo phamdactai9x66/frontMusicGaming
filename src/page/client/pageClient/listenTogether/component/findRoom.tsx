@@ -1,16 +1,17 @@
 import React from 'react';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
-import Avatar from '@mui/material/Avatar';
-import IconButton from '@mui/material/IconButton';
-import DeleteIcon from '@mui/icons-material/Delete';
-import { HandleGet, handleReducer, typeAciton, initialReducer, pustAction } from "component/MethodCommon"
-interface FindRoom<T> {
-  dispatch: any
+// import List from '@mui/material/List';
+// import ListItem from '@mui/material/ListItem';
+// import ListItemAvatar from '@mui/material/ListItemAvatar';
+// import Avatar from '@mui/material/Avatar';
+// import IconButton from '@mui/material/IconButton';
+// import DeleteIcon from '@mui/icons-material/Delete';
+// import { HandleGet, handleReducer, typeAciton, initialReducer, pustAction } from "component/MethodCommon"
+import { typeAciton, pustAction } from "component/MethodCommon"
+interface FindRoomIF<T> {
+  dispatch: any | T,
 }
 
-const FindRoom: React.FC<FindRoom<any>> = ({ dispatch, ...props }) => {
+const FindRoom: React.FC<FindRoomIF<any>> = ({ dispatch, ...props }) => {
   const findRoom = (e: Event | any) => {
     const getValue = (e.target as HTMLInputElement).value.trim();
     if (e.keyCode === 13) {

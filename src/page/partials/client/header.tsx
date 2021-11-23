@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { RiAdminFill } from "react-icons/ri";
 import { FaSignInAlt } from "react-icons/fa";
-import { Select, MenuItem } from "@mui/material";
+import { MenuItem } from "@mui/material";
 import { Link, RouteChildrenProps, withRouter } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { formStateUser } from "redux/user/stateUser";
@@ -12,14 +12,16 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import SearchIcon from '@material-ui/icons/Search';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import './style.scss'
-import { BiSearch ,BiTime,BiX} from "react-icons/bi"
+import { BiX} from "react-icons/bi"
 //
 import { fade, makeStyles, AppBar, Toolbar, IconButton, InputBase, Menu } from '@material-ui/core';
 // import { Search, AccountCircle, MoreVert } from '@material-ui/icons';
 import AlertComponent from "component/clientComponent/Alert";
 import Loadings from "page/client/loading/loading";
 
-interface HeaderClient extends RouteChildrenProps {}
+import avatar from "./../../notificationModal/anc.png";
+
+interface HeaderClientIF extends RouteChildrenProps {}
 const useStyles = makeStyles((theme) => ({
     grow: {
         flexGrow: 1,
@@ -84,7 +86,7 @@ const useStyles = makeStyles((theme) => ({
         },
     },
 }));
-const HeaderClient: React.FC<HeaderClient> = ({ ...props }) => {
+const HeaderClient: React.FC<HeaderClientIF> = ({ ...props }) => {
     const [handleStatus, setHandleStatus] = useState({
         status: "",
         content: "",
@@ -97,29 +99,34 @@ const HeaderClient: React.FC<HeaderClient> = ({ ...props }) => {
 	const classes = useStyles();
 	const [anchorEl, setAnchorEl] = useState(null);
 	const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-    const [modalSearh,setModalSearh] =useState(false);
+    // const [modalSearh, setModalSearh] =useState(false);
 
     const [searchInp, setSearchInp] = useState('');
+
+    const wrapperRef = useRef(null);
+    const [openModalLogout, setOpenModalLogout] = useState(false);
     
-    const handleOpendModal =()=>{
-        if(modalSearh == false){
-            setModalSearh(true)
-        } else if(modalSearh == true){
-            setModalSearh(false)
-        }
-    }
+    // const handleOpendModal =()=>{
+    //     if(modalSearh == false){
+    //         setModalSearh(true)
+    //     } else if(modalSearh == true){
+    //         setModalSearh(false)
+    //     }
+    // }
+    
     const logOut = () => {
 		setLoading(true);
-        const isLogout = dispatch(Logout());
-		setHandleStatus({
-			status: "success",
-			content: "Đăng xuất thành công.",
-		})
-		setLoading(false);
-        setAnchorEl(null);
+        setOpenModalLogout(false);
+        dispatch(Logout())
 
         const requireLoginPath = ['/profile', '/listenTogether', '/personal','/roomDetail'];
-        if(requireLoginPath.filter( item => item == props.history.location.pathname).length !== 0){
+        setLoading(false);
+        if(requireLoginPath.filter( item => item === props.history.location.pathname).length !== 0){
+            setHandleStatus({
+                status: "success",
+                content: "Đăng xuất thành công.",
+            })
+            
             return props.history.replace('/');
         }
         // props.history.replace('/signin');
@@ -164,9 +171,12 @@ const HeaderClient: React.FC<HeaderClient> = ({ ...props }) => {
                 {checkAdmin()}
                 <MenuItem value={10}>
                     <span
-                        className="link text-danger  rounded border-1 border-danger "
+                        className="link text-danger rounded border-1 border-danger "
                         style={{ fontSize: "1rem" }}
-                        onClick={logOut}
+                        onClick={() => {
+                            setOpenModalLogout(true)
+                            setAnchorEl(null);
+                        }}
                     >
                         <FaSignInAlt className="text-danger _icon" />
                         Đăng xuất
@@ -269,7 +279,42 @@ const HeaderClient: React.FC<HeaderClient> = ({ ...props }) => {
         if(e.key === "Enter"){
             search();
         }
+    };
+
+    const  useOutsideAlerter = (ref: any) => {
+        useEffect(() => { 
+            function handleClickOutside(event: any) {
+                if (ref.current && !ref.current.contains(event.target)) {
+                    setOpenModalLogout(false);
+                }
+            }
+    
+            document.addEventListener("mousedown", handleClickOutside);
+            return () => {
+                document.removeEventListener("mousedown", handleClickOutside);
+            };
+        }, [ref]);
     }
+
+    useOutsideAlerter(wrapperRef);
+
+    const ModalConfirmLogout = (
+        <div className="w-100 h-100 d-flex position-fixed top-0 text-center" style={{left:"0px",zIndex:10,backgroundColor:"rgb(0 0 0 / 25%)"}}>
+            <div ref={wrapperRef} className="my-auto mx-auto p-4 rounded-3" style={{backgroundColor:"#9cf6ff"}}>
+                <img className="w-25 h-25" src={avatar} alt="" />
+
+                <p style={{fontWeight:500}} className="mb-0">Bạn có chắc là muốn đăng xuất khỏi Music Game</p>
+
+                <p>Hành động này có thể dẫn đến không thể sử dụng một số tính năng của Music Game</p>
+                
+                <div className="d-flex justify-content-center">
+                    <button onClick={()=>setOpenModalLogout(false)} className="btn btn-light">Hủy</button>
+                    <button onClick={logOut} className="btn btn-danger" style={{marginLeft:"1rem"}}>Đăng xuất</button>
+                </div>
+            </div>
+
+        </div>
+    )
     return (
         <div className="header_ui">
             {handleStatus.status !== "" && (
@@ -299,8 +344,8 @@ const HeaderClient: React.FC<HeaderClient> = ({ ...props }) => {
                             )
                         }
                         <InputBase
-                            onFocus={()=> setModalSearh(true)}
-                            onBlur={()=> setModalSearh(false)}
+                            // onFocus={()=> setModalSearh(true)}
+                            // onBlur={()=> setModalSearh(false)}
                             placeholder="Nhập tên bài hát, nghệ sĩ hoăc blog..."
                             classes={{
                                 root: classes.inputRoot,
@@ -403,6 +448,7 @@ const HeaderClient: React.FC<HeaderClient> = ({ ...props }) => {
             </AppBar>
             {renderMobileMenu}
             {renderMenu}
+            {openModalLogout && ModalConfirmLogout}
         </div>
     );
 };

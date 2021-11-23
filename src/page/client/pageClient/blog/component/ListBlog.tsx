@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { getDate } from "component/MethodCommon"
 
 
 interface ListBlogComponent<T> {
-    searchRecommendResults: Array<any>,
+    searchRecommendResults: Array<any | T>,
     blog: Array<any>,
 }
 const ListBlog: React.FC<ListBlogComponent<any>> = (props) => {
