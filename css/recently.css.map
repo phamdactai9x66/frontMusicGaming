@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,SAAS,CAAC;EACN,OAAO,EAAE,IAAI;CAIhB;;AALD,AAEI,SAFK,CAEL,EAAE,CAAC;EACC,KAAK,EAAG,OAAkB;CAC7B",
+    "sources": [
+        "../src/page/client/pageClient/recently/recently.scss"
+    ],
+    "names": [],
+    "file": "recently.css"
+}

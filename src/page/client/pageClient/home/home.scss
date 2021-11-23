@@ -128,7 +128,13 @@
                                     transition: 0.4s;
                                     filter: brightness(70%);
                                 }
-                            }
+                            }                          
+                        }
+                        section .name {
+                                width: 4.2rem;
+                                overflow: hidden;
+                                white-space: nowrap;
+                                text-overflow: ellipsis;
                         }
                     }
                 }

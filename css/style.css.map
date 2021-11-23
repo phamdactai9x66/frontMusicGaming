@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,MAAM,AAAA,MAAM,CAAA;EACR,UAAU,EAAE,OAAO;EACnB,UAAU,EAAE,IAAI;CACnB;;AACD,AAAA,aAAa,AAAA,MAAM,CAAA;EACf,KAAK,EAAC,OAAgB;CACzB;;AACD,AAAA,aAAa,CAAA;EACT,KAAK,EAAE,OAAgB;CAC1B",
+    "sources": [
+        "../src/page/partials/client/style.scss"
+    ],
+    "names": [],
+    "file": "style.css"
+}

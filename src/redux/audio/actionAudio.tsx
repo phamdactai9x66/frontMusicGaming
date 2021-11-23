@@ -36,10 +36,14 @@ const sliceAudio = createSlice({
                 state.audio = findSong;
                 state.display = !state.display;
                 state.playing = true
+                state.playRealTime = true
             }
         },
         pauseSong(state: formStateAudio, action: PayloadAction) {
             state.display = false;
+        },
+        pauseSongRealTime(state: formStateAudio, action: PayloadAction) {
+            state.playRealTime = false;
         },
         renderSong(state: formStateAudio, action: PayloadAction) {
             state.display = true;
@@ -56,5 +60,5 @@ const sliceAudio = createSlice({
     }
 })
 
-export const { playSong, pauseSong, renderSong, pausePlaying } = sliceAudio.actions;
+export const { playSong, pauseSong, renderSong, pausePlaying, pauseSongRealTime } = sliceAudio.actions;
 export default sliceAudio.reducer

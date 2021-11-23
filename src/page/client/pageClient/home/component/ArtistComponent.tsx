@@ -6,7 +6,7 @@ interface ArtistComponentIF<T> {
 }
 interface ItemArtistIF<T>{
     first_Name: T,
-    last_name: T,
+    last_Name: T,
     image: T,
     gender: boolean,
     birth: T,
@@ -16,7 +16,7 @@ interface ItemArtistIF<T>{
 const ArtistComponent: React.FC<ArtistComponentIF<any>> = (props) => {
 
     const artistsTransform = props.artists.slice(0, 20);
-
+    console.log('artist tran: ', artistsTransform)
     return (
         <div className='limit-items'>
             <h4 className="title_all mb-4 " >Nhạc sĩ</h4>
@@ -26,7 +26,12 @@ const ArtistComponent: React.FC<ArtistComponentIF<any>> = (props) => {
             <div className='items'>
                 <section>
                     {artistsTransform.length !== 0 && artistsTransform.map( (item: ItemArtistIF<string>) => (
-                        <div key={item._id}><img src={item.image} alt={handleNameArtist(item.first_Name, item.last_name)} /></div>
+                        <section style={{display: "flex", flexDirection: "column"}} key={item._id}>
+                        <div>
+                            <img src={item.image} alt={handleNameArtist(item.first_Name, item.last_Name)} />     
+                        </div>
+                        <span className="text-center name">{handleNameArtist(item.first_Name, item.last_Name)}</span>
+                        </section>
                     ))}
                     
                 </section>

@@ -1,0 +1,43 @@
+.CategoryDetailPlaylist {
+  margin: 2rem;
+}
+
+.CategoryDetailPlaylist .img_banner {
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.CategoryDetailPlaylist .img_banner img {
+  border-radius: 0.3rem;
+  width: 100%;
+  height: 26rem;
+}
+
+.CategoryDetailPlaylist .img_banner::before {
+  content: "";
+  position: absolute;
+  top: 80%;
+  width: 100%;
+  height: 100px;
+  background-image: -webkit-gradient(linear, left bottom, left top, from(#222f44), to(transparent));
+  background-image: linear-gradient(to top, #222f44, transparent);
+}
+
+.CategoryDetailPlaylist .box_cate_detail {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 1rem;
+}
+
+@media only screen and (max-width: 700px) {
+  .CategoryDetailPlaylist .box_cate_detail {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+}
+/*# sourceMappingURL=categoryDetailPlaylist.css.map */

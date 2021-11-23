@@ -1,4 +1,4 @@
-import React, {useState, useRef} from 'react'
+import React, { useState, useRef } from 'react'
 import { Card } from "@material-ui/core"
 import LoadingButton from '@mui/lab/LoadingButton'
 import { Button, Alert } from "@mui/material"
@@ -9,6 +9,7 @@ import validationChemaCategory from '../component/ValidationChemaCategory'
 import { variableCommon } from "component/variableCommon"
 import { page } from "../index";
 import categoryApi from 'api/categoryApi'
+import PickDate from "component/customField/pickDate"
 
 interface AddCategory<T> {
   changePage: any
@@ -17,7 +18,8 @@ interface AddCategory<T> {
 const initialValue = {
   name: '',
   image: '',
-  id_Topic: ''
+  id_Topic: '',
+  date: new Date()
 }
 
 const AddCategory: React.FC<AddCategory<any>> = ({ changePage, ...props }) => {
@@ -32,7 +34,7 @@ const AddCategory: React.FC<AddCategory<any>> = ({ changePage, ...props }) => {
         action.resetForm();
         setAlert(value => (
           {
-            ...value, 
+            ...value,
             display: true,
             message: createCategory.message,
             type: 'success'
@@ -41,7 +43,7 @@ const AddCategory: React.FC<AddCategory<any>> = ({ changePage, ...props }) => {
       } else {
         setAlert(value => (
           {
-            ...value, 
+            ...value,
             display: true,
             message: createCategory.message,
             type: 'error'
@@ -66,48 +68,49 @@ const AddCategory: React.FC<AddCategory<any>> = ({ changePage, ...props }) => {
           {alert.message}
         </Alert>}
 
-        <Formik 
-          initialValues={initialValue} 
-          onSubmit={submitForm} 
+        <Formik
+          initialValues={initialValue}
+          onSubmit={submitForm}
           validationSchema={validationChemaCategory}
           validateOnChange={false}
         >
           {formik => {
             return (
               <Form ref={refForm}>
+                {JSON.stringify(formik.values)}
                 <div className="grid-addpage">
-                    <div className="section-add">
-                      <Card elevation={5}>
-                        <div className="form-input-add">
-                          <div className="inputForm">
-                            <InputText name="name" label="Tên thể loại" other={{ variant: "standard" }} />
-                          </div>
+                  <div className="section-add">
+                    <Card elevation={5}>
+                      <div className="form-input-add">
+                        <div className="inputForm">
+                          <InputText name="name" label="Tên thể loại" other={{ variant: "standard" }} />
                         </div>
-                      </Card>
-                    </div>
-                    <div>
-                      <Card elevation={5}>
-                        <div className="form-input-add">
-                          <div className="flex-image bg-file ">
-                            <FileField name="image" label="Image category" type="file" other={{ variant: 'standard' }} />
-                          </div>
-                          <div className="inputForm">
-                            <SelectTopic />
-                          </div>
-                        </div>
-                      </Card>
-                      <br />
-                      <LoadingButton loading={formik.isSubmitting} variant="contained"
-                        type="submit"
-                      >
-                        Thêm Thể Loại
-                      </LoadingButton>
-  
-                      <Button variant="contained" color="error" style={{ marginLeft: 20 }}
-                        onClick={() => { navigatePage(page.ListCategory) }}
-                      >Hủy</Button>
-                    </div>
+                      </div>
+                    </Card>
                   </div>
+                  <div>
+                    <Card elevation={5}>
+                      <div className="form-input-add">
+                        <div className="flex-image bg-file ">
+                          <FileField name="image" label="Image category" type="file" other={{ variant: 'standard' }} />
+                        </div>
+                        <div className="inputForm">
+                          <SelectTopic />
+                        </div>
+                      </div>
+                    </Card>
+                    <br />
+                    <LoadingButton loading={formik.isSubmitting} variant="contained"
+                      type="submit"
+                    >
+                      Thêm Thể Loại
+                    </LoadingButton>
+
+                    <Button variant="contained" color="error" style={{ marginLeft: 20 }}
+                      onClick={() => { navigatePage(page.ListCategory) }}
+                    >Hủy</Button>
+                  </div>
+                </div>
               </Form>
             )
           }}

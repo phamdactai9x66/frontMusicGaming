@@ -103,7 +103,7 @@ const Sidebar: React.FC<Sidebar<any>> = ({ ...props }) => {
       subLink: "/admin/addCategoryBlog"
     },
     {
-      icon: "fa fa-calendar",
+      icon: "fa fa-user-o",
       name: "User play list",
       iconAdd: "fa fa-plus-circle",
       details: "Add User play list",

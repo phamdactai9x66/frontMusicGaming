@@ -79,10 +79,12 @@ const Audio: React.FC<Audio<any>> = ({ audio: { audio: url, title, image, _id },
         }
     }, [currentTime, fakeRender])
     useEffect(() => {
-        if (state.playing && fakeRender && AudioPlay.current) {
-            AudioPlay.current?.play();
-            stateCurrentTime.current = setInterval(changeTime, 1000)
-            setPlay(true);
+        if (AudioPlay.current) {
+            if (state.playing && fakeRender) {
+                AudioPlay.current?.play();
+                stateCurrentTime.current = setInterval(changeTime, 1000)
+                setPlay(true);
+            }
         }
     }, [fakeRender])
 

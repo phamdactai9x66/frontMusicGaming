@@ -1,0 +1,54 @@
+.romdetail {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.romdetail .room {
+  border-right: 0.01rem solid rgba(0, 255, 255, 0.295);
+  height: 100vh;
+  padding-right: 2rem;
+}
+
+.grid-user {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  gap: 2rem;
+}
+
+.search_user .css-aqpgxn-MuiFormLabel-root-MuiInputLabel-root {
+  color: #fff !important;
+}
+
+.search_user .MuiInput-input {
+  color: #fff !important;
+}
+
+.search_user .css-1480iag-MuiInputBase-root-MuiInput-root:before {
+  border-bottom: 1px solid rgba(93, 217, 255, 0.562) !important;
+}
+
+.search_user .css-1480iag-MuiInputBase-root-MuiInput-root:after {
+  border-bottom: 1px solid #66ffd1 !important;
+}
+
+@media screen and (max-width: 915px) {
+  .romdetail {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 1fr;
+        grid-template-columns: 1fr;
+  }
+  .romdetail .room {
+    border-right: none;
+    height: 70vh;
+    padding-right: none;
+    border-bottom: 2px solid #cbfcff;
+  }
+}
+/*# sourceMappingURL=roomDetail.css.map */

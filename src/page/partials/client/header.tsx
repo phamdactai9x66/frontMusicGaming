@@ -177,10 +177,11 @@ const HeaderClient: React.FC<HeaderClient> = ({ ...props }) => {
     };
 
 	const checkGuest = () => {
+        const lastLocation = props.history.location.search ? props.history.location.pathname + props.history.location.search : props.history.location.pathname;
 		return (
 			<>
 				<MenuItem value={10} onClick={handleMenuClose}>
-					<Link to={{ pathname: "/signin", state: { lastLocation: props.history.location.pathname }}} className="link rounded " style={{ fontSize: '1rem' }}><FaSignInAlt className="_icon" />Đăng nhập</Link>
+					<Link to={{ pathname: "/signin", state: { lastLocation: lastLocation }}} className="link rounded " style={{ fontSize: '1rem' }}><FaSignInAlt className="_icon" />Đăng nhập</Link>
 				</MenuItem>
 			</>
 		)

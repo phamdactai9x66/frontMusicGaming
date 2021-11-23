@@ -1,5 +1,5 @@
-import react from "react"
 let dataStoreage = {
-    renderComment: null
+    renderComment: null,
+    accessToken: ''
 }
 export default dataStoreage;
