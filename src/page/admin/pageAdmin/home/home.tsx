@@ -1,5 +1,9 @@
 import { Link } from 'react-router-dom'
 import React, { useCallback, useState, useEffect } from "react";
+import songApi from '../../../../api/songApi'
+import playlistApi from '../../../../api/playlistApi'
+import userApi from '../../../../api/useApi'
+import BlogApi from '../../../../api/BlogApi'
 import ChartMusicHot from './component/chartMusicHot';
 import ChartUser from './component/chartUser';
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
@@ -10,13 +14,58 @@ interface Home<T> {
 }
 
 const Home: React.FC<Home<any>> = ({ ...props }) => {
+  const [song, setSong] = useState(0);
+  const [playlist, setPlaylist] = useState(0);
+  const [user, setUser] = useState<any[]>([]);
+  const [blog, setBlog] = useState(0);
+  const [admin, setAdmin] = useState<any[]>([]);
+  const [member, setMember] = useState<any[]>([]);
+  const [viewer, setViewer] = useState<any[]>([]);
+
+  const getSong = async () => {
+    const song = await songApi.getAll({}); 
+
+    setSong(song.data.length)
+  }
+
+  const getPlaylist = async () => {
+    const playlist = await playlistApi.getAll({}); 
+    
+    setPlaylist(playlist.data.length)
+  }
+
+  const getUser = async () => {
+    const { data } = await userApi.getAll({}); 
+    setUser(data)
+
+    const admin = data.filter((item:any) => item.role == 1)
+    const member = data.filter((item:any) => item.role == 0)
+    const viewer = data.filter((item:any) => item.role == 3)
+
+    setAdmin(admin)
+    setMember(member)
+    setViewer(viewer)
+  }
+
+  const getBlog = async () => {
+    const blog = await BlogApi.getAll({}); 
+
+    setBlog(blog.data.length)
+  }
+
+  useEffect(() => {
+    getPlaylist();
+    getSong();
+    getUser();
+    getBlog();
+  }, []);
 
   return (
     <>
       <div className="home-page">
         <section>
           <h3 className="Dashboarh">Dashboard</h3>
-          <StatisticalLength/>
+<StatisticalLength/>
         </section>
         <section>
           <div className="grid-main-2">
@@ -380,34 +429,15 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                        <th scope="row">1</th>
-                          <td>admin</td>
-                          <td>22</td>
-                          <td>tudeptrai</td>
-                          <td>tudeptrai</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">1</th>
-                          <td>admin</td>
-                          <td>22</td>
-                          <td>tudeptrai</td>
-                          <td>tudeptrai</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">1</th>
-                          <td>admin</td>
-                          <td>22</td>
-                          <td>tudeptrai</td>
-                          <td>tudeptrai</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">1</th>
-                          <td>admin</td>
-                          <td>22</td>
-                          <td>tudeptrai</td>
-                          <td>tudeptrai</td>
-                        </tr>
+                        {admin.map((item,index) => {
+                          return <tr key={index}>
+                                  <th scope="row">{index+1}</th>
+                                  <td>{item.first_name}{item.last_name}</td>
+                                  <td>{item.first_name}{item.last_name}</td>
+                                  <td>{item.first_name}{item.last_name}</td>
+                                  <td>{item.address}</td>
+                                </tr>
+                        })}
                       </tbody>
                     </table>
                   </TabPanel>
@@ -423,34 +453,15 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <th scope="row">1</th>
-                          <td>member</td>
-                          <td>22</td>
-                          <td>tudeptrai</td>
-                          <td>tudeptrai</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">1</th>
-                          <td>member</td>
-                          <td>22</td>
-                          <td>tudeptrai</td>
-                          <td>tudeptrai</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">1</th>
-                          <td>member</td>
-                          <td>22</td>
-                          <td>tudeptrai</td>
-                          <td>tudeptrai</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">1</th>
-                          <td>member</td>
-                          <td>22</td>
-                          <td>tudeptrai</td>
-                          <td>tudeptrai</td>
-                        </tr>
+                      {member.map((item,index) => {
+                          return <tr key={index}>
+                                  <th scope="row">{index+1}</th>
+                                  <td>{item.first_name}{item.last_name}</td>
+                                  <td>{item.first_name}{item.last_name}</td>
+                                  <td>{item.first_name}{item.last_name}</td>
+                                  <td>{item.address}</td>
+                                </tr>
+                        })}
                       </tbody>
                     </table>
                   </TabPanel>
@@ -466,34 +477,15 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <th scope="row">1</th>
-                          <td>viewer</td>
-                          <td>22</td>
-                          <td>tudeptrai</td>
-                          <td>tudeptrai</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">1</th>
-                          <td>viewer</td>
-                          <td>22</td>
-                          <td>tudeptrai</td>
-                          <td>tudeptrai</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">1</th>
-                          <td>viewer</td>
-                          <td>22</td>
-                          <td>tudeptrai</td>
-                          <td>tudeptrai</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">1</th>
-                          <td>viewer</td>
-                          <td>22</td>
-                          <td>tudeptrai</td>
-                          <td>tudeptrai</td>
-                        </tr>
+                      {viewer.map((item,index) => {
+                          return <tr key={index}>
+                                  <th scope="row">{index+1}</th>
+                                  <td>{item.first_name}{item.last_name}</td>
+                                  <td>{item.first_name}{item.last_name}</td>
+                                  <td>{item.first_name}{item.last_name}</td>
+                                  <td>{item.address}</td>
+                                </tr>
+                        })}
                       </tbody>
                     </table>
                   </TabPanel>
