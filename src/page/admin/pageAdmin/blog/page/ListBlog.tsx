@@ -25,9 +25,11 @@ const useStyle = makeStyles((theme) => ({
 }))
 
 const columns = [
-  { id: 'name', label: 'Name category', minWidth: 170, align: 'left' },
-  { id: 'price', label: 'Image', minWidth: 100, align: 'left' },
-  { id: '', label: 'Handle', minWidth: 170, align: 'center' }
+  { id: '', label: 'Name blog', minWidth: 100, align: 'left' },
+  { id: '', label: 'Image', minWidth: 100, align: 'left' },
+  { id: '', label: 'Content', minWidth: 230, align: 'left' },
+  { id: '', label: 'View', minWidth: 100, align: 'left' },
+  { id: '', label: 'Handle', minWidth: 20, align: 'center' }
 ]
 
 const ListBlog: React.FC<ListBlog<any>> = ({ changePage, set_id, ...props }) => {
@@ -110,6 +112,7 @@ const ListBlog: React.FC<ListBlog<any>> = ({ changePage, set_id, ...props }) => 
         }}
       >
         <div style={{ flexBasis: 1000, margin: '0 auto'}}>
+        <h2 className="mb-5">Blog</h2>
           <Paper sx={{ width: '100%' }}>
             <TableContainer style={{ padding: 20 }}>
               <Typography style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -139,7 +142,7 @@ const ListBlog: React.FC<ListBlog<any>> = ({ changePage, set_id, ...props }) => 
               <Table stickyHeader>
                 <TableHead>
                   <TableRow>
-                    <TableCell key="awd" align="left" style={{ minWidth: 170 }}>
+                    <TableCell key="awd" align="left" style={{ minWidth: 0 }}>
                       <Checkbox
                         id="checkAll"
                         onClick={() => {dispatch(pustAction(typeAciton.checkAll))}}
