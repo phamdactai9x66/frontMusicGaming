@@ -19,16 +19,26 @@ interface blog<T> {
 const Blog: React.FC<blog<any>> = ({ ...props }) => {
     document.title = "Blogs - Music Game";
     const [searchKeyword, setSearchKeyword] = useState('');
-    const [searchRecommendResults, setSearchRecommendResults] = useState([]);
+    // const [searchRecommendResults, setSearchRecommendResults] = useState([]);
     const [currentPage, setCurrenPage] = useState(1);
     const [count, setCount] = useState(0);
-    const [blog, setBlog] = useState<Array<any>>([]);
+    const [blog, setBlog] = useState<any>({
+        loading: true,
+        data: []
+    });
     const [allBlogs, setAllBlogs] = useState([])
 
     const searchDebounced = useCallback<any>(debounce( async (value: any) => {
-        const { data } = await blogApi.getAll( {title: value} )
-        setSearchRecommendResults(data)
-    }, 3000), [])
+        const { data } = await blogApi.getAll( {title: value} );
+        const newData = [...data];
+        setCount(Math.ceil(data.length / 7));
+        setAllBlogs(data);
+        setBlog({
+            loading: false,
+            data: newData.splice(0, 7),
+        });
+        // setSearchRecommendResults(data);
+    }, 1000), [])
     const handleSearch = (value: string) => {
         setSearchKeyword(value);
         searchDebounced(value);
@@ -38,8 +48,12 @@ const Blog: React.FC<blog<any>> = ({ ...props }) => {
         const startBlog = 7 * (page - 1);
         const newAllBlogs = [...allBlogs];
         const showBlog = newAllBlogs.splice( startBlog, startBlog + 6)
+        console.log(allBlogs)
         setCurrenPage(page);
-        setBlog(showBlog);
+        setBlog({
+            loading: false,
+            data: showBlog,
+        });
     }
 
     useEffect(() => {
@@ -51,7 +65,10 @@ const Blog: React.FC<blog<any>> = ({ ...props }) => {
             setCount(counts); 
             
             const newData = [...responseGetAll.data];
-            setBlog(newData.splice(0, 7));
+            setBlog({
+                loading: false,
+                data: newData.splice(0, 7),
+            });
         }
         getBlog();
     }, []);
@@ -70,7 +87,8 @@ const Blog: React.FC<blog<any>> = ({ ...props }) => {
             </div>
             <div className="blog-main">
                 <div className="flex-blog">
-                    <ListBlog blog={blog} searchRecommendResults={searchRecommendResults} />
+                    <ListBlog blog={blog} />
+                    {/* <ListBlog blog={blog} searchRecommendResults={searchRecommendResults} /> */}
                 </div>
                 <div className="blog-2">
                     <div className="search" >

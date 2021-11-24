@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useEffect, useRef } from "react";
+import React, { useState, useRef } from "react";
 import { Card } from "@material-ui/core";
 import LoadingButton from '@mui/lab/LoadingButton';
 import { Button, Alert } from "@mui/material"
@@ -8,8 +8,8 @@ import validateSchema from "../component/validateSchema";
 import apiTopic from "api/topicApi";
 import { variableCommon } from "component/variableCommon";
 import { page } from "../index";
-interface AddTodo<T> {
-    changePage: any
+interface AddTodoIF<T> {
+    changePage: any | T,
 };
 
 const initialValue = {
@@ -17,7 +17,7 @@ const initialValue = {
     image: ''
 }
 
-const AddTodo: React.FC<AddTodo<any>> = ({ changePage, ...props }) => {
+const AddTodo: React.FC<AddTodoIF<any>> = ({ changePage, ...props }) => {
     const refForm = useRef<HTMLFormElement | any>(null)
     const [alert, setalert] = useState({ display: false, message: "", type: "" })
 
