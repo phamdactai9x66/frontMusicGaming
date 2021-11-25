@@ -23,6 +23,7 @@ const RoomDetail: React.FC<RoomDetail<any>> = ({ match, ...props }) => {
     const [anchor, setAnchor] = useState(null);
     const [anchor2, setAnchor2] = useState(null);
     const [songRoom, setSongRoom] = useState({ display: false, data: [] });
+    const [renderSong, setrenderSong] = useState(0)
     const saveSong = useRef<any>({})
     // console.log(props.location)
     useEffect(() => {
@@ -50,6 +51,12 @@ const RoomDetail: React.FC<RoomDetail<any>> = ({ match, ...props }) => {
         })()
 
     }, [])
+    useEffect(() => {
+        io(server).on('deliverSong', (res) => {
+            // console.log(res)
+            setrenderSong(res)
+        })
+    }, [])
 
     useEffect(() => {
         (async () => {
@@ -62,10 +69,7 @@ const RoomDetail: React.FC<RoomDetail<any>> = ({ match, ...props }) => {
             setSongRoom({ display: true, data })
             // console.log(getSongRoom);
         })()
-        return () => {
-
-        }
-    }, [])
+    }, [renderSong])
     const openPopover = (event: any) => {
         setAnchor(event.currentTarget);
     };
@@ -164,13 +168,21 @@ const RoomDetail: React.FC<RoomDetail<any>> = ({ match, ...props }) => {
             </div>)
         })
     }
+    const addSongToRoom = async (idSong: string): Promise<void> => {
+        const data = {
+            id_Room: (match.params as any).idRoom,
+            id_Song: idSong
+        }
+        const getNewSong = await roomSong.postSong<object>(data);
+        io(server).emit("newSongRoom");
+    }
 
 
     return (
         <>
             <div className="romdetail">
                 <div className="room">
-                    <SearchSong />
+                    <SearchSong addSongToRoom={addSongToRoom} />
                     {/*  */}
                     <h3 className="mt-3 text-white ps-3" style={{ borderLeft: '0.5rem solid #26a5ff', fontSize: '1.2rem' }}>Danh sách bài hát</h3>
                     <div className="box-music mt-4">
