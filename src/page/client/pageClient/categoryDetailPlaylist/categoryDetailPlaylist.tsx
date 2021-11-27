@@ -22,6 +22,9 @@ const CategoryDetailPlaylist: React.FC<CategoryDetailPlaylistIF<string>> = ({ ma
             if (!song.display) return;
             const getUrl = new URL(window.location.href);
             const getSearch = new URLSearchParams(getUrl.search);
+            console.log('thisis get url: ', getUrl)
+            console.log('thisis get url search: ', getUrl.search)
+            console.log('thisis get search: ', getSearch)
             const query = {
                 id_Topic: getSearch.get('idTopic'),
                 id_Categories: getSearch.get('id_subCate'),
