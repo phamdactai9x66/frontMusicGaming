@@ -1,9 +1,8 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, useLayoutEffect } from 'react';
 import { BsFillPlayFill, BsMusicNoteList } from 'react-icons/bs';
 import { Button, MenuItem, Pagination, TextField } from "@mui/material";
 import { AiOutlineDownload, AiFillHeart } from 'react-icons/ai';
-import { IoMdAdd } from 'react-icons/io';
-import { Popover } from "@material-ui/core";
+import DeleteIcon from '@mui/icons-material/Delete';
 import NameSongArtist from 'component/nameSongArtist';
 import GetTimeAudio from "component/getTimeAudio";
 import { ReactComponent as Spinner } from "./Spinner.svg";
@@ -17,28 +16,35 @@ import roomUser from "api/roomUser";
 import { io } from "socket.io-client";
 import SearchSong from "./component/searchSong";
 
-interface RoomDetailIF<T> extends RouteComponentProps {
+interface RoomDetail<T> extends RouteComponentProps {
 }
 const server = "http://localhost:5000";
-const RoomDetail: React.FC<RoomDetailIF<any>> = ({ match, ...props }) => {
-    const [anchor, setAnchor] = useState(null);
-    const [anchor2, setAnchor2] = useState(null);
+const RoomDetail: React.FC<RoomDetail<any>> = ({ match, ...props }) => {
     const [songRoom, setSongRoom] = useState({ display: false, data: [] });
+    const [renderSong, setrenderSong] = useState(0)
     const saveSong = useRef<any>({})
+    const saveId = useRef<string>('');
     // console.log(props.location)
+    useLayoutEffect(() => {
+        const checkId = (props.location.state as any)?.idRoomUser;
+        if (!checkId) return props.history.goBack();
+        saveId.current = checkId
+    }, [])
     useEffect(() => {
 
-        const checkId = (props.location.state as any).idRoomUser;
-        if (!checkId) return props.history.goBack();
         return () => {
             (async () => {
-                const checkId = (props.location.state as any).idRoomUser;
-                const getUrl = new URL(window.location.href);
-                const findRoomDetail = getUrl.pathname.split('/').some(current => current === 'roomDetail');
-                if (!findRoomDetail || checkId) {
-                    const deleteUser = await roomUser.DeleteOne(checkId);
-                    console.log(deleteUser);
-                    io(server).emit("JoinRoom");
+                try {
+                    const checkId = saveId.current;
+                    const getUrl = new URL(window.location.href);
+                    const findRoomDetail = getUrl.pathname.split('/').some(current => current === 'roomDetail');
+                    if (!findRoomDetail || checkId) {
+                        const deleteUser = await roomUser.DeleteOne(checkId);
+                        console.log(deleteUser);
+                        io(server).emit("JoinRoom");
+                    }
+                } catch (error) {
+                    props.history.goBack();
                 }
             })()
         }
@@ -50,6 +56,12 @@ const RoomDetail: React.FC<RoomDetailIF<any>> = ({ match, ...props }) => {
             saveSong.current = tranFormDataId<any[]>(data);
         })()
 
+    }, [])
+    useEffect(() => {
+        io(server).on('deliverSong', (res) => {
+            // console.log(res)
+            setrenderSong(res)
+        })
     }, [])
 
     useEffect(() => {
@@ -63,23 +75,17 @@ const RoomDetail: React.FC<RoomDetailIF<any>> = ({ match, ...props }) => {
             setSongRoom({ display: true, data })
             // console.log(getSongRoom);
         })()
-        return () => {
-
-        }
-    }, [])
-    const openPopover = (event: any) => {
-        setAnchor(event.currentTarget);
-    };
-
-    const openPopover2 = (event: any) => {
-        setAnchor2(event.currentTarget);
-    };
+    }, [renderSong])
     const playAudio = <T extends string>(_id: T): void => {
         if (!_id) return;
         const getIdRoom = (match.params as any).idRoom;
         io(server).emit("test1", { idRoom: getIdRoom, idSong: _id });
     }
-
+    const DeleteSong = async (idSong: string): Promise<void> => {
+        if (!idSong) return;
+        const deleteSong = await roomSong.deleteOne(idSong);
+        io(server).emit("newSongRoom");
+    }
     const listSongRoom = () => {
         // console.log(songRoom)
         return songRoom.data.map((current: any, index: number) => {
@@ -100,87 +106,35 @@ const RoomDetail: React.FC<RoomDetailIF<any>> = ({ match, ...props }) => {
                 </div>
                 <div className="icon_item">
                     <AiOutlineDownload className="icon" />
-                    <AiFillHeart className="icon" />
-                    <IoMdAdd className="icon"
-                        onClick={(e) => openPopover(e)}
-                    />
-                    <Popover
-                        open={Boolean(anchor)}
-                        anchorEl={anchor}
-                        anchorOrigin={{
-                            vertical: "top",
-                            horizontal: "left",
-                        }}
-                        transformOrigin={{
-                            vertical: "bottom",
-                            horizontal: "right",
-                        }}
-                        onClose={() => setAnchor(null)}
-                    >
-                        <div style={{ background: "#101929", margin: "", color: "#fff", width: "15rem" }}>
-                            <div className="d-flex gap-2 p-2">
-                                <img width={35} height={35} src={`https://i.pinimg.com/564x/31/22/8a/31228ac9605f7997e4d50130503b567d.jpg`} alt="" />
-                                <div>
-                                    <h6>Romdetail</h6>
-                                    <div style={{ marginTop: "-0.7rem" }}><span style={{ fontSize: "0.8rem" }}>205k </span><span style={{ fontSize: "0.8rem" }}> 3.8M</span></div>
-                                </div>
-                            </div>
-                            <hr style={{ margin: "-0.1rem 0 0.5rem 0" }} />
-                            <MenuItem className="add list" onClick={openPopover2}>
-                                <IoMdAdd className="icon" /> &ensp; Tạo playlist mới
-                            </MenuItem>
-                            <Popover
-                                open={Boolean(anchor2)}
-                                anchorEl={anchor2}
-                                anchorOrigin={{
-                                    vertical: "top",
-                                    horizontal: "left",
-                                }}
-                                transformOrigin={{
-                                    vertical: "bottom",
-                                    horizontal: "right",
-                                }}
-                                onClose={() => setAnchor2(null)}
-                            >
-                                <div className="item p-3">
-                                    <form>
-                                        <input type="text" className="mb-2 p-2 text-light" style={{ background: "#0d141f", border: "0.1rem solid #0e5353" }} placeholder="Thêm playlist..." />
-                                        <br />
-                                        <Button color="primary" variant="contained" ><Spinner /></Button> :
-                                        <Button color="primary" variant="contained"  >Thêm playlist</Button>
-
-                                    </form>
-                                </div>
-                            </Popover>
-
-                            <MenuItem className="list"  >
-                                <BsMusicNoteList /> &ensp; Bạn chưa có Playlist nào.
-                            </MenuItem>
-                            <MenuItem className="list" >
-                                <BsMusicNoteList />
-                            </MenuItem>
-                        </div>
-                    </Popover>
+                    <span style={{ marginRight: 5 }}></span>
+                    <DeleteIcon className="icon" onClick={() => DeleteSong(current?._id)} />
                 </div>
             </div>)
         })
     }
-
+    const addSongToRoom = async (idSong: string): Promise<void> => {
+        const data = {
+            id_Room: (match.params as any).idRoom,
+            id_Song: idSong
+        }
+        const getNewSong = await roomSong.postSong<object>(data);
+        io(server).emit("newSongRoom");
+    }
 
     return (
         <>
             <div className="romdetail">
                 <div className="room">
-                    <SearchSong />
+                    <SearchSong addSongToRoom={addSongToRoom} />
                     {/*  */}
                     <h3 className="mt-3 text-white ps-3" style={{ borderLeft: '0.5rem solid #26a5ff', fontSize: '1.2rem' }}>Danh sách bài hát</h3>
                     <div className="box-music mt-4">
                         {listSongRoom()}
                     </div>
                     {/* /// */}
-                    <div className="Pagination mt-5">
+                    {/* <div className="Pagination mt-5">
                         <Pagination count={10} onClick={() => { console.log() }} style={{ padding: 10, paddingTop: 20, color: "#fff" }} />
-                    </div>
+                    </div> */}
                 </div>
                 <div className="search_user">
                     <div>

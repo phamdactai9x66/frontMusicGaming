@@ -31,7 +31,7 @@ const Enteraiment: React.FC<Enteraiment<any>> = ({ ...props }) => {
     useEffect(() => {
         setTimeout(async () => {
             const { data } = await roomUser.getAll({});
-            saveUser.current = data.map((current: any) => current.id_User);
+            saveUser.current = data?.map((current: any) => current.id_User);
         }, 2000);//render agian when user leave out room
     }, [renderUser])
     useEffect(() => {

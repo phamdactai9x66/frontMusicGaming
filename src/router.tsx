@@ -31,6 +31,8 @@ import AddUserPlaylist from "./page/admin/pageAdmin/userPlayList/page/AddUserPla
 import CategoryBlog from "./page/admin/pageAdmin/categoriesBlog/index";
 import AddCategoryBlog from "./page/admin/pageAdmin/categoriesBlog/page/AddCategoryBlog";
 
+import Comment from "./page/admin/pageAdmin/comment/index";
+
 import Slide from './page/admin/pageAdmin/slide/index'
 import AddSlide from './page/admin/pageAdmin/slide/page/addSlide'
 import Search from "./page/client/pageClient/search/search";
@@ -133,6 +135,11 @@ const Admin: propertyPage[] = [
     {
         path: "/admin/addCategoryBlog",
         component: AddCategoryBlog,
+        exact: false
+    },
+    {
+        path: "/admin/comment",
+        component: Comment,
         exact: false
     },
     {
