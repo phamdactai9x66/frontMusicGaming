@@ -8,7 +8,7 @@ import { AiOutlineDownload, AiFillHeart } from 'react-icons/ai';
 import { IoMdAdd } from 'react-icons/io';
 import { Popover } from "@material-ui/core";
 import { useDispatch } from "react-redux";
-import { getlistAudio, playSong } from "redux/audio/actionAudio"
+import { getlistAudio, playSong } from "redux/audio/actionAudio";
 import userPlaylistApi from 'api/userPlaylist';
 import { useHistory } from 'react-router';
 import NameSongArtist from 'component/nameSongArtist';
