@@ -50,8 +50,10 @@ const LikeSong: React.FC<LikeSongIF<any>> = ({ ...props }) => {
                 const { id_User, id_Songs } = curren;
                 return stateAudio.audio._id === id_Songs && state.user._id === id_User
             })
-            await apiLikeUser.deleteOne(checkLike._id)
-            return setHeart(false)
+            if (checkLike?._id) {
+                await apiLikeUser.deleteOne(checkLike?._id)
+                return setHeart(false)
+            }
         }
         // alert('bạn phải đăng nhập để sử dụng tính năng này.')
     }

@@ -83,7 +83,7 @@ const Sidebar: React.FC<SidebarIF<any>> = ({ ...props }) => {
       name: "Comment",
       iconAdd: "fa fa-plus-circle",
       details: "Chart Comment",
-      link: "/admin/",
+      link: "/admin/comment",
       subLink: "/admin/"
     },
     {

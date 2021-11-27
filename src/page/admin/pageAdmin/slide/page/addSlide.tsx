@@ -61,7 +61,7 @@ const AddSlide: React.FC<AddSlide<any>> = ({ changePage, ...props }) => {
         <>
             <div className="admin-pageAdd">
                 <div className="text-name-add">
-                    <h3>Add thể loại</h3><br />
+                    <h3>Add slider</h3><br />
                 </div>
                 {alert.display && <Alert severity={alert.type as any} style={{ marginBottom: 5 }}>
                     {alert.message}
