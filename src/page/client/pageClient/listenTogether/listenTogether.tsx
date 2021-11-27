@@ -8,6 +8,7 @@ import roomUser from "api/roomUser";
 import userApi from "api/useApi";
 import Pagination from "./component/pagination";
 import FindRoom from "./component/findRoom";
+import CreateRoom from "./component/createRoom"
 
 interface ListenTogether<T> { }
 
@@ -77,13 +78,7 @@ const ListenTogether: React.FC<ListenTogether<any>> = ({ ...props }) => {
             <Pagination state={state} dispatch={dispatch} />
           </div>
         </div>
-        <div className="create_room">
-          <TextField label="Name" variant="filled" className="input_room" />
-          <TextField label="Password" variant="filled" className="input_room" />
-          <Button variant="contained" color="primary">
-            Tạo phòng
-          </Button>
-        </div>
+        <CreateRoom />
       </div>
     </>
   )
