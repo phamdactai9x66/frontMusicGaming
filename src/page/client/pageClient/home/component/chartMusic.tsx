@@ -17,10 +17,12 @@ import {
   Bar
 } from "recharts";
 import songApi from "api/songApi";
-
+import { useDispatch } from "react-redux";
+import { playSong } from "redux/audio/actionAudio";
 
 export default function ChartMusic() {
   const [state, setstate] = useState({ data: [], display: true });
+  const dispatch = useDispatch();
 
   useEffect(() => {
     (async () => {
@@ -47,10 +49,10 @@ export default function ChartMusic() {
               <div className="box-chart mt-3" key={index} style={{background: "rgb(58 121 174)"}}>
                 <h5 className="stt">{index}-</h5>
                 <img width={45} height={45} src={image} alt="" />
-                <div className="box-icon" style={{left: "4rem"}}>
+                <div className="box-icon" style={{left: "4rem"}} onClick={() => dispatch(playSong({_id}))}>
                     ▶
                 </div>
-                <div className="name">
+                <div className="name" style={{cursor: "pointer"}} onClick={() => dispatch(playSong({_id}))}>
                   <h6>{title}</h6>
                   <div style={{ fontSize: "0.7rem", marginTop: "-0.2rem", color: "#ccc" }}>
                     <NameSongArtist _id={_id} />
