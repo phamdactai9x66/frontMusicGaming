@@ -28,8 +28,8 @@ const Signin: React.FC<Signin<any>> = ({ history, ...props }: any) => {
   const dispatchUser = useDispatch();
   const form = useRef<HTMLFormElement | any>(null);
   const [alertError, setalertError] = useState<any>({ display: false, message: "", type: '' })
-  
-  const lastLocation = history.location.state.lastLocation ? history.location.state.lastLocation : '/';
+
+  // const lastLocation = history.location.state.lastLocation ? history.location.state.lastLocation : '/';
 
   const renderForm = <T extends number>(step: T, formik: FormikContextType<any>): JSX.Element => {
     switch (step) {
@@ -81,8 +81,8 @@ const Signin: React.FC<Signin<any>> = ({ history, ...props }: any) => {
 
         dispatchUser(saveInfo(loginUser))
 
-        history.replace(lastLocation);
-        history.push(lastLocation);
+        history.replace('');
+        // history.push(lastLocation);
       }
       return displayAlert(loginUser.message, 'error')
     }
@@ -131,8 +131,8 @@ const Signin: React.FC<Signin<any>> = ({ history, ...props }: any) => {
 
                       {!step.displayForm ? <>
                         {/* <AiFillGoogleSquare className="icon" /> */}
-                        <LoginGoogle lastLocation={lastLocation} displayAlert={displayAlert} />
-                        <LoginFacebook lastLocation={lastLocation} displayAlert={displayAlert} />
+                        <LoginGoogle displayAlert={displayAlert} />
+                        <LoginFacebook displayAlert={displayAlert} />
 
                       </> : ''}
                     </div>

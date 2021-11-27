@@ -31,16 +31,19 @@ const RoomDetail: React.FC<RoomDetail<any>> = ({ match, ...props }) => {
     }, [])
     useEffect(() => {
 
-        const checkId = saveId.current;
         return () => {
             (async () => {
-                const checkId = (props.location.state as any).idRoomUser;
-                const getUrl = new URL(window.location.href);
-                const findRoomDetail = getUrl.pathname.split('/').some(current => current === 'roomDetail');
-                if (!findRoomDetail || checkId) {
-                    const deleteUser = await roomUser.DeleteOne(checkId);
-                    console.log(deleteUser);
-                    io(server).emit("JoinRoom");
+                try {
+                    const checkId = saveId.current;
+                    const getUrl = new URL(window.location.href);
+                    const findRoomDetail = getUrl.pathname.split('/').some(current => current === 'roomDetail');
+                    if (!findRoomDetail || checkId) {
+                        const deleteUser = await roomUser.DeleteOne(checkId);
+                        console.log(deleteUser);
+                        io(server).emit("JoinRoom");
+                    }
+                } catch (error) {
+                    props.history.goBack();
                 }
             })()
         }
