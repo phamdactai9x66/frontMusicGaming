@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction, createAsyncThunk, current } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction, createAsyncThunk } from "@reduxjs/toolkit";
 import stateAudio, { formStateAudio } from "./stateAudio";
 import songApi from "api/songApi";
 import { tranFormDataId } from "component/MethodCommon";

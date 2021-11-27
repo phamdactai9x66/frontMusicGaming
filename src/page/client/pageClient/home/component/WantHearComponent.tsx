@@ -8,7 +8,7 @@ import { FiPlayCircle } from 'react-icons/fi';
 import { HiOutlineDotsCircleHorizontal } from 'react-icons/hi';
 import {  BiHeart } from 'react-icons/bi';
 import { Select, MenuItem } from "@mui/material";
-import { HandleGet, tranFormDataId } from "component/MethodCommon";
+import { HandleGet } from "component/MethodCommon";
 
 import playlistSongApi from 'api/playlistSongApi';
 import { playSong } from "redux/audio/actionAudio"

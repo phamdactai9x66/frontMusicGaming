@@ -2,7 +2,7 @@ import React from 'react'
 import { Pagination, Theme } from '@mui/material';
 import { typeAciton, pustAction } from "component/MethodCommon"
 import { makeStyles } from '@mui/styles';
-interface PaginationRoom<T> {
+interface PaginationRoomIF<T> {
     state: T,
     dispatch: (params: any) => void
 }
@@ -18,7 +18,7 @@ const styleComponent = makeStyles((theme: Theme) => {
     )
 })
 
-const PaginationRoom: React.FC<PaginationRoom<any>> = ({ state, dispatch, ...props }) => {
+const PaginationRoom: React.FC<PaginationRoomIF<any>> = ({ state, dispatch, ...props }) => {
     const getPage = Math.ceil(state.Pagination.rows / state.Pagination._limit);
     const makeStyle = styleComponent()
     const movePage = (event: Event | any, page: number) => {

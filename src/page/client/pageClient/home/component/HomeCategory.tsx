@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react'
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import categoryApi from '../../../../../api/categoryApi';
 import { Link } from 'react-router-dom';
+import topicApi from 'api/topicApi';
 
-interface HomeCategory<T> {
+interface HomeCategoryIF<T> {
     settings_category: object
 }
 interface CategoryIF {
@@ -15,12 +15,12 @@ interface CategoryIF {
     id_Topic: string,
 }
 
-const HomeCategory: React.FC<HomeCategory<any>> = ({ ...props }) => {
+const HomeCategory: React.FC<HomeCategoryIF<any>> = ({ ...props }) => {
     const [categories, setCategories] = useState([]);
 
     useEffect(() => {
         const getCategories = async () => {
-            const { data } = await categoryApi.getAll({ _limit: 20 });
+            const { data } = await topicApi.getAll({ _limit: 20 });
             setCategories(data);
         }
         getCategories();

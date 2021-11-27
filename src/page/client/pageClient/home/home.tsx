@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { MdNavigateNext } from 'react-icons/md';
 import ChartMusic from './component/chartMusic';
-import { Link } from 'react-router-dom';
 import VerticalSlider from './component/VerticalSlider';
 import HomeCategory from './component/HomeCategory';
 import HomeSongComponent from './component/HomeSongComponent';
@@ -13,21 +12,21 @@ import playlistApi from 'api/playlistApi';
 import songApi from 'api/songApi';
 import { tranFormDataId } from "component/MethodCommon";
 import artistApi from 'api/ArtistApi';
-import { utimes } from 'fs';
+// import { utimes } from 'fs';
 
 
-interface Home<T> {
-    userState: any,
+interface HomeIF<T> {
+    userState: any | T,
 }
 
-const Home: React.FC<Home<any>> = ({ ...props }) => {
+const Home: React.FC<HomeIF<any>> = ({ ...props }) => {
     document.title = "Music Game";
     const [playlists, setPlaylists] = useState([]);
     const userState = useSelector<{ user: any }>(state => state.user) as formStateUser;
-    const [songs, setSongs] = useState([]);
+    // const [songs, setSongs] = useState([]);
     const [songsTransform, setSongsTransform] = useState([]);
     const [artists, setArtists] = useState([]);
-    const [stoggleModal, setstoggleModal] = useState<boolean>(false);
+    // const [stoggleModal, setstoggleModal] = useState<boolean>(false);
     const [isShowPLName, setIsShowPLName] = useState<Array<string>>([]);
 
     var settings_banner = {
@@ -85,7 +84,7 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
     const getSongs = async () => {
         const responseSong = await songApi.getAll({});
         const resSongsTransform = await tranFormDataId(responseSong.data);
-        setSongs(responseSong.data);
+        // setSongs(responseSong.data);
         setSongsTransform(resSongsTransform);
 
         const dataArtists = await artistApi.getAll({});
@@ -146,7 +145,7 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                 </div>
 
                 {playlists.length !== 0 && playlists.map((item: any) => {
-                    if(isShowPLName.filter(_ => _ == item._id).length !== 0) {
+                    if(isShowPLName.filter(_ => _ === item._id).length !== 0) {
                         return null
                     } ;
                     return (

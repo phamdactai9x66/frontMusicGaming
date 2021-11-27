@@ -4,7 +4,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import slideApi from '../../../../../api/slideApi';
 
-interface VerticalSlider<T> {
+interface VerticalSliderIF<T> {
     settings_banner: object
 }
 interface SlideIF {
@@ -15,7 +15,7 @@ interface SlideIF {
     id_Songs: string
 }
 
-const VerticalSlider: React.FC<VerticalSlider<any>> = ({...props}) => {
+const VerticalSlider: React.FC<VerticalSliderIF<any>> = ({...props}) => {
     const [sliders, setSliders] = useState([]);
 
     useEffect( () => {

@@ -8,10 +8,10 @@ import songPlaylistApi from "api/songPlaylistApi"
 import songApi from "api/songApi";
 
 
-interface PlaylistDetail<T> extends RouteComponentProps {
+interface PlaylistDetailIF<T> extends RouteComponentProps {
 
 }
-const PlaylistDetail: React.FC<PlaylistDetail<any>> = ({ match, history, ...props }) => {
+const PlaylistDetail: React.FC<PlaylistDetailIF<any>> = ({ match, history, ...props }) => {
     const [state, setstate] = useState({ display: true, data: [], dataSong: [] });
 
     useEffect(() => {

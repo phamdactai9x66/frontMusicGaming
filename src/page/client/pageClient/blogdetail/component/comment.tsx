@@ -4,11 +4,11 @@ import UseApi from "api/useApi";
 import { tranFormDataId, getDate } from "component/MethodCommon";
 import { Rating, Avatar } from "@mui/material";
 import dataStorage from "component/dataStorage";
-interface Comment<T> {
+interface CommentIF<T> {
     id_Blog: string
 }
 
-const Comment: React.FC<Comment<any>> = ({ id_Blog, ...props }) => {
+const Comment: React.FC<CommentIF<any>> = ({ id_Blog, ...props }) => {
     const [comment, setcomment] = useState({ display: true, data: [] });
     const [staticUser, setstaticUser] = useState<any>({});
     const [renderComment, setRenderComment] = useState(false);

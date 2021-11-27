@@ -13,11 +13,11 @@ import NameSongArtist from "component/nameSongArtist";
 import GetTimeAudio from "component/getTimeAudio";
 import { useDispatch } from "react-redux";
 import { playSong } from "redux/audio/actionAudio";
-interface ListLikeSong<T> {
+interface ListLikeSongIF<T> {
 
 }
 
-const ListLikeSong: React.FC<ListLikeSong<any>> = ({ ...props }) => {
+const ListLikeSong: React.FC<ListLikeSongIF<any>> = ({ ...props }) => {
     const [anchor, setAnchor] = useState(null);
     const [likeSong, setLikeSong] = useState({ display: true, data: [], dataSong: [] });
     const { user: { _id } } = useSelector<{ user: any }>(state => state.user) as formStateUser;

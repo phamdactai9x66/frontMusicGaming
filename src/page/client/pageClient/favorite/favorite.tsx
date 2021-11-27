@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import {Link} from "react-router-dom"
 import { AiOutlineCheck } from 'react-icons/ai';
 import { BiPlayCircle } from 'react-icons/bi';
@@ -11,11 +11,11 @@ import { FiPlayCircle } from 'react-icons/fi';
 import { HiOutlineDotsCircleHorizontal } from 'react-icons/hi';
 import { Select, MenuItem } from "@mui/material";
 
-interface Favorite<T> {
+interface FavoriteIF<T> {
 
 }
 
-const Favorite: React.FC<Favorite<any>> = ({ ...props }) => {
+const Favorite: React.FC<FavoriteIF<any>> = ({ ...props }) => {
     document.title = "Nhạc yêu thích - Music Game";
     return (
         <div className="container-yeuthich">

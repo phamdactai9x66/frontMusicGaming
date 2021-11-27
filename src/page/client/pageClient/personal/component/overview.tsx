@@ -6,7 +6,7 @@ import { Button } from '@mui/material'
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import Tabed from './tabed';
+// import Tabed from './tabed';
 import { BsFillPlayFill } from 'react-icons/bs';
 import { AiOutlineDownload, AiFillHeart, AiOutlineLink, AiOutlineCheck } from 'react-icons/ai';
 import { IoMdAdd } from 'react-icons/io';

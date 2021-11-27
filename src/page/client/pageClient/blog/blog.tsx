@@ -1,8 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react'
-import { Link } from "react-router-dom"
-import { ReactComponent as Right } from './right.svg'
-import { ReactComponent as Left } from './left.svg'
-import { BiCircle, BiSearch, BiUpload, BiUserCircle } from 'react-icons/bi';
+// import { ReactComponent as Right } from './right.svg'
+// import { ReactComponent as Left } from './left.svg'
+import { BiSearch } from 'react-icons/bi';
 import { Pagination } from '@mui/material'
 import ListBlog from './component/ListBlog';
 import ListCategoryBlog from './component/listCategoryBlog';
@@ -10,7 +9,7 @@ import PostNew from './component/PostNew';
 import './blog.scss'
 import { debounce } from '@material-ui/core';
 import blogApi from 'api/BlogApi';
-import { current } from '@reduxjs/toolkit';
+// import { current } from '@reduxjs/toolkit';
 
 
 interface blog<T> {
