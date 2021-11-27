@@ -80,7 +80,7 @@ const UpdateSlide: React.FC<UpdateSlide<any>> = ({ changePage, _id, ...props}) =
         <>
             <div className="admin-pageAdd">
                 <div className="text-name-add">
-                    <h3>Update thể loại</h3><br />
+                    <h3>Update slider</h3><br />
                 </div>
                 {alert.display && <Alert severity={alert.type as any} style={{ marginBottom: 5 }}>
                     {alert.message}

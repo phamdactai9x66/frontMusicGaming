@@ -118,11 +118,11 @@ const Signin: React.FC<Signin<any>> = ({ history, ...props }: any) => {
                 return (
                   <Form ref={form}>
                     {alertError.display &&
-                      <Alert severity={alertError.type} style={{ cursor: "pointer", marginBottom: 5 }}
+                      <div className='parent-alert'><Alert severity={alertError.type} style={{ cursor: "pointer", marginBottom: 5 }}
                         onClick={() => {
                           setalertError((value: any) => ({ ...value, display: null }))
                         }}
-                      >{alertError.message}</Alert>
+                      >{alertError.message}</Alert></div>
                     }
 
                     {renderForm<number>(step.displayForm, formik)}
