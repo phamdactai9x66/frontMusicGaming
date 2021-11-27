@@ -1,24 +1,17 @@
 import React, { useCallback, useEffect, useState } from 'react'
-// import { ReactComponent as Right } from './right.svg'
-// import { ReactComponent as Left } from './left.svg'
 import { BiSearch } from 'react-icons/bi';
 import { Pagination } from '@mui/material'
-import ListBlog from './component/ListBlog';
-import ListCategoryBlog from './component/listCategoryBlog';
-import PostNew from './component/PostNew';
-import './blog.scss'
+import ListBlog from './../blog/component/ListBlog';
+import ListCategoryBlog from './../blog/component/listCategoryBlog';
+import PostNew from './../blog/component/PostNew';
+import './../blog/blog.scss'
 import { debounce } from '@material-ui/core';
 import blogApi from 'api/BlogApi';
 import { RouteComponentProps } from 'react-router-dom';
-// import { current } from '@reduxjs/toolkit';
 
 
 interface blog<T> extends RouteComponentProps {
 
-}
-interface CategoryBlogIF {
-    _id: string,
-    name: string,
 }
 
 const Blog: React.FC<blog<any>> = ({ match, ...props }) => {
@@ -31,8 +24,7 @@ const Blog: React.FC<blog<any>> = ({ match, ...props }) => {
         loading: true,
         data: []
     });
-    const [allBlogs, setAllBlogs] = useState([]);
-    const [category, setCategory] = useState<any>(null);
+    const [allBlogs, setAllBlogs] = useState([])
 
     const searchDebounced = useCallback<any>(debounce( async (value: any) => {
         const { data } = await blogApi.getAll( {title: value} );
@@ -78,32 +70,6 @@ const Blog: React.FC<blog<any>> = ({ match, ...props }) => {
         }
         getBlog();
     }, []);
-
-    useEffect( () => {
-        if(category){
-            (async () => {
-                const responseGetAll = await blogApi.getAll({ id_CategoryBlog: category._id});
-                setAllBlogs(responseGetAll.data);
-
-                const counts = Math.ceil(responseGetAll.data.length / 7);
-                setCount(counts); 
-                
-                const newData = [...responseGetAll.data];
-                setBlog({
-                    loading: false,
-                    data: newData.splice(0, 7),
-                });
-            })()
-        }
-    }, [category]);
-
-    const handleCategory = ( item: CategoryBlogIF) => {
-        setCategory(item);
-        setBlog({
-            loading: true,
-            data: [],
-        });
-    }
     
     return (
         <>
@@ -111,7 +77,7 @@ const Blog: React.FC<blog<any>> = ({ match, ...props }) => {
         <div className="container-blog">
             <div className="title-blog grid-2">
                 <div className="text-title-blog">
-                    <h3 className="color-blog title_all" style={{fontSize:'1.3rem'}}>{category ? category.name : "Danh Sách Blog"}</h3>
+                    <h3 className="color-blog title_all" style={{fontSize:'1.3rem'}}>Danh Sách Blog</h3>
                 </div>
                 <div className="div-hr">
                     <hr />
@@ -128,7 +94,7 @@ const Blog: React.FC<blog<any>> = ({ match, ...props }) => {
                         <input placeholder="Tìm kiếm Blogs" onChange={(e) => handleSearch(e.target.value)} type="text" />
 
                     </div>
-                    <ListCategoryBlog handleCategory={handleCategory} />
+                    {/* <ListCategoryBlog /> */}
                     {/* <div className="box-2">
                         <h4 className="color"> Bình luận gần đây</h4>
                         <Link className="title-blog-name color" to="">Top 100 Bài Hát ...</Link>
