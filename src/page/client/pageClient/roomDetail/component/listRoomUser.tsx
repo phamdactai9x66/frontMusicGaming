@@ -51,7 +51,7 @@ const ListRoomUser: React.FC<ListRoomUserIF<any>> = ({ match, ...props }) => {
             }
         });
     }, [])
-    console.log('xin chao')
+    // console.log('xin chao')
 
     useEffect(() => {
         (async () => {
