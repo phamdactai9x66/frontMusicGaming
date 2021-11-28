@@ -11,11 +11,11 @@ import NameSongArtist from "component/nameSongArtist";
 import OptionAudio from "./optionAudio";
 import LikeSong from "./likeSong";
 
-interface Audio<T> {
-    audio?: any
+interface AudioIF<T> {
+    audio?: any | T
 }
 
-const Audio: React.FC<Audio<any>> = ({ audio: { audio: url, title, image, _id }, ...props }) => {
+const Audio: React.FC<AudioIF<any>> = ({ audio: { audio: url, title, image, _id }, ...props }) => {
     const state = useSelector<{ audio: any }>(state => state.audio) as formStateAudio;
     const dispatch = useDispatch();
     const [play, setPlay] = useState(false);
@@ -128,7 +128,7 @@ const Audio: React.FC<Audio<any>> = ({ audio: { audio: url, title, image, _id },
         <div className="footer">
             <audio ref={AudioPlay} src={url}></audio>
             <div className="author">
-                <img width={50} height={50} src={image} />
+                <img width={50} height={50} src={image} alt='' />
                 <div>
                     <h5>{title ? title : 'Shape of you'}</h5>
                     <NameSongArtist _id={_id} />

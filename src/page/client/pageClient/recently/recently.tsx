@@ -7,11 +7,11 @@ import { MenuItem } from "@mui/material";
 import { AiOutlineDownload, AiFillHeart } from 'react-icons/ai';
 import { IoMdAdd } from 'react-icons/io';
 import { Popover } from "@material-ui/core";
-interface Recently<T> {
+interface RecentlyIF<T> {
 
 }
 
-const Recently: React.FC<Recently<any>> = ({ ...props }) => {
+const Recently: React.FC<RecentlyIF<any>> = ({ ...props }) => {
     document.title = "Nghe gần đây - Music Game";
     const [anchor, setAnchor] = useState(null);
     const openPopover = (event: any) => {

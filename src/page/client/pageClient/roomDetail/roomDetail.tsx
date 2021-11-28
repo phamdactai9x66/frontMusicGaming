@@ -10,11 +10,12 @@ import roomSong from "api/roomSong";
 import { RouteComponentProps } from "react-router-dom";
 import songApi from "api/songApi";
 import { tranFormDataId } from "component/MethodCommon";
-import { playSong } from "redux/audio/actionAudio";
+// import { playSong } from "redux/audio/actionAudio";
 import ListRoomUser from "./component/listRoomUser";
 import roomUser from "api/roomUser";
 import { io } from "socket.io-client";
 import SearchSong from "./component/searchSong";
+
 interface RoomDetail<T> extends RouteComponentProps {
 }
 const server = "http://localhost:5000";

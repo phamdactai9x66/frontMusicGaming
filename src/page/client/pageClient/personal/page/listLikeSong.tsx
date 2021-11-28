@@ -1,14 +1,14 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { MdNavigateNext } from 'react-icons/md';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import ListLikeSongComponent from "../component/listLikeSong"
-interface ListLikeSong<T> {
+interface ListLikeSongIF<T> {
 
 }
 
-const ListLikeSong: React.FC<ListLikeSong<any>> = ({ ...props }) => {
-    const [page, setpage] = useState<string>("");
+const ListLikeSong: React.FC<ListLikeSongIF<any>> = ({ ...props }) => {
+    // const [page, setpage] = useState<string>("");
 
     return (
         <>

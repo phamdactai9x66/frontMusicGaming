@@ -3,11 +3,11 @@ import blogDetailApi from "api/blogDetailApi";
 import { HandleGet } from "component/MethodCommon";
 import { variableCommon } from "component/variableCommon";
 
-interface DetailBlog<T> {
+interface DetailBlogIF<T> {
     id_Blog: string
 }
 
-const DetailBlog: React.FC<DetailBlog<any>> = ({ id_Blog, ...props }) => {
+const DetailBlog: React.FC<DetailBlogIF<any>> = ({ id_Blog, ...props }) => {
     const [detailBlog, setdetailBlog] = useState({ display: true, data: [] });
 
     useEffect(() => {

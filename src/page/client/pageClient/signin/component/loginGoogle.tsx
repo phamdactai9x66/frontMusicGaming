@@ -1,7 +1,7 @@
 import React from 'react'
 import useApi from '../../../../../api/useApi';
 import { GoogleLogin } from 'react-google-login';
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { saveInfo } from "../../../../../redux/user/actionUser";
 import { RouteComponentProps, withRouter } from "react-router-dom";
 interface LoginGoogle<T> extends RouteComponentProps {

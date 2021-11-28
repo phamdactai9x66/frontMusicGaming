@@ -1,14 +1,17 @@
 import React from 'react'
-import { MenuItem, Stack, Button, Snackbar, Alert } from "@mui/material";
+import { MenuItem } from "@mui/material";
 import { BiMusic } from 'react-icons/bi';
 import { formStateAudio } from 'redux/audio/stateAudio';
 import { variableCommon } from "component/variableCommon"
-import songPlaylistApi from "api/songPlaylistApi"; interface ListPlaylistUser<T> {
+import songPlaylistApi from "api/songPlaylistApi"; 
+
+
+interface ListPlaylistUserIF<T> {
     listPlaylistUser: { display: boolean, data: any[] },
     stateAudio: formStateAudio
 }
 
-const ListPlaylistUser: React.FC<ListPlaylistUser<any>> = ({ listPlaylistUser, stateAudio, ...props }) => {
+const ListPlaylistUser: React.FC<ListPlaylistUserIF<any>> = ({ listPlaylistUser, stateAudio, ...props }) => {
 
     const pushToPlaylist = async <T extends string>(_id: T): Promise<void> => {
         const addForm = new FormData();

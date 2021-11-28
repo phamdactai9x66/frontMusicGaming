@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef } from 'react'
 import LoginFacebook from './component/loginFacebook';
 import LoginGoogle from './component/loginGoogle';
 import { Formik, Form, FormikContextType } from "formik";
@@ -13,12 +13,12 @@ import { useDispatch } from "react-redux";
 import CryptoJS from "crypto-js"
 import { variableCommon } from "component/variableCommon"
 
-interface Signin<T> extends RouteComponentProps {
+interface SigninIF<T> extends RouteComponentProps {
 
 }
 
 
-const Signin: React.FC<Signin<any>> = ({ history, ...props }: any) => {
+const Signin: React.FC<SigninIF<any>> = ({ history, ...props }: any) => {
   const [step, setStep] = useState({
     displayForm: 0,
     addStyle: {
@@ -118,11 +118,11 @@ const Signin: React.FC<Signin<any>> = ({ history, ...props }: any) => {
                 return (
                   <Form ref={form}>
                     {alertError.display &&
-                      <Alert severity={alertError.type} style={{ cursor: "pointer", marginBottom: 5 }}
+                      <div className='parent-alert'><Alert severity={alertError.type} style={{ cursor: "pointer", marginBottom: 5 }}
                         onClick={() => {
                           setalertError((value: any) => ({ ...value, display: null }))
                         }}
-                      >{alertError.message}</Alert>
+                      >{alertError.message}</Alert></div>
                     }
 
                     {renderForm<number>(step.displayForm, formik)}

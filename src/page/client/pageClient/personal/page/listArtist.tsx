@@ -1,15 +1,15 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { MdNavigateNext } from 'react-icons/md';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { AiOutlineCheck } from 'react-icons/ai';
-import { BiPlayCircle, BiHeart } from 'react-icons/bi';
-import { Select, MenuItem, Button, Popover } from "@mui/material"
+import { BiPlayCircle } from 'react-icons/bi';
+import { Button } from "@mui/material"
 
-interface ListArtist<T> {
+interface ListArtistIF<T> {
 
 }
-const ListArtist: React.FC<ListArtist<any>> = ({ ...props }) => {
+const ListArtist: React.FC<ListArtistIF<any>> = ({ ...props }) => {
     return (
         <>
             <div className="main3">

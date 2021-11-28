@@ -9,22 +9,22 @@ interface CategoryIF<T> {
 }
 
 const Category: React.FC<CategoryIF<any>> = ({ ...props }) => {
-  document.title = "Thể loại - Music Game"
+  document.title = "subpage - Music Game"
   const [handle, setHandle] = useState({ data: { dataTopic: [], dataCate: [] }, display: true })
 
-  useEffect(() => {
-    (async () => {
-      if (!handle.display) return;
-      const [data, error] = await HandleGet<Function>(topicApi.getAll, {});
-      const [dataCate, errorCate] = await HandleGet<Function>(categoryApi.getAll, {});
-      if (error || data.status === variableCommon.statusF || dataCate.status === variableCommon.statusF) return
+  // useEffect(() => {
+  //   (async () => {
+  //     if (!handle.display) return;
+  //     const [data, error] = await HandleGet<Function>(topicApi.getAll, {});
+  //     const [dataCate, errorCate] = await HandleGet<Function>(categoryApi.getAll, {});
+  //     if (error || data.status === variableCommon.statusF || dataCate.status === variableCommon.statusF) return
 
-      setHandle({ data: { dataTopic: data?.data, dataCate: dataCate?.data }, display: true })
-    })()
-    return () => {
-      return setHandle(value => ({ ...value, display: false }));
-    }
-  }, [])
+  //     setHandle({ data: { dataTopic: data?.data, dataCate: dataCate?.data }, display: true })
+  //   })()
+  //   return () => {
+  //     return setHandle(value => ({ ...value, display: false }));
+  //   }
+  // }, [])
   const subCategory = (subCategory: any[], id_Topic: string): JSX.Element => {
     // console.log(subCategory);
     console.log(id_Topic)
@@ -33,16 +33,16 @@ const Category: React.FC<CategoryIF<any>> = ({ ...props }) => {
         {subCategory.map((current: any, index: number) => {
           return (
             <Link to={{
-              pathname: '/category/SubCategory',
-              search: `?idTopic=${id_Topic}&id_subCate=${current?._id}`
             }} key={index}>
+                {/* pathname: '/category/SubCategory',
+              search: `?idTopic=${id_Topic}&id_subCate=${current?._id}` */}
               <div className="box">
                 <figure>
-                  <img src={current?.image} alt="" />
+                  <img src={'https://cdn.tgdd.vn/2020/08/content/1-640x360-640x360.jpg'} alt="" />
                 </figure>
                 <div className="icon-box_category">
                   <div>
-                    <h6 className="icon">{current?.name}</h6>
+                    <h6 className="icon">tên subpage</h6>
                   </div>
                 </div>
               </div>
@@ -68,7 +68,8 @@ const Category: React.FC<CategoryIF<any>> = ({ ...props }) => {
                   <h4 className="title_all">{current?.name}</h4>
                 </div>
                 <div className="box-grid-category" key={index}>
-                  {subCategory(listCate, current._id)}
+                  {/* {subCategory(listCate, current._id)} */}
+                  title
                 </div>
               </div>
             )

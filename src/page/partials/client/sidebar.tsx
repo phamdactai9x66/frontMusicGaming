@@ -1,9 +1,9 @@
 
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { BsMusicNoteBeamed, BsListUl } from 'react-icons/bs';
 import { FaBlogger, FaChartPie } from 'react-icons/fa';
 import { RiFolderMusicFill } from 'react-icons/ri';
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { BsPlusCircle } from 'react-icons/bs';
 import { RiGroupFill } from 'react-icons/ri';
 import { BiPlayCircle, BiTimeFive } from 'react-icons/bi';
@@ -13,11 +13,11 @@ import { useSelector } from 'react-redux';
 import { formStateUser } from 'redux/user/stateUser';
 import Notification from 'page/notificationModal/NotificationModal';
 
-interface Sidebar<T> {
+interface SidebarIF<T> {
 
 }
 
-const Sidebar: React.FC<Sidebar<any>> = ({ ...props }) => {
+const Sidebar: React.FC<SidebarIF<any>> = ({ ...props }) => {
   const userState = useSelector<{ user: any }>(state => state.user) as formStateUser;
   const [isLogin, setIsLogin] = useState({
     status: false,

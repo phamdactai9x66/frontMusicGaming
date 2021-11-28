@@ -1,21 +1,21 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { IoMdAdd } from 'react-icons/io';
 import { BsFillPlayFill } from 'react-icons/bs';
-import { AiOutlineDownload, AiOutlineLink, AiFillHeart } from 'react-icons/ai';
-import { BiHeart, BiMusic } from 'react-icons/bi';
+import { AiOutlineDownload, AiFillHeart } from 'react-icons/ai';
+import { BiMusic } from 'react-icons/bi';
 import { Popover } from "@material-ui/core";
-import { Select, MenuItem } from "@mui/material";
+import { MenuItem } from "@mui/material";
 import NameSongArtist from "component/nameSongArtist";
 import GetTimeAudio from "component/getTimeAudio"
 import { useDispatch } from "react-redux";
 import { playSong } from "redux/audio/actionAudio";
-interface ListMusicDetail<T> {
-    current: any,
+interface ListMusicDetailIF<T> {
+    current: any | T,
     index: number,
     listIdSong: any
 }
 
-const ListMusicDetail: React.FC<ListMusicDetail<any>> = ({ current, index, listIdSong, ...props }) => {
+const ListMusicDetail: React.FC<ListMusicDetailIF<any>> = ({ current, index, listIdSong, ...props }) => {
     const [anchor, setAnchor] = useState(null);
     const dispatch = useDispatch()
     const openPopover = (event: any) => {

@@ -6,10 +6,10 @@ import { useSelector } from "react-redux";
 import { formStateUser } from 'redux/user/stateUser';
 import { HandleGet, tranFormDataId } from "component/MethodCommon";
 import Slide from "./slideSong"
-interface LikeSong<T> {
+interface LikeSongIF<T> {
 
 }
-const LikeSong: React.FC<LikeSong<any>> = ({ ...props }) => {
+const LikeSong: React.FC<LikeSongIF<any>> = ({ ...props }) => {
     const [likeSong, setLikeSong] = useState({ display: true, data: [], dataSong: [] });
     const { user: { _id } } = useSelector<{ user: any }>(state => state.user) as formStateUser;
     useEffect(() => {

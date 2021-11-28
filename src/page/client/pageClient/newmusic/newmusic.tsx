@@ -1,53 +1,47 @@
-import React, { useEffect,useState } from 'react'
-import {Link} from "react-router-dom"
+import React from 'react'
+// import {Link} from "react-router-dom"
 import {ReactComponent as Play} from './play.svg'
-import { AiOutlineDownload, AiFillHeart } from 'react-icons/ai';
-import { IoMdAdd } from 'react-icons/io';
-import {  MenuItem } from "@mui/material"
-import { BiMusic } from 'react-icons/bi';
-import { Popover } from "@material-ui/core";
-import artistApi from 'api/ArtistApi';
-import songApi from 'api/songApi';
-import { tranFormDataId } from "component/MethodCommon";
+// import artistApi from 'api/ArtistApi';
+// import songApi from 'api/songApi';
+// import { tranFormDataId } from "component/MethodCommon";
 import ListMusicNew from "./component/listSongNew";
 import { useSelector } from 'react-redux';
-import { MdNavigateNext } from 'react-icons/md';
 import { formStateUser } from 'redux/user/stateUser';
 
-interface Newmusic<T> {
-    userState: any,
+interface NewmusicIF<T> {
+    userState: any | T,
 }
 
-const Newmusic: React.FC<Newmusic<any>> = ({ ...props }) => {
+const Newmusic: React.FC<NewmusicIF<any>> = ({ ...props }) => {
     document.title = "Nhạc mới - Music Game";
-    const [songs, setSongs] = useState([]);
-    const [songsTransform, setSongsTransform] = useState([]);
-    const [artists, setArtists] = useState([]);
+    // const [songs, setSongs] = useState([]);
+    // const [songsTransform, setSongsTransform] = useState([]);
+    // const [artists, setArtists] = useState([]);
     const userState = useSelector<{ user: any }>(state => state.user) as formStateUser;
 
 
-    const [anchor, setAnchor] = useState(null);
-    const openPopover = (event: any) => {
-        setAnchor(event.currentTarget);
-    };
-    const [anchor2, setAnchor2] = useState(null);
-    const openPopover2 = (event: any) => {
-        setAnchor2(event.currentTarget);
-    };
+    // const [anchor, setAnchor] = useState(null);
+    // const openPopover = (event: any) => {
+    //     setAnchor(event.currentTarget);
+    // };
+    // const [anchor2, setAnchor2] = useState(null);
+    // const openPopover2 = (event: any) => {
+    //     setAnchor2(event.currentTarget);
+    // };
 
-    const getSongs = async () => {
-        const responseSong = await songApi.getAll({});
-        const resSongsTransform = await tranFormDataId(responseSong.data);
-        setSongs(responseSong.data);
-        setSongsTransform(resSongsTransform);
+    // const getSongs = async () => {
+    //     const responseSong = await songApi.getAll({});
+    //     const resSongsTransform = await tranFormDataId(responseSong.data);
+    //     setSongs(responseSong.data);
+    //     setSongsTransform(resSongsTransform);
 
-        const dataArtists = await artistApi.getAll({});
-        setArtists(dataArtists.data);
-    }
+    //     const dataArtists = await artistApi.getAll({});
+    //     setArtists(dataArtists.data);
+    // }
 
-    useEffect(() => {
-        getSongs();
-    }, []);
+    // useEffect(() => {
+    //     getSongs();
+    // }, []);
 
     return (
         <div className="container-nhacmoi">

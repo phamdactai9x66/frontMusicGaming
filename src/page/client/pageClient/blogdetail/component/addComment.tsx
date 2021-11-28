@@ -10,7 +10,7 @@ import dataStorage from "component/dataStorage";
 const validateFOrm = Yup.object().shape({
     comment: Yup.string().required()
 })
-interface AddComment<T> {
+interface AddCommentIF<T> {
     idBlog: string
 
 }
@@ -18,7 +18,7 @@ const fieldForm = {
     comment: ''
 }
 
-const AddComment: React.FC<AddComment<any>> = ({ idBlog, ...props }) => {
+const AddComment: React.FC<AddCommentIF<any>> = ({ idBlog, ...props }) => {
     const [selectRating, setselectRating] = useState(5);
     const { user, token } = useSelector<{ user: any }>(state => state.user) as formStateUser;
     const chooseStar = (event: Event | any, star: number | any) => {

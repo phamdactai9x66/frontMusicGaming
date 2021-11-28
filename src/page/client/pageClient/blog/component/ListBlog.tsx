@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { getDate } from "component/MethodCommon"
+import { CircularProgress } from '@mui/material';
 
 
 interface ListBlogComponent<T> {
-    searchRecommendResults: Array<any>,
-    blog: Array<any>,
+    // searchRecommendResults: Array<any | T>,
+    blog: any | T,
 }
 const ListBlog: React.FC<ListBlogComponent<any>> = (props) => {
     ///
@@ -13,8 +14,15 @@ const ListBlog: React.FC<ListBlogComponent<any>> = (props) => {
     return (
         <>
             {
-                (props.searchRecommendResults.length === 0 ? props.blog : props.searchRecommendResults).map((item: any, index) => {
-                    return (
+                props.blog.loading && <div className="w-100 d-flex top-0" style={{ left:"0px", zIndex:10, height: '28rem'}}>
+                    <div className="mx-auto my-auto" >
+                        <CircularProgress size={40} sx={{ color: "#00e5ce"}} />
+                    </div>
+                </div>
+            }
+            {
+                props.blog.data.map((item: any, index: number) => (
+                    // (props.searchRecommendResults.length === 0 ? props.blog.data : props.searchRecommendResults).map((item: any, index: number) => (
                         <>
 
                             <div className="box_blog " key={index}>
@@ -39,7 +47,7 @@ const ListBlog: React.FC<ListBlogComponent<any>> = (props) => {
                             </div>
                         </>
                     )
-                })
+                )
             }
         </>
 

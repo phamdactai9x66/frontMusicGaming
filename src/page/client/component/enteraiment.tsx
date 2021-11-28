@@ -1,12 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react'
 import Audio from './audio';
 import { useSelector, useDispatch } from "react-redux";
-import { renderSong, playSong, pauseSongRealTime } from "redux/audio/actionAudio";
+import { renderSong, playSong } from "redux/audio/actionAudio";
 import { formStateAudio } from "redux/audio/stateAudio";
 import { pausePlaying } from "redux/audio/actionAudio";
-import { io } from "socket.io-client";
 import roomUser from "api/roomUser";
 import { formStateUser } from 'redux/user/stateUser';
+import { io } from 'socket.io-client';
 interface Enteraiment<T> {
 
 }

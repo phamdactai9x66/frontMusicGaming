@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { handleNameArtist } from 'page/client/common/handleName';
 
 interface ArtistComponentIF<T> {
@@ -16,7 +16,7 @@ interface ItemArtistIF<T>{
 const ArtistComponent: React.FC<ArtistComponentIF<any>> = (props) => {
 
     const artistsTransform = props.artists.slice(0, 20);
-    console.log('artist tran: ', artistsTransform)
+    
     return (
         <div className='limit-items'>
             <h4 className="title_all mb-4 " >Nhạc sĩ</h4>

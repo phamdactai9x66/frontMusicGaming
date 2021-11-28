@@ -1,88 +1,71 @@
 import { Link } from 'react-router-dom'
-import React, { useCallback, useState } from "react";
-import { FaBlogger, FaMusic, FaUsers } from 'react-icons/fa';
-import { MdLibraryMusic } from 'react-icons/md';
+import React, { useCallback, useState, useEffect } from "react";
+import songApi from '../../../../api/songApi'
+import playlistApi from '../../../../api/playlistApi'
+import userApi from '../../../../api/useApi'
+import BlogApi from '../../../../api/BlogApi'
 import ChartMusicHot from './component/chartMusicHot';
 import ChartUser from './component/chartUser';
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
+import StatisticalLength from './component/statisticalLength';
 
 interface Home<T> {
 
 }
 
 const Home: React.FC<Home<any>> = ({ ...props }) => {
+  const [song, setSong] = useState(0);
+  const [playlist, setPlaylist] = useState(0);
+  const [user, setUser] = useState<any[]>([]);
+  const [blog, setBlog] = useState(0);
+  const [admin, setAdmin] = useState<any[]>([]);
+  const [member, setMember] = useState<any[]>([]);
+  const [viewer, setViewer] = useState<any[]>([]);
+
+  const getSong = async () => {
+    const song = await songApi.getAll({}); 
+
+    setSong(song.data.length)
+  }
+
+  const getPlaylist = async () => {
+    const playlist = await playlistApi.getAll({}); 
+    
+    setPlaylist(playlist.data.length)
+  }
+
+  const getUser = async () => {
+    const { data } = await userApi.getAll({}); 
+    setUser(data)
+
+    const admin = data.filter((item:any) => item.role == 1)
+    const member = data.filter((item:any) => item.role == 0)
+    const viewer = data.filter((item:any) => item.role == 3)
+
+    setAdmin(admin)
+    setMember(member)
+    setViewer(viewer)
+  }
+
+  const getBlog = async () => {
+    const blog = await BlogApi.getAll({}); 
+
+    setBlog(blog.data.length)
+  }
+
+  useEffect(() => {
+    getPlaylist();
+    getSong();
+    getUser();
+    getBlog();
+  }, []);
 
   return (
     <>
       <div className="home-page">
         <section>
           <h3 className="Dashboarh">Dashboard</h3>
-          <div className="home-top">
-            <div className="box-bb bg-box-1 box-margin">
-              <Link to="#">
-                <div className="grid-db-filter">
-                  <div className="show-text">
-                    <h3>150</h3>
-                    <p>Music</p>
-                  </div>
-                  <div className="icon-music">
-                    <FaMusic style={{ fontSize: "4rem", color: "rgb(45 45 45 / 62%)", transform: "rotate(-0deg)" }} />
-                  </div>
-                </div>
-                <div className="more-info bg-more-info1">
-                  <p>more info <i className="fas fa-chevron-circle-right" /></p>
-                </div>
-              </Link>
-            </div>
-            <div className="box-bb bg-box-2 ">
-              <Link to="#">
-                <div className="grid-db-filter">
-                  <div className="show-text">
-                    <h3>50</h3>
-                    <p>Play lists</p>
-                  </div>
-                  <div className="icon-music">
-                    <MdLibraryMusic style={{ fontSize: "4rem", color: "rgb(45 45 45 / 62%)", transform: "rotate(-0deg)" }} />
-                  </div>
-                </div>
-                <div className="more-info bg-more-info2">
-                  <p>more info <i className="fas fa-chevron-circle-right" /></p>
-                </div>
-              </Link>
-            </div>
-            <div className="box-bb bg-box-3">
-              <Link to="#">
-                <div className="grid-db-filter">
-                  <div className="show-text">
-                    <h3>150</h3>
-                    <p>Users</p>
-                  </div>
-                  <div className="icon-music">
-                    <FaUsers style={{ fontSize: "4rem", color: "rgb(45 45 45 / 62%)", transform: "rotate(-0deg)" }} />
-                  </div>
-                </div>
-                <div className="more-info bg-more-info3">
-                  <p>more info <i className="fas fa-chevron-circle-right" /></p>
-                </div>
-              </Link>
-            </div>
-            <div className="box-bb bg-box-4">
-              <Link to="#">
-                <div className="grid-db-filter">
-                  <div className="show-text">
-                    <h3>150</h3>
-                    <p>Blog</p>
-                  </div>
-                  <div className="icon-music">
-                    <FaBlogger style={{ fontSize: "4rem", color: "rgb(45 45 45 / 62%)", transform: "rotate(-0deg)" }} />
-                  </div>
-                </div>
-                <div className="more-info bg-more-info4">
-                  <p>more info <i className="fas fa-chevron-circle-right" /></p>
-                </div>
-              </Link>
-            </div>
-          </div>
+<StatisticalLength/>
         </section>
         <section>
           <div className="grid-main-2">
@@ -446,34 +429,15 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                        <th scope="row">1</th>
-                          <td>admin</td>
-                          <td>22</td>
-                          <td>tudeptrai</td>
-                          <td>tudeptrai</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">1</th>
-                          <td>admin</td>
-                          <td>22</td>
-                          <td>tudeptrai</td>
-                          <td>tudeptrai</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">1</th>
-                          <td>admin</td>
-                          <td>22</td>
-                          <td>tudeptrai</td>
-                          <td>tudeptrai</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">1</th>
-                          <td>admin</td>
-                          <td>22</td>
-                          <td>tudeptrai</td>
-                          <td>tudeptrai</td>
-                        </tr>
+                        {admin.map((item,index) => {
+                          return <tr key={index}>
+                                  <th scope="row">{index+1}</th>
+                                  <td>{item.first_name}{item.last_name}</td>
+                                  <td>{item.first_name}{item.last_name}</td>
+                                  <td>{item.first_name}{item.last_name}</td>
+                                  <td>{item.address}</td>
+                                </tr>
+                        })}
                       </tbody>
                     </table>
                   </TabPanel>
@@ -489,34 +453,15 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <th scope="row">1</th>
-                          <td>member</td>
-                          <td>22</td>
-                          <td>tudeptrai</td>
-                          <td>tudeptrai</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">1</th>
-                          <td>member</td>
-                          <td>22</td>
-                          <td>tudeptrai</td>
-                          <td>tudeptrai</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">1</th>
-                          <td>member</td>
-                          <td>22</td>
-                          <td>tudeptrai</td>
-                          <td>tudeptrai</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">1</th>
-                          <td>member</td>
-                          <td>22</td>
-                          <td>tudeptrai</td>
-                          <td>tudeptrai</td>
-                        </tr>
+                      {member.map((item,index) => {
+                          return <tr key={index}>
+                                  <th scope="row">{index+1}</th>
+                                  <td>{item.first_name}{item.last_name}</td>
+                                  <td>{item.first_name}{item.last_name}</td>
+                                  <td>{item.first_name}{item.last_name}</td>
+                                  <td>{item.address}</td>
+                                </tr>
+                        })}
                       </tbody>
                     </table>
                   </TabPanel>
@@ -532,34 +477,15 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <th scope="row">1</th>
-                          <td>viewer</td>
-                          <td>22</td>
-                          <td>tudeptrai</td>
-                          <td>tudeptrai</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">1</th>
-                          <td>viewer</td>
-                          <td>22</td>
-                          <td>tudeptrai</td>
-                          <td>tudeptrai</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">1</th>
-                          <td>viewer</td>
-                          <td>22</td>
-                          <td>tudeptrai</td>
-                          <td>tudeptrai</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">1</th>
-                          <td>viewer</td>
-                          <td>22</td>
-                          <td>tudeptrai</td>
-                          <td>tudeptrai</td>
-                        </tr>
+                      {viewer.map((item,index) => {
+                          return <tr key={index}>
+                                  <th scope="row">{index+1}</th>
+                                  <td>{item.first_name}{item.last_name}</td>
+                                  <td>{item.first_name}{item.last_name}</td>
+                                  <td>{item.first_name}{item.last_name}</td>
+                                  <td>{item.address}</td>
+                                </tr>
+                        })}
                       </tbody>
                     </table>
                   </TabPanel>
