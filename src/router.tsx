@@ -40,7 +40,7 @@ import Search from "./page/client/pageClient/search/search";
 import ListenTogether from "./page/client/pageClient/listenTogether/listenTogether";
 import Personal from "./page/client/pageClient/personal/index"
 import RoomDetail from "./page/client/pageClient/roomDetail/roomDetail";
-
+import Subpage from "page/client/pageClient/subpage/subpage";
 
 
 export interface propertyPage {
@@ -174,6 +174,11 @@ const Client: propertyPage[] = [
     {
         path: "/listenTogether",
         component: ListenTogether,
+        exact: false
+    },
+    {
+        path: "/subpage",
+        component: Subpage,
         exact: false
     },
     {
