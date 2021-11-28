@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import { BiPlayCircle } from 'react-icons/bi';
 import ChartMusicTrending from './chartMusicTrending';
 import { AiOutlineDownload, AiFillHeart } from 'react-icons/ai';
@@ -6,10 +6,10 @@ import { IoMdAdd } from 'react-icons/io';
 import {  MenuItem } from "@mui/material"
 import { BiMusic } from 'react-icons/bi';
 import { Popover } from "@material-ui/core";
-
 interface chart<T> {
 
 }
+
 const Chart: React.FC<chart<any>> = ({ ...props }) => {
     document.title = "Music Chart - Music Game";
     const [anchor, setAnchor] = useState(null);
@@ -20,6 +20,7 @@ const Chart: React.FC<chart<any>> = ({ ...props }) => {
     const openPopover2 = (event: any) => {
         setAnchor2(event.currentTarget);
     };
+
     return (
         <>
             <div className="container-chart">
@@ -57,6 +58,7 @@ const Chart: React.FC<chart<any>> = ({ ...props }) => {
                         vertical: "bottom",
                         horizontal: "right",
                     }}
+                   
                     onClose={() => setAnchor(null)}
                 >
                     <div style={{ background: "#101929", margin: "", color: "#fff", width: "13rem" }}>
@@ -103,6 +105,7 @@ const Chart: React.FC<chart<any>> = ({ ...props }) => {
                     </div>
                 </div>
             </div>
+
         </>
     )
 }

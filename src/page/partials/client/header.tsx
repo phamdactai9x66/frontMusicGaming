@@ -5,8 +5,6 @@ import { MenuItem } from "@mui/material";
 import { Link, RouteChildrenProps, withRouter } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { formStateUser } from "redux/user/stateUser";
-import Topic from "./component/topic/topic";
-import Upload from "./component/upload/upload";
 import { Logout } from "redux/user/actionUser";
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import SearchIcon from '@material-ui/icons/Search';
@@ -245,7 +243,7 @@ const HeaderClient: React.FC<HeaderClientIF> = ({ ...props }) => {
             open={isMobileMenuOpen}
             onClose={handleMobileMenuClose}
         >
-            <MenuItem>
+            {/* <MenuItem>
                 <IconButton aria-label="show 4 new mails" color="inherit">
                     <Upload />
                 </IconButton>
@@ -259,7 +257,7 @@ const HeaderClient: React.FC<HeaderClientIF> = ({ ...props }) => {
                     <Topic />
                 </IconButton>
                 <div>Đề tài</div>
-            </MenuItem>
+            </MenuItem> */}
             <MenuItem onClick={handleProfileMenuOpen}>
                 <IconButton
                     aria-label="account of current user"
@@ -412,7 +410,7 @@ const HeaderClient: React.FC<HeaderClientIF> = ({ ...props }) => {
                     </div>
                     <div className={classes.grow} />
                     <div className={classes.sectionDesktop}>
-                        <IconButton
+                        {/* <IconButton
                             aria-label="show 4 new mails"
                             color="inherit"
                         >
@@ -423,7 +421,7 @@ const HeaderClient: React.FC<HeaderClientIF> = ({ ...props }) => {
                             color="inherit"
                         >
                             <Topic />
-                        </IconButton>
+                        </IconButton> */}
                         <IconButton
                             edge="end"
                             aria-label="account of current user"
