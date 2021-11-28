@@ -68,7 +68,7 @@ const ListRoomUser: React.FC<ListRoomUserIF<any>> = ({ match, ...props }) => {
             if (error || data.status === variableCommon.statusF) return;
             setTimeout(() => {
                 setUserRoom({ display: true, data: data.data })
-            }, 1000);
+            }, 1500);
         })()
         return () => {
             // setUserRoom(value => ({ ...value, display: false }))
