@@ -50,7 +50,7 @@ const SearchSongs: React.FC<SearchSongs<any>> = ({ addSongToRoom, ...props }) =>
             <div className="search_music">
                 <i className="fa fa-search" aria-hidden="true"></i>
                 <input type="text" placeholder="Search..." value={inputSearch} onChange={searchSong} />
-                <ul className="results1" >
+                <ul className="results" >
                     <List >
                         {findSong()}
                     </List>
