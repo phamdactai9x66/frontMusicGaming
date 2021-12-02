@@ -41,6 +41,7 @@ import Search from "./page/client/pageClient/search/search";
 import ListenTogether from "./page/client/pageClient/listenTogether/listenTogether";
 import Personal from "./page/client/pageClient/personal/index"
 import RoomDetail from "./page/client/pageClient/roomDetail/roomDetail";
+import SubCategory from "page/client/pageClient/subpage/subpage";
 import Subpage from "page/client/pageClient/subpage/subpage";
 import ArtistDetail from "page/client/pageClient/artistDetail/artistDetail";
 
@@ -184,8 +185,13 @@ const Client: propertyPage[] = [
         exact: false
     },
     {
-        path: "/subpage",
-        component: Subpage,
+        path: "/profile",
+        component: Profile,
+        exact: false
+    },
+    {
+        path: "/subCategory",
+        component: SubCategory,
         exact: false
     },
     {
