@@ -41,6 +41,7 @@ import ListenTogether from "./page/client/pageClient/listenTogether/listenTogeth
 import Personal from "./page/client/pageClient/personal/index"
 import RoomDetail from "./page/client/pageClient/roomDetail/roomDetail";
 import Subpage from "page/client/pageClient/subpage/subpage";
+import ArtistDetail from "page/client/pageClient/artistDetail/artistDetail";
 
 
 export interface propertyPage {
@@ -160,6 +161,11 @@ const Client: propertyPage[] = [
         path: "/",
         component: Home,
         exact: true
+    },
+    {
+        path: "/artistDetail/:id",
+        component: ArtistDetail,
+        exact: false
     },
     {
         path: "/search",
