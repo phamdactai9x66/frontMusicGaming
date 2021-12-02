@@ -6,6 +6,7 @@ import NotFoundAdmin from "./page/admin/pageAdmin/notFound/notFoundAdmin";
 import Toptrending from "./page/client/pageClient/toptrending/toptrending";
 import Favorite from "./page/client/pageClient/favorite/favorite";
 import Newmusic from "./page/client/pageClient/newmusic/newmusic";
+import PlayListClient from "./page/client/pageClient/playlist/playlist";
 import Blog from "./page/client/pageClient/blog/blog";
 import BlogDetail from "./page/client/pageClient/blogdetail/blogDetail";
 import PlaylistDetail from "./page/client/pageClient/playlistDetail/playlistDetail";
@@ -236,6 +237,11 @@ const Client: propertyPage[] = [
     {
         path: "/blogDetail/:idBlog",
         component: BlogDetail,
+        exact: false
+    },
+    {
+        path: "/playlist",
+        component: PlayListClient,
         exact: false
     },
     {
