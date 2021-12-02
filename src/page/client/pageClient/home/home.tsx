@@ -129,7 +129,7 @@ const Home: React.FC<HomeIF<any>> = ({ ...props }) => {
 
                 {/* category */}
                 <div className="list-slider">
-                    <h4 className="title_all">Thể loại <MdNavigateNext className="icon" /></h4>
+                    <h4 className="title_all">Chủ đề <MdNavigateNext className="icon" /></h4>
                     <HomeCategory settings_category={settings_category} />
 
                 </div>
