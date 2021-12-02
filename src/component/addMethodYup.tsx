@@ -1,6 +1,6 @@
 import * as Yup from "yup";
 import { variableCommon } from "component/variableCommon";
-const messageDefault: string = 'Không được để trống.';
+const messageDefault: string = 'Không được để trống field này.';
 const checkTypeFile: string = 'File không đúng định dạng.';
 const checkSizeFile: string = 'Kích thước File nhỏ hơn 16MB.';
 
@@ -9,6 +9,15 @@ Yup.addMethod(Yup.string, "checkRequire", function (message: string = messageDef
         if (typeof value === "string") value = value.trim();
         const { path, createError } = this
         if ([undefined, null, ''].includes(value)) return createError({ path, message })
+
+        return true;
+    })
+})
+Yup.addMethod(Yup.number, "checkRequire", function (message: string = messageDefault) {
+    return this.test("checkRequire", message, function (value, field) {
+        // if (typeof value === "number") value = value;
+        const { path, createError } = this
+        if ([undefined, null, '', 0].includes(value)) return createError({ path, message })
 
         return true;
     })
@@ -50,7 +59,7 @@ declare module "yup" {
         checkRequire(): StringSchema;
     }
     interface NumberSchema {
-        // checkFile(): NumberSchema
+        checkRequire(): NumberSchema
     }
 }
 

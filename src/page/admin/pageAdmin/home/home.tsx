@@ -23,24 +23,24 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
   const [viewer, setViewer] = useState<any[]>([]);
 
   const getSong = async () => {
-    const song = await songApi.getAll({}); 
+    const song = await songApi.getAll({});
 
     setSong(song.data.length)
   }
 
   const getPlaylist = async () => {
-    const playlist = await playlistApi.getAll({}); 
-    
+    const playlist = await playlistApi.getAll({});
+
     setPlaylist(playlist.data.length)
   }
 
   const getUser = async () => {
-    const { data } = await userApi.getAll({}); 
+    const { data } = await userApi.getAll({});
     setUser(data)
 
-    const admin = data.filter((item:any) => item.role == 1)
-    const member = data.filter((item:any) => item.role == 0)
-    const viewer = data.filter((item:any) => item.role == 3)
+    const admin = data.filter((item: any) => item.role == 1)
+    const member = data.filter((item: any) => item.role == 0)
+    const viewer = data.filter((item: any) => item.role == 3)
 
     setAdmin(admin)
     setMember(member)
@@ -48,7 +48,7 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
   }
 
   const getBlog = async () => {
-    const blog = await BlogApi.getAll({}); 
+    const blog = await BlogApi.getAll({});
 
     setBlog(blog.data.length)
   }
@@ -65,7 +65,7 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
       <div className="home-page">
         <section>
           <h3 className="Dashboarh">Dashboard</h3>
-<StatisticalLength/>
+          <StatisticalLength />
         </section>
         <section>
           <div className="grid-main-2">
@@ -111,14 +111,14 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                     <div>Name 3</div> <input className="checkbox_name" type="checkbox" />
                   </div>
                   <div style={{ display: "flex", justifyContent: "flex-end", marginTop: "1rem" }}>
-                <button className="btn" style={{
-                  background: "#37AFBF",
-                  padding: "0.4rem 1rem 0.4rem 1rem",
-                  borderRadius: "0.2rem",
-                  border: "none",
-                  color: "#fff"
-                }}>Check Pass</button>
-              </div>
+                    <button className="btn" style={{
+                      background: "#37AFBF",
+                      padding: "0.4rem 1rem 0.4rem 1rem",
+                      borderRadius: "0.2rem",
+                      border: "none",
+                      color: "#fff"
+                    }}>Check Pass</button>
+                  </div>
                 </div>
               </div>
               <div className="_tab">
@@ -146,14 +146,14 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                     <div>Name 3</div> <input className="checkbox_name" type="checkbox" />
                   </div>
                   <div style={{ display: "flex", justifyContent: "flex-end", marginTop: "1rem" }}>
-                <button className="btn" style={{
-                  background: "#37AFBF",
-                  padding: "0.4rem 1rem 0.4rem 1rem",
-                  borderRadius: "0.2rem",
-                  border: "none",
-                  color: "#fff"
-                }}>Check Pass</button>
-              </div>
+                    <button className="btn" style={{
+                      background: "#37AFBF",
+                      padding: "0.4rem 1rem 0.4rem 1rem",
+                      borderRadius: "0.2rem",
+                      border: "none",
+                      color: "#fff"
+                    }}>Check Pass</button>
+                  </div>
                 </div>
               </div>
               <div className="_tab">
@@ -181,14 +181,14 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                     <div>Name 3</div> <input className="checkbox_name" type="checkbox" />
                   </div>
                   <div style={{ display: "flex", justifyContent: "flex-end", marginTop: "1rem" }}>
-                <button className="btn" style={{
-                  background: "#37AFBF",
-                  padding: "0.4rem 1rem 0.4rem 1rem",
-                  borderRadius: "0.2rem",
-                  border: "none",
-                  color: "#fff"
-                }}>Check Pass</button>
-              </div>
+                    <button className="btn" style={{
+                      background: "#37AFBF",
+                      padding: "0.4rem 1rem 0.4rem 1rem",
+                      borderRadius: "0.2rem",
+                      border: "none",
+                      color: "#fff"
+                    }}>Check Pass</button>
+                  </div>
                 </div>
               </div>
               <div className="_tab">
@@ -216,14 +216,14 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                     <div>Name 3</div> <input className="checkbox_name" type="checkbox" />
                   </div>
                   <div style={{ display: "flex", justifyContent: "flex-end", marginTop: "1rem" }}>
-                <button className="btn" style={{
-                  background: "#37AFBF",
-                  padding: "0.4rem 1rem 0.4rem 1rem",
-                  borderRadius: "0.2rem",
-                  border: "none",
-                  color: "#fff"
-                }}>Check Pass</button>
-              </div>
+                    <button className="btn" style={{
+                      background: "#37AFBF",
+                      padding: "0.4rem 1rem 0.4rem 1rem",
+                      borderRadius: "0.2rem",
+                      border: "none",
+                      color: "#fff"
+                    }}>Check Pass</button>
+                  </div>
                 </div>
 
               </div>
@@ -252,14 +252,14 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                     <div>Name 3</div> <input className="checkbox_name" type="checkbox" />
                   </div>
                   <div style={{ display: "flex", justifyContent: "flex-end", marginTop: "1rem" }}>
-                <button className="btn" style={{
-                  background: "#37AFBF",
-                  padding: "0.4rem 1rem 0.4rem 1rem",
-                  borderRadius: "0.2rem",
-                  border: "none",
-                  color: "#fff"
-                }}>Check Pass</button>
-              </div>
+                    <button className="btn" style={{
+                      background: "#37AFBF",
+                      padding: "0.4rem 1rem 0.4rem 1rem",
+                      borderRadius: "0.2rem",
+                      border: "none",
+                      color: "#fff"
+                    }}>Check Pass</button>
+                  </div>
                 </div>
 
               </div>
@@ -286,14 +286,14 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                     <div>Name 3</div> <input className="checkbox_name" type="checkbox" />
                   </div>
                   <div style={{ display: "flex", justifyContent: "flex-end", marginTop: "1rem" }}>
-                <button className="btn" style={{
-                  background: "#37AFBF",
-                  padding: "0.4rem 1rem 0.4rem 1rem",
-                  borderRadius: "0.2rem",
-                  border: "none",
-                  color: "#fff"
-                }}>Check Pass</button>
-              </div>
+                    <button className="btn" style={{
+                      background: "#37AFBF",
+                      padding: "0.4rem 1rem 0.4rem 1rem",
+                      borderRadius: "0.2rem",
+                      border: "none",
+                      color: "#fff"
+                    }}>Check Pass</button>
+                  </div>
                 </div>
 
               </div>
@@ -322,14 +322,14 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                     <div>Name 3</div> <input className="checkbox_name" type="checkbox" />
                   </div>
                   <div style={{ display: "flex", justifyContent: "flex-end", marginTop: "1rem" }}>
-                <button className="btn" style={{
-                  background: "#37AFBF",
-                  padding: "0.4rem 1rem 0.4rem 1rem",
-                  borderRadius: "0.2rem",
-                  border: "none",
-                  color: "#fff"
-                }}>Check Pass</button>
-              </div>
+                    <button className="btn" style={{
+                      background: "#37AFBF",
+                      padding: "0.4rem 1rem 0.4rem 1rem",
+                      borderRadius: "0.2rem",
+                      border: "none",
+                      color: "#fff"
+                    }}>Check Pass</button>
+                  </div>
                 </div>
 
               </div>
@@ -358,14 +358,14 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                     <div>Name 3</div> <input className="checkbox_name" type="checkbox" />
                   </div>
                   <div style={{ display: "flex", justifyContent: "flex-end", marginTop: "1rem" }}>
-                <button className="btn" style={{
-                  background: "#37AFBF",
-                  padding: "0.4rem 1rem 0.4rem 1rem",
-                  borderRadius: "0.2rem",
-                  border: "none",
-                  color: "#fff"
-                }}>Check Pass</button>
-              </div>
+                    <button className="btn" style={{
+                      background: "#37AFBF",
+                      padding: "0.4rem 1rem 0.4rem 1rem",
+                      borderRadius: "0.2rem",
+                      border: "none",
+                      color: "#fff"
+                    }}>Check Pass</button>
+                  </div>
                 </div>
 
               </div>
@@ -394,14 +394,14 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                     <div>Name 3</div> <input className="checkbox_name" type="checkbox" />
                   </div>
                   <div style={{ display: "flex", justifyContent: "flex-end", marginTop: "1rem" }}>
-                <button className="btn" style={{
-                  background: "#37AFBF",
-                  padding: "0.4rem 1rem 0.4rem 1rem",
-                  borderRadius: "0.2rem",
-                  border: "none",
-                  color: "#fff"
-                }}>Check Pass</button>
-              </div>
+                    <button className="btn" style={{
+                      background: "#37AFBF",
+                      padding: "0.4rem 1rem 0.4rem 1rem",
+                      borderRadius: "0.2rem",
+                      border: "none",
+                      color: "#fff"
+                    }}>Check Pass</button>
+                  </div>
                 </div>
 
               </div>
@@ -429,14 +429,14 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                         </tr>
                       </thead>
                       <tbody>
-                        {admin.map((item,index) => {
+                        {admin.map((item, index) => {
                           return <tr key={index}>
-                                  <th scope="row">{index+1}</th>
-                                  <td>{item.first_name}{item.last_name}</td>
-                                  <td>{item.first_name}{item.last_name}</td>
-                                  <td>{item.first_name}{item.last_name}</td>
-                                  <td>{item.address}</td>
-                                </tr>
+                            <th scope="row">{index + 1}</th>
+                            <td>{item.first_name}{item.last_name}</td>
+                            <td>{item.first_name}{item.last_name}</td>
+                            <td>{item.first_name}{item.last_name}</td>
+                            <td>{item.address}</td>
+                          </tr>
                         })}
                       </tbody>
                     </table>
@@ -453,14 +453,14 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                         </tr>
                       </thead>
                       <tbody>
-                      {member.map((item,index) => {
+                        {member.map((item, index) => {
                           return <tr key={index}>
-                                  <th scope="row">{index+1}</th>
-                                  <td>{item.first_name}{item.last_name}</td>
-                                  <td>{item.first_name}{item.last_name}</td>
-                                  <td>{item.first_name}{item.last_name}</td>
-                                  <td>{item.address}</td>
-                                </tr>
+                            <th scope="row">{index + 1}</th>
+                            <td>{item.first_name}{item.last_name}</td>
+                            <td>{item.first_name}{item.last_name}</td>
+                            <td>{item.first_name}{item.last_name}</td>
+                            <td>{item.address}</td>
+                          </tr>
                         })}
                       </tbody>
                     </table>
@@ -477,14 +477,14 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                         </tr>
                       </thead>
                       <tbody>
-                      {viewer.map((item,index) => {
+                        {viewer.map((item, index) => {
                           return <tr key={index}>
-                                  <th scope="row">{index+1}</th>
-                                  <td>{item.first_name}{item.last_name}</td>
-                                  <td>{item.first_name}{item.last_name}</td>
-                                  <td>{item.first_name}{item.last_name}</td>
-                                  <td>{item.address}</td>
-                                </tr>
+                            <th scope="row">{index + 1}</th>
+                            <td>{item.first_name}{item.last_name}</td>
+                            <td>{item.first_name}{item.last_name}</td>
+                            <td>{item.first_name}{item.last_name}</td>
+                            <td>{item.address}</td>
+                          </tr>
                         })}
                       </tbody>
                     </table>

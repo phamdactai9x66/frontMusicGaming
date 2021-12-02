@@ -17,34 +17,30 @@ const StatisticalLength: React.FC<StatisticalLength<any>> = ({ ...props }) => {
     const [playlists, setPlaylists] = useState([]);
     const [users, setUsers] = useState([]);
     const [blogs, setBlogs] = useState([]);
-    useEffect(() => {
-      const getSongs = async () => {
+
+         const getSongs = async () => {
           const { data } = await songApi.getAll({});
           setSongs(data);
       }
-      getSongs();
-  }, []);
-  useEffect(() => {
-    const getPlaylists = async () => {
+      const getPlaylists = async () => {
         const { data } = await playlistApi.getAll({});
         setPlaylists(data);
     }
-    getPlaylists();
-}, []);
-useEffect(() => {
     const getUsers = async () => {
-        const { data } = await userApi.getAll({});
-        setUsers(data);
-    }
-    getUsers();
-}, []);
-useEffect(() => {
-    const getBlogs = async () => {
-        const { data } = await blogApi.getAll({});
-        setBlogs(data);
-    }
-    getBlogs();
-}, []);
+      const { data } = await userApi.getAll({});
+      setUsers(data);
+  }
+  const getBlogs = async () => {
+    const { data } = await blogApi.getAll({});
+    setBlogs(data);
+}
+    useEffect(() => {
+      getPlaylists();
+      getSongs();
+      getUsers();
+      getBlogs();
+  }, []);
+
     return (
         <div className="home-top">
         <div className="box-bb bg-box-1 box-margin">

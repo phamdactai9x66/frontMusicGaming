@@ -30,6 +30,7 @@ import UserPlaylist from "./page/admin/pageAdmin/userPlayList/index";
 import AddUserPlaylist from "./page/admin/pageAdmin/userPlayList/page/AddUserPlayList";
 import CategoryBlog from "./page/admin/pageAdmin/categoriesBlog/index";
 import AddCategoryBlog from "./page/admin/pageAdmin/categoriesBlog/page/AddCategoryBlog";
+import Profile from "page/admin/pageAdmin/profile/Profile";
 
 import Comment from "./page/admin/pageAdmin/comment/index";
 
@@ -39,8 +40,8 @@ import Search from "./page/client/pageClient/search/search";
 import ListenTogether from "./page/client/pageClient/listenTogether/listenTogether";
 import Personal from "./page/client/pageClient/personal/index"
 import RoomDetail from "./page/client/pageClient/roomDetail/roomDetail";
-import Profile from "page/client/pageClient/profile/Profile";
 import SubCategory from "page/client/pageClient/subpage/subpage";
+// import Profile from "page/client/pageClient/profile/Profile";
 
 
 export interface propertyPage {
@@ -140,6 +141,11 @@ const Admin: propertyPage[] = [
     {
         path: "/admin/comment",
         component: Comment,
+        exact: false
+    },
+    {
+        path: "/admin/profile",
+        component: Profile,
         exact: false
     },
     {

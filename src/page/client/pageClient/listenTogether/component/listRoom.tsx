@@ -38,9 +38,10 @@ const ListRoom: React.FC<ListRoomIF<any>> = ({ index, current, history, ...props
         }
         // console.log(current._id)
         const { data: findRoom } = await roomApi.getAll({ _id: current._id })
-        const addUserintoRoom = await roomUserApi.postOne<object>(data);
-        saveUser.current = addUserintoRoom
+
         if (findRoom && !findRoom.status) {
+            const addUserintoRoom = await roomUserApi.postOne<object>(data);
+            saveUser.current = addUserintoRoom
             if (addUserintoRoom.status === variableCommon.statusS && addUserintoRoom?.data[0]._id) {
                 io(server).emit("JoinRoom")
                 history.push(`/listenTogether/roomDetail/${current?._id || ''}`, {
