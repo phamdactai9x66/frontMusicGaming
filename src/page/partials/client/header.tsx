@@ -9,6 +9,7 @@ import { Logout } from "redux/user/actionUser";
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import SearchIcon from '@material-ui/icons/Search';
 import MoreIcon from '@material-ui/icons/MoreVert';
+import Avatar from '@mui/material/Avatar';
 import './style.scss'
 import { BiSearch, BiTime, BiX } from "react-icons/bi"
 //
@@ -233,6 +234,7 @@ const HeaderClient: React.FC<HeaderClientIF> = ({ ...props }) => {
         </Menu>
     );
     const mobileMenuId = "primary-search-account-menu-mobile";
+    console.log(state.user?.avatar)
     const renderMobileMenu = (
         <Menu
             anchorEl={mobileMoreAnchorEl}
@@ -243,21 +245,6 @@ const HeaderClient: React.FC<HeaderClientIF> = ({ ...props }) => {
             open={isMobileMenuOpen}
             onClose={handleMobileMenuClose}
         >
-            {/* <MenuItem>
-                <IconButton aria-label="show 4 new mails" color="inherit">
-                    <Upload />
-                </IconButton>
-                <div>Tải lên</div>
-            </MenuItem>
-            <MenuItem>
-                <IconButton
-                    aria-label="show 11 new notifications"
-                    color="inherit"
-                >
-                    <Topic />
-                </IconButton>
-                <div>Đề tài</div>
-            </MenuItem> */}
             <MenuItem onClick={handleProfileMenuOpen}>
                 <IconButton
                     aria-label="account of current user"
@@ -265,7 +252,8 @@ const HeaderClient: React.FC<HeaderClientIF> = ({ ...props }) => {
                     aria-haspopup="true"
                     color="inherit"
                 >
-                    <AccountCircle />
+
+                    {(state.user && state.token) ? <Avatar src={state.user?.avatar} /> : <AccountCircle />}
                 </IconButton>
                 <div>Thông tin</div>
             </MenuItem>
@@ -330,12 +318,6 @@ const HeaderClient: React.FC<HeaderClientIF> = ({ ...props }) => {
                         <div className={classes.searchIcon} style={{ zIndex: 999 }} onClick={search}>
                             <SearchIcon />
                         </div>
-                        {/* {  modalSearh && (
-                            <> 
-                                <BiX className="hover-icon" style={{position:'absolute',fontSize:'30px',right:'0'}}/>
-                            </>
-                            )
-                        } */}
 
                         {searchInp !== '' && (
                             <>
@@ -344,8 +326,6 @@ const HeaderClient: React.FC<HeaderClientIF> = ({ ...props }) => {
                         )
                         }
                         <InputBase
-                            // onFocus={()=> setModalSearh(true)}
-                            // onBlur={()=> setModalSearh(false)}
                             placeholder="Nhập tên bài hát, nghệ sĩ hoăc blog..."
                             classes={{
                                 root: classes.inputRoot,
@@ -356,72 +336,9 @@ const HeaderClient: React.FC<HeaderClientIF> = ({ ...props }) => {
                             onChange={(e) => setSearchInp(e.target.value)}
                             onKeyDown={enterToSearch}
                         />
-                        {/* {
-                            modalSearh && (
-                                <>
-                                <div className={"rounded-3 w-100 shadow-lg py-2"} style={{position:"absolute",background:"#e1f4ff"}}>
-                                    <div>
-                                        <div className="hover">
-                                           
-                                            <Link to="" className="text-dark px-3"> <BiSearch style={{marginRight:'2px'}} className="text-black" />tìm kiếm mới</Link>
-                                        </div>
-                                        <div className="hover">
-                                            <Link to="" className="text-dark px-3"> <BiSearch style={{marginRight:'2px'}} className="text-black" />tìm kiếm mới</Link>
-                                        </div>
-                                        <div className="hover">
-                                            <Link to="" className="text-dark px-3"> <BiSearch style={{marginRight:'2px'}} className="text-black" />tìm kiếm mới</Link>
-                                        </div>
-                                        <div className="hover">
-                                            <Link to="" className="text-dark px-3"> <BiSearch style={{marginRight:'2px'}} className="text-black" />tìm kiếm mới</Link>
-                                        </div>
-                                        <div className="hover">
-                                            <Link to="" className="text-dark px-3"> <BiSearch style={{marginRight:'2px'}} className="text-black" />tìm kiếm mới</Link>
-                                        </div>
-                                        <p className="border-bottom text-black"></p>
-                                        <div className="d-flex justify-content-between px-3 hover">
-                                            <p className="text-dark mb-0"><BiTime style={{marginRight:'2px'}} className="text-black" />tìm kiếm gần đây</p>
-                                            <p className=" mb-0 hover-delete" onClick={()=>('sự kiến xóa ')}>xóa</p>  
-                                        </div>
-                                        <div className="d-flex justify-content-between px-3 hover">
-                                            <p className="text-dark mb-0"><BiTime style={{marginRight:'2px'}} className="text-black" />tìm kiếm gần đây</p>
-                                            <p className=" mb-0 hover-delete" onClick={()=>('sự kiến xóa ')}>xóa</p>  
-                                        </div>
-                                        <div className="d-flex justify-content-between px-3 hover">
-                                            <p className="text-dark mb-0"><BiTime style={{marginRight:'2px'}} className="text-black" />tìm kiếm gần đây</p>
-                                            <p className=" mb-0 hover-delete" onClick={()=>('sự kiến xóa ')}>xóa</p>  
-                                        </div>
-                                        <div className="d-flex justify-content-between px-3 hover">
-                                            <p className="text-dark mb-0"><BiTime style={{marginRight:'2px'}} className="text-black" />tìm kiếm gần đây</p>
-                                            <p className="mb-0 hover-delete " onClick={()=>('sự kiến xóa ')}>xóa</p>  
-                                        </div>
-                                        <div className="d-flex justify-content-between px-3 hover">
-                                            <p className="text-dark mb-0"><BiTime style={{marginRight:'2px'}} className="text-black" />tìm kiếm gần đây</p>
-                                            <p className=" mb-0 hover-delete" onClick={()=>('sự kiến xóa ')}>xóa</p>  
-                                        </div>
-                                    </div>
-
-                                </div>
-                                </>
-
-                            )
-                        } */}
-
-
                     </div>
                     <div className={classes.grow} />
                     <div className={classes.sectionDesktop}>
-                        {/* <IconButton
-                            aria-label="show 4 new mails"
-                            color="inherit"
-                        >
-                            <Upload />
-                        </IconButton>
-                        <IconButton
-                            aria-label="show 18 new notifications"
-                            color="inherit"
-                        >
-                            <Topic />
-                        </IconButton> */}
                         <IconButton
                             edge="end"
                             aria-label="account of current user"
@@ -430,7 +347,7 @@ const HeaderClient: React.FC<HeaderClientIF> = ({ ...props }) => {
                             onClick={handleProfileMenuOpen}
                             color="inherit"
                         >
-                            <AccountCircle />
+                            {(state.user && state.token) ? <Avatar src={state.user?.avatar} /> : <AccountCircle />}
                         </IconButton>
                     </div>
                     <div className={classes.sectionMobile}>
