@@ -14,34 +14,8 @@ interface NewmusicIF<T> {
 
 const Newmusic: React.FC<NewmusicIF<any>> = ({ ...props }) => {
     document.title = "Nhạc mới - Music Game";
-    // const [songs, setSongs] = useState([]);
-    // const [songsTransform, setSongsTransform] = useState([]);
-    // const [artists, setArtists] = useState([]);
     const userState = useSelector<{ user: any }>(state => state.user) as formStateUser;
 
-
-    // const [anchor, setAnchor] = useState(null);
-    // const openPopover = (event: any) => {
-    //     setAnchor(event.currentTarget);
-    // };
-    // const [anchor2, setAnchor2] = useState(null);
-    // const openPopover2 = (event: any) => {
-    //     setAnchor2(event.currentTarget);
-    // };
-
-    // const getSongs = async () => {
-    //     const responseSong = await songApi.getAll({});
-    //     const resSongsTransform = await tranFormDataId(responseSong.data);
-    //     setSongs(responseSong.data);
-    //     setSongsTransform(resSongsTransform);
-
-    //     const dataArtists = await artistApi.getAll({});
-    //     setArtists(dataArtists.data);
-    // }
-
-    // useEffect(() => {
-    //     getSongs();
-    // }, []);
 
     return (
         <div className="container-nhacmoi">

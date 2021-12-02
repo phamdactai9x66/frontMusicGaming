@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { BsMusicNoteBeamed, BsListUl } from 'react-icons/bs';
 import { FaBlogger, FaChartPie } from 'react-icons/fa';
 import { RiFolderMusicFill } from 'react-icons/ri';
@@ -12,6 +12,7 @@ import Popup from '@titaui/reactjs-popup';
 import { useSelector } from 'react-redux';
 import { formStateUser } from 'redux/user/stateUser';
 import Notification from 'page/notificationModal/NotificationModal';
+import playlistApi from 'api/playlistApi';
 
 interface SidebarIF<T> {
 
@@ -19,6 +20,7 @@ interface SidebarIF<T> {
 
 const Sidebar: React.FC<SidebarIF<any>> = ({ ...props }) => {
   const userState = useSelector<{ user: any }>(state => state.user) as formStateUser;
+  const [playlists, setPlaylists] = useState([]);
   const [isLogin, setIsLogin] = useState({
     status: false,
     path: '',
@@ -30,6 +32,21 @@ const Sidebar: React.FC<SidebarIF<any>> = ({ ...props }) => {
       path: '',
     });
   }
+
+  const getPlaylists = async () => {
+    const responsePL = await playlistApi.getAll({}); 
+    if (!responsePL || responsePL.status === "failed") {
+        console.error("Get playlist failed.");
+        return;
+    }
+    const { data } = responsePL;
+    setPlaylists(data)
+}
+
+    useEffect(() => {
+      getPlaylists();
+      //getSongs();
+    }, []);
 
 
   return (
@@ -59,10 +76,20 @@ const Sidebar: React.FC<SidebarIF<any>> = ({ ...props }) => {
             <Link to="/recently"><li><BiTimeFive className="icon" />Gần đây</li></Link>
           </ul>
           <ul>
+            {/* <Link to="/playlistDetail"><li>● Nhạc trẻ remix</li></Link>
             <Link to="/playlistDetail"><li>● Nhạc trẻ remix</li></Link>
             <Link to="/playlistDetail"><li>● Nhạc trẻ remix</li></Link>
-            <Link to="/playlistDetail"><li>● Nhạc trẻ remix</li></Link>
-            <Link to="/playlistDetail"><li>● Nhạc trẻ remix</li></Link>
+            <Link to="/playlistDetail"><li>● Nhạc trẻ remix</li></Link> */}
+            {playlists.length !== 0 && playlists.map((item: any) => {
+                    // if(isShowPLName.filter(_ => _ === item._id).length !== 0) {
+                    //     return null
+                    // } ;
+                    return (
+                        <div className="list-slider " key={item._id}>
+                            <Link to="/playlist/{item._id}" ><li><BiPlayCircle className="icon" />{item.name}</li></Link>
+                        </div>
+                    )
+                })}
           </ul>
         </div>
         <div className="popup-playlist">
