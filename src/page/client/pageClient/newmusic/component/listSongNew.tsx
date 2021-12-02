@@ -11,10 +11,7 @@ import { Popover } from "@material-ui/core";
 import { useDispatch } from "react-redux";
 import { getlistAudio, playSong } from "redux/audio/actionAudio"
 import userPlaylistApi from 'api/userPlaylist';
-// import { useHistory } from 'react-router';
 import ModalLogged from 'component/clientComponent/ModalLogged';
-// import { Link } from 'react-router-dom';
-// import NameSongArtist from 'component/nameSongArtist';
 import AlertComponent from 'component/clientComponent/Alert';
 
 
@@ -22,7 +19,6 @@ interface ListMusicNewIF<T> {
     userState: any | T,
 }
 const ListMusicNew: React.FC<ListMusicNewIF<any>> = (props) => {
-    // const history = useHistory();
     const [playlistName, setPlaylistName] = useState('');
     const [anchor, setAnchor] = useState(null);
     const [anchor2, setAnchor2] = useState(null);
@@ -148,7 +144,7 @@ const ListMusicNew: React.FC<ListMusicNewIF<any>> = (props) => {
                     <img width={45} height={45} src={item.image} alt="" />
                     {/* <div className="box-icon" style={{left: "4rem",padding:"0.5rem 0.65rem"}} >
                     ▶
-                </div> */}
+                    </div> */}
                     <div className="box-icon " style={{ marginLeft: "0.7rem", padding: "0.1rem 0.58rem", fontSize: "1.5rem" }} onClick={() => playAudio(item._id)}>
                         <BsFillPlayFill />
                     </div>

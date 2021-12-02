@@ -6,6 +6,7 @@ import NotFoundAdmin from "./page/admin/pageAdmin/notFound/notFoundAdmin";
 import Toptrending from "./page/client/pageClient/toptrending/toptrending";
 import Favorite from "./page/client/pageClient/favorite/favorite";
 import Newmusic from "./page/client/pageClient/newmusic/newmusic";
+import PlayListClient from "./page/client/pageClient/playlist/playlist";
 import Blog from "./page/client/pageClient/blog/blog";
 import BlogDetail from "./page/client/pageClient/blogdetail/blogDetail";
 import PlaylistDetail from "./page/client/pageClient/playlistDetail/playlistDetail";
@@ -40,7 +41,9 @@ import Search from "./page/client/pageClient/search/search";
 import ListenTogether from "./page/client/pageClient/listenTogether/listenTogether";
 import Personal from "./page/client/pageClient/personal/index"
 import RoomDetail from "./page/client/pageClient/roomDetail/roomDetail";
+import SubCategory from "page/client/pageClient/subpage/subpage";
 import Subpage from "page/client/pageClient/subpage/subpage";
+import ArtistDetail from "page/client/pageClient/artistDetail/artistDetail";
 
 
 export interface propertyPage {
@@ -162,6 +165,11 @@ const Client: propertyPage[] = [
         exact: true
     },
     {
+        path: "/artistDetail/:id",
+        component: ArtistDetail,
+        exact: false
+    },
+    {
         path: "/search",
         component: Search,
         exact: false
@@ -177,8 +185,13 @@ const Client: propertyPage[] = [
         exact: false
     },
     {
-        path: "/subpage",
-        component: Subpage,
+        path: "/profile",
+        component: Profile,
+        exact: false
+    },
+    {
+        path: "/subCategory",
+        component: SubCategory,
         exact: false
     },
     {
@@ -230,6 +243,11 @@ const Client: propertyPage[] = [
     {
         path: "/blogDetail/:idBlog",
         component: BlogDetail,
+        exact: false
+    },
+    {
+        path: "/playlist",
+        component: PlayListClient,
         exact: false
     },
     {
