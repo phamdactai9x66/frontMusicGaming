@@ -30,20 +30,20 @@ const useStyle = makeStyles({
 })
 
 interface ModalBlog<T> {
-  state: { display?: boolean, _id?: string},
+  state: { display?: boolean, _id?: string },
   onClose: any
 }
 
-const ModalBlog: React.FC<ModalBlog<any>> = ({state, onClose, ...props}) => {
+const ModalBlog: React.FC<ModalBlog<any>> = ({ state, onClose, ...props }) => {
   // tối code tiếp
-  const [dataBlog, setDataBlog] = useState<any>({ data: {}, error: false, display: false});
+  const [dataBlog, setDataBlog] = useState<any>({ data: {}, error: false, display: false });
   const nameCategoryBlog = useRef<any>('');
   const nameUser = useRef<any>('');
   const classes = useStyle();
 
   useEffect(() => {
     (async () => {
-      if (dataBlog.error) return ;
+      if (dataBlog.error) return;
       const [data, error] = await HandleGet(blogApi.getOne, state._id);
       if (error) setDataBlog((value: any) => ({ ...value, error: true, display: false }));
       await findUser(data?.data?.id_User);
@@ -51,35 +51,35 @@ const ModalBlog: React.FC<ModalBlog<any>> = ({state, onClose, ...props}) => {
       setDataBlog({ error: false, data: data?.data, display: true });
     })()
     return () => {
-      setDataBlog((value: any) => ({...value, display: false}))
+      setDataBlog((value: any) => ({ ...value, display: false }))
     }
   }, [state._id])
-  
+
   const findUser = async <T extends string>(_id: T) => {
-    if (!_id) return; 
+    if (!_id) return;
     const findUser = await useApi.getOne(_id);
 
     if (findUser.status !== variableCommon.statusF) {
-      const { name } = findUser.data;
-      return nameUser.current = `${name}`;
+      const { first_name, last_name } = findUser.data;
+      return nameUser.current = `${first_name} ${last_name}`;
     }
     nameUser.current = ''
   }
 
   const findCategoryBlog = async <T extends string>(_id: T) => {
-    if (!_id) return; 
+    if (!_id) return;
     const findCategoryBlog = await categoryBlogApi.getOne(_id);
 
     if (findCategoryBlog.status !== variableCommon.statusF) {
       const { name } = findCategoryBlog.data;
-      return nameCategoryBlog.current = `${name}`;
+      return nameCategoryBlog.current = name;
     }
     nameCategoryBlog.current = ''
   }
 
   return (
     <div>
-      {dataBlog.display ? 
+      {dataBlog.display ?
         <Modal
           aria-labelledby="transition-modal-title"
           aria-describedby="transition-modal-description"
@@ -96,106 +96,106 @@ const ModalBlog: React.FC<ModalBlog<any>> = ({state, onClose, ...props}) => {
               <Grid container spacing={2}>
                 <Grid item xs={12} md={6}>
                   <Typography>
-                    <img 
-                      src={dataBlog.data?.image} 
-                      className={classes.styleImage} 
-                      alt="" 
+                    <img
+                      src={dataBlog.data?.image}
+                      className={classes.styleImage}
+                      alt=""
                     />
                   </Typography>
                 </Grid>
 
                 <Grid item xs={12} md={6}>
                   <Typography>
-                    <TextField 
-                      inputProps={{ readOnly: true }} 
-                      label="Title" 
-                      value={dataBlog.data?.title} 
-                      variant="standard" 
-                      fullWidth 
+                    <TextField
+                      inputProps={{ readOnly: true }}
+                      label="Title"
+                      value={dataBlog.data?.title}
+                      variant="standard"
+                      fullWidth
                     />
                   </Typography>
                 </Grid>
 
                 <Grid item xs={12} md={6}>
                   <Typography>
-                    <TextField 
-                      inputProps={{ readOnly: true }} 
-                      label="Content" 
-                      value={dataBlog.data?.content} 
-                      variant="standard" 
-                      fullWidth 
+                    <TextField
+                      inputProps={{ readOnly: true }}
+                      label="Content"
+                      value={dataBlog.data?.content}
+                      variant="standard"
+                      fullWidth
                     />
                   </Typography>
                 </Grid>
 
                 <Grid item xs={12} md={6}>
                   <Typography>
-                    <TextField 
-                      inputProps={{ readOnly: true }} 
-                      label="Status" 
-                      value={dataBlog.data?.status} 
-                      variant="standard" 
-                      fullWidth 
+                    <TextField
+                      inputProps={{ readOnly: true }}
+                      label="Status"
+                      value={dataBlog.data?.status}
+                      variant="standard"
+                      fullWidth
                     />
                   </Typography>
                 </Grid>
 
                 <Grid item xs={12} md={6}>
                   <Typography>
-                    <TextField 
-                      inputProps={{ readOnly: true }} 
-                      label="View" 
-                      value={dataBlog.data?.view} 
-                      variant="standard" 
-                      fullWidth 
+                    <TextField
+                      inputProps={{ readOnly: true }}
+                      label="View"
+                      value={dataBlog.data?.view}
+                      variant="standard"
+                      fullWidth
                     />
                   </Typography>
                 </Grid>
 
                 <Grid item xs={12} md={6}>
                   <Typography>
-                    <TextField 
-                      inputProps={{ readOnly: true }} 
-                      label="User" 
-                      value={nameUser.current} 
-                      variant="standard" 
-                      fullWidth 
+                    <TextField
+                      inputProps={{ readOnly: true }}
+                      label="User"
+                      value={nameUser.current}
+                      variant="standard"
+                      fullWidth
                     />
                   </Typography>
                 </Grid>
 
                 <Grid item xs={12} md={6}>
                   <Typography>
-                    <TextField 
-                      inputProps={{ readOnly: true }} 
-                      label="Category Blog" 
-                      value={nameCategoryBlog.current} 
-                      variant="standard" 
-                      fullWidth 
+                    <TextField
+                      inputProps={{ readOnly: true }}
+                      label="Category Blog"
+                      value={nameCategoryBlog.current}
+                      variant="standard"
+                      fullWidth
                     />
                   </Typography>
                 </Grid>
 
                 <Grid item xs={12} md={6}>
                   <Typography>
-                    <TextField 
-                      inputProps={{ readOnly: true }} 
-                      label="createdAt" 
-                      value={getDate(dataBlog.data?.createdAt)} 
-                      variant="standard" 
-                      fullWidth 
+                    <TextField
+                      inputProps={{ readOnly: true }}
+                      label="createdAt"
+                      value={getDate(dataBlog.data?.createdAt)}
+                      variant="standard"
+                      fullWidth
                     />
                   </Typography>
                 </Grid>
 
                 <Grid item xs={12} md={6}>
                   <Typography>
-                    <TextField 
-                      inputProps={{ readOnly: true }} 
-                      label="createdAt" 
-                      value={getDate(dataBlog.data?.updatedAt)} 
-                      variant="standard" 
-                      fullWidth 
+                    <TextField
+                      inputProps={{ readOnly: true }}
+                      label="createdAt"
+                      value={getDate(dataBlog.data?.updatedAt)}
+                      variant="standard"
+                      fullWidth
                     />
                   </Typography>
                 </Grid>
@@ -203,7 +203,7 @@ const ModalBlog: React.FC<ModalBlog<any>> = ({state, onClose, ...props}) => {
               </Grid>
             </Box>
           </Fade>
-        </Modal> : null }
+        </Modal> : null}
     </div>
   )
 }

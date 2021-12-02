@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from 'react'
+import React from 'react'
 // import {Link} from "react-router-dom"
 import {ReactComponent as Play} from './play.svg'
 // import artistApi from 'api/ArtistApi';

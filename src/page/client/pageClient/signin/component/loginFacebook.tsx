@@ -8,7 +8,7 @@ import { RouteComponentProps, withRouter } from "react-router-dom";
 
 interface LoginFacebookIF<T> extends RouteComponentProps {
     displayAlert?: any,
-    lastLocation: string,
+    // lastLocation: string,
 }
 
 const LoginFacebook: React.FC<LoginFacebookIF<any>> = ({ history, displayAlert, ...props }) => {
@@ -18,7 +18,7 @@ const LoginFacebook: React.FC<LoginFacebookIF<any>> = ({ history, displayAlert, 
 
         if (LoginFacebook.status !== "failed") {
             dispatchUser(saveInfo(LoginFacebook))
-            return history.replace(props.lastLocation)
+            return history.replace('')
         }
         displayAlert(LoginFacebook.message)
     }

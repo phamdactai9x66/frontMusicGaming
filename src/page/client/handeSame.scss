@@ -397,6 +397,23 @@ img {
 .search_music .results a {
     display: block;
 }
+.parent-alert{
+    position: fixed;
+    z-index: 30;
+    bottom: 8rem;
+    right: 3rem;
+    animation-name: alert;
+    animation-duration: 0.5s;
+}
+
+@keyframes alert {
+    from {
+        right: -10rem;
+    }
+    to {
+        right: 3rem;
+    }
+}
 @media (min-width: 768px) and (max-width: 1024px) {
     .main3_nhacsi {
         grid-template-columns: 1fr 1fr 1fr;

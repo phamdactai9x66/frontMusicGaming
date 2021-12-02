@@ -5,14 +5,12 @@ import { MenuItem } from "@mui/material";
 import { Link, RouteChildrenProps, withRouter } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { formStateUser } from "redux/user/stateUser";
-import Topic from "./component/topic/topic";
-import Upload from "./component/upload/upload";
 import { Logout } from "redux/user/actionUser";
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import SearchIcon from '@material-ui/icons/Search';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import './style.scss'
-import { BiX} from "react-icons/bi"
+import { BiSearch, BiTime, BiX } from "react-icons/bi"
 //
 import { fade, makeStyles, AppBar, Toolbar, IconButton, InputBase, Menu } from '@material-ui/core';
 // import { Search, AccountCircle, MoreVert } from '@material-ui/icons';
@@ -21,7 +19,7 @@ import Loadings from "page/client/loading/loading";
 
 import avatar from "./../../notificationModal/anc.png";
 
-interface HeaderClientIF extends RouteChildrenProps {}
+interface HeaderClientIF extends RouteChildrenProps { }
 const useStyles = makeStyles((theme) => ({
     grow: {
         flexGrow: 1,
@@ -91,21 +89,21 @@ const HeaderClient: React.FC<HeaderClientIF> = ({ ...props }) => {
         status: "",
         content: "",
     });
-	const [loading, setLoading] = useState(false);  
+    const [loading, setLoading] = useState(false);
 
-	const state = useSelector<{ user: any }>(state => state.user) as formStateUser;
-	const dispatch = useDispatch();
-    
-	const classes = useStyles();
-	const [anchorEl, setAnchorEl] = useState(null);
-	const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+    const state = useSelector<{ user: any }>(state => state.user) as formStateUser;
+    const dispatch = useDispatch();
+
+    const classes = useStyles();
+    const [anchorEl, setAnchorEl] = useState(null);
+    const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
     // const [modalSearh, setModalSearh] =useState(false);
 
     const [searchInp, setSearchInp] = useState('');
 
     const wrapperRef = useRef(null);
     const [openModalLogout, setOpenModalLogout] = useState(false);
-    
+
     // const handleOpendModal =()=>{
     //     if(modalSearh == false){
     //         setModalSearh(true)
@@ -113,33 +111,35 @@ const HeaderClient: React.FC<HeaderClientIF> = ({ ...props }) => {
     //         setModalSearh(false)
     //     }
     // }
-    
+
     const logOut = () => {
-		setLoading(true);
+        setLoading(true);
         setOpenModalLogout(false);
         dispatch(Logout())
 
-        const requireLoginPath = ['/profile', '/listenTogether', '/personal','/roomDetail'];
+        const requireLoginPath = ['/profile', '/listenTogether', '/personal', '/roomDetail'];
         setLoading(false);
-        if(requireLoginPath.filter( item => item === props.history.location.pathname).length !== 0){
+        if (requireLoginPath.filter(item => item === props.history.location.pathname).length !== 0) {
             setHandleStatus({
                 status: "success",
                 content: "Đăng xuất thành công.",
             })
-            
+
             return props.history.replace('/');
+        } else {
+            props.history.replace('/signin')
         }
         // props.history.replace('/signin');
     };
 
-	if(handleStatus.status !==  ''){
-		setTimeout(() => {
-			setHandleStatus({
-				status: "",
-				content: "",
-			});
-		}, 3000);
-	}
+    if (handleStatus.status !== '') {
+        setTimeout(() => {
+            setHandleStatus({
+                status: "",
+                content: "",
+            });
+        }, 3000);
+    }
 
     const checkAdmin = () => {
         return state.user.role >= 1 ? (
@@ -186,16 +186,16 @@ const HeaderClient: React.FC<HeaderClientIF> = ({ ...props }) => {
         );
     };
 
-	const checkGuest = () => {
+    const checkGuest = () => {
         const lastLocation = props.history.location.search ? props.history.location.pathname + props.history.location.search : props.history.location.pathname;
-		return (
-			<>
-				<MenuItem value={10} onClick={handleMenuClose}>
-					<Link to={{ pathname: "/signin", state: { lastLocation: lastLocation }}} className="link rounded " style={{ fontSize: '1rem' }}><FaSignInAlt className="_icon" />Đăng nhập</Link>
-				</MenuItem>
-			</>
-		)
-	}
+        return (
+            <>
+                <MenuItem value={10} onClick={handleMenuClose}>
+                    <Link to={{ pathname: "/signin", state: { lastLocation: lastLocation } }} className="link rounded " style={{ fontSize: '1rem' }}><FaSignInAlt className="_icon" />Đăng nhập</Link>
+                </MenuItem>
+            </>
+        )
+    }
 
     const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -243,7 +243,7 @@ const HeaderClient: React.FC<HeaderClientIF> = ({ ...props }) => {
             open={isMobileMenuOpen}
             onClose={handleMobileMenuClose}
         >
-            <MenuItem>
+            {/* <MenuItem>
                 <IconButton aria-label="show 4 new mails" color="inherit">
                     <Upload />
                 </IconButton>
@@ -257,7 +257,7 @@ const HeaderClient: React.FC<HeaderClientIF> = ({ ...props }) => {
                     <Topic />
                 </IconButton>
                 <div>Đề tài</div>
-            </MenuItem>
+            </MenuItem> */}
             <MenuItem onClick={handleProfileMenuOpen}>
                 <IconButton
                     aria-label="account of current user"
@@ -274,21 +274,21 @@ const HeaderClient: React.FC<HeaderClientIF> = ({ ...props }) => {
 
     const search = () => {
         props.history.push(`/search?key=${searchInp}`)
-    } 
+    }
     const enterToSearch = (e: any) => {
-        if(e.key === "Enter"){
+        if (e.key === "Enter") {
             search();
         }
     };
 
-    const  useOutsideAlerter = (ref: any) => {
-        useEffect(() => { 
+    const useOutsideAlerter = (ref: any) => {
+        useEffect(() => {
             function handleClickOutside(event: any) {
                 if (ref.current && !ref.current.contains(event.target)) {
                     setOpenModalLogout(false);
                 }
             }
-    
+
             document.addEventListener("mousedown", handleClickOutside);
             return () => {
                 document.removeEventListener("mousedown", handleClickOutside);
@@ -299,17 +299,17 @@ const HeaderClient: React.FC<HeaderClientIF> = ({ ...props }) => {
     useOutsideAlerter(wrapperRef);
 
     const ModalConfirmLogout = (
-        <div className="w-100 h-100 d-flex position-fixed top-0 text-center" style={{left:"0px",zIndex:10,backgroundColor:"rgb(0 0 0 / 25%)"}}>
-            <div ref={wrapperRef} className="my-auto mx-auto p-4 rounded-3" style={{backgroundColor:"#9cf6ff"}}>
+        <div className="w-100 h-100 d-flex position-fixed top-0 text-center" style={{ left: "0px", zIndex: 10, backgroundColor: "rgb(0 0 0 / 25%)" }}>
+            <div ref={wrapperRef} className="my-auto mx-auto p-4 rounded-3" style={{ backgroundColor: "#9cf6ff" }}>
                 <img className="w-25 h-25" src={avatar} alt="" />
 
-                <p style={{fontWeight:500}} className="mb-0">Bạn có chắc là muốn đăng xuất khỏi Music Game</p>
+                <p style={{ fontWeight: 500 }} className="mb-0">Bạn có chắc là muốn đăng xuất khỏi Music Game</p>
 
                 <p>Hành động này có thể dẫn đến không thể sử dụng một số tính năng của Music Game</p>
-                
+
                 <div className="d-flex justify-content-center">
-                    <button onClick={()=>setOpenModalLogout(false)} className="btn btn-light">Hủy</button>
-                    <button onClick={logOut} className="btn btn-danger" style={{marginLeft:"1rem"}}>Đăng xuất</button>
+                    <button onClick={() => setOpenModalLogout(false)} className="btn btn-light">Hủy</button>
+                    <button onClick={logOut} className="btn btn-danger" style={{ marginLeft: "1rem" }}>Đăng xuất</button>
                 </div>
             </div>
 
@@ -323,11 +323,11 @@ const HeaderClient: React.FC<HeaderClientIF> = ({ ...props }) => {
                     content={handleStatus.content}
                 />
             )}
-			{loading && <Loadings/>}
+            {loading && <Loadings />}
             <AppBar position="static" style={{ background: "#222f44" }}>
                 <Toolbar>
-                    <div className={classes.search} style={{position:"relative"}}>
-                        <div className={classes.searchIcon} style={{ zIndex: 999}} onClick={search}>
+                    <div className={classes.search} style={{ position: "relative" }}>
+                        <div className={classes.searchIcon} style={{ zIndex: 999 }} onClick={search}>
                             <SearchIcon />
                         </div>
                         {/* {  modalSearh && (
@@ -336,12 +336,12 @@ const HeaderClient: React.FC<HeaderClientIF> = ({ ...props }) => {
                             </>
                             )
                         } */}
-                       
-                        {  searchInp !== '' && (
-                            <> 
-                                <BiX className="hover-icon" onClick={() => setSearchInp("")} style={{position:'absolute',fontSize:'30px',right:'0', zIndex: 999}}/>
+
+                        {searchInp !== '' && (
+                            <>
+                                <BiX className="hover-icon" onClick={() => setSearchInp("")} style={{ position: 'absolute', fontSize: '30px', right: '0', zIndex: 999 }} />
                             </>
-                            )
+                        )
                         }
                         <InputBase
                             // onFocus={()=> setModalSearh(true)}
@@ -405,12 +405,12 @@ const HeaderClient: React.FC<HeaderClientIF> = ({ ...props }) => {
 
                             )
                         } */}
-                            
-                    
+
+
                     </div>
                     <div className={classes.grow} />
                     <div className={classes.sectionDesktop}>
-                        <IconButton
+                        {/* <IconButton
                             aria-label="show 4 new mails"
                             color="inherit"
                         >
@@ -421,7 +421,7 @@ const HeaderClient: React.FC<HeaderClientIF> = ({ ...props }) => {
                             color="inherit"
                         >
                             <Topic />
-                        </IconButton>
+                        </IconButton> */}
                         <IconButton
                             edge="end"
                             aria-label="account of current user"

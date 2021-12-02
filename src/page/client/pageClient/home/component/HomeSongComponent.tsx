@@ -8,7 +8,7 @@ import { AiOutlineDownload, AiFillHeart } from 'react-icons/ai';
 import { IoMdAdd } from 'react-icons/io';
 import { Popover } from "@material-ui/core";
 import { useDispatch } from "react-redux";
-import { getlistAudio, playSong } from "redux/audio/actionAudio"
+import { getlistAudio, playSong } from "redux/audio/actionAudio";
 import userPlaylistApi from 'api/userPlaylist';
 import { useHistory } from 'react-router';
 import NameSongArtist from 'component/nameSongArtist';
@@ -207,7 +207,7 @@ const HomeSongComponent: React.FC<HomeSongComponentIF<any>> = (props) => {
                         >
                             <AiFillHeart />
                         </LoadingButton> */}
-                        {likeLoading.indexOf(item._id) !== -1 ? <AiFillHeart onClick={() => handleAdd(item._id, user._id, "like")} className="icon" /> : <span ><CircularProgress size={15} sx={{ color: "#d6f4f8"}} /></span> }
+                        {likeLoading.indexOf(item._id) === -1 ? <AiFillHeart onClick={() => handleAdd(item._id, user._id, "like")} className="icon" /> : <span className='loading-icon'><CircularProgress  className='loading-icon' size={15} sx={{ color: "#d6f4f8"}} /></span> }
                         <IoMdAdd className="icon" onClick={(e) => {
                             openPopover(e);
                             getUserPlaylists();

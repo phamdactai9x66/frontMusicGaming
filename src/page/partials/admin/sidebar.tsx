@@ -7,12 +7,54 @@ import AccordionDetails from "@material-ui/core/AccordionDetails";
 import AccordionSummary from "@material-ui/core/AccordionSummary";
 import { ExpandMore } from "@material-ui/icons";
 import SearchIcon from '@material-ui/icons/Search';
+import { fade, makeStyles } from '@material-ui/core/styles';
+import { InputBase } from '@material-ui/core';
 
 interface SidebarIF<T> {
 
 }
-
+const useStyles = makeStyles((theme) => ({
+	search: {
+        marginTop: "1.5rem",
+        position: "relative",
+        borderRadius: theme.shape.borderRadius,
+        backgroundColor: fade(theme.palette.common.white, 0.15),
+        "&:hover": {
+            backgroundColor: fade(theme.palette.common.white, 0.25),
+        },
+        marginRight: theme.spacing(2),
+        marginLeft: 0,
+        width: "100%",
+        [theme.breakpoints.up("sm")]: {
+            marginLeft: theme.spacing(3),
+            width: "auto",
+        },
+    },
+    searchIcon: {
+        padding: theme.spacing(0, 2),
+        height: "100%",
+        position: "absolute",
+        pointerEvents: "none",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        color: "aqua",
+    },
+	inputRoot: {
+		color: '#fff',
+	},
+	inputInput: {
+		padding: theme.spacing(1, 1, 1, 0),
+		paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
+		transition: theme.transitions.create('width'),
+		width: '100%',
+		[theme.breakpoints.up('md')]: {
+			width: '20ch',
+		},
+	}
+}));
 const Sidebar: React.FC<SidebarIF<any>> = ({ ...props }) => {
+  const classes = useStyles();
   const [expanded, setExpanded] = React.useState("");
 
   const handleChange = (panel: any) => (event: any, isExpanded: any) => {
@@ -83,7 +125,7 @@ const Sidebar: React.FC<SidebarIF<any>> = ({ ...props }) => {
       name: "Comment",
       iconAdd: "fa fa-plus-circle",
       details: "Chart Comment",
-      link: "/admin/",
+      link: "/admin/comment",
       subLink: "/admin/"
     },
     {
@@ -136,10 +178,21 @@ const Sidebar: React.FC<SidebarIF<any>> = ({ ...props }) => {
           <div>Lò Văn An</div>
         </div>
       </div>
-      <div className="main_search">
-        <SearchIcon className="icon_search" /> 
-        <input type="text" placeholder="Search..." className="_search" />
-      </div>
+      <div className={classes.search} style={{ position: "relative" }}>
+                        <div className={classes.searchIcon} style={{ zIndex: 999 }}>
+                            <SearchIcon />
+                        </div>
+                        <InputBase
+                            placeholder="Search..."
+                            classes={{
+                                root: classes.inputRoot,
+                                input: classes.inputInput,
+                            }}
+                            
+                            inputProps={{ "aria-label": "search" }}
+                        />
+
+                    </div>
       <nav className="tabs">
         <Link to="/admin">
           <AccordionSummary
