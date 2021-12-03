@@ -48,7 +48,6 @@ import ListenTogether from "./page/client/pageClient/listenTogether/listenTogeth
 import Personal from "./page/client/pageClient/personal/index"
 import RoomDetail from "./page/client/pageClient/roomDetail/roomDetail";
 import SubCategory from "page/client/pageClient/subpage/subpage";
-import Subpage from "page/client/pageClient/subpage/subpage";
 import ArtistDetail from "page/client/pageClient/artistDetail/artistDetail";
 
 
