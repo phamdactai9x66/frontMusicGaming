@@ -75,8 +75,24 @@ const Sidebar: React.FC<Sidebar<any>> = ({ ...props }) => {
       name: "User",
       iconAdd: "fa fa-plus-circle",
       details: "Add User",
-      link: "/admin/",
+      link: "/admin/userAdmin",
       subLink: "/admin/"
+    },
+    {
+      icon: "fa fa-users",
+      name: "Artist",
+      iconAdd: "fa fa-plus-circle",
+      details: "Add Artist",
+      link: "/admin/artist",
+      subLink: "/admin/addArtist"
+    },
+    {
+      icon: "fa fa-users",
+      name: "Song",
+      iconAdd: "fa fa-plus-circle",
+      details: "Add Song",
+      link: "/admin/song",
+      subLink: "/admin/addSong"
     },
     {
       icon: "fa fa-commenting",
@@ -137,7 +153,7 @@ const Sidebar: React.FC<Sidebar<any>> = ({ ...props }) => {
         </div>
       </div>
       <div className="main_search">
-        <SearchIcon className="icon_search" /> 
+        <SearchIcon className="icon_search" />
         <input type="text" placeholder="Search..." className="_search" />
       </div>
       <nav className="tabs">
