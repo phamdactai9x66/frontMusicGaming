@@ -12,8 +12,8 @@ interface SubCategoryIF<T> extends RouteComponentProps {
 
 }
 
-const SubCategory: React.FC<SubCategoryIF<any>> = ( { location, ...props }: any ) => {
-  document.title = `${location.state.name} - Music Game`;
+const SubCategory: React.FC<SubCategoryIF<any>> = ( { location, history, ...props }: any ) => {
+  
   const [handle, setHandle] = useState({ data: { dataSongs: [], dataCate: [] }, display: true });
   const [allSongs, setAllSongs] = useState([]);
   const dispatch = useDispatch();
@@ -24,7 +24,7 @@ const SubCategory: React.FC<SubCategoryIF<any>> = ( { location, ...props }: any 
       setAllSongs(dataDispatch.payload);
 
       if (!handle.display) return;
-        const [dataCate, error] = await HandleGet<Function>(categoryApi.getAll, { id_Topic: location.state._id });
+        const [dataCate, error] = await HandleGet<Function>(categoryApi.getAll, { id_Topic: location.state?._id });
       if (error || dataCate.status === variableCommon.statusF) return;
 
       setHandle({ data: { dataSongs: dataDispatch?.payload, dataCate: dataCate?.data }, display: true })
@@ -34,9 +34,16 @@ const SubCategory: React.FC<SubCategoryIF<any>> = ( { location, ...props }: any 
     }
   }, []);
 
+  if(!location.state){
+    console.log('aa')
+    history.push('/')
+  }else{
+    document.title = `${location.state.name ? location.state.name : ""} - Music Game`;
+  }
+
   return (
     <div className="container-category">
-      <h1>Chủ đề {location.state.name}</h1>
+      <h1>Chủ đề {location.state ? location.state.name : ""}</h1>
       <div className="banner-category">
         <img src="https://html.nkdev.info/goodgames/assets/images/gallery-7.jpg" alt="" />
       </div>
@@ -47,7 +54,7 @@ const SubCategory: React.FC<SubCategoryIF<any>> = ( { location, ...props }: any 
           <h4 className="title_all">{itemCate.name}</h4>
         </div>
         <div className="box-grid-category">
-          {handle.data.dataSongs.filter( (i: any) => i.id_Topic === location.state._id && i.id_Categories === itemCate._id).map( (itemSong: any) => 
+          {handle.data.dataSongs.filter( (i: any) => i.id_Topic === location.state?._id && i.id_Categories === itemCate._id).map( (itemSong: any) => 
             // <Link to={{ }} key={itemSong._id}>
             <span key={itemSong._id} onClick={() => dispatch(playSong({ _id: itemSong._id}))} >
                 {/* pathname: '/category/SubCategory',

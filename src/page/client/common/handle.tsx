@@ -27,14 +27,14 @@ export const handleLike = <T extends string> (idSong: T, idUser: T) => {
 export const handleDownload = (idSong: string) => {
     console.log("handle download => idSong: ", idSong);
 
-    // const fileName = "ten file.xlsx"; // tạo tên cho file
-    // const url = window.URL.createObjectURL(new Blob([response.data]));// chuyển data thành url
-    // const link = document.createElement("a");// tạo 1 thẻ a
-    // link.href = url;// gán url property cho thẻ a
-    // link.setAttribute("download", fileName); // set file name khi download
-    // document.body.appendChild(link); //
-    // link.click();// auto click thẻ a
-    // link.remove();// xóa thẻ a
+    const fileName = "ten file.mp3"; // tạo tên cho file
+    const url = window.URL.createObjectURL(new Blob([idSong]));// chuyển data thành url
+    const link = document.createElement("a");// tạo 1 thẻ a
+    link.href = url;// gán url property cho thẻ a
+    link.setAttribute("download", fileName); // set file name khi download
+    document.body.appendChild(link); //
+    link.click();// auto click thẻ a
+    link.remove();// xóa thẻ a
 }
 
 export const handleAddToPlaylist = <T extends string> (idSong: T, idUser: T) => {

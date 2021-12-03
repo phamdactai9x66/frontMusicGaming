@@ -198,7 +198,7 @@ const HomeSongComponent: React.FC<HomeSongComponentIF<any>> = (props) => {
                         <GetTimeAudio audio={item?.audio} />
                     </div>
                     <div className="icon_item">
-                        <AiOutlineDownload onClick={() => handleDownload(item._id)} className="icon" />
+                        <AiOutlineDownload onClick={() => handleDownload(item.audio)} className="icon" />
                         {/* <LoadingButton
                             onClick={() => handleAdd(item._id, user._id, "like")}
                             loading={true}
