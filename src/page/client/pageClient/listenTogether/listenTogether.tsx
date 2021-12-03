@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useReducer, useRef } from 'react'
-import { Button, TextField } from '@mui/material';
+import { Button, TextField, Box, CircularProgress } from '@mui/material';
 import roomApi from "api/roomApi";
 import { HandleGet, handleReducer, typeAciton, initialReducer, pustAction } from "component/MethodCommon"
 import { variableCommon } from "component/variableCommon";
@@ -8,8 +8,9 @@ import roomUser from "api/roomUser";
 import userApi from "api/useApi";
 import Pagination from "./component/pagination";
 import FindRoom from "./component/findRoom";
+import CreateRoom from "./component/createRoom"
 
-interface ListenTogether<T> {} 
+interface ListenTogether<T> { }
 
 const ListenTogether: React.FC<ListenTogether<any>> = ({ ...props }) => {
   const [state, dispatch] = useReducer(handleReducer, initialReducer, undefined);
@@ -47,14 +48,21 @@ const ListenTogether: React.FC<ListenTogether<any>> = ({ ...props }) => {
 
   const listRoom = () => {
     return (
-      <React.Fragment>
+      <>
         {
           state.Data.map((current: any, index: number) => {
             return <ListRoom current={current} index={index} saveData={saveData} />
           })
         }
 
-      </React.Fragment>
+      </>
+    )
+  }
+  const InProgress = () => {
+    return (
+      <Box sx={{ display: 'flex', justifyContent: 'center', alignContent: 'center', paddingTop: '30px' }}>
+        <CircularProgress />
+      </Box>
     )
   }
   return (
@@ -63,19 +71,14 @@ const ListenTogether: React.FC<ListenTogether<any>> = ({ ...props }) => {
         <div className="room">
           <FindRoom dispatch={dispatch} />
           {
-            state.Display ? listRoom() : null
+            state.Display ? listRoom() : InProgress()
           }
+
           <div className="Pagination">
             <Pagination state={state} dispatch={dispatch} />
           </div>
         </div>
-        <div className="create_room">
-          <TextField label="Name" variant="filled" className="input_room" />
-          <TextField label="Password" variant="filled" className="input_room" />
-          <Button variant="contained" color="primary">
-            Tạo phòng
-          </Button>
-        </div>
+        <CreateRoom />
       </div>
     </>
   )

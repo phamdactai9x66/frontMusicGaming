@@ -4,11 +4,11 @@ import topicApi from "api/topicApi"
 import categoryApi from "api/categoryApi"
 import { HandleGet } from "component/MethodCommon";
 import { variableCommon } from "component/variableCommon"
-interface Category<T> {
+interface CategoryIF<T> {
 
 }
 
-const Category: React.FC<Category<any>> = ({ ...props }) => {
+const Category: React.FC<CategoryIF<any>> = ({ ...props }) => {
   document.title = "Thể loại - Music Game"
   const [handle, setHandle] = useState({ data: { dataTopic: [], dataCate: [] }, display: true })
 

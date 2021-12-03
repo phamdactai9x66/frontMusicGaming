@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { ReactComponent as Play } from './play.svg'
-import songApi from "api/songApi";
-import { HandleGet, sortData } from "component/MethodCommon";
-import { variableCommon } from "component/variableCommon";
+// import songApi from "api/songApi";
+// import { HandleGet, sortData } from "component/MethodCommon";
+// import { variableCommon } from "component/variableCommon";
 
 
-interface Toptrending<T> {
-    userState: any,
+interface ToptrendingIF<T> {
+    userState: any | T,
 }
 
-const Toptrending: React.FC<Toptrending<any>> = ({ ...props }) => {
+const Toptrending: React.FC<ToptrendingIF<any>> = ({ ...props }) => {
 
     // const [state, setstate] = useState({ data: [], display: true });
 

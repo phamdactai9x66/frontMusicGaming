@@ -1,5 +1,5 @@
-import React, { useRef, useState, useEffect, memo } from 'react'
-import { BiHeart, BiDotsHorizontalRounded, BiMusic } from 'react-icons/bi';
+import React, { useState, useEffect } from 'react'
+import { BiDotsHorizontalRounded } from 'react-icons/bi';
 import { MenuItem } from "@mui/material";
 import { AiFillHeart, AiOutlineDownload } from 'react-icons/ai';
 import { IoMdAdd } from 'react-icons/io';
@@ -10,17 +10,17 @@ import ListPlaylistUser from "./listPlaylistUser";
 import { formStateUser } from 'redux/user/stateUser';
 import userPlaylist from "api/userPlaylist"
 
-interface OptionAudio<T> {
+interface OptionAudioIF<T> {
 
 }
 
-const OptionAudio: React.FC<OptionAudio<any>> = ({ ...props }) => {
+const OptionAudio: React.FC<OptionAudioIF<any>> = ({ ...props }) => {
     const stateAudio = useSelector<{ audio: any }>(state => state.audio) as formStateAudio;
     const state = useSelector<{ user: any }>(state => state.user) as formStateUser;
     const [anchor, setAnchor] = useState(null);
     const [anchor2, setAnchor2] = useState(null);
 
-    const { user, token } = useSelector<{ user: any }>(state => state.user) as formStateUser;
+    const { user } = useSelector<{ user: any }>(state => state.user) as formStateUser;
     const [listPlaylistUser, setlistPlaylistUser] = useState({ display: true, data: [] });
     useEffect(() => {
         (async () => {

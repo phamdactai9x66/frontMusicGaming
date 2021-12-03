@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { MdNavigateNext } from 'react-icons/md';
 import ChartMusic from './component/chartMusic';
-import { Link } from 'react-router-dom';
 import VerticalSlider from './component/VerticalSlider';
 import HomeCategory from './component/HomeCategory';
 import HomeSongComponent from './component/HomeSongComponent';
@@ -13,21 +12,24 @@ import playlistApi from 'api/playlistApi';
 import songApi from 'api/songApi';
 import { tranFormDataId } from "component/MethodCommon";
 import artistApi from 'api/ArtistApi';
-import { utimes } from 'fs';
+// import { utimes } from 'fs';
+import { useScroll } from 'react-use';
 
 
-interface Home<T> {
-    userState: any,
+interface HomeIF<T> {
+    userState: any | T,
 }
 
-const Home: React.FC<Home<any>> = ({ ...props }) => {
+const Home: React.FC<HomeIF<any>> = ({ ...props }) => {
     document.title = "Music Game";
     const [playlists, setPlaylists] = useState([]);
     const userState = useSelector<{ user: any }>(state => state.user) as formStateUser;
-    const [songs, setSongs] = useState([]);
+    const scrollRef = React.useRef<HTMLDivElement>(null);
+    const { x, y } = useScroll(scrollRef);
+    // const [songs, setSongs] = useState([]);
     const [songsTransform, setSongsTransform] = useState([]);
     const [artists, setArtists] = useState([]);
-    const [stoggleModal, setstoggleModal] = useState<boolean>(false);
+    // const [stoggleModal, setstoggleModal] = useState<boolean>(false);
     const [isShowPLName, setIsShowPLName] = useState<Array<string>>([]);
 
     var settings_banner = {
@@ -72,9 +74,17 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
             }
         ]
     };
+    useEffect(() => {
+        window.addEventListener('scroll', () => {
+            console.log('xin chao')
+        })
+        // scrollRef.current?.addEventListener('scroll', () => {
+        //     console.log('xin chao')
+        // })
+    }, [])
 
     const getPlaylists = async () => {
-        const responsePL = await playlistApi.getAll({}); 
+        const responsePL = await playlistApi.getAll({});
         if (!responsePL || responsePL.status === "failed") {
             console.error("Get playlist failed.");
             return;
@@ -85,14 +95,14 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
     const getSongs = async () => {
         const responseSong = await songApi.getAll({});
         const resSongsTransform = await tranFormDataId(responseSong.data);
-        setSongs(responseSong.data);
+        // setSongs(responseSong.data);
         setSongsTransform(resSongsTransform);
 
         const dataArtists = await artistApi.getAll({});
         setArtists(dataArtists.data);
     }
 
-    const getPLNull = ( _id: string ) => {
+    const getPLNull = (_id: string) => {
         setIsShowPLName([...isShowPLName, _id]);
     }
 
@@ -100,7 +110,9 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
         getPlaylists();
         getSongs();
     }, []);
-
+    const test1 = (event: Event | any) => {
+        console.log('xin hcao')
+    }
     return (
         <>
             {/* <div className=" w-100 h-100 d-flex position-fixed top-0  text-center" style={{ left: "0px", zIndex: 10, backgroundColor: "rgb(0 0 0 / 25%)" }}>
@@ -123,17 +135,17 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
             </div> */}
 
             {/* // */}
-            <div className="home">
+            <div className="home" ref={scrollRef}>
                 <div className="slider-banner">
                     <VerticalSlider settings_banner={settings_banner} />
                 </div>
 
                 {/* category */}
                 <div className="list-slider">
-                    <h4 className="title_all">Thể loại <MdNavigateNext className="icon" /></h4>
+                    <h4 className="title_all">Chủ đề <MdNavigateNext className="icon" /></h4>
                     <HomeCategory settings_category={settings_category} />
 
-                </div>
+                </div> 
                 <div className="list-music">
                     <h4 className="title_all">Danh sách bài hát <MdNavigateNext className="icon" /></h4>
                     <div className="main1">
@@ -143,21 +155,20 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                         {/* artist */}
                         <ArtistComponent artists={artists} />
                     </div>
-                </div>
+                </div> 
 
                 {playlists.length !== 0 && playlists.map((item: any) => {
-                    if(isShowPLName.filter(_ => _ == item._id).length !== 0) {
+                    if (isShowPLName.filter(_ => _ === item._id).length !== 0) {
                         return null
-                    } ;
+                    };
                     return (
                         <div className="list-slider " key={item._id}>
                             <h4 className="title_all">{item.name} <MdNavigateNext className="icon" /></h4>
-    
+
                             <WantHearComponent settings_category={settings_category} getPLNull={getPLNull} songs={songsTransform} idPlaylist={item._id} />
                         </div>
                     )
                 })}
-
                 <ChartMusic />
             </div>
 

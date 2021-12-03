@@ -10,11 +10,11 @@ import { useSelector } from "react-redux";
 import { formStateUser } from 'redux/user/stateUser';
 import { HandleGet } from "component/MethodCommon";
 import ImagePlaylist from "./imagePlaylist";
-interface ListPLaylist<T> {
+interface ListPLaylistIF<T> {
     render: number
 }
 
-const ListPLaylist: React.FC<ListPLaylist<any>> = ({ render, ...props }) => {
+const ListPLaylist: React.FC<ListPLaylistIF<any>> = ({ render, ...props }) => {
     const { user: { _id: id_User } } = useSelector<{ user: any }>(state => state.user) as formStateUser;
     const [state, setstate] = useState({ display: false, data: [] });
     useEffect(() => {
@@ -33,7 +33,7 @@ const ListPLaylist: React.FC<ListPLaylist<any>> = ({ render, ...props }) => {
     return (
         <>
             {state.display ?
-                state.data.map((current: any, index: number) => {
+                state?.data?.map((current: any, index: number) => {
                     return (
                         <Link to={`/playlistDetail/${current?._id}`} key={index}>
                             <div className="box">

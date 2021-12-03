@@ -8,14 +8,17 @@ import RoomApi from "api/roomApi";
 import { variableCommon } from "component/variableCommon";
 import { RouteComponentProps, withRouter } from "react-router-dom";
 import { io } from "socket.io-client";
+import { useSelector } from "react-redux";
+import { formStateUser } from "redux/user/stateUser";
+import roomUserApi from "api/roomUser";
 const ValidateSchema = Yup.object().shape({
     password: Yup.string().required('this field is require.')
 })
-interface ModalRoom<T> extends RouteComponentProps {
+interface ModalRoomIF<T> extends RouteComponentProps {
     open: boolean,
     setOpen: (T: boolean) => void,
     current: any,
-    saveUser: any
+    saveUser: any | T,
 }
 const style = {
     position: 'absolute',
@@ -33,8 +36,9 @@ const styleInput = {
     width: 330, height: 40, marginTop: 15, marginBottom: 10,
     backgroundColor: "#06111C", borderRadius: 3, color: '#fff', border: 'none', paddingLeft: 10
 }
-const ModalRoom: React.FC<ModalRoom<any>> = ({ current, open, setOpen, ...props }) => {
+const ModalRoom: React.FC<ModalRoomIF<any>> = ({ current, open, setOpen, ...props }) => {
     const [alertForm, setalertForm] = useState({ type: 'info', message: '', display: false })
+    const { user } = useSelector<{ user: any }>(state => state.user) as formStateUser;
     const server = "http://localhost:5000";
     const handleForm = (value: any, formAction: FormikHelpers<any>): void | Promise<any> => {
         (async () => {
@@ -42,12 +46,21 @@ const ModalRoom: React.FC<ModalRoom<any>> = ({ current, open, setOpen, ...props 
                 password: value.password,
                 idRoom: current._id
             }
+            const dataUserRoom = {
+                id_Room: current._id,
+                id_User: user._id
+            }
             const getRes = await RoomApi.enterRoom<object>(data);
-            if (getRes.status === variableCommon.statusS && props.saveUser.current?.data[0]._id) {
-                io(server).emit("JoinRoom")
-                return props.history.push(`/listenTogether/roomDetail/${current?._id || ''}`, {
-                    idRoomUser: props.saveUser.current?.data[0]._id
-                })
+
+            if (getRes.status === variableCommon.statusS) {
+                const addUserintoRoom = await roomUserApi.postOne<object>(dataUserRoom);
+                if (addUserintoRoom?.data?.[0]._id) {
+                    io(server).emit("JoinRoom")
+                    return props.history.push(`/listenTogether/roomDetail/${current?._id || ''}`, {
+                        idRoomUser: addUserintoRoom?.data[0]._id
+                    })
+                }
+
             }
             return setalertForm({ type: 'error', message: getRes.message, display: true })
         })()

@@ -1,25 +1,26 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { RiAdminFill } from "react-icons/ri";
 import { FaSignInAlt } from "react-icons/fa";
-import { Select, MenuItem } from "@mui/material";
+import { MenuItem } from "@mui/material";
 import { Link, RouteChildrenProps, withRouter } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { formStateUser } from "redux/user/stateUser";
-import Topic from "./component/topic/topic";
-import Upload from "./component/upload/upload";
 import { Logout } from "redux/user/actionUser";
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import SearchIcon from '@material-ui/icons/Search';
 import MoreIcon from '@material-ui/icons/MoreVert';
+import Avatar from '@mui/material/Avatar';
 import './style.scss'
-import { BiSearch ,BiTime,BiX} from "react-icons/bi"
+import { BiSearch, BiTime, BiX } from "react-icons/bi"
 //
 import { fade, makeStyles, AppBar, Toolbar, IconButton, InputBase, Menu } from '@material-ui/core';
 // import { Search, AccountCircle, MoreVert } from '@material-ui/icons';
 import AlertComponent from "component/clientComponent/Alert";
 import Loadings from "page/client/loading/loading";
 
-interface HeaderClient extends RouteChildrenProps {}
+import avatar from "./../../notificationModal/anc.png";
+
+interface HeaderClientIF extends RouteChildrenProps { }
 const useStyles = makeStyles((theme) => ({
     grow: {
         flexGrow: 1,
@@ -84,55 +85,62 @@ const useStyles = makeStyles((theme) => ({
         },
     },
 }));
-const HeaderClient: React.FC<HeaderClient> = ({ ...props }) => {
+const HeaderClient: React.FC<HeaderClientIF> = ({ ...props }) => {
     const [handleStatus, setHandleStatus] = useState({
         status: "",
         content: "",
     });
-	const [loading, setLoading] = useState(false);  
+    const [loading, setLoading] = useState(false);
 
-	const state = useSelector<{ user: any }>(state => state.user) as formStateUser;
-	const dispatch = useDispatch();
-    
-	const classes = useStyles();
-	const [anchorEl, setAnchorEl] = useState(null);
-	const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-    const [modalSearh,setModalSearh] =useState(false);
+    const state = useSelector<{ user: any }>(state => state.user) as formStateUser;
+    const dispatch = useDispatch();
+
+    const classes = useStyles();
+    const [anchorEl, setAnchorEl] = useState(null);
+    const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+    // const [modalSearh, setModalSearh] =useState(false);
 
     const [searchInp, setSearchInp] = useState('');
-    
-    const handleOpendModal =()=>{
-        if(modalSearh == false){
-            setModalSearh(true)
-        } else if(modalSearh == true){
-            setModalSearh(false)
-        }
-    }
-    const logOut = () => {
-		setLoading(true);
-        const isLogout = dispatch(Logout());
-		setHandleStatus({
-			status: "success",
-			content: "Đăng xuất thành công.",
-		})
-		setLoading(false);
-        setAnchorEl(null);
 
-        const requireLoginPath = ['/profile', '/listenTogether', '/personal','/roomDetail'];
-        if(requireLoginPath.filter( item => item == props.history.location.pathname).length !== 0){
+    const wrapperRef = useRef(null);
+    const [openModalLogout, setOpenModalLogout] = useState(false);
+
+    // const handleOpendModal =()=>{
+    //     if(modalSearh == false){
+    //         setModalSearh(true)
+    //     } else if(modalSearh == true){
+    //         setModalSearh(false)
+    //     }
+    // }
+
+    const logOut = () => {
+        setLoading(true);
+        setOpenModalLogout(false);
+        dispatch(Logout())
+
+        const requireLoginPath = ['/profile', '/listenTogether', '/personal', '/roomDetail'];
+        setLoading(false);
+        if (requireLoginPath.filter(item => item === props.history.location.pathname).length !== 0) {
+            setHandleStatus({
+                status: "success",
+                content: "Đăng xuất thành công.",
+            })
+
             return props.history.replace('/');
+        } else {
+            props.history.replace('/signin')
         }
         // props.history.replace('/signin');
     };
 
-	if(handleStatus.status !==  ''){
-		setTimeout(() => {
-			setHandleStatus({
-				status: "",
-				content: "",
-			});
-		}, 3000);
-	}
+    if (handleStatus.status !== '') {
+        setTimeout(() => {
+            setHandleStatus({
+                status: "",
+                content: "",
+            });
+        }, 3000);
+    }
 
     const checkAdmin = () => {
         return state.user.role >= 1 ? (
@@ -164,9 +172,12 @@ const HeaderClient: React.FC<HeaderClient> = ({ ...props }) => {
                 {checkAdmin()}
                 <MenuItem value={10}>
                     <span
-                        className="link text-danger  rounded border-1 border-danger "
+                        className="link text-danger rounded border-1 border-danger "
                         style={{ fontSize: "1rem" }}
-                        onClick={logOut}
+                        onClick={() => {
+                            setOpenModalLogout(true)
+                            setAnchorEl(null);
+                        }}
                     >
                         <FaSignInAlt className="text-danger _icon" />
                         Đăng xuất
@@ -176,16 +187,16 @@ const HeaderClient: React.FC<HeaderClient> = ({ ...props }) => {
         );
     };
 
-	const checkGuest = () => {
+    const checkGuest = () => {
         const lastLocation = props.history.location.search ? props.history.location.pathname + props.history.location.search : props.history.location.pathname;
-		return (
-			<>
-				<MenuItem value={10} onClick={handleMenuClose}>
-					<Link to={{ pathname: "/signin", state: { lastLocation: lastLocation }}} className="link rounded " style={{ fontSize: '1rem' }}><FaSignInAlt className="_icon" />Đăng nhập</Link>
-				</MenuItem>
-			</>
-		)
-	}
+        return (
+            <>
+                <MenuItem value={10} onClick={handleMenuClose}>
+                    <Link to={{ pathname: "/signin", state: { lastLocation: lastLocation } }} className="link rounded " style={{ fontSize: '1rem' }}><FaSignInAlt className="_icon" />Đăng nhập</Link>
+                </MenuItem>
+            </>
+        )
+    }
 
     const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -223,6 +234,7 @@ const HeaderClient: React.FC<HeaderClient> = ({ ...props }) => {
         </Menu>
     );
     const mobileMenuId = "primary-search-account-menu-mobile";
+    console.log(state.user?.avatar)
     const renderMobileMenu = (
         <Menu
             anchorEl={mobileMoreAnchorEl}
@@ -233,21 +245,6 @@ const HeaderClient: React.FC<HeaderClient> = ({ ...props }) => {
             open={isMobileMenuOpen}
             onClose={handleMobileMenuClose}
         >
-            <MenuItem>
-                <IconButton aria-label="show 4 new mails" color="inherit">
-                    <Upload />
-                </IconButton>
-                <div>Tải lên</div>
-            </MenuItem>
-            <MenuItem>
-                <IconButton
-                    aria-label="show 11 new notifications"
-                    color="inherit"
-                >
-                    <Topic />
-                </IconButton>
-                <div>Đề tài</div>
-            </MenuItem>
             <MenuItem onClick={handleProfileMenuOpen}>
                 <IconButton
                     aria-label="account of current user"
@@ -255,7 +252,8 @@ const HeaderClient: React.FC<HeaderClient> = ({ ...props }) => {
                     aria-haspopup="true"
                     color="inherit"
                 >
-                    <AccountCircle />
+
+                    {(state.user && state.token) ? <Avatar src={state.user?.avatar} /> : <AccountCircle />}
                 </IconButton>
                 <div>Thông tin</div>
             </MenuItem>
@@ -264,12 +262,47 @@ const HeaderClient: React.FC<HeaderClient> = ({ ...props }) => {
 
     const search = () => {
         props.history.push(`/search?key=${searchInp}`)
-    } 
+    }
     const enterToSearch = (e: any) => {
-        if(e.key === "Enter"){
+        if (e.key === "Enter") {
             search();
         }
+    };
+
+    const useOutsideAlerter = (ref: any) => {
+        useEffect(() => {
+            function handleClickOutside(event: any) {
+                if (ref.current && !ref.current.contains(event.target)) {
+                    setOpenModalLogout(false);
+                }
+            }
+
+            document.addEventListener("mousedown", handleClickOutside);
+            return () => {
+                document.removeEventListener("mousedown", handleClickOutside);
+            };
+        }, [ref]);
     }
+
+    useOutsideAlerter(wrapperRef);
+
+    const ModalConfirmLogout = (
+        <div className="w-100 h-100 d-flex position-fixed top-0 text-center" style={{ left: "0px", zIndex: 10, backgroundColor: "rgb(0 0 0 / 25%)" }}>
+            <div ref={wrapperRef} className="my-auto mx-auto p-4 rounded-3" style={{ backgroundColor: "#9cf6ff" }}>
+                <img className="w-25 h-25" src={avatar} alt="" />
+
+                <p style={{ fontWeight: 500 }} className="mb-0">Bạn có chắc là muốn đăng xuất khỏi Music Game</p>
+
+                <p>Hành động này có thể dẫn đến không thể sử dụng một số tính năng của Music Game</p>
+
+                <div className="d-flex justify-content-center">
+                    <button onClick={() => setOpenModalLogout(false)} className="btn btn-light">Hủy</button>
+                    <button onClick={logOut} className="btn btn-danger" style={{ marginLeft: "1rem" }}>Đăng xuất</button>
+                </div>
+            </div>
+
+        </div>
+    )
     return (
         <div className="header_ui">
             {handleStatus.status !== "" && (
@@ -278,29 +311,21 @@ const HeaderClient: React.FC<HeaderClient> = ({ ...props }) => {
                     content={handleStatus.content}
                 />
             )}
-			{loading && <Loadings/>}
+            {loading && <Loadings />}
             <AppBar position="static" style={{ background: "#222f44" }}>
                 <Toolbar>
-                    <div className={classes.search} style={{position:"relative"}}>
-                        <div className={classes.searchIcon} style={{ zIndex: 999}} onClick={search}>
+                    <div className={classes.search} style={{ position: "relative" }}>
+                        <div className={classes.searchIcon} style={{ zIndex: 999 }} onClick={search}>
                             <SearchIcon />
                         </div>
-                        {/* {  modalSearh && (
-                            <> 
-                                <BiX className="hover-icon" style={{position:'absolute',fontSize:'30px',right:'0'}}/>
+
+                        {searchInp !== '' && (
+                            <>
+                                <BiX className="hover-icon" onClick={() => setSearchInp("")} style={{ position: 'absolute', fontSize: '30px', right: '0', zIndex: 999 }} />
                             </>
-                            )
-                        } */}
-                       
-                        {  searchInp !== '' && (
-                            <> 
-                                <BiX className="hover-icon" onClick={() => setSearchInp("")} style={{position:'absolute',fontSize:'30px',right:'0', zIndex: 999}}/>
-                            </>
-                            )
+                        )
                         }
                         <InputBase
-                            onFocus={()=> setModalSearh(true)}
-                            onBlur={()=> setModalSearh(false)}
                             placeholder="Nhập tên bài hát, nghệ sĩ hoăc blog..."
                             classes={{
                                 root: classes.inputRoot,
@@ -311,72 +336,9 @@ const HeaderClient: React.FC<HeaderClient> = ({ ...props }) => {
                             onChange={(e) => setSearchInp(e.target.value)}
                             onKeyDown={enterToSearch}
                         />
-                        {/* {
-                            modalSearh && (
-                                <>
-                                <div className={"rounded-3 w-100 shadow-lg py-2"} style={{position:"absolute",background:"#e1f4ff"}}>
-                                    <div>
-                                        <div className="hover">
-                                           
-                                            <Link to="" className="text-dark px-3"> <BiSearch style={{marginRight:'2px'}} className="text-black" />tìm kiếm mới</Link>
-                                        </div>
-                                        <div className="hover">
-                                            <Link to="" className="text-dark px-3"> <BiSearch style={{marginRight:'2px'}} className="text-black" />tìm kiếm mới</Link>
-                                        </div>
-                                        <div className="hover">
-                                            <Link to="" className="text-dark px-3"> <BiSearch style={{marginRight:'2px'}} className="text-black" />tìm kiếm mới</Link>
-                                        </div>
-                                        <div className="hover">
-                                            <Link to="" className="text-dark px-3"> <BiSearch style={{marginRight:'2px'}} className="text-black" />tìm kiếm mới</Link>
-                                        </div>
-                                        <div className="hover">
-                                            <Link to="" className="text-dark px-3"> <BiSearch style={{marginRight:'2px'}} className="text-black" />tìm kiếm mới</Link>
-                                        </div>
-                                        <p className="border-bottom text-black"></p>
-                                        <div className="d-flex justify-content-between px-3 hover">
-                                            <p className="text-dark mb-0"><BiTime style={{marginRight:'2px'}} className="text-black" />tìm kiếm gần đây</p>
-                                            <p className=" mb-0 hover-delete" onClick={()=>('sự kiến xóa ')}>xóa</p>  
-                                        </div>
-                                        <div className="d-flex justify-content-between px-3 hover">
-                                            <p className="text-dark mb-0"><BiTime style={{marginRight:'2px'}} className="text-black" />tìm kiếm gần đây</p>
-                                            <p className=" mb-0 hover-delete" onClick={()=>('sự kiến xóa ')}>xóa</p>  
-                                        </div>
-                                        <div className="d-flex justify-content-between px-3 hover">
-                                            <p className="text-dark mb-0"><BiTime style={{marginRight:'2px'}} className="text-black" />tìm kiếm gần đây</p>
-                                            <p className=" mb-0 hover-delete" onClick={()=>('sự kiến xóa ')}>xóa</p>  
-                                        </div>
-                                        <div className="d-flex justify-content-between px-3 hover">
-                                            <p className="text-dark mb-0"><BiTime style={{marginRight:'2px'}} className="text-black" />tìm kiếm gần đây</p>
-                                            <p className="mb-0 hover-delete " onClick={()=>('sự kiến xóa ')}>xóa</p>  
-                                        </div>
-                                        <div className="d-flex justify-content-between px-3 hover">
-                                            <p className="text-dark mb-0"><BiTime style={{marginRight:'2px'}} className="text-black" />tìm kiếm gần đây</p>
-                                            <p className=" mb-0 hover-delete" onClick={()=>('sự kiến xóa ')}>xóa</p>  
-                                        </div>
-                                    </div>
-
-                                </div>
-                                </>
-
-                            )
-                        } */}
-                            
-                    
                     </div>
                     <div className={classes.grow} />
                     <div className={classes.sectionDesktop}>
-                        <IconButton
-                            aria-label="show 4 new mails"
-                            color="inherit"
-                        >
-                            <Upload />
-                        </IconButton>
-                        <IconButton
-                            aria-label="show 18 new notifications"
-                            color="inherit"
-                        >
-                            <Topic />
-                        </IconButton>
                         <IconButton
                             edge="end"
                             aria-label="account of current user"
@@ -385,7 +347,7 @@ const HeaderClient: React.FC<HeaderClient> = ({ ...props }) => {
                             onClick={handleProfileMenuOpen}
                             color="inherit"
                         >
-                            <AccountCircle />
+                            {(state.user && state.token) ? <Avatar src={state.user?.avatar} /> : <AccountCircle />}
                         </IconButton>
                     </div>
                     <div className={classes.sectionMobile}>
@@ -403,6 +365,7 @@ const HeaderClient: React.FC<HeaderClient> = ({ ...props }) => {
             </AppBar>
             {renderMobileMenu}
             {renderMenu}
+            {openModalLogout && ModalConfirmLogout}
         </div>
     );
 };

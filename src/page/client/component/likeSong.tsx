@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import { BiHeart } from 'react-icons/bi';
 import { AiFillHeart } from 'react-icons/ai';
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { formStateUser } from 'redux/user/stateUser';
 import { formStateAudio } from 'redux/audio/stateAudio';
 import apiLikeUser from "api/apiLikeUser";
 import { HandleGet } from "component/MethodCommon";
 import { variableCommon } from "component/variableCommon";
-interface LikeSong<T> {
+interface LikeSongIF<T> {
 
 }
 
-const LikeSong: React.FC<LikeSong<any>> = ({ ...props }) => {
+const LikeSong: React.FC<LikeSongIF<any>> = ({ ...props }) => {
     const [heart, setHeart] = useState(false);
     const state = useSelector<{ user: any }>(state => state.user) as formStateUser;
     const stateAudio = useSelector<{ audio: any }>(state => state.audio) as formStateAudio;
@@ -50,8 +50,10 @@ const LikeSong: React.FC<LikeSong<any>> = ({ ...props }) => {
                 const { id_User, id_Songs } = curren;
                 return stateAudio.audio._id === id_Songs && state.user._id === id_User
             })
-            await apiLikeUser.deleteOne(checkLike._id)
-            return setHeart(false)
+            if (checkLike?._id) {
+                await apiLikeUser.deleteOne(checkLike?._id)
+                return setHeart(false)
+            }
         }
         // alert('bạn phải đăng nhập để sử dụng tính năng này.')
     }
