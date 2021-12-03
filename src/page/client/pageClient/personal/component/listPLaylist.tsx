@@ -33,7 +33,7 @@ const ListPLaylist: React.FC<ListPLaylistIF<any>> = ({ render, ...props }) => {
     return (
         <>
             {state.display ?
-                state.data.map((current: any, index: number) => {
+                state?.data?.map((current: any, index: number) => {
                     return (
                         <Link to={`/playlistDetail/${current?._id}`} key={index}>
                             <div className="box">
