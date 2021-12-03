@@ -1,18 +1,18 @@
 import React, { useEffect, useReducer, useState } from 'react'
 import { makeStyles } from "@mui/styles"
+import songApi from 'api/songApi'
+import { page } from '../index'
 import { Select, MenuItem, Avatar } from "@mui/material"
 import SearchIcon from '@mui/icons-material/Search'
-import { page } from '../index'
-import commentApi from 'api/commentApi'
-import PaginationComment from '../component/PaginationComment'
-import ModalComment from '../component/ModalComment'
+import { variableCommon } from "component/variableCommon"
+import PaginationSong from '../component/PaginationSong'
+import ModalSong from '../component/ModalSong'
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material"
 import { Button, Checkbox, TextField, Typography, CircularProgress, Box } from "@mui/material"
 import { initialReducer, handleReducer, HandleGet, typeAciton, pustAction } from "component/MethodCommon";
-import { variableCommon } from 'component/variableCommon'
 
 
-interface ListComment<T> {
+interface ListSong<T> {
   changePage: any,
   set_id: Function
 }
@@ -26,37 +26,40 @@ const useStyle = makeStyles((theme) => ({
 }))
 
 const columns = [
-  { id: 'rangestart', label: 'rangeStart', minWidth: 100, align: 'left' },
-  { id: 'comment', label: 'Comment', minWidth: 170, align: 'left' },
-  { id: 'state', label: 'State', minWidth: 170, align: 'left' },
+  { id: 'title', label: 'Title Song', minWidth: 170, align: 'left' },
+  { id: 'image', label: 'Image', minWidth: 170, align: 'left' },
+  { id: 'view', label: 'View', minWidth: 170, align: 'left' },
+  { id: 'audio', label: 'Audio', minWidth: 170, align: 'left' },
+  { id: 'active', label: 'Active', minWidth: 170, align: 'left' },
+  { id: 'describe', label: 'Describe', minWidth: 170, align: 'left' },
+  { id: 'dayRelease', label: 'Day Release', minWidth: 170, align: 'left' },
   { id: '', label: 'Handle', minWidth: 170, align: 'center' }
 ]
 
-const ListComment: React.FC<ListComment<any>> = ({ changePage, set_id, ...props }) => {
+const ListSong: React.FC<ListSong<any>> = ({ changePage, set_id, ...props }) => {
   const classes = useStyle();
   const [state, dispatch] = useReducer(handleReducer, initialReducer);
-  const [stateModalComment, setStateModalComment] = useState<any>({ display: false, _id: null });
+  const [stateModalSong, setStateModalSong] = useState<any>({ display: false, _id: null });
 
   useEffect(() => {
     (async () => {
       const query = {
         ...state.Filter
       }
-      const [data, error] = await HandleGet(commentApi.getAll, query);
-
+      const [data, error] = await HandleGet(songApi.getAll, query);
       delete query._limit;
       delete query._page;
 
       const checkFindName = Object.entries(query).length;
-      var [dataStatic] = await HandleGet(commentApi.getAll, checkFindName ? { ...query } : {});
+      var [dataStatic] = await HandleGet(songApi.getAll, checkFindName ? { ...query } : {});
 
       if (data?.status !== variableCommon.statusS) return dispatch(pustAction(typeAciton.error));
 
       setTimeout(() => {
         dispatch(pustAction(typeAciton.getData, { Data: data?.data, dataStatic: dataStatic?.data }))
       }, 1000);
-    })()
 
+    })()
     return () => {
       dispatch(pustAction(typeAciton.reset))
     }
@@ -71,11 +74,11 @@ const ListComment: React.FC<ListComment<any>> = ({ changePage, set_id, ...props 
 
   const onOpen = <T extends string>(_id: T) => {
     if ([undefined, null].includes(_id as any)) return;
-    setStateModalComment((value: any) => ({ _id, display: true }))
+    setStateModalSong((value: any) => ({ _id, display: true }))
   }
 
   const onClose = () => {
-    setStateModalComment((value: any) => ({ ...value, display: false }))
+    setStateModalSong((value: any) => ({ ...value, display: false }))
   }
 
   const navigatePage = <T extends string>(page: T, _id?: T): void => {
@@ -86,7 +89,7 @@ const ListComment: React.FC<ListComment<any>> = ({ changePage, set_id, ...props 
   const deleteOne = async (_id: string) => {
     if (!_id) return;
     dispatch(pustAction(typeAciton.deleteOne, { _id }));
-    await commentApi.deleteOne(_id);
+    await songApi.deleteOne(_id);
   }
 
   const deleteAll = () => {
@@ -94,25 +97,24 @@ const ListComment: React.FC<ListComment<any>> = ({ changePage, set_id, ...props 
     state.Data.forEach(async (currenV: any) => {
       const { _id, check } = currenV;
       if (check) {
-        await commentApi.deleteOne(_id)
+        await songApi.deleteOne(_id)
       }
     })
   }
 
   return (
     <>
-      {stateModalComment._id && <ModalComment state={stateModalComment} onClose={onClose} />}
+      {stateModalSong._id && <ModalSong state={stateModalSong} onClose={onClose}></ModalSong>}
       <div
         style={{
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
-          minHeight: '800px',
+          minHeight: '600px',
           width: '100%'
         }}
       >
         <div style={{ flexBasis: 1000, margin: '0 auto' }}>
-          <h2 className="mb-5">Comment</h2>
           <Paper sx={{ width: '100%' }}>
             <TableContainer style={{ padding: 20 }}>
               <Typography style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -150,59 +152,73 @@ const ListComment: React.FC<ListComment<any>> = ({ changePage, set_id, ...props 
                       />
                       <label htmlFor="checkAll">All</label>
                     </TableCell>
-                    {columns.map((column) => {
-                      return (
-                        <TableCell
-                          key={column.id}
-                          align={column.align as any}
-                          style={{ minWidth: column.minWidth }}
-                        >
-                          {column.label}
-                        </TableCell>
-                      )
-                    })}
+                    {columns.map((column) => (
+                      <TableCell
+                        key={column.id}
+                        align={column.align as any}
+                        style={{ minWidth: column.minWidth }}
+                      >
+                        {column.label}
+                      </TableCell>
+                    ))}
                   </TableRow>
                 </TableHead>
 
                 <TableBody>
-                  {
+                  { // Tối về kiểm tra luồng chạy state.Data
                     state.Data.length && state.Display ?
                       state.Data.map((row: any, index: any) => {
-                        const { title, rangeStart, comment, state, check, _id } = row;
-                        // console.log('Title Comment : ', comment);
+                        const { title, image, view, audio, active, describe, check, _id } = row;
                         return (
                           <TableRow hover role="checkbox" key={index}>
                             <TableCell align="left">
-                              <Checkbox checked={check} onClick={() => {
-                                dispatch(pustAction(typeAciton.checkOne, { _id }))
-                              }} />
+                              <Checkbox
+                                checked={check}
+                                onClick={() => {
+                                  dispatch(pustAction(typeAciton.checkOne, { _id }))
+                                }}
+                              />
                             </TableCell>
-                            <TableCell align="left">{rangeStart}</TableCell>
-                            <TableCell align="left">{comment}</TableCell>
-                            <TableCell align="left">{state === true ? 'Hiện' : 'Ẩn'}</TableCell>
-                            <TableCell align="center">
+                            <TableCell align="left">{title}</TableCell>
+                            <TableCell align="left">
+                              <Avatar alt={title} variant="rounded" src={image} />
+                            </TableCell>
+                            <TableCell align="left">{view}</TableCell>
+                            <TableCell align="left">
+                              <audio src={audio} />
+                            </TableCell>
+                            <TableCell align="left">{active === true ? 'oki' : 'No oki'}</TableCell>
+                            <TableCell align="left">{describe}</TableCell>
+                            <TableCell align='center'>
                               <Button
                                 variant="contained"
                                 color="error"
-                                style={{ marginRight: 5 }}
+                                style={{ marginRight: 5 }} size="small"
+                                onClick={() => { deleteOne(_id) }}
+                              >
+                                Delete
+                              </Button>
+                              <Button
+                                variant="contained"
+                                color="primary"
                                 size="small"
-                                onClick={() => {
-                                  // dispatch(pustAction(typeAciton.deleteOne, { _id }))
-                                  deleteOne(_id)
-                                }}
-                              >Delete</Button>
+                                onClick={() => { navigatePage(page.UpdateSong, _id) }}
+                              >
+                                Edit
+                              </Button>
                               <Button
                                 variant="contained"
                                 color="primary"
                                 size="small"
                                 style={{ marginLeft: 5 }}
                                 onClick={() => { onOpen<string>(_id) }}
-                              >More</Button>
+                              >
+                                More
+                              </Button>
                             </TableCell>
                           </TableRow>
-                        );
-                      }) :
-                      state.Display ? null : <TableRow>
+                        )
+                      }) : state.Display ? null : <TableRow>
                         <TableCell align="center" colSpan={12}>
                           <CircularProgress />
                         </TableCell>
@@ -212,9 +228,19 @@ const ListComment: React.FC<ListComment<any>> = ({ changePage, set_id, ...props 
               </Table>
               <Box className={classes.styleBox}>
                 <div>
-                  <Button variant="contained" size="small" onClick={deleteAll}>Delete All</Button>
+                  <Button variant="contained" size="small" onClick={deleteAll}>
+                    Delete All
+                  </Button>
+                  <Button
+                    variant="contained"
+                    size="small"
+                    style={{ marginLeft: 5 }}
+                    onClick={() => { navigatePage(page.AddSong) }}
+                  >
+                    Add
+                  </Button>
                 </div>
-                <PaginationComment state={state} dispatch={dispatch} />
+                <PaginationSong state={state} dispatch={dispatch} />
               </Box>
             </TableContainer>
           </Paper>
@@ -224,4 +250,4 @@ const ListComment: React.FC<ListComment<any>> = ({ changePage, set_id, ...props 
   )
 }
 
-export default ListComment
+export default ListSong

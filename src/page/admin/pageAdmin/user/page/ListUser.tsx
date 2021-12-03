@@ -1,18 +1,17 @@
 import React, { useEffect, useReducer, useState } from 'react'
-import { makeStyles } from "@mui/styles"
+import { page } from '../index'
+import useApi from 'api/useApi'
 import { Select, MenuItem, Avatar } from "@mui/material"
 import SearchIcon from '@mui/icons-material/Search'
-import { page } from '../index'
-import commentApi from 'api/commentApi'
-import PaginationComment from '../component/PaginationComment'
-import ModalComment from '../component/ModalComment'
+import { variableCommon } from "component/variableCommon"
+import PaginationUser from '../component/PaginationUser'
+import { makeStyles } from "@mui/styles"
+import ModalUser from '../component/ModalUser'
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material"
 import { Button, Checkbox, TextField, Typography, CircularProgress, Box } from "@mui/material"
 import { initialReducer, handleReducer, HandleGet, typeAciton, pustAction } from "component/MethodCommon";
-import { variableCommon } from 'component/variableCommon'
 
-
-interface ListComment<T> {
+interface ListUser<T> {
   changePage: any,
   set_id: Function
 }
@@ -26,29 +25,32 @@ const useStyle = makeStyles((theme) => ({
 }))
 
 const columns = [
-  { id: 'rangestart', label: 'rangeStart', minWidth: 100, align: 'left' },
-  { id: 'comment', label: 'Comment', minWidth: 170, align: 'left' },
-  { id: 'state', label: 'State', minWidth: 170, align: 'left' },
+  { id: 'userName', label: 'UserName', minWidth: 170, alert: 'left' },
+  { id: 'email', label: 'Email', minWidth: 170, align: 'left' },
+  { id: 'avatar', label: 'Avatar', minWidth: 100, align: 'left' },
+  { id: 'gender', label: 'Gender', minWidth: 100, align: 'left' },
+  { id: 'role', label: 'Role', minWidth: 100, align: 'left' },
+  { id: 'active', label: 'Active', minWidth: 100, align: 'left' },
   { id: '', label: 'Handle', minWidth: 170, align: 'center' }
 ]
 
-const ListComment: React.FC<ListComment<any>> = ({ changePage, set_id, ...props }) => {
+const ListUser: React.FC<ListUser<any>> = ({ changePage, set_id, ...props }) => {
   const classes = useStyle();
   const [state, dispatch] = useReducer(handleReducer, initialReducer);
-  const [stateModalComment, setStateModalComment] = useState<any>({ display: false, _id: null });
+  const [stateModalUser, setStateModalUser] = useState<any>({ display: false, _id: null });
 
   useEffect(() => {
     (async () => {
       const query = {
         ...state.Filter
       }
-      const [data, error] = await HandleGet(commentApi.getAll, query);
+      const [data, error] = await HandleGet(useApi.getAll, query);
 
       delete query._limit;
       delete query._page;
 
       const checkFindName = Object.entries(query).length;
-      var [dataStatic] = await HandleGet(commentApi.getAll, checkFindName ? { ...query } : {});
+      var [dataStatic] = await HandleGet(useApi.getAll, checkFindName ? { ...query } : {});
 
       if (data?.status !== variableCommon.statusS) return dispatch(pustAction(typeAciton.error));
 
@@ -56,37 +58,31 @@ const ListComment: React.FC<ListComment<any>> = ({ changePage, set_id, ...props 
         dispatch(pustAction(typeAciton.getData, { Data: data?.data, dataStatic: dataStatic?.data }))
       }, 1000);
     })()
-
     return () => {
       dispatch(pustAction(typeAciton.reset))
     }
   }, [state.Filter])
 
-  const findName = (event: Event | any) => {
+  const findUserName = (event: Event | any) => {
     const getValue = ((event.target as HTMLInputElement).value).trim();
     if (event.keyCode === 13) {
-      dispatch(pustAction(typeAciton.findName, { title: getValue }))
+      dispatch(pustAction(typeAciton.findName, { userName: getValue }))
     }
   }
 
   const onOpen = <T extends string>(_id: T) => {
     if ([undefined, null].includes(_id as any)) return;
-    setStateModalComment((value: any) => ({ _id, display: true }))
+    setStateModalUser((value: any) => ({ _id, display: true }))
   }
 
   const onClose = () => {
-    setStateModalComment((value: any) => ({ ...value, display: false }))
-  }
-
-  const navigatePage = <T extends string>(page: T, _id?: T): void => {
-    changePage(page);
-    if (_id) set_id(_id);
+    setStateModalUser((value: any) => ({ ...value, display: false }))
   }
 
   const deleteOne = async (_id: string) => {
     if (!_id) return;
     dispatch(pustAction(typeAciton.deleteOne, { _id }));
-    await commentApi.deleteOne(_id);
+    await useApi.deleteOne(_id);
   }
 
   const deleteAll = () => {
@@ -94,14 +90,14 @@ const ListComment: React.FC<ListComment<any>> = ({ changePage, set_id, ...props 
     state.Data.forEach(async (currenV: any) => {
       const { _id, check } = currenV;
       if (check) {
-        await commentApi.deleteOne(_id)
+        await useApi.deleteOne(_id)
       }
     })
   }
 
   return (
     <>
-      {stateModalComment._id && <ModalComment state={stateModalComment} onClose={onClose} />}
+      {stateModalUser._id && <ModalUser state={stateModalUser} onClose={onClose}></ModalUser>}
       <div
         style={{
           display: 'flex',
@@ -112,16 +108,22 @@ const ListComment: React.FC<ListComment<any>> = ({ changePage, set_id, ...props 
         }}
       >
         <div style={{ flexBasis: 1000, margin: '0 auto' }}>
-          <h2 className="mb-5">Comment</h2>
+          <h2 className="mb-5">User</h2>
           <Paper sx={{ width: '100%' }}>
             <TableContainer style={{ padding: 20 }}>
-              <Typography style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <Typography
+                style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center'
+                }}
+              >
                 <TextField
                   InputProps={{
                     startAdornment: <SearchIcon style={{ marginRight: 10 }}></SearchIcon>,
                     placeholder: "searching"
                   }}
-                  onKeyDown={findName}
+                  onKeyDown={findUserName}
                   size="small"
                 />
 
@@ -150,17 +152,15 @@ const ListComment: React.FC<ListComment<any>> = ({ changePage, set_id, ...props 
                       />
                       <label htmlFor="checkAll">All</label>
                     </TableCell>
-                    {columns.map((column) => {
-                      return (
-                        <TableCell
-                          key={column.id}
-                          align={column.align as any}
-                          style={{ minWidth: column.minWidth }}
-                        >
-                          {column.label}
-                        </TableCell>
-                      )
-                    })}
+                    {columns.map((column) => (
+                      <TableCell
+                        key={column.id}
+                        align={column.align as any}
+                        style={{ minWidth: column.minWidth }}
+                      >
+                        {column.label}
+                      </TableCell>
+                    ))}
                   </TableRow>
                 </TableHead>
 
@@ -168,8 +168,7 @@ const ListComment: React.FC<ListComment<any>> = ({ changePage, set_id, ...props 
                   {
                     state.Data.length && state.Display ?
                       state.Data.map((row: any, index: any) => {
-                        const { title, rangeStart, comment, state, check, _id } = row;
-                        // console.log('Title Comment : ', comment);
+                        const { userName, email, avatar, gender, role, active, check, _id } = row;
                         return (
                           <TableRow hover role="checkbox" key={index}>
                             <TableCell align="left">
@@ -177,44 +176,55 @@ const ListComment: React.FC<ListComment<any>> = ({ changePage, set_id, ...props 
                                 dispatch(pustAction(typeAciton.checkOne, { _id }))
                               }} />
                             </TableCell>
-                            <TableCell align="left">{rangeStart}</TableCell>
-                            <TableCell align="left">{comment}</TableCell>
-                            <TableCell align="left">{state === true ? 'Hiện' : 'Ẩn'}</TableCell>
-                            <TableCell align="center">
+                            <TableCell align="left">{userName}</TableCell>
+                            <TableCell align="left">{email}</TableCell>
+                            <TableCell align="left">
+                              <Avatar alt="" variant="rounded" src={avatar} />
+                            </TableCell>
+                            <TableCell align="left">
+                              {gender === true ? 'Nam' : 'Nữ'}
+                            </TableCell>
+                            <TableCell align="left">{role}</TableCell>
+                            <TableCell align="left">
+                              {active === true ? 'Hoạt động' : 'Không hoạt động'}
+                            </TableCell>
+                            <TableCell align="left">
                               <Button
                                 variant="contained"
                                 color="error"
                                 style={{ marginRight: 5 }}
                                 size="small"
-                                onClick={() => {
-                                  // dispatch(pustAction(typeAciton.deleteOne, { _id }))
-                                  deleteOne(_id)
-                                }}
-                              >Delete</Button>
+                                onClick={() => { deleteOne(_id) }}
+                              >
+                                Delete
+                              </Button>
                               <Button
                                 variant="contained"
                                 color="primary"
                                 size="small"
-                                style={{ marginLeft: 5 }}
                                 onClick={() => { onOpen<string>(_id) }}
-                              >More</Button>
+                              >
+                                More
+                              </Button>
                             </TableCell>
                           </TableRow>
                         );
-                      }) :
-                      state.Display ? null : <TableRow>
-                        <TableCell align="center" colSpan={12}>
-                          <CircularProgress />
-                        </TableCell>
-                      </TableRow>
+                      }) : state.Display ?
+                        null : <TableRow>
+                          <TableCell align="center" colSpan={12}>
+                            <CircularProgress />
+                          </TableCell>
+                        </TableRow>
                   }
                 </TableBody>
               </Table>
               <Box className={classes.styleBox}>
                 <div>
-                  <Button variant="contained" size="small" onClick={deleteAll}>Delete All</Button>
+                  <Button variant="contained" size="small" onClick={deleteAll}>
+                    Delete All
+                  </Button>
                 </div>
-                <PaginationComment state={state} dispatch={dispatch} />
+                <PaginationUser state={state} dispatch={dispatch} />
               </Box>
             </TableContainer>
           </Paper>
@@ -224,4 +234,4 @@ const ListComment: React.FC<ListComment<any>> = ({ changePage, set_id, ...props 
   )
 }
 
-export default ListComment
+export default ListUser

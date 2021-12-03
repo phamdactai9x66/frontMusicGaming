@@ -1,19 +1,20 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import { Card } from "@material-ui/core"
 import LoadingButton from '@mui/lab/LoadingButton'
 import { Button, Alert } from "@mui/material"
 import { Formik, Form } from "formik"
-import { InputText, FileField, RadioField } from "component/customField/index"
+import { InputText, FileField, RadioField, TextareaField } from "component/customField/index"
 import { page } from "../index"
-import { variableCommon } from "component/variableCommon"
+import songApi from 'api/songApi'
 import { HandleGet } from "component/MethodCommon"
-import SelectUser from '../component/SelectUser'
-import SelectCategoryBlog from '../component/SelectCategoryBlog'
-import blogApi from 'api/BlogApi'
-import { statusOption } from '../component/stateForm'
-import validationSchemaBlog from '../component/ValidationSchemaBlog'
+import { activeOption } from '../component/stateForm'
+import { variableCommon } from "component/variableCommon"
+import SelectAlbums from "../component/SelectAlbums"
+import SelectCategory from "../component/SelectCategory"
+import SelectTopic from "../component/SelectTopic"
+import validationSchemaSong from "../component/ValidationSchemaSong"
 
-interface UpdateBlog<T> {
+interface UpdateSong<T> {
   changePage: any,
   _id: string | any
 }
@@ -21,39 +22,42 @@ interface UpdateBlog<T> {
 const initialValue = {
   title: '',
   image: '',
-  content: '',
-  status: '',
   view: '',
-  id_User: '',
-  id_CategoryBlog: ''
+  audio: '',
+  active: '',
+  describe: '',
+  day_release: null,
+  id_Topic: '',
+  id_category: '',
+  id_aubum: '',
 }
 
-const UpdateBlog: React.FC<UpdateBlog<any>> = ({ changePage, _id, ...props }) => {
+const UpdateSong: React.FC<UpdateSong<any>> = ({ changePage, _id, ...props }) => {
   const refForm = useRef<HTMLFormElement | any>(null);
   const [alert, setAlert] = useState({ display: false, message: "", type: "" });
-  const [dataBlog, setDataBlog] = useState({ data: null, display: true });
+  const [dataSong, setDataSong] = useState({ data: null, display: true });
 
   useEffect(() => {
     (async () => {
-      if (!dataBlog.display) return navigatePage(page.ListBlog);
+      if (!dataSong.display) return navigatePage(page.ListSong);
 
-      const [data, error] = await HandleGet(blogApi.getOne, _id);
+      const [data, error] = await HandleGet(songApi.getOne, _id);
 
-      if (error) return navigatePage(page.ListBlog);
-      setDataBlog(value => ({ ...value, data: data.data }))
+      if (error) return navigatePage(page.ListSong);
+      setDataSong(value => ({ ...value, data: data.data }))
     })()
-  }, [_id])
+  }, [_id]);
 
   const submitForm = (data: any, action: any) => {
     const getForm = new FormData(refForm.current);
     setTimeout(async () => {
-      const createBlog = await blogApi.putOne<FormData, string>(getForm, _id);
-      if (createBlog.status !== variableCommon.statusF) {
-        setDataBlog(value => ({ ...value, data: createBlog.data[0] }))
+      const editSong = await songApi.putOne<FormData, string>(getForm, _id);
+      if (editSong.status !== variableCommon.statusF) {
+        setDataSong(value => ({ ...value, data: editSong.data[0] }));
         setAlert(value => (
           {
             ...value, display: true,
-            message: createBlog.message,
+            message: editSong.message,
             type: 'success'
           }
         ))
@@ -61,33 +65,34 @@ const UpdateBlog: React.FC<UpdateBlog<any>> = ({ changePage, _id, ...props }) =>
         setAlert(value => (
           {
             ...value, display: true,
-            message: createBlog.message,
+            message: editSong.message,
             type: 'error'
           }
         ))
       }
       action.setSubmitting(false)
-    }, 1000);
+    }, 1000)
   }
 
   const navigatePage = (page: string) => {
     changePage(page);
   }
+
   return (
     <>
       <div className="admin-pageAdd">
         <div className="text-name-add">
-          <h3>Edit Blog</h3><br />
+          <h3>Edit Song</h3><br />
         </div>
         {alert.display && <Alert severity={alert.type as any} style={{ marginBottom: 5 }}>
           {alert.message}
         </Alert>}
 
         <Formik
-          initialValues={dataBlog.data || initialValue}
+          initialValues={dataSong.data || initialValue}
           onSubmit={submitForm}
           validateOnChange={false}
-          validationSchema={validationSchemaBlog}
+          validationSchema={validationSchemaSong}
           enableReinitialize
         >
           {formik => {
@@ -100,50 +105,21 @@ const UpdateBlog: React.FC<UpdateBlog<any>> = ({ changePage, _id, ...props }) =>
                         <div className="inputForm">
                           <InputText
                             name="title"
-                            label="Tên bài viết"
+                            label="Tiêu đề bài hát"
                             other={{ variant: "standard" }}
                           />
                         </div>
                       </div>
                     </Card>
                   </div>
-                  <div>
-                    <Card elevation={5}>
-                      <div className="form-input-add">
-                        <div className="inputForm">
-                          <InputText
-                            name="content"
-                            label="Nội dung bài viết"
-                            other={{ variant: "standard" }}
-                          />
-                        </div>
-                      </div>
-                    </Card>
-                  </div>
-
-                  <div>
-                    <Card elevation={5}>
-                      <div className="form-input-add">
-                        <div className="inputForm">
-                          <RadioField
-                            name="status"
-                            data={statusOption}
-                            other={{ variant: 'standard' }}
-                          />
-                        </div>
-                      </div>
-                    </Card>
-                  </div>
-
                   <div>
                     <Card elevation={5}>
                       <div className="form-input-add">
                         <div className="inputForm">
                           <InputText
                             name="view"
-                            type="number"
-                            min={0}
                             label="Lượt xem"
+                            type="number"
                             other={{ variant: "standard" }}
                           />
                         </div>
@@ -156,19 +132,72 @@ const UpdateBlog: React.FC<UpdateBlog<any>> = ({ changePage, _id, ...props }) =>
                         <div className="flex-image bg-file">
                           <FileField
                             name="image"
-                            label="Image blog"
+                            label="Image song"
                             type="file"
                             other={{ variant: 'standard' }}
                           />
                         </div>
+                      </div>
+                    </Card>
+                  </div>
+                  <div>
+                    <Card elevation={5}>
+                      <div className="form-input-add">
                         <div className="inputForm">
-                          <SelectUser />
+                          <FileField
+                            name="audio"
+                            label="audio song"
+                            type="file"
+                            other={{ variant: 'standard' }}
+                          />
+                        </div>
+                      </div>
+                    </Card>
+                  </div>
+                  <div>
+                    <Card elevation={5}>
+                      <div className="form-input-add">
+                        <div className="inputForm">
+                          {/* đoạn này chèn thằng ngày tháng vào */}
+                        </div>
+                      </div>
+                    </Card>
+                  </div>
+                  <div>
+                    <Card elevation={5}>
+                      <div className="form-input-add">
+                        <div className="inputForm">
+                          <RadioField
+                            name="active"
+                            data={activeOption}
+                            other={{ variant: 'standard' }}
+                          />
+                        </div>
+                      </div>
+                    </Card>
+                  </div>
+                  <div>
+                    <Card elevation={5}>
+                      <div className="form-input-add">
+                        <div className="inputForm">
+                          <TextareaField
+                            name="describe"
+                            label="Describe"
+                            minRows={3}
+                            other={{ variant: 'standard' }}
+                          />
                         </div>
                         <div className="inputForm">
-                          <SelectCategoryBlog />
+                          <SelectTopic />
+                        </div>
+                        <div className="inputForm">
+                          <SelectAlbums />
+                        </div>
+                        <div className="inputForm">
+                          <SelectCategory />
                         </div>
                         <div className="bia-bai-hat-image">
-                          <img src={(dataBlog.data as any)?.image} alt="" />
+                          <img src={(dataSong.data as any)?.image} alt="" />
                         </div>
                       </div>
                     </Card>
@@ -178,13 +207,13 @@ const UpdateBlog: React.FC<UpdateBlog<any>> = ({ changePage, _id, ...props }) =>
                       variant="contained"
                       type="submit"
                     >
-                      Cập nhật Blog
+                      Cập nhật song
                     </LoadingButton>
                     <Button
                       variant="contained"
                       color="error"
                       style={{ marginLeft: 20 }}
-                      onClick={() => { navigatePage(page.ListBlog) }}
+                      onClick={() => { navigatePage(page.ListSong) }}
                     >
                       Hủy
                     </Button>
@@ -199,4 +228,4 @@ const UpdateBlog: React.FC<UpdateBlog<any>> = ({ changePage, _id, ...props }) =>
   )
 }
 
-export default UpdateBlog
+export default UpdateSong
