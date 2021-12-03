@@ -142,15 +142,17 @@ const ArtistDetail: React.FC<ArtistDetail<any>> = ({ ...props }) => {
     // }
     return (
         <div className="artistDetail ">
-            <div className="banner" style={{background:"no-repeat url(https://photo-resize-zmp3.zadn.vn/w360_r1x1_jpeg/avatars/4/a/9/1/4a91d506fc7144c7716b9d3166f2c4b6.jpg)"}}>
-                <div className="more-info mx-4">
-                    <h2>Sơn Tùng M-TP</h2>
-                    <p>
-                        Có chất giọng cao luyến láy cùng những bản hit R&amp;B hay Dance Pop, Sơn Tùng M-TP là ca sĩ rất thành công, không chỉ nổi tiếng ở Việt Nam mà còn được khán giả yêu nhạc Việt trên thế giới biết đến
-                    </p>
-                    <div className="row">
-                        <div className="d-flex col-lg-9">
-                            <div className="me-3">
+            <div className="banner">
+                <div className="banner-img" style={{background:"no-repeat url(https://photo-resize-zmp3.zadn.vn/w360_r1x1_jpeg/avatars/4/a/9/1/4a91d506fc7144c7716b9d3166f2c4b6.jpg)"}}></div>
+
+                <div className="more-info">
+                        <div className="info-hero">
+                        <h1>Sơn Tùng M-TP</h1>
+                        <p>
+                          Có chất giọng cao luyến láy cùng những bản hit R&amp;B hay Dance Pop, Sơn Tùng M-TP là ca sĩ rất thành công, không chỉ nổi tiếng ở Việt Nam mà còn được khán giả yêu nhạc Việt trên thế giới biết đến
+                        </p>
+                        <div className="d-flex gap-3">
+                            <div>
                             <Button variant="contained" color="primary" type="submit">
                                 <BsFillPlayFill />PHÁT NHẠC
                             </Button>
@@ -163,15 +165,14 @@ const ArtistDetail: React.FC<ArtistDetail<any>> = ({ ...props }) => {
                                         <BsCheck />ĐÃ QUAN TÂM
                                 </Button>}
                             </div>
-                            <div>
+                            <div className="mt-2">
                             2.2M QUAN TÂM
                             </div>
-                        
+                            </div>
                         </div>
-                        <div className="img_right col-lg-3">
+                        <div className="img_right">
                              <img src="https://photo-resize-zmp3.zadn.vn/w360_r1x1_jpeg/avatars/4/a/9/1/4a91d506fc7144c7716b9d3166f2c4b6.jpg" alt=""/>
                          </div>
-                    </div>
                 </div>
                 
             </div>
@@ -185,7 +186,9 @@ const ArtistDetail: React.FC<ArtistDetail<any>> = ({ ...props }) => {
                 </ul>
             </div>
             <div className="list_musicArtist mx-4">
-                <h3 className="title_all" style={{color:"#4bd2ff"}}>Danh sách bài hát</h3>
+                <h3 className="title_all" style={{color:"#4bd2ff"}}>Danh sách bài hát <Button variant="contained" color="primary" type="submit">
+                                <BsFillPlayFill />PHÁT TẤT CẢ
+                            </Button></h3>
                <div className="mt-4 mb-3 mx-4">
                {/* {isLogged && <ModalLogged isLogged={isLogged} handleLogged={handleLogged} />}
             {handleStatus.status !== "" && <AlertComponent status={handleStatus.status} content={handleStatus.content} />} */}
