@@ -7,10 +7,10 @@ const Profile: React.FC<profile<any>> = () => {
         <div className="profile-grid">
             <div className="profile-box1 p-4">
                 <div className="img-centert">
-                    <img style={{border:"3px solid #ff6f53e0"}} className="w-50 mx-auto d-flex p-1" src="https://phunugioi.com/wp-content/uploads/2020/01/anh-avatar-supreme-dep-lam-dai-dien-facebook.jpg" alt="" />
+                    <img style={{border:"3px solid #ff6f53e0"}} className="w-50 mx-auto d-flex p-1" src="http://localhost:3000/static/media/admin.dbd0fe29.png" alt="" />
                 </div>
                 <div className="">
-                    <h5 className="color-profile  mt-3 text-center border-bottom pb-3">
+                    <h5 className="mt-3 text-center border-bottom pb-3">
                         Hoàng Anh Tú
                     </h5>
                 </div>

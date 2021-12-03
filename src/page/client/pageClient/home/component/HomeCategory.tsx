@@ -32,8 +32,9 @@ const HomeCategory: React.FC<HomeCategoryIF<any>> = ({ ...props }) => {
                 <Slider {...props.settings_category}>
                     {categories.length !== 0 && categories.map((item: CategoryIF) => (
                         <Link to={{
-                            pathname: '/category/SubCategory',
-                            search: `?idTopic=${item._id}&id_subCate=123`,
+                            pathname: '/subCategory',
+                            // search: `?idTopic=${item._id}`,
+                            state: item,
                             // searchParams: `?idTopic=${item._id}&id_subCate=123`
                         }} key={item._id}>
                             <div className="box">

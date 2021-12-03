@@ -6,6 +6,7 @@ import NotFoundAdmin from "./page/admin/pageAdmin/notFound/notFoundAdmin";
 import Toptrending from "./page/client/pageClient/toptrending/toptrending";
 import Favorite from "./page/client/pageClient/favorite/favorite";
 import Newmusic from "./page/client/pageClient/newmusic/newmusic";
+import PlayListClient from "./page/client/pageClient/playlist/playlist";
 import Blog from "./page/client/pageClient/blog/blog";
 import BlogDetail from "./page/client/pageClient/blogdetail/blogDetail";
 import PlaylistDetail from "./page/client/pageClient/playlistDetail/playlistDetail";
@@ -30,6 +31,7 @@ import UserPlaylist from "./page/admin/pageAdmin/userPlayList/index";
 import AddUserPlaylist from "./page/admin/pageAdmin/userPlayList/page/AddUserPlayList";
 import CategoryBlog from "./page/admin/pageAdmin/categoriesBlog/index";
 import AddCategoryBlog from "./page/admin/pageAdmin/categoriesBlog/page/AddCategoryBlog";
+import Profile from "page/admin/pageAdmin/profile/Profile";
 
 import Comment from "./page/admin/pageAdmin/comment/index";
 
@@ -39,8 +41,9 @@ import Search from "./page/client/pageClient/search/search";
 import ListenTogether from "./page/client/pageClient/listenTogether/listenTogether";
 import Personal from "./page/client/pageClient/personal/index"
 import RoomDetail from "./page/client/pageClient/roomDetail/roomDetail";
-import Profile from "page/client/pageClient/profile/Profile";
+import SubCategory from "page/client/pageClient/subpage/subpage";
 import Subpage from "page/client/pageClient/subpage/subpage";
+import ArtistDetail from "page/client/pageClient/artistDetail/artistDetail";
 
 
 export interface propertyPage {
@@ -143,6 +146,11 @@ const Admin: propertyPage[] = [
         exact: false
     },
     {
+        path: "/admin/profile",
+        component: Profile,
+        exact: false
+    },
+    {
         path: "/admin/:pathNotFound",
         component: NotFoundAdmin,
         exact: false
@@ -155,6 +163,11 @@ const Client: propertyPage[] = [
         path: "/",
         component: Home,
         exact: true
+    },
+    {
+        path: "/artistDetail/:id",
+        component: ArtistDetail,
+        exact: false
     },
     {
         path: "/search",
@@ -177,8 +190,8 @@ const Client: propertyPage[] = [
         exact: false
     },
     {
-        path: "/subpage",
-        component: Subpage,
+        path: "/subCategory",
+        component: SubCategory,
         exact: false
     },
     {
@@ -230,6 +243,11 @@ const Client: propertyPage[] = [
     {
         path: "/blogDetail/:idBlog",
         component: BlogDetail,
+        exact: false
+    },
+    {
+        path: "/playlist",
+        component: PlayListClient,
         exact: false
     },
     {

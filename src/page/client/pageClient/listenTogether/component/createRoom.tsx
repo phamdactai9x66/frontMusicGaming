@@ -11,16 +11,17 @@ import roomUserApi from "api/roomUser";
 import { variableCommon } from "component/variableCommon"
 import Alert from '@mui/material/Alert';
 import { io } from "socket.io-client";
+
 const validateForm = Yup.object().shape({
     name: Yup.string().checkRequire().min(4, 'this min length must is 4.'),
-    password: Yup.string().when('checkPassword', (value, schema) => {
+    password: Yup.string().when('checkPassword', (value:any, schema:any) => {
         return value ? schema.checkRequire() : schema
     }),
     limitUser: Yup.number().checkRequire().min(2, 'at lease 2 persons in Room').max(10, 'the maximun is 10 persons in room')
 })
 
 interface CreateRoom<T> extends RouteComponentProps {
-
+  
 }
 const intitialForm = {
     name: '',
