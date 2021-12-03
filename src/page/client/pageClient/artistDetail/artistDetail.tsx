@@ -176,16 +176,8 @@ const ArtistDetail: React.FC<ArtistDetail<any>> = ({ ...props }) => {
                 </div>
                 
             </div>
-            <div className="tab_Personal">
-                <ul className="tab_item w-25 mx-auto">
-                    <li onClick={() => {  }}>Tổng quan</li>
-                    {/* navigatePage(AllPage.OverView) */}
-                    <li onClick={() => { }}>Bài hát</li>
-                     {/* navigatePage(AllPage.Music) */}
-                    
-                </ul>
-            </div>
-            <div className="list_musicArtist mx-4">
+
+            <div className="list_musicArtist mx-4 mt-3">
                 <h3 className="title_all" style={{color:"#4bd2ff"}}>Danh sách bài hát <Button variant="contained" color="primary" type="submit">
                                 <BsFillPlayFill />PHÁT TẤT CẢ
                             </Button></h3>
@@ -276,51 +268,7 @@ const ArtistDetail: React.FC<ArtistDetail<any>> = ({ ...props }) => {
             {/* ))} */}
                </div>
             </div>
-            <div className="list_musicArtist mx-4">
-                <h3 className="title_all" style={{color:"#4bd2ff"}}>Allbum</h3>
-               <div className="mt-4 mx-4">
-                    <div className="row">
-                        <div className="col-lg-2 col-md-3 p-2">
-                            <div className="bg-white p-2 hover-boxs">
-                                <img className="w-100 rounded" src="https://lh3.googleusercontent.com/proxy/Gt1a3JyQ0jyiEL7XLA0tUHF_VPZQ-YoT2G7rUunFa6QXF1fenVVUrPMKpmeXYmZW9QOQV-AW8EREAcOWjSTmWzUlZ0cmfFfN78jFDXh13E34VUuqrQcSsjUUkooseKravNDiUZnouI71_B95aZXEaNVTTHXauORC2uICoA" alt="" />
-                                <h6>Tên AllBum</h6>
-                            </div>
-                        </div>
-                        <div className="col-lg-2 col-md-3 p-2">
-                            <div className="bg-white p-2 hover-boxs">
-                                <img className="w-100 rounded" src="https://lh3.googleusercontent.com/proxy/Gt1a3JyQ0jyiEL7XLA0tUHF_VPZQ-YoT2G7rUunFa6QXF1fenVVUrPMKpmeXYmZW9QOQV-AW8EREAcOWjSTmWzUlZ0cmfFfN78jFDXh13E34VUuqrQcSsjUUkooseKravNDiUZnouI71_B95aZXEaNVTTHXauORC2uICoA" alt="" />
-                                <h6>Tên AllBum</h6>
-                            </div>
-                        </div>
-                        <div className="col-lg-2 col-md-3 p-2 ">
-                            <div className="bg-white p-2 hover-boxs">
-                                <img className="w-100 rounded" src="https://lh3.googleusercontent.com/proxy/Gt1a3JyQ0jyiEL7XLA0tUHF_VPZQ-YoT2G7rUunFa6QXF1fenVVUrPMKpmeXYmZW9QOQV-AW8EREAcOWjSTmWzUlZ0cmfFfN78jFDXh13E34VUuqrQcSsjUUkooseKravNDiUZnouI71_B95aZXEaNVTTHXauORC2uICoA" alt="" />
-                                <h6>Tên AllBum</h6>
-                            </div>
-                        </div>
-                        <div className="col-lg-2 col-md-3 p-2">
-                            <div className="bg-white p-2 hover-boxs">
-                                <img className="w-100 rounded" src="https://lh3.googleusercontent.com/proxy/Gt1a3JyQ0jyiEL7XLA0tUHF_VPZQ-YoT2G7rUunFa6QXF1fenVVUrPMKpmeXYmZW9QOQV-AW8EREAcOWjSTmWzUlZ0cmfFfN78jFDXh13E34VUuqrQcSsjUUkooseKravNDiUZnouI71_B95aZXEaNVTTHXauORC2uICoA" alt="" />
-                                <h6>Tên AllBum</h6>
-                            </div>
-                        </div>
-                        <div className="col-lg-2 col-md-3 p-2">
-                            <div className="bg-white p-2 hover-boxs">
-                                <img className="w-100 rounded" src="https://lh3.googleusercontent.com/proxy/Gt1a3JyQ0jyiEL7XLA0tUHF_VPZQ-YoT2G7rUunFa6QXF1fenVVUrPMKpmeXYmZW9QOQV-AW8EREAcOWjSTmWzUlZ0cmfFfN78jFDXh13E34VUuqrQcSsjUUkooseKravNDiUZnouI71_B95aZXEaNVTTHXauORC2uICoA" alt="" />
-                                <h6>Tên AllBum</h6>
-                            </div>
-                        </div>
-                        <div className="col-lg-2 col-md-3 p-2 ">
-                            <div className="bg-white p-2 hover-boxs">
-                                <img className="w-100 rounded" src="https://lh3.googleusercontent.com/proxy/Gt1a3JyQ0jyiEL7XLA0tUHF_VPZQ-YoT2G7rUunFa6QXF1fenVVUrPMKpmeXYmZW9QOQV-AW8EREAcOWjSTmWzUlZ0cmfFfN78jFDXh13E34VUuqrQcSsjUUkooseKravNDiUZnouI71_B95aZXEaNVTTHXauORC2uICoA" alt="" />
-                                <h6>Tên AllBum</h6>
-                            </div>
-                        </div>
-                    
-                    
-                    </div>
-               </div>
-            </div>
+ 
         </div>
 
     )
