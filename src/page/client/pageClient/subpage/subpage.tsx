@@ -35,16 +35,16 @@ const SubCategory: React.FC<SubCategoryIF<any>> = ( { location, ...props }: any 
   }, []);
 
   return (
-    <div className="container-category">
-      <h1>Chủ đề {location.state.name}</h1>
+    <div className="container-category mt-3">
+      <h2 className="title_all" style={{color:"#a8eff9"}}>Chủ đề {location.state.name}</h2>
       <div className="banner-category">
         <img src="https://html.nkdev.info/goodgames/assets/images/gallery-7.jpg" alt="" />
       </div>
 
       {handle.data.dataCate.map( (itemCate: any) => {
         return <div className="box-category" key={itemCate._id}>
-        <div className="box-title-category">
-          <h4 className="title_all">{itemCate.name}</h4>
+        <div className="box-title-category mt-4">
+          <h4 className="title_all" >{itemCate.name}</h4>
         </div>
         <div className="box-grid-category">
           {handle.data.dataSongs.filter( (i: any) => i.id_Topic === location.state._id && i.id_Categories === itemCate._id).map( (itemSong: any) => 
