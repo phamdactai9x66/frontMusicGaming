@@ -24,14 +24,14 @@ export const handleLike = <T extends string> (idSong: T, idUser: T) => {
     return res
 }
 
-export const handleDownload = (idSong: string) => {
-    console.log("handle download => idSong: ", idSong);
+export const handleDownload = (song: any) => {
+    console.log("handle download => idSong: ", song);
 
-    // const fileName = "ten file.xlsx"; // tạo tên cho file
-    // const url = window.URL.createObjectURL(new Blob([response.data]));// chuyển data thành url
+    // const fileName = "abc.mp3"; // tạo tên cho file
+    // const url = window.URL.createObjectURL(new Blob([song.audio]));// chuyển data thành url
     // const link = document.createElement("a");// tạo 1 thẻ a
-    // link.href = url;// gán url property cho thẻ a
     // link.setAttribute("download", fileName); // set file name khi download
+    // link.href = url;// gán url property cho thẻ a
     // document.body.appendChild(link); //
     // link.click();// auto click thẻ a
     // link.remove();// xóa thẻ a

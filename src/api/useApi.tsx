@@ -14,6 +14,10 @@ class userApi {
         const url: string = `/user/${_id}/delete`;
         return Axios.delete(url)
     }
+    checkPass<T extends string>(_id: T): Promise<any> {
+        const url: string = `/user/${_id}/pass`;
+        return AxiosFormdata.put(url)
+    }
     Login<T extends FormData>(form: T): Promise<any> {
         let url: string = "/user/login";
         return AxiosFormdata.post(url, form)
@@ -30,5 +34,6 @@ class userApi {
         let url: string = "/user/signUp";
         return AxiosFormdata.post(url, form)
     }
+    
 }
 export default new userApi()

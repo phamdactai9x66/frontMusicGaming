@@ -4,6 +4,8 @@ import { variableCommon } from "component/variableCommon";
 import { BiPlayCircle } from 'react-icons/bi';
 import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
+import { BsFillPlayFill } from 'react-icons/bs';
+
 import NameSongArtist from "component/nameSongArtist"
 import {
   Line,
@@ -50,7 +52,8 @@ export default function ChartMusic() {
                 <h5 className="stt">{index+1} -</h5>
                 <img width={45} height={45} src={image} alt="" />
                 <div className="box-icon" style={{left: "4rem"}} onClick={() => dispatch(playSong({_id}))}>
-                    ▶
+                <BsFillPlayFill style={{width:'1.5rem',height:'1.5rem',marginLeft:'-0.3rem'}} />
+                    
                 </div>
                 <div className="name" style={{cursor: "pointer"}} onClick={() => dispatch(playSong({_id}))}>
                   <h6>{title}</h6>
