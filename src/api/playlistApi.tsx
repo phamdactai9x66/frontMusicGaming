@@ -22,6 +22,10 @@ class playlistApi {
         const url: string = `/playlist/${id}/update`;
         return AxiosFormdata.put(url, formdata)
     }
+    checkPass<Y extends string>(id: Y): Promise<any> {
+        const url: string = `/playlist/${id}/pass`;
+        return AxiosFormdata.put(url)
+    }
 
 }
 export default new playlistApi();
