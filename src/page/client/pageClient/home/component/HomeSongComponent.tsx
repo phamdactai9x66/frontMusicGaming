@@ -162,7 +162,10 @@ const HomeSongComponent: React.FC<HomeSongComponentIF<any>> = (props) => {
 
         const isCreatedPlaylist = await userPlaylistApi.postOne(form);
         if (isCreatedPlaylist.status === "successfully") {
-            setUserPlaylists([...userPlaylists, ...isCreatedPlaylist.data]);
+            setUserPlaylists({
+                data: [...userPlaylists.data, isCreatedPlaylist.data[0]],
+                loading: false,
+            });
             setHandleStatus({
                 status: "success",
                 content: "Tạo Playlist thành công"
@@ -198,7 +201,7 @@ const HomeSongComponent: React.FC<HomeSongComponentIF<any>> = (props) => {
                         <GetTimeAudio audio={item?.audio} />
                     </div>
                     <div className="icon_item">
-                        <AiOutlineDownload onClick={() => handleDownload(item._id)} className="icon" />
+                        <AiOutlineDownload onClick={() => handleDownload(item)} className="icon" />
                         {/* <LoadingButton
                             onClick={() => handleAdd(item._id, user._id, "like")}
                             loading={true}
