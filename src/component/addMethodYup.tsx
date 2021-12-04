@@ -13,15 +13,6 @@ Yup.addMethod(Yup.string, "checkRequire", function (message: string = messageDef
         return true;
     })
 })
-// Yup.addMethod(Yup.date, "checkDate", function (message: string = messageDefault) {
-//     return this.test("checkDate", message, function (value, field) {
-//         if (typeof value === "string") value = value.trim();
-//         const { path, createError } = this
-//         if ([undefined, null, ''].includes(value)) return createError({ path, message })
-
-//         return true;
-//     })
-// })
 Yup.addMethod(Yup.mixed, "requireFile", function (message: string = messageDefault) {
     return this.test("checkFile", message, function (value, field) {
         if (typeof value === "string") value = value.trim();
