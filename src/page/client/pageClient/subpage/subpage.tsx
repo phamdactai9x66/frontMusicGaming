@@ -50,8 +50,8 @@ const SubCategory: React.FC<SubCategoryIF<any>> = ( { location, history, ...prop
 
       {handle.data.dataCate.map( (itemCate: any) => {
         return <div className="box-category" key={itemCate._id}>
-        <div className="box-title-category">
-          <h4 className="title_all">{itemCate.name}</h4>
+        <div className="box-title-category mt-4">
+          <h4 className="title_all" >{itemCate.name}</h4>
         </div>
         <div className="box-grid-category">
           {handle.data.dataSongs.filter( (i: any) => i.id_Topic === location.state?._id && i.id_Categories === itemCate._id).map( (itemSong: any) => 

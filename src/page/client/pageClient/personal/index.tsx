@@ -50,8 +50,6 @@ const IndexPersonal: React.FC<IndexPersonalIF<any>> = ({ ...props }) => {
             case AllPage.OverView: return <OverView navigatePage={navigatePage} />
             case AllPage.Music: return <ListLikeSong />
             case AllPage.Playlist: return <Playlist />
-            // case AllPage.Upload: return <Upload />
-            // case AllPage.Singer: return <ListArtist />
             default: return <OverView navigatePage={navigatePage} />
         }
     }
