@@ -111,3 +111,11 @@
         }
     }
 }
+.box-music{
+    .music_item--grid{
+        display: grid;
+        grid-template-columns: 2.5rem 3.7rem 2fr 1fr 5rem !important;
+  
+    }
+   
+}
