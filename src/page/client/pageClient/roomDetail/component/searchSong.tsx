@@ -2,7 +2,8 @@ import React, { useEffect, useState, useRef } from 'react';
 import { List, ListItem, ListItemAvatar, Avatar } from '@mui/material';
 import { useSelector } from "react-redux";
 import { formStateAudio } from "redux/audio/stateAudio"
-
+import TextField from '@mui/material/TextField';
+import Autocomplete from '@mui/material/Autocomplete';
 interface SearchSongs<T> {
     addSongToRoom: (T: string) => void
 }
@@ -21,24 +22,24 @@ const SearchSongs: React.FC<SearchSongs<any>> = ({ addSongToRoom, ...props }) =>
         }
         setListSong([])
     }, [inputSearch])
-    const findSong = (): JSX.Element[] => {
-        return listSong.map((current: any, index: number) => {
-            // console.log(current);
-            return (
-                <ListItem
-                    style={{ display: "flex", cursor: "pointer" }}
-                    key={index}
-                    onClick={() => { addSongToRoom(current._id) }}
-                >
-                    <ListItemAvatar style={{ marginLeft: "-2rem" }}>
-                        <Avatar alt="Remy Sharp" sx={{ width: "2.1rem", height: "2.1rem" }} src={current?.image} />
-                    </ListItemAvatar>
-                    <div className="key_name">{current?.title}</div>
-                </ListItem>
+    // const findSong = (): JSX.Element[] => {
+    //     return listSong.map((current: any, index: number) => {
+    //         // console.log(current);
+    //         return (
+    //             <ListItem
+    //                 style={{ display: "flex", cursor: "pointer" }}
+    //                 key={index}
+    //                 onClick={() => { addSongToRoom(current._id) }}
+    //             >
+    //                 <ListItemAvatar style={{ marginLeft: "-2rem" }}>
+    //                     <Avatar alt="Remy Sharp" sx={{ width: "2.1rem", height: "2.1rem" }} src={current?.image} />
+    //                 </ListItemAvatar>
+    //                 <div className="key_name">{current?.title}</div>
+    //             </ListItem>
 
-            )
-        })
-    }
+    //         )
+    //     })
+    // }
     const searchSong = (event: Event | any): void => {
         const getValue = (event.target as HTMLInputElement).value;
         setinputSearch(getValue)
@@ -47,16 +48,42 @@ const SearchSongs: React.FC<SearchSongs<any>> = ({ addSongToRoom, ...props }) =>
 
     return (
         <>
-            <div className="search_music">
+            {/* <div className="search_music">
                 <i className="fa fa-search" aria-hidden="true"></i>
-                <input type="text" placeholder="Search..." value={inputSearch} onChange={searchSong} />
+                <input type="text" placeholder="Search..." />
                 <ul className="results" >
                     <List >
                         {findSong()}
                     </List>
 
                 </ul>
-            </div>
+            </div> */}
+            <Autocomplete
+      id="search-select"
+      sx={{ width: "100%" }}
+      options={listSong}
+      getOptionLabel={(current) => current.title}
+      renderOption={(props:any, current:any) => (
+        <div {...props}>
+         <ListItem
+                    style={{ display: "flex", cursor: "pointer" }}
+                    onClick={() => { addSongToRoom(current._id) }}
+                >
+                    <ListItemAvatar style={{ marginLeft: "1rem" }}>
+                        <Avatar alt="Remy Sharp" sx={{ width: "2.1rem", height: "2.1rem" }} src={current?.image} />
+                    </ListItemAvatar>
+                    <div className="key_name">{current?.title}</div>
+                </ListItem>
+        </div>
+      )}
+      renderInput={(params) => (
+        <TextField
+          {...params}
+          label="Search..."
+          value={inputSearch} onChange={searchSong} 
+        />
+      )}
+    />
         </>
     )
 }

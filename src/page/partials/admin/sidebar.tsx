@@ -9,7 +9,8 @@ import { ExpandMore } from "@material-ui/icons";
 import SearchIcon from '@material-ui/icons/Search';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import { InputBase } from '@material-ui/core';
-
+import { useSelector, useDispatch } from "react-redux";
+import { formStateUser } from "redux/user/stateUser";
 interface SidebarIF<T> {
 
 }
@@ -54,6 +55,7 @@ const useStyles = makeStyles((theme) => ({
 	}
 }));
 const Sidebar: React.FC<SidebarIF<any>> = ({ ...props }) => {
+  const state = useSelector<{ user: any }>(state => state.user) as formStateUser;
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState("");
 
@@ -174,8 +176,8 @@ const Sidebar: React.FC<SidebarIF<any>> = ({ ...props }) => {
       <h2>ADMIN MUSIC GAME</h2>
       <div className="main_info">
         <div className="info_admin">
-          <img width={50} height={50} src={imgAdmin} alt="" />
-          <div>Lò Văn An</div>
+          {(state.user && state.token) ? 
+           <div><img width={50} height={50} src={state.user?.avatar} alt="" /><div>{state.user?.first_name} {state.user?.last_name}</div></div> : "err"}
         </div>
       </div>
       <div className={classes.search} style={{ position: "relative" }}>
