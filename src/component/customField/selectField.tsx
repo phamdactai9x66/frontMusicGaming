@@ -1,7 +1,7 @@
 import React from 'react'
 import { ErrorMessage, useField, useFormikContext } from 'formik'
 import { propsField } from './index'
-import { FormControl, InputLabel, MenuItem, Select } from '@mui/material'
+import { FormControl, InputLabel, MenuItem, Select, FormHelperText } from '@mui/material'
 
 interface SelectField<T> extends propsField {
       other?: any,
@@ -10,7 +10,7 @@ interface SelectField<T> extends propsField {
 }
 
 const SelectField: React.FC<SelectField<any>> = ({ label, getId, ...props }) => {
-      const [field] = useField(props);
+      const [field, meta] = useField(props);
       const formik = useFormikContext();
       return (
             <>
@@ -33,7 +33,8 @@ const SelectField: React.FC<SelectField<any>> = ({ label, getId, ...props }) => 
                                     })
                               }
                         </Select>
-                        <ErrorMessage name={field.name} />
+                        <FormHelperText>{meta.error || ''}</FormHelperText>
+                        {/* <ErrorMessage name={field.name} /> */}
                   </FormControl>
             </>
       )

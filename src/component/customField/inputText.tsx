@@ -13,8 +13,13 @@ const InputText: React.FC<InputText<any>> = ({ ...props }) => {
     const formik = useFormikContext();
     return (
         <>
-            <TextField {...props} {...props.other} fullWidth  {...formik.getFieldProps(field.name)} />
-            <ErrorMessage name={field.name} />
+            <TextField
+                {...props}
+                {...props.other}
+                fullWidth
+                {...formik.getFieldProps(field.name)}
+                helperText={meta.error || ''} />
+            {/* <ErrorMessage name={field.name} /> */}
         </>
     )
 }
