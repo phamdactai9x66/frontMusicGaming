@@ -26,6 +26,7 @@ import { tranFormDataId } from "component/MethodCommon";
 import { formStateAudio } from "redux/audio/stateAudio";
 import Loadings from "page/client/loading/loading";
 import { formStateUser } from "redux/user/stateUser";
+import Notification from "page/notificationModal/NotificationModal";
 
 interface ArtistDetailIF<T> {
     // userState: any | T,
@@ -50,7 +51,7 @@ const ArtistDetail: React.FC<ArtistDetailIF<any>> = ({ ...props }) => {
         gender: true,
     });
     const [loading, setLoading] = useState(true);
-    const [songsArtist, setSongsArtist] = useState([]);
+    const [songsArtist, setSongsArtist] = useState<any>([]);
     const { likstStaticAudio: songsTransformed} = useSelector<{ audio: any }>(state => state.audio) as formStateAudio;
 
     // const [checkCare, setcheckCare] = useState(true);
@@ -217,6 +218,7 @@ const ArtistDetail: React.FC<ArtistDetailIF<any>> = ({ ...props }) => {
                                 <Button
                                     variant="contained"
                                     color="primary" 
+                                    onClick={() => dispatch(playSong({ _id: songsArtist[0]?.id_Songs, listIdSong: songsArtist }))}
                                 >
                                     <BsFillPlayFill />
                                     PHÁT NHẠC
@@ -255,13 +257,13 @@ const ArtistDetail: React.FC<ArtistDetailIF<any>> = ({ ...props }) => {
             <div className="list_musicArtist mx-4 mt-3">
                 <h3 className="title_all" style={{ color: "#4bd2ff" }}>
                     Danh sách bài hát{" "}
-                    <Button variant="contained" color="primary" type="submit">
+                    <Button variant="contained" color="primary" type="submit" onClick={() => dispatch(playSong({ _id: item.id_Songs, listIdSong: songsArtist }))}>
                         <BsFillPlayFill />
                         PHÁT TẤT CẢ
                     </Button>
                 </h3>
                 <div className="mt-4 mb-3 mx-4">
-                    {isLogged && <ModalLogged isLogged={isLogged} handleLogged={handleLogged} />}
+                    {isLogged && <Notification handleLogged={handleLogged} />}
             {handleStatus.status !== "" && <AlertComponent status={handleStatus.status} content={handleStatus.content} />}
                     {/* {songs.length !== 0 && songs.map((item: any, index: number) => ( */}
                     {songsArtist.map( (item: any, index: number) => <div className="box-chart" key={item._id}>
@@ -280,11 +282,12 @@ const ArtistDetail: React.FC<ArtistDetailIF<any>> = ({ ...props }) => {
                                 fontSize: "1.5rem",
                                 cursor: "pointer",
                             }}
-                            onClick={() => playAudio(item.id_Songs)}
+                            // onClick={() => playAudio(item.id_Songs)}
+                            onClick={() => dispatch(playSong({ _id: item.id_Songs, listIdSong: songsArtist }))}
                         >
                             <BsFillPlayFill />
                         </div>
-                        <div className="name" style={{ cursor: "pointer"}} onClick={() => playAudio(item.id_Songs)}>
+                        <div className="name" style={{ cursor: "pointer"}} onClick={() => dispatch(playSong({ _id: item.id_Songs, listIdSong: songsArtist }))}>
                             <h6>{songsTransformed[item.id_Songs].title}</h6>
                             <div
                                 style={{
@@ -302,7 +305,7 @@ const ArtistDetail: React.FC<ArtistDetailIF<any>> = ({ ...props }) => {
                         <div
                             className="text-white"
                             style={{ marginTop: "1.2rem", cursor: "pointer" }}
-                            onClick={() => playAudio(item.id_Songs)}
+                            onClick={() => dispatch(playSong({ _id: item.id_Songs, listIdSong: songsArtist }))}
                         >
                             <GetTimeAudio url={songsTransformed[item.id_Songs].audio} />
                         </div>
