@@ -197,7 +197,7 @@ const ArtistDetail: React.FC<ArtistDetailIF<any>> = ({ ...props }) => {
                     className="banner-img"
                     style={{
                         background:
-                            "no-repeat url(https://photo-resize-zmp3.zadn.vn/w360_r1x1_jpeg/avatars/4/a/9/1/4a91d506fc7144c7716b9d3166f2c4b6.jpg)",
+                            `no-repeat url(${inforArtist.image})`,
                     }}
                 ></div>
 
@@ -253,7 +253,7 @@ const ArtistDetail: React.FC<ArtistDetailIF<any>> = ({ ...props }) => {
             </div>
 
             <div className="list_musicArtist mx-4 mt-3">
-                <h3 className="title_all" style={{ color: "#4bd2ff" }}>
+                <h3 className="title_all mt-5" style={{ color: "#4bd2ff" }}>
                     Danh sách bài hát{" "}
                     <Button variant="contained" color="primary" type="submit">
                         <BsFillPlayFill />
