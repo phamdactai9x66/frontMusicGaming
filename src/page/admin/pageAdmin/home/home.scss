@@ -152,9 +152,9 @@
             width: 100%;
             .main5-table-flex3{
                 div{
-                    padding-bottom: 5px;
-                    margin-bottom: 10px;
-                    border-bottom: 5px solid white;
+                    // padding-bottom: 5px;
+                    // margin-bottom: 10px;
+                    // border-bottom: 5px solid white;
                     a{
                         background: #1d2d47;
                         color: white;
@@ -170,6 +170,11 @@
                 thead{
                     tr{
                         background: #6c7ae0;
+                    }
+                }
+                tbody{
+                    tr{
+                        vertical-align: middle;
                     }
                 }
             }

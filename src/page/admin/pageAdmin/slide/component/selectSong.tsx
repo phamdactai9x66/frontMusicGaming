@@ -31,7 +31,7 @@ const SelectSlide: React.FC<SelectSong<any>> = ({...props}) => {
           name="id_Songs" 
           getId="id_Songs" 
           label="Song" 
-          data={tranFormData(song.data, 'value', 'name')}
+          data={tranFormData(song.data, 'value', 'title')}
           other={{ variant: 'standard' }}
         />
       </div>
