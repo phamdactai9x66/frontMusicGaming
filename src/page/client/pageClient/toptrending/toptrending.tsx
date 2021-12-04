@@ -8,7 +8,7 @@ import { CircularProgress, MenuItem } from "@mui/material";
 import { AiOutlineDownload, AiFillHeart } from 'react-icons/ai';
 import { IoMdAdd } from 'react-icons/io';
 import { Popover } from "@material-ui/core";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getlistAudio, playSong } from "redux/audio/actionAudio";
 import userPlaylistApi from 'api/userPlaylist';
 import { useHistory } from 'react-router';
@@ -18,6 +18,7 @@ import AlertComponent from 'component/clientComponent/Alert';
 import Notification from 'page/notificationModal/NotificationModal';
 import ControlPointIcon from '@mui/icons-material/ControlPoint';
 import LoadingButton from '@mui/lab/LoadingButton';
+import { formStateUser } from 'redux/user/stateUser';
 
 
 interface ToptrendingIF<T> {
@@ -34,11 +35,11 @@ const Toptrending: React.FC<ToptrendingIF<any>> = ({ ...props }) => {
     const [anchor2, setAnchor2] = useState(null);
     const [userPlaylists, setUserPlaylists] = useState<any>({
         data: [],
-        loading: true,
+        loading: false,
     });
     const [likeLoading, setLikeLoading] = useState<any[]>([]);
     const [isLogged, setIsLogged] = useState(false);
-    // const { user } = props.userState;
+    const { user } = useSelector<{ user: any }>(state => state.user) as formStateUser;
     const [songs, setSongs] = useState([]);
     const dispatch = useDispatch();
     const [handleStatus, setHandleStatus] = useState({ status: "", content: "" });
@@ -59,20 +60,11 @@ const Toptrending: React.FC<ToptrendingIF<any>> = ({ ...props }) => {
 
     useEffect(() => {
         (async () => {
-            dispatch(getlistAudio())
-        })()
-    }, [])
-
-    useEffect(() => {
-        const getSongs = async () => {
-            const { data } = await songApi.getAll({ _limit: 20 });
+            dispatch(getlistAudio());
+            const { data } = await songApi.getAll({ _limit: 20, view: "desc" });
             setSongs(data);
-        }
-        getSongs();
+        })()
     }, []);
-    // useEffect( () => {
-    //     let locationLogged = history.location.state?.isLogged ? history.location.state.isLogged : false;
-    // }, [history])
 
     const handleAdd = async <T extends string>(s: T, u: T, t: T) => {
         if (!u) {
@@ -124,18 +116,18 @@ const Toptrending: React.FC<ToptrendingIF<any>> = ({ ...props }) => {
     }
 
 
-    // const getUserPlaylists = async () => {
-    //     if (user === "" || user === undefined) {
-    //         setAnchor(null);
-    //         setIsLogged(true);
-    //         return;
-    //     }
-    //     const { data } = await userPlaylistApi.getAll({ id_User: user._id });
-    //     setUserPlaylists({
-    //         data: data,
-    //         loading: false,
-    //     });
-    // }
+    const getUserPlaylists = async () => {
+        if (user === "" || user === undefined) {
+            setAnchor(null);
+            setIsLogged(true);
+            return;
+        }
+        const { data } = await userPlaylistApi.getAll({ id_User: user._id });
+        setUserPlaylists({
+            data: data,
+            loading: false,
+        });
+    }
 
     const playAudio = <T extends string>(_id: T): void => {
         dispatch(playSong({ _id }))
@@ -152,36 +144,36 @@ const Toptrending: React.FC<ToptrendingIF<any>> = ({ ...props }) => {
         }, 2500);
     }
 
-    // const handleCreatePlaylist = async () => {
-    //     setAddPlaylistLoading(true)
-    //     if (!playlistName) {
-    //         setHandleStatus({
-    //             status: "failed",
-    //             content: "Bạn cần nhập tên Playlist"
-    //         })
-    //         setAddPlaylistLoading(false);
-    //         return;
-    //     }
-    //     let form = new FormData();
-    //     form.append("name", playlistName);
-    //     form.append("id_User", user._id);
+    const handleCreatePlaylist = async () => {
+        setAddPlaylistLoading(true)
+        if (!playlistName) {
+            setHandleStatus({
+                status: "failed",
+                content: "Bạn cần nhập tên Playlist"
+            })
+            setAddPlaylistLoading(false);
+            return;
+        }
+        let form = new FormData();
+        form.append("name", playlistName);
+        form.append("id_User", user._id);
 
-    //     const isCreatedPlaylist = await userPlaylistApi.postOne(form);
-    //     if (isCreatedPlaylist.status === "successfully") {
-    //         setUserPlaylists([...userPlaylists, ...isCreatedPlaylist.data]);
-    //         setHandleStatus({
-    //             status: "success",
-    //             content: "Tạo Playlist thành công"
-    //         });
-    //         setAnchor2(null);
-    //     } else {
-    //         setHandleStatus({
-    //             status: "failed",
-    //             content: "Playlist chưa được tạo"
-    //         });
-    //     }
-    //     setAddPlaylistLoading(false);
-    // }
+        const isCreatedPlaylist = await userPlaylistApi.postOne(form);
+        if (isCreatedPlaylist.status === "successfully") {
+            setUserPlaylists([...userPlaylists.data, ...isCreatedPlaylist.data]);
+            setHandleStatus({
+                status: "success",
+                content: "Tạo Playlist thành công"
+            });
+            setAnchor2(null);
+        } else {
+            setHandleStatus({
+                status: "failed",
+                content: "Playlist chưa được tạo"
+            });
+        }
+        setAddPlaylistLoading(false);
+    }
 
     return (
         <>
@@ -221,10 +213,10 @@ const Toptrending: React.FC<ToptrendingIF<any>> = ({ ...props }) => {
                                             </div>
                                             <div className="icon_item " style={{marginTop:'0.7rem'}}>
                                                 <AiOutlineDownload onClick={() => handleDownload(item._id)} className="icon" />
-                                                {likeLoading.indexOf(item._id) === -1 ? <AiFillHeart onClick={() => handleAdd('item._id', 'user._id', "like")} className="icon" /> : <span className='loading-icon'><CircularProgress  className='loading-icon' size={15} sx={{ color: "#d6f4f8"}} /></span> }
+                                                {likeLoading.indexOf(item._id) === -1 ? <AiFillHeart onClick={() => handleAdd( item._id, user._id, "like")} className="icon" /> : <span className='loading-icon'><CircularProgress  className='loading-icon' size={15} sx={{ color: "#d6f4f8"}} /></span> }
                                                 <IoMdAdd className="icon" onClick={(e) => {
                                                     openPopover(e);
-                                                    // getUserPlaylists();
+                                                    getUserPlaylists();
                                                 }} />
                                                 <Popover
                                                     open={Boolean(anchor)}
@@ -269,7 +261,7 @@ const Toptrending: React.FC<ToptrendingIF<any>> = ({ ...props }) => {
                                                                     <input type="text" onChange={(e) => setPlaylistName(e.target.value)} className="mb-2 p-2 text-light" style={{ background: "#0d141f", border: "0.1rem solid #0e5353", borderRadius: ".4rem", }} placeholder="Tên Playlist" />
                                                                     <br />
                                                                     <LoadingButton
-                                                                        // onClick={handleCreatePlaylist}
+                                                                        onClick={handleCreatePlaylist}
                                                                         startIcon={<ControlPointIcon />}
                                                                         loading={addPlaylistLoading}
                                                                         loadingPosition="start"
@@ -281,14 +273,14 @@ const Toptrending: React.FC<ToptrendingIF<any>> = ({ ...props }) => {
                                                             </div>
                                                         </Popover>
                                                         
-                                                        {userPlaylists.loading && <MenuItem className="list" onClick={() => handleAdd('item._id', 'user._id', "playlist")} >
+                                                        {userPlaylists.loading && <MenuItem className="list" >
                                                             <CircularProgress />
                                                         </MenuItem>}
-                                                        {userPlaylists.data.length === 0 && <MenuItem className="list" onClick={() => handleAdd(item._id, 'user._id', "playlist")} >
+                                                        {userPlaylists.data.length === 0 && <MenuItem className="list"  >
                                                             <BsMusicNoteList /> &ensp; Bạn chưa có Playlist nào.
                                                         </MenuItem>}
                                                         {userPlaylists.data.length !== 0 && userPlaylists.data.map((_: any) => (
-                                                            <MenuItem className="list" onClick={() => handleAdd('_._id,',' user._id', "playlist")} >
+                                                            <MenuItem className="list" onClick={() => handleAdd(_._id, user._id, "playlist")} >
                                                                 <BsMusicNoteList /> &ensp; {_.name}
                                                             </MenuItem>
                                                         ))}

@@ -162,7 +162,10 @@ const HomeSongComponent: React.FC<HomeSongComponentIF<any>> = (props) => {
 
         const isCreatedPlaylist = await userPlaylistApi.postOne(form);
         if (isCreatedPlaylist.status === "successfully") {
-            setUserPlaylists([...userPlaylists, ...isCreatedPlaylist.data]);
+            setUserPlaylists({
+                data: [...userPlaylists.data, isCreatedPlaylist.data[0]],
+                loading: false,
+            });
             setHandleStatus({
                 status: "success",
                 content: "Tạo Playlist thành công"

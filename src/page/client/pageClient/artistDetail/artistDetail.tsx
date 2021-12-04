@@ -423,16 +423,8 @@ const ArtistDetail: React.FC<ArtistDetailIF<any>> = ({ ...props }) => {
                                     {userPlaylists.length === 0 && (
                                         <MenuItem
                                             className="list"
-                                            onClick={() =>
-                                                handleAdd(
-                                                    "item._id",
-                                                    user._id,
-                                                    "playlist"
-                                                )
-                                            }
                                         >
-                                            <BsMusicNoteList /> &ensp; Bạn chưa
-                                            có Playlist nào.
+                                            Bạn chưa có Playlist nào.
                                         </MenuItem>
                                     )}
                                     {userPlaylists.length !== 0 &&
