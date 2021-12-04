@@ -51,8 +51,13 @@ const ArtistDetail: React.FC<ArtistDetailIF<any>> = ({ ...props }) => {
         gender: true,
     });
     const [loading, setLoading] = useState(true);
+<<<<<<< HEAD
     const [songsArtist, setSongsArtist] = useState<any>([]);
     const { likstStaticAudio: songsTransformed} = useSelector<{ audio: any }>(state => state.audio) as formStateAudio;
+=======
+    const [songsArtist, setSongsArtist] = useState([]);
+    const { likstStaticAudio: songsTransformed } = useSelector<{ audio: any }>(state => state.audio) as formStateAudio;
+>>>>>>> 25ce51fd751d9b4e9e393b9e9ec8a46ea4054f03
 
     // const [checkCare, setcheckCare] = useState(true);
     const [playlistName, setPlaylistName] = useState("");
@@ -61,7 +66,7 @@ const ArtistDetail: React.FC<ArtistDetailIF<any>> = ({ ...props }) => {
     const [userPlaylists, setUserPlaylists] = useState<any[]>([]);
     const [isLogged, setIsLogged] = useState(false);
     const { user } = useSelector<{ user: any }>(state => state.user) as formStateUser;
-    
+
     const dispatch = useDispatch();
     const [handleStatus, setHandleStatus] = useState({
         status: "",
@@ -82,8 +87,8 @@ const ArtistDetail: React.FC<ArtistDetailIF<any>> = ({ ...props }) => {
         (async () => {
             dispatch(getlistAudio());
             const dataArtist = await ArtistApi.getOne(id_artist?.id);
-            
-            const { data: dataSongArtist } = await songArtistAPi.getAll( { id_Artist: id_artist.id} );
+
+            const { data: dataSongArtist } = await songArtistAPi.getAll({ id_Artist: id_artist.id });
 
             setSongsArtist(dataSongArtist);
             setInforArtist(dataArtist.data);
@@ -192,27 +197,28 @@ const ArtistDetail: React.FC<ArtistDetailIF<any>> = ({ ...props }) => {
 
     return (
         <>
-            {loading ? <Loadings/> : <div className="artistDetail ">
-            <div className="banner">
-                <div
-                    className="banner-img"
-                    style={{
-                        background:
-                            "no-repeat url(https://photo-resize-zmp3.zadn.vn/w360_r1x1_jpeg/avatars/4/a/9/1/4a91d506fc7144c7716b9d3166f2c4b6.jpg)",
-                    }}
-                ></div>
+            {loading ? <Loadings /> : <div className="artistDetail ">
+                <div className="banner">
+                    <div
+                        className="banner-img"
+                        style={{
+                            background:
+                                `no-repeat url(${inforArtist.image})`,
+                        }}
+                    ></div>
 
-                <div className="more-info">
-                    <div className="info-hero">
-                        <h1>
-                            {handleNameArtist(
-                                inforArtist.first_Name,
-                                inforArtist.last_Name
-                            )}
-                        </h1>
-                        {/* <p>
+                    <div className="more-info">
+                        <div className="info-hero">
+                            <h1>
+                                {handleNameArtist(
+                                    inforArtist.first_Name,
+                                    inforArtist.last_Name
+                                )}
+                            </h1>
+                            {/* <p>
                           Có chất giọng cao luyến láy cùng những bản hit R&amp;B hay Dance Pop, Sơn Tùng M-TP là ca sĩ rất thành công, không chỉ nổi tiếng ở Việt Nam mà còn được khán giả yêu nhạc Việt trên thế giới biết đến
                         </p> */}
+<<<<<<< HEAD
                         <div className="d-flex gap-3">
                             <div>
                                 <Button
@@ -224,8 +230,20 @@ const ArtistDetail: React.FC<ArtistDetailIF<any>> = ({ ...props }) => {
                                     PHÁT NHẠC
                                 </Button>
                             </div>
+=======
+                            <div className="d-flex gap-3">
+                                <div>
+                                    <Button
+                                        variant="contained"
+                                        color="primary"
+                                    >
+                                        <BsFillPlayFill />
+                                        PHÁT NHẠC
+                                    </Button>
+                                </div>
+>>>>>>> 25ce51fd751d9b4e9e393b9e9ec8a46ea4054f03
 
-                            {/* <div onClick={handelCare} className="me-3">
+                                {/* <div onClick={handelCare} className="me-3">
                                 {checkCare ? (
                                     <Button variant="outlined">
                                         <FiUserPlus />
@@ -243,17 +261,18 @@ const ArtistDetail: React.FC<ArtistDetailIF<any>> = ({ ...props }) => {
                                 )}
                             </div>
                             <div className="mt-2">2.2M QUAN TÂM</div> */}
+                            </div>
+                        </div>
+                        <div className="img_right">
+                            <img
+                                src={inforArtist.image}
+                                alt=""
+                            />
                         </div>
                     </div>
-                    <div className="img_right">
-                        <img
-                            src={inforArtist.image}
-                            alt=""
-                        />
-                    </div>
                 </div>
-            </div>
 
+<<<<<<< HEAD
             <div className="list_musicArtist mx-4 mt-3">
                 <h3 className="title_all" style={{ color: "#4bd2ff" }}>
                     Danh sách bài hát{" "}
@@ -289,18 +308,41 @@ const ArtistDetail: React.FC<ArtistDetailIF<any>> = ({ ...props }) => {
                         </div>
                         <div className="name" style={{ cursor: "pointer"}} onClick={() => dispatch(playSong({ _id: item.id_Songs, listIdSong: songsArtist }))}>
                             <h6>{songsTransformed[item.id_Songs].title}</h6>
+=======
+                <div className="list_musicArtist mx-4 mt-3">
+                    <h3 className="title_all mt-5" style={{ color: "#4bd2ff" }}>
+                        Danh sách bài hát{" "}
+                        <Button variant="contained" color="primary" type="submit">
+                            <BsFillPlayFill />
+                            PHÁT TẤT CẢ
+                        </Button>
+                    </h3>
+                    <div className="mt-4 mb-3 mx-4">
+                        {isLogged && <ModalLogged isLogged={isLogged} handleLogged={handleLogged} />}
+                        {handleStatus.status !== "" && <AlertComponent status={handleStatus.status} content={handleStatus.content} />}
+                        {/* {songs.length !== 0 && songs.map((item: any, index: number) => ( */}
+                        {songsArtist?.length ? songsArtist.map((item: any, index: number) => <div className="box-chart" key={item._id}>
+                            <h5 className="stt">{index + 1}</h5>
+                            <img
+                                width={45}
+                                height={45}
+                                src={songsTransformed[item?.id_Songs]?.image}
+                                alt={songsTransformed[item?.id_Songs]?.title}
+                            />
+>>>>>>> 25ce51fd751d9b4e9e393b9e9ec8a46ea4054f03
                             <div
+                                className="box-icon "
                                 style={{
-                                    fontSize: "0.7rem",
-                                    marginTop: "-0.2rem",
-                                    color: "#ccc",
+                                    marginLeft: "0.7rem",
+                                    padding: "0.1rem 0.58rem",
+                                    fontSize: "1.5rem",
+                                    cursor: "pointer",
                                 }}
+                                onClick={() => playAudio(item.id_Songs)}
                             >
-                                {handleNameArtist(
-                                inforArtist.first_Name,
-                                inforArtist.last_Name
-                            )}
+                                <BsFillPlayFill />
                             </div>
+<<<<<<< HEAD
                         </div>
                         <div
                             className="text-white"
@@ -340,34 +382,89 @@ const ArtistDetail: React.FC<ArtistDetailIF<any>> = ({ ...props }) => {
                                 }}
                                 onClose={() => setAnchor(null)}
                             >
+=======
+                            <div className="name" style={{ cursor: "pointer" }} onClick={() => playAudio(item.id_Songs)}>
+                                <h6>{songsTransformed[item?.id_Songs]?.title}</h6>
+>>>>>>> 25ce51fd751d9b4e9e393b9e9ec8a46ea4054f03
                                 <div
                                     style={{
-                                        background: "#101929",
-                                        margin: "",
-                                        color: "#fff",
-                                        width: "15rem",
+                                        fontSize: "0.7rem",
+                                        marginTop: "-0.2rem",
+                                        color: "#ccc",
                                     }}
                                 >
-                                    <div className="d-flex gap-2 p-2">
-                                        <img
-                                            width={35}
-                                            height={35}
-                                            src={songsTransformed[item.id_Songs].image}
-                                            alt=""
-                                        />
-                                        <div>
-                                            <h6>{songsTransformed[item.id_Songs].title}</h6>
-                                            <div
-                                                style={{ marginTop: "-0.7rem" }}
-                                            >
-                                                <span
-                                                    style={{
-                                                        fontSize: "0.8rem",
-                                                    }}
+                                    {handleNameArtist(
+                                        inforArtist.first_Name,
+                                        inforArtist.last_Name
+                                    )}
+                                </div>
+                            </div>
+                            <div
+                                className="text-white"
+                                style={{ marginTop: "1.2rem", cursor: "pointer" }}
+                                onClick={() => playAudio(item.id_Songs)}
+                            >
+                                <GetTimeAudio url={songsTransformed[item?.id_Songs]?.audio} />
+                            </div>
+                            <div className="icon_item">
+                                <AiOutlineDownload
+                                    onClick={() => handleDownload(songsTransformed[item.id_Songs])}
+                                    className="icon"
+                                />
+                                <AiFillHeart
+                                    onClick={() =>
+                                        handleAdd(item?.id_Songs, user?._id, "like")
+                                    }
+                                    className="icon"
+                                />
+                                <IoMdAdd
+                                    className="icon"
+                                    onClick={(e) => {
+                                        openPopover(e);
+                                        getUserPlaylists();
+                                    }}
+                                />
+                                <Popover
+                                    open={Boolean(anchor)}
+                                    anchorEl={anchor}
+                                    anchorOrigin={{
+                                        vertical: "top",
+                                        horizontal: "left",
+                                    }}
+                                    transformOrigin={{
+                                        vertical: "bottom",
+                                        horizontal: "right",
+                                    }}
+                                    onClose={() => setAnchor(null)}
+                                >
+                                    <div
+                                        style={{
+                                            background: "#101929",
+                                            margin: "",
+                                            color: "#fff",
+                                            width: "15rem",
+                                        }}
+                                    >
+                                        <div className="d-flex gap-2 p-2">
+                                            <img
+                                                width={35}
+                                                height={35}
+                                                src={songsTransformed[item?.id_Songs]?.image}
+                                                alt=""
+                                            />
+                                            <div>
+                                                <h6>{songsTransformed[item?.id_Songs]?.title}</h6>
+                                                <div
+                                                    style={{ marginTop: "-0.7rem" }}
                                                 >
-                                                    {songsTransformed[item.id_Songs].view}
-                                                </span>
-                                                {/* <span
+                                                    <span
+                                                        style={{
+                                                            fontSize: "0.8rem",
+                                                        }}
+                                                    >
+                                                        {songsTransformed[item?.id_Songs]?.view}
+                                                    </span>
+                                                    {/* <span
                                                     style={{
                                                         fontSize: "0.8rem",
                                                     }}
@@ -375,85 +472,85 @@ const ArtistDetail: React.FC<ArtistDetailIF<any>> = ({ ...props }) => {
                                                     {" "}
                                                     3.8M
                                                 </span> */}
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <hr
-                                        style={{ margin: "-0.1rem 0 0.5rem 0" }}
-                                    />
-                                    <MenuItem
-                                        className="add list"
-                                        onClick={openPopover2}
-                                    >
-                                        <IoMdAdd className="icon" /> &ensp; Tạo
-                                        Playlist mới
-                                    </MenuItem>
-                                    <Popover
-                                        open={Boolean(anchor2)}
-                                        anchorEl={anchor2}
-                                        anchorOrigin={{
-                                            vertical: "top",
-                                            horizontal: "left",
-                                        }}
-                                        transformOrigin={{
-                                            vertical: "bottom",
-                                            horizontal: "right",
-                                        }}
-                                        onClose={() => setAnchor2(null)}
-                                    >
-                                        <div className="item p-3">
-                                            <form>
-                                                <input
-                                                    type="text"
-                                                    onChange={(e) =>
-                                                        setPlaylistName(
-                                                            e.target.value
-                                                        )
-                                                    }
-                                                    className="mb-2 p-2 text-light"
-                                                    style={{
-                                                        background: "#0d141f",
-                                                        border: "0.1rem solid #0e5353",
-                                                    }}
-                                                    placeholder="Nhập tên Playlist"
-                                                />
-                                                <br />
-                                                <Button color="primary" onClick={handleCreatePlaylist} variant="contained">Tạo mới Playlist</Button>
-                                            </form>
-                                        </div>
-                                    </Popover>
-
-                                    {userPlaylists.length === 0 && (
+                                        <hr
+                                            style={{ margin: "-0.1rem 0 0.5rem 0" }}
+                                        />
                                         <MenuItem
-                                            className="list"
+                                            className="add list"
+                                            onClick={openPopover2}
                                         >
-                                            Bạn chưa có Playlist nào.
+                                            <IoMdAdd className="icon" /> &ensp; Tạo
+                                            Playlist mới
                                         </MenuItem>
-                                    )}
-                                    {userPlaylists.length !== 0 &&
-                                        userPlaylists.map((_: any) => (
+                                        <Popover
+                                            open={Boolean(anchor2)}
+                                            anchorEl={anchor2}
+                                            anchorOrigin={{
+                                                vertical: "top",
+                                                horizontal: "left",
+                                            }}
+                                            transformOrigin={{
+                                                vertical: "bottom",
+                                                horizontal: "right",
+                                            }}
+                                            onClose={() => setAnchor2(null)}
+                                        >
+                                            <div className="item p-3">
+                                                <form>
+                                                    <input
+                                                        type="text"
+                                                        onChange={(e) =>
+                                                            setPlaylistName(
+                                                                e.target.value
+                                                            )
+                                                        }
+                                                        className="mb-2 p-2 text-light"
+                                                        style={{
+                                                            background: "#0d141f",
+                                                            border: "0.1rem solid #0e5353",
+                                                        }}
+                                                        placeholder="Nhập tên Playlist"
+                                                    />
+                                                    <br />
+                                                    <Button color="primary" onClick={handleCreatePlaylist} variant="contained">Tạo mới Playlist</Button>
+                                                </form>
+                                            </div>
+                                        </Popover>
+
+                                        {userPlaylists.length === 0 && (
                                             <MenuItem
                                                 className="list"
-                                                onClick={() =>
-                                                    handleAdd(
-                                                        _._id,
-                                                        user._id,
-                                                        "playlist"
-                                                    )
-                                                }
                                             >
-                                                <BsMusicNoteList /> &ensp;{" "}
-                                                {_.name}
+                                                Bạn chưa có Playlist nào.
                                             </MenuItem>
-                                        ))}
-                                </div>
-                            </Popover>
-                        </div>
-                    </div>)}
-                    {/* ))} */}
+                                        )}
+                                        {userPlaylists.length !== 0 &&
+                                            userPlaylists.map((_: any) => (
+                                                <MenuItem
+                                                    className="list"
+                                                    onClick={() =>
+                                                        handleAdd(
+                                                            _._id,
+                                                            user._id,
+                                                            "playlist"
+                                                        )
+                                                    }
+                                                >
+                                                    <BsMusicNoteList /> &ensp;{" "}
+                                                    {_.name}
+                                                </MenuItem>
+                                            ))}
+                                    </div>
+                                </Popover>
+                            </div>
+                        </div>) : null}
+                        {/* ))} */}
+                    </div>
                 </div>
-            </div>
-        </div>}
+            </div>}
         </>
     );
 };
