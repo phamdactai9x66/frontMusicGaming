@@ -10,6 +10,10 @@ class userApi {
         const url: string = `/user/${_id}`;
         return Axios.get(url)
     }
+    deleteOne<T extends string>(_id: T): Promise<any> {
+        const url: string = `/user/${_id}/delete`;
+        return Axios.delete(url)
+    }
     Login<T extends FormData>(form: T): Promise<any> {
         let url: string = "/user/login";
         return AxiosFormdata.post(url, form)

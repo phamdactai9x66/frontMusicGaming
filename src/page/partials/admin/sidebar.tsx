@@ -77,8 +77,8 @@ const Sidebar: React.FC<SidebarIF<any>> = ({ ...props }) => {
       name: "Music",
       iconAdd: "fa fa-plus-circle",
       details: "Add Music",
-      link: "/admin/",
-      subLink: "/admin/"
+      link: "/admin/song",
+      subLink: "/admin/addSong"
     },
     {
       icon: "fa fa-list",
@@ -117,7 +117,7 @@ const Sidebar: React.FC<SidebarIF<any>> = ({ ...props }) => {
       name: "User",
       iconAdd: "fa fa-plus-circle",
       details: "Add User",
-      link: "/admin/",
+      link: "/admin/userAdmin",
       subLink: "/admin/"
     },
     {
@@ -165,8 +165,8 @@ const Sidebar: React.FC<SidebarIF<any>> = ({ ...props }) => {
       name: "Nhạc sĩ",
       iconAdd: "fa fa-plus-circle",
       details: "Add Nhạc Sĩ",
-      link: "/admin/",
-      subLink: "/admin/"
+      link: "/admin/artist",
+      subLink: "/admin/addArtist"
     }
   ];
   return (

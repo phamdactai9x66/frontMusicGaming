@@ -142,15 +142,17 @@ const ArtistDetail: React.FC<ArtistDetail<any>> = ({ ...props }) => {
     // }
     return (
         <div className="artistDetail ">
-            <div className="banner" style={{background:"no-repeat url(https://photo-resize-zmp3.zadn.vn/w360_r1x1_jpeg/avatars/4/a/9/1/4a91d506fc7144c7716b9d3166f2c4b6.jpg)"}}>
-                <div className="more-info mx-4">
-                    <h2>Sơn Tùng M-TP</h2>
-                    <p>
-                        Có chất giọng cao luyến láy cùng những bản hit R&amp;B hay Dance Pop, Sơn Tùng M-TP là ca sĩ rất thành công, không chỉ nổi tiếng ở Việt Nam mà còn được khán giả yêu nhạc Việt trên thế giới biết đến
-                    </p>
-                    <div className="row">
-                        <div className="d-flex col-lg-9">
-                            <div className="me-3">
+            <div className="banner">
+                <div className="banner-img" style={{background:"no-repeat url(https://photo-resize-zmp3.zadn.vn/w360_r1x1_jpeg/avatars/4/a/9/1/4a91d506fc7144c7716b9d3166f2c4b6.jpg)"}}></div>
+
+                <div className="more-info">
+                        <div className="info-hero">
+                        <h1>Sơn Tùng M-TP</h1>
+                        <p>
+                          Có chất giọng cao luyến láy cùng những bản hit R&amp;B hay Dance Pop, Sơn Tùng M-TP là ca sĩ rất thành công, không chỉ nổi tiếng ở Việt Nam mà còn được khán giả yêu nhạc Việt trên thế giới biết đến
+                        </p>
+                        <div className="d-flex gap-3">
+                            <div>
                             <Button variant="contained" color="primary" type="submit">
                                 <BsFillPlayFill />PHÁT NHẠC
                             </Button>
@@ -163,29 +165,22 @@ const ArtistDetail: React.FC<ArtistDetail<any>> = ({ ...props }) => {
                                         <BsCheck />ĐÃ QUAN TÂM
                                 </Button>}
                             </div>
-                            <div>
+                            <div className="mt-2">
                             2.2M QUAN TÂM
                             </div>
-                        
+                            </div>
                         </div>
-                        <div className="img_right col-lg-3">
+                        <div className="img_right">
                              <img src="https://photo-resize-zmp3.zadn.vn/w360_r1x1_jpeg/avatars/4/a/9/1/4a91d506fc7144c7716b9d3166f2c4b6.jpg" alt=""/>
                          </div>
-                    </div>
                 </div>
                 
             </div>
-            <div className="tab_Personal">
-                <ul className="tab_item w-25 mx-auto">
-                    <li onClick={() => {  }}>Tổng quan</li>
-                    {/* navigatePage(AllPage.OverView) */}
-                    <li onClick={() => { }}>Bài hát</li>
-                     {/* navigatePage(AllPage.Music) */}
-                    
-                </ul>
-            </div>
-            <div className="list_musicArtist mx-4">
-                <h3 className="title_all" style={{color:"#4bd2ff"}}>Danh sách bài hát</h3>
+
+            <div className="list_musicArtist mx-4 mt-3">
+                <h3 className="title_all" style={{color:"#4bd2ff"}}>Danh sách bài hát <Button variant="contained" color="primary" type="submit">
+                                <BsFillPlayFill />PHÁT TẤT CẢ
+                            </Button></h3>
                <div className="mt-4 mb-3 mx-4">
                {/* {isLogged && <ModalLogged isLogged={isLogged} handleLogged={handleLogged} />}
             {handleStatus.status !== "" && <AlertComponent status={handleStatus.status} content={handleStatus.content} />} */}
@@ -273,51 +268,7 @@ const ArtistDetail: React.FC<ArtistDetail<any>> = ({ ...props }) => {
             {/* ))} */}
                </div>
             </div>
-            <div className="list_musicArtist mx-4">
-                <h3 className="title_all" style={{color:"#4bd2ff"}}>Allbum</h3>
-               <div className="mt-4 mx-4">
-                    <div className="row">
-                        <div className="col-lg-2 col-md-3 p-2">
-                            <div className="bg-white p-2 hover-boxs">
-                                <img className="w-100 rounded" src="https://lh3.googleusercontent.com/proxy/Gt1a3JyQ0jyiEL7XLA0tUHF_VPZQ-YoT2G7rUunFa6QXF1fenVVUrPMKpmeXYmZW9QOQV-AW8EREAcOWjSTmWzUlZ0cmfFfN78jFDXh13E34VUuqrQcSsjUUkooseKravNDiUZnouI71_B95aZXEaNVTTHXauORC2uICoA" alt="" />
-                                <h6>Tên AllBum</h6>
-                            </div>
-                        </div>
-                        <div className="col-lg-2 col-md-3 p-2">
-                            <div className="bg-white p-2 hover-boxs">
-                                <img className="w-100 rounded" src="https://lh3.googleusercontent.com/proxy/Gt1a3JyQ0jyiEL7XLA0tUHF_VPZQ-YoT2G7rUunFa6QXF1fenVVUrPMKpmeXYmZW9QOQV-AW8EREAcOWjSTmWzUlZ0cmfFfN78jFDXh13E34VUuqrQcSsjUUkooseKravNDiUZnouI71_B95aZXEaNVTTHXauORC2uICoA" alt="" />
-                                <h6>Tên AllBum</h6>
-                            </div>
-                        </div>
-                        <div className="col-lg-2 col-md-3 p-2 ">
-                            <div className="bg-white p-2 hover-boxs">
-                                <img className="w-100 rounded" src="https://lh3.googleusercontent.com/proxy/Gt1a3JyQ0jyiEL7XLA0tUHF_VPZQ-YoT2G7rUunFa6QXF1fenVVUrPMKpmeXYmZW9QOQV-AW8EREAcOWjSTmWzUlZ0cmfFfN78jFDXh13E34VUuqrQcSsjUUkooseKravNDiUZnouI71_B95aZXEaNVTTHXauORC2uICoA" alt="" />
-                                <h6>Tên AllBum</h6>
-                            </div>
-                        </div>
-                        <div className="col-lg-2 col-md-3 p-2">
-                            <div className="bg-white p-2 hover-boxs">
-                                <img className="w-100 rounded" src="https://lh3.googleusercontent.com/proxy/Gt1a3JyQ0jyiEL7XLA0tUHF_VPZQ-YoT2G7rUunFa6QXF1fenVVUrPMKpmeXYmZW9QOQV-AW8EREAcOWjSTmWzUlZ0cmfFfN78jFDXh13E34VUuqrQcSsjUUkooseKravNDiUZnouI71_B95aZXEaNVTTHXauORC2uICoA" alt="" />
-                                <h6>Tên AllBum</h6>
-                            </div>
-                        </div>
-                        <div className="col-lg-2 col-md-3 p-2">
-                            <div className="bg-white p-2 hover-boxs">
-                                <img className="w-100 rounded" src="https://lh3.googleusercontent.com/proxy/Gt1a3JyQ0jyiEL7XLA0tUHF_VPZQ-YoT2G7rUunFa6QXF1fenVVUrPMKpmeXYmZW9QOQV-AW8EREAcOWjSTmWzUlZ0cmfFfN78jFDXh13E34VUuqrQcSsjUUkooseKravNDiUZnouI71_B95aZXEaNVTTHXauORC2uICoA" alt="" />
-                                <h6>Tên AllBum</h6>
-                            </div>
-                        </div>
-                        <div className="col-lg-2 col-md-3 p-2 ">
-                            <div className="bg-white p-2 hover-boxs">
-                                <img className="w-100 rounded" src="https://lh3.googleusercontent.com/proxy/Gt1a3JyQ0jyiEL7XLA0tUHF_VPZQ-YoT2G7rUunFa6QXF1fenVVUrPMKpmeXYmZW9QOQV-AW8EREAcOWjSTmWzUlZ0cmfFfN78jFDXh13E34VUuqrQcSsjUUkooseKravNDiUZnouI71_B95aZXEaNVTTHXauORC2uICoA" alt="" />
-                                <h6>Tên AllBum</h6>
-                            </div>
-                        </div>
-                    
-                    
-                    </div>
-               </div>
-            </div>
+ 
         </div>
 
     )

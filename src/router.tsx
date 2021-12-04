@@ -33,6 +33,12 @@ import CategoryBlog from "./page/admin/pageAdmin/categoriesBlog/index";
 import AddCategoryBlog from "./page/admin/pageAdmin/categoriesBlog/page/AddCategoryBlog";
 import Profile from "page/admin/pageAdmin/profile/Profile";
 
+import Artist from "./page/admin/pageAdmin/artist/index";
+import AddArtist from "./page/admin/pageAdmin/artist/page/AddArtist";
+import Song from "./page/admin/pageAdmin/song/index";
+import AddSong from "./page/admin/pageAdmin/song/page/AddSong";
+import UserAdmin from "./page/admin/pageAdmin/user/index";
+
 import Comment from "./page/admin/pageAdmin/comment/index";
 
 import Slide from './page/admin/pageAdmin/slide/index'
@@ -42,7 +48,6 @@ import ListenTogether from "./page/client/pageClient/listenTogether/listenTogeth
 import Personal from "./page/client/pageClient/personal/index"
 import RoomDetail from "./page/client/pageClient/roomDetail/roomDetail";
 import SubCategory from "page/client/pageClient/subpage/subpage";
-// import Subpage from "page/client/pageClient/subpage/subpage";
 import ArtistDetail from "page/client/pageClient/artistDetail/artistDetail";
 
 
@@ -58,7 +63,7 @@ const Admin: propertyPage[] = [
         component: HomeAdmin,
         exact: true
     },
-    
+
     {
         path: "/admin/addAlbum",
         component: AddAlbum,
@@ -146,10 +151,36 @@ const Admin: propertyPage[] = [
         exact: false
     },
     {
+        path: "/admin/userAdmin",
+        component: UserAdmin,
+        exact: false
+    },
+    {
+        path: "/admin/artist",
+        component: Artist,
+        exact: false
+    },
+    {
+        path: "/admin/addArtist",
+        component: AddArtist,
+        exact: false
+    },
+    {
+        path: "/admin/song",
+        component: Song,
+        exact: false
+    },
+    {
+        path: "/admin/addSong",
+        component: AddSong,
+        exact: false
+    },
+    {
         path: "/admin/profile",
         component: Profile,
         exact: false
     },
+        
     {
         path: "/admin/:pathNotFound",
         component: NotFoundAdmin,
