@@ -284,7 +284,7 @@ const Search: React.FC<SearchIF<any>> = ({ ...props }) => {
                                 </div>
                                 <div className="icon_item">
                                     <AiOutlineDownload
-                                        onClick={() => handleDownload(item._id)}
+                                        onClick={() => handleDownload(item)}
                                         className="icon"
                                     />
                                     <AiFillHeart
