@@ -202,15 +202,15 @@ const Toptrending: React.FC<ToptrendingIF<any>> = ({ ...props }) => {
                                     {locationLogged && <Notification handleLogged={handleLogged} />}
                                     {handleStatus.status !== "" && <AlertComponent status={handleStatus.status} content={handleStatus.content} />}
                                     {songs.length !== 0 && songs.map((item: any,index) => (
-                                        <div className="music_item music_item--grid border-0 p-2" key={item._id}>
+                                        <div className="music_item music_item--grid border-0 p-1 mb-4" key={item._id}>
                                             <div>
-                                                <h5 className="stt mt-3 ms-2">{index+1} -</h5>
+                                                <h5 className="stt mt-2 ms-2">{index+1}</h5>
                                             </div>
                                             <img src={item.image} alt={item.title} />
-                                            <div className="box-icon m-2 pt-1" style={{marginLeft:'2.19rem'}}>
+                                            <div className="box-icon m-1 pt-1 ml-3s " >
                                                 <BsFillPlayFill onClick={() => playAudio(item._id)} />
                                             </div>
-                                            <div onClick={() => playAudio(item._id)} style={{cursor: "pointer"}}>
+                                            <div onClick={() => playAudio(item._id)} style={{cursor: "pointer"}} className="mt-1">
                                                 <h6>{item.title}</h6>
                                                 <div style={{ fontSize: "0.7rem", marginTop: "-0.2rem" }}>
                                                     <NameSongArtist _id={item._id} />
