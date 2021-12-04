@@ -7,7 +7,7 @@ import { RouteComponentProps, withRouter } from "react-router-dom";
 import { variableCommon } from "component/variableCommon"
 import userApi from "api/useApi"
 import { io } from "socket.io-client";
-interface ListRoomUser<T> extends RouteComponentProps {
+interface ListRoomUserIF<T> extends RouteComponentProps {
 
 }
 const StyledBadge = styled(Badge)(({ theme }) => ({
@@ -39,7 +39,7 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
     },
 }));
 
-const ListRoomUser: React.FC<ListRoomUser<any>> = ({ match, ...props }) => {
+const ListRoomUser: React.FC<ListRoomUserIF<any>> = ({ match, ...props }) => {
     const [userRoom, setUserRoom] = useState({ display: true, data: [] });
     const [renderUser, setrenderUser] = useState<number>(0)
     const saveUser = useRef<any>(null)
@@ -51,7 +51,7 @@ const ListRoomUser: React.FC<ListRoomUser<any>> = ({ match, ...props }) => {
             }
         });
     }, [])
-    console.log('xin chao')
+    // console.log('xin chao')
 
     useEffect(() => {
         (async () => {
@@ -68,7 +68,7 @@ const ListRoomUser: React.FC<ListRoomUser<any>> = ({ match, ...props }) => {
             if (error || data.status === variableCommon.statusF) return;
             setTimeout(() => {
                 setUserRoom({ display: true, data: data.data })
-            }, 1000);
+            }, 1500);
         })()
         return () => {
             // setUserRoom(value => ({ ...value, display: false }))

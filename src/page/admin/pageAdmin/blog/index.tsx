@@ -9,11 +9,11 @@ export const page = {
   UpdateBlog: 'UpdateBlog'
 }
 
-interface IndexBlog<T> {
+interface IndexBlogIF<T> {
 
 }
 
-const IndexBlog: React.FC<IndexBlog<any>> = ({...props}) => {
+const IndexBlog: React.FC<IndexBlogIF<any>> = ({...props}) => {
   const [blog, setBlog] = useState('');
   const [findId, setFindId] = useState<any>(null);
 

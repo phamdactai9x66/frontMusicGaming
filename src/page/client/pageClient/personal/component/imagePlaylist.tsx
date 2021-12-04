@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react'
-import { RouteComponentProps } from "react-router-dom";
+// import { RouteComponentProps } from "react-router-dom";
 import { HandleGet, tranFormDataId } from "component/MethodCommon";
 import { variableCommon } from "component/variableCommon";
 import songPlaylistApi from "api/songPlaylistApi"
 import songApi from "api/songApi";
 
 
-interface ImagePlaylist<T> {
+interface ImagePlaylistIF<T> {
     idPlaylist: string
 }
 
-const ImagePlaylist: React.FC<ImagePlaylist<any>> = ({ idPlaylist, ...props }) => {
+const ImagePlaylist: React.FC<ImagePlaylistIF<any>> = ({ idPlaylist, ...props }) => {
     const [state, setstate] = useState({ display: true, data: [], dataSong: [] });
 
     useEffect(() => {

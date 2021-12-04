@@ -3,11 +3,11 @@ import { Pagination } from "@mui/material"
 import BlogApi from "api/BlogApi";
 import { HandleGet, handleReducer, initialReducer2, typeAciton, pustAction } from "component/MethodCommon";
 import { RouteComponentProps, withRouter } from "react-router-dom";
-interface RelatedBlog<T> extends RouteComponentProps {
+interface RelatedBlogIF<T> extends RouteComponentProps {
     id_CategoryBlog: string
 }
 
-const RelatedBlog: React.FC<RelatedBlog<any>> = ({ id_CategoryBlog, history, ...props }) => {
+const RelatedBlog: React.FC<RelatedBlogIF<any>> = ({ id_CategoryBlog, history, ...props }) => {
     const [blogs, setBlogs] = useState({ display: true, data: [] });
     const [state, dispatch] = useReducer(handleReducer, initialReducer2);
     const countPage = Math.ceil(state.DataStatic.length / state.Pagination._limit);

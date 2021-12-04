@@ -10,5 +10,9 @@ class RoomApi {
         const url: string = "/room/checkPassword";
         return Axios.post(url, data)
     }
+    createRoom<T extends object>(data: T): Promise<any> {
+        const url: string = "/room/add";
+        return Axios.post(url, data)
+    }
 }
 export default new RoomApi();

@@ -2,10 +2,10 @@ import React, { useState } from 'react'
 import { MdNavigateNext } from 'react-icons/md';
 import Modal from "../component/modal";
 import ListPLaylist from "../component/listPLaylist"
-interface PlaylistSong<T> {
+interface PlaylistSongIF<T> {
 
 }
-const PlaylistSong: React.FC<PlaylistSong<any>> = ({ ...props }) => {
+const PlaylistSong: React.FC<PlaylistSongIF<any>> = ({ ...props }) => {
     const [render, setRender] = useState(0);
     const renderComponent = () => {
         // const increaseValue = render + 1

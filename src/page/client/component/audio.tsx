@@ -5,18 +5,22 @@ import { HiVolumeUp } from 'react-icons/hi';
 import { PlayArrow, Pause, NavigateNext, NavigateBefore, SkipNext, SkipPrevious } from '@mui/icons-material';
 import { tranFormDuration } from "component/MethodCommon";
 import { formStateAudio } from "redux/audio/stateAudio";
+import { formStateUser } from "redux/user/stateUser"
 import { useSelector, useDispatch } from "react-redux";
 import { playSong } from "redux/audio/actionAudio";
 import NameSongArtist from "component/nameSongArtist";
 import OptionAudio from "./optionAudio";
 import LikeSong from "./likeSong";
-
-interface Audio<T> {
-    audio?: any
+import { RouteComponentProps, withRouter } from "react-router-dom";
+import { io } from "socket.io-client"
+import roomUserApi from "api/roomUser";
+interface AudioIF<T> extends RouteComponentProps {
+    audio?: any | T
 }
-
-const Audio: React.FC<Audio<any>> = ({ audio: { audio: url, title, image, _id }, ...props }) => {
+const server = "http://localhost:5000";
+const Audio: React.FC<AudioIF<any>> = ({ audio: { audio: url, title, image, _id }, ...props }) => {
     const state = useSelector<{ audio: any }>(state => state.audio) as formStateAudio;
+    const userInfo = useSelector<{ user: any }>(state => state.user) as formStateUser;
     const dispatch = useDispatch();
     const [play, setPlay] = useState(false);
     const [duration, setduration] = useState(0);
@@ -38,6 +42,34 @@ const Audio: React.FC<Audio<any>> = ({ audio: { audio: url, title, image, _id },
         const getDuration = Math.ceil(AudioPlay.current?.duration as any);
         setduration(getDuration)
     }, [AudioPlay.current?.readyState]);
+
+    useEffect(() => {
+        io(server).on('pauseSongUser', async (data) => {
+            // console.log(data.idRoom);
+            if (!data.idRoom) return
+            const getRoom = await roomUserApi.getAll({ _idRoom: data.idRoom })
+            getRoom.data.forEach((current: any) => {
+                if (current.id_User === userInfo.user._id) {
+                    setPlay(false)
+                    AudioPlay.current?.pause();
+                    clearInterval(stateCurrentTime.current);
+                }
+            })
+        })
+        io(server).on('playSongUser', async (data) => {
+            // console.log(data.idRoom);
+            if (!data.idRoom) return
+            const getRoom = await roomUserApi.getAll({ _idRoom: data.idRoom })
+            getRoom.data.forEach((current: any) => {
+                if (current.id_User === userInfo.user._id) {
+                    setPlay(true)
+                    AudioPlay.current?.play();
+                    clearInterval(stateCurrentTime.current);
+                    stateCurrentTime.current = setInterval(changeTime, 1000)
+                }
+            })
+        })
+    }, [])
 
     useEffect(() => {
 
@@ -87,17 +119,30 @@ const Audio: React.FC<Audio<any>> = ({ audio: { audio: url, title, image, _id },
             }
         }
     }, [fakeRender])
-
     const playAudio = () => {
         if (!url) return
         const stateAudio = !play;
         if (stateAudio) {
             AudioPlay.current?.play();
             stateCurrentTime.current = setInterval(changeTime, 1000)
+
+            const savePath = props.location.pathname.split('/')
+            const tranformArray = savePath.includes("roomDetail");
+            const idRoom = savePath[savePath.length - 1]
+            if (tranformArray && idRoom) {
+                io(server).emit('playSong', { idRoom })
+            }
         }
         if (!stateAudio) {
             AudioPlay.current?.pause();
-            clearInterval(stateCurrentTime.current)
+            clearInterval(stateCurrentTime.current);
+            //check in room detail
+            const savePath = props.location.pathname.split('/')
+            const tranformArray = savePath.includes("roomDetail");
+            const idRoom = savePath[savePath.length - 1]
+            if (tranformArray && idRoom) {
+                io(server).emit('pauseSong', { idRoom })
+            }
         }
         setPlay(stateAudio);
     }
@@ -128,7 +173,7 @@ const Audio: React.FC<Audio<any>> = ({ audio: { audio: url, title, image, _id },
         <div className="footer">
             <audio ref={AudioPlay} src={url}></audio>
             <div className="author">
-                <img width={50} height={50} src={image} />
+                <img width={50} height={50} src={image} alt='' />
                 <div>
                     <h5>{title ? title : 'Shape of you'}</h5>
                     <NameSongArtist _id={_id} />
@@ -176,4 +221,4 @@ const Audio: React.FC<Audio<any>> = ({ audio: { audio: url, title, image, _id },
     )
 }
 
-export default memo(Audio)
+export default withRouter(memo(Audio))

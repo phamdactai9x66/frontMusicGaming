@@ -1,13 +1,13 @@
 import React from 'react'
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { formStateUser } from "redux/user/stateUser";
 import { PropsPersonal, AllPage } from "../index";
 
-interface Tabed<T> extends PropsPersonal {
+interface TabedIF<T> extends PropsPersonal {
 
 }
 
-const Tabed: React.FC<Tabed<any>> = ({ navigatePage, ...props }) => {
+const Tabed: React.FC<TabedIF<any>> = ({ navigatePage, ...props }) => {
     const { user } = useSelector<{ user: any }>(state => state.user) as formStateUser;
     return (
         <>

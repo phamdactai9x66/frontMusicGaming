@@ -1,0 +1,32 @@
+.profile-grid{
+    margin: 40px;
+    display: grid;
+    grid-template-columns: 30% 1fr;
+    gap: 40px;
+    .profile-box1, .profile-box2{
+        box-shadow: 0 0 0.6rem 0.1rem rgba(0, 0, 0, 0.13);
+        border-radius: 15px;
+    
+    }
+      
+}
+.profile-box1{
+    .img-centert{
+        img{
+            width: 100%;
+            border-radius: 50%;
+        }
+    }
+}
+
+.profile-box2{
+    .hover-text{
+        border-radius: 0 0 0.3rem 0.3rem; 
+        border-bottom: 1px solid #ff849f !important;
+    }
+}
+@media only screen and (max-width: 700px) {
+    .profile-grid{
+        grid-template-columns: 1fr;
+    }
+}

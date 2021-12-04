@@ -2,34 +2,35 @@ import songApi from 'api/songApi';
 import { handleLike, handleDownload, handleAddToPlaylist } from 'page/client/common/handle';
 import React, { useEffect, useState } from 'react';
 import { BsFillPlayFill } from 'react-icons/bs';
-import { BiMusic } from 'react-icons/bi';
 import { BsMusicNoteList } from 'react-icons/bs';
-import { Button, MenuItem } from "@mui/material";
+import { CircularProgress, MenuItem } from "@mui/material";
 import { AiOutlineDownload, AiFillHeart } from 'react-icons/ai';
 import { IoMdAdd } from 'react-icons/io';
 import { Popover } from "@material-ui/core";
 import { useDispatch } from "react-redux";
-import { getlistAudio, playSong } from "redux/audio/actionAudio"
+import { getlistAudio, playSong } from "redux/audio/actionAudio";
 import userPlaylistApi from 'api/userPlaylist';
 import { useHistory } from 'react-router';
-import ModalLogged from 'component/clientComponent/ModalLogged';
-import { Link } from 'react-router-dom';
 import NameSongArtist from 'component/nameSongArtist';
 import GetTimeAudio from "component/getTimeAudio";
 import AlertComponent from 'component/clientComponent/Alert';
 import Notification from 'page/notificationModal/NotificationModal';
-import { ReactComponent as Spinner } from "../../../component/Spinner.svg";
-
+import ControlPointIcon from '@mui/icons-material/ControlPoint';
+import LoadingButton from '@mui/lab/LoadingButton';
 
 interface HomeSongComponentIF<T> {
-    userState: any,
+    userState: any | T,
 }
 const HomeSongComponent: React.FC<HomeSongComponentIF<any>> = (props) => {
     const history: any = useHistory<any>();
     const [playlistName, setPlaylistName] = useState('');
     const [anchor, setAnchor] = useState(null);
     const [anchor2, setAnchor2] = useState(null);
-    const [userPlaylists, setUserPlaylists] = useState<any[]>([]);
+    const [userPlaylists, setUserPlaylists] = useState<any>({
+        data: [],
+        loading: true,
+    });
+    const [likeLoading, setLikeLoading] = useState<any[]>([]);
     const [isLogged, setIsLogged] = useState(false);
     const { user } = props.userState;
     const [songs, setSongs] = useState([]);
@@ -68,11 +69,12 @@ const HomeSongComponent: React.FC<HomeSongComponentIF<any>> = (props) => {
     // }, [history])
 
     const handleAdd = async <T extends string>(s: T, u: T, t: T) => {
-        if (u === undefined) {
+        if (!u) {
             setIsLogged(true);
             return;
         }
         if (t === 'like') {
+            setLikeLoading([...likeLoading, s]);
             let likeRes = await handleLike(s, u);
             if (likeRes && likeRes.status === "added") {
                 setHandleStatus({
@@ -90,6 +92,7 @@ const HomeSongComponent: React.FC<HomeSongComponentIF<any>> = (props) => {
                     content: "Thêm vào yêu thích không thành công."
                 })
             }
+            setLikeLoading(likeLoading.filter(i => i !== s));
         }
 
         if (t === "playlist") {
@@ -122,7 +125,10 @@ const HomeSongComponent: React.FC<HomeSongComponentIF<any>> = (props) => {
             return;
         }
         const { data } = await userPlaylistApi.getAll({ id_User: user._id });
-        setUserPlaylists(data);
+        setUserPlaylists({
+            data: data,
+            loading: false,
+        });
     }
 
     const playAudio = <T extends string>(_id: T): void => {
@@ -145,12 +151,12 @@ const HomeSongComponent: React.FC<HomeSongComponentIF<any>> = (props) => {
         if (!playlistName) {
             setHandleStatus({
                 status: "failed",
-                content: "Playlist không được để trống"
+                content: "Bạn cần nhập tên Playlist"
             })
             setAddPlaylistLoading(false);
             return;
         }
-        let form = new FormData;
+        let form = new FormData();
         form.append("name", playlistName);
         form.append("id_User", user._id);
 
@@ -159,13 +165,13 @@ const HomeSongComponent: React.FC<HomeSongComponentIF<any>> = (props) => {
             setUserPlaylists([...userPlaylists, ...isCreatedPlaylist.data]);
             setHandleStatus({
                 status: "success",
-                content: "Tạo mới Playlist thành công"
+                content: "Tạo Playlist thành công"
             });
             setAnchor2(null);
         } else {
             setHandleStatus({
                 status: "failed",
-                content: "Không tạo được Playlist"
+                content: "Playlist chưa được tạo"
             });
         }
         setAddPlaylistLoading(false);
@@ -178,7 +184,7 @@ const HomeSongComponent: React.FC<HomeSongComponentIF<any>> = (props) => {
             {handleStatus.status !== "" && <AlertComponent status={handleStatus.status} content={handleStatus.content} />}
             {songs.length !== 0 && songs.map((item: any) => (
                 <div className="music_item border-0 p-2" key={item._id}>
-                    <img src={item.image} alt={item.name} />
+                    <img src={item.image} alt={item.title} />
                     <div className="box-icon m-2 pt-1">
                         <BsFillPlayFill onClick={() => playAudio(item._id)} />
                     </div>
@@ -193,7 +199,15 @@ const HomeSongComponent: React.FC<HomeSongComponentIF<any>> = (props) => {
                     </div>
                     <div className="icon_item">
                         <AiOutlineDownload onClick={() => handleDownload(item._id)} className="icon" />
-                        <AiFillHeart onClick={() => handleAdd(item._id, user._id, "like")} className="icon" />
+                        {/* <LoadingButton
+                            onClick={() => handleAdd(item._id, user._id, "like")}
+                            loading={true}
+                            loadingIndicator={<CircularProgress size={18} color="inherit" />}
+                            className="icon"
+                        >
+                            <AiFillHeart />
+                        </LoadingButton> */}
+                        {likeLoading.indexOf(item._id) === -1 ? <AiFillHeart onClick={() => handleAdd(item._id, user._id, "like")} className="icon" /> : <span className='loading-icon'><CircularProgress  className='loading-icon' size={15} sx={{ color: "#d6f4f8"}} /></span> }
                         <IoMdAdd className="icon" onClick={(e) => {
                             openPopover(e);
                             getUserPlaylists();
@@ -213,15 +227,15 @@ const HomeSongComponent: React.FC<HomeSongComponentIF<any>> = (props) => {
                         >
                             <div style={{ background: "#101929", margin: "", color: "#fff", width: "15rem" }}>
                                 <div className="d-flex gap-2 p-2">
-                                    <img width={35} height={35} src={item.image} alt="" />
+                                    <img width={35} height={35} src={item.image} alt={item.title} />
                                     <div>
-                                        <h6>{item.name}</h6>
-                                        <div style={{ marginTop: "-0.7rem" }}><span style={{ fontSize: "0.8rem" }}>205k </span><span style={{ fontSize: "0.8rem" }}> 3.8M</span></div>
+                                        <h6>{item.title}</h6>
+                                        <div style={{ marginTop: "-0.7rem" }}><span style={{ fontSize: "0.8rem" }}>{item.view} </span><span style={{ fontSize: "0.8rem" }}> 3.8M</span></div>
                                     </div>
                                 </div>
                                 <hr style={{ margin: "-0.1rem 0 0.5rem 0" }} />
                                 <MenuItem className="add list" onClick={openPopover2}>
-                                    <IoMdAdd className="icon" /> &ensp; Tạo playlist mới
+                                    <IoMdAdd className="icon" /> &ensp; Tạo Playlist mới
                                 </MenuItem>
                                 <Popover
                                     open={Boolean(anchor2)}
@@ -238,19 +252,28 @@ const HomeSongComponent: React.FC<HomeSongComponentIF<any>> = (props) => {
                                 >
                                     <div className="item p-3">
                                         <form>
-                                            <input type="text" onChange={(e) => setPlaylistName(e.target.value)} className="mb-2 p-2 text-light" style={{ background: "#0d141f", border: "0.1rem solid #0e5353" }} placeholder="Thêm playlist..." />
+                                            <input type="text" onChange={(e) => setPlaylistName(e.target.value)} className="mb-2 p-2 text-light" style={{ background: "#0d141f", border: "0.1rem solid #0e5353", borderRadius: ".4rem", }} placeholder="Tên Playlist" />
                                             <br />
-                                            {addPlaylistLoading ? <Button color="primary" variant="contained" ><Spinner/></Button> : 
-                                                <Button color="primary" variant="contained" onClick={handleCreatePlaylist} >Thêm playlist</Button>
-                                            }
+                                            <LoadingButton
+                                                onClick={handleCreatePlaylist}
+                                                startIcon={<ControlPointIcon />}
+                                                loading={addPlaylistLoading}
+                                                loadingPosition="start"
+                                                variant="contained"
+                                            >
+                                                Tạo
+                                            </LoadingButton>
                                         </form>
                                     </div>
                                 </Popover>
-
-                                {userPlaylists.length === 0 && <MenuItem className="list" onClick={() => handleAdd(item._id, user._id, "playlist")} >
+                                
+                                {userPlaylists.loading && <MenuItem className="list" onClick={() => handleAdd(item._id, user._id, "playlist")} >
+                                    <CircularProgress />
+                                </MenuItem>}
+                                {userPlaylists.data.length === 0 && <MenuItem className="list" onClick={() => handleAdd(item._id, user._id, "playlist")} >
                                     <BsMusicNoteList /> &ensp; Bạn chưa có Playlist nào.
                                 </MenuItem>}
-                                {userPlaylists.length !== 0 && userPlaylists.map((_: any) => (
+                                {userPlaylists.data.length !== 0 && userPlaylists.data.map((_: any) => (
                                     <MenuItem className="list" onClick={() => handleAdd(_._id, user._id, "playlist")} >
                                         <BsMusicNoteList /> &ensp; {_.name}
                                     </MenuItem>

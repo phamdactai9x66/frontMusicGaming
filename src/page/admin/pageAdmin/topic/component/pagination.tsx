@@ -1,12 +1,12 @@
-import React, { useRef, useState } from 'react'
-import { Select, MenuItem, Pagination, Box } from "@mui/material";
-import { initialReducer, handleReducer, HandleGet, typeAciton, pustAction } from "component/MethodCommon";
+import React, { useState } from 'react'
+import { Pagination } from "@mui/material";
+import { typeAciton, pustAction } from "component/MethodCommon";
 
-interface PaginationPage<T> {
-    state: any,
+interface PaginationPageIF<T> {
+    state: any | T,
     dispatch: any
 }
-const PaginationPage: React.FC<PaginationPage<any>> = ({ state, dispatch, ...props }) => {
+const PaginationPage: React.FC<PaginationPageIF<any>> = ({ state, dispatch, ...props }) => {
     const [page, setnextPage] = useState(state?.Filter?._page)//1
     const getTotalPage = (): number => {
         const { _limit, rows } = state?.Pagination

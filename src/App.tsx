@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Switch, NavLink } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import RootClient from "./page/client/rootPageClient";
 import RootAdmin from "./page/admin/rootPageAdmin";
 import { Provider } from "react-redux";
@@ -13,8 +13,8 @@ function App() {
   return (
     <>
       <Router>
-        <Provider store={storeGlobal}>
-          <PersistGate loading={null} persistor={storePersiser}>
+        <Provider store={storeGlobal}>    
+          <PersistGate loading={null} persistor={storePersiser}>       
             <Switch>
               <ProtectAdmin path="/admin" >
                 <RootAdmin>
@@ -23,17 +23,19 @@ function App() {
                   </Switch>
                 </RootAdmin>
               </ProtectAdmin>
-
               <Route path="">
-                <RootClient>
+                <RootClient> 
+                           
                   <Switch>
                     <ProtectRoute path="/signin" component={Signin} exact={false} />
                     <CheckLogin path="/overview" component={Overview} exact={false} />
                     {handlePage<propertyPage[]>(Client)}
                   </Switch>
+                  
                 </RootClient>
               </Route>
-            </Switch>
+              
+             </Switch> 
           </PersistGate>
         </Provider>
       </Router>

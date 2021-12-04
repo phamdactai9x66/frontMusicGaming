@@ -5,12 +5,13 @@ import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { HandleGet, handleReducer, typeAciton, initialReducer, pustAction } from "component/MethodCommon"
-interface FindRoom<T> {
-  dispatch: any
+// import { HandleGet, handleReducer, typeAciton, initialReducer, pustAction } from "component/MethodCommon"
+import { typeAciton, pustAction } from "component/MethodCommon"
+interface FindRoomIF<T> {
+  dispatch: any | T,
 }
 
-const FindRoom: React.FC<FindRoom<any>> = ({ dispatch, ...props }) => {
+const FindRoom: React.FC<FindRoomIF<any>> = ({ dispatch, ...props }) => {
   const findRoom = (e: Event | any) => {
     const getValue = (e.target as HTMLInputElement).value.trim();
     if (e.keyCode === 13) {
@@ -22,13 +23,13 @@ const FindRoom: React.FC<FindRoom<any>> = ({ dispatch, ...props }) => {
       <div className="search_music">
         <i className="fa fa-search" aria-hidden="true"></i>
         <input type="text" placeholder="Search..." onKeyUp={findRoom} />
-        {/* <ul className="results" >
+        <ul className="results" >
           <List>
             <ListItem
               style={{ display: "flex", cursor: "pointer" }}
               secondaryAction={
                 <IconButton edge="end" aria-label="delete">
-                  <DeleteIcon style={{ color: "#5ac0f0" }} />
+                  <DeleteIcon style={{ color: "#5ac0f0",background: "rgb(48 70 86 / 82%)",borderRadius: "50%",fontSize: "2.2rem",padding: "0.3rem"}} />
                 </IconButton>
               }
             >
@@ -38,7 +39,7 @@ const FindRoom: React.FC<FindRoom<any>> = ({ dispatch, ...props }) => {
               <div className="key_name">This is search jsncjnsdjkhcnjsdncjdsdcscdcdcsdcdc</div>
             </ListItem>
           </List>
-        </ul> */}
+        </ul>
       </div>
     </>
   )

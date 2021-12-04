@@ -1,6 +1,6 @@
 import * as Yup from "yup";
 import { variableCommon } from "component/variableCommon";
-const messageDefault: string = 'Không được để trống.';
+const messageDefault: string = 'Không được để trống field này.';
 const checkTypeFile: string = 'File không đúng định dạng.';
 const checkSizeFile: string = 'Kích thước File nhỏ hơn 16MB.';
 
@@ -50,7 +50,7 @@ declare module "yup" {
         checkRequire(): StringSchema;
     }
     interface NumberSchema {
-        // checkFile(): NumberSchema
+        checkRequire(): NumberSchema
     }
 }
 

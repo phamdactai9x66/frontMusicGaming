@@ -1,12 +1,12 @@
 import React from 'react'
 import useApi from '../../../../../api/useApi';
 import { GoogleLogin } from 'react-google-login';
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { saveInfo } from "../../../../../redux/user/actionUser";
 import { RouteComponentProps, withRouter } from "react-router-dom";
 interface LoginGoogle<T> extends RouteComponentProps {
     displayAlert?: any,
-    lastLocation: string,
+    // lastLocation: string,
 }
 
 const LoginGoogle: React.FC<LoginGoogle<any>> = ({ history, displayAlert, ...props }) => {
@@ -18,7 +18,7 @@ const LoginGoogle: React.FC<LoginGoogle<any>> = ({ history, displayAlert, ...pro
         if (LoginGg.status !== "failed") {
             dispatchUser(saveInfo(LoginGg))
 
-            return history.replace(props.lastLocation)
+            return history.replace('')
         }
         displayAlert(LoginGg.message)
     }
