@@ -419,7 +419,7 @@ const ArtistDetail: React.FC<ArtistDetailIF<any>> = ({ ...props }) => {
                                         </div>
                                     </Popover>
 
-                                    {userPlaylists.length === 0 && (
+                                    {userPlaylists?.length === 0 && (
                                         <MenuItem
                                             className="list"
                                             onClick={() =>
@@ -434,7 +434,7 @@ const ArtistDetail: React.FC<ArtistDetailIF<any>> = ({ ...props }) => {
                                             có Playlist nào.
                                         </MenuItem>
                                     )}
-                                    {userPlaylists.length !== 0 &&
+                                    {userPlaylists?.length !== 0 &&
                                         userPlaylists.map((_: any) => (
                                             <MenuItem
                                                 className="list"
