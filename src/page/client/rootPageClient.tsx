@@ -22,16 +22,17 @@ const RootPageClient: React.FC<RootPageClient<any>> = ({ ...props }) => {
     }, [state])
     useEffect(() => {
         scrollRef.current.scrollTop = 0
+        props.history.length = 0
+
     }, [props.history.length])
-    const test1 = (event: Event | any) => {
-    }
+    // console.log(props.history.length)
     return (
         <>
             <div className="container-client">
                 <aside><Sidebar /></aside>
                 <header><Header /></header>
                 <main>
-                    <div className="main-children" onScroll={test1} ref={scrollRef}>
+                    <div className="main-children" ref={scrollRef}>
                         {props.children}
                     </div>
                 </main>
