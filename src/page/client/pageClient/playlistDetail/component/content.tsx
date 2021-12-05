@@ -30,19 +30,10 @@ const Content: React.FC<ContentIF<any>> = ({ state, ...props }) => {
             </figure>
             <div className="icon-box">
                 <div>
-                    <BiHeart className="icon" />
                     <FiPlayCircle className="icon" />
-                    <HiOutlineDotsCircleHorizontal className="icon" />
                 </div>
             </div>
-            <Select className="option">
-                <MenuItem>
-                    <AiOutlineDownload /> Tải xuống
-                </MenuItem>
-                <MenuItem>
-                    <AiOutlineLink /> Sao chép link
-                </MenuItem>
-            </Select>
+
             <h6>Nhạc trẻ remix</h6>
         </div>
     }
@@ -56,19 +47,10 @@ const Content: React.FC<ContentIF<any>> = ({ state, ...props }) => {
                 </figure>
                 <div className="icon-box">
                     <div>
-                        <BiHeart className="icon" />
                         <FiPlayCircle className="icon" onClick={() => { dispatch(playSong(getSong)) }} />
-                        <HiOutlineDotsCircleHorizontal className="icon" />
                     </div>
                 </div>
-                <Select className="option">
-                    <MenuItem>
-                        <AiOutlineDownload /> Tải xuống
-                    </MenuItem>
-                    <MenuItem>
-                        <AiOutlineLink /> Sao chép link
-                    </MenuItem>
-                </Select>
+ 
                 <h6>Nhạc trẻ remix</h6>
             </div>
         )

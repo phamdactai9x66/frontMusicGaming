@@ -43,9 +43,9 @@ const SubCategory: React.FC<SubCategoryIF<any>> = ( { location, history, ...prop
 
   return (
     <div className="container-category">
-      <h1>Chủ đề {location.state ? location.state.name : ""}</h1>
+      <h4 className="title_all text-light" style={{color:"#a8eff9"}}>Chủ đề {location.state ? location.state.name : ""}</h4>
       <div className="banner-category">
-        <img src="https://html.nkdev.info/goodgames/assets/images/gallery-7.jpg" alt="" />
+      <img src={location.state ? location.state.image : ""} alt={location.state ? location.state.image : ""} />
       </div>
 
       {handle.data.dataCate.map( (itemCate: any) => {

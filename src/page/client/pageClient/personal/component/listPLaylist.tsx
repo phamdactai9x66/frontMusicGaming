@@ -40,19 +40,9 @@ const ListPLaylist: React.FC<ListPLaylistIF<any>> = ({ render, ...props }) => {
                                 <ImagePlaylist idPlaylist={current?._id} />
                                 <div className="icon-box">
                                     <div>
-                                        <BiHeart className="icon" />
                                         <FiPlayCircle className="icon" />
-                                        <HiOutlineDotsCircleHorizontal className="icon" />
                                     </div>
                                 </div>
-                                <Select className="option">
-                                    <MenuItem>
-                                        <AiOutlineDownload /> Tải xuống
-                                    </MenuItem>
-                                    <MenuItem>
-                                        <AiOutlineLink /> Sao chép link
-                                    </MenuItem>
-                                </Select>
                                 <h6>{current.name} </h6>
                             </div>
                         </Link>

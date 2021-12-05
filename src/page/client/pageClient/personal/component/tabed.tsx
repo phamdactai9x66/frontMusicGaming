@@ -13,7 +13,7 @@ const Tabed: React.FC<TabedIF<any>> = ({ navigatePage, ...props }) => {
         <>
             <div className="info_Personal">
                 <div className="info_main">
-                    <img width={100} height={100} src={user.avatar} alt="" style={{ border: "0.07rem solid aqua" }} />
+                    <img width={100} height={100} src={user.avatar} alt="" />
                     <h3>{`${user?.first_name} ${user?.last_name}`}</h3>
                 </div>
             </div>

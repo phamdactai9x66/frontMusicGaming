@@ -1,7 +1,6 @@
 
 import React from 'react'
 import { Link } from "react-router-dom";
-import imgAdmin from './image/admin.png'
 import Accordion from "@material-ui/core/Accordion";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
 import AccordionSummary from "@material-ui/core/AccordionSummary";
@@ -177,7 +176,7 @@ const Sidebar: React.FC<SidebarIF<any>> = ({ ...props }) => {
       <div className="main_info">
         <div className="info_admin">
           {(state.user && state.token) ? 
-           <div><img width={50} height={50} src={state.user?.avatar} alt="" /><div>{state.user?.first_name} {state.user?.last_name}</div></div> : "err"}
+           <Link to="/admin/profile"><div><img width={50} height={50} src={state.user?.avatar} alt="" /><div>{state.user?.first_name} {state.user?.last_name}</div></div></Link> : "err"}
         </div>
       </div>
       <div className={classes.search} style={{ position: "relative" }}>

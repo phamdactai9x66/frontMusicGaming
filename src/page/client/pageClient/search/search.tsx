@@ -27,6 +27,8 @@ import ArtistApi from "api/ArtistApi";
 import BlogApi from "api/BlogApi";
 import { handleNameArtist } from "page/client/common/handleName"; 
 import Loadings from '../../loading/loading';
+import { Link } from 'react-router-dom';
+
 interface SearchIF<T> {
     userState: any;
     location: any;
@@ -518,6 +520,7 @@ const Search: React.FC<SearchIF<any>> = ({ ...props }) => {
                                             item.last_Name
                                         )}
                                     </h6>
+                                     
                                     <Button
                                         variant="outlined"
                                         className="text-white"
@@ -526,8 +529,11 @@ const Search: React.FC<SearchIF<any>> = ({ ...props }) => {
                                         }
                                         style={{ fontSize: "0.6rem" }}
                                     >
+                                        <Link className="text-light" to={`/artistDetail/${item._id}`}>
                                         Quan tâm
+                                        </Link>
                                     </Button>
+                                    
                                 </div>
                             </div>
                         ))}

@@ -74,14 +74,6 @@ const Home: React.FC<HomeIF<any>> = ({ ...props }) => {
             }
         ]
     };
-    // useEffect(() => {
-    //     window.addEventListener('scroll', () => {
-    //         console.log('xin chao')
-    //     })
-    //     // scrollRef.current?.addEventListener('scroll', () => {
-    //     //     console.log('xin chao')
-    //     // })
-    // }, [])
 
     const getPlaylists = async () => {
         const responsePL = await playlistApi.getAll({});

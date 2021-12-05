@@ -41,7 +41,7 @@ const Modal: React.FC<ModalModal<any>> = ({ renderComponent, ...props }) => {
                 overlayStyle={{ background: "rgba(255,255,255,0.98" }}
                 closeOnDocumentClick={false}
                 trigger={() =>
-                    <div className="add">
+                    <div className="add" style={{height: "14.3rem"}}>
                         <IoMdAdd className="icon" />
                         Tạo playlist mới
                     </div>

@@ -5,9 +5,6 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { AiOutlineDownload,AiOutlineLink } from 'react-icons/ai';
 import { FiPlayCircle } from 'react-icons/fi';
-import { HiOutlineDotsCircleHorizontal } from 'react-icons/hi';
-import {  BiHeart } from 'react-icons/bi';
-import { Select, MenuItem } from "@mui/material";
 import { HandleGet } from "component/MethodCommon";
 
 import playlistSongApi from 'api/playlistSongApi';
@@ -58,19 +55,10 @@ const WantHearComponent: React.FC<WantHearComponentIF<any>> = ({...props}) => {
                             </figure>
                             <div className="icon-box">
                                 <div>
-                                    <BiHeart className="icon" />
                                     <FiPlayCircle onClick={() => dispatch(playSong( {_id: item._id} ))} className="icon" />
-                                    <HiOutlineDotsCircleHorizontal className="icon" />
                                 </div>
                             </div>
-                            <Select className="option">
-                                <MenuItem>
-                                    <AiOutlineDownload/> Tải xuống
-                                </MenuItem>
-                                <MenuItem>
-                                    <AiOutlineLink/> Sao chép link
-                                </MenuItem>
-                            </Select>
+
                             <h6>{item.title}</h6>
                         </div>
                     </div>

@@ -16,16 +16,18 @@
     border-radius: 0.2rem;
     box-shadow: 0 3px 7px rgba(0, 0, 0, 0.692);
     display: flex;
+    justify-content: space-between;
     color: #fff;
     background: linear-gradient(to right, rgb(37, 111, 196) , rgba(104, 199, 223, 0.616));
     padding: 0.4rem;
   }
   .name {
-    flex-grow: 2; 
+    // flex-grow: 2; 
   }
   .key {
-    flex-grow: 1;
+    // flex-grow: 1;
     margin-top: 0.5rem;
+    margin-right: 2rem;
   }
   .css-1ytufz-MuiAvatarGroup-root {
     justify-content: left !important;
