@@ -37,52 +37,52 @@ const Overview = () => {
             <div className="Personal">
                 {/* <Tabed /> */}
                 <div className="overview">
-                    <h4 className="title_all" style={{fontSize:'1.3rem'}}>Bài hát <MdNavigateNext className="icon" /></h4>
+                    <h4 className="title_all" style={{ fontSize: '1.3rem' }}>Bài hát <MdNavigateNext className="icon" /></h4>
                     <div className="main1">
                         <div className="box-slider">
                             <Slider {...settings_overview}>
 
-                                    <div className="box">
-                                        <figure>
-                                            <img src="https://i.ytimg.com/vi/Yije8O6eGn8/maxresdefault.jpg" alt="" />
-                                        </figure>
-                                        <div className="icon-box">
-                                            <div>
-                                                <BiHeart className="icon" />
-                                                <FiPlayCircle className="icon" />
-                                                <HiOutlineDotsCircleHorizontal className="icon" />
-                                            </div>
+                                <div className="box">
+                                    <figure>
+                                        <img src="https://i.ytimg.com/vi/Yije8O6eGn8/maxresdefault.jpg" alt="" />
+                                    </figure>
+                                    <div className="icon-box">
+                                        <div>
+                                            <BiHeart className="icon" />
+                                            <FiPlayCircle className="icon" />
+                                            <HiOutlineDotsCircleHorizontal className="icon" />
                                         </div>
-                                        <Select className="option">
-                                            <MenuItem>
-                                                <AiOutlineDownload /> Tải xuống
-                              </MenuItem>
-                                            <MenuItem>
-                                                <AiOutlineLink /> Sao chép link
-                              </MenuItem>
-                                        </Select>
                                     </div>
+                                    <Select className="option">
+                                        <MenuItem>
+                                            <AiOutlineDownload /> Tải xuống
+                                        </MenuItem>
+                                        <MenuItem>
+                                            <AiOutlineLink /> Sao chép link
+                                        </MenuItem>
+                                    </Select>
+                                </div>
 
-                                    <div className="box">
-                                        <figure>
-                                            <img src="https://i.ytimg.com/vi/Yije8O6eGn8/maxresdefault.jpg" alt="" />
-                                        </figure>
-                                        <div className="icon-box">
-                                            <div>
-                                                <BiHeart className="icon" />
-                                                <FiPlayCircle className="icon" />
-                                                <HiOutlineDotsCircleHorizontal className="icon" />
-                                            </div>
+                                <div className="box">
+                                    <figure>
+                                        <img src="https://i.ytimg.com/vi/Yije8O6eGn8/maxresdefault.jpg" alt="" />
+                                    </figure>
+                                    <div className="icon-box">
+                                        <div>
+                                            <BiHeart className="icon" />
+                                            <FiPlayCircle className="icon" />
+                                            <HiOutlineDotsCircleHorizontal className="icon" />
                                         </div>
-                                        <Select className="option">
-                                            <MenuItem>
-                                                <AiOutlineDownload /> Tải xuống
-          </MenuItem>
-                                            <MenuItem>
-                                                <AiOutlineLink /> Sao chép link
-          </MenuItem>
-                                        </Select>
                                     </div>
+                                    <Select className="option">
+                                        <MenuItem>
+                                            <AiOutlineDownload /> Tải xuống
+                                        </MenuItem>
+                                        <MenuItem>
+                                            <AiOutlineLink /> Sao chép link
+                                        </MenuItem>
+                                    </Select>
+                                </div>
                             </Slider>
                         </div>
                         <div className="box-music" style={{ height: "305px" }}>
@@ -97,7 +97,7 @@ const Overview = () => {
                                 </div>
                                 <div>
                                     4:50
-                            </div>
+                                </div>
                                 <div className="icon_item">
                                     <AiOutlineDownload className="icon" />
                                     <AiFillHeart className="icon" />
@@ -126,14 +126,14 @@ const Overview = () => {
                                             <hr style={{ margin: "-0.1rem 0 0.5rem 0" }} />
                                             <MenuItem>
                                                 <AiOutlineDownload />&ensp; Tải xuống
-                        </MenuItem>
+                                            </MenuItem>
                                             <MenuItem >
                                                 <AiFillHeart />&ensp; Thêm vào thư viện
-                        </MenuItem>
+                                            </MenuItem>
 
                                             <MenuItem onClick={openPopover2}>
                                                 <IoMdAdd />&ensp; Thêm vào playlist
-                            </MenuItem>
+                                            </MenuItem>
                                             <Popover
                                                 open={Boolean(anchor2)}
                                                 anchorEl={anchor2}
@@ -150,7 +150,7 @@ const Overview = () => {
                                                 <div className="item">
                                                     <MenuItem className="list" >
                                                         <BiMusic /> &ensp;Nhạc trẻ remix
-                            </MenuItem>
+                                                    </MenuItem>
                                                 </div>
                                             </Popover>
                                         </div>
@@ -160,7 +160,7 @@ const Overview = () => {
                         </div>
                     </div>
                     <div className="main2">
-                        <h4 className="title_all" style={{fontSize:'1.3rem'}}>Playlist <MdNavigateNext className="icon" /></h4>
+                        <h4 className="title_all" style={{ fontSize: '1.3rem' }}>Playlist <MdNavigateNext className="icon" /></h4>
                         <div className="main2_add">
                             <Popup
                                 modal
@@ -169,8 +169,8 @@ const Overview = () => {
                                 trigger={() =>
                                     <div className="add">
                                         <IoMdAdd className="icon" />
-                                  Tạo danh sách phát mới
-                            </div>
+                                        Tạo danh sách phát mới
+                                    </div>
                                 }
                             >
                                 {(close: any) => (
@@ -178,7 +178,7 @@ const Overview = () => {
                                         <div className="content-modal">
                                             <button className="close" onClick={close}>
                                                 X
-                                    </button>
+                                            </button>
                                             <h5 className="text-center">Tạo danh sách phát mới</h5>
                                             <form action="">
                                                 <input type="text" placeholder="Nhập tên playlist" />
@@ -204,10 +204,10 @@ const Overview = () => {
                                     <Select className="option">
                                         <MenuItem>
                                             <AiOutlineDownload /> Tải xuống
-                                    </MenuItem>
+                                        </MenuItem>
                                         <MenuItem>
                                             <AiOutlineLink /> Sao chép link
-                                    </MenuItem>
+                                        </MenuItem>
                                     </Select>
                                     <h6>Nhạc trẻ remix</h6>
                                 </div>
@@ -227,10 +227,10 @@ const Overview = () => {
                                     <Select className="option">
                                         <MenuItem>
                                             <AiOutlineDownload /> Tải xuống
-                                    </MenuItem>
+                                        </MenuItem>
                                         <MenuItem>
                                             <AiOutlineLink /> Sao chép link
-                                    </MenuItem>
+                                        </MenuItem>
                                     </Select>
                                     <h6>Nhạc trẻ remix</h6>
                                 </div>
@@ -250,10 +250,10 @@ const Overview = () => {
                                     <Select className="option">
                                         <MenuItem>
                                             <AiOutlineDownload /> Tải xuống
-                                    </MenuItem>
+                                        </MenuItem>
                                         <MenuItem>
                                             <AiOutlineLink /> Sao chép link
-                                    </MenuItem>
+                                        </MenuItem>
                                     </Select>
                                     <h6>Nhạc trẻ remix</h6>
                                 </div>
@@ -273,19 +273,19 @@ const Overview = () => {
                                     <Select className="option">
                                         <MenuItem>
                                             <AiOutlineDownload /> Tải xuống
-                                    </MenuItem>
+                                        </MenuItem>
                                         <MenuItem>
                                             <AiOutlineLink /> Sao chép link
-                                    </MenuItem>
+                                        </MenuItem>
                                     </Select>
                                     <h6>Nhạc trẻ remix</h6>
                                 </div>
                             </Link>
-                               
+
                         </div>
                     </div>
                     <div className="main3">
-                        <h4 className="title_all" style={{fontSize:'1.3rem'}}>Nhạc sĩ <MdNavigateNext className="icon" /></h4>
+                        <h4 className="title_all" style={{ fontSize: '1.3rem' }}>Nhạc sĩ <MdNavigateNext className="icon" /></h4>
                         <div className="main3_nhacsi">
                             <div className="box_nhacsi">
                                 <div className="box-img">

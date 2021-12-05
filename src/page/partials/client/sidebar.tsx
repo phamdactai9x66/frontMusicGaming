@@ -13,6 +13,7 @@ import { useSelector } from 'react-redux';
 import { formStateUser } from 'redux/user/stateUser';
 import Notification from 'page/notificationModal/NotificationModal';
 import playlistApi from 'api/playlistApi';
+import Modal from "./component/modal"
 
 interface SidebarIF<T> {
 
@@ -34,19 +35,19 @@ const Sidebar: React.FC<SidebarIF<any>> = ({ ...props }) => {
   }
 
   const getPlaylists = async () => {
-    const responsePL = await playlistApi.getAll({}); 
+    const responsePL = await playlistApi.getAll({});
     if (!responsePL || responsePL.status === "failed") {
-        console.error("Get playlist failed.");
-        return;
+      console.error("Get playlist failed.");
+      return;
     }
     const { data } = responsePL;
     setPlaylists(data)
-}
+  }
 
-    useEffect(() => {
-      getPlaylists();
-      //getSongs();
-    }, []);
+  useEffect(() => {
+    getPlaylists();
+    //getSongs();
+  }, []);
 
 
   return (
@@ -55,7 +56,7 @@ const Sidebar: React.FC<SidebarIF<any>> = ({ ...props }) => {
       <div className="sidebar">
         <h5><Link to="/">MUSIC GAME</Link></h5>
         <ul>
-          {userState.token && userState.user ? <Link to="/personal"><li><BsMusicNoteBeamed className="icon" />Cá nhân</li></Link> : <a onClick={() => setIsLogin({ status: true, path: '/personal'})}><li><BsMusicNoteBeamed className="icon" />Cá nhân</li></a>}
+          {userState.token && userState.user ? <Link to="/personal"><li><BsMusicNoteBeamed className="icon" />Cá nhân</li></Link> : <a onClick={() => setIsLogin({ status: true, path: '/personal' })}><li><BsMusicNoteBeamed className="icon" />Cá nhân</li></a>}
           {/* <Link to="/overview"><li><BsMusicNoteBeamed className="icon" />Cá nhân</li></Link> */}
           <Link to="/"><li><RiFolderMusicFill className="icon" />Khám phá</li></Link>
           <Link to="/chart"><li><FaChartPie className="icon" />Music chart</li></Link>
@@ -66,7 +67,7 @@ const Sidebar: React.FC<SidebarIF<any>> = ({ ...props }) => {
             <Link to="/newmusic"><li><BsMusicNoteBeamed className="icon" />Nhạc mới</li></Link>
             <Link to="/category"><li><BsListUl className="icon" />Thể loại</li></Link>
             <Link to="/toptrending"><li><AiFillStar className="icon" />Top thịnh hành</li></Link>
-            {userState.token && userState.user ? <Link to="/listenTogether"><li><RiGroupFill className="icon" />Nghe cùng nhau</li></Link> : <a onClick={() => setIsLogin({ status: true, path: '/listenTogether'})}><li><RiGroupFill className="icon" />Nghe cùng nhau</li></a>}
+            {userState.token && userState.user ? <Link to="/listenTogether"><li><RiGroupFill className="icon" />Nghe cùng nhau</li></Link> : <a onClick={() => setIsLogin({ status: true, path: '/listenTogether' })}><li><RiGroupFill className="icon" />Nghe cùng nhau</li></a>}
           </ul>
           <ul>
             <h6>Thư viện</h6>
@@ -81,15 +82,15 @@ const Sidebar: React.FC<SidebarIF<any>> = ({ ...props }) => {
             <Link to="/playlistDetail"><li>● Nhạc trẻ remix</li></Link>
             <Link to="/playlistDetail"><li>● Nhạc trẻ remix</li></Link> */}
             {playlists.length !== 0 && playlists.map((item: any) => {
-                    // if(isShowPLName.filter(_ => _ === item._id).length !== 0) {
-                    //     return null
-                    // } ;
-                    return (
-                        <div className="list-slider " key={item._id}>
-                            <Link to="/playlist/{item._id}" ><li><BiPlayCircle className="icon" />{item.name}</li></Link>
-                        </div>
-                    )
-                })}
+              // if(isShowPLName.filter(_ => _ === item._id).length !== 0) {
+              //     return null
+              // } ;
+              return (
+                <div className="list-slider " key={item._id}>
+                  <Link to="/playlist/{item._id}" ><li><BiPlayCircle className="icon" />{item.name}</li></Link>
+                </div>
+              )
+            })}
           </ul>
         </div>
         <div className="popup-playlist">
@@ -104,21 +105,7 @@ const Sidebar: React.FC<SidebarIF<any>> = ({ ...props }) => {
               </div>
             }
           >
-            {(close: any) => (
-              <div className="modal-playlis">
-                <div className="content-modal">
-                  <button className="close" onClick={close}>
-                    X
-                  </button>
-                  <h5 className="text-center">Tạo playlist mới</h5>
-                  <form action="">
-                    <input type="text" placeholder="Nhập tên playlist" />
-                    <p className="err">err</p>
-                    <button className="create_playlist">TẠO MỚI</button>
-                  </form>
-                </div>
-              </div>
-            )}
+            {(close: any) => (<Modal close={close} />)}
           </Popup>
         </div>
       </div>

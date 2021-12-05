@@ -10,6 +10,7 @@ import { useSelector } from "react-redux";
 import { formStateUser } from 'redux/user/stateUser';
 import { HandleGet } from "component/MethodCommon";
 import ImagePlaylist from "./imagePlaylist";
+import dataStorage from "component/dataStorage"
 interface ListPLaylistIF<T> {
     render: number
 }
@@ -17,6 +18,13 @@ interface ListPLaylistIF<T> {
 const ListPLaylist: React.FC<ListPLaylistIF<any>> = ({ render, ...props }) => {
     const { user: { _id: id_User } } = useSelector<{ user: any }>(state => state.user) as formStateUser;
     const [state, setstate] = useState({ display: false, data: [] });
+    const [renderPlaylist, setrenderPlaylist] = useState<boolean>(false);
+    const renderComponent = (): void => {
+        setrenderPlaylist(value => !value)
+    }
+    useEffect(() => {
+        dataStorage.renderPlaylist = renderComponent as any
+    }, [])
     useEffect(() => {
         (async () => {
             const query = {
@@ -29,7 +37,7 @@ const ListPLaylist: React.FC<ListPLaylistIF<any>> = ({ render, ...props }) => {
         return () => {
             setstate(value => ({ ...value, display: false }))
         }
-    }, [id_User, render])
+    }, [id_User, render, renderPlaylist])
     return (
         <>
             {state.display ?
