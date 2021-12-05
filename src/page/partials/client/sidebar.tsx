@@ -93,8 +93,9 @@ const Sidebar: React.FC<SidebarIF<any>> = ({ ...props }) => {
             })}
           </ul>
         </div>
+
         <div className="popup-playlist">
-          <Popup
+          {userState.token && userState.user ? <Popup
             modal
             overlayStyle={{ background: "rgba(255,255,255,0.98" }}
             closeOnDocumentClick={false}
@@ -106,7 +107,7 @@ const Sidebar: React.FC<SidebarIF<any>> = ({ ...props }) => {
             }
           >
             {(close: any) => (<Modal close={close} />)}
-          </Popup>
+          </Popup> : null}
         </div>
       </div>
     </>
