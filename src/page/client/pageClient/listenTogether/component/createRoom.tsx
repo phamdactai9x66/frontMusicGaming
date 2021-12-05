@@ -17,7 +17,7 @@ const validateForm = Yup.object().shape({
     password: Yup.string().when('checkPassword', (value: any, schema: any) => {
         return value ? schema.checkRequire() : schema
     }),
-    limitUser: Yup.number().checkRequire().min(2, 'at lease 2 persons in Room').max(10, 'the maximun is 10 persons in room')
+    limitUser: Yup.number().required('Không được để trống field này.').min(2, 'at lease 2 persons in Room').max(10, 'the maximun is 10 persons in room')
 }) // đoạn này bh xong để về như cũ Yup.number()
 
 interface CreateRoom<T> extends RouteComponentProps {
