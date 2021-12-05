@@ -38,7 +38,7 @@ const HomeSongComponent: React.FC<HomeSongComponentIF<any>> = (props) => {
     const [handleStatus, setHandleStatus] = useState({ status: "", content: "" });
     const [addPlaylistLoading, setAddPlaylistLoading] = useState(false);
     const [locationLogged, setLocationlogged] = useState(history.location.state?.isLogged ? history.location.state.isLogged : false);
-    
+
 
     // if(history && history.location.state?.isLogged){
     //     setIsLogged(true);
@@ -176,7 +176,7 @@ const HomeSongComponent: React.FC<HomeSongComponentIF<any>> = (props) => {
         }
         setAddPlaylistLoading(false);
     }
-    
+
     return (
         <div className="box-music mt-4">
             {isLogged && <Notification handleLogged={handleLogged} />}
@@ -188,7 +188,7 @@ const HomeSongComponent: React.FC<HomeSongComponentIF<any>> = (props) => {
                     <div className="box-icon m-2 pt-1">
                         <BsFillPlayFill onClick={() => playAudio(item._id)} />
                     </div>
-                    <div onClick={() => playAudio(item._id)} style={{cursor: "pointer"}}>
+                    <div onClick={() => playAudio(item._id)} style={{ cursor: "pointer" }}>
                         <h6>{item.title}</h6>
                         <div style={{ fontSize: "0.7rem", marginTop: "-0.2rem" }}>
                             <NameSongArtist _id={item._id} />
@@ -207,7 +207,7 @@ const HomeSongComponent: React.FC<HomeSongComponentIF<any>> = (props) => {
                         >
                             <AiFillHeart />
                         </LoadingButton> */}
-                        {likeLoading.indexOf(item._id) === -1 ? <AiFillHeart onClick={() => handleAdd(item._id, user._id, "like")} className="icon" /> : <span className='loading-icon'><CircularProgress  className='loading-icon' size={15} sx={{ color: "#d6f4f8"}} /></span> }
+                        {likeLoading.indexOf(item._id) === -1 ? <AiFillHeart onClick={() => handleAdd(item._id, user._id, "like")} className="icon" /> : <span className='loading-icon'><CircularProgress className='loading-icon' size={15} sx={{ color: "#d6f4f8" }} /></span>}
                         <IoMdAdd className="icon" onClick={(e) => {
                             openPopover(e);
                             getUserPlaylists();
@@ -266,7 +266,7 @@ const HomeSongComponent: React.FC<HomeSongComponentIF<any>> = (props) => {
                                         </form>
                                     </div>
                                 </Popover>
-                                
+
                                 {userPlaylists.loading && <MenuItem className="list" onClick={() => handleAdd(item._id, user._id, "playlist")} >
                                     <CircularProgress />
                                 </MenuItem>}

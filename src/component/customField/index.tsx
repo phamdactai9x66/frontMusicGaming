@@ -4,6 +4,7 @@ import TextareaField from './textareaField';
 import RadioField from "./radioField";
 import FileField from "./fileField";
 import SelectField from "./selectField";
+import PickDate from "./pickDate";
 
 export interface propsField {
     label?: string,
@@ -20,4 +21,5 @@ export {
     FileField,
     SelectField,
     TextareaField,
+    PickDate
 }
