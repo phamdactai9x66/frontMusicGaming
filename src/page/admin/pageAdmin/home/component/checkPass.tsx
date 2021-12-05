@@ -22,30 +22,34 @@ const CheckPass: React.FC<CheckPass<any>> = () => {
 
     const getSong = async () => {
         const { data } = await songApi.getAll({});
-        const newData = data.filter((item:any) => item.passed == false)
+        const newData = data?.filter((item: any) => item.passed == false)
+        if (!newData) return
         setPasssong(newData)
     }
 
     const getPlaylist = async () => {
         const { data } = await playlistApi.getAll({});
-        const newData = data.filter((item:any) => item.passed == false)
+        const newData = data?.filter((item: any) => item.passed == false)
         setPassplaylist(newData);
     }
 
     const getUser = async () => {
         const { data } = await userApi.getAll({});
-        const newData = data.filter((item:any) => item.passed == false)
+        const newData = data?.filter((item: any) => item.passed == false)
+        if (!newData) return
         setUser(newData)
     }
 
     const getBlog = async () => {
         const { data } = await BlogApi.getAll({});
-        const newData = data.filter((item:any) => item.passed == false)
+        const newData = data?.filter((item: any) => item.passed == false)
+        if (!newData) return
         setPassblog(newData)
     }
     const getArtist = async () => {
         const { data } = await artistApi.getAll({});
-        const newData = data.filter((item:any) => item.passed == false)
+        const newData = data?.filter((item: any) => item.passed == false)
+        if (!newData) return
         setPassartist(newData)
     }
     useEffect(() => {
