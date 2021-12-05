@@ -68,7 +68,7 @@ const Signin: React.FC<SigninIF<any>> = ({ history, ...props }: any) => {
   const handleSignIn = async (data: any, action: any) => {
     const handleForm = new FormData(form.current);
 
-    const lastLocation = history.location.state.lastLocation ? history.location.state.lastLocation : '/';
+    // const lastLocation = history.location.state.lastLocation ? history.location.state.lastLocation : '/';
     if (!step.displayForm) {
 
       const secretKey = (process.env as any).REACT_APP_SECRET_KEY;
@@ -83,8 +83,8 @@ const Signin: React.FC<SigninIF<any>> = ({ history, ...props }: any) => {
         dispatchUser(saveInfo(loginUser))
 
         // history.replace('');
-        console.log(lastLocation)
-        history.push(lastLocation);
+        // console.log(lastLocation)
+        history.push('');
       }
       return displayAlert(loginUser.message, 'error')
     }
