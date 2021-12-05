@@ -22,7 +22,7 @@ const RootPageClient: React.FC<RootPageClient<any>> = ({ ...props }) => {
     }, [state])
     useEffect(() => {
         scrollRef.current.scrollTop = 0
-        console.log(props.history.length)
+        // console.log(props.history.length)
         if (props.history.length >= 49) {
             props.history.length -= 1;
         }

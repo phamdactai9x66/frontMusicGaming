@@ -29,36 +29,36 @@ const useStyles = makeStyles((theme) => ({
 	title: {
 		display: 'none',
 		[theme.breakpoints.up('sm')]: {
-            display: 'block',
-            position: 'relative',
-            zIndex: "1000"
+			display: 'block',
+			position: 'relative',
+			zIndex: "1000"
 		},
 	},
 	search: {
-        position: "relative",
-        borderRadius: theme.shape.borderRadius,
-        backgroundColor: fade(theme.palette.common.white, 0.15),
-        "&:hover": {
-            backgroundColor: fade(theme.palette.common.white, 0.25),
-        },
-        marginRight: theme.spacing(2),
-        marginLeft: 0,
-        width: "100%",
-        [theme.breakpoints.up("sm")]: {
-            marginLeft: theme.spacing(3),
-            width: "auto",
-        },
-    },
-    searchIcon: {
-        padding: theme.spacing(0, 2),
-        height: "100%",
-        position: "absolute",
-        pointerEvents: "none",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        color: "aqua",
-    },
+		position: "relative",
+		borderRadius: theme.shape.borderRadius,
+		backgroundColor: fade(theme.palette.common.white, 0.15),
+		"&:hover": {
+			backgroundColor: fade(theme.palette.common.white, 0.25),
+		},
+		marginRight: theme.spacing(2),
+		marginLeft: 0,
+		width: "100%",
+		[theme.breakpoints.up("sm")]: {
+			marginLeft: theme.spacing(3),
+			width: "auto",
+		},
+	},
+	searchIcon: {
+		padding: theme.spacing(0, 2),
+		height: "100%",
+		position: "absolute",
+		pointerEvents: "none",
+		display: "flex",
+		alignItems: "center",
+		justifyContent: "center",
+		color: "aqua",
+	},
 	inputRoot: {
 		color: '#fff',
 	},
@@ -87,36 +87,36 @@ const useStyles = makeStyles((theme) => ({
 interface HeaderIF extends RouteChildrenProps { }
 const Header: React.FC<HeaderIF> = ({ ...props }) => {
 	const [handleStatus, setHandleStatus] = useState({
-        status: "",
-        content: "",
-    });
-    const [loading, setLoading] = useState(false);
+		status: "",
+		content: "",
+	});
+	const [loading, setLoading] = useState(false);
 	const wrapperRef = useRef(null);
-    const state = useSelector<{ user: any }>(state => state.user) as formStateUser;
-    const dispatch = useDispatch();
+	const state = useSelector<{ user: any }>(state => state.user) as formStateUser;
+	const dispatch = useDispatch();
 
-    // const [modalSearh, setModalSearh] =useState(false);
+	// const [modalSearh, setModalSearh] =useState(false);
 	const [openModalLogout, setOpenModalLogout] = useState(false);
 	const logOut = () => {
-        setLoading(true);
-        setOpenModalLogout(false);
-        dispatch(Logout())
+		setLoading(true);
+		setOpenModalLogout(false);
+		dispatch(Logout())
 
-        const requireLoginPath = ['/profile', '/listenTogether', '/personal', '/roomDetail'];
-        setLoading(false);
-        if (requireLoginPath.filter(item => item === props.history.location.pathname).length !== 0) {
-            setHandleStatus({
-                status: "success",
-                content: "Đăng xuất thành công.",
-            })
+		const requireLoginPath = ['/profile', '/listenTogether', '/personal', '/roomDetail'];
+		setLoading(false);
+		if (requireLoginPath.filter(item => item === props.history.location.pathname).length !== 0) {
+			setHandleStatus({
+				status: "success",
+				content: "Đăng xuất thành công.",
+			})
 
-            return props.history.replace('/');
-        } else {
-            props.history.replace('/signin')
-        }
-        // props.history.replace('/signin');
+			return props.history.replace('/');
+		} else {
+			props.history.replace('/signin')
+		}
+		// props.history.replace('/signin');
 	};
-	
+
 	const classes = useStyles();
 	const [anchorEl, setAnchorEl] = React.useState(null);
 	const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -143,7 +143,7 @@ const Header: React.FC<HeaderIF> = ({ ...props }) => {
 
 	const menuId = 'primary-search-account-menu';
 	const renderMenu = (
-		<Menu 
+		<Menu
 			anchorEl={anchorEl}
 			anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
 			id={menuId}
@@ -153,9 +153,7 @@ const Header: React.FC<HeaderIF> = ({ ...props }) => {
 			onClose={handleMenuClose}
 		>
 			<MenuItem onClick={handleMenuClose}><Link to="/admin/profile">Thông tin</Link></MenuItem>
-			<MenuItem  onClick={() => {
-                            setOpenModalLogout(true)
-                        }}>Đăng xuất</MenuItem>
+			<MenuItem onClick={logOut}>Đăng xuất</MenuItem>
 		</Menu>
 	);
 
@@ -181,46 +179,47 @@ const Header: React.FC<HeaderIF> = ({ ...props }) => {
 					<AccountCircle />
 				</IconButton>
 				<div>Thông tin</div>
+				<MenuItem onClick={logOut}>Đăng xuất</MenuItem>
 			</MenuItem>
 		</Menu>
 	);
 	const useOutsideAlerter = (ref: any) => {
-        useEffect(() => {
-            function handleClickOutside(event: any) {
-                if (ref.current && !ref.current.contains(event.target)) {
-                    setOpenModalLogout(false);
-                }
-            }
+		useEffect(() => {
+			function handleClickOutside(event: any) {
+				if (ref.current && !ref.current.contains(event.target)) {
+					setOpenModalLogout(false);
+				}
+			}
 
-            document.addEventListener("mousedown", handleClickOutside);
-            return () => {
-                document.removeEventListener("mousedown", handleClickOutside);
-            };
-        }, [ref]);
-    }
+			document.addEventListener("mousedown", handleClickOutside);
+			return () => {
+				document.removeEventListener("mousedown", handleClickOutside);
+			};
+		}, [ref]);
+	}
 
-    useOutsideAlerter(wrapperRef);
+	useOutsideAlerter(wrapperRef);
 
-    const ModalConfirmLogout = (
-        <div className="w-100 h-100 d-flex position-fixed top-0 text-center" style={{ left: "0px", zIndex: 10, backgroundColor: "rgb(0 0 0 / 25%)" }}>
-            <div ref={wrapperRef} className="my-auto mx-auto p-4 rounded-3" style={{ backgroundColor: "#9cf6ff" }}>
-                <img className="w-25 h-25" src={avatar} alt="" />
+	const ModalConfirmLogout = (
+		<div className="w-100 h-100 d-flex position-fixed top-0 text-center" style={{ left: "0px", zIndex: 10, backgroundColor: "rgb(0 0 0 / 25%)" }}>
+			<div ref={wrapperRef} className="my-auto mx-auto p-4 rounded-3" style={{ backgroundColor: "#9cf6ff" }}>
+				<img className="w-25 h-25" src={avatar} alt="" />
 
-                <p style={{ fontWeight: 500 }} className="mb-0">Bạn có chắc là muốn đăng xuất khỏi Music Game</p>
+				<p style={{ fontWeight: 500 }} className="mb-0">Bạn có chắc là muốn đăng xuất khỏi Music Game</p>
 
-                <p>Hành động này có thể dẫn đến không thể sử dụng một số tính năng của Music Game</p>
+				<p>Hành động này có thể dẫn đến không thể sử dụng một số tính năng của Music Game</p>
 
-                <div className="d-flex justify-content-center">
-                    <button onClick={() => setOpenModalLogout(false)} className="btn btn-light">Hủy</button>
-                    <button onClick={logOut} className="btn btn-danger" style={{ marginLeft: "1rem" }}>Đăng xuất</button>
-                </div>
-            </div>
+				<div className="d-flex justify-content-center">
+					<button onClick={() => setOpenModalLogout(false)} className="btn btn-light">Hủy</button>
+					<button onClick={logOut} className="btn btn-danger" style={{ marginLeft: "1rem" }}>Đăng xuất</button>
+				</div>
+			</div>
 
-        </div>
-    )
+		</div>
+	)
 	return (
 		<div className="header_ui">
-			<AppBar position='static' style={{background: "#1d2d47"}}>
+			<AppBar position='static' style={{ background: "#1d2d47" }}>
 				<Toolbar>
 					<IconButton
 						edge='start'
@@ -233,21 +232,21 @@ const Header: React.FC<HeaderIF> = ({ ...props }) => {
 					<Typography className={classes.title} variant='h6' noWrap>
 						<Link to="/" className="text-light">Trang chủ</Link>
 					</Typography>
-			
-					<div className={classes.search} style={{ position: "relative" }}>
-                        <div className={classes.searchIcon} style={{ zIndex: 999 }}>
-                            <SearchIcon />
-                        </div>
-                        <InputBase
-                            placeholder="Search..."
-                            classes={{
-                                root: classes.inputRoot,
-                                input: classes.inputInput,
-                            }}
-                            inputProps={{ "aria-label": "search" }}
-                        />
 
-                    </div>
+					<div className={classes.search} style={{ position: "relative" }}>
+						<div className={classes.searchIcon} style={{ zIndex: 999 }}>
+							<SearchIcon />
+						</div>
+						<InputBase
+							placeholder="Search..."
+							classes={{
+								root: classes.inputRoot,
+								input: classes.inputInput,
+							}}
+							inputProps={{ "aria-label": "search" }}
+						/>
+
+					</div>
 					<div className={classes.grow} />
 					<div className={classes.sectionDesktop}>
 
@@ -277,7 +276,7 @@ const Header: React.FC<HeaderIF> = ({ ...props }) => {
 			</AppBar>
 			{renderMobileMenu}
 			<div className="mt-5">
-			{renderMenu}	
+				{renderMenu}
 			</div>
 			{openModalLogout && ModalConfirmLogout}
 		</div>
