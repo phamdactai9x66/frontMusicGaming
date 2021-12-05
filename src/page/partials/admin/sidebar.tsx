@@ -14,44 +14,44 @@ interface SidebarIF<T> {
 
 }
 const useStyles = makeStyles((theme) => ({
-	search: {
-        marginTop: "1.5rem",
-        position: "relative",
-        borderRadius: theme.shape.borderRadius,
-        backgroundColor: fade(theme.palette.common.white, 0.15),
-        "&:hover": {
-            backgroundColor: fade(theme.palette.common.white, 0.25),
-        },
-        marginRight: theme.spacing(2),
-        marginLeft: 0,
-        width: "100%",
-        [theme.breakpoints.up("sm")]: {
-            marginLeft: theme.spacing(3),
-            width: "auto",
-        },
+  search: {
+    marginTop: "1.5rem",
+    position: "relative",
+    borderRadius: theme.shape.borderRadius,
+    backgroundColor: fade(theme.palette.common.white, 0.15),
+    "&:hover": {
+      backgroundColor: fade(theme.palette.common.white, 0.25),
     },
-    searchIcon: {
-        padding: theme.spacing(0, 2),
-        height: "100%",
-        position: "absolute",
-        pointerEvents: "none",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        color: "aqua",
+    marginRight: theme.spacing(2),
+    marginLeft: 0,
+    width: "100%",
+    [theme.breakpoints.up("sm")]: {
+      marginLeft: theme.spacing(3),
+      width: "auto",
     },
-	inputRoot: {
-		color: '#fff',
-	},
-	inputInput: {
-		padding: theme.spacing(1, 1, 1, 0),
-		paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
-		transition: theme.transitions.create('width'),
-		width: '100%',
-		[theme.breakpoints.up('md')]: {
-			width: '20ch',
-		},
-	}
+  },
+  searchIcon: {
+    padding: theme.spacing(0, 2),
+    height: "100%",
+    position: "absolute",
+    pointerEvents: "none",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    color: "aqua",
+  },
+  inputRoot: {
+    color: '#fff',
+  },
+  inputInput: {
+    padding: theme.spacing(1, 1, 1, 0),
+    paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
+    transition: theme.transitions.create('width'),
+    width: '100%',
+    [theme.breakpoints.up('md')]: {
+      width: '20ch',
+    },
+  }
 }));
 const Sidebar: React.FC<SidebarIF<any>> = ({ ...props }) => {
   const state = useSelector<{ user: any }>(state => state.user) as formStateUser;
@@ -180,20 +180,20 @@ const Sidebar: React.FC<SidebarIF<any>> = ({ ...props }) => {
         </div>
       </div>
       <div className={classes.search} style={{ position: "relative" }}>
-                        <div className={classes.searchIcon} style={{ zIndex: 999 }}>
-                            <SearchIcon />
-                        </div>
-                        <InputBase
-                            placeholder="Search..."
-                            classes={{
-                                root: classes.inputRoot,
-                                input: classes.inputInput,
-                            }}
-                            
-                            inputProps={{ "aria-label": "search" }}
-                        />
+        <div className={classes.searchIcon} style={{ zIndex: 999 }}>
+          <SearchIcon />
+        </div>
+        <InputBase
+          placeholder="Search..."
+          classes={{
+            root: classes.inputRoot,
+            input: classes.inputInput,
+          }}
 
-                    </div>
+          inputProps={{ "aria-label": "search" }}
+        />
+
+      </div>
       <nav className="tabs">
         <Link to="/admin">
           <AccordionSummary

@@ -25,11 +25,10 @@ const useStyle = makeStyles((theme) => ({
 }))
 
 const columns = [
-  { id: 'fist', label: 'Fist_Name', minWidth: 170, align: 'left' },
-  { id: 'last', label: 'Last_Name', minWidth: 100, align: 'left' },
-  { id: 'image', label: 'Image', minWidth: 170, align: 'left' },
-  { id: 'gender', label: 'Gender', minWidth: 170, align: 'left' },
-  { id: 'birth', label: 'Birth', minWidth: 170, align: 'left' },
+  { id: 'fist', label: 'Fist_Name', minWidth: 150, align: 'left' },
+  { id: 'last', label: 'Last_Name', minWidth: 150, align: 'left' },
+  { id: 'image', label: 'Image', minWidth: 150, align: 'left' },
+  { id: 'gender', label: 'Gender', minWidth: 150, align: 'left' },
   { id: '', label: 'Handle', minWidth: 170, align: 'center' },
 ];
 
@@ -64,7 +63,7 @@ const ListArtist: React.FC<ListArtist<any>> = ({ changePage, set_id, ...props })
   const findName = (event: Event | any) => {
     const getValue = ((event.target as HTMLInputElement).value).trim()
     if (event.keyCode === 13) {
-      dispatch(pustAction(typeAciton.findName, { fist_name: getValue }))
+      dispatch(pustAction(typeAciton.findName, { fist_Name: getValue }))
     }
   }
 
@@ -145,7 +144,7 @@ const ListArtist: React.FC<ListArtist<any>> = ({ changePage, set_id, ...props })
                     <TableCell
                       key="awd"
                       align='left'
-                      style={{ minWidth: 170 }}
+                      style={{ minWidth: 110 }}
                     >
                       <Checkbox
                         id="checkAll"
@@ -169,7 +168,7 @@ const ListArtist: React.FC<ListArtist<any>> = ({ changePage, set_id, ...props })
                   {
                     state.Data.length && state.Display ?
                       state.Data.map((row: any, index: any) => {
-                        const { first_Name, last_Name, gender, birth, image, check, _id } = row;
+                        const { first_Name, last_Name, gender, image, check, _id } = row;
                         return (
                           <TableRow hover role="checkbox" key={index}>
                             <TableCell align='left'>
@@ -188,9 +187,6 @@ const ListArtist: React.FC<ListArtist<any>> = ({ changePage, set_id, ...props })
                             </TableCell>
                             <TableCell align='left'>
                               {gender === true ? 'Nam' : 'Nữ'}
-                            </TableCell>
-                            <TableCell align='left'>
-                              {birth}
                             </TableCell>
                             <TableCell align='center'>
                               <Button

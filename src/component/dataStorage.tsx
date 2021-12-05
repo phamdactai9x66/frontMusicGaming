@@ -1,5 +1,6 @@
 let dataStoreage = {
     renderComment: null,
-    accessToken: ''
+    accessToken: '',
+    renderPlaylist: null
 }
 export default dataStoreage;

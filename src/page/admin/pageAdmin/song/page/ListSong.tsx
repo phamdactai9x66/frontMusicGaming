@@ -26,13 +26,10 @@ const useStyle = makeStyles((theme) => ({
 }))
 
 const columns = [
-  { id: 'title', label: 'Title Song', minWidth: 170, align: 'left' },
-  { id: 'image', label: 'Image', minWidth: 170, align: 'left' },
-  { id: 'view', label: 'View', minWidth: 170, align: 'left' },
-  { id: 'audio', label: 'Audio', minWidth: 170, align: 'left' },
-  { id: 'active', label: 'Active', minWidth: 170, align: 'left' },
-  { id: 'describe', label: 'Describe', minWidth: 170, align: 'left' },
-  { id: 'dayRelease', label: 'Day Release', minWidth: 170, align: 'left' },
+  { id: 'title', label: 'Title Song', minWidth: 140, align: 'left' },
+  { id: 'image', label: 'Image', minWidth: 140, align: 'left' },
+  { id: 'view', label: 'View', minWidth: 140, align: 'left' },
+  { id: 'audio', label: 'Audio', minWidth: 140, align: 'left' },
   { id: '', label: 'Handle', minWidth: 170, align: 'center' }
 ]
 
@@ -144,7 +141,7 @@ const ListSong: React.FC<ListSong<any>> = ({ changePage, set_id, ...props }) => 
               <Table stickyHeader>
                 <TableHead>
                   <TableRow>
-                    <TableCell key="awd" align="left" style={{ minWidth: 170 }}>
+                    <TableCell key="awd" align="left" style={{ minWidth: 110 }}>
                       <Checkbox
                         id="checkAll"
                         onClick={() => { dispatch(pustAction(typeAciton.checkAll)) }}
@@ -168,7 +165,7 @@ const ListSong: React.FC<ListSong<any>> = ({ changePage, set_id, ...props }) => 
                   { // Tối về kiểm tra luồng chạy state.Data
                     state.Data.length && state.Display ?
                       state.Data.map((row: any, index: any) => {
-                        const { title, image, view, audio, active, describe, check, _id } = row;
+                        const { title, image, view, audio, active, check, _id } = row;
                         return (
                           <TableRow hover role="checkbox" key={index}>
                             <TableCell align="left">
@@ -188,7 +185,6 @@ const ListSong: React.FC<ListSong<any>> = ({ changePage, set_id, ...props }) => 
                               <audio src={audio} />
                             </TableCell>
                             <TableCell align="left">{active === true ? 'oki' : 'No oki'}</TableCell>
-                            <TableCell align="left">{describe}</TableCell>
                             <TableCell align='center'>
                               <Button
                                 variant="contained"

@@ -8,7 +8,7 @@ import { formStateUser } from 'redux/user/stateUser';
 import userPlaylistApi from "api/userPlaylist";
 import { variableCommon } from "component/variableCommon";
 interface ModalModal<T> {
-    renderComponent: () => void
+    renderComponent?: () => void
 }
 const initialForm = {
     namePlaylist: ""
@@ -26,7 +26,7 @@ const Modal: React.FC<ModalModal<any>> = ({ renderComponent, ...props }) => {
             if (createPlaylist.status !== variableCommon.statusF) {
 
                 methodAction.resetForm()
-                renderComponent()
+                renderComponent && renderComponent()
                 return setalert({ display: true, message: createPlaylist.message, status: 'success' })
             }
             setalert({ display: true, message: createPlaylist.message, status: 'error' })
@@ -66,12 +66,12 @@ const Modal: React.FC<ModalModal<any>> = ({ renderComponent, ...props }) => {
                                     </g>
                                 </g>
                             </svg> */}
-                        
+
                             <button className="close" onClick={close}>
                                 X
                             </button>
                             <h5 className="text-center">Tạo playlist mới</h5>
-                            { alert.display ? <Alert className="mb-2" severity={alert?.status as any}>Tạo playlist thành công</Alert> : null }
+                            {alert.display ? <Alert className="mb-2" severity={alert?.status as any}>Tạo playlist thành công</Alert> : null}
                             <Formik
                                 initialValues={initialForm}
                                 onSubmit={submitForm}

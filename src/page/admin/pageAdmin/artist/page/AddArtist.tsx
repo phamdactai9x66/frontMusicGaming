@@ -3,7 +3,7 @@ import { Card } from "@material-ui/core"
 import LoadingButton from '@mui/lab/LoadingButton'
 import { Button, Alert } from "@mui/material"
 import { Formik, Form } from "formik";
-import { InputText, FileField, RadioField } from "component/customField/index"
+import { InputText, FileField, RadioField, PickDate } from "component/customField/index"
 import validationArtist from '../component/ValidationArtist'
 import { page } from "../index"
 import ArtistApi from 'api/ArtistApi'
@@ -134,7 +134,11 @@ const AddArtist: React.FC<AddArtist<any>> = ({ changePage, ...props }) => {
                   <Card elevation={5}>
                     <div className="form-input-add">
                       <div className="inputForm">
-                        {/* đoạn này tôi thử chèn vào mà nó ko ra ông pan check hộ tôi đọa này nhé */}
+                        <PickDate
+                          label="Birth"
+                          name="birth"
+                          other={{ variant: "standard" }}
+                        />
                       </div>
                     </div>
                   </Card>
