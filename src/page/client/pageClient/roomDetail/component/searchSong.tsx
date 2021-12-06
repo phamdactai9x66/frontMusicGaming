@@ -60,6 +60,7 @@ const SearchSongs: React.FC<SearchSongs<any>> = ({ addSongToRoom, ...props }) =>
 
                 </ul>
             </div> */}
+            <div className="search_music">
             <Autocomplete
                 id="search-select"
                 fullWidth
@@ -87,6 +88,7 @@ const SearchSongs: React.FC<SearchSongs<any>> = ({ addSongToRoom, ...props }) =>
                     />
                 )}
             />
+            </div>
         </>
     )
 }
