@@ -57,7 +57,7 @@ const ListRoom: React.FC<ListRoomIF<any>> = ({ index, current, history, ...props
     return (
         <>
             <div className="room_box" key={index}>
-                <div className="name" onClick={navigateDetailRoom}>
+                <div className="name" onClick={navigateDetailRoom} style={{ cursor: 'pointer', textTransform: 'capitalize' }}>
                     <h6>{current?.name_Room}</h6>
                     <div>
                         <AvatarGroup max={4}>
