@@ -7,6 +7,21 @@
     border-right: 0.1rem solid aqua;
     height: 100vh;
     padding-right: 2rem;
+    .search_music {
+      .css-1c2i806-MuiFormLabel-root-MuiInputLabel-root {
+        color: rgb(203, 234, 248) !important;
+      }
+      .css-i4bv87-MuiSvgIcon-root {
+        color: rgb(203, 234, 248) !important;
+      }
+      .css-1x51dt5-MuiInputBase-input-MuiInput-input {
+        color: #fff !important;
+      }
+      .css-ghsjzk-MuiInputBase-root-MuiInput-root:before {
+        border-bottom: 1px solid rgba(39, 201, 193, 0.678);
+      }
+
+    }
   }
 
   .room_box {
@@ -16,18 +31,23 @@
     border-radius: 0.2rem;
     box-shadow: 0 3px 7px rgba(0, 0, 0, 0.692);
     display: flex;
-    justify-content: space-between;
     color: #fff;
     background: linear-gradient(to right, rgb(37, 111, 196) , rgba(104, 199, 223, 0.616));
     padding: 0.4rem;
+    cursor: pointer;
   }
   .name {
-    // flex-grow: 2; 
+    flex-basis: 80%; 
   }
   .key {
-    // flex-grow: 1;
-    margin-top: 0.5rem;
-    margin-right: 2rem;
+    flex-basis: 20%; 
+    margin-top: 0.25rem;
+    svg {
+      border: 0.3rem solid #3644688f;
+      border-radius: 50%;
+      background: #161b288f;
+      font-size: 1.7rem;
+    }
   }
   .css-1ytufz-MuiAvatarGroup-root {
     justify-content: left !important;
