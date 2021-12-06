@@ -42,6 +42,7 @@ interface InforArtistIF<T> {
 
 const ArtistDetail: React.FC<ArtistDetailIF<any>> = ({ ...props }) => {
     const id_artist = useParams<{ id: any }>();
+    console.log("id: ", id_artist)
     const [inforArtist, setInforArtist] = useState<InforArtistIF<string>>({
         _id: "",
         first_Name: "",
