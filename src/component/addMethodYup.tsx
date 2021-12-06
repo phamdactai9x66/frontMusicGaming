@@ -13,7 +13,7 @@ Yup.addMethod(Yup.string, "checkRequire", function (message: string = messageDef
         return true;
     })
 })
-Yup.addMethod(Yup.string, "checkRequireNumber", function (message: string = messageDefault) {
+Yup.addMethod(Yup.number, "checkRequireNumber", function (message: string = messageDefault) {
     return this.test("checkRequire", message, function (value, field) {
         // if (typeof value === "number") value = Math.trunc(value);
         const { path, createError } = this
