@@ -250,7 +250,7 @@ const ArtistDetail: React.FC<ArtistDetailIF<any>> = ({ ...props }) => {
                 </div>
             </div>
 
-            <div className="list_musicArtist mx-4 mt-3">
+            <div className="list_musicArtist mx-4 mt-5">
                 <h3 className="title_all" style={{ color: "#4bd2ff" }}>
                     Danh sách bài hát{" "}
                     <Button variant="contained" color="primary" type="submit" onClick={() => dispatch(playSong({ _id: songsArtist[0]?.id_Songs, listIdSong: songsArtist}))} >
