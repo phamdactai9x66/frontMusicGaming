@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { IoMdAdd } from 'react-icons/io';
 import { BsFillPlayFill } from 'react-icons/bs';
-import { AiOutlineDownload, AiFillHeart } from 'react-icons/ai';
+import { AiOutlineDownload, AiFillHeart, AiFillDelete } from 'react-icons/ai';
 import { BiMusic } from 'react-icons/bi';
 import { Popover } from "@material-ui/core";
-import { MenuItem } from "@mui/material";
+import { CircularProgress, MenuItem } from "@mui/material";
 import NameSongArtist from "component/nameSongArtist";
 import GetTimeAudio from "component/getTimeAudio"
 import { useDispatch } from "react-redux";
@@ -12,19 +12,21 @@ import { playSong } from "redux/audio/actionAudio";
 interface ListMusicDetailIF<T> {
     current: any | T,
     index: number,
-    listIdSong: any
+    listIdSong: any,
+    onRemoveUPL: any,
 }
 
-const ListMusicDetail: React.FC<ListMusicDetailIF<any>> = ({ current, index, listIdSong, ...props }) => {
+const ListMusicDetail: React.FC<ListMusicDetailIF<any>> = ({ current, index, listIdSong, onRemoveUPL, ...props }) => {
     const [anchor, setAnchor] = useState(null);
     const dispatch = useDispatch()
     const openPopover = (event: any) => {
         setAnchor(event.currentTarget);
     };
-    const [anchor2, setAnchor2] = useState(null);
-    const openPopover2 = (event: any) => {
-        setAnchor2(event.currentTarget);
-    };
+    // const [anchor2, setAnchor2] = useState(null);
+    // const openPopover2 = (event: any) => {
+    //     setAnchor2(event.currentTarget);
+    // };
+    // console.log(current)
     return (
         <>
                 <div className="music_item" key={index}>
@@ -32,19 +34,20 @@ const ListMusicDetail: React.FC<ListMusicDetailIF<any>> = ({ current, index, lis
                     <div className="box-icon">
                         <BsFillPlayFill onClick={() => { dispatch(playSong({ _id: current._id, listIdSong })) }} />
                     </div>
-                    <div>
+                    <div onClick={() => { dispatch(playSong({ _id: current._id, listIdSong })) }} style={{cursor: "pointer"}}>
                         <h6>{current?.title}</h6>
                         <div style={{ fontSize: "0.7rem", marginTop: "-0.2rem" }}>
                             <NameSongArtist _id={current?._id} /></div>
                     </div>
-                    <div>
+                    <div onClick={() => { dispatch(playSong({ _id: current._id, listIdSong })) }} style={{cursor: "pointer"}}>
                         <GetTimeAudio audio={current?.audio} />
                     </div>
                     <div className="icon_item">
                         <AiOutlineDownload className="icon" />
-                        <AiFillHeart className="icon" />
-                        <IoMdAdd className="icon" onClick={openPopover} />
-                        <Popover
+                        {/* {likeLoading.indexOf(item._id) === -1 ? <AiFillHeart onClick={() => handleAdd(item._id, user._id, "like")} className="icon" /> : <span className='loading-icon'><CircularProgress className='loading-icon' size={15} sx={{ color: "#d6f4f8" }} /></span>} */}
+                        <AiFillDelete className='icon' onClick={() => onRemoveUPL(current._id)}/>
+                        {/* <IoMdAdd className="icon" onClick={openPopover} /> */}
+                        {/* <Popover
                             open={Boolean(anchor)}
                             anchorEl={anchor}
                             anchorOrigin={{
@@ -61,7 +64,7 @@ const ListMusicDetail: React.FC<ListMusicDetailIF<any>> = ({ current, index, lis
                                 <div className="d-flex gap-2 p-2">
                                     <img width={35} height={35} src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJdulnc1hxmzx9izhgHHRQGhssK6KshlS6bypOagn9_lVhJ6ntqiCFNislU1nOb7NjJeY&usqp=CAU" alt="" />
                                     <div>
-                                        <h6>Shape of you</h6>
+                                        <h6>{current.title}</h6>
                                         <div style={{ marginTop: "-0.7rem" }}><span style={{ fontSize: "0.8rem" }}>205k </span><span style={{ fontSize: "0.8rem" }}> 3.8M</span></div>
                                     </div>
                                 </div>
@@ -73,7 +76,7 @@ const ListMusicDetail: React.FC<ListMusicDetailIF<any>> = ({ current, index, lis
                                     <AiFillHeart />&ensp; Thêm vào thư viện
                                 </MenuItem>
 
-                                <MenuItem onClick={openPopover2}>
+                                <Menu/>Item onClick={openPopover2}>
                                     <IoMdAdd />&ensp; Thêm vào playlist
                                 </MenuItem>
                                 <Popover
@@ -96,7 +99,7 @@ const ListMusicDetail: React.FC<ListMusicDetailIF<any>> = ({ current, index, lis
                                     </div>
                                 </Popover>
                             </div>
-                        </Popover>
+                        </Popover> */}
                     </div>
                 </div>
         </>
