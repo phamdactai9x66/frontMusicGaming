@@ -26,25 +26,12 @@ export const SignIn = <T extends FormikContextType<any>>(formik: T) => {
 
 export const SignUp = <T extends FormikContextType<any>>(formik: T) => {
   document.title = "Đăng ký - Music Game";
-  // const [onpenModalActive, setOnpenModalActive] = useState(false);
-//   const handleOnpenActiveUser=()=>{
-//     console.log('abc')
-//     if(onpenModalActive === false){
-//    setOnpenModalActive(true)
-//     }
-//     else if(onpenModalActive ===true){
-//       setOnpenModalActive(true)
-//     }
-  
-
-//  }
- 
   return (
     <>
     {/* {
       onpenModalActive && < ModalActive/>
     } */}
-    < ModalActive/>
+    {/* < ModalActive/> */}
       {/* {JSON.stringify(formik.values)} */}
       {/* <input placeholder="E-mail" type="text" /> */}
       <div className="SignUp_overlow">

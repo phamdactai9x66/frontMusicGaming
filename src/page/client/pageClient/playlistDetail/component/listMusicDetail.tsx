@@ -29,9 +29,9 @@ const ListMusicDetail: React.FC<ListMusicDetailIF<any>> = ({ current, index, lis
     // console.log(current)
     return (
         <>
-                <div className="music_item" key={index}>
+                <div className="music_item mx-4 border-0 p-2" key={index}>
                     <img src={current?.image} alt="" />
-                    <div className="box-icon">
+                    <div className="box-icon m-2">
                         <BsFillPlayFill onClick={() => { dispatch(playSong({ _id: current._id, listIdSong })) }} />
                     </div>
                     <div onClick={() => { dispatch(playSong({ _id: current._id, listIdSong })) }} style={{cursor: "pointer"}}>

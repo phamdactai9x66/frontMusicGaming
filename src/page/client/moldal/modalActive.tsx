@@ -7,7 +7,7 @@ const ModalActive = () => {
               <div className="border rounded shadow-lg mx-auto my-auto"  style={{background:"#94e6ff"}}>
                 <div className=" m-4" >
                   <div className="d-flex justify-content-between">
-                    <div><img className="border shadow-lg" width="30" height="30" style={{objectFit:"cover",borderRadius:"50%"}} src="https://i.pinimg.com/564x/ff/31/24/ff3124cfc5c3a46c63db1c9e7692a68b.jpg" alt="" /></div>
+                    <div><img className="border shadow-lg" width="30" height="30" style={{objectFit:"cover",borderRadius:"50%",width:'30px',height:'30px'}} src="https://i.pinimg.com/564x/ff/31/24/ff3124cfc5c3a46c63db1c9e7692a68b.jpg" alt="" /></div>
                     <div onClick={()=>{}}><p className='text-danger mb-0'>✕</p></div>
                   </div>
                     <div className="text-center">
