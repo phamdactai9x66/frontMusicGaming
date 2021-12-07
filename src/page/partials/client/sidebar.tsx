@@ -53,7 +53,7 @@ const Sidebar: React.FC<SidebarIF<any>> = ({ ...props }) => {
   return (
     <>
       {isLogin.status && <Notification path={isLogin.path} handleLogged={handleLogged} />}
-      <div className="sidebar">
+      <div className="sidebar" style={{ width: 250 }}>
         <h5><Link to="/">MUSIC GAME</Link></h5>
         <ul>
           {userState.token && userState.user ? <Link to="/personal"><li><BsMusicNoteBeamed className="icon" />Cá nhân</li></Link> : <a onClick={() => setIsLogin({ status: true, path: '/personal' })}><li><BsMusicNoteBeamed className="icon" />Cá nhân</li></a>}
@@ -82,13 +82,13 @@ const Sidebar: React.FC<SidebarIF<any>> = ({ ...props }) => {
             <Link to="/playlistDetail"><li>● Nhạc trẻ remix</li></Link>
             <Link to="/playlistDetail"><li>● Nhạc trẻ remix</li></Link> */}
             {playlists.length !== 0 && playlists.map((item: any) => {
-                    // if(isShowPLName.filter(_ => _ === item._id).length !== 0) {
-                    //     return null
-                    // } ;
-                    return (
-                            <Link key={item._id} to="/playlist/{item._id}" ><li><BiPlayCircle className="icon" />{item.name}</li></Link>
-                    )
-                })}
+              // if(isShowPLName.filter(_ => _ === item._id).length !== 0) {
+              //     return null
+              // } ;
+              return (
+                <Link key={item._id} to="/playlist/{item._id}" ><li><BiPlayCircle className="icon" />{item.name}</li></Link>
+              )
+            })}
           </ul>
         </div>
 
