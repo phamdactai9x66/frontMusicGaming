@@ -1,4 +1,4 @@
-import { Button } from "@mui/material";
+import { Button, CircularProgress } from "@mui/material";
 import { BsFillPlayFill } from "react-icons/bs";
 import GetTimeAudio from "page/client/common/GetTimeAudio";
 import {
@@ -27,6 +27,7 @@ import { formStateAudio } from "redux/audio/stateAudio";
 import Loadings from "page/client/loading/loading";
 import { formStateUser } from "redux/user/stateUser";
 import Notification from "page/notificationModal/NotificationModal";
+import NameSongArtist from 'component/nameSongArtist';
 
 interface ArtistDetailIF<T> {
     // userState: any | T,
@@ -42,6 +43,7 @@ interface InforArtistIF<T> {
 
 const ArtistDetail: React.FC<ArtistDetailIF<any>> = ({ ...props }) => {
     const id_artist = useParams<{ id: any }>();
+    // console.log("id: ", id_artist)
     const [inforArtist, setInforArtist] = useState<InforArtistIF<string>>({
         _id: "",
         first_Name: "",
@@ -58,10 +60,17 @@ const ArtistDetail: React.FC<ArtistDetailIF<any>> = ({ ...props }) => {
     const [playlistName, setPlaylistName] = useState("");
     const [anchor, setAnchor] = useState(null);
     const [anchor2, setAnchor2] = useState(null);
-    const [userPlaylists, setUserPlaylists] = useState<any[]>([]);
+    const [userPlaylists, setUserPlaylists] = useState<any>({
+        data: [],
+        loading: true,
+    });
     const [isLogged, setIsLogged] = useState(false);
     const { user } = useSelector<{ user: any }>(state => state.user) as formStateUser;
-    
+    const [anchorItem, setAnchorItem] = useState<any>({
+        title: '',
+        image: '',
+        view: ''
+    });
     const dispatch = useDispatch();
     const [handleStatus, setHandleStatus] = useState({
         status: "",
@@ -72,6 +81,11 @@ const ArtistDetail: React.FC<ArtistDetailIF<any>> = ({ ...props }) => {
     // }
     const openPopover = (event: any) => {
         setAnchor(event.currentTarget);
+        setAnchorItem({
+            title: '',
+            image: '',
+            view: ''
+        });
     };
 
     const openPopover2 = (event: any) => {
@@ -92,7 +106,7 @@ const ArtistDetail: React.FC<ArtistDetailIF<any>> = ({ ...props }) => {
     }, [id_artist]);
 
     const handleAdd = async <T extends string>(s: T, u: T, t: T) => {
-        if (u === undefined) {
+        if (!u) {
             setIsLogged(true);
             return;
         }
@@ -117,23 +131,23 @@ const ArtistDetail: React.FC<ArtistDetailIF<any>> = ({ ...props }) => {
         }
 
         if (t === "playlist") {
+            console.log('s: ',s)
+            console.log('u: ',u)
             let playlistRes = await handleAddToPlaylist(s, u);
             if (playlistRes && playlistRes.status === "successfully") {
                 setHandleStatus({
                     status: "success",
                     content: "Thêm vào playlist thành công.",
                 });
-                setAnchor(null);
             } else if (playlistRes.status === "existed") {
                 setHandleStatus({
                     status: "failed",
                     content: "Bài hát đã tồn tại trong playlist.",
                 });
-                setAnchor(null);
             } else {
                 setHandleStatus({
                     status: "failed",
-                    content: "Thêm vào playlist thất bại.",
+                    content: "Thêm vào playlist không thành công.",
                 });
             }
         }
@@ -145,11 +159,19 @@ const ArtistDetail: React.FC<ArtistDetailIF<any>> = ({ ...props }) => {
     const getUserPlaylists = async () => {
         if (user === "" || user === undefined) {
             setAnchor(null);
+            setAnchorItem({
+                title: '',
+                image: '',
+                view: ''
+            })
             setIsLogged(true);
             return;
         }
         const { data } = await userPlaylistApi.getAll({ id_User: user._id });
-        setUserPlaylists(data);
+        setUserPlaylists({
+            data: data,
+            loading: false,
+        });
     }
 
     if (handleStatus.status !== "") {
@@ -171,8 +193,11 @@ const ArtistDetail: React.FC<ArtistDetailIF<any>> = ({ ...props }) => {
         form.append("id_User", user._id);
 
         const isCreatedPlaylist = await userPlaylistApi.postOne(form);
-        if (isCreatedPlaylist.status === "successfully") {
-            setUserPlaylists([...userPlaylists, ...isCreatedPlaylist.data]);
+        if (isCreatedPlaylist.status === "successfully") { 
+            setUserPlaylists({
+                data: [...userPlaylists, ...isCreatedPlaylist.data],
+                loading: false,
+            });
             setHandleStatus({
                 status: "success",
                 content: "Tạo mới Playlist thành công"
@@ -292,10 +317,7 @@ const ArtistDetail: React.FC<ArtistDetailIF<any>> = ({ ...props }) => {
                                     color: "#ccc",
                                 }}
                             >
-                                {handleNameArtist(
-                                inforArtist?.first_Name,
-                                inforArtist?.last_Name
-                            )}
+                                <NameSongArtist _id={item.id_Songs} />
                             </div>
                         </div>
                         <div
@@ -321,6 +343,7 @@ const ArtistDetail: React.FC<ArtistDetailIF<any>> = ({ ...props }) => {
                                 onClick={(e) => {
                                     openPopover(e);
                                     getUserPlaylists();
+                                    setAnchorItem(songsTransformed[item.id_Songs]);
                                 }}
                             />
                             <Popover
@@ -334,7 +357,14 @@ const ArtistDetail: React.FC<ArtistDetailIF<any>> = ({ ...props }) => {
                                     vertical: "bottom",
                                     horizontal: "right",
                                 }}
-                                onClose={() => setAnchor(null)}
+                                onClose={() => {
+                                    setAnchor(null);
+                                    setAnchorItem({
+                                        title: '',
+                                        image: '',
+                                        view: ''
+                                    })
+                                }}
                             >
                                 <div
                                     style={{
@@ -419,32 +449,22 @@ const ArtistDetail: React.FC<ArtistDetailIF<any>> = ({ ...props }) => {
                                         </div>
                                     </Popover>
 
-                                    {userPlaylists?.length === 0 && (
+                                    {userPlaylists.loading && <MenuItem className="list" >
+                                        <CircularProgress />
+                                    </MenuItem>}
+                                    {userPlaylists?.data?.length === 0 && (
                                         <MenuItem
-                                            className="list"
-                                            onClick={() =>
-                                                handleAdd(
-                                                    item._id,
-                                                    user._id,
-                                                    "playlist"
-                                                )
-                                            }
+                                            className="list" 
                                         >
                                             <BsMusicNoteList /> &ensp; Bạn chưa
                                             có Playlist nào.
                                         </MenuItem>
                                     )}
-                                    {userPlaylists?.length !== 0 &&
-                                        userPlaylists.map((_: any) => (
+                                    {userPlaylists?.data?.length !== 0 &&
+                                        userPlaylists?.data.map((_: any) => (
                                             <MenuItem
                                                 className="list"
-                                                onClick={() =>
-                                                    handleAdd(
-                                                        _._id,
-                                                        user._id,
-                                                        "playlist"
-                                                    )
-                                                }
+                                                onClick={() => handleAdd(anchorItem._id, _._id, 'playlist') }
                                             >
                                                 <BsMusicNoteList /> &ensp;{" "}
                                                 {_.name}
