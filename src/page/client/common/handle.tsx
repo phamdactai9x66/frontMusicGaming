@@ -7,8 +7,8 @@ export const handleLike = <T extends string> (idSong: T, idUser: T) => {
         const getLikeSong = async () => {
             const condition = { id_Songs: idSong, id_User: idUser };
             let getResponse = await likeSongApi.getAll(condition);
-            
-            if(getResponse.data.length !== 0){
+            // console.log(getResponse)
+            if(getResponse?.data.length !== 0){
                 let response = await likeSongApi.unLikeSong(getResponse.data[0]._id);
                 return {response: response, status: "deleted"};
             }else{

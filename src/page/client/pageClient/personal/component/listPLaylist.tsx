@@ -43,7 +43,10 @@ const ListPLaylist: React.FC<ListPLaylistIF<any>> = ({ render, ...props }) => {
             {state.display ?
                 state?.data?.map((current: any, index: number) => {
                     return (
-                        <Link to={`/playlistDetail/${current?._id}`} key={index}>
+                        <Link to={{
+                            pathname: `/playlistDetail/${current?._id}`,
+                            state: current
+                        }} key={index}>
                             <div className="box">
                                 <ImagePlaylist idPlaylist={current?._id} />
                                 <div className="icon-box">

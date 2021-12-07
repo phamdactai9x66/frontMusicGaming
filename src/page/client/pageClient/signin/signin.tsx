@@ -12,6 +12,7 @@ import { RouteComponentProps } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import CryptoJS from "crypto-js"
 import { variableCommon } from "component/variableCommon"
+import { styled } from '@mui/material/styles';
 
 interface SigninIF<T> extends RouteComponentProps {
 
@@ -25,6 +26,15 @@ const Signin: React.FC<SigninIF<any>> = ({ history, ...props }: any) => {
       borderBottom: " 0.2rem solid rgb(65, 217, 228)"
     }
   })
+    //   const [onpenModalActive, setOnpenModalActive] = useState(false);
+  // const handleOnpenActiveUser=()=>{
+  //   console.log('abc')
+  //   if(onpenModalActive === false){
+  //  setOnpenModalActive(true)
+  //   }
+  //   else if(onpenModalActive ===true){
+  //     setOnpenModalActive(true)
+  //   }
   const dispatchUser = useDispatch();
   const form = useRef<HTMLFormElement | any>(null);
   const [alertError, setalertError] = useState<any>({ display: false, message: "", type: '' })
@@ -100,6 +110,7 @@ const Signin: React.FC<SigninIF<any>> = ({ history, ...props }: any) => {
   const displayAlert = (messageError: string = "Có lỗi xảy ra", type: string = 'info') => {
     setalertError({ display: true, message: messageError, type })
   }
+
   return (
     <>
       <div className="handleForm">
