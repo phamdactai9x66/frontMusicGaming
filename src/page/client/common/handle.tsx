@@ -25,8 +25,20 @@ export const handleLike = <T extends string> (idSong: T, idUser: T) => {
 }
 
 export const handleDownload = (song: any) => {
-    console.log("handle download => idSong: ", song);
-
+    fetch(song.audio)
+        .then(res => res.blob())
+        .then( blob => {
+            const url = window.URL.createObjectURL(blob);
+            const aTag = document.createElement('a');
+            aTag.style.opacity = "0";
+            aTag.href = url;
+            aTag.download = song.title.replaceAll(' ', '-');
+            document.body.appendChild(aTag);
+            aTag.click();
+            window.URL.revokeObjectURL(url);
+            // console.log(url);
+        })
+        .catch(err => console.log('download song failed with error: ', err));
     // const fileName = "abc.mp3"; // tạo tên cho file
     // const url = window.URL.createObjectURL(new Blob([song.audio]));// chuyển data thành url
     // const link = document.createElement("a");// tạo 1 thẻ a
