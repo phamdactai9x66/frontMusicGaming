@@ -48,9 +48,8 @@ import ListenTogether from "./page/client/pageClient/listenTogether/listenTogeth
 import Personal from "./page/client/pageClient/personal/index"
 import RoomDetail from "./page/client/pageClient/roomDetail/roomDetail";
 import SubCategory from "page/client/pageClient/subpage/subpage";
-import Subpage from "page/client/pageClient/subpage/subpage";
 import ArtistDetail from "page/client/pageClient/artistDetail/artistDetail";
-
+import ComfirmPassword from "page/client/pageClient/forgotPassword/comfirmPassword";
 
 export interface propertyPage {
     path: string,
@@ -239,6 +238,11 @@ const Client: propertyPage[] = [
     {
         path: "/forgotpassword",
         component: ForgotPassword,
+        exact: false
+    },
+    {
+        path: "/comfirm-password",
+        component: ComfirmPassword,
         exact: false
     },
     {

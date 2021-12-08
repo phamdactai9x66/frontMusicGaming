@@ -21,6 +21,9 @@ const sliceAudio = createSlice({
                     if (state.likstStaticAudio[currentAudio?.id_Song]) {
                         return saveIdSong = [...saveIdSong, state.likstStaticAudio[currentAudio?.id_Song]];
                     }
+                    if (state.likstStaticAudio[currentAudio?.id_Songs]) {
+                        return saveIdSong = [...saveIdSong, state.likstStaticAudio[currentAudio?.id_Songs]];
+                    }
                     if (state.likstStaticAudio[currentAudio?._id]) {
                         return saveIdSong = [...saveIdSong, state.likstStaticAudio[currentAudio?._id]];
                     }

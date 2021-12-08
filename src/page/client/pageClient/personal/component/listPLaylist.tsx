@@ -10,6 +10,7 @@ import { useSelector } from "react-redux";
 import { formStateUser } from 'redux/user/stateUser';
 import { HandleGet } from "component/MethodCommon";
 import ImagePlaylist from "./imagePlaylist";
+import dataStorage from "component/dataStorage"
 interface ListPLaylistIF<T> {
     render: number
 }
@@ -17,6 +18,13 @@ interface ListPLaylistIF<T> {
 const ListPLaylist: React.FC<ListPLaylistIF<any>> = ({ render, ...props }) => {
     const { user: { _id: id_User } } = useSelector<{ user: any }>(state => state.user) as formStateUser;
     const [state, setstate] = useState({ display: false, data: [] });
+    const [renderPlaylist, setrenderPlaylist] = useState<boolean>(false);
+    const renderComponent = (): void => {
+        setrenderPlaylist(value => !value)
+    }
+    useEffect(() => {
+        dataStorage.renderPlaylist = renderComponent as any
+    }, [])
     useEffect(() => {
         (async () => {
             const query = {
@@ -29,30 +37,23 @@ const ListPLaylist: React.FC<ListPLaylistIF<any>> = ({ render, ...props }) => {
         return () => {
             setstate(value => ({ ...value, display: false }))
         }
-    }, [id_User, render])
+    }, [id_User, render, renderPlaylist])
     return (
         <>
             {state.display ?
                 state?.data?.map((current: any, index: number) => {
                     return (
-                        <Link to={`/playlistDetail/${current?._id}`} key={index}>
+                        <Link to={{
+                            pathname: `/playlistDetail/${current?._id}`,
+                            state: current
+                        }} key={index}>
                             <div className="box">
                                 <ImagePlaylist idPlaylist={current?._id} />
                                 <div className="icon-box">
                                     <div>
-                                        <BiHeart className="icon" />
                                         <FiPlayCircle className="icon" />
-                                        <HiOutlineDotsCircleHorizontal className="icon" />
                                     </div>
                                 </div>
-                                <Select className="option">
-                                    <MenuItem>
-                                        <AiOutlineDownload /> Tải xuống
-                                    </MenuItem>
-                                    <MenuItem>
-                                        <AiOutlineLink /> Sao chép link
-                                    </MenuItem>
-                                </Select>
                                 <h6>{current.name} </h6>
                             </div>
                         </Link>

@@ -5,9 +5,10 @@ import { } from "component/MethodCommon";
 
 interface MusicDetailIF<T> {
     state: any | T,
+    onRemoveUPL: any,
 }
 
-const MusicDetail: React.FC<MusicDetailIF<any>> = ({ state, ...props }) => {
+const MusicDetail: React.FC<MusicDetailIF<any>> = ({ state, onRemoveUPL, ...props }) => { 
     return (
         <>
             <div className="musicDetail">
@@ -16,7 +17,7 @@ const MusicDetail: React.FC<MusicDetailIF<any>> = ({ state, ...props }) => {
                     const { id_Song } = current;
                     const findSong = state.dataSong[id_Song];
                     return (
-                        <ListMusicDetail current={findSong} listIdSong={state.data} index={index} />
+                        <ListMusicDetail current={findSong} listIdSong={state.data} index={index} onRemoveUPL={onRemoveUPL} />
                     )
                 })}
             </div>

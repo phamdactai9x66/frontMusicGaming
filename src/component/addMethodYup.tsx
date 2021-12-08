@@ -13,10 +13,11 @@ Yup.addMethod(Yup.string, "checkRequire", function (message: string = messageDef
         return true;
     })
 })
-Yup.addMethod(Yup.number, "checkRequire", function (message: string = messageDefault) {
+Yup.addMethod(Yup.number, "checkRequireNumber", function (message: string = messageDefault) {
     return this.test("checkRequire", message, function (value, field) {
+        // if (typeof value === "number") value = Math.trunc(value);
         const { path, createError } = this
-        if ([undefined, null, 0].includes(value)) return createError({ path, message })
+        if ([undefined, null, '', 0].includes(value)) return createError({ path, message })
 
         return true;
     })
@@ -58,7 +59,7 @@ declare module "yup" {
         checkRequire(): StringSchema;
     }
     interface NumberSchema {
-        checkRequire(): NumberSchema
+        checkRequireNumber(): NumberSchema
     }
 }
 

@@ -7,8 +7,8 @@ export const handleLike = <T extends string> (idSong: T, idUser: T) => {
         const getLikeSong = async () => {
             const condition = { id_Songs: idSong, id_User: idUser };
             let getResponse = await likeSongApi.getAll(condition);
-            
-            if(getResponse.data.length !== 0){
+            // console.log(getResponse)
+            if(getResponse?.data.length !== 0){
                 let response = await likeSongApi.unLikeSong(getResponse.data[0]._id);
                 return {response: response, status: "deleted"};
             }else{
@@ -24,14 +24,26 @@ export const handleLike = <T extends string> (idSong: T, idUser: T) => {
     return res
 }
 
-export const handleDownload = (idSong: string) => {
-    console.log("handle download => idSong: ", idSong);
-
-    // const fileName = "ten file.xlsx"; // tạo tên cho file
-    // const url = window.URL.createObjectURL(new Blob([response.data]));// chuyển data thành url
+export const handleDownload = (song: any) => {
+    fetch(song.audio)
+        .then(res => res.blob())
+        .then( blob => {
+            const url = window.URL.createObjectURL(blob);
+            const aTag = document.createElement('a');
+            aTag.style.opacity = "0";
+            aTag.href = url;
+            aTag.download = song.title.replaceAll(' ', '-');
+            document.body.appendChild(aTag);
+            aTag.click();
+            window.URL.revokeObjectURL(url);
+            // console.log(url);
+        })
+        .catch(err => console.log('download song failed with error: ', err));
+    // const fileName = "abc.mp3"; // tạo tên cho file
+    // const url = window.URL.createObjectURL(new Blob([song.audio]));// chuyển data thành url
     // const link = document.createElement("a");// tạo 1 thẻ a
-    // link.href = url;// gán url property cho thẻ a
     // link.setAttribute("download", fileName); // set file name khi download
+    // link.href = url;// gán url property cho thẻ a
     // document.body.appendChild(link); //
     // link.click();// auto click thẻ a
     // link.remove();// xóa thẻ a

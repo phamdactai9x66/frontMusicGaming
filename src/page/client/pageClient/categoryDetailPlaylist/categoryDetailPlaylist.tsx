@@ -60,23 +60,13 @@ const CategoryDetailPlaylist: React.FC<CategoryDetailPlaylistIF<string>> = ({ ma
                         </figure>
                         <div className="icon-box">
                             <div>
-                                {/* <BiHeart className="icon" /> */}
                                 <FiPlayCircle className="icon"
                                     onClick={() => {
                                         console.log(current._id)
                                         dispatch(playSong({ _id: current._id, listIdSong: getListId(song.data) }))
                                     }} />
-                                {/* <HiOutlineDotsCircleHorizontal className="icon" /> */}
                             </div>
                         </div>
-                        <Select className="option">
-                            <MenuItem>
-                                <AiOutlineDownload /> Tải xuống
-                            </MenuItem>
-                            <MenuItem>
-                                <AiOutlineLink /> Sao chép link
-                            </MenuItem>
-                        </Select>
                         <h6>{current?.title}</h6>
                     </div>
                 )

@@ -1,6 +1,6 @@
 import React from 'react'
 import { useFormikContext, useField, ErrorMessage, Field } from "formik";
-import { TextField, FormControl, FormLabel, RadioGroup, FormControlLabel, Radio } from "@mui/material";
+import { TextField, FormControl, FormLabel, RadioGroup, FormControlLabel, Radio, FormHelperText } from "@mui/material";
 import { propsField } from "./index";
 
 interface RadioField<T> extends propsField {
@@ -28,7 +28,8 @@ const RadioField: React.FC<RadioField<any>> = ({ label, ...props }) => {
                     })
                     }
                 </RadioGroup>
-                <ErrorMessage name={field.name} />
+                <FormHelperText>{meta.error || ''}</FormHelperText>
+                {/* <ErrorMessage name={field.name} /> */}
             </FormControl>
         </>
     )

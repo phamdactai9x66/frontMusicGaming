@@ -42,7 +42,7 @@ const Category: React.FC<CategoryIF<any>> = ({ ...props }) => {
                 </figure>
                 <div className="icon-box_category">
                   <div>
-                    <h6 className="icon">{current?.name}</h6>
+                    <h6 className="icon" style={{fontSize:'1.2rem'}}>{current?.name}</h6>
                   </div>
                 </div>
               </div>

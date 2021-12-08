@@ -10,7 +10,9 @@
     }
     .tab_login {
         form {
-            color: rgb(245, 12, 12);
+          .css-1wc848c-MuiFormHelperText-root {
+            color: rgb(245, 12, 12) !important;
+          }         
         }
         border-radius: 0 0.5rem 0.5rem 0 ;
         background: #3D5983;

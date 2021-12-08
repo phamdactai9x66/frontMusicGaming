@@ -8,9 +8,10 @@ import NameSongArtist from "component/nameSongArtist";
 import GetTimeAudio from "component/getTimeAudio";
 import { playSong } from "redux/audio/actionAudio";
 import { useDispatch } from "react-redux";
+import { Link } from 'react-router-dom';
 
 interface ListSongIF<T> {
-    data: any
+    data: any | T,
 }
 const ListSong: React.FC<ListSongIF<any>> = ({ data, ...props }) => {
     const dispatch = useDispatch();
@@ -109,7 +110,9 @@ const ListSong: React.FC<ListSongIF<any>> = ({ data, ...props }) => {
                                 </div>
                             </div>
                         )
-                    }) : null}
+                    }) : <span style={{fontSize: "1rem", color: "#fff"}}>
+                            Bạn chưa yêu thích bài hát nào? Hãy quay trở lại <Link style={{ fontStyle: 'italic'}} to='/'>trang chủ</Link> và tìm yêu thích của bạn nào.
+                        </span>}
 
 
             </div>

@@ -12,8 +12,8 @@ interface SubCategoryIF<T> extends RouteComponentProps {
 
 }
 
-const SubCategory: React.FC<SubCategoryIF<any>> = ( { location, ...props }: any ) => {
-  document.title = `${location.state.name} - Music Game`;
+const SubCategory: React.FC<SubCategoryIF<any>> = ( { location, history, ...props }: any ) => {
+  
   const [handle, setHandle] = useState({ data: { dataSongs: [], dataCate: [] }, display: true });
   const [allSongs, setAllSongs] = useState([]);
   const dispatch = useDispatch();
@@ -24,7 +24,7 @@ const SubCategory: React.FC<SubCategoryIF<any>> = ( { location, ...props }: any 
       setAllSongs(dataDispatch.payload);
 
       if (!handle.display) return;
-        const [dataCate, error] = await HandleGet<Function>(categoryApi.getAll, { id_Topic: location.state._id });
+        const [dataCate, error] = await HandleGet<Function>(categoryApi.getAll, { id_Topic: location.state?._id });
       if (error || dataCate.status === variableCommon.statusF) return;
 
       setHandle({ data: { dataSongs: dataDispatch?.payload, dataCate: dataCate?.data }, display: true })
@@ -34,11 +34,18 @@ const SubCategory: React.FC<SubCategoryIF<any>> = ( { location, ...props }: any 
     }
   }, []);
 
+  if(!location.state){
+    console.log('aa')
+    history.push('/')
+  }else{
+    document.title = `${location.state.name ? location.state.name : ""} - Music Game`;
+  }
+
   return (
-    <div className="container-category mt-3">
-      <h2 className="title_all" style={{color:"#a8eff9"}}>Chủ đề {location.state.name}</h2>
+    <div className="container-category">
+      <h4 className="title_all text-light" style={{color:"#a8eff9"}}>Chủ đề {location.state ? location.state.name : ""}</h4>
       <div className="banner-category">
-        <img src="https://html.nkdev.info/goodgames/assets/images/gallery-7.jpg" alt="" />
+      <img src={location.state ? location.state.image : ""} alt={location.state ? location.state.image : ""} />
       </div>
 
       {handle.data.dataCate.map( (itemCate: any) => {
@@ -47,7 +54,7 @@ const SubCategory: React.FC<SubCategoryIF<any>> = ( { location, ...props }: any 
           <h4 className="title_all" >{itemCate.name}</h4>
         </div>
         <div className="box-grid-category">
-          {handle.data.dataSongs.filter( (i: any) => i.id_Topic === location.state._id && i.id_Categories === itemCate._id).map( (itemSong: any) => 
+          {handle.data.dataSongs.filter( (i: any) => i.id_Topic === location.state?._id && i.id_Categories === itemCate._id).map( (itemSong: any) => 
             // <Link to={{ }} key={itemSong._id}>
             <span key={itemSong._id} onClick={() => dispatch(playSong({ _id: itemSong._id}))} >
                 {/* pathname: '/category/SubCategory',
