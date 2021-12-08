@@ -11,11 +11,10 @@ const typeModal: any = {
   left: '50%',
   transform: 'translate(-50%, -50%)',
   minWidth: 700,
-  bgColor: 'background.paper',
+  bgcolor: 'background.paper',
   borderRadius: 1,
   boxShadow: 24,
   p: 4,
-  background: 'gray'
 }
 
 const useStyle = makeStyles({
@@ -100,7 +99,7 @@ const ModalUser: React.FC<ModalUser<any>> = ({ state, onClose, ...props }) => {
                     <TextField
                       inputProps={{ readOnly: true, }}
                       label="Gender"
-                      value={(dataUser.data?.[0] as any)?.gender}
+                      value={(dataUser.data?.[0] as any)?.gender === true ? 'Nữ' : 'Nam'}
                       variant="standard"
                       fullWidth
                     />
@@ -122,7 +121,7 @@ const ModalUser: React.FC<ModalUser<any>> = ({ state, onClose, ...props }) => {
                     <TextField
                       inputProps={{ readOnly: true, }}
                       label="Active"
-                      value={(dataUser.data?.[0] as any)?.active}
+                      value={(dataUser.data?.[0] as any)?.active === true ? 'Online' : 'Offline'}
                       variant="standard"
                       fullWidth
                     />
