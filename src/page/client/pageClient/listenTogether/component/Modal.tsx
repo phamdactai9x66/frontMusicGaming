@@ -57,7 +57,8 @@ const ModalRoom: React.FC<ModalRoomIF<any>> = ({ current, open, setOpen, ...prop
                 if (addUserintoRoom?.data?.[0]._id) {
                     io(server).emit("JoinRoom")
                     return props.history.push(`/listenTogether/roomDetail/${current?._id || ''}`, {
-                        idRoomUser: addUserintoRoom?.data[0]._id
+                        idRoomUser: addUserintoRoom?.data[0]._id,
+                        name_Room: getRes.room?.name_Room
                     })
                 }
 
