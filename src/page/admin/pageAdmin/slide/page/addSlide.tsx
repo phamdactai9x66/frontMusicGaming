@@ -70,7 +70,7 @@ const AddSlide: React.FC<AddSlide<any>> = ({ changePage, ...props }) => {
                 <Formik
                     initialValues={initialValue}
                     onSubmit={submitForm}
-                    validationChemaCategory={validateChemaSlide}
+                    validationSchema={validateChemaSlide}
                     validateOnChange={false}
                 >
                     {formik => {

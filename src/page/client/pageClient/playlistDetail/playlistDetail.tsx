@@ -17,7 +17,7 @@ const PlaylistDetail: React.FC<PlaylistDetailIF<any>> = ({ match, history, ...pr
     useEffect(() => {
         (async () => {
             if (!state.display) return;
-
+            
             const query = {
                 id_User_Playlist: (match.params as any)?.idPlaylist
             }
@@ -30,13 +30,23 @@ const PlaylistDetail: React.FC<PlaylistDetailIF<any>> = ({ match, history, ...pr
         return () => {
             setstate(value => ({ ...value, display: false }))
         }
-    }, [])
+    }, []);
+
+    const onRemoveUPL = async (id_song: string) => {
+        const id_SPL: any = state.data.filter( (i: any) => i.id_Song === id_song)[0];
+        const resRemove = await songPlaylistApi.removeFromSPL(id_SPL?._id)
+        setstate({
+            display: true,
+            data: state.data.filter((i: any) => i.id_Song !== id_song),
+            dataSong: state.dataSong
+        })
+    }
     return (
         <>
             <div className="container-playlist">
                 <div className="playlist-content">
-                    <Content state={state} />
-                    <MusicDetail state={state} />
+                    <Content state={state} history={history} />
+                    <MusicDetail state={state} onRemoveUPL={onRemoveUPL} />
                 </div>
                 {/* <div className="quantam">
                     <div className="quantam-h4">

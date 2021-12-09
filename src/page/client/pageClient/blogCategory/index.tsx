@@ -8,7 +8,7 @@ import './../blog/blog.scss'
 import { debounce } from '@material-ui/core';
 import blogApi from 'api/BlogApi';
 import { RouteComponentProps } from 'react-router-dom';
-
+import Loadings from "./../../loading/loading";
 
 interface blog<T> extends RouteComponentProps {
 
@@ -24,7 +24,8 @@ const Blog: React.FC<blog<any>> = ({ match, ...props }) => {
         loading: true,
         data: []
     });
-    const [allBlogs, setAllBlogs] = useState([])
+    const [allBlogs, setAllBlogs] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     const searchDebounced = useCallback<any>(debounce( async (value: any) => {
         const { data } = await blogApi.getAll( {title: value} );
@@ -67,13 +68,14 @@ const Blog: React.FC<blog<any>> = ({ match, ...props }) => {
                 loading: false,
                 data: newData.splice(0, 7),
             });
+            setLoading(false);
         }
         getBlog();
     }, []);
     
     return (
         <>
-   
+    {loading && <Loadings/>}
         <div className="container-blog">
             <div className="title-blog grid-2">
                 <div className="text-title-blog">

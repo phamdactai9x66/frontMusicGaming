@@ -94,13 +94,13 @@ const Toptrending: React.FC<ToptrendingIF<any>> = ({ ...props }) => {
         }
 
         if (t === "playlist") {
-            //đang sai vì chưa lấy được playlist của user
             let playlistRes = await handleAddToPlaylist(s, u);
             if (playlistRes && playlistRes.status === "successfully") {
                 setHandleStatus({
                     status: "success",
                     content: "Thêm vào Playlist thành công."
-                })
+                });
+                setAnchor(null)
             } else if (playlistRes.status === "existed") {
                 setHandleStatus({
                     status: "failed",
@@ -138,11 +138,14 @@ const Toptrending: React.FC<ToptrendingIF<any>> = ({ ...props }) => {
         setLocationlogged(false);
     }
 
-    if (handleStatus.status !== "") {
-        setTimeout(() => {
-            setHandleStatus({ status: "", content: "" });
-        }, 2500);
-    }
+    useEffect( () => {
+        if(handleStatus.status !== ""){
+            let timer = setTimeout(() => {
+                setHandleStatus({ status: "", content: "" })
+            }, 2500);
+            return () => clearTimeout(timer);
+        }
+    }, [handleStatus])
 
     const handleCreatePlaylist = async () => {
         setAddPlaylistLoading(true)
@@ -212,7 +215,7 @@ const Toptrending: React.FC<ToptrendingIF<any>> = ({ ...props }) => {
                                                 <GetTimeAudio audio={item?.audio} />
                                             </div>
                                             <div className="icon_item " style={{marginTop:'0.7rem'}}>
-                                                <AiOutlineDownload onClick={() => handleDownload(item._id)} className="icon" />
+                                                <AiOutlineDownload onClick={() => handleDownload(item)} className="icon" />
                                                 {likeLoading.indexOf(item._id) === -1 ? <AiFillHeart onClick={() => handleAdd( item._id, user._id, "like")} className="icon" /> : <span className='loading-icon'><CircularProgress  className='loading-icon' size={15} sx={{ color: "#d6f4f8"}} /></span> }
                                                 <IoMdAdd className="icon" onClick={(e) => {
                                                     openPopover(e);
