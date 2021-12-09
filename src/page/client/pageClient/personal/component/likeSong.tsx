@@ -6,12 +6,14 @@ import { useSelector } from "react-redux";
 import { formStateUser } from 'redux/user/stateUser';
 import { HandleGet, tranFormDataId } from "component/MethodCommon";
 import Slide from "./slideSong"
+import Loadings from 'page/client/loading/loading';
 interface LikeSongIF<T> {
 
 }
 const LikeSong: React.FC<LikeSongIF<any>> = ({ ...props }) => {
     const [likeSong, setLikeSong] = useState({ display: true, data: [], dataSong: [] });
     const { user: { _id } } = useSelector<{ user: any }>(state => state.user) as formStateUser;
+    const [loading, setLoading] = useState(true);
     useEffect(() => {
         (async () => {
             if (!likeSong.display) return;
@@ -22,13 +24,16 @@ const LikeSong: React.FC<LikeSongIF<any>> = ({ ...props }) => {
             const [dataSong, errorSong] = await HandleGet(SongApi.getAll);
             if (error) return;
             setLikeSong((value: any) => ({ ...value, data: [data?.data], dataSong: tranFormDataId(dataSong?.data) }))
+            setLoading(false);
         })()
         return () => {
             setLikeSong(value => ({ ...value, display: false }))
+            setLoading(false);
         }
     }, [])
     return (
         <>
+            {loading && <Loadings/> }
             <div className="main1">
                 <div className="box-slider">
                     <Slide data={likeSong} />

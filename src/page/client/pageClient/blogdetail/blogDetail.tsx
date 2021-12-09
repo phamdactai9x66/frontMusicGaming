@@ -7,6 +7,7 @@ import DetailBlog from "./component/detailBlog";
 import Comment from "./component/comment"
 import AddComment from "./component/addComment";
 import RelatedBlog from "./component/relatedBlog";
+import Loadings from "./../../loading/loading";
 
 interface blogDetail<T> extends RouteComponentProps {
 
@@ -14,6 +15,7 @@ interface blogDetail<T> extends RouteComponentProps {
 
 const BlogDetail: React.FC<blogDetail<any>> = ({ match, history, ...props }) => {
     const saveId = useRef<string>('');
+    const [loading, setLoading] = useState(true);
     
     const [blog, setBlog] = useState<{ display: boolean, data: any }>({ display: true, data: {} });
     useEffect(() => {
@@ -31,10 +33,12 @@ const BlogDetail: React.FC<blogDetail<any>> = ({ match, history, ...props }) => 
             const { data, status } = await BlogApi.getAll<object>(query)
             if (status === variableCommon.statusF) return history.goBack()
             setBlog({ display: true, data: { ...data[0] } })
-            document.title = `${data[0]?.title} - Music Game`
+            document.title = `${data[0]?.title} - Music Game`;
+            setLoading(false);
         })()
         return () => {
             setBlog(value => ({ ...value, display: false }));
+            setLoading(false);
         }
     }, [(match.params as any)?.idBlog])
 
@@ -42,6 +46,7 @@ const BlogDetail: React.FC<blogDetail<any>> = ({ match, history, ...props }) => 
 
     return (
         <div className="container-blogdetail-blog">
+            {loading && <Loadings/> }
             <div className="blogdetail-title-grid">
                 <div className="title-h4">
                     <h2 className="title_all">{blog.data?.title}</h2>

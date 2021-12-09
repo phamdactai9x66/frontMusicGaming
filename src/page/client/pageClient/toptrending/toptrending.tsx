@@ -94,13 +94,13 @@ const Toptrending: React.FC<ToptrendingIF<any>> = ({ ...props }) => {
         }
 
         if (t === "playlist") {
-            //đang sai vì chưa lấy được playlist của user
             let playlistRes = await handleAddToPlaylist(s, u);
             if (playlistRes && playlistRes.status === "successfully") {
                 setHandleStatus({
                     status: "success",
                     content: "Thêm vào Playlist thành công."
-                })
+                });
+                setAnchor(null)
             } else if (playlistRes.status === "existed") {
                 setHandleStatus({
                     status: "failed",
@@ -138,11 +138,14 @@ const Toptrending: React.FC<ToptrendingIF<any>> = ({ ...props }) => {
         setLocationlogged(false);
     }
 
-    if (handleStatus.status !== "") {
-        setTimeout(() => {
-            setHandleStatus({ status: "", content: "" });
-        }, 2500);
-    }
+    useEffect( () => {
+        if(handleStatus.status !== ""){
+            let timer = setTimeout(() => {
+                setHandleStatus({ status: "", content: "" })
+            }, 2500);
+            return () => clearTimeout(timer);
+        }
+    }, [handleStatus])
 
     const handleCreatePlaylist = async () => {
         setAddPlaylistLoading(true)
