@@ -242,7 +242,7 @@ const Client: propertyPage[] = [
         exact: false
     },
     {
-        path: "/comfirm-password",
+        path: "/comfirm-password/:idUser/:hash",
         component: ComfirmPassword,
         exact: false
     },

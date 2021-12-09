@@ -1,19 +1,23 @@
 import React, {useEffect} from 'react'
-import { Button } from '@mui/material'
 import { useParams, useLocation, Link } from "react-router-dom";
+import userApi from '../../../../api/useApi';
 
 interface Verify<T> {
 
 }
 
 const Verify: React.FC<Verify<any>> = ({ ...props }) => {
-    const idUser = useParams<{ idUser: any}>();
-    const hash = useParams<{ hash: any}>();
+    document.title = "Verified - Music Game";
+    const idUser:string = useParams();
+    const hash:string = useParams();
 
-    console.log(idUser)
-    console.log(hash)
     useEffect(()=>{
-        
+        const verify = async () => {
+            const { data } = await userApi.activeUser(idUser, hash);
+            console.log(data)
+
+        }
+        verify()
     },[])
     return (
         <>
