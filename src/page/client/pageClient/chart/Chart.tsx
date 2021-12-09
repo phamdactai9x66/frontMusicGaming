@@ -1,14 +1,14 @@
-import { BiPlayCircle } from 'react-icons/bi';
-import ChartMusicTrending from './chartMusicTrending';
+// import { BiPlayCircle } from 'react-icons/bi';
+// import ChartMusicTrending from './chartMusicTrending';
 import { AiOutlineDownload, AiFillHeart } from 'react-icons/ai';
 import { IoMdAdd } from 'react-icons/io';
-import { BiMusic } from 'react-icons/bi';
+// import { BiMusic } from 'react-icons/bi';
 import { Popover } from "@material-ui/core";
 import { HandleGet, sortData } from "component/MethodCommon";
 import { variableCommon } from "component/variableCommon";
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import songApi from "api/songApi";
-import { ReactComponent as Play } from './play.svg'
+// import { ReactComponent as Play } from './play.svg'
 import { handleLike, handleDownload, handleAddToPlaylist } from 'page/client/common/handle';
 import React, { useEffect, useState } from 'react';
 import { BsFillPlayFill } from 'react-icons/bs';
@@ -38,6 +38,8 @@ import {
     BarChart,
     Bar
   } from "recharts";
+import Loadings from './../../loading/loading';
+
     const data = [
       {
         name: "Page A",
@@ -111,6 +113,7 @@ const Chart: React.FC<chart<any>> = ({ ...props }) => {
         image: '',
         view: ''
     });
+    const [loading, setLoading] = useState(true);
 
     // const dispatch = useDispatch();
     useEffect(() => {
@@ -121,9 +124,11 @@ const Chart: React.FC<chart<any>> = ({ ...props }) => {
         const tranformData = sortData<string>(data.data, 'view').slice(0, 7) as any;
         // console.log(tranformData)
         setstate({ display: true, data: tranformData });
+        setLoading(false);
       })()
       return () => {
         setstate(value => ({ ...value, display: false }));
+        setLoading(false);
       }
     }, [])
     const openPopover = (event: any) => {
@@ -266,6 +271,7 @@ const Chart: React.FC<chart<any>> = ({ ...props }) => {
 
     return (
         <>
+            {loading && <Loadings/> }
             <div className="container-chart">
                 <h4 className="title_all">#Musichart</h4>
                 {/* <BiPlayCircle /> */}

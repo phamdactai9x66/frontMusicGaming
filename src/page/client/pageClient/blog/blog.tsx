@@ -10,6 +10,7 @@ import './blog.scss'
 import { debounce } from '@material-ui/core';
 import blogApi from 'api/BlogApi';
 import { RouteComponentProps } from 'react-router-dom';
+import Loadings from 'page/client/loading/loading';
 // import { current } from '@reduxjs/toolkit';
 
 
@@ -33,6 +34,7 @@ const Blog: React.FC<blog<any>> = ({ match, ...props }) => {
     });
     const [allBlogs, setAllBlogs] = useState([]);
     const [category, setCategory] = useState<any>(null);
+    const [loading, setLoading] = useState(true);
 
     const searchDebounced = useCallback<any>(debounce( async (value: any) => {
         const { data } = await blogApi.getAll( {title: value} );
@@ -54,7 +56,7 @@ const Blog: React.FC<blog<any>> = ({ match, ...props }) => {
         const startBlog = 7 * (page - 1);
         const newAllBlogs = [...allBlogs];
         const showBlog = newAllBlogs.splice( startBlog, startBlog + 6)
-        console.log(allBlogs)
+        // console.log(allBlogs)
         setCurrenPage(page);
         setBlog({
             loading: false,
@@ -64,6 +66,7 @@ const Blog: React.FC<blog<any>> = ({ match, ...props }) => {
 
     useEffect(() => {
         const getBlog = async () => {
+
             const responseGetAll = await blogApi.getAll({});
             setAllBlogs(responseGetAll.data);
 
@@ -75,6 +78,7 @@ const Blog: React.FC<blog<any>> = ({ match, ...props }) => {
                 loading: false,
                 data: newData.splice(0, 7),
             });
+            setLoading(false);
         }
         getBlog();
     }, []);
@@ -107,7 +111,7 @@ const Blog: React.FC<blog<any>> = ({ match, ...props }) => {
     
     return (
         <>
-   
+        {loading && <Loadings/> }
         <div className="container-blog">
             <div className="title-blog grid-2">
                 <div className="text-title-blog">

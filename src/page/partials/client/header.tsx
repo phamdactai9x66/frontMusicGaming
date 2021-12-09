@@ -169,6 +169,7 @@ const HeaderClient: React.FC<HeaderClientIF> = ({ ...props }) => {
                         to="/overview"
                         className="link rounded pb-0 border-1 "
                         style={{ fontSize: "1rem" }}
+                        onClick={() => setAnchorEl(null)}
                     >
                         <FaSignInAlt className="_icon" />
                         Thông tin
@@ -239,7 +240,7 @@ const HeaderClient: React.FC<HeaderClientIF> = ({ ...props }) => {
         </Menu>
     );
     const mobileMenuId = "primary-search-account-menu-mobile";
-    console.log(state.user?.avatar)
+    // console.log(state.user?.avatar)
     const renderMobileMenu = (
         <Menu
             anchorEl={mobileMoreAnchorEl}

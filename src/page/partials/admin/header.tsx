@@ -238,7 +238,7 @@ const Header: React.FC<HeaderIF> = ({ ...props }) => {
 							<SearchIcon />
 						</div>
 						<InputBase
-							placeholder="Search..."
+							placeholder="Tìm kiếm"
 							classes={{
 								root: classes.inputRoot,
 								input: classes.inputInput,
