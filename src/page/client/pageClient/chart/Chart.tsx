@@ -106,6 +106,12 @@ const Chart: React.FC<chart<any>> = ({ ...props }) => {
     const [anchor, setAnchor] = useState(null);
   
     const [state, setstate] = useState({ data: [], display: true });
+    const [anchorItem, setAnchorItem] = useState<any>({
+        title: '',
+        image: '',
+        view: ''
+    });
+
     // const dispatch = useDispatch();
     useEffect(() => {
       (async () => {
@@ -122,6 +128,11 @@ const Chart: React.FC<chart<any>> = ({ ...props }) => {
     }, [])
     const openPopover = (event: any) => {
       setAnchor(event.currentTarget);
+      setAnchorItem({
+        title: '',
+        image: '',
+        view: ''
+    })
   };
 
   const openPopover2 = (event: any) => {
@@ -164,13 +175,13 @@ const Chart: React.FC<chart<any>> = ({ ...props }) => {
       }
 
       if (t === "playlist") {
-          //đang sai vì chưa lấy được playlist của user
           let playlistRes = await handleAddToPlaylist(s, u);
           if (playlistRes && playlistRes.status === "successfully") {
               setHandleStatus({
                   status: "success",
                   content: "Thêm vào Playlist thành công."
               })
+              setAnchor(null)
           } else if (playlistRes.status === "existed") {
               setHandleStatus({
                   status: "failed",
@@ -190,6 +201,11 @@ const Chart: React.FC<chart<any>> = ({ ...props }) => {
       if (user === "" || user === undefined) {
           setAnchor(null);
           setIsLogged(true);
+          setAnchorItem({
+            title: '',
+            image: '',
+            view: ''
+        })
           return;
       }
       const { data } = await userPlaylistApi.getAll({ id_User: user._id });
@@ -307,6 +323,7 @@ const Chart: React.FC<chart<any>> = ({ ...props }) => {
                               <IoMdAdd className="icon" onClick={(e) => {
                                   openPopover(e);
                                   getUserPlaylists();
+                                  setAnchorItem(item);
                               }} />
                               <Popover
                                   open={Boolean(anchor)}
@@ -319,14 +336,21 @@ const Chart: React.FC<chart<any>> = ({ ...props }) => {
                                       vertical: "bottom",
                                       horizontal: "right",
                                   }}
-                                  onClose={() => setAnchor(null)}
+                                  onClose={() => {
+                                    setAnchor(null);
+                                    setAnchorItem({
+                                        title: '',
+                                        image: '',
+                                        view: ''
+                                    })
+                                }}
                               >
                                   <div style={{ background: "#101929", margin: "", color: "#fff", width: "15rem" }}>
                                       <div className="d-flex gap-2 p-2">
-                                          <img width={35} height={35} src={item.image} alt={item.title} />
+                                          <img width={35} height={35} src={anchorItem?.image} alt={anchorItem?.title} />
                                           <div>
-                                              <h6>{item.title}</h6>
-                                              <div style={{ marginTop: "-0.7rem" }}><span style={{ fontSize: "0.8rem" }}>{item.view} </span><span style={{ fontSize: "0.8rem" }}> 3.8M</span></div>
+                                          <h6>{anchorItem?.title}</h6>
+                                              <div style={{ marginTop: "-0.7rem" }}><span style={{ fontSize: "0.8rem" }}>{anchorItem.view} </span></div>
                                           </div>
                                       </div>
                                       <hr style={{ margin: "-0.1rem 0 0.5rem 0" }} />
@@ -364,16 +388,16 @@ const Chart: React.FC<chart<any>> = ({ ...props }) => {
                                       </Popover>
                                       
                                       {userPlaylists.loading && <MenuItem className="list" >
-                                          <CircularProgress />
-                                      </MenuItem>}
-                                      {userPlaylists.data.length === 0 && <MenuItem className="list"  >
-                                          <BsMusicNoteList /> &ensp; Bạn chưa có Playlist nào.
-                                      </MenuItem>}
-                                      {userPlaylists.data.length !== 0 && userPlaylists.data.map((_: any) => (
-                                          <MenuItem className="list" onClick={() => handleAdd(_._id, user._id, "playlist")} >
-                                              <BsMusicNoteList /> &ensp; {_.name}
-                                          </MenuItem>
-                                      ))}
+                                            <CircularProgress />
+                                        </MenuItem>}
+                                        {userPlaylists.data.length === 0 && <MenuItem className="list" >
+                                            <BsMusicNoteList /> &ensp; Bạn chưa có Playlist nào.
+                                        </MenuItem>}
+                                        {userPlaylists.data.length !== 0 && userPlaylists.data.map((_: any) => (
+                                            <MenuItem className="list" onClick={() => handleAdd(anchorItem._id, _._id, 'playlist')} >
+                                                <BsMusicNoteList /> &ensp; {_.name}
+                                            </MenuItem>
+                                        ))}
                                   </div>
                               </Popover>
                           </div>

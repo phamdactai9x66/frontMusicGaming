@@ -150,13 +150,13 @@ const Search: React.FC<SearchIF<any>> = ({ ...props }) => {
         }
 
         if (t === "playlist") {
-            //đang sai vì chưa lấy được playlist của user
             let playlistRes = await handleAddToPlaylist(s, u);
             if (playlistRes && playlistRes.status === "successfully") {
                 setHandleStatus({
                     status: "success",
                     content: "Thêm vào Playlist thành công.",
                 });
+                setAnchor(null)
             } else if (playlistRes.status === "existed") {
                 setHandleStatus({
                     status: "failed",

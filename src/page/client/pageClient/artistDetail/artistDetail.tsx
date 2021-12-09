@@ -139,6 +139,7 @@ const ArtistDetail: React.FC<ArtistDetailIF<any>> = ({ ...props }) => {
                     status: "success",
                     content: "Thêm vào playlist thành công.",
                 });
+                setAnchor(null)
             } else if (playlistRes.status === "existed") {
                 setHandleStatus({
                     status: "failed",
