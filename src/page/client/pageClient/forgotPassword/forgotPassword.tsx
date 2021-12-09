@@ -61,7 +61,7 @@ const ForgotPassword: React.FC<ForgotPasswordIF<any>> = ({ ...props }) => {
                             return (
                                 <Form>
                                     <InputText name="email" type="email" label="Nhập email của bạn" />
-                                    <br /><br />
+                                    <br />
                                     <LoadingButton style={{ padding: "0.5rem 3rem", marginBottom: "1rem" }} loading={formik.isSubmitting}
                                         variant="contained" color="secondary" type="submit">
                                         Xác nhận

@@ -67,8 +67,9 @@ const ComfirmPassword: React.FC<ForgotPasswordIF<any>> = ({ ...props }) => {
                             return (
                                 <Form>
                                     <InputText name="passWord" type="password" label="Nhập mật khẩu mới" />
+                                    <br />
                                     <InputText name="confirmPassWord" type="password" label="Xác nhận mật khẩu" />
-                                    <br /><br />
+                                    <br />
                                     <LoadingButton style={{ padding: "0.5rem 3rem", marginBottom: "1rem" }} loading={formik.isSubmitting}
                                         variant="contained" color="secondary" type="submit">
                                         Đăng nhập
