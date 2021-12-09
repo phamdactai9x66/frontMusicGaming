@@ -49,7 +49,8 @@ import Personal from "./page/client/pageClient/personal/index"
 import RoomDetail from "./page/client/pageClient/roomDetail/roomDetail";
 import SubCategory from "page/client/pageClient/subpage/subpage";
 import ArtistDetail from "page/client/pageClient/artistDetail/artistDetail";
-
+import ComfirmPassword from "page/client/pageClient/forgotPassword/comfirmPassword";
+import Verify from "page/client/pageClient/verify/verify";
 
 export interface propertyPage {
     path: string,
@@ -241,6 +242,11 @@ const Client: propertyPage[] = [
         exact: false
     },
     {
+        path: "/comfirm-password/:idUser/:hash",
+        component: ComfirmPassword,
+        exact: false
+    },
+    {
         path: "/toptrending",
         component: Toptrending,
         exact: false
@@ -289,6 +295,11 @@ const Client: propertyPage[] = [
     {
         path: "/chart",
         component: Chart,
+        exact: false
+    },
+    {
+        path: "/verify/:idUser/:hash",
+        component: Verify,
         exact: false
     },
     {

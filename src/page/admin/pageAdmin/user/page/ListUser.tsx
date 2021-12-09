@@ -29,8 +29,6 @@ const columns = [
   { id: 'email', label: 'Email', minWidth: 170, align: 'left' },
   { id: 'avatar', label: 'Avatar', minWidth: 100, align: 'left' },
   { id: 'gender', label: 'Gender', minWidth: 100, align: 'left' },
-  { id: 'role', label: 'Role', minWidth: 100, align: 'left' },
-  { id: 'active', label: 'Active', minWidth: 100, align: 'left' },
   { id: '', label: 'Handle', minWidth: 170, align: 'center' }
 ]
 
@@ -144,7 +142,7 @@ const ListUser: React.FC<ListUser<any>> = ({ changePage, set_id, ...props }) => 
               <Table stickyHeader>
                 <TableHead>
                   <TableRow>
-                    <TableCell key="awd" align="left" style={{ minWidth: 170 }}>
+                    <TableCell key="awd" align="left" style={{ minWidth: 120 }}>
                       <Checkbox
                         id="checkAll"
                         onClick={() => { dispatch(pustAction(typeAciton.checkAll)) }}
@@ -182,11 +180,7 @@ const ListUser: React.FC<ListUser<any>> = ({ changePage, set_id, ...props }) => 
                               <Avatar alt="" variant="rounded" src={avatar} />
                             </TableCell>
                             <TableCell align="left">
-                              {gender === true ? 'Nam' : 'Nữ'}
-                            </TableCell>
-                            <TableCell align="left">{role}</TableCell>
-                            <TableCell align="left">
-                              {active === true ? 'Hoạt động' : 'Không hoạt động'}
+                              {gender === true ? 'Nữ' : 'Nam'}
                             </TableCell>
                             <TableCell align="left">
                               <Button

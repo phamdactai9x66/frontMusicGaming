@@ -27,6 +27,8 @@ import ArtistApi from "api/ArtistApi";
 import BlogApi from "api/BlogApi";
 import { handleNameArtist } from "page/client/common/handleName"; 
 import Loadings from '../../loading/loading';
+import { Link } from 'react-router-dom';
+
 interface SearchIF<T> {
     userState: any;
     location: any;
@@ -148,13 +150,13 @@ const Search: React.FC<SearchIF<any>> = ({ ...props }) => {
         }
 
         if (t === "playlist") {
-            //đang sai vì chưa lấy được playlist của user
             let playlistRes = await handleAddToPlaylist(s, u);
             if (playlistRes && playlistRes.status === "successfully") {
                 setHandleStatus({
                     status: "success",
                     content: "Thêm vào Playlist thành công.",
                 });
+                setAnchor(null)
             } else if (playlistRes.status === "existed") {
                 setHandleStatus({
                     status: "failed",
@@ -187,11 +189,14 @@ const Search: React.FC<SearchIF<any>> = ({ ...props }) => {
         setLocationlogged(false);
     };
 
-    if (handleStatus.status !== "") {
-        setTimeout(() => {
-            setHandleStatus({ status: "", content: "" });
-        }, 2500);
-    }
+    useEffect( () => {
+        if(handleStatus.status !== ""){
+            let timer = setTimeout(() => {
+                setHandleStatus({ status: "", content: "" })
+            }, 2500);
+            return () => clearTimeout(timer);
+        }
+    }, [handleStatus])
 
     const handleCreatePlaylist = async () => {
         setAddPlaylistLoading(true);
@@ -518,6 +523,7 @@ const Search: React.FC<SearchIF<any>> = ({ ...props }) => {
                                             item.last_Name
                                         )}
                                     </h6>
+                                     
                                     <Button
                                         variant="outlined"
                                         className="text-white"
@@ -526,8 +532,11 @@ const Search: React.FC<SearchIF<any>> = ({ ...props }) => {
                                         }
                                         style={{ fontSize: "0.6rem" }}
                                     >
+                                        <Link className="text-light" to={`/artistDetail/${item._id}`}>
                                         Quan tâm
+                                        </Link>
                                     </Button>
+                                    
                                 </div>
                             </div>
                         ))}

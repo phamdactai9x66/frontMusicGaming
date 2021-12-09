@@ -28,7 +28,7 @@ const FindRoom: React.FC<FindRoomIF<any>> = ({ dispatch, ...props }) => {
         <TextField
           fullWidth
           variant="standard"
-          label="Search..."
+          label="Tìm kiếm tên phòng"
           color="primary"
           // style={{ color: 'white' }}
           InputProps={{

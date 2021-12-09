@@ -11,5 +11,10 @@ class songPlaylistApi {
         let url: string = "/songPlaylist/add";
         return AxiosFormdata.post(url, data);
     }
+
+    removeFromSPL<T extends string>(id: T): Promise<any>{
+        const url: string = `/songPlaylist/${id}/delete`;
+        return Axios.delete(url);
+    }
 }
 export default new songPlaylistApi();

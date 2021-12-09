@@ -43,24 +43,17 @@ const ListPLaylist: React.FC<ListPLaylistIF<any>> = ({ render, ...props }) => {
             {state.display ?
                 state?.data?.map((current: any, index: number) => {
                     return (
-                        <Link to={`/playlistDetail/${current?._id}`} key={index}>
+                        <Link to={{
+                            pathname: `/playlistDetail/${current?._id}`,
+                            state: current
+                        }} key={index}>
                             <div className="box">
                                 <ImagePlaylist idPlaylist={current?._id} />
                                 <div className="icon-box">
                                     <div>
-                                        <BiHeart className="icon" />
                                         <FiPlayCircle className="icon" />
-                                        <HiOutlineDotsCircleHorizontal className="icon" />
                                     </div>
                                 </div>
-                                <Select className="option">
-                                    <MenuItem>
-                                        <AiOutlineDownload /> Tải xuống
-                                    </MenuItem>
-                                    <MenuItem>
-                                        <AiOutlineLink /> Sao chép link
-                                    </MenuItem>
-                                </Select>
                                 <h6>{current.name} </h6>
                             </div>
                         </Link>

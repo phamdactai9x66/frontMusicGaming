@@ -3,14 +3,16 @@ import { Link } from "react-router-dom"
 import topicApi from "api/topicApi"
 import categoryApi from "api/categoryApi"
 import { HandleGet } from "component/MethodCommon";
-import { variableCommon } from "component/variableCommon"
+import { variableCommon } from "component/variableCommon";
+import Loadings from "./../../loading/loading";
 interface CategoryIF<T> {
 
 }
 
 const Category: React.FC<CategoryIF<any>> = ({ ...props }) => {
   document.title = "Thể loại - Music Game"
-  const [handle, setHandle] = useState({ data: { dataTopic: [], dataCate: [] }, display: true })
+  const [handle, setHandle] = useState({ data: { dataTopic: [], dataCate: [] }, display: true });
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     (async () => {
@@ -19,10 +21,12 @@ const Category: React.FC<CategoryIF<any>> = ({ ...props }) => {
       const [dataCate, errorCate] = await HandleGet<Function>(categoryApi.getAll, {});
       if (error || data.status === variableCommon.statusF || dataCate.status === variableCommon.statusF) return
 
-      setHandle({ data: { dataTopic: data?.data, dataCate: dataCate?.data }, display: true })
+      setHandle({ data: { dataTopic: data?.data, dataCate: dataCate?.data }, display: true });
+      setLoading(false);
     })()
     return () => {
       return setHandle(value => ({ ...value, display: false }));
+      setLoading(false);
     }
   }, [])
   const subCategory = (subCategory: any[], id_Topic: string): JSX.Element => {
@@ -42,7 +46,7 @@ const Category: React.FC<CategoryIF<any>> = ({ ...props }) => {
                 </figure>
                 <div className="icon-box_category">
                   <div>
-                    <h6 className="icon">{current?.name}</h6>
+                    <h6 className="icon" style={{fontSize:'1.2rem'}}>{current?.name}</h6>
                   </div>
                 </div>
               </div>
@@ -84,6 +88,7 @@ const Category: React.FC<CategoryIF<any>> = ({ ...props }) => {
 
   return (
     <div className="container-category">
+      {loading && <Loadings/> }
       <div className="banner-category">
         <img src="https://html.nkdev.info/goodgames/assets/images/gallery-7.jpg" alt="" />
       </div>
