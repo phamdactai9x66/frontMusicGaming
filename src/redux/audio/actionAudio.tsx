@@ -14,7 +14,7 @@ const sliceAudio = createSlice({
         playSong(state: formStateAudio, action: PayloadAction<{ _id: string, listIdSong?: any }>) {
             const { _id, listIdSong } = action.payload;
             const findSong = state.likstStaticAudio[_id];
-            // debugger
+            
             if (listIdSong && listIdSong.length) {
                 let saveIdSong: any[] = []
                 listIdSong.forEach((currentAudio: any) => {
@@ -30,6 +30,7 @@ const sliceAudio = createSlice({
                     if (state.likstStaticAudio[currentAudio]) {
                         return saveIdSong = [...saveIdSong, state.likstStaticAudio[currentAudio]];
                     }
+                    
                 })
                 state.listAudio = saveIdSong
             } else {

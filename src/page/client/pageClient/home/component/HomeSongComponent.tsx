@@ -147,7 +147,7 @@ const HomeSongComponent: React.FC<HomeSongComponentIF<any>> = (props) => {
 
     const playAudio = <T extends string>(_id: T): void => {
         dispatch(playSong({ _id }))
-        // console.log(_id);
+        console.log('day là ids',_id);
     }
     const handleLogged = () => {
         setIsLogged(false);
