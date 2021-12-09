@@ -100,11 +100,14 @@ const ListMusicNew: React.FC<ListMusicNewIF<any>> = (props) => {
         setIsLogged(false);
     }
 
-    if (handleStatus.status !== "") {
-        setTimeout(() => {
-            setHandleStatus({ status: "", content: "" });
-        }, 3000);
-    }
+    useEffect( () => {
+        if(handleStatus.status !== ""){
+            let timer = setTimeout(() => {
+                setHandleStatus({ status: "", content: "" })
+            }, 2500);
+            return () => clearTimeout(timer);
+        }
+    }, [handleStatus])
 
     const handleCreatePlaylist = async () => {
         if (!playlistName) {

@@ -208,11 +208,14 @@ const Chart: React.FC<chart<any>> = ({ ...props }) => {
       setLocationlogged(false);
   }
 
-  if (handleStatus.status !== "") {
-      setTimeout(() => {
-          setHandleStatus({ status: "", content: "" });
-      }, 2500);
-  }
+  useEffect( () => {
+    if(handleStatus.status !== ""){
+        let timer = setTimeout(() => {
+            setHandleStatus({ status: "", content: "" })
+        }, 2500);
+        return () => clearTimeout(timer);
+    }
+}, [handleStatus])
 
   const handleCreatePlaylist = async () => {
       setAddPlaylistLoading(true)

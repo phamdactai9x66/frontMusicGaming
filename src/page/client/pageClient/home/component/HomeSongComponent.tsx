@@ -154,11 +154,14 @@ const HomeSongComponent: React.FC<HomeSongComponentIF<any>> = (props) => {
         setLocationlogged(false);
     }
 
-    if (handleStatus.status !== "") {
-        setTimeout(() => {
-            setHandleStatus({ status: "", content: "" });
-        }, 2500);
-    }
+    useEffect( () => {
+        if(handleStatus.status !== ""){
+            let timer = setTimeout(() => {
+                setHandleStatus({ status: "", content: "" })
+            }, 2500);
+            return () => clearTimeout(timer);
+        }
+    }, [handleStatus])
 
     const handleCreatePlaylist = async () => {
         setAddPlaylistLoading(true)
@@ -216,14 +219,6 @@ const HomeSongComponent: React.FC<HomeSongComponentIF<any>> = (props) => {
                     </div>
                     <div className="icon_item">
                         <AiOutlineDownload onClick={() => handleDownload(item)} className="icon" />
-                        {/* <LoadingButton
-                            onClick={() => handleAdd(item._id, user._id, "like")}
-                            loading={true}
-                            loadingIndicator={<CircularProgress size={18} color="inherit" />}
-                            className="icon"
-                        >
-                            <AiFillHeart />
-                        </LoadingButton> */}
                         {likeLoading.indexOf(item._id) === -1 ? <AiFillHeart onClick={() => handleAdd(item._id, user._id, "like")} className="icon" /> : <span className='loading-icon'><CircularProgress className='loading-icon' size={15} sx={{ color: "#d6f4f8" }} /></span>}
                         <IoMdAdd className="icon" onClick={(e) => {
                             openPopover(e);
