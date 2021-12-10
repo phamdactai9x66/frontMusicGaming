@@ -69,7 +69,7 @@ const SearchSongs: React.FC<SearchSongs<any>> = ({ addSongToRoom, ...props }) =>
                 renderOption={(props: any, current: any) => (
                     <div {...props}>
                         <ListItem
-                            style={{ display: "flex", cursor: "pointer" }}
+                            style={{ display: "flex", cursor: "pointer", background: "red"}}
                             onClick={() => { addSongToRoom(current?._id) }}
                         >
                             <ListItemAvatar style={{}}>

@@ -7,6 +7,7 @@ import { Formik, Form } from 'formik';
 import SchemaConfirmPassWord from './component/schemaConfirmPassWord';
 import userApi from 'api/useApi';
 import { variableCommon } from 'component/variableCommon';
+import { TextField} from '@mui/material';
 
 interface ForgotPasswordIF<T> {
 
@@ -66,9 +67,9 @@ const ComfirmPassword: React.FC<ForgotPasswordIF<any>> = ({ ...props }) => {
                         {formik => {
                             return (
                                 <Form>
-                                    <InputText name="passWord" type="password" label="Nhập mật khẩu mới" />
+                                    <TextField label="Password" variant="filled" type="password" className="input_forgotPass" />
                                     <br />
-                                    <InputText name="confirmPassWord" type="password" label="Xác nhận mật khẩu" />
+                                    <TextField label="Xác nhận mật khẩu" variant="filled" type="password" className="input_forgotPass" />
                                     <br />
                                     <LoadingButton style={{ padding: "0.5rem 3rem", marginBottom: "1rem" }} loading={formik.isSubmitting}
                                         variant="contained" color="secondary" type="submit">
