@@ -219,23 +219,23 @@
         color: #ffffff;
     }
     position: relative;
-    border-radius: 0.3rem;
+    border-radius: 2.5rem 0 2.5rem 0;
     figure {
         overflow: hidden;
-        border-radius: 0.3rem;
+        border-radius: 2.5rem 0 2.5rem 0;
         box-shadow: 0 3px 7px rgba(0, 0, 0, 0.438);
         img {
-            border-radius: 0.3rem;
+            border-radius: 2.5rem 0 2.5rem 0;
             transition: 0.5s;
             width: 100%;
             height: 230px;
         }
     }
     %handel_category {
-        display: flex !important;
+            display: flex !important;
             justify-content: center;
             align-items: center;
-            border-radius: 0.3rem;
+            border-radius: 2.5rem 0 2.5rem 0;
             position: absolute;
             width: 100%;
             height: 230px;

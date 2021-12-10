@@ -40,18 +40,20 @@ const CreateRoom: React.FC<CreateRoom<any>> = ({ history, ...props }) => {
                 name_Room: value.name,
                 password: value.password,
                 limit_User: value?.limitUser,
-                status: value?.checkPassword
+                status: value?.checkPassword,
+                id_User: user._id
             }
             const createRoom: any = await roomApi.createRoom<object>(data);
             const RoomUser: any = {
-                id_Room: createRoom?.data._id,
+                id_Room: createRoom?.data?._id,
                 id_User: user._id
             }
             const RoomUserApi: any = await roomUserApi.postOne<object>(RoomUser);
             if (createRoom.status === variableCommon.statusS && RoomUserApi.status === variableCommon.statusS) {
                 io(server).emit("JoinRoom")
                 return history.push(`/listenTogether/roomDetail/${createRoom?.data?._id || ''}`, {
-                    idRoomUser: RoomUserApi?.data[0]._id
+                    idRoomUser: RoomUserApi?.data[0]._id,
+                    name_Room: createRoom.data?.name_Room
                 })
             }
             setalertForm({ status: 'error', display: true, message: RoomUserApi.message })

@@ -10,10 +10,10 @@ import { formStateUser } from 'redux/user/stateUser';
 import { useSelector } from 'react-redux';
 import playlistApi from 'api/playlistApi';
 import songApi from 'api/songApi';
-import { HandleGet, tranFormDataId } from "component/MethodCommon";
+import { tranFormDataId } from "component/MethodCommon";
 import artistApi from 'api/ArtistApi';
 // import { utimes } from 'fs';
-import { useScroll } from 'react-use';
+// import { useScroll } from 'react-use';
 import playlistSongApi from 'api/playlistSongApi';
 import Loadings from 'page/client/loading/loading';
 

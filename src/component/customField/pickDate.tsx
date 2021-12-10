@@ -40,7 +40,7 @@ const PickDate: React.FC<PickDate<any>> = ({ ...props }) => {
         }
     }
     const onClose = () => {
-        formik.setTouched(field.name, true,);
+        // formik.setTouched(field.name, true);
     }
     const onchangeInput = (event: Event | any) => {
         const getValue = (event.target as HTMLInputElement).value;
@@ -55,7 +55,7 @@ const PickDate: React.FC<PickDate<any>> = ({ ...props }) => {
                     {...props.other}
                     // views={["day", "month", "year"]}
                     value={valueDatePicker}
-                    minDate="15/10/1980"
+                    // minDate="15/10/1980"
                     onChange={onChange}
                     onClose={onClose}
                     renderInput={(params) => <TextField value={valueDatePicker} onChange={onchangeInput} error={false}  {...params} variant="standard" helperText={meta.error || ''} fullWidth />}

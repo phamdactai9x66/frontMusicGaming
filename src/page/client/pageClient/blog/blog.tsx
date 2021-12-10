@@ -10,6 +10,7 @@ import './blog.scss'
 import { debounce } from '@material-ui/core';
 import blogApi from 'api/BlogApi';
 import { RouteComponentProps } from 'react-router-dom';
+import Loadings from 'page/client/loading/loading';
 // import { current } from '@reduxjs/toolkit';
 
 
@@ -33,9 +34,10 @@ const Blog: React.FC<blog<any>> = ({ match, ...props }) => {
     });
     const [allBlogs, setAllBlogs] = useState([]);
     const [category, setCategory] = useState<any>(null);
+    const [loading, setLoading] = useState(true);
 
-    const searchDebounced = useCallback<any>(debounce( async (value: any) => {
-        const { data } = await blogApi.getAll( {title: value} );
+    const searchDebounced = useCallback<any>(debounce(async (value: any) => {
+        const { data } = await blogApi.getAll({ title: value });
         const newData = [...data];
         setCount(Math.ceil(data.length / 7));
         setAllBlogs(data);
@@ -44,17 +46,17 @@ const Blog: React.FC<blog<any>> = ({ match, ...props }) => {
             data: newData.splice(0, 7),
         });
         // setSearchRecommendResults(data);
-    }, 1000), [])
+    }, 100), [])
     const handleSearch = (value: string) => {
         setSearchKeyword(value);
         searchDebounced(value);
     }
 
-    const panigationChange = (e: any, page: number) => { 
+    const panigationChange = (e: any, page: number) => {
         const startBlog = 7 * (page - 1);
         const newAllBlogs = [...allBlogs];
-        const showBlog = newAllBlogs.splice( startBlog, startBlog + 6)
-        console.log(allBlogs)
+        const showBlog = newAllBlogs.splice(startBlog, startBlog + 6)
+        // console.log(allBlogs)
         setCurrenPage(page);
         setBlog({
             loading: false,
@@ -64,30 +66,32 @@ const Blog: React.FC<blog<any>> = ({ match, ...props }) => {
 
     useEffect(() => {
         const getBlog = async () => {
+
             const responseGetAll = await blogApi.getAll({});
             setAllBlogs(responseGetAll.data);
 
             const counts = Math.ceil(responseGetAll.data.length / 7);
-            setCount(counts); 
-            
+            setCount(counts);
+
             const newData = [...responseGetAll.data];
             setBlog({
                 loading: false,
                 data: newData.splice(0, 7),
             });
+            setLoading(false);
         }
         getBlog();
     }, []);
 
-    useEffect( () => {
-        if(category){
+    useEffect(() => {
+        if (category) {
             (async () => {
-                const responseGetAll = await blogApi.getAll({ id_CategoryBlog: category._id});
+                const responseGetAll = await blogApi.getAll({ id_CategoryBlog: category._id });
                 setAllBlogs(responseGetAll.data);
 
                 const counts = Math.ceil(responseGetAll.data.length / 7);
-                setCount(counts); 
-                
+                setCount(counts);
+
                 const newData = [...responseGetAll.data];
                 setBlog({
                     loading: false,
@@ -97,52 +101,56 @@ const Blog: React.FC<blog<any>> = ({ match, ...props }) => {
         }
     }, [category]);
 
-    const handleCategory = ( item: CategoryBlogIF) => {
+    const handleCategory = (item: CategoryBlogIF) => {
         setCategory(item);
         setBlog({
             loading: true,
             data: [],
         });
     }
-    
+
     return (
         <>
-   
-        <div className="container-blog">
-            <div className="title-blog grid-2">
-                <div className="text-title-blog">
-                    <h3 className="color-blog title_all" style={{fontSize:'1.3rem'}}>{category ? category.name : "Danh Sách Blog"}</h3>
-                </div>
-                <div className="div-hr">
-                    <hr />
-                </div>
-            </div>
-            <div className="blog-main">
-                <div className="flex-blog">
-                    <ListBlog blog={blog} />
-                    {/* <ListBlog blog={blog} searchRecommendResults={searchRecommendResults} /> */}
-                </div>
-                <div className="blog-2">
-                    <div className="search" >
-                        <BiSearch className="icon" />
-                        <input placeholder="Tìm kiếm Blogs" onChange={(e) => handleSearch(e.target.value)} type="text" />
-
+            {loading && <Loadings />}
+            <div className="container-blog">
+                <div className="title-blog grid-2">
+                    <div className="text-title-blog">
+                        <h3 className="color-blog title_all" style={{ fontSize: '1.3rem' }}>{category ? category.name : "Danh Sách Blog"}</h3>
                     </div>
-                    <ListCategoryBlog handleCategory={handleCategory} />
-                    {/* <div className="box-2">
+                    <div className="div-hr">
+                        <hr />
+                    </div>
+                </div>
+                <div className="blog-main">
+                    <div className="flex-blog">
+                        <ListBlog blog={blog} />
+                        {/* <ListBlog blog={blog} searchRecommendResults={searchRecommendResults} /> */}
+                    </div>
+                    <div className="blog-2">
+                        <div className="search" >
+                            <BiSearch className="icon" />
+                            <input placeholder="Tìm kiếm Blogs" onKeyUp={(e: any) => {
+                                if (e.keyCode === 13) {
+                                    handleSearch(e.target?.value)
+                                }
+                            }} type="text" />
+
+                        </div>
+                        <ListCategoryBlog handleCategory={handleCategory} />
+                        {/* <div className="box-2">
                         <h4 className="color"> Bình luận gần đây</h4>
                         <Link className="title-blog-name color" to="">Top 100 Bài Hát ...</Link>
                         <Link className="title-blog-name color" to="">Top 100 Bài Hát ...</Link>
                         <Link className="title-blog-name color" to="">Top 100 Bài Hát ...</Link>
                     </div> */}
-                    <PostNew />
-                </div>
+                        <PostNew />
+                    </div>
 
+                </div>
+                <div className="Pagination">
+                    <Pagination count={count} page={currentPage} onChange={panigationChange} style={{ padding: 10, paddingTop: 20, color: "#fff" }} />
+                </div>
             </div>
-            <div className="Pagination">
-                <Pagination count={count} page={currentPage} onChange={panigationChange} style={{ padding: 10, paddingTop: 20, color: "#fff" }} />
-            </div>
-        </div>
         </>
     )
 }

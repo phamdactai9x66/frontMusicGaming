@@ -108,7 +108,7 @@ const ModalArtist: React.FC<ModalArtist<any>> = ({ state, onClose, ...props }) =
                     <TextField
                       inputProps={{ readOnly: true, }}
                       label="Birth"
-                      value={dataArtist.data?.birth}
+                      value={getDate(dataArtist.data?.birth)}
                       variant="standard"
                       fullWidth
                     />

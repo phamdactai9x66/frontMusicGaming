@@ -9,6 +9,7 @@ import SongApi from "api/songApi";
 import { HandleGet } from "component/MethodCommon";
 import { useDispatch } from "react-redux";
 import { playSong } from "redux/audio/actionAudio";
+import Loadings from "./../../loading/loading";
 interface CategoryDetailPlaylistIF<T> extends RouteComponentProps {
 
 }
@@ -17,14 +18,16 @@ const CategoryDetailPlaylist: React.FC<CategoryDetailPlaylistIF<string>> = ({ ma
     const [song, setSong] = useState({ display: true, data: [] });
     const cate = useRef(null);
     const dispatch = useDispatch();
+    const [loading, setLoading] = useState(true);
+
     useEffect(() => {
         (async () => {
             if (!song.display) return;
             const getUrl = new URL(window.location.href);
             const getSearch = new URLSearchParams(getUrl.search);
-            console.log('thisis get url: ', getUrl)
-            console.log('thisis get url search: ', getUrl.search)
-            console.log('thisis get search: ', getSearch)
+            // console.log('thisis get url: ', getUrl)
+            // console.log('thisis get url search: ', getUrl.search)
+            // console.log('thisis get search: ', getSearch)
             const query = {
                 id_Topic: getSearch.get('idTopic'),
                 id_Categories: getSearch.get('id_subCate'),
@@ -36,10 +39,11 @@ const CategoryDetailPlaylist: React.FC<CategoryDetailPlaylistIF<string>> = ({ ma
             }
             setSong({ display: true, data: data.data });
             cate.current = findCate.data;
-
+            setLoading(false);
         })()
         return () => {
             setSong(value => ({ ...value, display: false }));
+            setLoading(false);
         }
     }, [])
     const getListId = (dataSong: any[]) => {
@@ -62,7 +66,7 @@ const CategoryDetailPlaylist: React.FC<CategoryDetailPlaylistIF<string>> = ({ ma
                             <div>
                                 <FiPlayCircle className="icon"
                                     onClick={() => {
-                                        console.log(current._id)
+                                        // console.log(current._id)
                                         dispatch(playSong({ _id: current._id, listIdSong: getListId(song.data) }))
                                     }} />
                             </div>
@@ -77,6 +81,7 @@ const CategoryDetailPlaylist: React.FC<CategoryDetailPlaylistIF<string>> = ({ ma
 
     return (
         <>
+            {loading && <Loadings />}
             <div className="CategoryDetailPlaylist">
                 <div className="img_banner">
                     <img src={(cate?.current as any)?.image} alt="" />

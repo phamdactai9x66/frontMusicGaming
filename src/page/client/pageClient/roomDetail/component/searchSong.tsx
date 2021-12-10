@@ -82,7 +82,7 @@ const SearchSongs: React.FC<SearchSongs<any>> = ({ addSongToRoom, ...props }) =>
                 renderInput={(params) => (
                     <TextField
                         {...params}
-                        label="Search..."
+                        label="Tìm kiếm"
                         variant="standard"
                         value={inputSearch} onChange={searchSong}
                     />

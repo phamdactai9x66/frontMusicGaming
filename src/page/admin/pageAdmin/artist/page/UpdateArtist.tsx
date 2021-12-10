@@ -20,14 +20,14 @@ const initialValue = {
   first_Name: '',
   last_Name: '',
   image: '',
-  gender: '',
-  birth: null
+  gender: 'false',
+  birth: new Date().toISOString()
 }
 
 const UpdateArtist: React.FC<UpdateArtist<any>> = ({ changePage, _id, ...props }) => {
   const refForm = useRef<HTMLFormElement | any>(null);
   const [alert, setAlert] = useState({ display: false, message: "", type: "" });
-  const [dataArtist, setDataArtist] = useState({ data: null, display: true });
+  const [dataArtist, setDataArtist] = useState({ data: {}, display: true });
 
   useEffect(() => {
     (async () => {
@@ -42,6 +42,7 @@ const UpdateArtist: React.FC<UpdateArtist<any>> = ({ changePage, _id, ...props }
 
   const submitForm = (data: any, action: any) => {
     const getForm = new FormData(refForm.current);
+    getForm.set('birth', data.birth)
     setTimeout(async () => {
       const EditArtist = await ArtistApi.putOne<FormData, string>(getForm, _id);
       if (EditArtist.status !== variableCommon.statusF) {
@@ -80,13 +81,14 @@ const UpdateArtist: React.FC<UpdateArtist<any>> = ({ changePage, _id, ...props }
       </Alert>}
 
       <Formik
-        initialValues={dataArtist.data || initialValue}
+        initialValues={{ ...dataArtist.data, gender: (dataArtist.data as any)?.gender + '' } || initialValue}
         onSubmit={submitForm}
         validateOnChange={false}
         validationSchema={validationArtist}
         enableReinitialize
       >
         {formik => {
+          // console.log(formik.values)
           return (
             <Form ref={refForm}>
               <div className="grid-addpage">
@@ -97,7 +99,7 @@ const UpdateArtist: React.FC<UpdateArtist<any>> = ({ changePage, _id, ...props }
                         <InputText
                           name="first_Name"
                           label="Tên ca sĩ"
-                          other={{ variant: "standard" }}
+                          other={{ variant: "standard", InputLabelProps: { shrink: true } }}
                         />
                       </div>
                     </div>
@@ -110,7 +112,7 @@ const UpdateArtist: React.FC<UpdateArtist<any>> = ({ changePage, _id, ...props }
                         <InputText
                           name="last_Name"
                           label="Họ ca sĩ"
-                          other={{ variant: "standard" }}
+                          other={{ variant: "standard", InputLabelProps: { shrink: true } }}
                         />
                       </div>
                     </div>
@@ -139,6 +141,7 @@ const UpdateArtist: React.FC<UpdateArtist<any>> = ({ changePage, _id, ...props }
                       <div className="inputForm">
                         <RadioField
                           name="gender"
+                          label="Gender"
                           data={genderOption}
                           other={{ variant: "standard" }}
                         />
