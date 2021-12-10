@@ -106,7 +106,7 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                             <td><Avatar variant='rounded' alt="" src={item.avatar}/></td>
                             <td>{item.first_name}{item.last_name}</td>
                             <td>{getDate(item.createdAt)}</td>
-                            <td>{item.role === 1 ? 'Member' : "Member"}</td>
+                            <td>{item.role === 2 ? 'Member' : "Member"}</td>
                           </tr>
                         })}
                       </tbody>
@@ -130,7 +130,7 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                             <td><Avatar variant='rounded' alt="" src={item.avatar}/></td>
                             <td>{item.first_name}{item.last_name}</td>
                             <td>{getDate(item.createdAt)}</td>
-                            <td>{item.role === 1 ? 'Viewer' : "Viewer"}</td>
+                            <td>{item.role === 0 ? 'Viewer' : "Viewer"}</td>
                           </tr>
                         })}
                       </tbody>
