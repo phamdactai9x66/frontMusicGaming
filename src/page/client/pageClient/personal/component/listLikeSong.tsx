@@ -52,9 +52,9 @@ const ListLikeSong: React.FC<ListLikeSongIF<any>> = ({ ...props }) => {
                 const { audio, image, title, _id } = likeSong.dataSong[id_Songs];
                 const getAudio = likeSong.dataSong[id_Songs];
                 return (
-                    <div className="music_item" key={index}>
+                    <div className="music_item p-1" style={{border:'none'}} key={index}>
                         <img src={image} alt="" />
-                        <div className="box-icon">
+                        <div className="box-icon m-1">
                             <BsFillPlayFill onClick={() => { dispatch(playSong(getAudio)) }} />
                         </div>
                         <div>

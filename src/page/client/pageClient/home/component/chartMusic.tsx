@@ -44,7 +44,8 @@ export default function ChartMusic() {
     <>
       <div className="music-charts">
         <div>
-          <h4 className="title_all">#Musichart <BiPlayCircle /></h4>
+          <h4 className="title_all">#Musichart</h4> 
+          {/* <BiPlayCircle /> */}
           {state.data.map((current, index) => {
             const { title, image, _id } = current;
             return (

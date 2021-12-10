@@ -37,7 +37,8 @@ const Overview = () => {
             <div className="Personal">
                 {/* <Tabed /> */}
                 <div className="overview">
-                    <h4 className="title_all" style={{ fontSize: '1.3rem' }}>Bài hát <MdNavigateNext className="icon" /></h4>
+                    <h4 className="title_all" style={{ fontSize: '1.3rem' }}>Bài hát </h4>
+                    {/* <MdNavigateNext className="icon" /> */}
                     <div className="main1">
                         <div className="box-slider">
                             <Slider {...settings_overview}>
@@ -160,7 +161,7 @@ const Overview = () => {
                         </div>
                     </div>
                     <div className="main2">
-                        <h4 className="title_all" style={{ fontSize: '1.3rem' }}>Playlist <MdNavigateNext className="icon" /></h4>
+                        <h4 className="title_all" style={{ fontSize: '1.3rem' }}>Playlist </h4>
                         <div className="main2_add">
                             <Popup
                                 modal
@@ -285,7 +286,8 @@ const Overview = () => {
                         </div>
                     </div>
                     <div className="main3">
-                        <h4 className="title_all" style={{ fontSize: '1.3rem' }}>Nhạc sĩ <MdNavigateNext className="icon" /></h4>
+                        <h4 className="title_all" style={{ fontSize: '1.3rem' }}>Nhạc sĩ </h4>
+                        {/* <MdNavigateNext className="icon" /> */}
                         <div className="main3_nhacsi">
                             <div className="box_nhacsi">
                                 <div className="box-img">

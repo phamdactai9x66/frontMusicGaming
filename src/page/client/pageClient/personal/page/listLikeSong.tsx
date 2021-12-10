@@ -12,7 +12,8 @@ const ListLikeSong: React.FC<ListLikeSongIF<any>> = ({ ...props }) => {
 
     return (
         <>
-            <h4 className="title_all">Bài hát <MdNavigateNext className="icon" /></h4>
+            <h4 className="title_all">Bài hát</h4>
+            {/* <MdNavigateNext className="icon" /> */}
             <div className="main1" style={{ gridTemplateColumns: "100%" }}>
                 <div className="box-music">
                     <ListLikeSongComponent />
