@@ -5,6 +5,7 @@ import apiAlbum from "api/albumApi"
 import { HandleGet, getDate } from "component/MethodCommon";
 import ArtistApi from "api/ArtistApi";
 import { variableCommon } from "component/variableCommon";
+
 const typeModal: any = {
     position: 'absolute',
     top: '50%',

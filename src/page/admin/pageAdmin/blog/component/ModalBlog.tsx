@@ -17,7 +17,6 @@ const typeModal: any = {
   borderRadius: 1,
   boxShadow: 24,
   p: 4,
-  background: 'gray'
 }
 
 const useStyle = makeStyles({
@@ -45,6 +44,7 @@ const ModalBlog: React.FC<ModalBlog<any>> = ({ state, onClose, ...props }) => {
     (async () => {
       if (dataBlog.error) return;
       const [data, error] = await HandleGet(blogApi.getOne, state._id);
+      console.log('data : ', data);
       if (error) setDataBlog((value: any) => ({ ...value, error: true, display: false }));
       await findUser(data?.data?.id_User);
       await findCategoryBlog(data?.data?.id_CategoryBlog);
@@ -97,7 +97,7 @@ const ModalBlog: React.FC<ModalBlog<any>> = ({ state, onClose, ...props }) => {
                 <Grid item xs={12} md={6}>
                   <Typography>
                     <img
-                      src={dataBlog.data?.image}
+                      src={(dataBlog.data?.[0] as any)?.image}
                       className={classes.styleImage}
                       alt=""
                     />
@@ -109,7 +109,7 @@ const ModalBlog: React.FC<ModalBlog<any>> = ({ state, onClose, ...props }) => {
                     <TextField
                       inputProps={{ readOnly: true }}
                       label="Title"
-                      value={dataBlog.data?.title}
+                      value={(dataBlog.data?.[0] as any)?.title}
                       variant="standard"
                       fullWidth
                     />
@@ -121,7 +121,7 @@ const ModalBlog: React.FC<ModalBlog<any>> = ({ state, onClose, ...props }) => {
                     <TextField
                       inputProps={{ readOnly: true }}
                       label="Content"
-                      value={dataBlog.data?.content}
+                      value={(dataBlog.data?.[0] as any)?.content}
                       variant="standard"
                       fullWidth
                     />
@@ -133,7 +133,7 @@ const ModalBlog: React.FC<ModalBlog<any>> = ({ state, onClose, ...props }) => {
                     <TextField
                       inputProps={{ readOnly: true }}
                       label="Status"
-                      value={dataBlog.data?.status}
+                      value={(dataBlog.data?.[0] as any)?.status}
                       variant="standard"
                       fullWidth
                     />
@@ -145,7 +145,7 @@ const ModalBlog: React.FC<ModalBlog<any>> = ({ state, onClose, ...props }) => {
                     <TextField
                       inputProps={{ readOnly: true }}
                       label="View"
-                      value={dataBlog.data?.view}
+                      value={(dataBlog.data?.[0] as any)?.view}
                       variant="standard"
                       fullWidth
                     />
