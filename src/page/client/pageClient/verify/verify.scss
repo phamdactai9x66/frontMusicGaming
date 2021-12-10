@@ -1,11 +1,15 @@
 
     .noti_activityAccount{
-        text-align: center;
-        padding-top: 200px;
-        background-color: rgb(255, 255, 255);
-        height: 600px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color:#0e192a;
+        height: 100%;
+        margin: 2.7rem;
+        border-radius: 0.5rem;
+        color: #fff;
         #icon-check{
-            color: rgb(17, 156, 70); 
+            color: rgb(47, 211, 203); 
         }
         
     }
