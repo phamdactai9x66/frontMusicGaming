@@ -18,8 +18,8 @@ const initialValue = {
   first_Name: '',
   last_Name: '',
   image: '',
-  gender: '',
-  birth: null
+  gender: 'false',
+  birth: new Date().toISOString()
 }
 
 const AddArtist: React.FC<AddArtist<any>> = ({ changePage, ...props }) => {
@@ -28,6 +28,8 @@ const AddArtist: React.FC<AddArtist<any>> = ({ changePage, ...props }) => {
 
   const submitForm = (data: any, action: any) => {
     const getForm = new FormData(refForm.current);
+    getForm.set('birth', data.birth)
+    // console.log(data)
     setTimeout(async () => {
       const createArtist = await ArtistApi.postOne<FormData>(getForm);
 
@@ -73,6 +75,7 @@ const AddArtist: React.FC<AddArtist<any>> = ({ changePage, ...props }) => {
         validationSchema={validationArtist}
       >
         {formik => {
+          // console.log(formik.values)
           return (
             <Form ref={refForm}>
               <div className="grid-addpage">

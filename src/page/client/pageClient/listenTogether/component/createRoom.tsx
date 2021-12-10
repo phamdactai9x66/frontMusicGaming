@@ -97,9 +97,6 @@ const CreateRoom: React.FC<CreateRoom<any>> = ({ history, ...props }) => {
                             <div>
                                 <FormControlLabel control={<Checkbox {...formik.getFieldProps('checkPassword')} />} label="add password for this room" />
                             </div>
-                            {/* <Button variant="contained" color="primary" type="submit">
-                                Tạo phòng
-                            </Button> */}
                             <LoadingButton loading={formik.isSubmitting} variant="contained" color="primary" type="submit">
                                 Tạo Phòng
                             </LoadingButton>
