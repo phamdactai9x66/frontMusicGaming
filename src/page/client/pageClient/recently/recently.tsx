@@ -182,7 +182,7 @@ const Recently: React.FC<RecentlyIF<any>> = ({ ...props }) => {
             <div className="container-nhacmoi">
             <div className ="title-nhacmoi-tt grid-2">
                 <div className="text-title-nhacmoi-tt">
-                    <h3 className="color-nhacmoi-tt title_all">Nghe gần đây</h3>
+                    <h4 className="color-nhacmoi-tt title_all text-white">Nghe gần đây</h4>
                 </div>
                 {/* <div className="div-svg">
                     <Play className="svg color-nhacmoi-tt" />
@@ -196,12 +196,12 @@ const Recently: React.FC<RecentlyIF<any>> = ({ ...props }) => {
                             {locationLogged && <Notification handleLogged={handleLogged} />}
                             {handleStatus.status !== "" && <AlertComponent status={handleStatus.status} content={handleStatus.content} />}
                             {songs.length !== 0 && songs.map((item: any,index) => (
-                                <div className="music_item music_item--grid border-0 p-1 mb-4" key={item._id}>
-                                    <div>
-                                        <h5 className="stt mt-2 ms-2">{index+1}</h5>
+                                <div className="music_item music_item--grid border-0 p-1 mb-4 w-100" key={item._id}>
+                                    <div className=''>
+                                        {/* <h5 className="stt mt-2 ms-2">{index+1}</h5> */}
                                     </div>
-                                    <img src={item.image} alt={item.title} />
-                                    <div className="box-icon m-1 pt-1 ml-3s " >
+                                    <img style={{marginLeft:'-2rem'}} src={item.image} alt={item.title} />
+                                    <div className="box-icon pt-1  " style={{margin:'0.28rem 1.08rem'}} >
                                         <BsFillPlayFill onClick={() => playAudio(item._id)} />
                                     </div>
                                     <div onClick={() => playAudio(item._id)} style={{cursor: "pointer"}} className="mt-1">

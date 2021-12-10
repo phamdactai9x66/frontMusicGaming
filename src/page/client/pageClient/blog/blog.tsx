@@ -115,7 +115,7 @@ const Blog: React.FC<blog<any>> = ({ match, ...props }) => {
             <div className="container-blog">
                 <div className="title-blog grid-2">
                     <div className="text-title-blog">
-                        <h3 className="color-blog title_all" style={{ fontSize: '1.3rem' }}>{category ? category.name : "Danh Sách Blog"}</h3>
+                        <h4 className="color-blog title_all" >{category ? category.name : "Danh Sách Blog"}</h4>
                     </div>
                     <div className="div-hr">
                         <hr />
