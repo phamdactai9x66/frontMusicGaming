@@ -5,6 +5,7 @@ import userApi from '../../../../../api/useApi'
 import BlogApi from '../../../../../api/BlogApi'
 import artistApi from '../../../../../api/ArtistApi'
 import { Formik, Form, Field } from 'formik';
+import { number } from 'yup/lib/locale'
 interface CheckPass<T> {
 
 }
@@ -19,6 +20,7 @@ const CheckPass: React.FC<CheckPass<any>> = () => {
     const [passsong, setPasssong] = useState<any[]>([])
     const [passblog, setPassblog] = useState<any[]>([])
     const [passartist, setPassartist] = useState<any[]>([])
+    const [render, setRender] = useState({number: 0});
 
     const getSong = async () => {
         const { data } = await songApi.getAll({});
@@ -58,40 +60,52 @@ const CheckPass: React.FC<CheckPass<any>> = () => {
         getUser();
         getBlog();
         getArtist();
-    }, []);
+    }, [render]);
 
     const refForm = useRef<HTMLFormElement | any>(null);
+
     const onSubmit1 = (value: any) => {
         value.idp.map(async (item: any) => {
             const { data } = await artistApi.checkPass(item);
         })
-        setTimeout(() => { }, 700)
+        setTimeout(() => {
+            setRender({...render, number: render.number + 1})
+         }, 700)
 
     }
     const onSubmit2 = (value: any) => {
         value.idp.map(async (item: any) => {
             const { data } = await songApi.checkPass(item);
         })
-        setTimeout(() => { }, 700)
+        setTimeout(() => {
+            setRender({...render, number: render.number + 1})
+         }, 700)
 
     }
     const onSubmit3 = (value: any) => {
         value.idp.map(async (item: any) => {
             const { data } = await playlistApi.checkPass(item);
         })
+        setTimeout(() => { 
+            setRender({...render, number: render.number + 1})
+        }, 700)
     }
     const onSubmit4 = (value: any) => {
         value.idp.map(async (item: any) => {
             const { data } = await userApi.checkPass(item);
         })
-        setTimeout(() => { }, 700)
+        setTimeout(() => { 
+            setRender({...render, number: render.number + 1})
+        }, 700)
 
     }
     const onSubmit5 = (value: any) => {
         value.idp.map(async (item: any) => {
             const { data } = await BlogApi.checkPass(item);
         })
-        setTimeout(() => { }, 700)
+        setTimeout(() => { 
+            setRender({...render, number: render.number + 1})
+        }, 700)
 
     }
     return (
@@ -122,7 +136,7 @@ const CheckPass: React.FC<CheckPass<any>> = () => {
                                 {passartist.map((item: any) => {
                                     return (
                                         <div className="content_flex">
-                                            <div>{item.name}</div> <Field className="checkbox_name" name="idp" type="checkbox" value={item._id} />
+                                            <div>{item.first_name} {item.last_name}</div> <Field className="checkbox_name" name="idp" type="checkbox" value={item._id} />
                                         </div>
                                     )
                                 })}
@@ -273,7 +287,7 @@ const CheckPass: React.FC<CheckPass<any>> = () => {
                                 {passblog.map((item: any) => {
                                     return (
                                         <div className="content_flex">
-                                            <div>{item.name}</div> <Field className="checkbox_name" name="idp" type="checkbox" value={item._id} />
+                                            <div>{item.title}</div> <Field className="checkbox_name" name="idp" type="checkbox" value={item._id} />
                                         </div>
                                     )
                                 })}
