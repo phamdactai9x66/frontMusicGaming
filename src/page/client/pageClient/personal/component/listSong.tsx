@@ -156,15 +156,15 @@ const ListSong: React.FC<ListSongIF<any>> = ({ data, ...props }) => {
 
     // let a: any;
 
-    useEffect( () => {
-        if(handleStatus.status !== ""){
+    useEffect(() => {
+        if (handleStatus.status !== "") {
             let timer = setTimeout(() => {
                 setHandleStatus({ status: "", content: "" })
             }, 2500);
             return () => clearTimeout(timer);
         }
     }, [handleStatus])
-    
+
     return (
         <>
             {isLogged && <Notification handleLogged={handleLogged} />}
@@ -191,8 +191,8 @@ const ListSong: React.FC<ListSongIF<any>> = ({ data, ...props }) => {
                                     <GetTimeAudio audio={song?.audio} />
                                 </div>
                                 <div className="icon_item">
-                                <AiOutlineDownload onClick={() => handleDownload(song)} className="icon" />
-                                {likeLoading.indexOf(song._id) === -1 ? <AiFillHeart onClick={() => handleAdd(song._id, user._id, "like")} className="icon" /> : <span className='loading-icon'><CircularProgress className='loading-icon' size={15} sx={{ color: "#d6f4f8" }} /></span>}
+                                    <AiOutlineDownload onClick={() => handleDownload(song)} className="icon" />
+                                    {likeLoading.indexOf(song?._id) === -1 ? <AiFillHeart onClick={() => handleAdd(song._id, user._id, "like")} className="icon" /> : <span className='loading-icon'><CircularProgress className='loading-icon' size={15} sx={{ color: "#d6f4f8" }} /></span>}
                                     <IoMdAdd className="icon" onClick={(e) => {
                                         openPopover(e);
                                         getUserPlaylists();
@@ -260,7 +260,7 @@ const ListSong: React.FC<ListSongIF<any>> = ({ data, ...props }) => {
                                                     </form>
                                                 </div>
                                             </Popover>
-                                            
+
                                             {userPlaylists.loading && <MenuItem className="list" >
                                                 <CircularProgress />
                                             </MenuItem>}
@@ -277,9 +277,9 @@ const ListSong: React.FC<ListSongIF<any>> = ({ data, ...props }) => {
                                 </div>
                             </div>
                         )
-                    }) : <span style={{fontSize: "1rem", color: "#fff"}}>
-                            Bạn chưa có bài hát yêu thích nào? Hãy quay trở lại <Link style={{ fontStyle: 'italic'}} to='/'>trang chủ</Link> và tìm yêu thích của bạn nào.
-                        </span>}
+                    }) : <span style={{ fontSize: "1rem", color: "#fff" }}>
+                        Bạn chưa có bài hát yêu thích nào? Hãy quay trở lại <Link style={{ fontStyle: 'italic' }} to='/'>trang chủ</Link> và tìm yêu thích của bạn nào.
+                    </span>}
 
 
             </div>
