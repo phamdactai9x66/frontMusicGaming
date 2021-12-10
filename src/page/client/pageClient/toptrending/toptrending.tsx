@@ -27,6 +27,7 @@ interface ToptrendingIF<T> {
 }
 
 const Toptrending: React.FC<ToptrendingIF<any>> = ({ ...props }) => {
+    document.title = "Top thịnh hành - Music Game";
 
  
     const history: any = useHistory<any>();
