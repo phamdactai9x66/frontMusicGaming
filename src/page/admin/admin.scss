@@ -61,6 +61,10 @@ main {
             margin-top: 13px;
             color: #dfdede;
             cursor: pointer;
+            width: 2.5rem;
+            overflow: hidden;
+            white-space: nowrap; 
+            text-overflow: ellipsis;
         }
         & div:hover {
           color: #fff;
