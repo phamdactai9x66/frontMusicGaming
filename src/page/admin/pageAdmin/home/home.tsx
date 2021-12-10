@@ -19,7 +19,7 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
   const [viewer, setViewer] = useState<any[]>([]);
 
   const getUser = async () => {
-    const { data } = await userApi.getAll({});
+    const { data } = await userApi.getAll({_limit: 6});
 
     const admin = data.filter((item: any) => item.role == 1)
     const member = data.filter((item: any) => item.role == 2)
