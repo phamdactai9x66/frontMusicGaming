@@ -22,9 +22,9 @@ const ComfirmPassword: React.FC<ForgotPasswordIF<any>> = ({ ...props }) => {
     const {idUser, hash} = useParams<{idUser:string,hash:string}>();
 
     const submitForm = (data: any) => {
-        // console.log(data)
-        // console.log(idUser)
-        // console.log(hash)
+        console.log(data)
+        console.log(idUser)
+        console.log(hash)
         setTimeout(async () => {
             const resetPassWord = await userApi.resetPassWord(idUser, hash, data);
             if (resetPassWord.status !== variableCommon.statusF) {
@@ -67,9 +67,9 @@ const ComfirmPassword: React.FC<ForgotPasswordIF<any>> = ({ ...props }) => {
                         {formik => {
                             return (
                                 <Form>
-                                    <TextField label="Mật khẩu mới" variant="filled" type="password" name="passWord" className="input_forgotPass" />
+                                    <InputText label="Mật khẩu mới" type="password" name="passWord"/>
                                     <br />
-                                    <TextField label="Xác nhận mật khẩu" variant="filled" type="password" name="confirmPassWord" className="input_forgotPass" />
+                                    <InputText label="Xác nhận mật khẩu" type="password" name="confirmPassWord"/>
                                     <br />
                                     <LoadingButton style={{ padding: "0.5rem 3rem", marginBottom: "1rem" }} loading={formik.isSubmitting}
                                         variant="contained" color="secondary" type="submit">

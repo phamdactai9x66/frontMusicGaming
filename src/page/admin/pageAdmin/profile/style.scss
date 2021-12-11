@@ -13,7 +13,9 @@
 .profile-box1{
     .img-centert{
         img{
-            width: 100%;
+            width: 8rem;
+            height: 8rem;
+            object-fit: cover;
             border-radius: 50%;
         }
     }
