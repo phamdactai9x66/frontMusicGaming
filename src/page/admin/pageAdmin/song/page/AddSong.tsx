@@ -27,8 +27,8 @@ const initialValue = {
   describe: '',
   day_release: new Date().toISOString(),
   id_Topic: '',
-  id_Categories: '',
-  id_album: '',
+  id_category: '',
+  id_aubum: '',
 }
 
 const AddSong: React.FC<AddSong<any>> = ({ changePage, ...props }) => {
@@ -87,7 +87,7 @@ const AddSong: React.FC<AddSong<any>> = ({ changePage, ...props }) => {
           {formik => {
             return (
               <Form ref={refForm}>
-                {/* {JSON.stringify(formik.values)} */}
+                {JSON.stringify(formik.values)}
                 <div className="grid-addpage">
                   <div className="section-add">
                     <Card elevation={5}>
@@ -176,7 +176,7 @@ const AddSong: React.FC<AddSong<any>> = ({ changePage, ...props }) => {
                     <Card elevation={5}>
                       <div className="form-input-add">
                         <div className="inputForm">
-                          <InputText
+                          <TextareaField
                             name="describe"
                             placeholder="Describe"
                             other={{ variant: 'standard' }}

@@ -35,6 +35,7 @@ interface ModalComment<T> {
 
 const ModalComment: React.FC<ModalComment<any>> = ({ state, onClose, ...props }) => {
   const [dataComment, setDataComment] = useState<any>({ data: {}, error: false, display: false });
+  console.log('dataComment : ', dataComment);
   const classes = useStyle();
   const nameBlog = useRef<any>('');
   const nameUser = useRef<any>('');
