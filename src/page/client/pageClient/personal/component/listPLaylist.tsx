@@ -1,21 +1,45 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from "react-router-dom"
-import { AiOutlineDownload, AiOutlineLink } from 'react-icons/ai';
-import { BiHeart } from 'react-icons/bi';
+import { AiFillDelete, AiFillEdit } from 'react-icons/ai';
 import { FiPlayCircle } from 'react-icons/fi';
 import { HiOutlineDotsCircleHorizontal } from 'react-icons/hi';
-import { Select, MenuItem } from "@mui/material"
+import { Select, MenuItem, Menu } from "@mui/material"
 import UserPlaylist from "api/userPlaylist";
 import { useSelector } from "react-redux";
 import { formStateUser } from 'redux/user/stateUser';
 import { HandleGet } from "component/MethodCommon";
 import ImagePlaylist from "./imagePlaylist";
-import dataStorage from "component/dataStorage"
+import dataStorage from "component/dataStorage";
+import { Box,Modal,Button,TextField } from '@mui/material';
+
 interface ListPLaylistIF<T> {
     render: number
 }
-
+const style = {
+    position: 'absolute' as 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 370,
+    bgcolor: 'background.paper',
+    border: '2px solid #000',
+    boxShadow: 24,
+    p: 4,
+  };
 const ListPLaylist: React.FC<ListPLaylistIF<any>> = ({ render, ...props }) => {
+    const [openModal, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleCloseModal = () => setOpen(false);
+    //
+    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+    const open = Boolean(anchorEl);
+    const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+        setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+    //
     const { user: { _id: id_User } } = useSelector<{ user: any }>(state => state.user) as formStateUser;
     const [state, setstate] = useState({ display: false, data: [] });
     const [renderPlaylist, setrenderPlaylist] = useState<boolean>(false);
@@ -52,8 +76,50 @@ const ListPLaylist: React.FC<ListPLaylistIF<any>> = ({ render, ...props }) => {
                                 <div className="icon-box">
                                     <div>
                                         <FiPlayCircle className="icon" />
+
+                                        <div>
+                                            <Button
+                                                id="demo-positioned-button"
+                                                aria-controls="demo-positioned-menu"
+                                                aria-haspopup="true"
+                                                aria-expanded={open ? 'true' : undefined}
+                                                onClick={handleClick}
+                                            >
+                                                <HiOutlineDotsCircleHorizontal className="icon" />
+                                            </Button>
+                                            <Menu
+                                                id="demo-positioned-menu"
+                                                aria-labelledby="demo-positioned-button"
+                                                anchorEl={anchorEl}
+                                                open={open}
+                                                onClose={handleClose}
+                                                anchorOrigin={{
+                                                    vertical: 'top',
+                                                    horizontal: 'left',
+                                                }}
+                                                transformOrigin={{
+                                                    vertical: 'top',
+                                                    horizontal: 'left',
+                                                }}
+                                            >
+                                                <MenuItem onClick={handleOpen}><AiFillEdit /> Sửa playlist</MenuItem>
+                                                <Modal
+                                                    open={openModal}
+                                                    onClose={handleCloseModal}
+                                                    aria-labelledby="modal-modal-title"
+                                                    aria-describedby="modal-modal-description"
+                                                >
+                                                    <Box sx={style}>
+                                                        <TextField id="outlined-basic" label="Outlined" variant="outlined" />
+                                                        <Button style={{ height: "3.4rem", marginLeft: "1rem" }} variant="contained">Sửa playlist</Button>
+                                                    </Box>
+                                                </Modal>
+                                                <MenuItem><AiFillDelete /> Xóa playlist</MenuItem>
+                                            </Menu>
+                                        </div>
                                     </div>
                                 </div>
+
                                 <h6>{current.name} </h6>
                             </div>
                         </Link>

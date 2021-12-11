@@ -1,6 +1,6 @@
 import React, { useReducer, useState, useEffect } from 'react'
 import { page } from '../index'
-import { Select, MenuItem, Avatar } from "@mui/material"
+import { Select, MenuItem,Menu, Avatar } from "@mui/material"
 import SearchIcon from '@mui/icons-material/Search'
 import { variableCommon } from "../../../../../component/variableCommon"
 import PaginationSlide from "../component/paginationSlide"
@@ -30,6 +30,15 @@ const columns = [
 ]
   
 const ListSlide: React.FC<ListSlide<any>> = ({ changePage, set_id, ...props }) => {
+    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+    const open = Boolean(anchorEl);
+    const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+      setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+      setAnchorEl(null);
+    };
+    //
     const classes = useStyle();
     const [state, dispatch] = useReducer(handleReducer, initialReducer);
     const [stateModalSlide, setStateModalSlide] = useState<any>({ display: false, _id: null });
@@ -175,18 +184,36 @@ const ListSlide: React.FC<ListSlide<any>> = ({ changePage, set_id, ...props }) =
                                                             <Avatar alt={name} variant="rounded" src={image} />
                                                         </TableCell>
                                                         <TableCell align='center'>
-                                                            <Button variant="contained" color="error" style={{ marginRight: 5 }} size="small"
-                                                                onClick={() => {
-                                                                    // dispatch(pustAction(typeAciton.deleteOne, { _id }))
-                                                                    deleteOne(_id)
-                                                                }}
-                                                            >Delete</Button>
-                                                            <Button variant="contained" color="primary" size="small"
-                                                                onClick={() => { navigatePage(page.UpdateSlide, _id) }}
-                                                            >Edit</Button>
-                                                            <Button variant="contained" color="primary" size="small" style={{ marginLeft: 5 }}
-                                                                onClick={() => { onOpen<string>(_id) }}
-                                                            >More</Button>
+                                                        <div>
+                                <Button
+                                  id="demo-positioned-button"
+                                  aria-controls="demo-positioned-menu"
+                                  aria-haspopup="true"
+                                  aria-expanded={open ? 'true' : undefined}
+                                  onClick={handleClick}
+                                >
+                                  Click
+                                </Button>
+                                <Menu
+                                  id="demo-positioned-menu"
+                                  aria-labelledby="demo-positioned-button"
+                                  anchorEl={anchorEl}
+                                  open={open}
+                                  onClose={handleClose}
+                                  anchorOrigin={{
+                                    vertical: 'top',
+                                    horizontal: 'left',
+                                  }}
+                                  transformOrigin={{
+                                    vertical: 'top',
+                                    horizontal: 'left',
+                                  }}
+                                >
+                                  <div onClick={handleClose}><MenuItem onClick={() => { deleteOne(_id) }}>Delete</MenuItem></div>
+                                  <div onClick={handleClose}><MenuItem onClick={() => { navigatePage(page.UpdateSlide, _id) }}>Edit</MenuItem></div>
+                                  <div onClick={handleClose}><MenuItem onClick={() => { onOpen<string>(_id) }}>More</MenuItem></div>
+                                </Menu>
+                              </div>
                                                         </TableCell>
                                                     </TableRow>
                                                 );

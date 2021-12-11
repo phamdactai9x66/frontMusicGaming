@@ -124,7 +124,7 @@ const RoomDetail: React.FC<RoomDetail<any>> = ({ match, ...props }) => {
         <>
             <div className="romdetail">
                 <div className="room">
-                    <h1>{(props.location.state as any)?.name_Room}</h1>
+                <h3 className="mt-3 text-white ps-3" style={{ borderLeft: '0.5rem solid #26a5ff', fontSize: '1.2rem' }}>{(props.location.state as any)?.name_Room}</h3>
                     <SearchSong addSongToRoom={addSongToRoom} />
                     {/*  */}
                     <h3 className="mt-3 text-white ps-3" style={{ borderLeft: '0.5rem solid #26a5ff', fontSize: '1.2rem' }}>Danh sách bài hát</h3>

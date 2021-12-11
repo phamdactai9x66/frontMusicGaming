@@ -2,7 +2,7 @@ import React, { useEffect, useReducer, useState } from 'react'
 import { makeStyles } from "@mui/styles"
 import songApi from 'api/songApi'
 import { page } from '../index'
-import { Select, MenuItem, Avatar } from "@mui/material"
+import { Select, MenuItem,Menu, Avatar } from "@mui/material"
 import SearchIcon from '@mui/icons-material/Search'
 import { variableCommon } from "component/variableCommon"
 import PaginationSong from '../component/PaginationSong'
@@ -33,6 +33,15 @@ const columns = [
 ]
 
 const ListSong: React.FC<ListSong<any>> = ({ changePage, set_id, ...props }) => {
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+  //
   const classes = useStyle();
   const [state, dispatch] = useReducer(handleReducer, initialReducer);
   const [stateModalSong, setStateModalSong] = useState<any>({ display: false, _id: null });
@@ -181,31 +190,36 @@ const ListSong: React.FC<ListSong<any>> = ({ changePage, set_id, ...props }) => 
                             </TableCell>
                             <TableCell align="left">{view}</TableCell>
                             <TableCell align='center'>
-                              <Button
-                                variant="contained"
-                                color="error"
-                                style={{ marginRight: 5 }} size="small"
-                                onClick={() => { deleteOne(_id) }}
-                              >
-                                Delete
-                              </Button>
-                              <Button
-                                variant="contained"
-                                color="primary"
-                                size="small"
-                                onClick={() => { navigatePage(page.UpdateSong, _id) }}
-                              >
-                                Edit
-                              </Button>
-                              <Button
-                                variant="contained"
-                                color="primary"
-                                size="small"
-                                style={{ marginLeft: 5 }}
-                                onClick={() => { onOpen<string>(_id) }}
-                              >
-                                More
-                              </Button>
+                            <div>
+                                <Button
+                                  id="demo-positioned-button"
+                                  aria-controls="demo-positioned-menu"
+                                  aria-haspopup="true"
+                                  aria-expanded={open ? 'true' : undefined}
+                                  onClick={handleClick}
+                                >
+                                  Click
+                                </Button>
+                                <Menu
+                                  id="demo-positioned-menu"
+                                  aria-labelledby="demo-positioned-button"
+                                  anchorEl={anchorEl}
+                                  open={open}
+                                  onClose={handleClose}
+                                  anchorOrigin={{
+                                    vertical: 'top',
+                                    horizontal: 'left',
+                                  }}
+                                  transformOrigin={{
+                                    vertical: 'top',
+                                    horizontal: 'left',
+                                  }}
+                                >
+                                  <div onClick={handleClose}><MenuItem onClick={() => { deleteOne(_id) }}>Delete</MenuItem></div>
+                                  <div onClick={handleClose}><MenuItem onClick={() => { navigatePage(page.UpdateSong, _id) }}>Edit</MenuItem></div>
+                                  <div onClick={handleClose}><MenuItem onClick={() => { onOpen<string>(_id) }}>More</MenuItem></div>
+                                </Menu>
+                              </div>
                             </TableCell>
                           </TableRow>
                         )

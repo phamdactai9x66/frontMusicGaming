@@ -27,8 +27,6 @@ import AddPlayList from "page/admin/pageAdmin/playlist/page/AddPlayList";
 
 import BlogAdmin from "./page/admin/pageAdmin/blog/index";
 import AddBlog from "./page/admin/pageAdmin/blog/page/AddBlog";
-import UserPlaylist from "./page/admin/pageAdmin/userPlayList/index";
-import AddUserPlaylist from "./page/admin/pageAdmin/userPlayList/page/AddUserPlayList";
 import CategoryBlog from "./page/admin/pageAdmin/categoriesBlog/index";
 import AddCategoryBlog from "./page/admin/pageAdmin/categoriesBlog/page/AddCategoryBlog";
 import Profile from "page/admin/pageAdmin/profile/Profile";
@@ -124,16 +122,6 @@ const Admin: propertyPage[] = [
     {
         path: "/admin/addBlog",
         component: AddBlog,
-        exact: false
-    },
-    {
-        path: "/admin/userPlayList",
-        component: UserPlaylist,
-        exact: false
-    },
-    {
-        path: "/admin/addUserPlayList",
-        component: AddUserPlaylist,
         exact: false
     },
     {
