@@ -22,12 +22,12 @@ const LikeSong: React.FC<LikeSongIF<any>> = ({ ...props }) => {
             if (state.user?._id && stateAudio.audio) {
                 const [data, error] = await HandleGet(apiLikeUser.getAll, {});
                 if (error) return;
-                const checkLike = data.data.some((curren: any) => {
+                const checkLike = data?.data?.some((curren: any) => {
                     const { id_User, id_Songs } = curren;
                     return stateAudio.audio._id === id_Songs && state.user._id === id_User
                 })
                 if (checkLike) setHeart(true)
-                return setstateLike({ data: data.data, display: checkLike })
+                return setstateLike({ data: data.data || [], display: checkLike })
             }
             setstateLike(value => ({ ...value, display: false }))
         })()
