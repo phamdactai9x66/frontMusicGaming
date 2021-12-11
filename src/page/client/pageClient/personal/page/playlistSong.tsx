@@ -13,8 +13,9 @@ const PlaylistSong: React.FC<PlaylistSongIF<any>> = ({ ...props }) => {
     }
     return (
         <>
-            <div className="main2 mt-5">
-                <h4 className="title_all">Playlist <MdNavigateNext className="icon" /></h4>
+            <div className="main2">
+                <h4 className="title_all">Playlist </h4>
+                {/* <MdNavigateNext className="icon" /> */}
                 <div className="main2_add">
                     <Modal renderComponent={renderComponent} />
 

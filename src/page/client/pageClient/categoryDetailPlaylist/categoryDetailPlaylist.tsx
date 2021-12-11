@@ -10,6 +10,7 @@ import { HandleGet } from "component/MethodCommon";
 import { useDispatch } from "react-redux";
 import { playSong } from "redux/audio/actionAudio";
 import Loadings from "./../../loading/loading";
+import { saveToLocalStorage } from 'page/client/common/localStorageCommon';
 interface CategoryDetailPlaylistIF<T> extends RouteComponentProps {
 
 }
@@ -66,7 +67,7 @@ const CategoryDetailPlaylist: React.FC<CategoryDetailPlaylistIF<string>> = ({ ma
                             <div>
                                 <FiPlayCircle className="icon"
                                     onClick={() => {
-                                        // console.log(current._id)
+                                        saveToLocalStorage(current)
                                         dispatch(playSong({ _id: current._id, listIdSong: getListId(song.data) }))
                                     }} />
                             </div>

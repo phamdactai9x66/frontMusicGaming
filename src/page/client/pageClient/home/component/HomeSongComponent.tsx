@@ -17,6 +17,7 @@ import AlertComponent from 'component/clientComponent/Alert';
 import Notification from 'page/notificationModal/NotificationModal';
 import ControlPointIcon from '@mui/icons-material/ControlPoint';
 import LoadingButton from '@mui/lab/LoadingButton';
+import { saveToLocalStorage } from 'page/client/common/localStorageCommon';
 
 interface HomeSongComponentIF<T> {
     userState: any | T,
@@ -147,7 +148,7 @@ const HomeSongComponent: React.FC<HomeSongComponentIF<any>> = (props) => {
 
     const playAudio = <T extends string>(_id: T): void => {
         dispatch(playSong({ _id }))
-        // console.log(_id);
+        // console.log('day là ids',_id);
     }
     const handleLogged = () => {
         setIsLogged(false);
@@ -206,9 +207,15 @@ const HomeSongComponent: React.FC<HomeSongComponentIF<any>> = (props) => {
                 <div className="music_item border-0 p-2" key={item._id}>
                     <img src={item.image} alt={item.title} />
                     <div className="box-icon m-2 pt-1">
-                        <BsFillPlayFill onClick={() => playAudio(item._id)} />
+                        <BsFillPlayFill onClick={() => {
+                            playAudio(item._id);
+                            saveToLocalStorage(item);
+                        }} />
                     </div>
-                    <div onClick={() => playAudio(item._id)} style={{ cursor: "pointer" }}>
+                    <div onClick={() => {
+                            playAudio(item._id);
+                            saveToLocalStorage(item);
+                        }} style={{ cursor: "pointer" }}>
                         <h6>{item.title}</h6>
                         <div style={{ fontSize: "0.7rem", marginTop: "-0.2rem" }}>
                             <NameSongArtist _id={item._id} />

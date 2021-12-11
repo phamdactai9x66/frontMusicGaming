@@ -9,6 +9,7 @@ import NameSongArtist from "component/nameSongArtist";
 import GetTimeAudio from "component/getTimeAudio"
 import { useDispatch } from "react-redux";
 import { playSong } from "redux/audio/actionAudio";
+import { saveToLocalStorage } from 'page/client/common/localStorageCommon';
 interface ListMusicDetailIF<T> {
     current: any | T,
     index: number,
@@ -32,14 +33,14 @@ const ListMusicDetail: React.FC<ListMusicDetailIF<any>> = ({ current, index, lis
                 <div className="music_item mx-4 border-0 p-2" key={index}>
                     <img src={current?.image} alt="" />
                     <div className="box-icon m-2">
-                        <BsFillPlayFill onClick={() => { dispatch(playSong({ _id: current._id, listIdSong })) }} />
+                        <BsFillPlayFill onClick={() => { dispatch(playSong({ _id: current._id, listIdSong })); saveToLocalStorage(current) }} />
                     </div>
-                    <div onClick={() => { dispatch(playSong({ _id: current._id, listIdSong })) }} style={{cursor: "pointer"}}>
+                    <div onClick={() => { dispatch(playSong({ _id: current._id, listIdSong })); saveToLocalStorage(current) }} style={{cursor: "pointer"}}>
                         <h6>{current?.title}</h6>
                         <div style={{ fontSize: "0.7rem", marginTop: "-0.2rem" }}>
                             <NameSongArtist _id={current?._id} /></div>
                     </div>
-                    <div onClick={() => { dispatch(playSong({ _id: current._id, listIdSong })) }} style={{cursor: "pointer"}}>
+                    <div onClick={() => { dispatch(playSong({ _id: current._id, listIdSong })); saveToLocalStorage(current) }} style={{cursor: "pointer"}}>
                         <GetTimeAudio audio={current?.audio} />
                     </div>
                     <div className="icon_item">
