@@ -3,28 +3,26 @@ import { Alert } from "@mui/material"
 import { useParams, Link } from "react-router-dom";
 import { LoadingButton } from "@mui/lab"
 import { InputText } from 'component/customField/index'
-import { Formik, Form } from 'formik';
+import { Formik, Form, FormikHelpers } from 'formik';
 import SchemaConfirmPassWord from './component/schemaConfirmPassWord';
 import userApi from 'api/useApi';
 import { variableCommon } from 'component/variableCommon';
-import { TextField} from '@mui/material';
+import { TextField } from '@mui/material';
+import { RouteComponentProps } from 'react-router-dom'
 
-interface ForgotPasswordIF<T> {
+interface ForgotPasswordIF<T> extends RouteComponentProps {
 
 }
 const initialValue = {
     passWord: '',
     confirmPassWord: ''
 }
-const ComfirmPassword: React.FC<ForgotPasswordIF<any>> = ({ ...props }) => {
+const ComfirmPassword: React.FC<ForgotPasswordIF<any>> = ({ history, ...props }) => {
     document.title = "Nhập mật khẩu mới - Music Game";
     const [alert, setAlert] = useState({ display: false, message: "", type: "" });
-    const {idUser, hash} = useParams<{idUser:string,hash:string}>();
+    const { idUser, hash } = useParams<{ idUser: string, hash: string }>();
 
-    const submitForm = (data: any) => {
-        // console.log(data)
-        // console.log(idUser)
-        // console.log(hash)
+    const submitForm = (data: any, FormikHelpers: FormikHelpers<any>) => {
         setTimeout(async () => {
             const resetPassWord = await userApi.resetPassWord(idUser, hash, data);
             if (resetPassWord.status !== variableCommon.statusF) {
@@ -36,6 +34,7 @@ const ComfirmPassword: React.FC<ForgotPasswordIF<any>> = ({ ...props }) => {
                         type: 'success'
                     }
                 ))
+                history.replace('/signin')
             } else {
                 setAlert(value => (
                     {
@@ -46,8 +45,9 @@ const ComfirmPassword: React.FC<ForgotPasswordIF<any>> = ({ ...props }) => {
                     }
                 ))
             }
-            }, 1000)
-        }
+            FormikHelpers.setSubmitting(false)
+        }, 1000)
+    }
 
     return (
         <>
@@ -56,8 +56,8 @@ const ComfirmPassword: React.FC<ForgotPasswordIF<any>> = ({ ...props }) => {
                     <h2>Xác nhận</h2>
                     <p>hãy nhập mật khẩu của bạn</p>
                     {alert.display && <Alert severity={alert.type as any} style={{ marginBottom: 5 }}>
-                    {alert.message}
-                </Alert>}
+                        {alert.message}
+                    </Alert>}
                     <Formik
                         initialValues={initialValue}
                         onSubmit={submitForm}
@@ -67,9 +67,9 @@ const ComfirmPassword: React.FC<ForgotPasswordIF<any>> = ({ ...props }) => {
                         {formik => {
                             return (
                                 <Form>
-                                    <TextField label="Password" variant="filled" type="password" className="input_forgotPass" />
+                                    <TextField label="Password" {...formik.getFieldProps('passWord')} variant="filled" type="password" className="input_forgotPass" />
                                     <br />
-                                    <TextField label="Xác nhận mật khẩu" variant="filled" type="password" className="input_forgotPass" />
+                                    <TextField label="Xác nhận mật khẩu" {...formik.getFieldProps('confirmPassWord')} variant="filled" type="password" className="input_forgotPass" />
                                     <br />
                                     <LoadingButton style={{ padding: "0.5rem 3rem", marginBottom: "1rem" }} loading={formik.isSubmitting}
                                         variant="contained" color="secondary" type="submit">

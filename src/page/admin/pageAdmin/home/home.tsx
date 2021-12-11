@@ -19,21 +19,21 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
   const [viewer, setViewer] = useState<any[]>([]);
 
   const getUser = async () => {
-    const { data } = await userApi.getAll({_limit: 6});
+    const { data } = await userApi.getAll({ _limit: 6 });
 
-    const admin = data.filter((item: any) => item.role == 1)
-    const member = data.filter((item: any) => item.role == 2)
-    const viewer = data.filter((item: any) => item.role == 0)
+    const admin = data?.filter((item: any) => item.role === 1)
+    const member = data?.filter((item: any) => item.role === 2)
+    const viewer = data?.filter((item: any) => item.role === 0)
 
-    setAdmin(admin)
-    setMember(member)
-    setViewer(viewer)
+    admin && setAdmin(admin)
+    member && setMember(member)
+    viewer && setViewer(viewer)
   }
-  
+
   useEffect(() => {
     getUser();
   }, []);
-  
+
   return (
     <>
       <div className="home-page">
@@ -53,7 +53,7 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
         </section>
         <section>
           <div className="gird-main-3">
-            <CheckPass/>
+            <CheckPass />
             <div className="main5">
 
               <div className="main5-table-flex3">
@@ -79,10 +79,10 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                         {admin.map((item, index) => {
                           return <tr key={index}>
                             <th scope="row">{index + 1}</th>
-                            <td><Avatar variant='rounded' alt="" src={item.avatar}/></td>
-                            <td>{item.first_name}{item.last_name}</td>
-                            <td>{getDate(item.createdAt)}</td>
-                            <td>{item.role === 1 ? 'Admin' : "Admin"}</td>
+                            <td><Avatar variant='rounded' alt="" src={item?.avatar} /></td>
+                            <td>{item.first_name}{item?.last_name}</td>
+                            <td>{getDate(item?.createdAt)}</td>
+                            <td>{item?.role === 1 ? 'Admin' : "Admin"}</td>
                           </tr>
                         })}
                       </tbody>
@@ -103,10 +103,10 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                         {member.map((item, index) => {
                           return <tr key={index}>
                             <th scope="row">{index + 1}</th>
-                            <td><Avatar variant='rounded' alt="" src={item.avatar}/></td>
-                            <td>{item.first_name}{item.last_name}</td>
-                            <td>{getDate(item.createdAt)}</td>
-                            <td>{item.role === 2 ? 'Member' : "Member"}</td>
+                            <td><Avatar variant='rounded' alt="" src={item?.avatar} /></td>
+                            <td>{item.first_name}{item?.last_name}</td>
+                            <td>{getDate(item?.createdAt)}</td>
+                            <td>{item?.role === 2 ? 'Member' : "Member"}</td>
                           </tr>
                         })}
                       </tbody>
@@ -127,10 +127,10 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                         {viewer.map((item, index) => {
                           return <tr key={index}>
                             <th scope="row">{index + 1}</th>
-                            <td><Avatar variant='rounded' alt="" src={item.avatar}/></td>
-                            <td>{item.first_name}{item.last_name}</td>
-                            <td>{getDate(item.createdAt)}</td>
-                            <td>{item.role === 0 ? 'Viewer' : "Viewer"}</td>
+                            <td><Avatar variant='rounded' alt="" src={item?.avatar} /></td>
+                            <td>{item?.first_name}{item?.last_name}</td>
+                            <td>{getDate(item?.createdAt)}</td>
+                            <td>{item?.role === 0 ? 'Viewer' : "Viewer"}</td>
                           </tr>
                         })}
                       </tbody>
