@@ -18,6 +18,7 @@ const IndexBlog: React.FC<IndexBlogIF<any>> = ({...props}) => {
   const [findId, setFindId] = useState<any>(null);
 
   const changePage = <T extends string>(page: T): void => {
+    console.log(page)
     if(!page) return;
     setBlog(page)
   }
@@ -38,7 +39,7 @@ const IndexBlog: React.FC<IndexBlogIF<any>> = ({...props}) => {
         return <UpdateBlog changePage={changePage} _id={findId} />
       }
       default: {
-        console.log(changePage);
+        // console.log(changePage);
         return <ListBlog changePage={changePage} set_id={set_id} />
       }
     }
