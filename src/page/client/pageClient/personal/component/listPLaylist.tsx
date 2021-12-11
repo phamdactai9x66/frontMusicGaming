@@ -20,9 +20,8 @@ const style = {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 370,
+    width: 380,
     bgcolor: 'background.paper',
-    border: '2px solid #000',
     boxShadow: 24,
     p: 4,
   };
@@ -67,26 +66,27 @@ const ListPLaylist: React.FC<ListPLaylistIF<any>> = ({ render, ...props }) => {
             {state.display ?
                 state?.data?.map((current: any, index: number) => {
                     return (
-                        <Link to={{
-                            pathname: `/playlistDetail/${current?._id}`,
-                            state: current
-                        }} key={index}>
-                            <div className="box">
+                       
+                            <div className="box" key={index}>
                                 <ImagePlaylist idPlaylist={current?._id} />
                                 <div className="icon-box">
                                     <div>
+                                    <Link to={{
+                                       pathname: `/playlistDetail/${current?._id}`,
+                                       state: current
+                                     }} >
                                         <FiPlayCircle className="icon" />
-
-                                        <div>
-                                            <Button
+                                        </Link>
+                                            <div
                                                 id="demo-positioned-button"
                                                 aria-controls="demo-positioned-menu"
                                                 aria-haspopup="true"
                                                 aria-expanded={open ? 'true' : undefined}
                                                 onClick={handleClick}
+                                                style={{marginLeft: "2rem"}}
                                             >
                                                 <HiOutlineDotsCircleHorizontal className="icon" />
-                                            </Button>
+                                            </div>
                                             <Menu
                                                 id="demo-positioned-menu"
                                                 aria-labelledby="demo-positioned-button"
@@ -116,13 +116,12 @@ const ListPLaylist: React.FC<ListPLaylistIF<any>> = ({ render, ...props }) => {
                                                 </Modal>
                                                 <MenuItem><AiFillDelete /> Xóa playlist</MenuItem>
                                             </Menu>
-                                        </div>
                                     </div>
                                 </div>
 
                                 <h6>{current.name} </h6>
                             </div>
-                        </Link>
+                    
                     )
                 })
                 : null}
