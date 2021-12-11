@@ -72,7 +72,8 @@ const ListArtist: React.FC<ListArtist<any>> = ({ changePage, set_id, ...props })
   const findName = (event: Event | any) => {
     const getValue = ((event.target as HTMLInputElement).value).trim()
     if (event.keyCode === 13) {
-      dispatch(pustAction(typeAciton.findName, { fist_Name: getValue }))
+      // let nameArtist = `${first_Name} ${last_Name}`;
+      dispatch(pustAction(typeAciton.findName, { first_Name: getValue }))
     }
   }
 
@@ -198,36 +199,36 @@ const ListArtist: React.FC<ListArtist<any>> = ({ changePage, set_id, ...props })
                               {gender === true ? 'Nam' : 'Nữ'}
                             </TableCell>
                             <TableCell align='center'>
-                            <div>
-      <Button
-        id="demo-positioned-button"
-        aria-controls="demo-positioned-menu"
-        aria-haspopup="true"
-        aria-expanded={open ? 'true' : undefined}
-        onClick={handleClick}
-      >
-        ACTION
-      </Button>
-      <Menu
-        id="demo-positioned-menu"
-        aria-labelledby="demo-positioned-button"
-        anchorEl={anchorEl}
-        open={open}
-        onClose={handleClose}
-        anchorOrigin={{
-          vertical: 'top',
-          horizontal: 'left',
-        }}
-        transformOrigin={{
-          vertical: 'top',
-          horizontal: 'left',
-        }}
-      >
-        <div onClick={handleClose}><MenuItem onClick={() => { deleteOne(_id) }}>Delete</MenuItem></div>
-        <div onClick={handleClose}><MenuItem onClick={() => { navigatePage(page.UpdateArtist, _id) }}>Edit</MenuItem></div>
-        <div onClick={handleClose}><MenuItem onClick={() => { onOpen<string>(_id) }}>More</MenuItem></div>
-      </Menu>
-    </div>
+                              <div>
+                                <Button
+                                  id="demo-positioned-button"
+                                  aria-controls="demo-positioned-menu"
+                                  aria-haspopup="true"
+                                  aria-expanded={open ? 'true' : undefined}
+                                  onClick={handleClick}
+                                >
+                                  Click
+                                </Button>
+                                <Menu
+                                  id="demo-positioned-menu"
+                                  aria-labelledby="demo-positioned-button"
+                                  anchorEl={anchorEl}
+                                  open={open}
+                                  onClose={handleClose}
+                                  anchorOrigin={{
+                                    vertical: 'top',
+                                    horizontal: 'left',
+                                  }}
+                                  transformOrigin={{
+                                    vertical: 'top',
+                                    horizontal: 'left',
+                                  }}
+                                >
+                                  <div onClick={handleClose}><MenuItem onClick={() => { deleteOne(_id) }}>Delete</MenuItem></div>
+                                  <div onClick={handleClose}><MenuItem onClick={() => { navigatePage(page.UpdateArtist, _id) }}>Edit</MenuItem></div>
+                                  <div onClick={handleClose}><MenuItem onClick={() => { onOpen<string>(_id) }}>More</MenuItem></div>
+                                </Menu>
+                              </div>
                             </TableCell>
                           </TableRow>
                         );
