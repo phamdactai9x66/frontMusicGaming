@@ -24,5 +24,9 @@ class blogApi {
         const url: string = `/blog/${id}/update`;
         return AxiosFormdata.put(url, formdata)
     }
+    checkPass<Y extends string>(id: Y): Promise<any> {
+        const url: string = `/blog/${id}/pass`;
+        return AxiosFormdata.put(url)
+    }
 }
 export default new blogApi()

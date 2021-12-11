@@ -40,19 +40,10 @@ const SlideSong: React.FC<SlideSongIF<any>> = ({ data, ...props }) => {
                             </figure>
                             <div className="icon-box">
                                 <div>
-                                    <BiHeart className="icon" />
                                     <FiPlayCircle className="icon" onClick={() => { playAudio(audio) }} />
-                                    <HiOutlineDotsCircleHorizontal className="icon" />
                                 </div>
                             </div>
-                            <Select className="option">
-                                <MenuItem>
-                                    <AiOutlineDownload /> Tải xuống
-                                </MenuItem>
-                                <MenuItem>
-                                    <AiOutlineLink /> Sao chép link
-                                </MenuItem>
-                            </Select>
+                
                         </div>
                            
                     )

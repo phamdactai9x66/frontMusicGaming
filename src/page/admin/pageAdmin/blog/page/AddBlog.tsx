@@ -31,7 +31,7 @@ const AddBlog: React.FC<AddBlog<any>> = ({ changePage, ...props }) => {
   const [alert, setAlert] = useState({ display: false, message: "", type: ""});
 
   const submitForm = (data: any, action: any) => {
-    console.log('data blog : ', data);
+    // console.log('data blog : ', data);
     const getForm = new FormData(refForm.current);
     setTimeout(async () => {
       const createBlog = await blogApi.postOne<FormData>(getForm);
@@ -129,6 +129,7 @@ const AddBlog: React.FC<AddBlog<any>> = ({ changePage, ...props }) => {
                           <InputText 
                             name="view"
                             type="number"
+                            min={0}
                             label="Lượt xem"
                             other={{ variant: "standard" }}
                           />

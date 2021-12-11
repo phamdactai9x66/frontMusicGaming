@@ -13,7 +13,9 @@ import songApi from 'api/songApi';
 import { tranFormDataId } from "component/MethodCommon";
 import artistApi from 'api/ArtistApi';
 // import { utimes } from 'fs';
-import { useScroll } from 'react-use';
+// import { useScroll } from 'react-use';
+import playlistSongApi from 'api/playlistSongApi';
+import Loadings from 'page/client/loading/loading';
 
 
 interface HomeIF<T> {
@@ -24,13 +26,14 @@ const Home: React.FC<HomeIF<any>> = ({ ...props }) => {
     document.title = "Music Game";
     const [playlists, setPlaylists] = useState([]);
     const userState = useSelector<{ user: any }>(state => state.user) as formStateUser;
-    const scrollRef = React.useRef<HTMLDivElement>(null);
-    const { x, y } = useScroll(scrollRef);
+    // const scrollRef = React.useRef<HTMLDivElement>(null);
+    // const { x, y } = useScroll(scrollRef);
     // const [songs, setSongs] = useState([]);
     const [songsTransform, setSongsTransform] = useState([]);
     const [artists, setArtists] = useState([]);
     // const [stoggleModal, setstoggleModal] = useState<boolean>(false);
-    const [isShowPLName, setIsShowPLName] = useState<Array<string>>([]);
+    const [PLS, setPLS] = useState<any[]>([]);
+    const [loading, setLoading] = useState(true);
 
     var settings_banner = {
         dots: true,
@@ -74,68 +77,40 @@ const Home: React.FC<HomeIF<any>> = ({ ...props }) => {
             }
         ]
     };
-    useEffect(() => {
-        window.addEventListener('scroll', () => {
-            console.log('xin chao')
-        })
-        // scrollRef.current?.addEventListener('scroll', () => {
-        //     console.log('xin chao')
-        // })
-    }, [])
 
-    const getPlaylists = async () => {
-        const responsePL = await playlistApi.getAll({});
-        if (!responsePL || responsePL.status === "failed") {
-            console.error("Get playlist failed.");
-            return;
-        }
-        const { data } = responsePL;
-        setPlaylists(data)
-    }
-    const getSongs = async () => {
-        const responseSong = await songApi.getAll({});
-        const resSongsTransform = await tranFormDataId(responseSong.data);
-        // setSongs(responseSong.data);
-        setSongsTransform(resSongsTransform);
-
-        const dataArtists = await artistApi.getAll({});
-        setArtists(dataArtists.data);
-    }
-
-    const getPLNull = (_id: string) => {
-        setIsShowPLName([...isShowPLName, _id]);
-    }
 
     useEffect(() => {
-        getPlaylists();
-        getSongs();
+        (async () => {
+            const { data: dataPL } = await playlistApi.getAll({});
+//
+            const { data: dataSongs} = await songApi.getAll({});
+            const resSongsTransform = await tranFormDataId(dataSongs);
+
+            const { data: dataArtists} = await artistApi.getAll({});
+            //
+            const { data: dataPLS } = await playlistSongApi.getAll({});
+
+            // tìm ra những playlistsong có chứa _id song
+            const findPLS = dataPLS.filter( (i: any) => dataSongs.findIndex( (_:any) => _._id === i.id_Songs) !== -1);
+            const handlePL = dataPL.filter( (i: any) => findPLS.findIndex( (_: any) => _.id_PlayList === i._id) !== -1);
+            setArtists(dataArtists);
+            setPlaylists(handlePL);
+            setSongsTransform(resSongsTransform);
+            setPLS(findPLS);
+            setLoading(false);
+        })();
     }, []);
-    const test1 = (event: Event | any) => {
-        console.log('xin hcao')
-    }
+    // const test1 = (event: Event | any) => {
+    //     console.log('xin hcao')
+    // }
+    // console.log('pls home: ', PLS)
     return (
         <>
-            {/* <div className=" w-100 h-100 d-flex position-fixed top-0  text-center" style={{ left: "0px", zIndex: 10, backgroundColor: "rgb(0 0 0 / 25%)" }}>
-                <div className="my-auto mx-auto p-4 rounded-3" style={{ backgroundColor: "#9cf6ff" }}>
-                    <img
-                        className="w-25 h-25"
-                        src="https://aux2.iconspalace.com/uploads/music-folder-circle-icon-256.png" alt="" />
-                    <p style={{ fontWeight: 500 }}>Hãy đăng nhập để có thể sử dụng tính năng này</p>
-                    <p>Tính năng này chỉ dành cho người dùng đã có tài khoản Music Game</p>
-                    <div className="d-flex justify-content-center">
-                        <div className="" style={{ marginRight: "0.2rem" }}>
-                            <button type="button" className="btn btn-light">Đăng kí</button>
-                        </div>
-                        <div>
-                            <button type="button" className="btn btn-primary" style={{ marginLeft: "0.2rem" }}>Đăng nhập</button>
-                        </div>
-                    </div>
-                </div>
-
-            </div> */}
+            {loading && <Loadings/>}
 
             {/* // */}
-            <div className="home" ref={scrollRef}>
+            <div className="home">
+            {/* <div className="home" ref={scrollRef}> */}
                 <div className="slider-banner">
                     <VerticalSlider settings_banner={settings_banner} />
                 </div>
@@ -157,18 +132,13 @@ const Home: React.FC<HomeIF<any>> = ({ ...props }) => {
                     </div>
                 </div> 
 
-                {playlists.length !== 0 && playlists.map((item: any) => {
-                    if (isShowPLName.filter(_ => _ === item._id).length !== 0) {
-                        return null
-                    };
-                    return (
-                        <div className="list-slider " key={item._id}>
-                            <h4 className="title_all">{item.name} <MdNavigateNext className="icon" /></h4>
+                {playlists.length !== 0 && playlists.map((item: any) => 
+                    <div className="list-slider " key={item._id}>
+                        <h4 className="title_all">{item.name} <MdNavigateNext className="icon" /></h4>
 
-                            <WantHearComponent settings_category={settings_category} getPLNull={getPLNull} songs={songsTransform} idPlaylist={item._id} />
-                        </div>
-                    )
-                })}
+                        <WantHearComponent settings_category={settings_category} PLS={PLS} songs={songsTransform} idPlaylist={item._id} />
+                    </div>
+                )}
                 <ChartMusic />
             </div>
 

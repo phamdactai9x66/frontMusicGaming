@@ -19,8 +19,9 @@ const CustomInputFile: React.FC<CustomInputFile<any>> = ({ label, ...props }) =>
                     const getFile = event.target.files[0] as File;
                     getFile && helpers.setValue(getFile)
                 }}
+                helperText={meta.error || ''}
             />
-            <ErrorMessage name={field.name} />
+            {/* <ErrorMessage name={field.name} /> */}
         </>
     )
 }

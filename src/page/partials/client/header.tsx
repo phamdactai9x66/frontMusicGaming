@@ -6,6 +6,7 @@ import { Link, RouteChildrenProps, withRouter } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { formStateUser } from "redux/user/stateUser";
 import { Logout } from "redux/user/actionUser";
+import { pausePlaying } from "redux/audio/actionAudio"
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import SearchIcon from '@material-ui/icons/Search';
 import MoreIcon from '@material-ui/icons/MoreVert';
@@ -112,6 +113,9 @@ const HeaderClient: React.FC<HeaderClientIF> = ({ ...props }) => {
     //         setModalSearh(false)
     //     }
     // }
+    const preventRenderSong = (): void => {
+        dispatch(pausePlaying())
+    }
 
     const logOut = () => {
         setLoading(true);
@@ -133,14 +137,14 @@ const HeaderClient: React.FC<HeaderClientIF> = ({ ...props }) => {
         // props.history.replace('/signin');
     };
 
-    if (handleStatus.status !== '') {
-        setTimeout(() => {
-            setHandleStatus({
-                status: "",
-                content: "",
-            });
-        }, 3000);
-    }
+    useEffect( () => {
+        if(handleStatus.status !== ""){
+            let timer = setTimeout(() => {
+                setHandleStatus({ status: "", content: "" })
+            }, 2500);
+            return () => clearTimeout(timer);
+        }
+    }, [handleStatus])
 
     const checkAdmin = () => {
         return state.user.role >= 1 ? (
@@ -149,6 +153,7 @@ const HeaderClient: React.FC<HeaderClientIF> = ({ ...props }) => {
                     to="/admin"
                     className="link pb-0 border-1"
                     style={{ fontSize: "1rem" }}
+                    onClick={preventRenderSong}
                 >
                     <RiAdminFill className="_icon" /> Quản trị
                 </Link>
@@ -164,6 +169,7 @@ const HeaderClient: React.FC<HeaderClientIF> = ({ ...props }) => {
                         to="/overview"
                         className="link rounded pb-0 border-1 "
                         style={{ fontSize: "1rem" }}
+                        onClick={() => setAnchorEl(null)}
                     >
                         <FaSignInAlt className="_icon" />
                         Thông tin
@@ -234,7 +240,7 @@ const HeaderClient: React.FC<HeaderClientIF> = ({ ...props }) => {
         </Menu>
     );
     const mobileMenuId = "primary-search-account-menu-mobile";
-    console.log(state.user?.avatar)
+    // console.log(state.user?.avatar)
     const renderMobileMenu = (
         <Menu
             anchorEl={mobileMoreAnchorEl}

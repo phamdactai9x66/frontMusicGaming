@@ -1,5 +1,6 @@
 import React from 'react';
 import { handleNameArtist } from 'page/client/common/handleName';
+import { Link } from 'react-router-dom';
 
 interface ArtistComponentIF<T> {
     artists: Array<any>,
@@ -27,10 +28,12 @@ const ArtistComponent: React.FC<ArtistComponentIF<any>> = (props) => {
                 <section>
                     {artistsTransform.length !== 0 && artistsTransform.map( (item: ItemArtistIF<string>) => (
                         <section style={{display: "flex", flexDirection: "column"}} key={item._id}>
-                        <div>
-                            <img src={item.image} alt={handleNameArtist(item.first_Name, item.last_Name)} />     
-                        </div>
-                        <span className="text-center name">{handleNameArtist(item.first_Name, item.last_Name)}</span>
+                            <div>
+                                <Link to={`/artistDetail/${item._id}`}>
+                                    <img src={item.image} alt={handleNameArtist(item.first_Name, item.last_Name)} />     
+                                </Link>
+                            </div>
+                            <span className="text-center name">{handleNameArtist(item.first_Name, item.last_Name)}</span>
                         </section>
                     ))}
                     

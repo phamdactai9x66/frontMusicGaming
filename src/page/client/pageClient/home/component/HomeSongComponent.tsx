@@ -38,13 +38,22 @@ const HomeSongComponent: React.FC<HomeSongComponentIF<any>> = (props) => {
     const [handleStatus, setHandleStatus] = useState({ status: "", content: "" });
     const [addPlaylistLoading, setAddPlaylistLoading] = useState(false);
     const [locationLogged, setLocationlogged] = useState(history.location.state?.isLogged ? history.location.state.isLogged : false);
-    
+    const [anchorItem, setAnchorItem] = useState<any>({
+        title: '',
+        image: '',
+        view: ''
+    });
 
     // if(history && history.location.state?.isLogged){
     //     setIsLogged(true);
     // }
     const openPopover = (event: any) => {
         setAnchor(event.currentTarget);
+        setAnchorItem({
+            title: '',
+            image: '',
+            view: ''
+        })
     };
 
     const openPopover2 = (event: any) => {
@@ -96,13 +105,13 @@ const HomeSongComponent: React.FC<HomeSongComponentIF<any>> = (props) => {
         }
 
         if (t === "playlist") {
-            //đang sai vì chưa lấy được playlist của user
             let playlistRes = await handleAddToPlaylist(s, u);
             if (playlistRes && playlistRes.status === "successfully") {
                 setHandleStatus({
                     status: "success",
                     content: "Thêm vào Playlist thành công."
-                })
+                });
+                setAnchor(null)
             } else if (playlistRes.status === "existed") {
                 setHandleStatus({
                     status: "failed",
@@ -121,6 +130,11 @@ const HomeSongComponent: React.FC<HomeSongComponentIF<any>> = (props) => {
     const getUserPlaylists = async () => {
         if (user === "" || user === undefined) {
             setAnchor(null);
+            setAnchorItem({
+                title: '',
+                image: '',
+                view: ''
+            })
             setIsLogged(true);
             return;
         }
@@ -140,11 +154,14 @@ const HomeSongComponent: React.FC<HomeSongComponentIF<any>> = (props) => {
         setLocationlogged(false);
     }
 
-    if (handleStatus.status !== "") {
-        setTimeout(() => {
-            setHandleStatus({ status: "", content: "" });
-        }, 2500);
-    }
+    useEffect( () => {
+        if(handleStatus.status !== ""){
+            let timer = setTimeout(() => {
+                setHandleStatus({ status: "", content: "" })
+            }, 2500);
+            return () => clearTimeout(timer);
+        }
+    }, [handleStatus])
 
     const handleCreatePlaylist = async () => {
         setAddPlaylistLoading(true)
@@ -162,7 +179,10 @@ const HomeSongComponent: React.FC<HomeSongComponentIF<any>> = (props) => {
 
         const isCreatedPlaylist = await userPlaylistApi.postOne(form);
         if (isCreatedPlaylist.status === "successfully") {
-            setUserPlaylists([...userPlaylists, ...isCreatedPlaylist.data]);
+            setUserPlaylists({
+                data: [...userPlaylists.data, isCreatedPlaylist.data[0]],
+                loading: false,
+            });
             setHandleStatus({
                 status: "success",
                 content: "Tạo Playlist thành công"
@@ -176,7 +196,7 @@ const HomeSongComponent: React.FC<HomeSongComponentIF<any>> = (props) => {
         }
         setAddPlaylistLoading(false);
     }
-    
+
     return (
         <div className="box-music mt-4">
             {isLogged && <Notification handleLogged={handleLogged} />}
@@ -188,7 +208,7 @@ const HomeSongComponent: React.FC<HomeSongComponentIF<any>> = (props) => {
                     <div className="box-icon m-2 pt-1">
                         <BsFillPlayFill onClick={() => playAudio(item._id)} />
                     </div>
-                    <div onClick={() => playAudio(item._id)} style={{cursor: "pointer"}}>
+                    <div onClick={() => playAudio(item._id)} style={{ cursor: "pointer" }}>
                         <h6>{item.title}</h6>
                         <div style={{ fontSize: "0.7rem", marginTop: "-0.2rem" }}>
                             <NameSongArtist _id={item._id} />
@@ -198,19 +218,12 @@ const HomeSongComponent: React.FC<HomeSongComponentIF<any>> = (props) => {
                         <GetTimeAudio audio={item?.audio} />
                     </div>
                     <div className="icon_item">
-                        <AiOutlineDownload onClick={() => handleDownload(item._id)} className="icon" />
-                        {/* <LoadingButton
-                            onClick={() => handleAdd(item._id, user._id, "like")}
-                            loading={true}
-                            loadingIndicator={<CircularProgress size={18} color="inherit" />}
-                            className="icon"
-                        >
-                            <AiFillHeart />
-                        </LoadingButton> */}
-                        {likeLoading.indexOf(item._id) === -1 ? <AiFillHeart onClick={() => handleAdd(item._id, user._id, "like")} className="icon" /> : <span className='loading-icon'><CircularProgress  className='loading-icon' size={15} sx={{ color: "#d6f4f8"}} /></span> }
+                        <AiOutlineDownload onClick={() => handleDownload(item)} className="icon" />
+                        {likeLoading.indexOf(item._id) === -1 ? <AiFillHeart onClick={() => handleAdd(item._id, user._id, "like")} className="icon" /> : <span className='loading-icon'><CircularProgress className='loading-icon' size={15} sx={{ color: "#d6f4f8" }} /></span>}
                         <IoMdAdd className="icon" onClick={(e) => {
                             openPopover(e);
                             getUserPlaylists();
+                            setAnchorItem(item);
                         }} />
                         <Popover
                             open={Boolean(anchor)}
@@ -223,14 +236,22 @@ const HomeSongComponent: React.FC<HomeSongComponentIF<any>> = (props) => {
                                 vertical: "bottom",
                                 horizontal: "right",
                             }}
-                            onClose={() => setAnchor(null)}
+                            onClose={() => {
+                                setAnchor(null);
+                                setAnchorItem({
+                                    title: '',
+                                    image: '',
+                                    view: ''
+                                })
+                            }}
                         >
                             <div style={{ background: "#101929", margin: "", color: "#fff", width: "15rem" }}>
                                 <div className="d-flex gap-2 p-2">
-                                    <img width={35} height={35} src={item.image} alt={item.title} />
+                                    <img width={35} height={35} src={anchorItem?.image} alt={anchorItem.title} />
                                     <div>
-                                        <h6>{item.title}</h6>
-                                        <div style={{ marginTop: "-0.7rem" }}><span style={{ fontSize: "0.8rem" }}>{item.view} </span><span style={{ fontSize: "0.8rem" }}> 3.8M</span></div>
+                                        <h6>{anchorItem?.title}</h6>
+                                        {/* <h6>{item.title}</h6> */}
+                                        <div style={{ marginTop: "-0.7rem" }}><span style={{ fontSize: "0.8rem" }}>{anchorItem.view} </span><span style={{ fontSize: "0.8rem" }}> 3.8M</span></div>
                                     </div>
                                 </div>
                                 <hr style={{ margin: "-0.1rem 0 0.5rem 0" }} />
@@ -267,14 +288,14 @@ const HomeSongComponent: React.FC<HomeSongComponentIF<any>> = (props) => {
                                     </div>
                                 </Popover>
                                 
-                                {userPlaylists.loading && <MenuItem className="list" onClick={() => handleAdd(item._id, user._id, "playlist")} >
+                                {userPlaylists.loading && <MenuItem className="list" >
                                     <CircularProgress />
                                 </MenuItem>}
-                                {userPlaylists.data.length === 0 && <MenuItem className="list" onClick={() => handleAdd(item._id, user._id, "playlist")} >
+                                {userPlaylists.data.length === 0 && <MenuItem className="list" >
                                     <BsMusicNoteList /> &ensp; Bạn chưa có Playlist nào.
                                 </MenuItem>}
                                 {userPlaylists.data.length !== 0 && userPlaylists.data.map((_: any) => (
-                                    <MenuItem className="list" onClick={() => handleAdd(_._id, user._id, "playlist")} >
+                                    <MenuItem className="list" onClick={() => handleAdd(anchorItem._id, _._id, 'playlist')} >
                                         <BsMusicNoteList /> &ensp; {_.name}
                                     </MenuItem>
                                 ))}

@@ -1,7 +1,6 @@
 
 import React from 'react'
 import { Link } from "react-router-dom";
-import imgAdmin from './image/admin.png'
 import Accordion from "@material-ui/core/Accordion";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
 import AccordionSummary from "@material-ui/core/AccordionSummary";
@@ -9,51 +8,53 @@ import { ExpandMore } from "@material-ui/icons";
 import SearchIcon from '@material-ui/icons/Search';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import { InputBase } from '@material-ui/core';
-
+import { useSelector, useDispatch } from "react-redux";
+import { formStateUser } from "redux/user/stateUser";
 interface SidebarIF<T> {
 
 }
 const useStyles = makeStyles((theme) => ({
-	search: {
-        marginTop: "1.5rem",
-        position: "relative",
-        borderRadius: theme.shape.borderRadius,
-        backgroundColor: fade(theme.palette.common.white, 0.15),
-        "&:hover": {
-            backgroundColor: fade(theme.palette.common.white, 0.25),
-        },
-        marginRight: theme.spacing(2),
-        marginLeft: 0,
-        width: "100%",
-        [theme.breakpoints.up("sm")]: {
-            marginLeft: theme.spacing(3),
-            width: "auto",
-        },
+  search: {
+    marginTop: "1.5rem",
+    position: "relative",
+    borderRadius: theme.shape.borderRadius,
+    backgroundColor: fade(theme.palette.common.white, 0.15),
+    "&:hover": {
+      backgroundColor: fade(theme.palette.common.white, 0.25),
     },
-    searchIcon: {
-        padding: theme.spacing(0, 2),
-        height: "100%",
-        position: "absolute",
-        pointerEvents: "none",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        color: "aqua",
+    marginRight: theme.spacing(2),
+    marginLeft: 0,
+    width: "100%",
+    [theme.breakpoints.up("sm")]: {
+      marginLeft: theme.spacing(3),
+      width: "auto",
     },
-	inputRoot: {
-		color: '#fff',
-	},
-	inputInput: {
-		padding: theme.spacing(1, 1, 1, 0),
-		paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
-		transition: theme.transitions.create('width'),
-		width: '100%',
-		[theme.breakpoints.up('md')]: {
-			width: '20ch',
-		},
-	}
+  },
+  searchIcon: {
+    padding: theme.spacing(0, 2),
+    height: "100%",
+    position: "absolute",
+    pointerEvents: "none",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    color: "aqua",
+  },
+  inputRoot: {
+    color: '#fff',
+  },
+  inputInput: {
+    padding: theme.spacing(1, 1, 1, 0),
+    paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
+    transition: theme.transitions.create('width'),
+    width: '100%',
+    [theme.breakpoints.up('md')]: {
+      width: '20ch',
+    },
+  }
 }));
 const Sidebar: React.FC<SidebarIF<any>> = ({ ...props }) => {
+  const state = useSelector<{ user: any }>(state => state.user) as formStateUser;
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState("");
 
@@ -77,8 +78,8 @@ const Sidebar: React.FC<SidebarIF<any>> = ({ ...props }) => {
       name: "Music",
       iconAdd: "fa fa-plus-circle",
       details: "Add Music",
-      link: "/admin/",
-      subLink: "/admin/"
+      link: "/admin/song",
+      subLink: "/admin/addSong"
     },
     {
       icon: "fa fa-list",
@@ -117,7 +118,7 @@ const Sidebar: React.FC<SidebarIF<any>> = ({ ...props }) => {
       name: "User",
       iconAdd: "fa fa-plus-circle",
       details: "Add User",
-      link: "/admin/",
+      link: "/admin/userAdmin",
       subLink: "/admin/"
     },
     {
@@ -165,8 +166,8 @@ const Sidebar: React.FC<SidebarIF<any>> = ({ ...props }) => {
       name: "Nhạc sĩ",
       iconAdd: "fa fa-plus-circle",
       details: "Add Nhạc Sĩ",
-      link: "/admin/",
-      subLink: "/admin/"
+      link: "/admin/artist",
+      subLink: "/admin/addArtist"
     }
   ];
   return (
@@ -174,25 +175,25 @@ const Sidebar: React.FC<SidebarIF<any>> = ({ ...props }) => {
       <h2>ADMIN MUSIC GAME</h2>
       <div className="main_info">
         <div className="info_admin">
-          <img width={50} height={50} src={imgAdmin} alt="" />
-          <div>Lò Văn An</div>
+          {(state.user && state.token) ? 
+           <Link to="/admin/profile"><div><img width={50} height={50} src={state.user?.avatar} alt="" /><div>{state.user?.first_name} {state.user?.last_name}</div></div></Link> : "err"}
         </div>
       </div>
       <div className={classes.search} style={{ position: "relative" }}>
-                        <div className={classes.searchIcon} style={{ zIndex: 999 }}>
-                            <SearchIcon />
-                        </div>
-                        <InputBase
-                            placeholder="Search..."
-                            classes={{
-                                root: classes.inputRoot,
-                                input: classes.inputInput,
-                            }}
-                            
-                            inputProps={{ "aria-label": "search" }}
-                        />
+        <div className={classes.searchIcon} style={{ zIndex: 999 }}>
+          <SearchIcon />
+        </div>
+        <InputBase
+          placeholder="Tìm kiếm"
+          classes={{
+            root: classes.inputRoot,
+            input: classes.inputInput,
+          }}
 
-                    </div>
+          inputProps={{ "aria-label": "search" }}
+        />
+
+      </div>
       <nav className="tabs">
         <Link to="/admin">
           <AccordionSummary

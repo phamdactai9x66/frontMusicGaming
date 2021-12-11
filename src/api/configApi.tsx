@@ -3,7 +3,7 @@ import dataStoreage from "component/dataStorage";
 
 const baseURL = 'http://localhost:5000'
 
-const getUser = JSON.parse(localStorage?.getItem("persist:root") as any).user;
+const getUser = JSON.parse(localStorage?.getItem("persist:root") as any)?.user;
 const getToken = getUser ? JSON.parse(getUser).token : '';
 
 const Axios = axios.create({

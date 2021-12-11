@@ -34,43 +34,13 @@
     }
 }
 
-.tab_Personal {
-    
-    .tab_item {
-        border-radius: 4rem;
-        background: #3689a5;
-        padding: 0.5rem;
-        color: #2b2727;
-        margin-top: 5rem;
-        display: flex;
-      }
-}
- 
-  
-   .tab_Personal .tab_item li {
-    list-style: none;
-    flex-basis: 50%;
-    text-align: center;
-    cursor: pointer;
-    color: #e4e4e4;
-  }
-  
- .tab_Personal .tab_item li a {
-    color: #e4e4e4;
-    text-decoration: none;
-  }
   
   .overview {
     margin-top: -2rem;
   }
 }
 @media (min-width: 768px) and (max-width: 1024px) {
-   .tab_Personal .tab_item li {
-      display: inline;
-      padding: 0.3rem;
-      cursor: pointer;
-      font-size: 0.8rem;
-    }
+
   }
   
   @media only screen and (max-width: 700px) {
@@ -89,16 +59,6 @@
         }
     }
 }
-    .tab_Personal .tab_item {
-        width: 15rem !important;
-        li {
-            font-size: 0.8rem;
-          }
-    } 
+
   
-  }
-  .hover-boxs:hover{
-      background: rgba(106, 220, 255, 0.808) !important;
-      transition: 0.5s;
-      transform: scale(1.04);
   }

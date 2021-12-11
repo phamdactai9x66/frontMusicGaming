@@ -26,7 +26,6 @@ const useStyle = makeStyles((theme) => ({
 }))
 
 const columns = [
-  { id: 'title', label: 'Title', minWidth: 170, align: 'left' },
   { id: 'rangestart', label: 'rangeStart', minWidth: 100, align: 'left' },
   { id: 'comment', label: 'Comment', minWidth: 170, align: 'left' },
   { id: 'state', label: 'State', minWidth: 170, align: 'left' },
@@ -178,7 +177,6 @@ const ListComment: React.FC<ListComment<any>> = ({ changePage, set_id, ...props 
                                 dispatch(pustAction(typeAciton.checkOne, { _id }))
                               }} />
                             </TableCell>
-                            <TableCell align="left">{title}</TableCell>
                             <TableCell align="left">{rangeStart}</TableCell>
                             <TableCell align="left">{comment}</TableCell>
                             <TableCell align="left">{state === true ? 'Hiện' : 'Ẩn'}</TableCell>

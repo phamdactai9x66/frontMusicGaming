@@ -26,5 +26,9 @@ class songApi {
         const url: string = `/song/${id}/update`;
         return AxiosFormdata.put(url, formdata)
     }
+    checkPass<Y extends string>( id: Y): Promise<any> {
+        const url: string = `/song/${id}/pass`;
+        return AxiosFormdata.put(url)
+    }
 }
 export default new songApi()

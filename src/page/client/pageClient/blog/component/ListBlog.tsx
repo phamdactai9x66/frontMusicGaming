@@ -21,7 +21,7 @@ const ListBlog: React.FC<ListBlogComponent<any>> = (props) => {
                 </div>
             }
             {
-                props.blog.data.map((item: any, index: number) => (
+                props.blog.data.reverse().map((item: any, index: number) => (
                     // (props.searchRecommendResults.length === 0 ? props.blog.data : props.searchRecommendResults).map((item: any, index: number) => (
                         <>
 
@@ -30,7 +30,7 @@ const ListBlog: React.FC<ListBlogComponent<any>> = (props) => {
                                 <div className="blog-image">
                                     <h4 className="color text-blog-none">{item.title}</h4>
                                     <Link to={`blogDetail/${item?._id}`} >
-                                        <img src={item.image ? item.image : 'https://lh3.googleusercontent.com/proxy/BBBDqJ5u4wafvB5dQFq5nOoFYrjJvaa2FlzMuAuD2wF383V3KkMXQW_0e_v9nc0kHKHytdTWjwOHbj3DE4iVxZtO'} alt="" />
+                                        <img src={item.image ? item.image : 'https://mucinmanhtai.com/wp-content/themes/BH-WebChuan-032320/assets/images/default-thumbnail-400.jpg'} alt="" />
                                     </Link>
                                 </div>
                                 <Link to={`blogDetail/${item?._id}`} className="title-blog">

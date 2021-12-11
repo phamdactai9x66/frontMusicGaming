@@ -55,7 +55,7 @@ const StatisticalLength: React.FC<StatisticalLength<any>> = ({ ...props }) => {
               </div>
             </div>
             <div className="more-info bg-more-info1">
-              <p>more info <i className="fas fa-chevron-circle-right" /></p>
+              <p>more info <i className="fa fa-chevron-circle-right" aria-hidden="true"></i></p>
             </div>
           </Link>
         </div>
@@ -71,7 +71,7 @@ const StatisticalLength: React.FC<StatisticalLength<any>> = ({ ...props }) => {
               </div>
             </div>
             <div className="more-info bg-more-info2">
-              <p>more info <i className="fas fa-chevron-circle-right" /></p>
+              <p>more info <i className="fa fa-chevron-circle-right" aria-hidden="true"></i></p>
             </div>
           </Link>
         </div>
@@ -87,7 +87,7 @@ const StatisticalLength: React.FC<StatisticalLength<any>> = ({ ...props }) => {
               </div>
             </div>
             <div className="more-info bg-more-info3">
-              <p>more info <i className="fas fa-chevron-circle-right" /></p>
+              <p>more info <i className="fa fa-chevron-circle-right" aria-hidden="true"></i></p>
             </div>
           </Link>
         </div>
@@ -103,7 +103,7 @@ const StatisticalLength: React.FC<StatisticalLength<any>> = ({ ...props }) => {
               </div>
             </div>
             <div className="more-info bg-more-info4">
-              <p>more info <i className="fas fa-chevron-circle-right" /></p>
+              <p>more info <i className="fa fa-chevron-circle-right" aria-hidden="true"></i></p>
             </div>
           </Link>
         </div>

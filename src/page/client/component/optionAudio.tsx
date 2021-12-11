@@ -69,9 +69,6 @@ const OptionAudio: React.FC<OptionAudioIF<any>> = ({ ...props }) => {
 
                     {(state.token && state.user) ?
                         <>
-                            <MenuItem >
-                                <AiFillHeart />&ensp; Thêm vào thư viện
-                            </MenuItem>
                             <MenuItem onClick={openPopover2}>
                                 <IoMdAdd />&ensp; Thêm vào playlist
                             </MenuItem>

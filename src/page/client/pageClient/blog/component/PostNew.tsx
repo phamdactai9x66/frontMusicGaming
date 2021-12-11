@@ -1,6 +1,7 @@
 import blogApi from 'api/BlogApi';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { getDate } from 'component/MethodCommon';
 
 interface postNewComponent<T> {
 
@@ -11,7 +12,8 @@ const PostNew: React.FC<postNewComponent<any>> = () => {
     useEffect( () => {
         const getBlog = async () => {
             const { data } = await blogApi.getAll( {_limit: 4} );
-            setBlogs(data);
+            const newData = data.reverse();
+            setBlogs(newData);
         }
         getBlog();
     }, []);

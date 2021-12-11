@@ -1,7 +1,7 @@
 import React, { useReducer, useState, useEffect } from 'react'
 import { page } from '../index'
 import categoryApi from 'api/categoryApi'
-import { Select, MenuItem, Avatar } from "@mui/material"
+import { Select, Menu, MenuItem, Avatar } from "@mui/material"
 import SearchIcon from '@mui/icons-material/Search'
 import { variableCommon } from "component/variableCommon"
 import PaginationCategory from "../component/PaginationCategory"
@@ -33,18 +33,20 @@ const columns = [
 const ListCategory: React.FC<ListCategory<any>> = ({ changePage, set_id, ...props }) => {
   const classes = useStyle();
   const [state, dispatch] = useReducer(handleReducer, initialReducer);
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const open = Boolean(anchorEl);
   const [stateModalCategory, setStateModalCategory] = useState<any>({ display: false, _id: null });
-  
+
   useEffect(() => {
     (async () => {
       const query = {
         ...state.Filter
       }
       const [data, error] = await HandleGet(categoryApi.getAll, query);
-      
+
       delete query._limit;
       delete query._page;
-      
+
       const checkFindName = Object.entries(query).length;
       var [dataStatic] = await HandleGet(categoryApi.getAll, checkFindName ? { ...query } : {});
 
@@ -60,6 +62,14 @@ const ListCategory: React.FC<ListCategory<any>> = ({ changePage, set_id, ...prop
     }
   }, [state.Filter])
 
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
   const findName = (event: Event | any) => {
     const getValue = ((event.target as HTMLInputElement).value).trim();
     if (event.keyCode === 13) {
@@ -68,8 +78,8 @@ const ListCategory: React.FC<ListCategory<any>> = ({ changePage, set_id, ...prop
   }
 
   const onOpen = <T extends string>(_id: T) => {
-    if ([undefined,  null].includes(_id as any)) return;
-    setStateModalCategory((value: any) => ({ _id, display: true}))
+    if ([undefined, null].includes(_id as any)) return;
+    setStateModalCategory((value: any) => ({ _id, display: true }))
   }
 
   const onClose = () => {
@@ -83,7 +93,7 @@ const ListCategory: React.FC<ListCategory<any>> = ({ changePage, set_id, ...prop
 
   const deleteOne = async (_id: string) => {
     if (!_id) return;
-    dispatch(pustAction(typeAciton.deleteOne, {_id}));
+    dispatch(pustAction(typeAciton.deleteOne, { _id }));
     await categoryApi.deleteOne(_id);
   }
 
@@ -100,21 +110,21 @@ const ListCategory: React.FC<ListCategory<any>> = ({ changePage, set_id, ...prop
   return (
     <>
       {stateModalCategory._id && <ModalCategory state={stateModalCategory} onClose={onClose}></ModalCategory>}
-      <div 
+      <div
         style={{
-          display: 'flex', 
-          justifyContent: 'center', 
-          alignItems: 'center', 
-          minHeight: '800px', 
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          minHeight: '800px',
           width: '100%'
         }}
       >
-        <div style={{ flexBasis: 1000, margin: '0 auto'}}>
-        <h2 className="mb-5">Thể loại</h2>
+        <div style={{ flexBasis: 1000, margin: '0 auto' }}>
+          <h2 className="mb-5">Thể loại</h2>
           <Paper sx={{ width: '100%' }}>
             <TableContainer style={{ padding: 20 }}>
               <Typography style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <TextField 
+                <TextField
                   InputProps={{
                     startAdornment: <SearchIcon style={{ marginRight: 10 }}></SearchIcon>,
                     placeholder: "searching"
@@ -123,7 +133,7 @@ const ListCategory: React.FC<ListCategory<any>> = ({ changePage, set_id, ...prop
                   size="small"
                 />
 
-                <Select 
+                <Select
                   labelId="demoSelectLabel"
                   id="demoSelectLabel"
                   label="Age"
@@ -143,15 +153,15 @@ const ListCategory: React.FC<ListCategory<any>> = ({ changePage, set_id, ...prop
                     <TableCell key="awd" align="left" style={{ minWidth: 170 }}>
                       <Checkbox
                         id="checkAll"
-                        onClick={() => {dispatch(pustAction(typeAciton.checkAll))}}
+                        onClick={() => { dispatch(pustAction(typeAciton.checkAll)) }}
                         checked={state.checkAll}
                       />
                       <label htmlFor="checkAll">All</label>
                     </TableCell>
                     {columns.map((column) => (
-                      <TableCell 
-                        key={column.id} 
-                        align={column.align as any} 
+                      <TableCell
+                        key={column.id}
+                        align={column.align as any}
                         style={{ minWidth: column.minWidth }}
                       >
                         {column.label}
@@ -162,7 +172,7 @@ const ListCategory: React.FC<ListCategory<any>> = ({ changePage, set_id, ...prop
 
                 <TableBody>
                   {
-                    state.Data.length && state.Display ? 
+                    state.Data.length && state.Display ?
                       state.Data.map((row: any, index: any) => {
                         const { name, image, id_Topic, check, _id } = row;
                         return (
@@ -177,18 +187,48 @@ const ListCategory: React.FC<ListCategory<any>> = ({ changePage, set_id, ...prop
                               <Avatar alt={name} variant="rounded" src={image} />
                             </TableCell>
                             <TableCell align='center'>
-                              <Button variant="contained" color="error" style={{ marginRight: 5 }} size="small"
-                                onClick={() => {
-                                  // dispatch(pustAction(typeAciton.deleteOne, { _id }))
-                                  deleteOne(_id)
-                                }}
-                              >Delete</Button>
-                              <Button variant="contained" color="primary" size="small"
-                                onClick={() => { navigatePage(page.UpdateCategory, _id) }}
-                              >Edit</Button>
-                              <Button variant="contained" color="primary" size="small" style={{ marginLeft: 5 }}
-                                onClick={() => { onOpen<string>(_id) }}
-                              >More</Button>
+                              <div>
+                                <Button
+                                  id="demo-positioned-button"
+                                  aria-controls="demo-positioned-menu"
+                                  aria-haspopup="true"
+                                  aria-expanded={open ? 'true' : undefined}
+                                  onClick={handleClick}
+                                >
+                                  Click
+                                </Button>
+                                <Menu
+                                  id="demo-positioned-menu"
+                                  aria-labelledby="demo-positioned-button"
+                                  anchorEl={anchorEl}
+                                  open={open}
+                                  onClose={handleClose}
+                                  anchorOrigin={{
+                                    vertical: 'top',
+                                    horizontal: 'left',
+                                  }}
+                                  transformOrigin={{
+                                    vertical: 'top',
+                                    horizontal: 'left',
+                                  }}
+                                >
+                                  <div onClick={handleClose}>
+                                    <MenuItem onClick={() => { deleteOne(_id) }}>
+                                      Delete
+                                    </MenuItem>
+                                  </div>
+                                  <div onClick={handleClose}>
+                                    <MenuItem onClick={() => { navigatePage(page.UpdateCategory, _id) }}>
+                                      Edit
+                                    </MenuItem>
+                                  </div>
+                                  <div onClick={handleClose}>
+                                    <MenuItem onClick={() => { onOpen<string>(_id) }}>
+                                      More
+                                    </MenuItem>
+                                  </div>
+                                </Menu>
+                              </div>
                             </TableCell>
                           </TableRow>
                         );
@@ -204,8 +244,8 @@ const ListCategory: React.FC<ListCategory<any>> = ({ changePage, set_id, ...prop
               <Box className={classes.styleBox}>
                 <div>
                   <Button variant="contained" size="small" onClick={deleteAll}>Delete All</Button>
-                  <Button 
-                    variant="contained" 
+                  <Button
+                    variant="contained"
                     size="small"
                     style={{ marginLeft: 5 }} onClick={() => { navigatePage(page.AddCategory) }}
                   >

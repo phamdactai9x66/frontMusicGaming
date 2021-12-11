@@ -23,9 +23,9 @@ const Newmusic: React.FC<NewmusicIF<any>> = ({ ...props }) => {
                 <div className="text-title-nhacmoi-tt">
                     <h3 className="color-nhacmoi-tt title_all">Nhạc mới</h3>
                 </div>
-                <div className="div-svg">
+                {/* <div className="div-svg">
                     <Play className="svg color-nhacmoi-tt" />
-                </div>
+                </div> */}
             </div>
             <div className="list-box-musicChart">
                

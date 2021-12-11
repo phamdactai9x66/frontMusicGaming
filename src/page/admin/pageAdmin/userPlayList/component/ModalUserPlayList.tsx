@@ -33,7 +33,7 @@ interface ModalUserPlayList<T> {
 }
 
 const ModalUserPlayList: React.FC<ModalUserPlayList<any>> = ({ state, onClose, ...props }) => {
-  const [dataUserPlayList, setDataUserPlayList] = useState<any>({data: {}, error: false, display: false});
+  const [dataUserPlayList, setDataUserPlayList] = useState<any>({ data: {}, error: false, display: false });
   const nameUser = useRef<any>('');
   const classes = useStyle();
 
@@ -55,8 +55,8 @@ const ModalUserPlayList: React.FC<ModalUserPlayList<any>> = ({ state, onClose, .
     const findUsers = await useApi.getOne(_id);
 
     if (findUsers.status !== variableCommon.statusF) {
-      const { last_name } = findUsers.data;
-      return nameUser.current = `${last_name}`
+      const { userName } = findUsers.data;
+      return nameUser.current = `${userName}`
     }
     nameUser.current = ''
   }
@@ -80,21 +80,11 @@ const ModalUserPlayList: React.FC<ModalUserPlayList<any>> = ({ state, onClose, .
               <Grid container spacing={2}>
                 <Grid item xs={12} md={6}>
                   <Typography>
-                    <TextField 
-                      inputProps={{ readOnly: true }} 
-                      label="Name" 
+                    <TextField
+                      inputProps={{ readOnly: true }}
+                      label="Name"
                       value={dataUserPlayList.data?.name}
-                    />
-                  </Typography>
-                </Grid>
-
-                <Grid item xs={12} md={6}>
-                  <Typography>
-                    <TextField 
-                      inputProps={{ readOnly: true }} 
-                      label="User" 
-                      value={nameUser.current} 
-                      variant="standard" 
+                      variant="standard"
                       fullWidth
                     />
                   </Typography>
@@ -102,24 +92,36 @@ const ModalUserPlayList: React.FC<ModalUserPlayList<any>> = ({ state, onClose, .
 
                 <Grid item xs={12} md={6}>
                   <Typography>
-                    <TextField 
-                      inputProps={{ readOnly: true }} 
-                      label="createdAt" 
-                      value={getDate(dataUserPlayList.data?.createdAt)} 
-                      variant="standard" 
-                      fullWidth 
+                    <TextField
+                      inputProps={{ readOnly: true }}
+                      label="User"
+                      value={nameUser.current}
+                      variant="standard"
+                      fullWidth
                     />
                   </Typography>
                 </Grid>
 
                 <Grid item xs={12} md={6}>
                   <Typography>
-                    <TextField 
-                      inputProps={{ readOnly: true }} 
-                      label="updatedAt" 
-                      value={getDate(dataUserPlayList.data?.updatedAt)} 
-                      variant="standard" 
-                      fullWidth 
+                    <TextField
+                      inputProps={{ readOnly: true }}
+                      label="createdAt"
+                      value={getDate(dataUserPlayList.data?.createdAt)}
+                      variant="standard"
+                      fullWidth
+                    />
+                  </Typography>
+                </Grid>
+
+                <Grid item xs={12} md={6}>
+                  <Typography>
+                    <TextField
+                      inputProps={{ readOnly: true }}
+                      label="updatedAt"
+                      value={getDate(dataUserPlayList.data?.updatedAt)}
+                      variant="standard"
+                      fullWidth
                     />
                   </Typography>
                 </Grid>

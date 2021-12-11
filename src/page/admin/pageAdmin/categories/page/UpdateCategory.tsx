@@ -1,15 +1,19 @@
-import React, {useState, useRef, useEffect} from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { Card } from "@material-ui/core"
 import LoadingButton from '@mui/lab/LoadingButton'
-import { Button, Alert } from "@mui/material"
+import { Button, Alert, List, ListItem, ListItemText, ListItemAvatar, Avatar, Autocomplete, TextField } from "@mui/material"
 import { Formik, Form } from "formik";
 import SelectTopic from '../component/SelectTopic'
 import { InputText, FileField } from "component/customField/index"
 import validationChemaCategory from '../component/ValidationChemaCategory'
 import { variableCommon } from "component/variableCommon"
 import { page } from "../index"
-import { HandleGet } from "component/MethodCommon"
+import { HandleGet, tranFormDataId } from "component/MethodCommon"
 import categoryApi from 'api/categoryApi'
+import songApi from "api/songApi";
+import playlistSongApi from "api/playlistSongApi"
+import DeleteIcon from '@mui/icons-material/Delete';
+import { IconButton } from '@mui/material';
 
 interface UpdateCategory<T> {
   changePage: any,
@@ -19,10 +23,11 @@ interface UpdateCategory<T> {
 const initialValue = {
   name: '',
   image: '',
-  id_Topic: ''
+  id_Topic: '',
+  searchSong: ''
 }
 
-const UpdateCategory: React.FC<UpdateCategory<any>> = ({ changePage, _id, ...props}) => {
+const UpdateCategory: React.FC<UpdateCategory<any>> = ({ changePage, _id, ...props }) => {
   const refForm = useRef<HTMLFormElement | any>(null);
   const [alert, setAlert] = useState({ display: false, message: "", type: "" });
   const [dataCategory, setDataCategory] = useState({ data: null, display: true });
@@ -51,10 +56,10 @@ const UpdateCategory: React.FC<UpdateCategory<any>> = ({ changePage, _id, ...pro
     setTimeout(async () => {
       const editCategory = await categoryApi.putOne<FormData, string>(getForm, _id);
       if (editCategory.status !== variableCommon.statusF) {
-        setDataCategory(value => ({ ...value, data: editCategory.data[0]}))
+        setDataCategory(value => ({ ...value, data: editCategory.data[0] }))
         setAlert(value => (
           {
-            ...value, 
+            ...value,
             display: true,
             message: editCategory.message,
             type: 'success'
@@ -63,7 +68,7 @@ const UpdateCategory: React.FC<UpdateCategory<any>> = ({ changePage, _id, ...pro
       } else {
         setAlert(value => (
           {
-            ...value, 
+            ...value,
             display: true,
             message: editCategory.message,
             type: 'error'
@@ -88,7 +93,7 @@ const UpdateCategory: React.FC<UpdateCategory<any>> = ({ changePage, _id, ...pro
           initialValues={dataCategory.data || initialValue}
           onSubmit={submitForm}
           validateOnChange={false}
-          validationChemaCategory={validationChemaCategory}
+          validationSchema={validationChemaCategory}
           enableReinitialize
         >
           {formik => {
@@ -119,18 +124,18 @@ const UpdateCategory: React.FC<UpdateCategory<any>> = ({ changePage, _id, ...pro
                       </div>
                     </Card>
                     <br />
-                    <LoadingButton 
-                      loading={formik.isSubmitting} 
-                      variant="contained" 
+                    <LoadingButton
+                      loading={formik.isSubmitting}
+                      variant="contained"
                       type="submit"
                     >
                       Cập nhật
                     </LoadingButton>
-                    <Button 
-                      variant="contained" 
-                      color="error" 
-                      style={{ marginLeft: 20 }} 
-                      onClick={() => { navigatePage(page.ListCategory)}}
+                    <Button
+                      variant="contained"
+                      color="error"
+                      style={{ marginLeft: 20 }}
+                      onClick={() => { navigatePage(page.ListCategory) }}
                     >
                       Hủy
                     </Button>

@@ -100,11 +100,14 @@ const ListMusicNew: React.FC<ListMusicNewIF<any>> = (props) => {
         setIsLogged(false);
     }
 
-    if (handleStatus.status !== "") {
-        setTimeout(() => {
-            setHandleStatus({ status: "", content: "" });
-        }, 3000);
-    }
+    useEffect( () => {
+        if(handleStatus.status !== ""){
+            let timer = setTimeout(() => {
+                setHandleStatus({ status: "", content: "" })
+            }, 2500);
+            return () => clearTimeout(timer);
+        }
+    }, [handleStatus])
 
     const handleCreatePlaylist = async () => {
         if (!playlistName) {
@@ -156,7 +159,7 @@ const ListMusicNew: React.FC<ListMusicNewIF<any>> = (props) => {
                         <GetTimeAudio url={item.audio} />
                     </div>
                     <div className="icon_item">
-                        <AiOutlineDownload onClick={() => handleDownload(item._id)} className="icon" />
+                        <AiOutlineDownload onClick={() => handleDownload(item)} className="icon" />
                         <AiFillHeart onClick={() => handleAdd(item._id, user._id, "like")} className="icon" />
                         <IoMdAdd className="icon" onClick={(e) => {
                             openPopover(e);

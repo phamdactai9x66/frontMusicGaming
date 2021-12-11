@@ -120,11 +120,11 @@ const RoomDetail: React.FC<RoomDetail<any>> = ({ match, ...props }) => {
         const getNewSong = await roomSong.postSong<object>(data);
         io(server).emit("newSongRoom");
     }
-
     return (
         <>
             <div className="romdetail">
                 <div className="room">
+                    <h1>{(props.location.state as any)?.name_Room}</h1>
                     <SearchSong addSongToRoom={addSongToRoom} />
                     {/*  */}
                     <h3 className="mt-3 text-white ps-3" style={{ borderLeft: '0.5rem solid #26a5ff', fontSize: '1.2rem' }}>Danh sách bài hát</h3>
@@ -137,13 +137,13 @@ const RoomDetail: React.FC<RoomDetail<any>> = ({ match, ...props }) => {
                     </div> */}
                 </div>
                 <div className="search_user">
-                    <div>
+                    {/* <div>
                         <TextField style={{ width: "100%" }} id="standard-basic" label="Tìm kiếm" variant="standard" />
                         <br /><br /><Button variant="contained" color="error">
                             Tìm bạn
                         </Button>
                     </div>
-                    <br /><br />
+                    <br /><br /> */}
                     <h3 className="mt-3 text-white ps-3" style={{ borderLeft: '0.5rem solid #26a5ff', fontSize: '1.2rem' }}>Đang hoạt động</h3>
                     <div className="grid-user">
                         <ListRoomUser />
