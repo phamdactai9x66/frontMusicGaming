@@ -146,14 +146,6 @@ const Sidebar: React.FC<SidebarIF<any>> = ({ ...props }) => {
       subLink: "/admin/addCategoryBlog"
     },
     {
-      icon: "fa fa-user-o",
-      name: "User play list",
-      iconAdd: "fa fa-plus-circle",
-      details: "Add User play list",
-      link: "/admin/userPlayList",
-      subLink: "/admin/addUserPlayList"
-    },
-    {
       icon: "fa fa-lightbulb-o",
       name: "Topic",
       iconAdd: "fa fa-plus-circle",
