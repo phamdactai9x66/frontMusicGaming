@@ -190,7 +190,7 @@ const ListBlog: React.FC<ListBlog<any>> = ({ changePage, set_id, ...props }) => 
                                 Delete
                               </Button>
                               <Button variant="contained" color="primary" size="small"
-                                onClick={() => { navigatePage(page.UpdateBlog, _id) }}
+                                onClick={() => { navigatePage(page.UpdateBlog) }}
                               >Edit</Button>
                               <Button variant="contained" color="primary" size="small" style={{ marginLeft: 5 }}
                                 onClick={() => { onOpen<string>(_id) }}

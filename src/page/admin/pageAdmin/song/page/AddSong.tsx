@@ -36,7 +36,7 @@ const AddSong: React.FC<AddSong<any>> = ({ changePage, ...props }) => {
   const [alert, setAlert] = useState({ display: false, message: "", type: "" });
 
   const submitForm = (data: any, action: any) => {
-    console.log('data blog : ', data);
+    console.log('data : ', data);
     const getForm = new FormData(refForm.current);
     getForm.set('day_release', data.day_release);
 
@@ -65,7 +65,7 @@ const AddSong: React.FC<AddSong<any>> = ({ changePage, ...props }) => {
   }
 
   const navigatePage = (page: string) => {
-    changePage(page);
+    // changePage(page);
   }
 
   return (
@@ -123,7 +123,7 @@ const AddSong: React.FC<AddSong<any>> = ({ changePage, ...props }) => {
                         <div className="flex-image bg-file">
                           <FileField
                             name="image"
-                            label="Image song"
+                            label="Ảnh"
                             type="file"
                             other={{ variant: 'standard' }}
                           />
@@ -137,7 +137,7 @@ const AddSong: React.FC<AddSong<any>> = ({ changePage, ...props }) => {
                         <div className="inputForm">
                           <FileField
                             name="audio"
-                            label="audio song"
+                            label="Nhạc"
                             type="file"
                             other={{ variant: 'standard' }}
                           />
@@ -150,7 +150,7 @@ const AddSong: React.FC<AddSong<any>> = ({ changePage, ...props }) => {
                       <div className="form-input-add">
                         <div className="inputForm">
                           <PickDate
-                            label="Birth"
+                            label="Ngày phát hành"
                             name="day_release"
                             other={{ variant: "standard" }}
                           />
@@ -164,7 +164,7 @@ const AddSong: React.FC<AddSong<any>> = ({ changePage, ...props }) => {
                         <div className="inputForm">
                           <RadioField
                             name="active"
-                            label="Active"
+                            label="Trạng thái"
                             data={activeOption}
                             other={{ variant: 'standard' }}
                           />
@@ -178,7 +178,7 @@ const AddSong: React.FC<AddSong<any>> = ({ changePage, ...props }) => {
                         <div className="inputForm">
                           <InputText
                             name="describe"
-                            placeholder="Describe"
+                            placeholder="Mô tả bài hát"
                             other={{ variant: 'standard' }}
                           />
                         </div>
@@ -199,7 +199,7 @@ const AddSong: React.FC<AddSong<any>> = ({ changePage, ...props }) => {
                       variant="contained"
                       type="submit"
                     >
-                      Thêm Song
+                      Thêm Nhạc
                     </LoadingButton>
                     <Button
                       variant="contained"

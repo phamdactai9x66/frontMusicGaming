@@ -42,8 +42,8 @@ const ModalBlog: React.FC<ModalBlog<any>> = ({ state, onClose, ...props }) => {
 
   useEffect(() => {
     (async () => {
-      if (dataBlog.error) return;
-      const [data, error] = await HandleGet(blogApi.getOne, state._id);
+      if (dataBlog.error) return; // chỗ này dùng getAll rồi truyền query là {_id: ...} là được ấy
+      const [data, error] = await HandleGet(blogApi.getAll, {_id: state._id});
       console.log('data : ', data);
       if (error) setDataBlog((value: any) => ({ ...value, error: true, display: false }));
       await findUser(data?.data?.id_User);

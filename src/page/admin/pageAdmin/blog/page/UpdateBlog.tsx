@@ -41,7 +41,7 @@ const UpdateBlog: React.FC<UpdateBlog<any>> = ({ changePage, _id, ...props }) =>
     (async () => {
       if (!dataBlog.display) return navigatePage(page.ListBlog);
 
-      const [data, error] = await HandleGet(blogApi.getOne, _id);
+      const [data, error] = await HandleGet(blogApi.getAll, {_id: _id});
 
       if (error) return navigatePage(page.ListBlog);
       setDataBlog(value => ({ ...value, data: data.data }));
