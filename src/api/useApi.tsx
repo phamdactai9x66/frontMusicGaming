@@ -10,16 +10,16 @@ class userApi {
         const url: string = `/user/${_id}`;
         return Axios.get(url)
     }
-    activeUser<T extends string, Y extends string>(_id: T, hash: Y ): Promise<any> {
+    activeUser<T extends string, Y extends string>(_id: T, hash: Y): Promise<any> {
         const url: string = `/user/verifyUser/${_id}/${hash}`;
-        return Axios.get(url)
+        return Axios.put(url)
     }
-    forgotPassWord<T extends any>(form:T): Promise<any> {
+    forgotPassWord<T extends any>(form: T): Promise<any> {
         const url: string = `/user/forgotPassword`;
         return Axios.post(url, form)
     }
-    resetPassWord<T extends string, Y extends string, N extends any>(_id: T, hash: Y, form: N ): Promise<any> {
-        console.log(_id,hash)
+    resetPassWord<T extends string, Y extends string, N extends any>(_id: T, hash: Y, form: N): Promise<any> {
+        // console.log(_id, hash)
         const url: string = `/user/resetPassword/${_id}/${hash}`;
         return Axios.put(url, form)
     }
@@ -47,6 +47,6 @@ class userApi {
         let url: string = "/user/signUp";
         return AxiosFormdata.post(url, form)
     }
-    
+
 }
 export default new userApi()

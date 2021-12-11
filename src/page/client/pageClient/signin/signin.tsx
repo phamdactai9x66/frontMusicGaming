@@ -26,7 +26,7 @@ const Signin: React.FC<SigninIF<any>> = ({ history, ...props }: any) => {
       borderBottom: " 0.2rem solid rgb(65, 217, 228)"
     }
   })
-    //   const [onpenModalActive, setOnpenModalActive] = useState(false);
+  //   const [onpenModalActive, setOnpenModalActive] = useState(false);
   // const handleOnpenActiveUser=()=>{
   //   console.log('abc')
   //   if(onpenModalActive === false){
@@ -127,7 +127,6 @@ const Signin: React.FC<SigninIF<any>> = ({ history, ...props }: any) => {
               enableReinitialize
             >
               {formik => {
-                console.log(formik.errors)
                 return (
                   <Form ref={form}>
                     {alertError.display &&
