@@ -9,6 +9,7 @@ import { HiOutlineDotsCircleHorizontal } from 'react-icons/hi';
 import { Select, MenuItem } from "@mui/material"
 import { useDispatch } from "react-redux";
 import { playSong } from "redux/audio/actionAudio";
+import { saveToLocalStorage } from '../../../common/localStorageCommon';
 interface SlideSongIF<T> {
     data: any
 }
@@ -40,7 +41,7 @@ const SlideSong: React.FC<SlideSongIF<any>> = ({ data, ...props }) => {
                             </figure>
                             <div className="icon-box">
                                 <div>
-                                    <FiPlayCircle className="icon" onClick={() => { playAudio(audio) }} />
+                                    <FiPlayCircle className="icon" onClick={() => { playAudio(audio); saveToLocalStorage(audio) }} />
                                 </div>
                             </div>
                 

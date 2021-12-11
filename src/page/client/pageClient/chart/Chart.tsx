@@ -39,6 +39,7 @@ import {
     Bar
   } from "recharts";
 import Loadings from './../../loading/loading';
+import { saveToLocalStorage } from 'page/client/common/localStorageCommon';
 
     const data = [
       {
@@ -312,9 +313,15 @@ const Chart: React.FC<chart<any>> = ({ ...props }) => {
                           </div>
                           <img src={item.image} alt={item.title} />
                           <div className="box-icon m-1 pt-1 ml-3s " >
-                              <BsFillPlayFill onClick={() => playAudio(item._id)} />
+                              <BsFillPlayFill onClick={() => {
+                                  playAudio(item._id);
+                                  saveToLocalStorage(item)
+                              }} />
                           </div>
-                          <div onClick={() => playAudio(item._id)} style={{cursor: "pointer"}} className="mt-1">
+                          <div onClick={() => {
+                              playAudio(item._id);
+                              saveToLocalStorage(item)
+                          }} style={{cursor: "pointer"}} className="mt-1">
                               <h6>{item.title}</h6>
                               <div style={{ fontSize: "0.7rem", marginTop: "-0.2rem" }}>
                                   <NameSongArtist _id={item._id} />

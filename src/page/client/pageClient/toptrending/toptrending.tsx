@@ -19,6 +19,7 @@ import Notification from 'page/notificationModal/NotificationModal';
 import ControlPointIcon from '@mui/icons-material/ControlPoint';
 import LoadingButton from '@mui/lab/LoadingButton';
 import { formStateUser } from 'redux/user/stateUser';
+import { saveToLocalStorage } from 'page/client/common/localStorageCommon';
 
 
 interface ToptrendingIF<T> {
@@ -27,6 +28,7 @@ interface ToptrendingIF<T> {
 }
 
 const Toptrending: React.FC<ToptrendingIF<any>> = ({ ...props }) => {
+    document.title = "Top thịnh hành - Music Game";
 
  
     const history: any = useHistory<any>();
@@ -183,7 +185,7 @@ const Toptrending: React.FC<ToptrendingIF<any>> = ({ ...props }) => {
             <div className="container-nhacmoi">
                     <div className ="title-nhacmoi-tt grid-2">
                         <div className="text-title-nhacmoi-tt">
-                            <h3 className="color-nhacmoi-tt title_all">Top thịnh hành</h3>
+                            <h4 className="color-nhacmoi-tt title_all">Top thịnh hành</h4>
                         </div>
                         {/* <div className="div-svg">
                             <Play className="svg color-nhacmoi-tt" />
@@ -203,9 +205,15 @@ const Toptrending: React.FC<ToptrendingIF<any>> = ({ ...props }) => {
                                             </div>
                                             <img src={item.image} alt={item.title} />
                                             <div className="box-icon m-1 pt-1 ml-3s " >
-                                                <BsFillPlayFill onClick={() => playAudio(item._id)} />
+                                                <BsFillPlayFill onClick={() => {
+                                                    playAudio(item._id);
+                                                    saveToLocalStorage(item)
+                                                }} />
                                             </div>
-                                            <div onClick={() => playAudio(item._id)} style={{cursor: "pointer"}} className="mt-1">
+                                            <div onClick={() => {
+                                                playAudio(item._id);
+                                                saveToLocalStorage(item)
+                                            }} style={{cursor: "pointer"}} className="mt-1">
                                                 <h6>{item.title}</h6>
                                                 <div style={{ fontSize: "0.7rem", marginTop: "-0.2rem" }}>
                                                     <NameSongArtist _id={item._id} />

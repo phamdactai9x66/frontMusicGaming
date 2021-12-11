@@ -10,6 +10,7 @@ import { HandleGet } from "component/MethodCommon";
 import playlistSongApi from 'api/playlistSongApi';
 import { playSong } from "redux/audio/actionAudio"
 import { useDispatch } from 'react-redux';
+import { saveToLocalStorage } from 'page/client/common/localStorageCommon';
 
 
 interface WantHearComponentIF<T> {
@@ -52,7 +53,10 @@ const WantHearComponent: React.FC<WantHearComponentIF<any>> = ({...props}) => {
                             </figure>
                             <div className="icon-box">
                                 <div>
-                                    <FiPlayCircle onClick={() => dispatch(playSong( {_id: item._id} ))} className="icon" />
+                                    <FiPlayCircle onClick={() => {
+                                        dispatch(playSong( {_id: item._id} ));
+                                        saveToLocalStorage(item);
+                                    }} className="icon" />
                                 </div>
                             </div>
 

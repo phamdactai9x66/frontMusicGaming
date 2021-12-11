@@ -13,7 +13,8 @@ const OverView: React.FC<OverViewIF<any>> = ({ ...props }) => {
 
     return (
         <>
-            <h4 className="title_all">Bài hát <MdNavigateNext className="icon" /></h4>
+            <h4 className="title_all">Bài hát</h4>
+            {/* <MdNavigateNext className="icon" /> */}
             <LikeSong />
             <PlaylistSong />
             {/* <ListArtist /> */}

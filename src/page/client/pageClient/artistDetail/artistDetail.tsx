@@ -28,6 +28,7 @@ import Loadings from "page/client/loading/loading";
 import { formStateUser } from "redux/user/stateUser";
 import Notification from "page/notificationModal/NotificationModal";
 import NameSongArtist from 'component/nameSongArtist';
+import { saveToLocalStorage } from "page/client/common/localStorageCommon";
 
 interface ArtistDetailIF<T> {
     // userState: any | T,
@@ -243,7 +244,10 @@ const ArtistDetail: React.FC<ArtistDetailIF<any>> = ({ ...props }) => {
                                 <Button
                                     variant="contained"
                                     color="primary" 
-                                    onClick={() => dispatch(playSong({ _id: songsArtist[0]?.id_Songs, listIdSong: songsArtist}))}
+                                    onClick={() => {
+                                        dispatch(playSong({ _id: songsArtist[0]?.id_Songs, listIdSong: songsArtist}));
+                                        saveToLocalStorage(songsArtist[0])
+                                    }}
                                 >
                                     <BsFillPlayFill />
                                     PHÁT NHẠC
@@ -308,11 +312,17 @@ const ArtistDetail: React.FC<ArtistDetailIF<any>> = ({ ...props }) => {
                                 cursor: "pointer",
                             }}
                             // onClick={() => playAudio(item.id_Songs)}
-                            onClick={ () => dispatch(playSong({ _id: item.id_Songs, listIdSong: songsArtist}))}
+                            onClick={ () => {
+                                dispatch(playSong({ _id: item.id_Songs, listIdSong: songsArtist}));
+                                saveToLocalStorage(songsTransformed[item.id_Songs])
+                            }}
                         >
                             <BsFillPlayFill />
                         </div>
-                        <div className="name" style={{ cursor: "pointer"}} onClick={ () => dispatch(playSong({ _id: item.id_Songs, listIdSong: songsArtist}))}>
+                        <div className="name" style={{ cursor: "pointer"}} onClick={ () => {
+                            dispatch(playSong({ _id: item.id_Songs, listIdSong: songsArtist}));
+                            saveToLocalStorage(songsTransformed[item.id_Songs])
+                            }}>
                             <h6>{songsTransformed[item.id_Songs]?.title}</h6>
                             <div
                                 style={{

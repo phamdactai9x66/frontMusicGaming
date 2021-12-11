@@ -117,12 +117,14 @@ const Home: React.FC<HomeIF<any>> = ({ ...props }) => {
 
                 {/* category */}
                 <div className="list-slider">
-                    <h4 className="title_all">Chủ đề <MdNavigateNext className="icon" /></h4>
+                    <h4 className="title_all">Chủ đề </h4>
+                    {/* <MdNavigateNext className="icon" /> */}
                     <HomeCategory settings_category={settings_category} />
 
                 </div> 
                 <div className="list-music">
-                    <h4 className="title_all">Danh sách bài hát <MdNavigateNext className="icon" /></h4>
+                    <h4 className="title_all">Danh sách bài hát </h4>
+                    {/* <MdNavigateNext className="icon" /> */}
                     <div className="main1">
 
                         <HomeSongComponent userState={userState} />
@@ -134,7 +136,8 @@ const Home: React.FC<HomeIF<any>> = ({ ...props }) => {
 
                 {playlists.length !== 0 && playlists.map((item: any) => 
                     <div className="list-slider " key={item._id}>
-                        <h4 className="title_all">{item.name} <MdNavigateNext className="icon" /></h4>
+                        <h4 className="title_all">{item.name} </h4>
+                        {/* <MdNavigateNext className="icon" /> */}
 
                         <WantHearComponent settings_category={settings_category} PLS={PLS} songs={songsTransform} idPlaylist={item._id} />
                     </div>

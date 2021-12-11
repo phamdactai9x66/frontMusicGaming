@@ -13,6 +13,7 @@ import { getlistAudio, playSong } from "redux/audio/actionAudio"
 import userPlaylistApi from 'api/userPlaylist';
 import ModalLogged from 'component/clientComponent/ModalLogged';
 import AlertComponent from 'component/clientComponent/Alert';
+import { saveToLocalStorage } from 'page/client/common/localStorageCommon';
 
 
 interface ListMusicNewIF<T> {
@@ -148,7 +149,10 @@ const ListMusicNew: React.FC<ListMusicNewIF<any>> = (props) => {
                     {/* <div className="box-icon" style={{left: "4rem",padding:"0.5rem 0.65rem"}} >
                     ▶
                     </div> */}
-                    <div className="box-icon " style={{ marginLeft: "0.7rem", padding: "0.1rem 0.58rem", fontSize: "1.5rem" }} onClick={() => playAudio(item._id)}>
+                    <div className="box-icon " style={{ marginLeft: "0.7rem", padding: "0.1rem 0.58rem", fontSize: "1.5rem" }} onClick={() => {
+                        playAudio(item._id);
+                        saveToLocalStorage(item);
+                    }}>
                         <BsFillPlayFill />
                     </div>
                     <div className="name">
