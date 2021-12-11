@@ -13,6 +13,7 @@ import NameSongArtist from "component/nameSongArtist";
 import GetTimeAudio from "component/getTimeAudio";
 import { useDispatch } from "react-redux";
 import { playSong } from "redux/audio/actionAudio";
+import { saveToLocalStorage } from 'page/client/common/localStorageCommon';
 interface ListLikeSongIF<T> {
 
 }
@@ -55,7 +56,7 @@ const ListLikeSong: React.FC<ListLikeSongIF<any>> = ({ ...props }) => {
                     <div className="music_item p-1" style={{border:'none'}} key={index}>
                         <img src={image} alt="" />
                         <div className="box-icon m-1">
-                            <BsFillPlayFill onClick={() => { dispatch(playSong(getAudio)) }} />
+                            <BsFillPlayFill onClick={() => { dispatch(playSong(getAudio)); saveToLocalStorage(likeSong.dataSong[id_Songs]) }} />
                         </div>
                         <div>
                             <h6>{title}</h6>

@@ -19,7 +19,7 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
   const [viewer, setViewer] = useState<any[]>([]);
 
   const getUser = async () => {
-    const { data } = await userApi.getAll({});
+    const { data } = await userApi.getAll({_limit: 6});
 
     const admin = data.filter((item: any) => item.role == 1)
     const member = data.filter((item: any) => item.role == 2)
@@ -106,7 +106,7 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                             <td><Avatar variant='rounded' alt="" src={item.avatar}/></td>
                             <td>{item.first_name}{item.last_name}</td>
                             <td>{getDate(item.createdAt)}</td>
-                            <td>{item.role === 1 ? 'Member' : "Member"}</td>
+                            <td>{item.role === 2 ? 'Member' : "Member"}</td>
                           </tr>
                         })}
                       </tbody>
@@ -130,7 +130,7 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                             <td><Avatar variant='rounded' alt="" src={item.avatar}/></td>
                             <td>{item.first_name}{item.last_name}</td>
                             <td>{getDate(item.createdAt)}</td>
-                            <td>{item.role === 1 ? 'Viewer' : "Viewer"}</td>
+                            <td>{item.role === 0 ? 'Viewer' : "Viewer"}</td>
                           </tr>
                         })}
                       </tbody>

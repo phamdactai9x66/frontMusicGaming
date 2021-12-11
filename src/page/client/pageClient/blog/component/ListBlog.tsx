@@ -21,7 +21,7 @@ const ListBlog: React.FC<ListBlogComponent<any>> = (props) => {
                 </div>
             }
             {
-                props.blog.data.map((item: any, index: number) => (
+                props.blog.data.reverse().map((item: any, index: number) => (
                     // (props.searchRecommendResults.length === 0 ? props.blog.data : props.searchRecommendResults).map((item: any, index: number) => (
                         <>
 

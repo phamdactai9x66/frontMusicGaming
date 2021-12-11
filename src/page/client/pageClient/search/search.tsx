@@ -28,6 +28,7 @@ import BlogApi from "api/BlogApi";
 import { handleNameArtist } from "page/client/common/handleName"; 
 import Loadings from '../../loading/loading';
 import { Link } from 'react-router-dom';
+import { saveToLocalStorage } from "page/client/common/localStorageCommon";
 
 interface SearchIF<T> {
     userState: any;
@@ -270,10 +271,16 @@ const Search: React.FC<SearchIF<any>> = ({ ...props }) => {
                                 <img src={item.image} alt={item.name} />
                                 <div className="box-icon m-2 pt-1">
                                     <BsFillPlayFill
-                                        onClick={() => playAudio(item._id)}
+                                        onClick={() => {
+                                            playAudio(item._id);
+                                            saveToLocalStorage(item)
+                                        }}
                                     />
                                 </div>
-                                <div onClick={() => playAudio(item._id)}>
+                                <div onClick={() => {
+                                    playAudio(item._id);
+                                    saveToLocalStorage(item)
+                                }}>
                                     <h6>{item.title}</h6>
                                     <div
                                         style={{
@@ -615,7 +622,10 @@ const Search: React.FC<SearchIF<any>> = ({ ...props }) => {
                             <div
                                 className="d-flex top-1 mb-3"
                                 style={{ cursor: "pointer" }}
-                                onClick={() => playAudio(item._id)}
+                                onClick={() => {
+                                    playAudio(item._id);
+                                    saveToLocalStorage(item)
+                                }}
                             >
                                 <div
                                     className="w-50"
@@ -647,7 +657,10 @@ const Search: React.FC<SearchIF<any>> = ({ ...props }) => {
                                     borderBottom: "0.1px solid #38939c",
                                     cursor: "pointer",
                                 }}
-                                onClick={() => playAudio(item._id)}
+                                onClick={() => {
+                                    playAudio(item._id);
+                                    saveToLocalStorage(item)
+                                }}
                             >
                                 <h5 className="px-4 text-white font-monospace py-2">
                                     {i + 1}

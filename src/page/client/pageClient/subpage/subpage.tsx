@@ -7,6 +7,7 @@ import { variableCommon } from "component/variableCommon";
 import { RouteComponentProps } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { getlistAudio, playSong } from 'redux/audio/actionAudio';
+import { saveToLocalStorage } from 'page/client/common/localStorageCommon';
 
 interface SubCategoryIF<T> extends RouteComponentProps {
 
@@ -56,7 +57,10 @@ const SubCategory: React.FC<SubCategoryIF<any>> = ( { location, history, ...prop
         <div className="box-grid-category">
           {handle.data.dataSongs.filter( (i: any) => i.id_Topic === location.state?._id && i.id_Categories === itemCate._id).map( (itemSong: any) => 
             // <Link to={{ }} key={itemSong._id}>
-            <span key={itemSong._id} onClick={() => dispatch(playSong({ _id: itemSong._id}))} >
+            <span key={itemSong._id} onClick={() => {
+              dispatch(playSong({ _id: itemSong._id}));
+              saveToLocalStorage(itemSong)
+            }} >
                 {/* pathname: '/category/SubCategory',
               search: `?idTopic=${id_Topic}&id_subCate=${current?._id}` */}
               <div className="box">

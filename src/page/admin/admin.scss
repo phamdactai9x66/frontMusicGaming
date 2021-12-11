@@ -51,18 +51,22 @@ main {
     border-bottom: 0.1rem solid rgb(60, 206, 231);
       img {
         border-radius: 50%;
+        object-fit: cover;
       }
       & div {
-        display: flex;
-        grid-gap: 2px;
-        margin: 15px;
-        & div {
+        margin: 15px 17px 15px 15px;
+        & .name {
+            float: right;
             font-size: 18px;
             margin-top: 13px;
             color: #dfdede;
             cursor: pointer;
+            width: 7.7rem;
+            overflow: hidden;
+            white-space: nowrap; 
+            text-overflow: ellipsis;
         }
-        & div:hover {
+        & .name:hover {
           color: #fff;
           cursor: pointer;
         }

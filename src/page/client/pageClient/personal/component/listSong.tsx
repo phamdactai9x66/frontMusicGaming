@@ -16,6 +16,7 @@ import ControlPointIcon from '@mui/icons-material/ControlPoint';
 import userPlaylistApi from 'api/userPlaylistApi';
 import { formStateUser } from 'redux/user/stateUser';
 import { LoadingButton } from '@mui/lab';
+import { saveToLocalStorage } from 'page/client/common/localStorageCommon';
 
 interface ListSongIF<T> {
     data: any | T,
@@ -179,7 +180,7 @@ const ListSong: React.FC<ListSongIF<any>> = ({ data, ...props }) => {
                             <div className="music_item border-0 p-2" key={index}>
                                 <img src={song?.image} alt="" />
                                 <div className="box-icon m-2 pt-1">
-                                    <BsFillPlayFill onClick={() => { playAudio(getAudio) }} />
+                                    <BsFillPlayFill onClick={() => { playAudio(getAudio); saveToLocalStorage(song) }} />
                                 </div>
                                 <div>
                                     <h6>{song?.title}</h6>

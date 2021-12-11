@@ -11,6 +11,8 @@ import { debounce } from '@material-ui/core';
 import blogApi from 'api/BlogApi';
 import { RouteComponentProps } from 'react-router-dom';
 import Loadings from 'page/client/loading/loading';
+import { getDate } from 'component/MethodCommon'
+
 // import { current } from '@reduxjs/toolkit';
 
 
@@ -38,7 +40,7 @@ const Blog: React.FC<blog<any>> = ({ match, ...props }) => {
 
     const searchDebounced = useCallback<any>(debounce(async (value: any) => {
         const { data } = await blogApi.getAll({ title: value });
-        const newData = [...data];
+        const newData = data;
         setCount(Math.ceil(data.length / 7));
         setAllBlogs(data);
         setBlog({
@@ -67,13 +69,13 @@ const Blog: React.FC<blog<any>> = ({ match, ...props }) => {
     useEffect(() => {
         const getBlog = async () => {
 
-            const responseGetAll = await blogApi.getAll({});
-            setAllBlogs(responseGetAll.data);
+            const { data } = await blogApi.getAll({});
+            setAllBlogs(data);
 
-            const counts = Math.ceil(responseGetAll.data.length / 7);
+            const counts = Math.ceil(data.length / 7);
             setCount(counts);
 
-            const newData = [...responseGetAll.data];
+            const newData = data;
             setBlog({
                 loading: false,
                 data: newData.splice(0, 7),
@@ -86,13 +88,13 @@ const Blog: React.FC<blog<any>> = ({ match, ...props }) => {
     useEffect(() => {
         if (category) {
             (async () => {
-                const responseGetAll = await blogApi.getAll({ id_CategoryBlog: category._id });
-                setAllBlogs(responseGetAll.data);
+                const { data } = await blogApi.getAll({ id_CategoryBlog: category._id });
+                setAllBlogs(data);
 
-                const counts = Math.ceil(responseGetAll.data.length / 7);
+                const counts = Math.ceil(data.length / 7);
                 setCount(counts);
 
-                const newData = [...responseGetAll.data];
+                const newData = data;
                 setBlog({
                     loading: false,
                     data: newData.splice(0, 7),

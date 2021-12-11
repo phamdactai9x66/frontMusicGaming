@@ -7,6 +7,7 @@ import { Formik, Form } from 'formik';
 import SchemaConfirmPassWord from './component/schemaConfirmPassWord';
 import userApi from 'api/useApi';
 import { variableCommon } from 'component/variableCommon';
+import { TextField} from '@mui/material';
 
 interface ForgotPasswordIF<T> {
 
@@ -21,9 +22,9 @@ const ComfirmPassword: React.FC<ForgotPasswordIF<any>> = ({ ...props }) => {
     const {idUser, hash} = useParams<{idUser:string,hash:string}>();
 
     const submitForm = (data: any) => {
-        // console.log(data)
-        // console.log(idUser)
-        // console.log(hash)
+        console.log(data)
+        console.log(idUser)
+        console.log(hash)
         setTimeout(async () => {
             const resetPassWord = await userApi.resetPassWord(idUser, hash, data);
             if (resetPassWord.status !== variableCommon.statusF) {
@@ -66,13 +67,13 @@ const ComfirmPassword: React.FC<ForgotPasswordIF<any>> = ({ ...props }) => {
                         {formik => {
                             return (
                                 <Form>
-                                    <InputText name="passWord" type="password" label="Nhập mật khẩu mới" />
+                                    <InputText label="Mật khẩu mới" type="password" name="passWord"/>
                                     <br />
-                                    <InputText name="confirmPassWord" type="password" label="Xác nhận mật khẩu" />
+                                    <InputText label="Xác nhận mật khẩu" type="password" name="confirmPassWord"/>
                                     <br />
                                     <LoadingButton style={{ padding: "0.5rem 3rem", marginBottom: "1rem" }} loading={formik.isSubmitting}
                                         variant="contained" color="secondary" type="submit">
-                                        Đăng nhập
+                                        Đặt lại mật khẩu
                                     </LoadingButton>
                                 </Form>
                             )

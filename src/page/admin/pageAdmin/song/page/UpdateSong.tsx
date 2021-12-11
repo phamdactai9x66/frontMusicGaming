@@ -3,7 +3,7 @@ import { Card } from "@material-ui/core"
 import LoadingButton from '@mui/lab/LoadingButton'
 import { Button, Alert } from "@mui/material"
 import { Formik, Form } from "formik"
-import { InputText, FileField, RadioField, TextareaField } from "component/customField/index"
+import { InputText, FileField, RadioField, TextareaField, PickDate } from "component/customField/index"
 import { page } from "../index"
 import songApi from 'api/songApi'
 import { HandleGet } from "component/MethodCommon"
@@ -26,7 +26,7 @@ const initialValue = {
   audio: '',
   active: '',
   describe: '',
-  day_release: null,
+  day_release: new Date().toISOString(),
   id_Topic: '',
   id_category: '',
   id_aubum: '',
@@ -35,7 +35,7 @@ const initialValue = {
 const UpdateSong: React.FC<UpdateSong<any>> = ({ changePage, _id, ...props }) => {
   const refForm = useRef<HTMLFormElement | any>(null);
   const [alert, setAlert] = useState({ display: false, message: "", type: "" });
-  const [dataSong, setDataSong] = useState({ data: null, display: true });
+  const [dataSong, setDataSong] = useState({ data: {}, display: true });
 
   useEffect(() => {
     (async () => {
@@ -158,7 +158,11 @@ const UpdateSong: React.FC<UpdateSong<any>> = ({ changePage, _id, ...props }) =>
                     <Card elevation={5}>
                       <div className="form-input-add">
                         <div className="inputForm">
-                          {/* đoạn này chèn thằng ngày tháng vào */}
+                          <PickDate
+                            label="Birth"
+                            name="day_release"
+                            other={{ variant: "standard" }}
+                          />
                         </div>
                       </div>
                     </Card>

@@ -77,7 +77,6 @@ const AddCategory: React.FC<AddCategory<any>> = ({ changePage, ...props }) => {
           {formik => {
             return (
               <Form ref={refForm}>
-                {JSON.stringify(formik.values)}
                 <div className="grid-addpage">
                   <div className="section-add">
                     <Card elevation={5}>

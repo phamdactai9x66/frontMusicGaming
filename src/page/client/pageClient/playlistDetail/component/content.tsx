@@ -10,6 +10,7 @@ import { Select, MenuItem } from "@mui/material";
 import { AnyRecord } from 'dns';
 import { useDispatch } from "react-redux";
 import { playSong } from "redux/audio/actionAudio"
+import { saveToLocalStorage } from 'page/client/common/localStorageCommon';
 
 interface ContentIF<T> {
     state: any | T,
@@ -49,7 +50,7 @@ const Content: React.FC<ContentIF<any>> = ({ state, history, ...props }) => {
                 </figure>
                 <div className="icon-box">
                     <div>
-                        <FiPlayCircle className="icon" onClick={() => { dispatch(playSong(getSong)) }} />
+                        <FiPlayCircle className="icon" onClick={() => { dispatch(playSong(getSong)); saveToLocalStorage(getSong) }} />
                     </div>
                 </div>
  
