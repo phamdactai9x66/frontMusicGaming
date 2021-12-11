@@ -19,7 +19,7 @@ const Profile: React.FC<profile<any>> = () => {
             <div className="profile-box1 p-4">
                 <div className="img-centert">
                     {(state.user && state.token) ? 
-                      <img style={{border:"3px solid #ff6f53e0"}} className="w-50 mx-auto d-flex p-1" src={state.user?.avatar} alt="" />  : "err"}
+                      <img style={{border:"3px solid #ff6f53e0"}} className="mx-auto d-flex p-1" src={state.user?.avatar} alt="" />  : "err"}
                    
                 </div>
                 <div className=""> 

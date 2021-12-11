@@ -3,7 +3,7 @@ import { Card } from "@material-ui/core"
 import LoadingButton from '@mui/lab/LoadingButton'
 import { Button, Alert } from "@mui/material"
 import { Formik, Form } from "formik"
-import { InputText, FileField, RadioField, TextareaField } from "component/customField/index"
+import { InputText, FileField, RadioField, TextareaField, PickDate } from "component/customField/index"
 import { page } from "../index"
 import songApi from 'api/songApi'
 import { activeOption } from '../component/stateForm'
@@ -25,10 +25,10 @@ const initialValue = {
   audio: '',
   active: '',
   describe: '',
-  day_release: null,
+  day_release: new Date().toISOString(),
   id_Topic: '',
-  id_category: '',
-  id_aubum: '',
+  id_Categories: '',
+  id_album: '',
 }
 
 const AddSong: React.FC<AddSong<any>> = ({ changePage, ...props }) => {
@@ -36,7 +36,9 @@ const AddSong: React.FC<AddSong<any>> = ({ changePage, ...props }) => {
   const [alert, setAlert] = useState({ display: false, message: "", type: "" });
 
   const submitForm = (data: any, action: any) => {
+    console.log('data blog : ', data);
     const getForm = new FormData(refForm.current);
+    getForm.set('day_release', data.day_release);
 
     setTimeout(async () => {
       const createSong = await songApi.postOne<FormData>(getForm);
@@ -85,6 +87,7 @@ const AddSong: React.FC<AddSong<any>> = ({ changePage, ...props }) => {
           {formik => {
             return (
               <Form ref={refForm}>
+                {/* {JSON.stringify(formik.values)} */}
                 <div className="grid-addpage">
                   <div className="section-add">
                     <Card elevation={5}>
@@ -146,7 +149,11 @@ const AddSong: React.FC<AddSong<any>> = ({ changePage, ...props }) => {
                     <Card elevation={5}>
                       <div className="form-input-add">
                         <div className="inputForm">
-                          {/* đoạn này chèn thằng ngày tháng vào */}
+                          <PickDate
+                            label="Birth"
+                            name="day_release"
+                            other={{ variant: "standard" }}
+                          />
                         </div>
                       </div>
                     </Card>
@@ -169,11 +176,9 @@ const AddSong: React.FC<AddSong<any>> = ({ changePage, ...props }) => {
                     <Card elevation={5}>
                       <div className="form-input-add">
                         <div className="inputForm">
-                          <TextareaField
+                          <InputText
                             name="describe"
                             placeholder="Describe"
-                            minRows={3}
-                            style={{ width: 400 }}
                             other={{ variant: 'standard' }}
                           />
                         </div>

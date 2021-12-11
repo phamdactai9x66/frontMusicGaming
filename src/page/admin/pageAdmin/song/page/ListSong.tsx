@@ -29,7 +29,6 @@ const columns = [
   { id: 'title', label: 'Title Song', minWidth: 140, align: 'left' },
   { id: 'image', label: 'Image', minWidth: 140, align: 'left' },
   { id: 'view', label: 'View', minWidth: 140, align: 'left' },
-  { id: 'audio', label: 'Audio', minWidth: 140, align: 'left' },
   { id: '', label: 'Handle', minWidth: 170, align: 'center' }
 ]
 
@@ -165,7 +164,7 @@ const ListSong: React.FC<ListSong<any>> = ({ changePage, set_id, ...props }) => 
                   { // Tối về kiểm tra luồng chạy state.Data
                     state.Data.length && state.Display ?
                       state.Data.map((row: any, index: any) => {
-                        const { title, image, view, audio, active, check, _id } = row;
+                        const { title, image, view, active, check, _id } = row;
                         return (
                           <TableRow hover role="checkbox" key={index}>
                             <TableCell align="left">
@@ -181,10 +180,6 @@ const ListSong: React.FC<ListSong<any>> = ({ changePage, set_id, ...props }) => 
                               <Avatar alt={title} variant="rounded" src={image} />
                             </TableCell>
                             <TableCell align="left">{view}</TableCell>
-                            <TableCell align="left">
-                              <audio src={audio} />
-                            </TableCell>
-                            <TableCell align="left">{active === true ? 'oki' : 'No oki'}</TableCell>
                             <TableCell align='center'>
                               <Button
                                 variant="contained"

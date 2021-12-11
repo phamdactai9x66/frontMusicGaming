@@ -176,7 +176,7 @@ const Sidebar: React.FC<SidebarIF<any>> = ({ ...props }) => {
       <div className="main_info">
         <div className="info_admin">
           {(state.user && state.token) ? 
-           <Link to="/admin/profile"><div><img width={50} height={50} src={state.user?.avatar} alt="" /><div>{state.user?.first_name} {state.user?.last_name}</div></div></Link> : "err"}
+           <Link to="/admin/profile"><div><img width={50} height={50} src={state.user?.avatar} alt="" /><div className="name">{state.user?.first_name} {state.user?.last_name}</div></div></Link> : "err"}
         </div>
       </div>
       <div className={classes.search} style={{ position: "relative" }}>
