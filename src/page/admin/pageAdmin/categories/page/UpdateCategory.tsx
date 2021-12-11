@@ -1,15 +1,19 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { Card } from "@material-ui/core"
 import LoadingButton from '@mui/lab/LoadingButton'
-import { Button, Alert } from "@mui/material"
+import { Button, Alert, List, ListItem, ListItemText, ListItemAvatar, Avatar, Autocomplete, TextField } from "@mui/material"
 import { Formik, Form } from "formik";
 import SelectTopic from '../component/SelectTopic'
 import { InputText, FileField } from "component/customField/index"
 import validationChemaCategory from '../component/ValidationChemaCategory'
 import { variableCommon } from "component/variableCommon"
 import { page } from "../index"
-import { HandleGet } from "component/MethodCommon"
+import { HandleGet, tranFormDataId } from "component/MethodCommon"
 import categoryApi from 'api/categoryApi'
+import songApi from "api/songApi";
+import playlistSongApi from "api/playlistSongApi"
+import DeleteIcon from '@mui/icons-material/Delete';
+import { IconButton } from '@mui/material';
 
 interface UpdateCategory<T> {
   changePage: any,
@@ -19,7 +23,8 @@ interface UpdateCategory<T> {
 const initialValue = {
   name: '',
   image: '',
-  id_Topic: ''
+  id_Topic: '',
+  searchSong: ''
 }
 
 const UpdateCategory: React.FC<UpdateCategory<any>> = ({ changePage, _id, ...props }) => {

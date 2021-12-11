@@ -73,7 +73,7 @@ const ModalSong: React.FC<ModalSong<any>> = ({ state, onClose, ...props }) => {
     const findAlbums = await albumApi.getOne(_id);
 
     if (findAlbums.status !== variableCommon.statusF) {
-      const { title } = findAlbums.data[0];
+      const { title } = findAlbums.data;
       return nameAlbums.current = title
     }
     nameAlbums.current = ''
@@ -84,7 +84,7 @@ const ModalSong: React.FC<ModalSong<any>> = ({ state, onClose, ...props }) => {
     const findCategories = await categoryApi.getOne(_id);
 
     if (findCategories.status !== variableCommon.statusF) {
-      const { name } = findCategories.data[0];
+      const { name } = findCategories.data;
       return nameCategory.current = name
     }
     nameCategory.current = ''
@@ -110,7 +110,7 @@ const ModalSong: React.FC<ModalSong<any>> = ({ state, onClose, ...props }) => {
                 <Grid item xs={12} md={6}>
                   <Typography>
                     <img
-                      src={dataSong.data?.image}
+                      src={(dataSong.data?.[0] as any)?.image}
                       className={classes.styleImage}
                       alt=""
                     />
@@ -122,7 +122,7 @@ const ModalSong: React.FC<ModalSong<any>> = ({ state, onClose, ...props }) => {
                     <TextField
                       inputProps={{ readOnly: true }}
                       label="Title"
-                      value={dataSong.data?.title}
+                      value={(dataSong.data?.[0] as any)?.title}
                       variant="standard"
                       fullWidth
                     />
@@ -134,7 +134,7 @@ const ModalSong: React.FC<ModalSong<any>> = ({ state, onClose, ...props }) => {
                     <TextField
                       inputProps={{ readOnly: true }}
                       label="Audio"
-                      value={dataSong.data?.audio}
+                      value={(dataSong.data?.[0] as any)?.audio}
                       variant="standard"
                       fullWidth
                     />
@@ -146,7 +146,7 @@ const ModalSong: React.FC<ModalSong<any>> = ({ state, onClose, ...props }) => {
                     <TextField
                       inputProps={{ readOnly: true }}
                       label="View"
-                      value={dataSong.data?.view}
+                      value={(dataSong.data?.[0] as any)?.view}
                       variant="standard"
                       fullWidth
                     />
@@ -158,7 +158,7 @@ const ModalSong: React.FC<ModalSong<any>> = ({ state, onClose, ...props }) => {
                     <TextField
                       inputProps={{ readOnly: true }}
                       label="Active"
-                      value={dataSong.data?.active}
+                      value={(dataSong.data?.[0] as any)?.active === true ? 'Duyệt' : 'Không duyệt'}
                       variant="standard"
                       fullWidth
                     />
@@ -170,7 +170,7 @@ const ModalSong: React.FC<ModalSong<any>> = ({ state, onClose, ...props }) => {
                     <TextField
                       inputProps={{ readOnly: true }}
                       label="Describe"
-                      value={dataSong.data?.describe}
+                      value={(dataSong.data?.[0] as any)?.describe}
                       variant="standard"
                       fullWidth
                     />

@@ -187,48 +187,48 @@ const ListCategory: React.FC<ListCategory<any>> = ({ changePage, set_id, ...prop
                               <Avatar alt={name} variant="rounded" src={image} />
                             </TableCell>
                             <TableCell align='center'>
-                              <Button
-                                id="demo-positioned-button"
-                                aria-controls="demo-positioned-menu"
-                                aria-haspopup="true"
-                                aria-expanded={open ? 'true' : undefined}
-                                onClick={handleClick}
-                              >
-                                Click
-                              </Button>
-                              <Menu
-                                id="demo-positioned-menu"
-                                aria-labelledby="demo-positioned-button"
-                                anchorEl={anchorEl}
-                                open={open}
-                                onClose={handleClose}
-                                anchorOrigin={{
-                                  vertical: 'top',
-                                  horizontal: 'left',
-                                }}
-                                transformOrigin={{
-                                  vertical: 'top',
-                                  horizontal: 'left',
-                                }}
-                              >
-                                <MenuItem onClick={handleClose}>
-                                  <Button variant="contained" color="error" style={{ marginRight: 5 }} size="small"
-                                    onClick={() => {
-                                      deleteOne(_id)
-                                    }}
-                                  >Delete</Button>
-                                </MenuItem>
-                                <MenuItem onClick={handleClose}>
-                                  <Button variant="contained" color="primary" size="small"
-                                    onClick={() => { navigatePage(page.UpdateCategory, _id) }}
-                                  >Edit</Button>
-                                </MenuItem>
-                                <MenuItem onClick={handleClose}>
-                                  <Button variant="contained" color="primary" size="small" style={{ marginLeft: 5 }}
-                                    onClick={() => { onOpen<string>(_id) }}
-                                  >More</Button>
-                                </MenuItem>
-                              </Menu>
+                              <div>
+                                <Button
+                                  id="demo-positioned-button"
+                                  aria-controls="demo-positioned-menu"
+                                  aria-haspopup="true"
+                                  aria-expanded={open ? 'true' : undefined}
+                                  onClick={handleClick}
+                                >
+                                  Click
+                                </Button>
+                                <Menu
+                                  id="demo-positioned-menu"
+                                  aria-labelledby="demo-positioned-button"
+                                  anchorEl={anchorEl}
+                                  open={open}
+                                  onClose={handleClose}
+                                  anchorOrigin={{
+                                    vertical: 'top',
+                                    horizontal: 'left',
+                                  }}
+                                  transformOrigin={{
+                                    vertical: 'top',
+                                    horizontal: 'left',
+                                  }}
+                                >
+                                  <div onClick={handleClose}>
+                                    <MenuItem onClick={() => { deleteOne(_id) }}>
+                                      Delete
+                                    </MenuItem>
+                                  </div>
+                                  <div onClick={handleClose}>
+                                    <MenuItem onClick={() => { navigatePage(page.UpdateCategory, _id) }}>
+                                      Edit
+                                    </MenuItem>
+                                  </div>
+                                  <div onClick={handleClose}>
+                                    <MenuItem onClick={() => { onOpen<string>(_id) }}>
+                                      More
+                                    </MenuItem>
+                                  </div>
+                                </Menu>
+                              </div>
                             </TableCell>
                           </TableRow>
                         );
