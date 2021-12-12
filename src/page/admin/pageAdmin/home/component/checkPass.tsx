@@ -136,7 +136,7 @@ const CheckPass: React.FC<CheckPass<any>> = () => {
                                 {passartist.map((item: any) => {
                                     return (
                                         <div className="content_flex">
-                                            <div>{item.first_name} {item.last_name}</div> <Field className="checkbox_name" name="idp" type="checkbox" value={item._id} />
+                                            <div>{item.first_Name} {item.last_Name}</div> <Field className="checkbox_name" name="idp" type="checkbox" value={item._id} />
                                         </div>
                                     )
                                 })}

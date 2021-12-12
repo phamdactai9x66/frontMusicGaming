@@ -1,89 +1,89 @@
 import React from 'react'
 import { RouteChildrenProps, withRouter } from "react-router-dom";
+import userApi from 'api/useApi'
+import { HandleGet } from 'component/MethodCommon'
 import {
-    LineChart,
-    Line,
-    XAxis,
-    YAxis,
-    CartesianGrid,
-    Tooltip,
-    Legend,
-    ResponsiveContainer
-  } from "recharts";
-  const data = [
-    {
-      name: "Page A",
-      uv: 4000,
-      pv: 2400,
-      amt: 2400
-    },
-    {
-      name: "Page B",
-      uv: 3000,
-      pv: 1398,
-      amt: 2210
-    },
-    {
-      name: "Page C",
-      uv: 2000,
-      pv: 9800,
-      amt: 2290
-    },
-    {
-      name: "Page D",
-      uv: 2780,
-      pv: 3908,
-      amt: 2000
-    },
-    {
-      name: "Page E",
-      uv: 1890,
-      pv: 4800,
-      amt: 2181
-    },
-    {
-      name: "Page F",
-      uv: 2390,
-      pv: 3800,
-      amt: 2500
-    },
-    {
-      name: "Page G",
-      uv: 3490,
-      pv: 4300,
-      amt: 2100
-    }
-  ];
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer
+} from "recharts";
+
 interface ChartUser<T> {
 
 }
 
 const ChartUser: React.FC<ChartUser<any>> = ({ ...props }) => {
-    return (
-      <>  
-    <div className="chart_user">
-      <ResponsiveContainer>
+  const [listUser, setlistUser] = React.useState<Array<any>>([]);
+
+  const createYear = (totalMonth: number = 12): Array<any> => {
+    return Array(totalMonth).fill('').map((e, index: number) => {
+      return {
+        month: index + 1,
+        role: 0,
+        user: []
+      }
+    });
+  }
+  const getRole = (data: any, role: number): number => {
+    return data.filter((e: any) => e === role).length;
+  }
+  React.useEffect(() => {
+    (async () => {
+      const [res, err] = await HandleGet<Function>(userApi.getAll, {});
+      if (err) return
+      const formatDate = res.data?.map((e: any) => {
+        const getMonth = new Date(e.createdAt);
+        return { ...e, createdAt: getMonth.getMonth() + 1 }
+      })
+      const formatChart = createYear().map(e => {
+        const getUserMonth = formatDate.filter((monthUser: any) => monthUser.createdAt === e.month)
+          .map((user: any) => user.role)
+        const getMember = getRole(getUserMonth, 0);
+        const getActor = getRole(getUserMonth, 1);
+        const getAdmin = getRole(getUserMonth, 2);
+        return {
+          ...e,
+          Member: getMember,
+          Actor: getActor,
+          Admin: getAdmin,
+          cound: getUserMonth.length
+        };
+      })
+      setlistUser(formatChart)
+
+    })()
+  }, [])
+  return (
+    <>
+      <div className="chart_user">
+        <ResponsiveContainer>
           <LineChart
-          className="line_chart"
-      data={data}
-    >
-      <CartesianGrid strokeDasharray="3 3" />
-      <XAxis dataKey="name" />
-      <YAxis />
-      <Tooltip />
-      <Legend />
-      <Line
-        type="monotone"
-        dataKey="pv"
-        stroke="#8884d8"
-        activeDot={{ r: 8 }}
-      />
-      <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
-    </LineChart>
-     </ResponsiveContainer>            
-    </div> 
-      </>
-    )
+            className="line_chart"
+            data={listUser}
+          >
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="cound" />
+            <YAxis />
+            <Tooltip />
+            <Legend />
+            <Line
+              type="monotone"
+              dataKey="Member"
+              stroke="#8884d8"
+              activeDot={{ r: 8 }}
+            />
+            <Line type="monotone" dataKey="Actor" stroke="#82ca9d" />
+            <Line type="monotone" dataKey="Admin" stroke="#b96b6b" />
+          </LineChart>
+        </ResponsiveContainer>
+      </div>
+    </>
+  )
 }
 
 export default ChartUser

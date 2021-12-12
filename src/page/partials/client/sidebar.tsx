@@ -37,7 +37,7 @@ const Sidebar: React.FC<SidebarIF<any>> = ({ ...props }) => {
   const getPlaylists = async () => {
     const responsePL = await playlistApi.getAll({});
     if (!responsePL || responsePL.status === "failed") {
-      console.error("Get playlist failed.");
+      // console.error("Get playlist failed.");
       return;
     }
     const { data } = responsePL;
