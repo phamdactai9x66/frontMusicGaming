@@ -13,7 +13,7 @@ const PlaylistSong: React.FC<PlaylistSongIF<any>> = ({ ...props }) => {
     }
     return (
         <>
-            <div className="main2">
+            <div className="main2" style={{marginTop: "2rem"}}>
                 <h4 className="title_all">Playlist </h4>
                 {/* <MdNavigateNext className="icon" /> */}
                 <div className="main2_add">

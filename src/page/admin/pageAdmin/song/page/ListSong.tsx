@@ -120,6 +120,7 @@ const ListSong: React.FC<ListSong<any>> = ({ changePage, set_id, ...props }) => 
         }}
       >
         <div style={{ flexBasis: 1000, margin: '0 auto' }}>
+        <h2 className="mb-5">Music</h2>
           <Paper sx={{ width: '100%' }}>
             <TableContainer style={{ padding: 20 }}>
               <Typography style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>

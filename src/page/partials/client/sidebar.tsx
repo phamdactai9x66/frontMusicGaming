@@ -71,7 +71,7 @@ const Sidebar: React.FC<SidebarIF<any>> = ({ ...props }) => {
           </ul>
           <ul>
             <h6>Thư viện</h6>
-            <Link to="/favorite"><li><AiOutlineHeart className="icon" />Yêu thích</li></Link>
+            {/* <Link to="/favorite"><li><AiOutlineHeart className="icon" />Yêu thích</li></Link> */}
             {/* <Link to="/music"><li><BsMusicNoteBeamed className="icon" />Bài hát</li></Link>
             <Link to="/playlist" ><li><BiPlayCircle className="icon" />Playlist</li></Link> */}
             <Link to="/recently"><li><BiTimeFive className="icon" />Gần đây</li></Link>
@@ -81,12 +81,12 @@ const Sidebar: React.FC<SidebarIF<any>> = ({ ...props }) => {
             <Link to="/playlistDetail"><li>● Nhạc trẻ remix</li></Link>
             <Link to="/playlistDetail"><li>● Nhạc trẻ remix</li></Link>
             <Link to="/playlistDetail"><li>● Nhạc trẻ remix</li></Link> */}
-            {playlists.length !== 0 && playlists.map((item: any) => {
+            {playlists.map((item: any) => {
               // if(isShowPLName.filter(_ => _ === item._id).length !== 0) {
               //     return null
               // } ;
               return (
-                <Link key={item._id} to="/playlist/{item._id}" ><li><BiPlayCircle className="icon" />{item.name}</li></Link>
+                <Link key={item._id} to={`/playlist/${item?._id}`}><li><BiPlayCircle className="icon" />{item.name}</li></Link>
               )
             })}
           </ul>

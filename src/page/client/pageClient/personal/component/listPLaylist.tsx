@@ -23,6 +23,7 @@ const style = {
     width: 450,
     bgcolor: 'background.paper',
     boxShadow: 24,
+    borderRadius: "0.5rem",
     p: 4,
 };
 const ListPLaylist: React.FC<ListPLaylistIF<any>> = ({ render, ...props }) => {

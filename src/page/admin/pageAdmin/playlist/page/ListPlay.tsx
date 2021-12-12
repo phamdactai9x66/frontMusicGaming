@@ -113,6 +113,7 @@ const ListPlay: React.FC<ListPlay<any>> = ({changePage, set_id, ...props}) => {
         display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '600px', width: "100%"
       }}>
         <div style={{ flexBasis: 1000, margin: "0 auto" }}>
+        <h2 className="mb-5">PlayLists</h2>
           <Paper sx={{ width: '100%' }}>
             <TableContainer style={{ padding: 20 }}>
               <Typography 

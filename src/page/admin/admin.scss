@@ -145,9 +145,15 @@ margin-bottom: 2rem;
     width: 40rem;
     margin: 2rem 0 0 -1.9rem;
 }
-  ._sidebar h2 {
+  ._sidebar {
+    .search {
+      display: none;
+    }
+     h2 {
     text-align: left;
   }
+  }
+  
   .info_admin div {
     display: none;
   }

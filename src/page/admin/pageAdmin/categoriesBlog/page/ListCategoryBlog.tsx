@@ -116,6 +116,7 @@ const ListCategoryBlog: React.FC<ListCategoryBlog<any>> = ({ changePage, set_id,
         }}
       >
         <div style={{ flexBasis: 1000, margin: "0 auto" }}>
+        <h2 className="mb-5">Thể loại Blog</h2>
           <Paper sx={{ width: '100%' }}>
             <TableContainer style={{ padding: 20 }}>
               <Typography 

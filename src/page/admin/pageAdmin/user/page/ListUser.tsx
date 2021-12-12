@@ -115,7 +115,7 @@ const ListUser: React.FC<ListUser<any>> = ({ changePage, set_id, ...props }) => 
         }}
       >
         <div style={{ flexBasis: 1000, margin: '0 auto' }}>
-          <h2 className="mb-5">User</h2>
+          <h2 className="mb-5">Users</h2>
           <Paper sx={{ width: '100%' }}>
             <TableContainer style={{ padding: 20 }}>
               <Typography
