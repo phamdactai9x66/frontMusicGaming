@@ -171,6 +171,7 @@ const Audio: React.FC<AudioIF<any>> = ({ audio: { audio: url, title, image, _id 
     }
     const nextSong = (typeNextSong: 'previous' | 'next'): void => {
         if (state.listAudio.length) {
+            AudioPlay.current?.load();
             // console.log(state.listAudio)
             const findIndex = state.listAudio.findIndex((current: any) => {
                 return current?._id === state?.audio?._id
@@ -191,8 +192,12 @@ const Audio: React.FC<AudioIF<any>> = ({ audio: { audio: url, title, image, _id 
                     dispatch(playSong({ _id: state.listAudio[nextSong]._id, listIdSong: state.listAudio }))
                 }
             }
+            setduration(0)
+            setcurrentTime(0)
+            Range.current.value = 0
 
         }
+
     }
     const checkDisableNext = (typeNextSong: 'previous' | 'next'): boolean => {
         if (state.listAudio.length) {
@@ -245,7 +250,7 @@ const Audio: React.FC<AudioIF<any>> = ({ audio: { audio: url, title, image, _id 
                 </IconButton>
 
                 <IconButton onClick={() => nextSong('next')} color="primary" disabled={!checkDisableNext('next')}>
-                    <SkipNext className="icon" onClick={() => nextSong('next')} />
+                    <SkipNext className="icon" />
                 </IconButton>
 
             </div>
