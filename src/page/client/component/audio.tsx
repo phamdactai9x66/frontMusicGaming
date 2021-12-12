@@ -3,6 +3,7 @@ import React, { useRef, useState, useEffect, memo } from 'react'
 import { FiRepeat } from 'react-icons/fi';
 import { HiVolumeUp } from 'react-icons/hi';
 import { PlayArrow, Pause, NavigateNext, NavigateBefore, SkipNext, SkipPrevious } from '@mui/icons-material';
+import { IconButton } from '@mui/material'
 import { tranFormDuration } from "component/MethodCommon";
 import { formStateAudio } from "redux/audio/stateAudio";
 import { formStateUser } from "redux/user/stateUser"
@@ -168,6 +169,53 @@ const Audio: React.FC<AudioIF<any>> = ({ audio: { audio: url, title, image, _id 
         const getValue = +(volume.current?.value as string) / 100;
         (AudioPlay.current as any).volume = getValue;
     }
+    const nextSong = (typeNextSong: 'previous' | 'next'): void => {
+        if (state.listAudio.length) {
+            // console.log(state.listAudio)
+            const findIndex = state.listAudio.findIndex((current: any) => {
+                return current?._id === state?.audio?._id
+            })
+            if (typeNextSong === 'next') {
+                const nextSong = findIndex + 1;
+                if (nextSong <= state.listAudio.length - 1) {
+                    AudioPlay.current?.play();
+                    setPlay(true)
+                    dispatch(playSong({ _id: state.listAudio[nextSong]._id, listIdSong: state.listAudio }))
+                }
+            }
+            if (typeNextSong === 'previous') {
+                const nextSong = findIndex - 1;
+                if (nextSong >= 0) {
+                    AudioPlay.current?.play();
+                    setPlay(true)
+                    dispatch(playSong({ _id: state.listAudio[nextSong]._id, listIdSong: state.listAudio }))
+                }
+            }
+
+        }
+    }
+    const checkDisableNext = (typeNextSong: 'previous' | 'next'): boolean => {
+        if (state.listAudio.length) {
+            // console.log(state.listAudio)
+            const findIndex = state.listAudio.findIndex((current: any) => {
+                return current?._id === state?.audio?._id
+            })
+            if (typeNextSong === 'next') {
+                const nextSong = findIndex + 1;
+                if (nextSong <= state.listAudio.length - 1) {
+                    return true
+                }
+            }
+            if (typeNextSong === 'previous') {
+                const nextSong = findIndex - 1;
+                if (nextSong >= 0) {
+                    return true
+                }
+            }
+
+        }
+        return false
+    }
 
     return (
         <div className="footer">
@@ -180,14 +228,26 @@ const Audio: React.FC<AudioIF<any>> = ({ audio: { audio: url, title, image, _id 
                 </div>
             </div>
             <div className="icon_play-music">
-                <SkipPrevious className="icon" />
-                <NavigateBefore className="icon" onClick={() => { nextTime(currentTime - 10) }} />
-                <div onClick={playAudio}>
+                <IconButton onClick={() => nextSong('previous')} color="primary" disabled={!checkDisableNext('previous')}>
+                    <SkipPrevious className="icon" />
+                </IconButton>
+
+                <IconButton onClick={() => { nextTime(currentTime - 10) }} color="primary">
+                    <NavigateBefore className="icon" />
+                </IconButton>
+
+                <IconButton onClick={playAudio} color="primary">
                     {/* {url ? play ? <Pause className="icon" /> : <PlayArrow className="icon" /> : <CircularProgress size="20px" />} */}
                     {play ? <Pause className="icon" /> : <PlayArrow className="icon" />}
-                </div>
-                <NavigateNext className="icon" onClick={() => { nextTime(currentTime + 10) }} />
-                <SkipNext className="icon" />
+                </IconButton>
+                <IconButton onClick={() => { nextTime(currentTime + 10) }} color="primary">
+                    <NavigateNext className="icon" />
+                </IconButton>
+
+                <IconButton onClick={() => nextSong('next')} color="primary" disabled={!checkDisableNext('next')}>
+                    <SkipNext className="icon" onClick={() => nextSong('next')} />
+                </IconButton>
+
             </div>
             <div className="audio-run">
                 <div className="time">{tranFormDuration<number>(currentTime) as any}</div>
