@@ -10,7 +10,7 @@ import { formStateUser } from 'redux/user/stateUser';
 import { HandleGet } from "component/MethodCommon";
 import ImagePlaylist from "./imagePlaylist";
 import dataStorage from "component/dataStorage";
-import { Box,Modal,Button,TextField } from '@mui/material';
+import { Box, Modal, Button, TextField } from '@mui/material';
 
 interface ListPLaylistIF<T> {
     render: number
@@ -20,12 +20,11 @@ const style = {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 370,
+    width: 450,
     bgcolor: 'background.paper',
-    border: '2px solid #000',
     boxShadow: 24,
     p: 4,
-  };
+};
 const ListPLaylist: React.FC<ListPLaylistIF<any>> = ({ render, ...props }) => {
     const [openModal, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
@@ -67,62 +66,65 @@ const ListPLaylist: React.FC<ListPLaylistIF<any>> = ({ render, ...props }) => {
             {state.display ?
                 state?.data?.map((current: any, index: number) => {
                     return (
-                        <Link to={{
-                            pathname: `/playlistDetail/${current?._id}`,
-                            state: current
-                        }} key={index}>
-                            <div className="box">
-                                <ImagePlaylist idPlaylist={current?._id} />
-                                <div className="icon-box">
-                                    <div>
-                                        <FiPlayCircle className="icon" />
 
-                                        <div>
-                                            <Button
-                                                id="demo-positioned-button"
-                                                aria-controls="demo-positioned-menu"
-                                                aria-haspopup="true"
-                                                aria-expanded={open ? 'true' : undefined}
-                                                onClick={handleClick}
-                                            >
-                                                <HiOutlineDotsCircleHorizontal className="icon" />
-                                            </Button>
-                                            <Menu
-                                                id="demo-positioned-menu"
-                                                aria-labelledby="demo-positioned-button"
-                                                anchorEl={anchorEl}
-                                                open={open}
-                                                onClose={handleClose}
-                                                anchorOrigin={{
-                                                    vertical: 'top',
-                                                    horizontal: 'left',
-                                                }}
-                                                transformOrigin={{
-                                                    vertical: 'top',
-                                                    horizontal: 'left',
-                                                }}
-                                            >
-                                                <MenuItem onClick={handleOpen}><AiFillEdit /> Sửa playlist</MenuItem>
-                                                <Modal
-                                                    open={openModal}
-                                                    onClose={handleCloseModal}
-                                                    aria-labelledby="modal-modal-title"
-                                                    aria-describedby="modal-modal-description"
-                                                >
-                                                    <Box sx={style}>
-                                                        <TextField id="outlined-basic" label="Outlined" variant="outlined" />
-                                                        <Button style={{ height: "3.4rem", marginLeft: "1rem" }} variant="contained">Sửa playlist</Button>
-                                                    </Box>
-                                                </Modal>
-                                                <MenuItem><AiFillDelete /> Xóa playlist</MenuItem>
-                                            </Menu>
-                                        </div>
-                                    </div>
+                        <div className="box" key={index}>
+
+                            <ImagePlaylist idPlaylist={current?._id} />
+
+                            <div className="icon-box">
+                                <div>
+                                    <FiPlayCircle className="icon" style={{ opacity: 0 }} />
+                                    <Link to={{
+                                        pathname: `/playlistDetail/${current?._id}`,
+                                        state: current
+                                    }} >
+                                        <FiPlayCircle className="icon" style={{marginRight: "0.2rem"}}/>
+                                    </Link>
+                                    <Button
+                                        id="demo-positioned-button"
+                                        aria-controls="demo-positioned-menu"
+                                        aria-haspopup="true"
+                                        aria-expanded={open ? 'true' : undefined}
+                                        onClick={handleClick}
+           
+                                    >
+                                     <HiOutlineDotsCircleHorizontal className="icon" style={{ fontSize: "1.8rem" }}/>
+                                    </Button>
                                 </div>
-
-                                <h6>{current.name} </h6>
                             </div>
-                        </Link>
+                            <Menu
+                                id="demo-positioned-menu"
+                                aria-labelledby="demo-positioned-button"
+                                anchorEl={anchorEl}
+                                open={open}
+                                onClose={handleClose}
+                                anchorOrigin={{
+                                    vertical: 'top',
+                                    horizontal: 'left',
+                                }}
+                                transformOrigin={{
+                                    vertical: 'top',
+                                    horizontal: 'left',
+                                }}
+                            >
+                                <MenuItem onClick={handleOpen}><AiFillEdit /> Sửa playlist</MenuItem>
+                                <Modal
+                                    open={openModal}
+                                    onClose={handleCloseModal}
+                                    aria-labelledby="modal-modal-title"
+                                    aria-describedby="modal-modal-description"
+                                >
+                                    <Box sx={style}>
+                                        <TextField id="outlined-basic" value={current.name} label="name" variant="outlined" />
+                                        <Button style={{ height: "3.4rem", marginLeft: "1rem" }} variant="contained"> Sửa playlist</Button>
+                                    </Box>
+                                </Modal>
+                                <MenuItem><AiFillDelete /> Xóa playlist</MenuItem>
+                            </Menu>
+
+                            <h6>{current.name} </h6>
+                        </div>
+
                     )
                 })
                 : null}
