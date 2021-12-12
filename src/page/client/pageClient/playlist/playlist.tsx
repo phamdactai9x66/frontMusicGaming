@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import playlistApi from 'api/playlistApi';
 import songApi from 'api/songApi';
 import playlistSongApi from 'api/playlistSongApi';
@@ -6,57 +6,113 @@ import { tranFormDataId } from "component/MethodCommon";
 
 import { RouteComponentProps } from 'react-router-dom';
 import WantHearComponent from '../home/component/WantHearComponent';
-
+import Slider from 'react-slick';
+import { FiPlayCircle } from 'react-icons/fi';
+import { useDispatch } from 'react-redux';
+import { saveToLocalStorage } from 'page/client/common/localStorageCommon';
+import { playSong } from "redux/audio/actionAudio"
 
 interface PlayListClient<T> extends RouteComponentProps {
     userState: any | T,
 }
-const settings_category = () => { 
-   return ""
+const settings_category = () => {
+    return ""
 }
-const PlayListClient: React.FC<PlayListClient<any>> = ( { location, history, ...props }: any ) => {
-    const [PLS, setPLS] = useState<any[]>([]);
-    const [songsTransform, setSongsTransform] = useState([]);
-
-    // if(!location.state){
-    //     history.push('/')
-    //   }else{
-    //     document.title = `${location.state.name ? location.state.name : ""} - Music Game`;
-    //   }
+const styleCate = {
+    infinite: false,
+    slidesToShow: 4,
+    slidesToScroll: 4,
+    initialSlide: 0,
+    responsive: [
+        {
+            breakpoint: 1024,
+            settings: {
+                slidesToShow: 3,
+                slidesToScroll: 3,
+                infinite: true,
+                dots: true
+            }
+        },
+        {
+            breakpoint: 600,
+            settings: {
+                slidesToShow: 2,
+                slidesToScroll: 2,
+                initialSlide: 2
+            }
+        },
+        {
+            breakpoint: 480,
+            settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1
+            }
+        }
+    ]
+};
+const PlayListClient: React.FC<PlayListClient<any>> = ({ location, history, ...props }) => {
     const [playlists, setPlaylists] = useState([]);
+    const idPlayList = React.useRef<string>('');
+    const staticSong = React.useRef<any>([]);
+    const dispatch = useDispatch();
+    useEffect(() => {
+        const getId = (props.match.params as any).idPlayList;
+        if (!getId) {
+            return history.goBack();
+        }
+        idPlayList.current = getId
+    }, [])
 
 
-   useEffect(() => {
+    useEffect(() => {
         (async () => {
-            const { data: dataPL } = await playlistApi.getAll({});
-//
-            const { data: dataSongs} = await songApi.getAll({});
-            const resSongsTransform = await tranFormDataId(dataSongs);
+            const { data } = await playlistSongApi.getAll({ id_PlayList: idPlayList.current })
 
-            //
-            const { data: dataPLS } = await playlistSongApi.getAll({});
+            const { data: dataSongs } = await songApi.getAll({});
+            staticSong.current = tranFormDataId(dataSongs);
 
-            // tìm ra những playlistsong có chứa _id song
-            const findPLS = dataPLS.filter( (i: any) => dataSongs.findIndex( (_:any) => _._id === i.id_Songs) !== -1);
-            const handlePL = dataPL.filter( (i: any) => findPLS.findIndex( (_: any) => _.id_PlayList === i._id) !== -1);
-            setPlaylists(handlePL);
-            setSongsTransform(resSongsTransform);
-            setPLS(findPLS);
+            setPlaylists(data)
         })();
     }, []);
-
     return (
         <div className="container-nhacmoi">
-            <div className ="title-nhacmoi-tt grid-2">
+            <div className="title-nhacmoi-tt grid-2">
                 <div>
-                {playlists.length !== 0 && playlists.map((item: any) => 
-                    <div className="list-slider " key={item._id} style={{width: "14rem"}}>
-                        <h4 className="title_all">{item.name} </h4>
+
+                    <div className="list-slider " style={{ width: "14rem" }}>
+                        {/* <h4 className="title_all">{item.name} </h4> */}
                         {/* <MdNavigateNext className="icon" /> */}
 
-                        <WantHearComponent PLS={PLS} settings_category={settings_category} songs={songsTransform} idPlaylist={item._id} />
+                        <div>
+                            <Slider {...styleCate}>
+                                {playlists.length !== 0 && playlists.map((item: any) => {
+                                    // console.log(staticSong.current)
+                                    const findSong = staticSong.current[item?.id_Songs];
+                                    // console.log(findSong);
+                                    return (
+                                        <div className="box" key={findSong?._id}>
+                                            <div className="box">
+                                                <figure>
+                                                    <img src={findSong?.image} alt={findSong?.title} />
+                                                </figure>
+                                                <div className="icon-box">
+                                                    <div>
+                                                        <FiPlayCircle onClick={() => {
+                                                            dispatch(playSong({ _id: findSong?._id }));
+                                                            saveToLocalStorage(findSong);
+                                                        }} className="icon" />
+                                                    </div>
+                                                </div>
+
+                                                <h6>{findSong?.title}</h6>
+                                            </div>
+                                        </div>
+                                    )
+                                })}
+                            </Slider>
+                        </div>
                     </div>
-                )}
+
                 </div>
             </div>
         </div>

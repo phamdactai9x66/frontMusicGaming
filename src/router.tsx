@@ -168,7 +168,7 @@ const Admin: propertyPage[] = [
         component: Profile,
         exact: false
     },
-        
+
     {
         path: "/admin/:pathNotFound",
         component: NotFoundAdmin,
@@ -265,7 +265,7 @@ const Client: propertyPage[] = [
         exact: false
     },
     {
-        path: "/playlist",
+        path: "/playlist/:idPlayList",
         component: PlayListClient,
         exact: false
     },
