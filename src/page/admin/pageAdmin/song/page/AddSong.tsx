@@ -27,16 +27,14 @@ const initialValue = {
   describe: '',
   day_release: new Date().toISOString(),
   id_Topic: '',
-  id_category: '',
-  id_aubum: '',
+  id_Categories: '',
+  id_album: '',
 }
 
 const AddSong: React.FC<AddSong<any>> = ({ changePage, ...props }) => {
   const refForm = useRef<HTMLFormElement | any>(null);
   const [alert, setAlert] = useState({ display: false, message: "", type: "" });
-
   const submitForm = (data: any, action: any) => {
-    console.log('data : ', data);
     const getForm = new FormData(refForm.current);
     getForm.set('day_release', data.day_release);
 
@@ -87,7 +85,6 @@ const AddSong: React.FC<AddSong<any>> = ({ changePage, ...props }) => {
           {formik => {
             return (
               <Form ref={refForm}>
-                {JSON.stringify(formik.values)}
                 <div className="grid-addpage">
                   <div className="section-add">
                     <Card elevation={5}>
@@ -176,11 +173,17 @@ const AddSong: React.FC<AddSong<any>> = ({ changePage, ...props }) => {
                     <Card elevation={5}>
                       <div className="form-input-add">
                         <div className="inputForm">
-                          <TextareaField
+                          <InputText name="describe" placeholder="Mô tả bài hát"
+                            other={{
+                              // variant: 'standard',
+                              multiline: true,
+                              rows: 3
+                            }} />
+                          {/* <TextareaField
                             name="describe"
                             placeholder="Mô tả bài hát"
                             other={{ variant: 'standard' }}
-                          />
+                          /> */}
                         </div>
                         <div className="inputForm">
                           <SelectTopic />

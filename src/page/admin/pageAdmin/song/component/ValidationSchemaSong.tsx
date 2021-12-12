@@ -6,9 +6,9 @@ export default Yup.object().shape({
   view: Yup.number().checkRequireNumber(),
   audio: Yup.string().checkRequire(),
   active: Yup.string().checkRequire(),
-  describe: Yup.string().min(50, '50 characters minimum').checkRequire(),
+  describe: Yup.string().checkRequire(),
   day_release: Yup.string().required('Không được bỏ trống !'),
   id_Topic: Yup.string().checkRequire(),
-  id_category: Yup.string().checkRequire(),
-  id_aubum: Yup.string().checkRequire(),
+  id_Categories: Yup.string().checkRequire(),
+  id_album: Yup.string().checkRequire(),
 })

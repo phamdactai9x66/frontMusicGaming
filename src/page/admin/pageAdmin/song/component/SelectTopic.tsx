@@ -8,8 +8,8 @@ interface SelectTopic<T> {
 
 }
 
-const SelectTopic: React.FC<SelectTopic<any>> = ({...props}) => {
-  const [topic, setTopic] = useState({ display: false, data: []});
+const SelectTopic: React.FC<SelectTopic<any>> = ({ ...props }) => {
+  const [topic, setTopic] = useState({ display: false, data: [] });
   const formik = useFormikContext();
 
   useEffect(() => {
@@ -18,19 +18,19 @@ const SelectTopic: React.FC<SelectTopic<any>> = ({...props}) => {
       const query = {};
       const [data, error] = await HandleGet(topicApi.getAll, query);
       if (error) return setTopic(value => ({ ...value, display: false }));
-      setTopic(value => ({ ...value, data: data.data}));
+      setTopic(value => ({ ...value, data: data.data }));
     })()
     return () => {
-      setTopic(value => ({ ...value, display: false}));
+      setTopic(value => ({ ...value, display: false }));
     }
   }, [(formik?.values as any).id_Topic])
 
   return (
     <div>
-      <SelectField 
-        name="id_Topic" 
-        getId="id_Topic" 
-        label="Chủ đề" 
+      <SelectField
+        name="id_Topic"
+        getId="id_Topic"
+        label="Chủ đề"
         data={tranFormData(topic.data, 'value', 'name')}
         other={{ variant: 'standard' }}
       />

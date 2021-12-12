@@ -197,7 +197,6 @@ const Audio: React.FC<AudioIF<any>> = ({ audio: { audio: url, title, image, _id 
             Range.current.value = 0
 
         }
-
     }
     const checkDisableNext = (typeNextSong: 'previous' | 'next'): boolean => {
         if (state.listAudio.length) {

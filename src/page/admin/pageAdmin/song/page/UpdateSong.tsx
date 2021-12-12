@@ -28,7 +28,7 @@ const initialValue = {
   describe: '',
   day_release: new Date().toISOString(),
   id_Topic: '',
-  id_category: '',
+  id_Categories: '',
   id_aubum: '',
 }
 
@@ -98,6 +98,7 @@ const UpdateSong: React.FC<UpdateSong<any>> = ({ changePage, _id, ...props }) =>
           enableReinitialize
         >
           {formik => {
+            console.log(formik.values)
             return (
               <Form ref={refForm}>
                 <div className="grid-addpage">
