@@ -15,9 +15,7 @@ import { playSong } from "redux/audio/actionAudio"
 interface PlayListClient<T> extends RouteComponentProps {
     userState: any | T,
 }
-const settings_category = () => {
-    return ""
-}
+
 const styleCate = {
     infinite: false,
     slidesToShow: 4,
@@ -84,16 +82,14 @@ const PlayListClient: React.FC<PlayListClient<any>> = ({ location, history, ...p
                         {/* <MdNavigateNext className="icon" /> */}
 
                         <div>
-                            <Slider {...styleCate}>
                                 {playlists.length !== 0 && playlists.map((item: any) => {
                                     // console.log(staticSong.current)
                                     const findSong = staticSong.current[item?.id_Songs];
                                     // console.log(findSong);
                                     return (
-                                        <div className="box" key={findSong?._id}>
-                                            <div className="box">
-                                                <figure>
-                                                    <img src={findSong?.image} alt={findSong?.title} />
+                                        <div className="box" key={findSong?._id} style={{ height: "14.3rem" }}>
+                                                <figure style={{ height: "14.3rem" }}>
+                                                    <img src={findSong?.image} alt={findSong?.title} style={{ height: "14.3rem" }}/>
                                                 </figure>
                                                 <div className="icon-box">
                                                     <div>
@@ -105,11 +101,9 @@ const PlayListClient: React.FC<PlayListClient<any>> = ({ location, history, ...p
                                                 </div>
 
                                                 <h6>{findSong?.title}</h6>
-                                            </div>
                                         </div>
                                     )
                                 })}
-                            </Slider>
                         </div>
                     </div>
 
