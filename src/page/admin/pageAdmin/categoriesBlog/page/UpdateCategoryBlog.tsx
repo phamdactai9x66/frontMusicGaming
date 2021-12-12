@@ -13,7 +13,7 @@ import validationSchemaCategoryBlog from '../component/ValidationSchemaCategoryB
 
 interface UpdateCategoryBlog<T> {
   changePage: any,
-    _id: string | any
+  _id: string | any
 }
 
 const initialValue = {
@@ -29,13 +29,13 @@ const UpdateCategoryBlog: React.FC<UpdateCategoryBlog<any>> = ({ changePage, _id
     (async () => {
       if (!dataCategoryBlog.display) return navigatePage(page.ListCategoryBlog);
 
-      const [data, error] = await HandleGet(categoryBlogApi.getOne, _id);
+      const [data, error] = await HandleGet(categoryBlogApi.getAll, { _id: _id });
 
       if (error) return navigatePage(page.ListCategoryBlog);
-      setDataCategoryBlog(value => ({...value, data: data?.data }))
+      setDataCategoryBlog(value => ({ ...value, data: data?.data[0] }))
     })()
     return () => {
-      setDataCategoryBlog(value => ({...value, display: false}))
+      setDataCategoryBlog(value => ({ ...value, display: false }))
     }
   }, [_id])
 
@@ -48,7 +48,7 @@ const UpdateCategoryBlog: React.FC<UpdateCategoryBlog<any>> = ({ changePage, _id
     setTimeout(async () => {
       const UpdateCategoryBlog = await categoryBlogApi.putOne<FormData, string>(getForm, _id);
       if (UpdateCategoryBlog.status !== variableCommon.statusF) {
-        setDataCategoryBlog(value => ({...value, data: UpdateCategoryBlog.data[0]}));
+        setDataCategoryBlog(value => ({ ...value, data: UpdateCategoryBlog.data[0] }));
         setAlert(value => (
           {
             ...value, display: true,
@@ -93,29 +93,29 @@ const UpdateCategoryBlog: React.FC<UpdateCategoryBlog<any>> = ({ changePage, _id
                     <Card elevation={5}>
                       <div className="form-input-add">
                         <div className="inputForm">
-                          <InputText 
-                            name="name" 
-                            label="Tên danh mục Blog" 
-                            other={{ variant: "standard" }} 
+                          <InputText
+                            name="name"
+                            label="Tên danh mục Blog"
+                            other={{ variant: "standard" }}
                           />
                         </div>
                       </div>
                     </Card>
                     <br />
-                    <LoadingButton 
-                      loading={formik.isSubmitting} 
-                      variant="contained" 
+                    <LoadingButton
+                      loading={formik.isSubmitting}
+                      variant="contained"
                       type="submit"
                     >
-                      Thay đổi
-                    </LoadingButton> 
-                    <Button 
-                      variant="contained" 
-                      color="error" 
-                      style={{ marginLeft: 20 }} 
+                      Update
+                    </LoadingButton>
+                    <Button
+                      variant="contained"
+                      color="error"
+                      style={{ marginLeft: 20 }}
                       onClick={() => { navigatePage(page.ListCategoryBlog) }}
                     >
-                      Hủy
+                      Cancel
                     </Button>
                   </div>
                 </div>

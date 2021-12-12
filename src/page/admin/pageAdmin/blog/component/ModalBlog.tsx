@@ -43,8 +43,8 @@ const ModalBlog: React.FC<ModalBlog<any>> = ({ state, onClose, ...props }) => {
   useEffect(() => {
     (async () => {
       if (dataBlog.error) return;
-      const [data, error] = await HandleGet(blogApi.getOne, state._id);
-      console.log('data : ', data);
+      const [data, error] = await HandleGet(blogApi.getAll, { _id: state._id });
+
       if (error) setDataBlog((value: any) => ({ ...value, error: true, display: false }));
       await findUser(data?.data?.id_User);
       await findCategoryBlog(data?.data?.id_CategoryBlog);
@@ -56,22 +56,26 @@ const ModalBlog: React.FC<ModalBlog<any>> = ({ state, onClose, ...props }) => {
   }, [state._id])
 
   const findUser = async <T extends string>(_id: T) => {
+    console.log('id User : ', _id)
     if (!_id) return;
     const findUser = await useApi.getOne(_id);
+    console.log("name User : ", findUser);
 
     if (findUser.status !== variableCommon.statusF) {
-      const { first_name, last_name } = findUser.data;
+      const { first_name, last_name } = findUser.data[0];
       return nameUser.current = `${first_name} ${last_name}`;
     }
     nameUser.current = ''
   }
 
   const findCategoryBlog = async <T extends string>(_id: T) => {
+    console.log('id CategoryBlog : ', _id);
     if (!_id) return;
     const findCategoryBlog = await categoryBlogApi.getOne(_id);
+    console.log("name Blog : ", findCategoryBlog);
 
     if (findCategoryBlog.status !== variableCommon.statusF) {
-      const { name } = findCategoryBlog.data;
+      const { name } = findCategoryBlog.data[0];
       return nameCategoryBlog.current = name;
     }
     nameCategoryBlog.current = ''
@@ -133,7 +137,7 @@ const ModalBlog: React.FC<ModalBlog<any>> = ({ state, onClose, ...props }) => {
                     <TextField
                       inputProps={{ readOnly: true }}
                       label="Status"
-                      value={(dataBlog.data?.[0] as any)?.status}
+                      value={(dataBlog.data?.[0] as any)?.status === true ? 'Công khai' : 'Cá nhân'}
                       variant="standard"
                       fullWidth
                     />

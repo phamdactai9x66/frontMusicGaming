@@ -30,7 +30,7 @@ const SelectAlbums: React.FC<SelectAlbums<any>> = ({ ...props }) => {
         name="id_album"
         getId="id_album"
         label="Albums"
-        data={tranFormData(albums.data, 'value', 'name')}
+        data={tranFormData(albums.data, 'value', 'title')}
         other={{ variant: 'standard' }}
       />
     </div>

@@ -42,8 +42,7 @@ const ModalComment: React.FC<ModalComment<any>> = ({ state, onClose, ...props })
   useEffect(() => {
     (async () => {
       if (dataComment.error) return;
-      const [data, error] = await HandleGet(commentApi.getOne, state._id);
-      // console.log('data comment : ', data);
+      const [data, error] = await HandleGet(commentApi.getAll, { _id: state._id });
       if (error) setDataComment((value: any) => ({ ...value, error: true, display: false }));
       await findUser(data?.data?.id_User);
       await findBlog(data?.data?.id_Blog);
@@ -60,19 +59,20 @@ const ModalComment: React.FC<ModalComment<any>> = ({ state, onClose, ...props })
     console.log('Modal Comment user : ', findUser);
 
     if (findUser.status !== variableCommon.statusF) {
-      const { first_name, last_name } = findUser.data;
+      const { first_name, last_name } = findUser.data[0];
       return nameUser.current = `${first_name} ${last_name}`;
     }
     nameUser.current = ''
   }
 
   const findBlog = async <T extends string>(_id: T) => {
+
     if (!_id) return;
     const findBlog = await blogApi.getOne(_id);
-    console.log('Modal Comment blog : ', findBlog);
 
     if (findBlog.status !== variableCommon.statusF) {
-      const { title } = findBlog.data;
+      const { title } = findBlog.data[0];
+
       return nameBlog.current = title;
     }
     nameBlog.current = ''
@@ -95,17 +95,6 @@ const ModalComment: React.FC<ModalComment<any>> = ({ state, onClose, ...props })
           <Fade in={state.display}>
             <Box sx={typeModal}>
               <Grid container spacing={2}>
-                <Grid item xs={12} md={6}>
-                  <Typography>
-                    <TextField
-                      inputProps={{ readOnly: true }}
-                      label="Title"
-                      variant="standard"
-                      fullWidth
-                      value={(dataComment.data?.[0] as any)?.title}
-                    />
-                  </Typography>
-                </Grid>
 
                 <Grid item xs={12} md={6}>
                   <Typography>
@@ -138,7 +127,7 @@ const ModalComment: React.FC<ModalComment<any>> = ({ state, onClose, ...props })
                       label="State"
                       variant="standard"
                       fullWidth
-                      value={dataComment.data?.[0].state}
+                      value={dataComment.data?.[0].state === true ? 'Hiện' : 'Ẩn'}
                     />
                   </Typography>
                 </Grid>

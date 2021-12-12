@@ -29,7 +29,7 @@ const SelectCategory: React.FC<SelectCategory<any>> = ({ ...props }) => {
       <SelectField
         name="id_Categories"
         getId="id_Categories"
-        label="Categories"
+        label="Danh mục"
         data={tranFormData(category.data, 'value', 'name')}
         other={{ variant: 'standard' }}
       />

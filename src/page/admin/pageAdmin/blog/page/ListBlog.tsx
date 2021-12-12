@@ -175,7 +175,7 @@ const ListBlog: React.FC<ListBlog<any>> = ({ changePage, set_id, ...props }) => 
                   {
                     state.Data.length && state.Display ?
                       state.Data.map((row: any, index: any) => {
-                        const { title, image, content, status, view, check, _id } = row;
+                        const { title, image, status, view, check, _id } = row;
                         return (
                           <TableRow hover role="checkbox" key={index}>
                             <TableCell align="left">
@@ -190,7 +190,7 @@ const ListBlog: React.FC<ListBlog<any>> = ({ changePage, set_id, ...props }) => 
                             <TableCell align="left">{status === true ? 'Công khai' : 'Cá nhân'}</TableCell>
                             <TableCell align="left">{view}</TableCell>
                             <TableCell align='center'>
-                            <div>
+                              <div>
                                 <Button
                                   id="demo-positioned-button"
                                   aria-controls="demo-positioned-menu"

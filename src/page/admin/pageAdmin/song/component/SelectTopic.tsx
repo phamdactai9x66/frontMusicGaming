@@ -30,7 +30,7 @@ const SelectTopic: React.FC<SelectTopic<any>> = ({...props}) => {
       <SelectField 
         name="id_Topic" 
         getId="id_Topic" 
-        label="Topic" 
+        label="Chủ đề" 
         data={tranFormData(topic.data, 'value', 'name')}
         other={{ variant: 'standard' }}
       />

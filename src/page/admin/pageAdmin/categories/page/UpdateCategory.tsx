@@ -129,7 +129,7 @@ const UpdateCategory: React.FC<UpdateCategory<any>> = ({ changePage, _id, ...pro
                       variant="contained"
                       type="submit"
                     >
-                      Cập nhật
+                      Update Category
                     </LoadingButton>
                     <Button
                       variant="contained"
@@ -137,7 +137,7 @@ const UpdateCategory: React.FC<UpdateCategory<any>> = ({ changePage, _id, ...pro
                       style={{ marginLeft: 20 }}
                       onClick={() => { navigatePage(page.ListCategory) }}
                     >
-                      Hủy
+                      Cancel
                     </Button>
                   </div>
                 </div>
