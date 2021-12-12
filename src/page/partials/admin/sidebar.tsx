@@ -83,9 +83,9 @@ const Sidebar: React.FC<SidebarIF<any>> = ({ ...props }) => {
     },
     {
       icon: "fa fa-list",
-      name: "Thể loại",
+      name: "Category",
       iconAdd: "fa fa-plus-circle",
-      details: "Add Thể Loại",
+      details: "Add Category",
       link: "/admin/songCate",
       subLink: "/admin/addCate"
     },
@@ -139,13 +139,14 @@ const Sidebar: React.FC<SidebarIF<any>> = ({ ...props }) => {
     },
     {
       icon: "fa fa-calendar",
-      name: "Danh mục blog",
+      name: "Category Blog",
       iconAdd: "fa fa-plus-circle",
-      details: "Add Danh Mục",
+      details: "Add Category Blog",
       link: "/admin/categoryBlog",
       subLink: "/admin/addCategoryBlog"
     },
     {
+
       icon: "fa fa-lightbulb-o",
       name: "Topic",
       iconAdd: "fa fa-plus-circle",
@@ -155,9 +156,9 @@ const Sidebar: React.FC<SidebarIF<any>> = ({ ...props }) => {
     },
     {
       icon: "fa fa-address-book",
-      name: "Nhạc sĩ",
+      name: "Artist",
       iconAdd: "fa fa-plus-circle",
-      details: "Add Nhạc Sĩ",
+      details: "Add Artist",
       link: "/admin/artist",
       subLink: "/admin/addArtist"
     }
@@ -167,8 +168,8 @@ const Sidebar: React.FC<SidebarIF<any>> = ({ ...props }) => {
       <h2>ADMIN MUSIC GAME</h2>
       <div className="main_info">
         <div className="info_admin">
-          {(state.user && state.token) ? 
-           <Link to="/admin/profile"><div><img width={50} height={50} src={state.user?.avatar} alt="" /><div className="name">{state.user?.first_name} {state.user?.last_name}</div></div></Link> : "err"}
+          {(state.user && state.token) ?
+            <Link to="/admin/profile"><div><img width={50} height={50} src={state.user?.avatar} alt="" /><div className="name">{state.user?.first_name} {state.user?.last_name}</div></div></Link> : "err"}
         </div>
       </div>
       <div className={classes.search} style={{ position: "relative" }}>

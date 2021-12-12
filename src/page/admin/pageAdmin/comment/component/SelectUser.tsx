@@ -8,8 +8,8 @@ interface SelectUser<T> {
 
 }
 
-const SelectUser: React.FC<SelectUser<any>> = ({...props}) => {
-  const [user, setUser] = useState({display: false, data: []});
+const SelectUser: React.FC<SelectUser<any>> = ({ ...props }) => {
+  const [user, setUser] = useState({ display: false, data: [] });
   const formik = useFormikContext();
 
   useEffect(() => {
@@ -18,19 +18,19 @@ const SelectUser: React.FC<SelectUser<any>> = ({...props}) => {
       const query = {};
       const [data, error] = await HandleGet(useApi.getAll, query);
       if (error) return setUser(value => ({ ...value, display: false }));
-      setUser(value => ({ ...value, data: data.data}));
+      setUser(value => ({ ...value, data: data.data }));
     })()
     return () => {
-      setUser(value => ({ ...value, display: false}));
+      setUser(value => ({ ...value, display: false }));
     }
   }, [(formik?.values as any).id_User])
 
   return (
     <div>
-      <SelectField 
-        name="id_User" 
-        getId="id_User" 
-        label="User" 
+      <SelectField
+        name="id_User"
+        getId="id_User"
+        label="User"
         data={tranFormData(user.data, 'value', 'name')}
         other={{ variant: 'standard' }}
       />

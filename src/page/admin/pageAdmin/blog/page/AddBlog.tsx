@@ -1,12 +1,12 @@
-import React, {useState, useRef} from 'react'
+import React, { useState, useRef } from 'react'
 import { Card } from "@material-ui/core"
 import LoadingButton from '@mui/lab/LoadingButton'
 import { Button, Alert } from "@mui/material"
 import { Formik, Form } from "formik"
-import { InputText, FileField, RadioField } from "component/customField/index"
+import { InputText, FileField, RadioField, TextareaField } from "component/customField/index"
 import { page } from "../index"
 import { variableCommon } from "component/variableCommon"
-import SelectUser from '../component/SelectUser' 
+import SelectUser from '../component/SelectUser'
 import SelectCategoryBlog from '../component/SelectCategoryBlog'
 import blogApi from 'api/BlogApi'
 import { statusOption } from '../component/stateForm'
@@ -28,7 +28,7 @@ const initialValue = {
 
 const AddBlog: React.FC<AddBlog<any>> = ({ changePage, ...props }) => {
   const refForm = useRef<HTMLFormElement | any>(null);
-  const [alert, setAlert] = useState({ display: false, message: "", type: ""});
+  const [alert, setAlert] = useState({ display: false, message: "", type: "" });
 
   const submitForm = (data: any, action: any) => {
     // console.log('data blog : ', data);
@@ -85,7 +85,7 @@ const AddBlog: React.FC<AddBlog<any>> = ({ changePage, ...props }) => {
                     <Card elevation={5}>
                       <div className="form-input-add">
                         <div className="inputForm">
-                          <InputText 
+                          <InputText
                             name="title"
                             label="Tên bài viết"
                             other={{ variant: "standard" }}
@@ -98,10 +98,12 @@ const AddBlog: React.FC<AddBlog<any>> = ({ changePage, ...props }) => {
                     <Card elevation={5}>
                       <div className="form-input-add">
                         <div className="inputForm">
-                          <InputText 
+                          <TextareaField
                             name="content"
-                            label="Nội dung bài viết"
+                            placeholder="Nội dung bài viết"
+                            minRows={3}
                             other={{ variant: "standard" }}
+                            style={{ width: '100%' }}
                           />
                         </div>
                       </div>
@@ -112,7 +114,7 @@ const AddBlog: React.FC<AddBlog<any>> = ({ changePage, ...props }) => {
                     <Card elevation={5}>
                       <div className="form-input-add">
                         <div className="inputForm">
-                          <RadioField 
+                          <RadioField
                             name="status"
                             data={statusOption}
                             other={{ variant: 'standard' }}
@@ -126,7 +128,7 @@ const AddBlog: React.FC<AddBlog<any>> = ({ changePage, ...props }) => {
                     <Card elevation={5}>
                       <div className="form-input-add">
                         <div className="inputForm">
-                          <InputText 
+                          <InputText
                             name="view"
                             type="number"
                             min={0}
@@ -141,10 +143,10 @@ const AddBlog: React.FC<AddBlog<any>> = ({ changePage, ...props }) => {
                     <Card elevation={5}>
                       <div className="form-input-add">
                         <div className="flex-image bg-file">
-                          <FileField 
-                            name="image" 
+                          <FileField
+                            name="image"
                             label="Image blog"
-                            type="file" 
+                            type="file"
                             other={{ variant: 'standard' }}
                           />
                         </div>
@@ -157,7 +159,7 @@ const AddBlog: React.FC<AddBlog<any>> = ({ changePage, ...props }) => {
                       </div>
                     </Card>
                     <br />
-                    <LoadingButton 
+                    <LoadingButton
                       loading={formik.isSubmitting}
                       variant="contained"
                       type="submit"
@@ -166,7 +168,7 @@ const AddBlog: React.FC<AddBlog<any>> = ({ changePage, ...props }) => {
                     </LoadingButton>
                     <Button
                       variant="contained"
-                      color="error" 
+                      color="error"
                       style={{ marginLeft: 20 }}
                       onClick={() => { navigatePage(page.ListBlog) }}
                     >

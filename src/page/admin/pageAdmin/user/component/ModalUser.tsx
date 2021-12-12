@@ -48,7 +48,7 @@ const ModalUser: React.FC<ModalUser<any>> = ({ state, onClose, ...props }) => {
 
   return (
     <div>
-      {dataUser ?
+      {dataUser.display ?
         <Modal
           aria-labelledby="transition-modal-title"
           aria-describedby="transition-modal-description"

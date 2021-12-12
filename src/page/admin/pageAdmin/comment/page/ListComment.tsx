@@ -1,6 +1,6 @@
 import React, { useEffect, useReducer, useState } from 'react'
 import { makeStyles } from "@mui/styles"
-import { Select, MenuItem,Menu, Avatar } from "@mui/material"
+import { Select, MenuItem, Menu, Avatar } from "@mui/material"
 import SearchIcon from '@mui/icons-material/Search'
 import { page } from '../index'
 import commentApi from 'api/commentApi'
@@ -26,7 +26,7 @@ const useStyle = makeStyles((theme) => ({
 }))
 
 const columns = [
-  { id: 'rangestart', label: 'rangeStart', minWidth: 100, align: 'left' },
+  { id: 'rangestart', label: 'Range Start', minWidth: 100, align: 'left' },
   { id: 'comment', label: 'Comment', minWidth: 170, align: 'left' },
   { id: 'state', label: 'State', minWidth: 170, align: 'left' },
   { id: '', label: 'Handle', minWidth: 170, align: 'center' }
@@ -110,7 +110,7 @@ const ListComment: React.FC<ListComment<any>> = ({ changePage, set_id, ...props 
 
   return (
     <>
-      {stateModalComment._id && <ModalComment state={stateModalComment} onClose={onClose} />}
+      {stateModalComment._id && <ModalComment state={stateModalComment} onClose={onClose}></ModalComment>}
       <div
         style={{
           display: 'flex',
@@ -190,7 +190,7 @@ const ListComment: React.FC<ListComment<any>> = ({ changePage, set_id, ...props 
                             <TableCell align="left">{comment}</TableCell>
                             <TableCell align="left">{state === true ? 'Hiện' : 'Ẩn'}</TableCell>
                             <TableCell align="center">
-                            <div>
+                              <div>
                                 <Button
                                   id="demo-positioned-button"
                                   aria-controls="demo-positioned-menu"

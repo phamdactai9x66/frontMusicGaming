@@ -4,7 +4,7 @@ import { Card } from "@material-ui/core"
 import LoadingButton from '@mui/lab/LoadingButton'
 import { Button, Alert } from "@mui/material"
 import { Formik, Form } from "formik"
-import { InputText, FileField, RadioField } from "component/customField/index"
+import { InputText, FileField, RadioField, TextareaField } from "component/customField/index"
 import { page } from "../index"
 import { variableCommon } from "component/variableCommon"
 import { HandleGet } from "component/MethodCommon"
@@ -22,7 +22,7 @@ const initialValue = {
   title: '',
   image: '',
   content: '',
-  status: '',
+  status: 'false',
   view: '',
   id_User: '',
   id_CategoryBlog: ''
@@ -31,7 +31,7 @@ const initialValue = {
 const UpdateBlog: React.FC<UpdateBlog<any>> = ({ changePage, _id, ...props }) => {
   const refForm = useRef<HTMLFormElement | any>(null);
   const [alert, setAlert] = useState({ display: false, message: "", type: "" });
-  const [dataBlog, setDataBlog] = useState({ data: null, display: true });
+  const [dataBlog, setDataBlog] = useState({ data: {}, display: true });
 
   const navigatePage = (page: string) => {
     changePage(page);
@@ -41,10 +41,10 @@ const UpdateBlog: React.FC<UpdateBlog<any>> = ({ changePage, _id, ...props }) =>
     (async () => {
       if (!dataBlog.display) return navigatePage(page.ListBlog);
 
-      const [data, error] = await HandleGet(blogApi.getOne, _id);
+      const [data, error] = await HandleGet(blogApi.getAll, { _id: _id });
 
       if (error) return navigatePage(page.ListBlog);
-      setDataBlog(value => ({ ...value, data: data.data }));
+      setDataBlog(value => ({ ...value, data: data.data[0] }));
     })()
     return () => {
       setDataBlog(value => ({ ...value, display: false }));
@@ -83,14 +83,14 @@ const UpdateBlog: React.FC<UpdateBlog<any>> = ({ changePage, _id, ...props }) =>
     <>
       <div className="admin-pageAdd">
         <div className="text-name-add">
-          <h3>Update bài viết</h3><br />
+          <h3>Update Blog</h3><br />
         </div>
         {alert.display && <Alert severity={alert.type as any} style={{ marginBottom: 5 }}>
           {alert.message}
         </Alert>}
 
         <Formik
-          initialValues={dataBlog.data || initialValue}
+          initialValues={{ ...dataBlog.data, status: (dataBlog.data as any)?.status + '' } || initialValue}
           onSubmit={submitForm}
           validateOnChange={false}
           validationSchema={validationSchemaBlog}
@@ -114,7 +114,91 @@ const UpdateBlog: React.FC<UpdateBlog<any>> = ({ changePage, _id, ...props }) =>
                     </Card>
                   </div>
 
+                  <div>
+                    <Card elevation={5}>
+                      <div className="form-input-add">
+                        <div className="inputForm">
+                          <TextareaField
+                            name="content"
+                            label="Nội dung bài viết"
+                            other={{ variant: "standard" }}
+                            minRows={3}
+                            style={{ width: '100%' }}
+                          />
+                        </div>
+                      </div>
+                    </Card>
+                  </div>
 
+                  <div>
+                    <Card elevation={5}>
+                      <div className="form-input-add">
+                        <div className="inputForm">
+                          <RadioField
+                            name="status"
+                            data={statusOption}
+                            other={{ variant: 'standard' }}
+                          />
+                        </div>
+                      </div>
+                    </Card>
+                  </div>
+
+                  <div>
+                    <Card elevation={5}>
+                      <div className="form-input-add">
+                        <div className="inputForm">
+                          <InputText
+                            name="view"
+                            type="number"
+                            min={0}
+                            label="Lượt xem"
+                            other={{ variant: "standard" }}
+                          />
+                        </div>
+                      </div>
+                    </Card>
+                  </div>
+
+                  <div>
+                    <Card elevation={5}>
+                      <div className="form-input-add">
+                        <div className="flex-image bg-file">
+                          <FileField
+                            name="image"
+                            label="Image blog"
+                            type="file"
+                            other={{ variant: 'standard' }}
+                          />
+                        </div>
+                        <div className="bia-bai-hat-image">
+                          <img src={(dataBlog.data as any)?.image} alt="" />
+                        </div>
+                        <div className="inputForm">
+                          <SelectUser />
+                        </div>
+                        <div className="inputForm">
+                          <SelectCategoryBlog />
+                        </div>
+                      </div>
+                    </Card>
+                    <br />
+                    <LoadingButton
+                      loading={formik.isSubmitting}
+                      variant="contained"
+                      type="submit"
+                    >
+                      Update Blog
+                    </LoadingButton>
+                    <Button
+                      variant="contained"
+                      color="error"
+                      style={{ marginLeft: 20 }}
+                      onClick={() => { navigatePage(page.ListBlog) }}
+                    >
+                      Cancel
+                    </Button>
+                  </div>
                 </div>
               </Form>
             )
