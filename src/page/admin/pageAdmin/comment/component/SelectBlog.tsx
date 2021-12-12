@@ -8,8 +8,8 @@ interface SelectBlog<T> {
 
 }
 
-const SelectBlog: React.FC<SelectBlog<any>> = ({...props}) => {
-  const [blog, setBlog] = useState({display: false, data: []});
+const SelectBlog: React.FC<SelectBlog<any>> = ({ ...props }) => {
+  const [blog, setBlog] = useState({ display: false, data: [] });
   const formik = useFormikContext();
 
   useEffect(() => {
@@ -18,19 +18,19 @@ const SelectBlog: React.FC<SelectBlog<any>> = ({...props}) => {
       const query = {};
       const [data, error] = await HandleGet(blogApi.getAll, query);
       if (error) return setBlog(value => ({ ...value, display: false }));
-      setBlog(value => ({ ...value, data: data.data}));
+      setBlog(value => ({ ...value, data: data.data }));
     })()
     return () => {
-      setBlog(value => ({ ...value, display: false}));
+      setBlog(value => ({ ...value, display: false }));
     }
   }, [(formik?.values as any).id_Blog])
 
   return (
     <div>
-      <SelectField 
-        name="id_Blog" 
-        getId="id_Blog" 
-        label="Blog" 
+      <SelectField
+        name="id_Blog"
+        getId="id_Blog"
+        label="Blog"
         data={tranFormData(blog.data, 'value', 'name')}
         other={{ variant: 'standard' }}
       />

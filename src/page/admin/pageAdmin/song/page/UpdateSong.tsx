@@ -44,12 +44,14 @@ const UpdateSong: React.FC<UpdateSong<any>> = ({ changePage, _id, ...props }) =>
       const [data, error] = await HandleGet(songApi.getOne, _id);
 
       if (error) return navigatePage(page.ListSong);
-      setDataSong(value => ({ ...value, data: data.data }))
+      setDataSong(value => ({ ...value, data: data.data[0] }))
     })()
   }, [_id]);
 
   const submitForm = (data: any, action: any) => {
     const getForm = new FormData(refForm.current);
+    getForm.set('day_release', data.day_release);
+
     setTimeout(async () => {
       const editSong = await songApi.putOne<FormData, string>(getForm, _id);
       if (editSong.status !== variableCommon.statusF) {
@@ -89,7 +91,7 @@ const UpdateSong: React.FC<UpdateSong<any>> = ({ changePage, _id, ...props }) =>
         </Alert>}
 
         <Formik
-          initialValues={dataSong.data || initialValue}
+          initialValues={{ ...dataSong.data, active: (dataSong.data as any)?.gender + '' } || initialValue}
           onSubmit={submitForm}
           validateOnChange={false}
           validationSchema={validationSchemaSong}
@@ -137,6 +139,9 @@ const UpdateSong: React.FC<UpdateSong<any>> = ({ changePage, _id, ...props }) =>
                             other={{ variant: 'standard' }}
                           />
                         </div>
+                        <div className="bia-bai-hat-image">
+                          <img src={(dataSong.data as any)?.image} alt="" />
+                        </div>
                       </div>
                     </Card>
                   </div>
@@ -150,6 +155,9 @@ const UpdateSong: React.FC<UpdateSong<any>> = ({ changePage, _id, ...props }) =>
                             type="file"
                             other={{ variant: 'standard' }}
                           />
+                        </div>
+                        <div className="bia-bai-hat-image">
+                          <audio src={(dataSong.data as any)?.audio} />
                         </div>
                       </div>
                     </Card>
@@ -199,9 +207,6 @@ const UpdateSong: React.FC<UpdateSong<any>> = ({ changePage, _id, ...props }) =>
                         </div>
                         <div className="inputForm">
                           <SelectCategory />
-                        </div>
-                        <div className="bia-bai-hat-image">
-                          <img src={(dataSong.data as any)?.image} alt="" />
                         </div>
                       </div>
                     </Card>

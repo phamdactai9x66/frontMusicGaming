@@ -26,8 +26,9 @@ const ModalCategoryBlog: React.FC<ModalCategoryBlog<any>> = ({ state, onClose, .
   useEffect(() => {
     (async () => {
       if (dataCategoryBlog.error) return;
-      const [data, error] = await HandleGet(categoryBlogApi.getOne, state._id);
+      const [data, error] = await HandleGet(categoryBlogApi.getAll, { _id: state._id });
 
+      if (error) setDataCategoryBlog((value: any) => ({ ...value, error: true, display: false }))
       setDataCategoryBlog({ error: false, data: data?.data, display: true })
     })()
     return () => {
@@ -59,7 +60,7 @@ const ModalCategoryBlog: React.FC<ModalCategoryBlog<any>> = ({ state, onClose, .
                       label="name"
                       variant="standard"
                       fullWidth
-                      value={dataCategoryBlog.data?.name}
+                      value={(dataCategoryBlog.data?.[0] as any)?.name}
                     />
                   </Typography>
                 </Grid>

@@ -151,7 +151,7 @@ const AddArtist: React.FC<AddArtist<any>> = ({ changePage, ...props }) => {
                     variant="contained"
                     type="submit"
                   >
-                    Thêm Artist
+                    Add Artist
                   </LoadingButton>
                   <Button
                     variant="contained"
@@ -159,7 +159,7 @@ const AddArtist: React.FC<AddArtist<any>> = ({ changePage, ...props }) => {
                     style={{ marginLeft: 20 }}
                     onClick={() => { navigatePage(page.ListArtist) }}
                   >
-                    Hủy
+                    Cancel
                   </Button>
                 </div>
               </div>

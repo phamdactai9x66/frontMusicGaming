@@ -23,7 +23,7 @@ const initialValue = {
   image: '',
   view: '',
   audio: '',
-  active: '',
+  active: 'false',
   describe: '',
   day_release: new Date().toISOString(),
   id_Topic: '',
@@ -65,7 +65,7 @@ const AddSong: React.FC<AddSong<any>> = ({ changePage, ...props }) => {
   }
 
   const navigatePage = (page: string) => {
-    // changePage(page);
+    changePage(page);
   }
 
   return (
@@ -199,7 +199,7 @@ const AddSong: React.FC<AddSong<any>> = ({ changePage, ...props }) => {
                       variant="contained"
                       type="submit"
                     >
-                      Thêm Nhạc
+                      Add Song
                     </LoadingButton>
                     <Button
                       variant="contained"
@@ -207,7 +207,7 @@ const AddSong: React.FC<AddSong<any>> = ({ changePage, ...props }) => {
                       style={{ marginLeft: 20 }}
                       onClick={() => { navigatePage(page.ListSong) }}
                     >
-                      Hủy
+                      Cancel
                     </Button>
                   </div>
                 </div>

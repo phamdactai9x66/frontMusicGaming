@@ -38,6 +38,9 @@ const UpdateArtist: React.FC<UpdateArtist<any>> = ({ changePage, _id, ...props }
       if (error) return navigatePage(page.ListArtist);
       setDataArtist((value) => ({ ...value, data: data.data }))
     })()
+    return () => {
+      setDataArtist(value => ({ ...value, display: false }));
+    }
   }, [_id])
 
   const submitForm = (data: any, action: any) => {
