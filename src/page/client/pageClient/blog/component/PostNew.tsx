@@ -12,7 +12,7 @@ const PostNew: React.FC<postNewComponent<any>> = () => {
     useEffect( () => {
         const getBlog = async () => {
             const { data } = await blogApi.getAll( {_limit: 4} );
-            const newData = data.reverse();
+            const newData = data;
             setBlogs(newData);
         }
         getBlog();
