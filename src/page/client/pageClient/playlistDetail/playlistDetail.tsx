@@ -22,7 +22,7 @@ const PlaylistDetail: React.FC<PlaylistDetailIF<any>> = ({ match, history, ...pr
                 id_User_Playlist: (match.params as any)?.idPlaylist
             }
             const [data, error] = await HandleGet(songPlaylistApi.getAll, query);
-            const getAllSong = await songApi.getAll<object>({});
+            const getAllSong = await songApi.getAll<object>({status: true});
 
             if (error || data.status === variableCommon.statusF) return
             setstate({ display: true, data: data.data, dataSong: tranFormDataId(getAllSong.data) })

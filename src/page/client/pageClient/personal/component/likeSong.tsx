@@ -21,7 +21,7 @@ const LikeSong: React.FC<LikeSongIF<any>> = ({ ...props }) => {
                 id_User: _id
             }
             const [data, error] = await HandleGet(LikeSongApi.getAll, query);
-            const [dataSong, errorSong] = await HandleGet(SongApi.getAll);
+            const [dataSong, errorSong] = await HandleGet(SongApi.getAll, {status:true});
             if (error) return;
             setLikeSong((value: any) => ({ ...value, data: [data?.data], dataSong: tranFormDataId(dataSong?.data) }))
             setLoading(false);
