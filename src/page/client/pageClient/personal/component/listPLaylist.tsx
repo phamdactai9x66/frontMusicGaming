@@ -1,36 +1,28 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState,useReducer } from 'react'
 import { Link } from "react-router-dom"
 import { AiFillDelete, AiFillEdit } from 'react-icons/ai';
 import { FiPlayCircle } from 'react-icons/fi';
 import { HiOutlineDotsCircleHorizontal } from 'react-icons/hi';
-import { Select, MenuItem, Menu } from "@mui/material"
+import { MenuItem, Menu } from "@mui/material"
 import UserPlaylist from "api/userPlaylist";
-import { useSelector } from "react-redux";
 import { formStateUser } from 'redux/user/stateUser';
-import { HandleGet } from "component/MethodCommon";
+import { HandleGet,pustAction,typeAciton,handleReducer,initialReducer } from "component/MethodCommon";
 import ImagePlaylist from "./imagePlaylist";
 import dataStorage from "component/dataStorage";
-import { Box, Modal, Button, TextField } from '@mui/material';
+import { Button } from '@mui/material';
+import Popup from '@titaui/reactjs-popup';
+import { useSelector } from 'react-redux';
+import ModalPlaylistEdit from './modalPlaylistEdit';
+import { variableCommon } from "component/variableCommon";
 
 interface ListPLaylistIF<T> {
-    render: number
+    render: number,
 }
-const style = {
-    position: 'absolute' as 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: 450,
-    bgcolor: 'background.paper',
-    boxShadow: 24,
-    borderRadius: "0.5rem",
-    p: 4,
-};
+
 const ListPLaylist: React.FC<ListPLaylistIF<any>> = ({ render, ...props }) => {
-    const [openModal, setOpen] = React.useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleCloseModal = () => setOpen(false);
-    //
+
+    const [stateDelete, dispatch] = useReducer(handleReducer, initialReducer);
+    const userState = useSelector<{ user: any }>(state => state.user) as formStateUser;
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
     const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -51,17 +43,30 @@ const ListPLaylist: React.FC<ListPLaylistIF<any>> = ({ render, ...props }) => {
     }, [])
     useEffect(() => {
         (async () => {
+   
             const query = {
-                id_User
+                id_User,
+                ...stateDelete.Filter
             }
+
             const [data, error] = await HandleGet(UserPlaylist.getAll, query);
+            if (data?.status !== variableCommon.statusS) return dispatch(pustAction(typeAciton.error))
+
             if (error) return setstate(value => ({ ...value, display: false }))
             setstate({ display: true, data: data.data });
         })()
         return () => {
             setstate(value => ({ ...value, display: false }))
         }
-    }, [id_User, render, renderPlaylist])
+    }, [id_User, render, renderPlaylist,stateDelete.Filter])
+    const deleteOne = async (_id: string) => {
+        console.log(_id)
+        if (!_id) return;
+        dispatch(pustAction(typeAciton.deleteOne, { _id }))
+    
+        await UserPlaylist.deleteOne(_id);
+    
+      }
     return (
         <>
             {state.display ?
@@ -108,19 +113,18 @@ const ListPLaylist: React.FC<ListPLaylistIF<any>> = ({ render, ...props }) => {
                                     horizontal: 'left',
                                 }}
                             >
-                                <MenuItem onClick={handleOpen}><AiFillEdit /> Sửa playlist</MenuItem>
-                                <Modal
-                                    open={openModal}
-                                    onClose={handleCloseModal}
-                                    aria-labelledby="modal-modal-title"
-                                    aria-describedby="modal-modal-description"
-                                >
-                                    <Box sx={style}>
-                                        <TextField id="outlined-basic" value={current.name} label="name" variant="outlined" />
-                                        <Button style={{ height: "3.4rem", marginLeft: "1rem" }} variant="contained"> Sửa playlist</Button>
-                                    </Box>
-                                </Modal>
-                                <MenuItem><AiFillDelete /> Xóa playlist</MenuItem>
+                                
+                                {userState.token && userState.user ? <Popup
+            modal
+            overlayStyle={{ background: "rgba(255,255,255,0.98" }}
+            closeOnDocumentClick={false}
+            trigger={() =>
+                <MenuItem><AiFillEdit /> Sửa playlist</MenuItem>
+            }
+          >
+            {(close: any) => (<ModalPlaylistEdit close={close} />)}
+          </Popup> : null}
+                               <div onClick={handleClose}> <MenuItem onClick={() => { deleteOne(current?._id) }}><AiFillDelete /> Xóa playlist</MenuItem></div>
                             </Menu>
 
                             <h6>{current.name} </h6>
