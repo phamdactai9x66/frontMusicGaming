@@ -63,7 +63,7 @@ const AddComment: React.FC<AddCommentIF<any>> = ({ idBlog, ...props }) => {
                                 <textarea id="" cols={30} rows={10} placeholder="Message"
                                     {...formik.getFieldProps("comment")}
                                 ></textarea>
-                                <button>Post comment</button>
+                                <button>Gửi bình luận</button>
                             </Form>
                         )
                     }}
