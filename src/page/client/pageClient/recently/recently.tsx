@@ -5,7 +5,7 @@ import { BsFillPlayFill, BsMusicNoteList } from 'react-icons/bs';
 import { BiTrashAlt } from "react-icons/bi";
 import { BiMusic } from 'react-icons/bi';
 import { CircularProgress, MenuItem } from "@mui/material";
-import { AiOutlineDownload, AiFillHeart } from 'react-icons/ai';
+import { AiOutlineDownload, AiFillHeart, AiFillDelete } from 'react-icons/ai';
 import { IoMdAdd } from 'react-icons/io';
 import { Popover } from "@material-ui/core";
 import GetTimeAudio from "component/getTimeAudio";
@@ -22,6 +22,7 @@ import { formStateUser } from 'redux/user/stateUser';
 import songApi from 'api/songApi';
 import ControlPointIcon from '@mui/icons-material/ControlPoint';
 import { handleDownload } from '../../common/handle';
+import { removeFromLocalStorage } from '../../common/localStorageCommon';
 
 
 interface RecentlyIF<T> {
@@ -226,7 +227,11 @@ const Recently: React.FC<RecentlyIF<any>> = ({ ...props }) => {
                                     <div className="icon_item " style={{marginTop:'0.7rem'}}>
                                         <AiOutlineDownload onClick={() => handleDownload(item)} className="icon" />
                                         {/* <BiTrashAlt className='ms-2' onClick={()=>handleDeLocal(item._id)} /> */}
-                                        {likeLoading.indexOf(item._id) === -1 ? <AiFillHeart onClick={() => handleAdd( item._id, user._id, "like")} className="icon" /> : <span className='loading-icon'><CircularProgress  className='loading-icon' size={15} sx={{ color: "#d6f4f8"}} /></span> }
+                                        <AiFillDelete className='icon' onClick={() => {
+                                            removeFromLocalStorage(item._id);
+                                            setSongs(songs.filter((i: any) => i._id !== item._id))
+                                        }}/>
+                                        {/* {likeLoading.indexOf(item._id) === -1 ? <AiFillHeart onClick={() => handleAdd( item._id, user._id, "like")} className="icon" /> : <span className='loading-icon'><CircularProgress  className='loading-icon' size={15} sx={{ color: "#d6f4f8"}} /></span> }
                                         <IoMdAdd className="icon" onClick={(e) => {
                                             openPopover(e);
                                             getUserPlaylists();
@@ -298,7 +303,7 @@ const Recently: React.FC<RecentlyIF<any>> = ({ ...props }) => {
                                                     </MenuItem>
                                                 ))}
                                             </div>
-                                        </Popover>
+                                        </Popover> */}
                                     </div>
                                 </div>
                             ))}
