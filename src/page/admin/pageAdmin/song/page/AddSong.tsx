@@ -179,11 +179,6 @@ const AddSong: React.FC<AddSong<any>> = ({ changePage, ...props }) => {
                               multiline: true,
                               rows: 3
                             }} />
-                          {/* <TextareaField
-                            name="describe"
-                            placeholder="Mô tả bài hát"
-                            other={{ variant: 'standard' }}
-                          /> */}
                         </div>
                         <div className="inputForm">
                           <SelectTopic />

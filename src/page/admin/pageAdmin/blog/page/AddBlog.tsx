@@ -98,12 +98,11 @@ const AddBlog: React.FC<AddBlog<any>> = ({ changePage, ...props }) => {
                     <Card elevation={5}>
                       <div className="form-input-add">
                         <div className="inputForm">
-                          <TextareaField
-                            name="content"
-                            placeholder="Nội dung bài viết"
-                            minRows={3}
-                            other={{ variant: "standard" }}
-                            style={{ width: '100%' }}
+                          <InputText name="content" placeholder="Nội dung bài viết"
+                            other={{
+                              multiline: true,
+                              rows: 3
+                            }}
                           />
                         </div>
                       </div>

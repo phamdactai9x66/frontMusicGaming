@@ -24,12 +24,12 @@ const initialValue = {
   image: '',
   view: '',
   audio: '',
-  active: '',
+  active: 'false',
   describe: '',
   day_release: new Date().toISOString(),
   id_Topic: '',
   id_Categories: '',
-  id_aubum: '',
+  id_album: '',
 }
 
 const UpdateSong: React.FC<UpdateSong<any>> = ({ changePage, _id, ...props }) => {
@@ -46,6 +46,9 @@ const UpdateSong: React.FC<UpdateSong<any>> = ({ changePage, _id, ...props }) =>
       if (error) return navigatePage(page.ListSong);
       setDataSong(value => ({ ...value, data: data.data[0] }))
     })()
+    return () => {
+      setDataSong(value => ({ ...value, display: false }));
+    }
   }, [_id]);
 
   const submitForm = (data: any, action: any) => {
@@ -91,7 +94,7 @@ const UpdateSong: React.FC<UpdateSong<any>> = ({ changePage, _id, ...props }) =>
         </Alert>}
 
         <Formik
-          initialValues={{ ...dataSong.data, active: (dataSong.data as any)?.gender + '' } || initialValue}
+          initialValues={((dataSong.data as any)?.title && { ...dataSong.data, active: (dataSong.data as any)?.active + '' }) || initialValue}
           onSubmit={submitForm}
           validateOnChange={false}
           validationSchema={validationSchemaSong}
@@ -158,7 +161,9 @@ const UpdateSong: React.FC<UpdateSong<any>> = ({ changePage, _id, ...props }) =>
                           />
                         </div>
                         <div className="bia-bai-hat-image">
-                          <audio src={(dataSong.data as any)?.audio} />
+                          <audio>
+                            <source src={(dataSong?.data as any)?.audio} />
+                          </audio>
                         </div>
                       </div>
                     </Card>
@@ -193,12 +198,11 @@ const UpdateSong: React.FC<UpdateSong<any>> = ({ changePage, _id, ...props }) =>
                     <Card elevation={5}>
                       <div className="form-input-add">
                         <div className="inputForm">
-                          <TextareaField
-                            name="describe"
-                            label="Describe"
-                            minRows={3}
-                            other={{ variant: 'standard' }}
-                          />
+                          <InputText name="describe" placeholder="Mô tả bài hát"
+                            other={{
+                              multiline: true,
+                              rows: 3
+                            }} />
                         </div>
                         <div className="inputForm">
                           <SelectTopic />
@@ -217,7 +221,7 @@ const UpdateSong: React.FC<UpdateSong<any>> = ({ changePage, _id, ...props }) =>
                       variant="contained"
                       type="submit"
                     >
-                      Cập nhật song
+                      Update Song
                     </LoadingButton>
                     <Button
                       variant="contained"
@@ -225,7 +229,7 @@ const UpdateSong: React.FC<UpdateSong<any>> = ({ changePage, _id, ...props }) =>
                       style={{ marginLeft: 20 }}
                       onClick={() => { navigatePage(page.ListSong) }}
                     >
-                      Hủy
+                      Cancel
                     </Button>
                   </div>
                 </div>
