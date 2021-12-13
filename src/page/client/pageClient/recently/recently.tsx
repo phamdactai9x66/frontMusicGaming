@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import { MdNavigateNext } from 'react-icons/md';
 import { BsFillPlayFill, BsMusicNoteList } from 'react-icons/bs';
+import { BiTrashAlt } from "react-icons/bi";
 import { BiMusic } from 'react-icons/bi';
 import { CircularProgress, MenuItem } from "@mui/material";
 import { AiOutlineDownload, AiFillHeart } from 'react-icons/ai';
@@ -215,12 +216,13 @@ const Recently: React.FC<RecentlyIF<any>> = ({ ...props }) => {
                                     </div>
                                     <div className="icon_item " style={{marginTop:'0.7rem'}}>
                                         <AiOutlineDownload onClick={() => handleDownload(item)} className="icon" />
-                                        {likeLoading.indexOf(item._id) === -1 ? <AiFillHeart onClick={() => handleAdd( item._id, user._id, "like")} className="icon" /> : <span className='loading-icon'><CircularProgress  className='loading-icon' size={15} sx={{ color: "#d6f4f8"}} /></span> }
+                                        <BiTrashAlt className='ms-2' onClick={()=>{}} />
+                                        {/* {likeLoading.indexOf(item._id) === -1 ? <AiFillHeart onClick={() => handleAdd( item._id, user._id, "like")} className="icon" /> : <span className='loading-icon'><CircularProgress  className='loading-icon' size={15} sx={{ color: "#d6f4f8"}} /></span> }
                                         <IoMdAdd className="icon" onClick={(e) => {
                                             openPopover(e);
                                             getUserPlaylists();
-                                        }} />
-                                        <Popover
+                                        }} /> */}
+                                        {/* <Popover
                                             open={Boolean(anchor)}
                                             anchorEl={anchor}
                                             anchorOrigin={{
@@ -287,7 +289,7 @@ const Recently: React.FC<RecentlyIF<any>> = ({ ...props }) => {
                                                     </MenuItem>
                                                 ))}
                                             </div>
-                                        </Popover>
+                                        </Popover> */}
                                     </div>
                                 </div>
                             ))}

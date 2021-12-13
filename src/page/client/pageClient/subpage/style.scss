@@ -1,0 +1,15 @@
+.icon-box_category{
+    div{
+        .hover_icon--none{
+            display: none;
+            transition: 1s;
+        }
+    }
+    div:hover .hover_icon--none{
+        display: block;
+        transition: 1s;
+    }
+}
+.hover_box--opacity:hover div{
+    opacity: 1;
+}
