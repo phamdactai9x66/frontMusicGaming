@@ -17,7 +17,7 @@ const NameSongArtist: React.FC<NameSongArtist<any>> = ({ ...props }) => {
                 id_Songs: props?._id
             }
             const [data, error] = await HandleGet(SongArtistAPi.getAll, query);
-            const [dataArtist, errorArtist] = await HandleGet(ArtistApi.getAll, {});
+            const [dataArtist, errorArtist] = await HandleGet(ArtistApi.getAll, {status: true});
             // debugger;
             const dataTranFormArtist = tranFormDataId(dataArtist?.data);
             let findArtist: any[] = []

@@ -98,7 +98,7 @@ const ArtistDetail: React.FC<ArtistDetailIF<any>> = ({ ...props }) => {
             dispatch(getlistAudio());
             const dataArtist = await ArtistApi.getOne(id_artist?.id);
 
-            const { data: dataSongArtist } = await songArtistAPi.getAll({ id_Artist: id_artist.id });
+            const { data: dataSongArtist } = await songArtistAPi.getAll({ id_Artist: id_artist.id});
 
             setSongsArtist(dataSongArtist);
             setInforArtist(dataArtist.data);

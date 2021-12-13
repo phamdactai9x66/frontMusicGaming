@@ -121,7 +121,7 @@ const Chart: React.FC<chart<any>> = ({ ...props }) => {
     useEffect(() => {
       (async () => {
         if (!state.display) return
-        const [data, error] = await HandleGet(songApi.getAll, {});
+        const [data, error] = await HandleGet(songApi.getAll, {status: true});
         if (data[variableCommon.statusF]) return;
         const tranformData = sortData<string>(data.data, 'view').slice(0, 7) as any;
         // console.log(tranformData)
@@ -149,7 +149,7 @@ const Chart: React.FC<chart<any>> = ({ ...props }) => {
   useEffect(() => {
       (async () => {
           dispatch(getlistAudio());
-          const { data } = await songApi.getAll({ _limit: 20, view: "desc" });
+          const { data } = await songApi.getAll({ _limit: 20, view: "desc", status: true });
           setSongs(data);
       })()
   }, []);

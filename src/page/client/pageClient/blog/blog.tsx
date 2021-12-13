@@ -39,7 +39,7 @@ const Blog: React.FC<blog<any>> = ({ match, ...props }) => {
     const [loading, setLoading] = useState(true);
 
     const searchDebounced = useCallback<any>(debounce(async (value: any) => {
-        const { data } = await blogApi.getAll({ title: value });
+        const { data } = await blogApi.getAll({ title: value , status: true});
         const newData = data;
         setCount(Math.ceil(data.length / 7));
         setAllBlogs(data);
@@ -69,7 +69,7 @@ const Blog: React.FC<blog<any>> = ({ match, ...props }) => {
     useEffect(() => {
         const getBlog = async () => {
 
-            const { data } = await blogApi.getAll({});
+            const { data } = await blogApi.getAll({status: true});
             setAllBlogs(data);
 
             const counts = Math.ceil(data.length / 7);

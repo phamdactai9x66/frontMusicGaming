@@ -66,7 +66,7 @@ const PlayListClient: React.FC<PlayListClient<any>> = ({ location, history, ...p
         (async () => {
             const { data } = await playlistSongApi.getAll({ id_PlayList: idPlayList.current })
 
-            const { data: dataSongs } = await songApi.getAll({});
+            const { data: dataSongs } = await songApi.getAll({status:true});
             staticSong.current = tranFormDataId(dataSongs);
 
             setPlaylists(data)
