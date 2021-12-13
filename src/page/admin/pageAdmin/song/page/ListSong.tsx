@@ -2,7 +2,7 @@ import React, { useEffect, useReducer, useState } from 'react'
 import { makeStyles } from "@mui/styles"
 import songApi from 'api/songApi'
 import { page } from '../index'
-import { Select, MenuItem,Menu, Avatar } from "@mui/material"
+import { Select, MenuItem, Menu, Avatar } from "@mui/material"
 import SearchIcon from '@mui/icons-material/Search'
 import { variableCommon } from "component/variableCommon"
 import PaginationSong from '../component/PaginationSong'
@@ -120,7 +120,7 @@ const ListSong: React.FC<ListSong<any>> = ({ changePage, set_id, ...props }) => 
         }}
       >
         <div style={{ flexBasis: 1000, margin: '0 auto' }}>
-        <h2 className="mb-5">Music</h2>
+          <h2 className="mb-5">Music</h2>
           <Paper sx={{ width: '100%' }}>
             <TableContainer style={{ padding: 20 }}>
               <Typography style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -191,7 +191,7 @@ const ListSong: React.FC<ListSong<any>> = ({ changePage, set_id, ...props }) => 
                             </TableCell>
                             <TableCell align="left">{view}</TableCell>
                             <TableCell align='center'>
-                            <div>
+                              <div>
                                 <Button
                                   id="demo-positioned-button"
                                   aria-controls="demo-positioned-menu"

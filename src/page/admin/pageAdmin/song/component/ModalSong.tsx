@@ -42,6 +42,17 @@ const ModalSong: React.FC<ModalSong<any>> = ({ state, onClose, ...props }) => {
   const nameAlbums = useRef<any>('');
   const nameCategory = useRef<any>('');
 
+  const findTopic = async <T extends string>(_id: T) => {
+    if (!_id) return;
+    const findTopics = await topicsApi.getOne(_id);
+
+    if (findTopics.status !== variableCommon.statusF) {
+      const { name } = findTopics.data[0];
+      return nameTopic.current = name
+    }
+    nameTopic.current = ''
+  }
+
   useEffect(() => {
     (async () => {
       if (dataSong.error) return;
@@ -56,17 +67,6 @@ const ModalSong: React.FC<ModalSong<any>> = ({ state, onClose, ...props }) => {
       setDataSong((value: any) => ({ ...value, display: false }))
     }
   }, [state._id])
-
-  const findTopic = async <T extends string>(_id: T) => {
-    if (!_id) return;
-    const findTopics = await topicsApi.getOne(_id);
-
-    if (findTopics.status !== variableCommon.statusF) {
-      const { name } = findTopics.data[0];
-      return nameTopic.current = name
-    }
-    nameTopic.current = ''
-  }
 
   const findAlbum = async <T extends string>(_id: T) => {
     if (!_id) return;
@@ -92,7 +92,7 @@ const ModalSong: React.FC<ModalSong<any>> = ({ state, onClose, ...props }) => {
 
   return (
     <div>
-      {dataSong.display ?
+      {dataSong?.display &&
         <Modal
           aria-labelledby="transition-modal-title"
           aria-describedby="transition-modal-description"
@@ -215,7 +215,7 @@ const ModalSong: React.FC<ModalSong<any>> = ({ state, onClose, ...props }) => {
               </Grid>
             </Box>
           </Fade>
-        </Modal> : null}
+        </Modal>}
     </div>
   )
 }
