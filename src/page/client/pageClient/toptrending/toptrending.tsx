@@ -29,7 +29,7 @@ interface ToptrendingIF<T> {
 
 const Toptrending: React.FC<ToptrendingIF<any>> = ({ ...props }) => {
     document.title = "Top thịnh hành - Music Game";
-
+window.scroll(0,0)
  
     const history: any = useHistory<any>();
     const [playlistName, setPlaylistName] = useState('');

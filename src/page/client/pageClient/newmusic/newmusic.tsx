@@ -15,7 +15,7 @@ interface NewmusicIF<T> {
 const Newmusic: React.FC<NewmusicIF<any>> = ({ ...props }) => {
     document.title = "Nhạc mới - Music Game";
     const userState = useSelector<{ user: any }>(state => state.user) as formStateUser;
-
+window.scroll(0,0)
 
     return (
         <div className="container-nhacmoi">

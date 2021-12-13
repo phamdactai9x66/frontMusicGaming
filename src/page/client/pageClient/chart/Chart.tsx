@@ -92,6 +92,7 @@ const Chart: React.FC<chart<any>> = ({ ...props }) => {
   const history: any = useHistory<any>();
   const [playlistName, setPlaylistName] = useState('');
   // const [anchor, setAnchor] = useState(null);
+  window.scroll(0,0)
   const [anchor2, setAnchor2] = useState(null);
   const [userPlaylists, setUserPlaylists] = useState<any>({
       data: [],

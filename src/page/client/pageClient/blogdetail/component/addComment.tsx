@@ -21,6 +21,7 @@ const fieldForm = {
 const AddComment: React.FC<AddCommentIF<any>> = ({ idBlog, ...props }) => {
     const [selectRating, setselectRating] = useState(5);
     const { user, token } = useSelector<{ user: any }>(state => state.user) as formStateUser;
+    window.scroll(0,0)
     const chooseStar = (event: Event | any, star: number | any) => {
         setselectRating(star);
     }
@@ -63,7 +64,7 @@ const AddComment: React.FC<AddCommentIF<any>> = ({ idBlog, ...props }) => {
                                 <textarea id="" cols={30} rows={10} placeholder="Message"
                                     {...formik.getFieldProps("comment")}
                                 ></textarea>
-                                <button>Post comment</button>
+                                <button>Gửi bình luận</button>
                             </Form>
                         )
                     }}

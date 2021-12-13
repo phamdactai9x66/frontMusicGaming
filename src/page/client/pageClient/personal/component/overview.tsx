@@ -19,6 +19,7 @@ import { Popover } from "@material-ui/core";
 import './style.scss'
 const Overview = () => {
     const [anchor, setAnchor] = useState(null);
+    window.scroll(0,0)
     const openPopover = (event: any) => {
         setAnchor(event.currentTarget);
     };
