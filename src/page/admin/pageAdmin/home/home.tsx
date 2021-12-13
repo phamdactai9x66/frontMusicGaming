@@ -21,8 +21,8 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
   const getUser = async () => {
     const { data } = await userApi.getAll({ _limit: 6 });
 
-    const admin = data?.filter((item: any) => item.role === 1)
-    const member = data?.filter((item: any) => item.role === 2)
+    const admin = data?.filter((item: any) => item.role === 2)
+    const member = data?.filter((item: any) => item.role === 1)
     const viewer = data?.filter((item: any) => item.role === 0)
 
     admin && setAdmin(admin)
@@ -60,8 +60,8 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                 <Tabs>
                   <TabList>
                     <Tab><Link to="#" className="btn">Admin</Link></Tab>
+                    <Tab><Link to="#" className="btn">Actor</Link></Tab>
                     <Tab><Link to="#" className="btn">Member</Link></Tab>
-                    <Tab><Link to="#" className="btn">Viewer</Link></Tab>
                   </TabList>
 
                   <TabPanel>
@@ -106,7 +106,7 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                             <td><Avatar variant='rounded' alt="" src={item?.avatar} /></td>
                             <td>{item.first_name}{item?.last_name}</td>
                             <td>{getDate(item?.createdAt)}</td>
-                            <td>{item?.role === 2 ? 'Member' : "Member"}</td>
+                            <td>{item?.role === 1 ? 'Actor' : "Actor"}</td>
                           </tr>
                         })}
                       </tbody>
@@ -130,7 +130,7 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                             <td><Avatar variant='rounded' alt="" src={item?.avatar} /></td>
                             <td>{item?.first_name}{item?.last_name}</td>
                             <td>{getDate(item?.createdAt)}</td>
-                            <td>{item?.role === 0 ? 'Viewer' : "Viewer"}</td>
+                            <td>{item?.role === 0 ? 'Member' : "Member"}</td>
                           </tr>
                         })}
                       </tbody>
