@@ -186,6 +186,7 @@ const Recently: React.FC<RecentlyIF<any>> = ({ ...props }) => {
         
        
     }
+    window.scroll(0,0)
     return (
         <>
             {songs?.length === 0 ? <div className='mt-5 text-center'><span className='text-white'>Bạn chưa nghe bài hát nào!?</span> <br /> <span className="text-white">về </span> <Link className='mt-4' to='/'>Trang chủ</Link></div> : 

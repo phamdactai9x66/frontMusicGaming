@@ -21,6 +21,7 @@ const fieldForm = {
 const AddComment: React.FC<AddCommentIF<any>> = ({ idBlog, ...props }) => {
     const [selectRating, setselectRating] = useState(5);
     const { user, token } = useSelector<{ user: any }>(state => state.user) as formStateUser;
+    window.scroll(0,0)
     const chooseStar = (event: Event | any, star: number | any) => {
         setselectRating(star);
     }
