@@ -15,7 +15,7 @@ interface ListenTogether<T> { }
 const ListenTogether: React.FC<ListenTogether<any>> = ({ ...props }) => {
   const [state, dispatch] = useReducer(handleReducer, initialReducer, undefined);
   const [saveData, setSaveData] = useState({ user: [], roomUser: [], display: true });
-
+window.scroll(0,0)
   useEffect(() => {
     if (!saveData.display) return;
     setTimeout(async () => {

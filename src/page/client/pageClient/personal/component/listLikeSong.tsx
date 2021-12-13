@@ -23,6 +23,7 @@ const ListLikeSong: React.FC<ListLikeSongIF<any>> = ({ ...props }) => {
     const [likeSong, setLikeSong] = useState({ display: true, data: [], dataSong: [] });
     const { user: { _id } } = useSelector<{ user: any }>(state => state.user) as formStateUser;
     const dispatch = useDispatch();
+    window.scroll(0,0)
 
     const openPopover = (event: any) => {
         setAnchor(event.currentTarget);

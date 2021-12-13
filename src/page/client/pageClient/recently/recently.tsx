@@ -2,9 +2,10 @@
 import React, { useEffect, useState } from 'react'
 import { MdNavigateNext } from 'react-icons/md';
 import { BsFillPlayFill, BsMusicNoteList } from 'react-icons/bs';
+import { BiTrashAlt } from "react-icons/bi";
 import { BiMusic } from 'react-icons/bi';
 import { CircularProgress, MenuItem } from "@mui/material";
-import { AiOutlineDownload, AiFillHeart } from 'react-icons/ai';
+import { AiOutlineDownload, AiFillHeart, AiFillDelete } from 'react-icons/ai';
 import { IoMdAdd } from 'react-icons/io';
 import { Popover } from "@material-ui/core";
 import GetTimeAudio from "component/getTimeAudio";
@@ -14,13 +15,14 @@ import AlertComponent from 'component/clientComponent/Alert';
 import userPlaylistApi from 'api/userPlaylistApi';
 import { handleAddToPlaylist, handleLike } from 'page/client/common/handle';
 import NameSongArtist from 'component/nameSongArtist';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getlistAudio, playSong } from "redux/audio/actionAudio";
 import { formStateUser } from 'redux/user/stateUser';
 import songApi from 'api/songApi';
 import ControlPointIcon from '@mui/icons-material/ControlPoint';
 import { handleDownload } from '../../common/handle';
+import { removeFromLocalStorage } from '../../common/localStorageCommon';
 
 
 interface RecentlyIF<T> {
@@ -175,9 +177,19 @@ const Recently: React.FC<RecentlyIF<any>> = ({ ...props }) => {
         }
         setAddPlaylistLoading(false);
     }
+    const handleDeLocal = (_id:any)=>{
+        // const song = localStorage.getItem('recent');
+        // song.filter((item) == item.id =>{
+        //     localStorage.removeItem('recent',item.id);
+        // })
+          localStorage.removeItem('recent');
+        
+       
+    }
+    window.scroll(0,0)
     return (
         <>
-            {songs?.length === 0 ? <span className='text-white'>Bạn chưa nghe bài hát nào!?</span> : 
+            {songs?.length === 0 ? <div className='mt-5 text-center'><span className='text-white'>Bạn chưa nghe bài hát nào!?</span> <br /> <span className="text-white">về </span> <Link className='mt-4' to='/'>Trang chủ</Link></div> : 
             
             <div className="container-nhacmoi">
             <div className ="title-nhacmoi-tt grid-2">
@@ -215,7 +227,12 @@ const Recently: React.FC<RecentlyIF<any>> = ({ ...props }) => {
                                     </div>
                                     <div className="icon_item " style={{marginTop:'0.7rem'}}>
                                         <AiOutlineDownload onClick={() => handleDownload(item)} className="icon" />
-                                        {likeLoading.indexOf(item._id) === -1 ? <AiFillHeart onClick={() => handleAdd( item._id, user._id, "like")} className="icon" /> : <span className='loading-icon'><CircularProgress  className='loading-icon' size={15} sx={{ color: "#d6f4f8"}} /></span> }
+                                        {/* <BiTrashAlt className='ms-2' onClick={()=>handleDeLocal(item._id)} /> */}
+                                        <AiFillDelete className='icon' onClick={() => {
+                                            removeFromLocalStorage(item._id);
+                                            setSongs(songs.filter((i: any) => i._id !== item._id))
+                                        }}/>
+                                        {/* {likeLoading.indexOf(item._id) === -1 ? <AiFillHeart onClick={() => handleAdd( item._id, user._id, "like")} className="icon" /> : <span className='loading-icon'><CircularProgress  className='loading-icon' size={15} sx={{ color: "#d6f4f8"}} /></span> }
                                         <IoMdAdd className="icon" onClick={(e) => {
                                             openPopover(e);
                                             getUserPlaylists();
@@ -287,7 +304,7 @@ const Recently: React.FC<RecentlyIF<any>> = ({ ...props }) => {
                                                     </MenuItem>
                                                 ))}
                                             </div>
-                                        </Popover>
+                                        </Popover> */}
                                     </div>
                                 </div>
                             ))}

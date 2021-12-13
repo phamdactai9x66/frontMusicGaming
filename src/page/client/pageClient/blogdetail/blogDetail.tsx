@@ -49,7 +49,7 @@ const BlogDetail: React.FC<blogDetail<any>> = ({ match, history, ...props }) => 
             {loading && <Loadings/> }
             <div className="blogdetail-title-grid">
                 <div className="title-h4">
-                    <h2 className="title_all">{blog.data?.title}</h2>
+                    <h4 className="title_all">{blog.data?.title}</h4>
                 </div>
                 <div className="hr">
                     <hr className="" />
@@ -60,7 +60,7 @@ const BlogDetail: React.FC<blogDetail<any>> = ({ match, history, ...props }) => 
             </div>
             <div className="desc-blogdetail">
                 <div className="desc-blogdetail-link">
-                    <h3 className="title_all">{blog.data?.title}</h3>
+                    <h5 className="title_all">{blog.data?.title}</h5>
                     <p>{getDate(blog.data?.createdAt)}</p>
                 </div>
                 <div className="text-detail">

@@ -8,7 +8,9 @@ import { RouteComponentProps } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { getlistAudio, playSong } from 'redux/audio/actionAudio';
 import { saveToLocalStorage } from 'page/client/common/localStorageCommon';
-
+import { BiCaretRightCircle } from "react-icons/bi";
+import { FiPlayCircle } from 'react-icons/fi';
+import './style.scss'
 interface SubCategoryIF<T> extends RouteComponentProps {
 
 }
@@ -57,20 +59,24 @@ const SubCategory: React.FC<SubCategoryIF<any>> = ( { location, history, ...prop
         <div className="box-grid-category">
           {handle.data.dataSongs.filter( (i: any) => i.id_Topic === location.state?._id && i.id_Categories === itemCate._id).map( (itemSong: any) => 
             // <Link to={{ }} key={itemSong._id}>
-            <span key={itemSong._id} onClick={() => {
-              dispatch(playSong({ _id: itemSong._id}));
-              saveToLocalStorage(itemSong)
-            }} >
+            <span  key={itemSong._id}  >
                 {/* pathname: '/category/SubCategory',
               search: `?idTopic=${id_Topic}&id_subCate=${current?._id}` */}
-              <div className="box">
+              <div className="box" >
                 <figure>
                   <img src={itemSong.image} alt={itemSong.title} />
                 </figure>
-                <div className="icon-box_category">
+                <div className="icon-box_category hover_box--opacity">
                   <div>
-                    <h6 className="icon">{itemSong.title}</h6>
+                    <FiPlayCircle className="icon hover_icon--none"
+                       onClick={() => {
+                          dispatch(playSong({ _id: itemSong._id}));
+                          saveToLocalStorage(itemSong)
+                        }}   />
                   </div>
+                </div>
+                <div>
+                <p className='text-white'>{itemSong.title}</p>
                 </div>
               </div>
             </span>

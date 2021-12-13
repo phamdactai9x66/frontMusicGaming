@@ -10,7 +10,7 @@ interface ListBlogComponent<T> {
 }
 const ListBlog: React.FC<ListBlogComponent<any>> = (props) => {
     ///
-
+    window.scroll(0,0)
     return (
         <>
             {
