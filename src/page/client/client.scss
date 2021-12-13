@@ -272,6 +272,8 @@ $color_footer: #0e192abb;
 // handel popup
 .popup-overlay {
     background: rgba(0, 0, 0, 0.767) !important;
+    position: relative;
+    z-index: 10000000 !important;
     .modal-playlis {
         .content-modal {
             .close {

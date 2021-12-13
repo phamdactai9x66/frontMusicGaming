@@ -200,7 +200,7 @@ const Todolist: React.FC<Todolist<any>> = ({ changePage, set_id, ...props }) => 
                                   }}
                                 >
                                   <div onClick={handleClose}><MenuItem onClick={() => { deleteOne(_id) }}>Delete</MenuItem></div>
-                                  <div onClick={handleClose}><MenuItem onClick={() => { navigatePage(page.update, _id) }}>Edit</MenuItem></div>
+                                  <div onClick={handleClose}><MenuItem onClick={() => { navigatePage(page.update, _id) } }>Edit</MenuItem></div>
                                   <div onClick={handleClose}><MenuItem onClick={() => { onOpen<string>(_id) }}>More</MenuItem></div>
                                 </Menu>
                               </div>
