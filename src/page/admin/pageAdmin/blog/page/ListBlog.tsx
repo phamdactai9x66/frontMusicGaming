@@ -27,7 +27,6 @@ const useStyle = makeStyles((theme) => ({
 const columns = [
   { id: '', label: 'Name blog', minWidth: 120, align: 'left' },
   { id: '', label: 'Image', minWidth: 120, align: 'left' },
-  { id: '', label: 'Trạng thái', minWidth: 120, align: 'left' },
   { id: '', label: 'View', minWidth: 100, align: 'left' },
   { id: '', label: 'Handle', minWidth: 20, align: 'center' }
 ]
@@ -133,19 +132,6 @@ const ListBlog: React.FC<ListBlog<any>> = ({ changePage, set_id, ...props }) => 
                   onKeyDown={findName}
                   size="small"
                 />
-
-                <Select
-                  labelId="demoSelectLabel"
-                  id="demoSelectLabel"
-                  label="Age"
-                  value={10}
-                  size="small"
-                  style={{ width: 200 }}
-                >
-                  <MenuItem value={10}>Sort date</MenuItem>
-                  <MenuItem value={20}>Twenty</MenuItem>
-                  <MenuItem value={30}>Thirty</MenuItem>
-                </Select>
               </Typography>
 
               <Table stickyHeader>
@@ -175,7 +161,7 @@ const ListBlog: React.FC<ListBlog<any>> = ({ changePage, set_id, ...props }) => 
                   {
                     state.Data.length && state.Display ?
                       state.Data.map((row: any, index: any) => {
-                        const { title, image, status, view, check, _id } = row;
+                        const { title, image, view, check, _id } = row;
                         return (
                           <TableRow hover role="checkbox" key={index}>
                             <TableCell align="left">
@@ -187,7 +173,6 @@ const ListBlog: React.FC<ListBlog<any>> = ({ changePage, set_id, ...props }) => 
                             <TableCell align="left">
                               <Avatar alt={title} variant="rounded" src={image} />
                             </TableCell>
-                            <TableCell align="left">{status === true ? 'Công khai' : 'Cá nhân'}</TableCell>
                             <TableCell align="left">{view}</TableCell>
                             <TableCell align='center'>
                               <div>
@@ -215,9 +200,15 @@ const ListBlog: React.FC<ListBlog<any>> = ({ changePage, set_id, ...props }) => 
                                     horizontal: 'left',
                                   }}
                                 >
-                                  <div onClick={handleClose}><MenuItem onClick={() => { deleteOne(_id) }}>Delete</MenuItem></div>
-                                  <div onClick={handleClose}><MenuItem onClick={() => { navigatePage(page.UpdateBlog, _id) }}>Edit</MenuItem></div>
-                                  <div onClick={handleClose}><MenuItem onClick={() => { onOpen<string>(_id) }}>More</MenuItem></div>
+                                  <div onClick={handleClose}>
+                                    <MenuItem onClick={() => { deleteOne(_id) }}>Delete</MenuItem>
+                                  </div>
+                                  <div onClick={handleClose}>
+                                    <MenuItem onClick={() => { navigatePage(page.UpdateBlog, _id) }}>Edit</MenuItem>
+                                  </div>
+                                  <div onClick={handleClose}>
+                                    <MenuItem onClick={() => { onOpen<string>(_id) }}>More</MenuItem>
+                                  </div>
                                 </Menu>
                               </div>
                             </TableCell>
