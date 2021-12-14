@@ -8,7 +8,9 @@ import StatisticalLength from './component/statisticalLength';
 import CheckPass from './component/checkPass';
 import { getDate } from 'component/MethodCommon';
 import { Avatar } from "@mui/material"
-
+import { useSelector } from "react-redux";
+import { formStateUser } from "redux/user/stateUser";
+import { Redirect } from 'react-router-dom';
 interface Home<T> {
 
 }
@@ -17,12 +19,13 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
   const [admin, setAdmin] = useState<any[]>([]);
   const [member, setMember] = useState<any[]>([]);
   const [viewer, setViewer] = useState<any[]>([]);
+  const { user } = useSelector<{ user: any }>(state => state.user) as formStateUser;
 
   const getUser = async () => {
     const { data } = await userApi.getAll({ _limit: 6 });
 
-    const admin = data?.filter((item: any) => item.role === 1)
-    const member = data?.filter((item: any) => item.role === 2)
+    const admin = data?.filter((item: any) => item.role === 2)
+    const member = data?.filter((item: any) => item.role === 1)
     const viewer = data?.filter((item: any) => item.role === 0)
 
     admin && setAdmin(admin)
@@ -53,15 +56,18 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
         </section>
         <section>
           <div className="gird-main-3">
-            <CheckPass />
+            <div className="grid4">
+              {user && user.role < 2 ? <Redirect to={{ pathname: '/admin'}} /> : <CheckPass />}
+            </div>
+
             <div className="main5">
 
               <div className="main5-table-flex3">
                 <Tabs>
                   <TabList>
                     <Tab><Link to="#" className="btn">Admin</Link></Tab>
+                    <Tab><Link to="#" className="btn">Actor</Link></Tab>
                     <Tab><Link to="#" className="btn">Member</Link></Tab>
-                    <Tab><Link to="#" className="btn">Viewer</Link></Tab>
                   </TabList>
 
                   <TabPanel>
@@ -106,7 +112,7 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                             <td><Avatar variant='rounded' alt="" src={item?.avatar} /></td>
                             <td>{item.first_name}{item?.last_name}</td>
                             <td>{getDate(item?.createdAt)}</td>
-                            <td>{item?.role === 2 ? 'Member' : "Member"}</td>
+                            <td>{item?.role === 1 ? 'Actor' : "Actor"}</td>
                           </tr>
                         })}
                       </tbody>
@@ -130,7 +136,7 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
                             <td><Avatar variant='rounded' alt="" src={item?.avatar} /></td>
                             <td>{item?.first_name}{item?.last_name}</td>
                             <td>{getDate(item?.createdAt)}</td>
-                            <td>{item?.role === 0 ? 'Viewer' : "Viewer"}</td>
+                            <td>{item?.role === 0 ? 'Member' : "Member"}</td>
                           </tr>
                         })}
                       </tbody>

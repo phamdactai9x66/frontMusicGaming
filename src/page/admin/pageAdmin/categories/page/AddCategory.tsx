@@ -9,8 +9,6 @@ import validationChemaCategory from '../component/ValidationChemaCategory'
 import { variableCommon } from "component/variableCommon"
 import { page } from "../index";
 import categoryApi from 'api/categoryApi'
-import PickDate from "component/customField/pickDate"
-
 interface AddCategory<T> {
   changePage: any
 }
@@ -19,7 +17,6 @@ const initialValue = {
   name: '',
   image: '',
   id_Topic: '',
-  date: new Date()
 }
 
 const AddCategory: React.FC<AddCategory<any>> = ({ changePage, ...props }) => {
@@ -62,7 +59,7 @@ const AddCategory: React.FC<AddCategory<any>> = ({ changePage, ...props }) => {
     <>
       <div className="admin-pageAdd">
         <div className="text-name-add">
-          <h3>Add thể loại</h3><br />
+          <h3>Add Category</h3><br />
         </div>
         {alert.display && <Alert severity={alert.type as any} style={{ marginBottom: 5 }}>
           {alert.message}
@@ -73,6 +70,7 @@ const AddCategory: React.FC<AddCategory<any>> = ({ changePage, ...props }) => {
           onSubmit={submitForm}
           validationSchema={validationChemaCategory}
           validateOnChange={false}
+          validateOnBlur={false}
         >
           {formik => {
             return (
@@ -102,12 +100,12 @@ const AddCategory: React.FC<AddCategory<any>> = ({ changePage, ...props }) => {
                     <LoadingButton loading={formik.isSubmitting} variant="contained"
                       type="submit"
                     >
-                      Thêm Thể Loại
+                      Add Category
                     </LoadingButton>
 
                     <Button variant="contained" color="error" style={{ marginLeft: 20 }}
                       onClick={() => { navigatePage(page.ListCategory) }}
-                    >Hủy</Button>
+                    >Cancel</Button>
                   </div>
                 </div>
               </Form>

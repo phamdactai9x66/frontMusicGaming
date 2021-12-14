@@ -56,7 +56,7 @@ const AddPlayList: React.FC<AddPlayList<any>> = ({ changePage, ...props }) => {
     <>
       <div className="admin-pageAdd">
         <div className="text-name-add">
-          <h3>Thêm danh sách phát</h3><br />
+          <h3>Add Play List</h3><br />
         </div>
         {alert.display && <Alert severity={alert.type as any} style={{ marginBottom: 5 }}>
           {alert.message}
@@ -106,7 +106,7 @@ const AddPlayList: React.FC<AddPlayList<any>> = ({ changePage, ...props }) => {
                       variant="contained"
                       type="submit"
                     >
-                      Thêm play list
+                      Add Play List
                     </LoadingButton>
 
                     <Button
@@ -115,7 +115,7 @@ const AddPlayList: React.FC<AddPlayList<any>> = ({ changePage, ...props }) => {
                       style={{ marginLeft: 20 }}
                       onClick={() => { navigatePage(page.ListPlay) }}
                     >
-                      Hủy
+                      Cancel
                     </Button>
                   </div>
                 </div>

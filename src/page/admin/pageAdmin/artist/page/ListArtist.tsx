@@ -41,7 +41,7 @@ const ListArtist: React.FC<ListArtist<any>> = ({ changePage, set_id, ...props })
   const handleClose = () => {
     setAnchorEl(null);
   };
-  //
+
   const classes = useStyle();
   const [state, dispatch] = useReducer(handleReducer, initialReducer);
   const [stateArtist, setStateArtist] = useState<any>({ display: false, _id: null });
@@ -70,9 +70,9 @@ const ListArtist: React.FC<ListArtist<any>> = ({ changePage, set_id, ...props })
   }, [state.Filter])
 
   const findName = (event: Event | any) => {
-    const getValue = ((event.target as HTMLInputElement).value).trim()
+    const getValue = ((event.target as HTMLInputElement).value).trim();
+    // let nameArtist = `${first_Name} ${last_Name}`;
     if (event.keyCode === 13) {
-      // let nameArtist = `${first_Name} ${last_Name}`;
       dispatch(pustAction(typeAciton.findName, { first_Name: getValue }))
     }
   }
@@ -134,18 +134,6 @@ const ListArtist: React.FC<ListArtist<any>> = ({ changePage, set_id, ...props })
                   onKeyDown={findName}
                   size="small"
                 />
-                <Select
-                  labelId="demosimpleselectlabel"
-                  id="demosimpleselect"
-                  label="Age"
-                  value={10}
-                  size="small"
-                  style={{ width: 200 }}
-                >
-                  <MenuItem value={10}>sort date</MenuItem>
-                  <MenuItem value={20}>Twenty</MenuItem>
-                  <MenuItem value={30}>Thirty</MenuItem>
-                </Select>
               </Typography>
 
               <Table stickyHeader>
@@ -224,9 +212,15 @@ const ListArtist: React.FC<ListArtist<any>> = ({ changePage, set_id, ...props })
                                     horizontal: 'left',
                                   }}
                                 >
-                                  <div onClick={handleClose}><MenuItem onClick={() => { deleteOne(_id) }}>Delete</MenuItem></div>
-                                  <div onClick={handleClose}><MenuItem onClick={() => { navigatePage(page.UpdateArtist, _id) }}>Edit</MenuItem></div>
-                                  <div onClick={handleClose}><MenuItem onClick={() => { onOpen<string>(_id) }}>More</MenuItem></div>
+                                  <div onClick={handleClose}>
+                                    <MenuItem onClick={() => { deleteOne(_id) }}>Delete</MenuItem>
+                                  </div>
+                                  <div onClick={handleClose}>
+                                    <MenuItem onClick={() => { navigatePage(page.UpdateArtist, _id) }}>Edit</MenuItem>
+                                  </div>
+                                  <div onClick={handleClose}>
+                                    <MenuItem onClick={() => { onOpen<string>(_id) }}>More</MenuItem>
+                                  </div>
                                 </Menu>
                               </div>
                             </TableCell>

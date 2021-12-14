@@ -132,19 +132,6 @@ const ListCategory: React.FC<ListCategory<any>> = ({ changePage, set_id, ...prop
                   onKeyDown={findName}
                   size="small"
                 />
-
-                <Select
-                  labelId="demoSelectLabel"
-                  id="demoSelectLabel"
-                  label="Age"
-                  value={10}
-                  size="small"
-                  style={{ width: 200 }}
-                >
-                  <MenuItem value={10}>Sort date</MenuItem>
-                  <MenuItem value={20}>Twenty</MenuItem>
-                  <MenuItem value={30}>Thirty</MenuItem>
-                </Select>
               </Typography>
 
               <Table stickyHeader>
@@ -174,7 +161,7 @@ const ListCategory: React.FC<ListCategory<any>> = ({ changePage, set_id, ...prop
                   {
                     state.Data.length && state.Display ?
                       state.Data.map((row: any, index: any) => {
-                        const { name, image, id_Topic, check, _id } = row;
+                        const { name, image, check, _id } = row;
                         return (
                           <TableRow hover role="checkbox" key={index}>
                             <TableCell align="left">
@@ -187,7 +174,7 @@ const ListCategory: React.FC<ListCategory<any>> = ({ changePage, set_id, ...prop
                               <Avatar alt={name} variant="rounded" src={image} />
                             </TableCell>
                             <TableCell align='center'>
-                            <div>
+                              <div>
                                 <Button
                                   id="demo-positioned-button"
                                   aria-controls="demo-positioned-menu"
@@ -212,9 +199,15 @@ const ListCategory: React.FC<ListCategory<any>> = ({ changePage, set_id, ...prop
                                     horizontal: 'left',
                                   }}
                                 >
-                                  <div onClick={handleClose}><MenuItem onClick={() => { deleteOne(_id) }}>Delete</MenuItem></div>
-                                  <div onClick={handleClose}><MenuItem onClick={() => { navigatePage(page.UpdateCategory, _id) }}>Edit</MenuItem></div>
-                                  <div onClick={handleClose}><MenuItem onClick={() => { onOpen<string>(_id) }}>More</MenuItem></div>
+                                  <div onClick={handleClose}>
+                                    <MenuItem onClick={() => { deleteOne(_id) }}>Delete</MenuItem>
+                                  </div>
+                                  <div onClick={handleClose}>
+                                    <MenuItem onClick={() => { navigatePage(page.UpdateCategory, _id) }}>Edit</MenuItem>
+                                  </div>
+                                  <div onClick={handleClose}>
+                                    <MenuItem onClick={() => { onOpen<string>(_id) }}>More</MenuItem>
+                                  </div>
                                 </Menu>
                               </div>
                             </TableCell>

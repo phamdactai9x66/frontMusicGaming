@@ -24,7 +24,7 @@ const initialValue = {
   image: '',
   view: '',
   audio: '',
-  active: 'false',
+  // active: 'false',
   describe: '',
   day_release: new Date().toISOString(),
   id_Topic: '',
@@ -94,7 +94,7 @@ const UpdateSong: React.FC<UpdateSong<any>> = ({ changePage, _id, ...props }) =>
         </Alert>}
 
         <Formik
-          initialValues={((dataSong.data as any)?.title && { ...dataSong.data, active: (dataSong.data as any)?.active + '' }) || initialValue}
+          initialValues={((dataSong.data as any)?.title && { ...dataSong.data }) || initialValue}
           onSubmit={submitForm}
           validateOnChange={false}
           validationSchema={validationSchemaSong}
@@ -180,7 +180,7 @@ const UpdateSong: React.FC<UpdateSong<any>> = ({ changePage, _id, ...props }) =>
                       </div>
                     </Card>
                   </div>
-                  <div>
+                  {/* <div>
                     <Card elevation={5}>
                       <div className="form-input-add">
                         <div className="inputForm">
@@ -192,7 +192,7 @@ const UpdateSong: React.FC<UpdateSong<any>> = ({ changePage, _id, ...props }) =>
                         </div>
                       </div>
                     </Card>
-                  </div>
+                  </div> */}
                   <div>
                     <Card elevation={5}>
                       <div className="form-input-add">

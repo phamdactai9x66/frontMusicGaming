@@ -41,7 +41,6 @@ const ListComment: React.FC<ListComment<any>> = ({ changePage, set_id, ...props 
   const handleClose = () => {
     setAnchorEl(null);
   };
-  //
   const classes = useStyle();
   const [state, dispatch] = useReducer(handleReducer, initialReducer);
   const [stateModalComment, setStateModalComment] = useState<any>({ display: false, _id: null });
@@ -133,19 +132,6 @@ const ListComment: React.FC<ListComment<any>> = ({ changePage, set_id, ...props 
                   onKeyDown={findName}
                   size="small"
                 />
-
-                <Select
-                  labelId="demoSelectLabel"
-                  id="demoSelectLabel"
-                  label="Age"
-                  value={10}
-                  size="small"
-                  style={{ width: 200 }}
-                >
-                  <MenuItem value={10}>Sort date</MenuItem>
-                  <MenuItem value={20}>Twenty</MenuItem>
-                  <MenuItem value={30}>Thirty</MenuItem>
-                </Select>
               </Typography>
 
               <Table stickyHeader>
@@ -178,7 +164,6 @@ const ListComment: React.FC<ListComment<any>> = ({ changePage, set_id, ...props 
                     state.Data.length && state.Display ?
                       state.Data.map((row: any, index: any) => {
                         const { title, rangeStart, comment, state, check, _id } = row;
-                        // console.log('Title Comment : ', comment);
                         return (
                           <TableRow hover role="checkbox" key={index}>
                             <TableCell align="left">
@@ -215,8 +200,12 @@ const ListComment: React.FC<ListComment<any>> = ({ changePage, set_id, ...props 
                                     horizontal: 'left',
                                   }}
                                 >
-                                  <div onClick={handleClose}><MenuItem onClick={() => { deleteOne(_id) }}>Delete</MenuItem></div>
-                                  <div onClick={handleClose}><MenuItem onClick={() => { onOpen<string>(_id) }}>More</MenuItem></div>
+                                  <div onClick={handleClose}>
+                                    <MenuItem onClick={() => { deleteOne(_id) }}>Delete</MenuItem>
+                                  </div>
+                                  <div onClick={handleClose}>
+                                    <MenuItem onClick={() => { onOpen<string>(_id) }}>More</MenuItem>
+                                  </div>
                                 </Menu>
                               </div>
                             </TableCell>

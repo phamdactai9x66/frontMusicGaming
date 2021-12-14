@@ -1,7 +1,7 @@
 import React, { useReducer, useEffect, useState } from 'react'
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material"
 import { Button, Checkbox, TextField, Typography, CircularProgress, Box } from "@mui/material"
-import { Select, MenuItem,Menu, Avatar } from "@mui/material"
+import { Select, MenuItem, Menu, Avatar } from "@mui/material"
 import SearchIcon from '@mui/icons-material/Search'
 import playlistApi from 'api/playlistApi'
 import { initialReducer, handleReducer, HandleGet, typeAciton, pustAction } from "component/MethodCommon"
@@ -30,7 +30,7 @@ const columns = [
   { id: '', label: 'Handle', minWidth: 170, align: 'center' },
 ];
 
-const ListPlay: React.FC<ListPlay<any>> = ({changePage, set_id, ...props}) => {
+const ListPlay: React.FC<ListPlay<any>> = ({ changePage, set_id, ...props }) => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -39,7 +39,6 @@ const ListPlay: React.FC<ListPlay<any>> = ({changePage, set_id, ...props}) => {
   const handleClose = () => {
     setAnchorEl(null);
   };
-  //
   const classes = useStyle();
   const [state, dispatch] = useReducer(handleReducer, initialReducer);
   const [statePlayList, setStatePlayList] = useState<any>({ display: false, _id: null });
@@ -113,17 +112,17 @@ const ListPlay: React.FC<ListPlay<any>> = ({changePage, set_id, ...props}) => {
         display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '600px', width: "100%"
       }}>
         <div style={{ flexBasis: 1000, margin: "0 auto" }}>
-        <h2 className="mb-5">PlayLists</h2>
+          <h2 className="mb-5">Play List</h2>
           <Paper sx={{ width: '100%' }}>
             <TableContainer style={{ padding: 20 }}>
-              <Typography 
-                style={{ 
-                  display: "flex", 
-                  justifyContent: "space-between", 
-                  alignItems: "center" 
+              <Typography
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center"
                 }}
               >
-                <TextField 
+                <TextField
                   InputProps={{
                     startAdornment: <SearchIcon style={{ marginRight: 10 }}></SearchIcon>,
                     placeholder: "searching"
@@ -131,19 +130,6 @@ const ListPlay: React.FC<ListPlay<any>> = ({changePage, set_id, ...props}) => {
                   onKeyDown={findName}
                   size="small"
                 />
-
-                <Select
-                  labelId="demoSimpleSelectLabel"
-                  id="demoSimpleSelect"
-                  label="Age"
-                  value={10}
-                  size="small"
-                  style={{ width: 200 }}
-                >
-                  <MenuItem value={10}>Sort date</MenuItem>
-                  <MenuItem value={20}>Twenty</MenuItem>
-                  <MenuItem value={30}>Thirty</MenuItem>
-                </Select>
               </Typography>
 
               <Table stickyHeader>
@@ -176,9 +162,9 @@ const ListPlay: React.FC<ListPlay<any>> = ({changePage, set_id, ...props}) => {
                         return (
                           <TableRow hover role="checkbox" key={index}>
                             <TableCell align="left">
-                            <Checkbox 
-                              checked={check} 
-                              onClick={() => { dispatch(pustAction(typeAciton.checkOne, { _id })) }} />
+                              <Checkbox
+                                checked={check}
+                                onClick={() => { dispatch(pustAction(typeAciton.checkOne, { _id })) }} />
                             </TableCell>
                             <TableCell align="left">
                               {name}
@@ -187,7 +173,7 @@ const ListPlay: React.FC<ListPlay<any>> = ({changePage, set_id, ...props}) => {
                               <Avatar alt="" variant="rounded" src={image} />
                             </TableCell>
                             <TableCell align='center'>
-                            <div>
+                              <div>
                                 <Button
                                   id="demo-positioned-button"
                                   aria-controls="demo-positioned-menu"
@@ -212,9 +198,15 @@ const ListPlay: React.FC<ListPlay<any>> = ({changePage, set_id, ...props}) => {
                                     horizontal: 'left',
                                   }}
                                 >
-                                  <div onClick={handleClose}><MenuItem onClick={() => { deleteOne(_id) }}>Delete</MenuItem></div>
-                                  <div onClick={handleClose}><MenuItem onClick={() => { navigatePage(page.UpdatePlayList, _id) }}>Edit</MenuItem></div>
-                                  <div onClick={handleClose}><MenuItem onClick={() => { onOpen<string>(_id) }}>More</MenuItem></div>
+                                  <div onClick={handleClose}>
+                                    <MenuItem onClick={() => { deleteOne(_id) }}>Delete</MenuItem>
+                                  </div>
+                                  <div onClick={handleClose}>
+                                    <MenuItem onClick={() => { navigatePage(page.UpdatePlayList, _id) }}>Edit</MenuItem>
+                                  </div>
+                                  <div onClick={handleClose}>
+                                    <MenuItem onClick={() => { onOpen<string>(_id) }}>More</MenuItem>
+                                  </div>
                                 </Menu>
                               </div>
                             </TableCell>
@@ -231,10 +223,10 @@ const ListPlay: React.FC<ListPlay<any>> = ({changePage, set_id, ...props}) => {
               <Box className={classes.styleBox}>
                 <div>
                   <Button variant="contained" size="small" onClick={deleteAll}>Delete All</Button>
-                  <Button 
-                    variant="contained" 
+                  <Button
+                    variant="contained"
                     size="small"
-                    style={{ marginLeft: 5 }} 
+                    style={{ marginLeft: 5 }}
                     onClick={() => { navigatePage(page.AddPlayList) }}
                   >Add</Button>
                 </div>
