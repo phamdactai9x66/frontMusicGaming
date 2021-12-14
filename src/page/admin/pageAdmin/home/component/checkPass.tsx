@@ -16,7 +16,7 @@ const CheckPass: React.FC<CheckPass<any>> = () => {
     const [passsong, setPasssong] = useState<any[]>([])
     const [passblog, setPassblog] = useState<any[]>([])
     const [passartist, setPassartist] = useState<any[]>([])
-    const [render, setRender] = useState({number: 0});
+    const [render, setRender] = useState({ number: 0 });
 
     const getSong = async () => {
         const { data } = await songApi.getAll({});
@@ -50,8 +50,8 @@ const CheckPass: React.FC<CheckPass<any>> = () => {
             const { data } = await artistApi.checkPass(item);
         })
         setTimeout(() => {
-            setRender({...render, number: render.number + 1})
-         }, 700)
+            setRender({ ...render, number: render.number + 1 })
+        }, 700)
 
     }
     const onSubmit2 = (value: any) => {
@@ -59,23 +59,24 @@ const CheckPass: React.FC<CheckPass<any>> = () => {
             const { data } = await songApi.checkPass(item);
         })
         setTimeout(() => {
-            setRender({...render, number: render.number + 1})
-         }, 700)
+            setRender({ ...render, number: render.number + 1 })
+        }, 700)
 
     }
-   
+
     const onSubmit5 = (value: any) => {
         value.idp.map(async (item: any) => {
             const { data } = await BlogApi.checkPass(item);
         })
-        setTimeout(() => { 
-            setRender({...render, number: render.number + 1})
+        setTimeout(() => {
+            setRender({ ...render, number: render.number + 1 })
         }, 700)
 
     }
     return (
         <>
             <div className="main4">
+
                 <div className="main4-all-in ">
                     <div>
                         <h5 className="text-light">Tất cả &gt;</h5>
@@ -194,8 +195,8 @@ const CheckPass: React.FC<CheckPass<any>> = () => {
                     </div>
 
                 </div>
-
             </div>
+
         </>
     )
 }

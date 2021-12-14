@@ -1,12 +1,14 @@
 import React, { useCallback, useState } from "react";
-import { PieChart, Pie, Sector, ResponsiveContainer } from "recharts";
+import { PieChart, Pie, Sector, ResponsiveContainer, Cell } from "recharts";
+import songApi from 'api/songApi';
 
-const data = [
-  { name: "Music 1", value: 400 },
-  { name: "Music 2", value: 300 },
-  { name: "Music 3", value: 300 },
-  { name: "Music 4", value: 200 }
-];
+// const data = [
+//   { name: "Music 1", value: 400 },
+//   { name: "Music 2", value: 300 },
+//   { name: "Music 3", value: 300 },
+//   { name: "Music 4", value: 200 }
+// ];
+const COLORS = ["#FF8042", "#FFBB28", "#00C49F", "#0088FE"];
 
 const ChartMusicHot = (props: any) => {
   const RADIAN = Math.PI / 180;
@@ -63,14 +65,14 @@ const ChartMusicHot = (props: any) => {
       />
       <circle cx={ex} cy={ey} r={2} fill={fill} stroke="none" />
       <text
-      className="text_music"
+        className="text_music"
         x={ex + (cos >= 0 ? 1 : -1) * 3}
         y={ey}
         textAnchor={textAnchor}
         fill="#333"
       >{`View: ${value}`}</text>
       <text
-      className="text_music"
+        className="text_music"
         x={ex + (cos >= 0 ? 1 : -1) * 3}
         y={ey}
         dy={18}
@@ -85,33 +87,50 @@ const ChartMusicHot = (props: any) => {
 
 export default function App() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [datae, setDatae] = useState([]);
+
   const onPieEnter = useCallback(
     (_, index) => {
       setActiveIndex(index);
     },
     [setActiveIndex]
   );
-
+  React.useEffect(() => {
+    (async () => {
+      const newdata = await songApi.getAll({status: true});
+      const dataea = newdata?.data
+        .sort((a: any, b: any) => b.view - a.view)
+        .slice(0, 4)
+        .map((item: any) => {
+          return { name: item.title, value: item.view };
+        });
+      setDatae(dataea);
+    })();
+  }, []);
   return (
     <>
-    <div className="chart_music_main">
-    <div className="chart_music">
-      <ResponsiveContainer>
- <PieChart>
-      <Pie
-        activeIndex={activeIndex}
-        activeShape={ChartMusicHot}
-        data={data}
-        innerRadius={60}
-        outerRadius={80}
-        fill="#1d2d47"
-        dataKey="value"
-        onMouseEnter={onPieEnter}
-      />
-    </PieChart>
-    </ResponsiveContainer>
-    </div>
-    </div>
-   </>
+      <div className="chart_music_main">
+        <div className="chart_music">
+          <ResponsiveContainer>
+            <PieChart>
+              <Pie
+                activeIndex={activeIndex}
+                activeShape={ChartMusicHot}
+                data={datae}
+                innerRadius={60}
+                outerRadius={80}
+                fill="#1d2d47"
+                dataKey="value"
+                onMouseEnter={onPieEnter}
+              >
+                {datae.map((entry, index) => (
+                  <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                ))}
+              </Pie>
+            </PieChart>
+          </ResponsiveContainer>
+        </div>
+      </div>
+    </>
   );
 }

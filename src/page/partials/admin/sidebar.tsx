@@ -209,7 +209,47 @@ const Sidebar: React.FC<SidebarIF<any>> = ({ ...props }) => {
             </div>
           </AccordionSummary>
         </Link>
-        {data.map(accordion => {
+        {state.user.role && state.user.role == 2 ? data.map(accordion => {
+          const { icon } = accordion;
+          return (
+            <Link to={`${accordion.link}`}>
+              <Accordion
+                expanded={expanded == icon}
+                key={icon}
+                onChange={handleChange(icon)}
+              >
+                <AccordionSummary
+                  expandIcon={<ExpandMore style={{ color: "aqua" }} />}
+                  aria-controls="panel1bh-content"
+                  id="panel1bh-header"
+                  style={{ background: "#1d2d47", height: "3.6rem" }}
+                >
+                  <div className="tab">
+                    <label className="tab-label">
+                      <div className="grid_item">
+                        <label className="tabs__item--icon">
+                          <i className={`${accordion.icon}`} aria-hidden="true"></i>
+                        </label>
+                        <label className="button_text">{accordion.name}</label>
+                      </div>
+                    </label>
+                  </div>
+                </AccordionSummary>
+                <Link to={`${accordion.subLink}`}>
+                  <AccordionDetails style={{ height: "3.5rem", background: "#121a34" }}>
+
+                    <div className="tab-content">
+                      <label className="add_item">
+                        <i className={`${accordion.iconAdd} icon_item`} aria-hidden="true"></i>
+                        <div>{accordion.details}</div>
+                      </label>
+                    </div>
+                  </AccordionDetails>
+                </Link>
+              </Accordion>
+            </Link>
+          );
+        }) : data.filter((item:any) => item.name != 'User').map(accordion => {
           const { icon } = accordion;
           return (
             <Link to={`${accordion.link}`}>

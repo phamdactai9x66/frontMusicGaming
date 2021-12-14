@@ -8,7 +8,9 @@ import StatisticalLength from './component/statisticalLength';
 import CheckPass from './component/checkPass';
 import { getDate } from 'component/MethodCommon';
 import { Avatar } from "@mui/material"
-
+import { useSelector } from "react-redux";
+import { formStateUser } from "redux/user/stateUser";
+import { Redirect } from 'react-router-dom';
 interface Home<T> {
 
 }
@@ -17,6 +19,7 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
   const [admin, setAdmin] = useState<any[]>([]);
   const [member, setMember] = useState<any[]>([]);
   const [viewer, setViewer] = useState<any[]>([]);
+  const { user } = useSelector<{ user: any }>(state => state.user) as formStateUser;
 
   const getUser = async () => {
     const { data } = await userApi.getAll({ _limit: 6 });
@@ -53,7 +56,10 @@ const Home: React.FC<Home<any>> = ({ ...props }) => {
         </section>
         <section>
           <div className="gird-main-3">
-            <CheckPass />
+            <div className="grid4">
+              {user && user.role < 2 ? <Redirect to={{ pathname: '/admin'}} /> : <CheckPass />}
+            </div>
+
             <div className="main5">
 
               <div className="main5-table-flex3">
