@@ -80,6 +80,7 @@ const AddSong: React.FC<AddSong<any>> = ({ changePage, ...props }) => {
           initialValues={initialValue}
           onSubmit={submitForm}
           validateOnChange={false}
+          validateOnBlur={false}
           validationSchema={validationSchemaSong}
         >
           {formik => {

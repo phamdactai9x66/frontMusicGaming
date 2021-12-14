@@ -61,33 +61,33 @@ const SearchSongs: React.FC<SearchSongs<any>> = ({ addSongToRoom, ...props }) =>
                 </ul>
             </div> */}
             <div className="search_music">
-            <Autocomplete
-                id="search-select"
-                fullWidth
-                options={listSong}
-                getOptionLabel={(current) => current.title}
-                renderOption={(props: any, current: any) => (
-                    <div {...props}>
-                        <ListItem
-                            style={{ display: "flex", cursor: "pointer", background: "red"}}
-                            onClick={() => { addSongToRoom(current?._id) }}
-                        >
-                            <ListItemAvatar style={{}}>
-                                <Avatar alt="Remy Sharp" sx={{ width: "2.1rem", height: "2.1rem" }} src={current?.image} />
-                            </ListItemAvatar>
-                            <div className="key_name">{current?.title}</div>
-                        </ListItem>
-                    </div>
-                )}
-                renderInput={(params) => (
-                    <TextField
-                        {...params}
-                        label="Tìm kiếm"
-                        variant="standard"
-                        value={inputSearch} onChange={searchSong}
-                    />
-                )}
-            />
+                <Autocomplete
+                    id="search-select"
+                    fullWidth
+                    options={listSong}
+                    getOptionLabel={(current) => current.title}
+                    renderOption={(props: any, current: any) => (
+                        <div {...props}>
+                            <ListItem
+                                style={{ display: "flex", cursor: "pointer" }}
+                                onClick={() => { addSongToRoom(current?._id) }}
+                            >
+                                <ListItemAvatar style={{}}>
+                                    <Avatar alt="Remy Sharp" sx={{ width: "2.1rem", height: "2.1rem" }} src={current?.image} />
+                                </ListItemAvatar>
+                                <div className="key_name">{current?.title}</div>
+                            </ListItem>
+                        </div>
+                    )}
+                    renderInput={(params) => (
+                        <TextField
+                            {...params}
+                            label="Tìm kiếm"
+                            variant="standard"
+                            value={inputSearch} onChange={searchSong}
+                        />
+                    )}
+                />
             </div>
         </>
     )

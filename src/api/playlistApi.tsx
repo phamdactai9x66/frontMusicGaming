@@ -4,14 +4,14 @@ class playlistApi {
 
     getAll<T extends object>(query: T): Promise<any> {
         const url: string = "/playlist";
-        return Axios.get(url, { params: { ...query}});
+        return Axios.get(url, { params: { ...query } });
     };
     getOne<T extends string>(_id: T): Promise<any> {
         const url: string = `/playlist/${_id}`;
         return Axios.get(url)
     };
     deleteOne<T extends string>(_id: T): Promise<any> {
-        const url: string = `/playlist/${_id}/delete`;
+        const url: string = `/playlist/delete/${_id}`;
         return Axios.delete(url)
     };
     postOne<T extends FormData>(formdata: T): Promise<any> {

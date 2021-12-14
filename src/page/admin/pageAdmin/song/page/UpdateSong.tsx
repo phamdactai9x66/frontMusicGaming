@@ -101,7 +101,6 @@ const UpdateSong: React.FC<UpdateSong<any>> = ({ changePage, _id, ...props }) =>
           enableReinitialize
         >
           {formik => {
-            console.log(formik.values)
             return (
               <Form ref={refForm}>
                 <div className="grid-addpage">
