@@ -1,4 +1,4 @@
-import React, {useState, useRef} from 'react'
+import React, { useState, useRef } from 'react'
 import { Card } from "@material-ui/core"
 import LoadingButton from '@mui/lab/LoadingButton'
 import { Button, Alert } from "@mui/material"
@@ -12,49 +12,49 @@ import slideApi from '../../../../../api/slideApi'
 
 interface AddSlide<T> {
     changePage: any
-  }
-  
-  const initialValue = {
+}
+
+const initialValue = {
     name: '',
     image: '',
     content: '',
     id_Songs: ''
-  }
+}
 
 const AddSlide: React.FC<AddSlide<any>> = ({ changePage, ...props }) => {
     const refForm = useRef<HTMLFormElement | any>(null);
     const [alert, setAlert] = useState({ display: false, message: "", type: "" });
-  
+
     const submitForm = (data: any, action: any) => {
-      const getForm = new FormData(refForm.current);
-      setTimeout(async () => {
-        const createSlide = await slideApi.postOne<FormData>(getForm);
-        if (createSlide.status !== variableCommon.statusF) {
-          action.resetForm();
-          setAlert(value => (
-            {
-              ...value, 
-              display: true,
-              message: createSlide.message,
-              type: 'success'
+        const getForm = new FormData(refForm.current);
+        setTimeout(async () => {
+            const createSlide = await slideApi.postOne<FormData>(getForm);
+            if (createSlide.status !== variableCommon.statusF) {
+                action.resetForm();
+                setAlert(value => (
+                    {
+                        ...value,
+                        display: true,
+                        message: createSlide.message,
+                        type: 'success'
+                    }
+                ))
+            } else {
+                setAlert(value => (
+                    {
+                        ...value,
+                        display: true,
+                        message: createSlide.message,
+                        type: 'error'
+                    }
+                ))
             }
-          ))
-        } else {
-          setAlert(value => (
-            {
-              ...value, 
-              display: true,
-              message: createSlide.message,
-              type: 'error'
-            }
-          ))
-        }
-        action.setSubmitting(false)
-      }, 1000)
+            action.setSubmitting(false)
+        }, 1000)
     }
-  
+
     const navigatePage = (page: string) => {
-      changePage(page);
+        changePage(page);
     }
 
     return (
@@ -72,6 +72,7 @@ const AddSlide: React.FC<AddSlide<any>> = ({ changePage, ...props }) => {
                     onSubmit={submitForm}
                     validationSchema={validateChemaSlide}
                     validateOnChange={false}
+                    validateOnBlur={false}
                 >
                     {formik => {
                         return (
@@ -85,7 +86,7 @@ const AddSlide: React.FC<AddSlide<any>> = ({ changePage, ...props }) => {
                                                 </div>
                                             </div>
                                         </Card>
-                                        <br/>
+                                        <br />
                                         <Card elevation={5}>
                                             <div className="form-input-add">
                                                 <div className="inputForm">
@@ -109,12 +110,11 @@ const AddSlide: React.FC<AddSlide<any>> = ({ changePage, ...props }) => {
                                         <LoadingButton loading={formik.isSubmitting} variant="contained"
                                             type="submit"
                                         >
-                                            Thêm Slide
+                                            Add Slide
                                         </LoadingButton>
-                                        {/* <Button variant="contained" type="submit" color="primary">Thêm bài hát</Button> */}
                                         <Button variant="contained" color="error" style={{ marginLeft: 20 }}
                                             onClick={() => { navigatePage(page.ListSlide) }}
-                                        >Hủy</Button>
+                                        >Cancel</Button>
                                     </div>
                                 </div>
                             </Form>

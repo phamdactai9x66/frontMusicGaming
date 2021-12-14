@@ -1,7 +1,7 @@
 import React, { useEffect, useReducer, useState } from 'react'
 import { page } from '../index'
 import useApi from 'api/useApi'
-import { Select, MenuItem,Menu, Avatar } from "@mui/material"
+import { Select, MenuItem, Menu, Avatar } from "@mui/material"
 import SearchIcon from '@mui/icons-material/Search'
 import { variableCommon } from "component/variableCommon"
 import PaginationUser from '../component/PaginationUser'
@@ -133,19 +133,6 @@ const ListUser: React.FC<ListUser<any>> = ({ changePage, set_id, ...props }) => 
                   onKeyDown={findUserName}
                   size="small"
                 />
-
-                <Select
-                  labelId="demoSelectLabel"
-                  id="demoSelectLabel"
-                  label="Age"
-                  value={10}
-                  size="small"
-                  style={{ width: 200 }}
-                >
-                  <MenuItem value={10}>Sort date</MenuItem>
-                  <MenuItem value={20}>Twenty</MenuItem>
-                  <MenuItem value={30}>Thirty</MenuItem>
-                </Select>
               </Typography>
 
               <Table stickyHeader>
@@ -192,7 +179,7 @@ const ListUser: React.FC<ListUser<any>> = ({ changePage, set_id, ...props }) => 
                               {gender === true ? 'Nữ' : 'Nam'}
                             </TableCell>
                             <TableCell align="left">
-                            <div>
+                              <div>
                                 <Button
                                   id="demo-positioned-button"
                                   aria-controls="demo-positioned-menu"
@@ -217,8 +204,12 @@ const ListUser: React.FC<ListUser<any>> = ({ changePage, set_id, ...props }) => 
                                     horizontal: 'left',
                                   }}
                                 >
-                                  <div onClick={handleClose}><MenuItem onClick={() => { deleteOne(_id) }}>Delete</MenuItem></div>
-                                  <div onClick={handleClose}><MenuItem onClick={() => { onOpen<string>(_id) }}>More</MenuItem></div>
+                                  <div onClick={handleClose}>
+                                    <MenuItem onClick={() => { deleteOne(_id) }}>Delete</MenuItem>
+                                  </div>
+                                  <div onClick={handleClose}>
+                                    <MenuItem onClick={() => { onOpen<string>(_id) }}>More</MenuItem>
+                                  </div>
                                 </Menu>
                               </div>
                             </TableCell>

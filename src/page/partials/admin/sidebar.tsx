@@ -68,8 +68,8 @@ const Sidebar: React.FC<SidebarIF<any>> = ({ ...props }) => {
     {
       icon: "fa fa-pie-chart",
       name: "Chart",
-      iconAdd: "fa fa-plus-circle",
-      details: "Add Chart",
+      // iconAdd: "fa fa-plus-circle",
+      // details: "Add Chart",
       link: "/admin/",
       subLink: "/admin/"
     },
@@ -173,22 +173,22 @@ const Sidebar: React.FC<SidebarIF<any>> = ({ ...props }) => {
         </div>
       </div>
       <div className="search_sidebar">
-      <div className={classes.search} style={{ position: "relative" }}>
-        <div className={classes.searchIcon} style={{ zIndex: 999 }}>
-          <SearchIcon />
+        <div className={classes.search} style={{ position: "relative" }}>
+          <div className={classes.searchIcon} style={{ zIndex: 999 }}>
+            <SearchIcon />
+          </div>
+          <InputBase
+            placeholder="Tìm kiếm"
+            classes={{
+              root: classes.inputRoot,
+              input: classes.inputInput,
+            }}
+
+            inputProps={{ "aria-label": "search" }}
+          />
+
         </div>
-        <InputBase
-          placeholder="Tìm kiếm"
-          classes={{
-            root: classes.inputRoot,
-            input: classes.inputInput,
-          }}
-
-          inputProps={{ "aria-label": "search" }}
-        />
-
       </div>
-      </div>   
       <nav className="tabs">
         <Link to="/admin">
           <AccordionSummary

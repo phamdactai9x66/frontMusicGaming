@@ -2,10 +2,10 @@
     .banner {
         position: relative;
         .banner-img {
-            min-height: 400px;
-            background-size: 100% !important;
-            background-position: 50% !important;
-            filter: blur(20px);
+            object-fit: cover;
+            height: 400px;
+            width: 100% !important;
+            filter: blur(10px);
         }
         .more-info {
             width: 100%;
@@ -26,11 +26,20 @@
     }
     margin-bottom: 15rem;
 .img_right{
+  overflow: hidden;
+  width: 270px;
+  height: 270px;
+  border-radius: 50%;
     img{
         width: 270px;
         height: 270px;
         border-radius: 50%;
         border: 0.1px solid rgba(0, 58, 97, 0.651);
+        transition: all 0.5s;
+        cursor: pointer;
+        &:hover {
+          transform: scale(1.1);
+        }
     }
 }
 

@@ -91,7 +91,6 @@ const UpdateArtist: React.FC<UpdateArtist<any>> = ({ changePage, _id, ...props }
         enableReinitialize
       >
         {formik => {
-          // console.log(formik.values)
           return (
             <Form ref={refForm}>
               <div className="grid-addpage">
@@ -170,7 +169,7 @@ const UpdateArtist: React.FC<UpdateArtist<any>> = ({ changePage, _id, ...props }
                     variant="contained"
                     type="submit"
                   >
-                    Cập nhật Artist
+                    Update Artist
                   </LoadingButton>
                   <Button
                     variant="contained"
@@ -178,7 +177,7 @@ const UpdateArtist: React.FC<UpdateArtist<any>> = ({ changePage, _id, ...props }
                     style={{ marginLeft: 20 }}
                     onClick={() => { navigatePage(page.ListArtist) }}
                   >
-                    Hủy
+                    Cancel
                   </Button>
                 </div>
               </div>

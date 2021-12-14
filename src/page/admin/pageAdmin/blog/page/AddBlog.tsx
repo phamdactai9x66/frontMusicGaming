@@ -20,7 +20,7 @@ const initialValue = {
   title: '',
   image: '',
   content: '',
-  status: '',
+  // status: 'false',
   view: '',
   id_User: '',
   id_CategoryBlog: ''
@@ -31,7 +31,6 @@ const AddBlog: React.FC<AddBlog<any>> = ({ changePage, ...props }) => {
   const [alert, setAlert] = useState({ display: false, message: "", type: "" });
 
   const submitForm = (data: any, action: any) => {
-    // console.log('data blog : ', data);
     const getForm = new FormData(refForm.current);
     setTimeout(async () => {
       const createBlog = await blogApi.postOne<FormData>(getForm);
@@ -75,6 +74,7 @@ const AddBlog: React.FC<AddBlog<any>> = ({ changePage, ...props }) => {
           initialValues={initialValue}
           onSubmit={submitForm}
           validateOnChange={false}
+          validateOnBlur={false}
           validationSchema={validationSchemaBlog}
         >
           {formik => {
@@ -109,7 +109,7 @@ const AddBlog: React.FC<AddBlog<any>> = ({ changePage, ...props }) => {
                     </Card>
                   </div>
 
-                  <div>
+                  {/* <div>
                     <Card elevation={5}>
                       <div className="form-input-add">
                         <div className="inputForm">
@@ -121,7 +121,7 @@ const AddBlog: React.FC<AddBlog<any>> = ({ changePage, ...props }) => {
                         </div>
                       </div>
                     </Card>
-                  </div>
+                  </div> */}
 
                   <div>
                     <Card elevation={5}>

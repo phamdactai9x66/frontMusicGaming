@@ -22,13 +22,13 @@ const initialValue = {
 const UpdateTodo: React.FC<UpdateTodo<any>> = ({ changePage, _id, ...props }) => {
     const refForm = useRef<HTMLFormElement | any>(null)
     const [alert, setalert] = useState({ display: false, message: "", type: "" })
-    const [dataTopic, setdataTopic] = useState<{data:any[],display:boolean}>({ data: [], display: true });
+    const [dataTopic, setdataTopic] = useState<{ data: any[], display: boolean }>({ data: [], display: true });
     useEffect(() => {
         (async () => {
             if (!dataTopic.display) return navigatePage(page.todolist);
 
             const [data, error] = await HandleGet(apiTopic.getOne, _id);
-            
+
             if (error) return navigatePage(page.todolist);
             setdataTopic(value => ({ ...value, data: data.data }))
         })()
@@ -42,7 +42,7 @@ const UpdateTodo: React.FC<UpdateTodo<any>> = ({ changePage, _id, ...props }) =>
             const editTopic = await apiTopic.putOne<FormData, string>(getForm, _id);
             if (editTopic.status !== variableCommon.statusF) {
                 console.log(editTopic.data)
-                setdataTopic(value => ({ ...value, data: [editTopic.data] }))      
+                setdataTopic(value => ({ ...value, data: [editTopic.data] }))
                 setalert(value => (
                     {
                         ...value, display: true,
@@ -109,12 +109,11 @@ const UpdateTodo: React.FC<UpdateTodo<any>> = ({ changePage, _id, ...props }) =>
                                         <LoadingButton loading={formik.isSubmitting} variant="contained"
                                             type="submit"
                                         >
-                                            thay đổi
+                                            Update
                                         </LoadingButton>
-                                        {/* <Button variant="contained" type="submit" color="primary">Thêm bài hát</Button> */}
                                         <Button variant="contained" color="error" style={{ marginLeft: 20 }}
                                             onClick={() => { navigatePage(page.todolist) }}
-                                        >Hủy</Button>
+                                        >Cancel</Button>
                                     </div>
 
                                 </div>

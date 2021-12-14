@@ -28,8 +28,7 @@ const AddArtist: React.FC<AddArtist<any>> = ({ changePage, ...props }) => {
 
   const submitForm = (data: any, action: any) => {
     const getForm = new FormData(refForm.current);
-    getForm.set('birth', data.birth)
-    // console.log(data)
+    getForm.set('birth', data.birth);
     setTimeout(async () => {
       const createArtist = await ArtistApi.postOne<FormData>(getForm);
 
@@ -72,10 +71,10 @@ const AddArtist: React.FC<AddArtist<any>> = ({ changePage, ...props }) => {
         initialValues={initialValue}
         onSubmit={submitForm}
         validateOnChange={false}
+        validateOnBlur={false}
         validationSchema={validationArtist}
       >
         {formik => {
-          // console.log(formik.values)
           return (
             <Form ref={refForm}>
               <div className="grid-addpage">

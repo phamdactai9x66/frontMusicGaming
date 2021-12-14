@@ -80,7 +80,6 @@ const UpdateTodo: React.FC<UpdateTodo<any>> = ({ changePage, _id, ...props }) =>
                     initialValues={dataAlbum.data || initialValue}
                     onSubmit={submitForm}
                     validateOnChange={false}
-                    // validateOnBlur={false}
                     validationSchema={validateSchema}
                     enableReinitialize >
                     {formik => {
@@ -115,14 +114,12 @@ const UpdateTodo: React.FC<UpdateTodo<any>> = ({ changePage, _id, ...props }) =>
                                         <LoadingButton loading={formik.isSubmitting} variant="contained"
                                             type="submit"
                                         >
-                                            thay đổi
+                                            Update
                                         </LoadingButton>
-                                        {/* <Button variant="contained" type="submit" color="primary">Thêm bài hát</Button> */}
                                         <Button variant="contained" color="error" style={{ marginLeft: 20 }}
                                             onClick={() => { navigatePage(page.todolist) }}
-                                        >Hủy</Button>
+                                        >Cancel</Button>
                                     </div>
-
                                 </div>
                             </Form>
                         )

@@ -1,7 +1,7 @@
 import React, { useReducer, useEffect, useState } from 'react'
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material"
 import { Button, Checkbox, TextField, Typography, CircularProgress, Box } from "@mui/material"
-import { Select, MenuItem,Menu, Avatar } from "@mui/material"
+import { Select, MenuItem, Menu, Avatar } from "@mui/material"
 import SearchIcon from '@mui/icons-material/Search';
 import apiAlbum from "api/albumApi";
 import { initialReducer, handleReducer, HandleGet, typeAciton, pustAction } from "component/MethodCommon";
@@ -14,6 +14,7 @@ interface Todolist<T> {
   changePage: any,
   set_id: Function
 }
+
 const useStyle = makeStyles((theme) => ({
   styleBox: {
     display: 'flex',
@@ -21,22 +22,24 @@ const useStyle = makeStyles((theme) => ({
     alignItems: 'center'
   }
 }))
+
 const columns = [
   { id: 'name', label: 'Name ablum', minWidth: 170, align: 'left' },
   { id: 'price', label: 'Image', minWidth: 100, align: 'left' },
-  // { id: 'quantity', label: 'Quantity', minWidth: 170, align: 'left' },
   { id: '', label: 'Handle', minWidth: 170, align: 'center' },
 ];
+
 const Todolist: React.FC<Todolist<any>> = ({ changePage, set_id, ...props }) => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
+
   const handleClose = () => {
     setAnchorEl(null);
   };
-  //
+
   const classes = useStyle();
   const [state, dispatch] = useReducer(handleReducer, initialReducer);
   const [stateModal, setstateModal] = useState<any>({ display: false, _id: null })
@@ -104,7 +107,7 @@ const Todolist: React.FC<Todolist<any>> = ({ changePage, set_id, ...props }) => 
         display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '800px', width: "100%"
       }}>
         <div style={{ flexBasis: 1000, margin: "0 auto" }}>
-        <h2 className="mb-5">Albums</h2>
+          <h2 className="mb-5">Albums</h2>
           <Paper sx={{ width: '100%' }}>
             <TableContainer style={{ padding: 20 }}>
               <Typography style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
@@ -116,18 +119,6 @@ const Todolist: React.FC<Todolist<any>> = ({ changePage, set_id, ...props }) => 
                   onKeyDown={findName}
                   size="small"
                 />
-                <Select
-                  labelId="demosimpleselectlabel"
-                  id="demosimpleselect"
-                  label="Age"
-                  value={10}
-                  size="small"
-                  style={{ width: 200 }}
-                >
-                  <MenuItem value={10}>sort date</MenuItem>
-                  <MenuItem value={20}>Twenty</MenuItem>
-                  <MenuItem value={30}>Thirty</MenuItem>
-                </Select>
               </Typography>
 
               <Table stickyHeader >
@@ -158,8 +149,7 @@ const Todolist: React.FC<Todolist<any>> = ({ changePage, set_id, ...props }) => 
                   {
                     state.Data.length && state.Display ?
                       state.Data.map((row: any, index: any) => {
-                        const { title, image, id_Artist, check, _id } = row;
-                        // console.log(check)
+                        const { title, image, check, _id } = row;
                         return (
                           <TableRow hover role="checkbox" key={index}>
                             <TableCell align='left'>
@@ -173,11 +163,8 @@ const Todolist: React.FC<Todolist<any>> = ({ changePage, set_id, ...props }) => 
                             <TableCell align='left'>
                               <Avatar alt="Remy Sharp" variant="rounded" src={image} />
                             </TableCell>
-                            {/* <TableCell align='left'>
-                              {id_Artist}
-                            </TableCell> */}
                             <TableCell align='center'>
-                            <div>
+                              <div>
                                 <Button
                                   id="demo-positioned-button"
                                   aria-controls="demo-positioned-menu"
@@ -202,9 +189,15 @@ const Todolist: React.FC<Todolist<any>> = ({ changePage, set_id, ...props }) => 
                                     horizontal: 'left',
                                   }}
                                 >
-                                  <div onClick={handleClose}><MenuItem onClick={() => { deleteOne(_id) }}>Delete</MenuItem></div>
-                                  <div onClick={handleClose}><MenuItem onClick={() => { navigatePage(page.update, _id) }}>Edit</MenuItem></div>
-                                  <div onClick={handleClose}><MenuItem onClick={() => { onOpen<string>(_id) }}>More</MenuItem></div>
+                                  <div onClick={handleClose}>
+                                    <MenuItem onClick={() => { deleteOne(_id) }}>Delete</MenuItem>
+                                  </div>
+                                  <div onClick={handleClose}>
+                                    <MenuItem onClick={() => { navigatePage(page.update, _id) }}>Edit</MenuItem>
+                                  </div>
+                                  <div onClick={handleClose}>
+                                    <MenuItem onClick={() => { onOpen<string>(_id) }}>More</MenuItem>
+                                  </div>
                                 </Menu>
                               </div>
                             </TableCell>
