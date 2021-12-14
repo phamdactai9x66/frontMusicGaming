@@ -2,9 +2,9 @@
     .banner {
         position: relative;
         .banner-img {
+            object-fit: cover;
             min-height: 400px;
-            background-size: 100% !important;
-            background-position: 50% !important;
+            width: 100% !important;
             filter: blur(20px);
         }
         .more-info {

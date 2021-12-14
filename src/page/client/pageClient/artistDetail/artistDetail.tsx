@@ -220,13 +220,11 @@ const ArtistDetail: React.FC<ArtistDetailIF<any>> = ({ ...props }) => {
         <>
             {loading ? <Loadings /> : <div className="artistDetail ">
                 <div className="banner">
-                    <div
+                    <img
                         className="banner-img"
-                        style={{
-                            background:
-                                "no-repeat url(https://photo-resize-zmp3.zadn.vn/w360_r1x1_jpeg/avatars/4/a/9/1/4a91d506fc7144c7716b9d3166f2c4b6.jpg)",
-                        }}
-                    ></div>
+                        src={inforArtist?.image}
+                        alt=""
+                    />
 
                     <div className="more-info">
                         <div className="info-hero">
