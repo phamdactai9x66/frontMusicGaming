@@ -65,7 +65,7 @@ const AddTodo: React.FC<AddTodo<any>> = ({ changePage, ...props }) => {
                     initialValues={initialValue}
                     onSubmit={submitForm}
                     validateOnChange={false}
-                    // validateOnBlur={false}
+                    validateOnBlur={false}
                     validationSchema={validateSchema}
                 >
                     {formik => {
@@ -97,12 +97,11 @@ const AddTodo: React.FC<AddTodo<any>> = ({ changePage, ...props }) => {
                                         <LoadingButton loading={formik.isSubmitting} variant="contained"
                                             type="submit"
                                         >
-                                            Thêm Albums
+                                            Update Albums
                                         </LoadingButton>
-                                        {/* <Button variant="contained" type="submit" color="primary">Thêm bài hát</Button> */}
                                         <Button variant="contained" color="error" style={{ marginLeft: 20 }}
                                             onClick={() => { navigatePage(page.todolist) }}
-                                        >Hủy</Button>
+                                        >Cancel</Button>
                                     </div>
 
                                 </div>

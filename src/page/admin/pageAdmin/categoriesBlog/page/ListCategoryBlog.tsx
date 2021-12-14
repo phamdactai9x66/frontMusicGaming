@@ -106,24 +106,24 @@ const ListCategoryBlog: React.FC<ListCategoryBlog<any>> = ({ changePage, set_id,
   return (
     <>
       {stateModalCategoryBlog._id && <ModalCategoryBlog state={stateModalCategoryBlog} onClose={onClose}></ModalCategoryBlog>}
-      <div 
+      <div
         style={{
-          display: 'flex', 
-          justifyContent: 'center', 
-          alignItems: 'center', 
-          minHeight: '600px', 
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          minHeight: '600px',
           width: "100%"
         }}
       >
         <div style={{ flexBasis: 1000, margin: "0 auto" }}>
-        <h2 className="mb-5">Thể loại Blog</h2>
+          <h2 className="mb-5">Thể loại Blog</h2>
           <Paper sx={{ width: '100%' }}>
             <TableContainer style={{ padding: 20 }}>
-              <Typography 
-                style={{ 
-                  display: "flex", 
-                  justifyContent: "space-between", 
-                  alignItems: "center" 
+              <Typography
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center"
                 }}
               >
                 <TextField
@@ -134,18 +134,6 @@ const ListCategoryBlog: React.FC<ListCategoryBlog<any>> = ({ changePage, set_id,
                   onKeyDown={findName}
                   size="small"
                 />
-                <Select
-                  labelId="demoSimpleSelectLabel"
-                  id="demoSimpleSelect"
-                  label="Age"
-                  value={10}
-                  size="small"
-                  style={{ width: 200 }}
-                >
-                  <MenuItem value={10}>Sort date</MenuItem>
-                  <MenuItem value={20}>Twenty</MenuItem>
-                  <MenuItem value={30}>Thirty</MenuItem>
-                </Select>
               </Typography>
 
               <Table stickyHeader>
@@ -156,10 +144,10 @@ const ListCategoryBlog: React.FC<ListCategoryBlog<any>> = ({ changePage, set_id,
                       align='left'
                       style={{ minWidth: 170 }}
                     >
-                      <Checkbox 
-                        id="checkAll" 
+                      <Checkbox
+                        id="checkAll"
                         onClick={() => { dispatch(pustAction(typeAciton.checkAll)) }}
-                        checked={state.checkAll} 
+                        checked={state.checkAll}
                       />
                       <label htmlFor="checkAll">All</label>
                     </TableCell>
@@ -176,22 +164,22 @@ const ListCategoryBlog: React.FC<ListCategoryBlog<any>> = ({ changePage, set_id,
                 </TableHead>
                 <TableBody>
                   {
-                    state.Data.length && state.Display ? 
-                    state.Data.map((row: any, index: any) => {
-                      const { name, check, _id } = row;
-                      return (
-                        <TableRow hover role="checkbox" key={index}>
-                          <TableCell align='left'>
-                            <Checkbox 
-                              checked={check} 
-                              onClick={() => { dispatch(pustAction(typeAciton.checkOne, { _id })) }} 
-                            />
-                          </TableCell>
-                          <TableCell align='left'>
-                            {name}
-                          </TableCell>
-                          <TableCell align='center'>
-                          <div>
+                    state.Data.length && state.Display ?
+                      state.Data.map((row: any, index: any) => {
+                        const { name, check, _id } = row;
+                        return (
+                          <TableRow hover role="checkbox" key={index}>
+                            <TableCell align='left'>
+                              <Checkbox
+                                checked={check}
+                                onClick={() => { dispatch(pustAction(typeAciton.checkOne, { _id })) }}
+                              />
+                            </TableCell>
+                            <TableCell align='left'>
+                              {name}
+                            </TableCell>
+                            <TableCell align='center'>
+                              <div>
                                 <Button
                                   id="demo-positioned-button"
                                   aria-controls="demo-positioned-menu"
@@ -221,31 +209,31 @@ const ListCategoryBlog: React.FC<ListCategoryBlog<any>> = ({ changePage, set_id,
                                   <div onClick={handleClose}><MenuItem onClick={() => { onOpen<string>(_id) }}>More</MenuItem></div>
                                 </Menu>
                               </div>
-                          </TableCell>
-                        </TableRow>
-                      )
-                    }) : 
-                    state.Display ? null : <TableRow>
-                      <TableCell align='center' colSpan={12} >
-                        <CircularProgress />
-                      </TableCell>
-                    </TableRow>
+                            </TableCell>
+                          </TableRow>
+                        )
+                      }) :
+                      state.Display ? null : <TableRow>
+                        <TableCell align='center' colSpan={12} >
+                          <CircularProgress />
+                        </TableCell>
+                      </TableRow>
                   }
                 </TableBody>
               </Table>
               <Box className={classes.styleBox}>
                 <div>
-                  <Button 
-                    variant="contained" 
-                    size="small" 
+                  <Button
+                    variant="contained"
+                    size="small"
                     onClick={deleteAll}
                   >
                     Delete All
                   </Button>
-                  <Button 
-                    variant="contained" 
+                  <Button
+                    variant="contained"
                     size="small"
-                    style={{ marginLeft: 5 }} 
+                    style={{ marginLeft: 5 }}
                     onClick={() => { navigatePage(page.AddCategoryBlog) }}
                   >
                     Add
