@@ -1,5 +1,8 @@
 import React, { useState } from 'react'
 import ListUser from './page/ListUser'
+import { useSelector } from "react-redux";
+import { formStateUser } from "redux/user/stateUser";
+import { Redirect } from 'react-router-dom';
 
 export const page = {
   ListUser: 'ListUser'
@@ -12,6 +15,7 @@ interface IndexUser<T> {
 const IndexUser: React.FC<IndexUser<any>> = ({ ...props }) => {
   const [user, setUser] = useState('');
   const [findId, setFindId] = useState<any>(null);
+  const state = useSelector<{ user: any }>(state => state.user) as formStateUser;
 
   const changePage = <T extends string>(page: T): void => {
     if (!page) return;
@@ -33,7 +37,7 @@ const IndexUser: React.FC<IndexUser<any>> = ({ ...props }) => {
   }
   return (
     <>
-      {pageUserList()}
+      {state.user.role && state.user.role < 2 ? <Redirect to={{ pathname: '/admin'}} /> : pageUserList()}
     </>
   )
 }
