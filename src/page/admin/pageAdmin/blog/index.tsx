@@ -16,7 +16,7 @@ interface IndexBlogIF<T> {
 const IndexBlog: React.FC<IndexBlogIF<any>> = ({...props}) => {
   const [blog, setBlog] = useState('');
   const [findId, setFindId] = useState<any>(null);
-
+window.scroll(0,0)
   const changePage = <T extends string>(page: T): void => {
     console.log(page)
     if(!page) return;

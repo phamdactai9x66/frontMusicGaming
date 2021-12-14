@@ -31,7 +31,7 @@ const IndexPersonal: React.FC<IndexPersonalIF<any>> = ({ ...props }) => {
     const [isLogged, setIsLogged] = useState(false);
     const [page, setpage] = useState<string>("");
     const history: any = useHistory<any>();
-
+    window.scroll(0,0)
 
 
     useEffect(() => {

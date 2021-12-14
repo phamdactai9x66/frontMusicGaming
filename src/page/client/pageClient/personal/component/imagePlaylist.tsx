@@ -21,7 +21,7 @@ const ImagePlaylist: React.FC<ImagePlaylistIF<any>> = ({ idPlaylist, ...props })
                 id_User_Playlist: idPlaylist
             }
             const [data, error] = await HandleGet(songPlaylistApi.getAll, query);
-            const getAllSong = await songApi.getAll<object>({});
+            const getAllSong = await songApi.getAll<object>({status: true});
 
             if (error || data.status === variableCommon.statusF) return
             setstate({ display: true, data: data.data, dataSong: tranFormDataId(getAllSong.data) })

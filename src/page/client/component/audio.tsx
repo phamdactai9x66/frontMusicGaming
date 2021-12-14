@@ -233,23 +233,23 @@ const Audio: React.FC<AudioIF<any>> = ({ audio: { audio: url, title, image, _id 
             </div>
             <div className="icon_play-music">
                 <IconButton onClick={() => nextSong('previous')} color="primary" disabled={!checkDisableNext('previous')}>
-                    <SkipPrevious className="icon" />
+                    <SkipPrevious className="icon" style={{color: "#fff"}}/>
                 </IconButton>
 
                 <IconButton onClick={() => { nextTime(currentTime - 10) }} color="primary">
-                    <NavigateBefore className="icon" />
+                    <NavigateBefore className="icon" style={{color: "#fff"}}/>
                 </IconButton>
 
                 <IconButton onClick={playAudio} color="primary">
                     {/* {url ? play ? <Pause className="icon" /> : <PlayArrow className="icon" /> : <CircularProgress size="20px" />} */}
-                    {play ? <Pause className="icon" /> : <PlayArrow className="icon" />}
+                    {play ? <Pause className="icon" style={{color: "#fff"}}/> : <PlayArrow className="icon" />}
                 </IconButton>
                 <IconButton onClick={() => { nextTime(currentTime + 10) }} color="primary">
-                    <NavigateNext className="icon" />
+                    <NavigateNext className="icon" style={{color: "#fff"}}/>
                 </IconButton>
 
                 <IconButton onClick={() => nextSong('next')} color="primary" disabled={!checkDisableNext('next')}>
-                    <SkipNext className="icon" />
+                    <SkipNext className="icon" style={{color: "#fff"}}/>
                 </IconButton>
 
             </div>

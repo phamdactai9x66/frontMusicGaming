@@ -88,7 +88,7 @@ var ListMusicNew = function (props) {
             var data;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, songApi_1["default"].getAll({ _limit: 20 })];
+                    case 0: return [4 /*yield*/, songApi_1["default"].getAll({ _limit: 20, status: true })];
                     case 1:
                         data = (_a.sent()).data;
                         setSongs(data);

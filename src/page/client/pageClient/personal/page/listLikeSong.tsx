@@ -9,6 +9,7 @@ interface ListLikeSongIF<T> {
 
 const ListLikeSong: React.FC<ListLikeSongIF<any>> = ({ ...props }) => {
     // const [page, setpage] = useState<string>("");
+    window.scroll(0,0)
 
     return (
         <>

@@ -3,9 +3,9 @@ export const saveToLocalStorage = (song: any) => {
 
     if(oldData) {
         const data = JSON.parse(oldData);
-        const isExisted = data.indexOf( (_: any) => _._id === song._id);
+        const isExisted = data.filter( (_: any) => _._id === song._id);
 
-        if(isExisted === -1){
+        if(isExisted.length === 0){
             const newData = JSON.stringify([...data, song])
             localStorage.setItem('recent', newData)
         }

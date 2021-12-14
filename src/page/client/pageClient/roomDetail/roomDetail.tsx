@@ -52,7 +52,7 @@ const RoomDetail: React.FC<RoomDetail<any>> = ({ match, ...props }) => {
 
     useEffect(() => {
         (async () => {
-            const { data } = await songApi.getAll({});
+            const { data } = await songApi.getAll({status: true});
             saveSong.current = tranFormDataId<any[]>(data);
         })()
 

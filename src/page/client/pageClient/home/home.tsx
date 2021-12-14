@@ -83,10 +83,10 @@ const Home: React.FC<HomeIF<any>> = ({ ...props }) => {
         (async () => {
             const { data: dataPL } = await playlistApi.getAll({});
 //
-            const { data: dataSongs} = await songApi.getAll({});
+            const { data: dataSongs} = await songApi.getAll({status: true});
             const resSongsTransform = await tranFormDataId(dataSongs);
 
-            const { data: dataArtists} = await artistApi.getAll({});
+            const { data: dataArtists} = await artistApi.getAll({status: true});
             //
             const { data: dataPLS } = await playlistSongApi.getAll({});
 
