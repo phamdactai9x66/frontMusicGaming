@@ -23,6 +23,7 @@ const ListLikeSong: React.FC<ListLikeSongIF<any>> = ({ ...props }) => {
     const [likeSong, setLikeSong] = useState({ display: true, data: [], dataSong: [] });
     const { user: { _id } } = useSelector<{ user: any }>(state => state.user) as formStateUser;
     const dispatch = useDispatch();
+    window.scroll(0,0)
 
     const openPopover = (event: any) => {
         setAnchor(event.currentTarget);
@@ -38,7 +39,7 @@ const ListLikeSong: React.FC<ListLikeSongIF<any>> = ({ ...props }) => {
                 id_User: _id
             }
             const [data, error] = await HandleGet(LikeSongApi.getAll, query);
-            const [dataSong, errorSong] = await HandleGet(SongApi.getAll);
+            const [dataSong, errorSong] = await HandleGet(SongApi.getAll, {status: true});
             if (error) return;
             setLikeSong((value: any) => ({ ...value, data: [...data?.data], dataSong: tranFormDataId(dataSong?.data) }))
         })()

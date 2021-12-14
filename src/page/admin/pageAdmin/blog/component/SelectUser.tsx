@@ -31,7 +31,7 @@ const SelectUser: React.FC<SelectUser<any>> = ({ ...props }) => {
         name="id_User"
         getId="id_User"
         label="User"
-        data={tranFormData(user.data, 'value', 'name')}
+        data={tranFormData(user.data, 'value', 'userName')}
         other={{ variant: 'standard' }}
       />
     </div>

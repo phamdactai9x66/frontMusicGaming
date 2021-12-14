@@ -20,30 +20,30 @@ const initialValue = {
 
 const AddCategoryBlog: React.FC<AddCategoryBlog<any>> = ({ changePage, ...props }) => {
   const refForm = useRef<HTMLFormElement | any>(null);
-  const [alert, setAlert] = useState({ display: false, message: "", type: ""});
+  const [alert, setAlert] = useState({ display: false, message: "", type: "" });
 
   const submitForm = (data: any, action: any) => {
     const getForm = new FormData(refForm.current);
-      setTimeout(async () => {
-        const createCategoryBlog = await categoryBlogApi.postOne<FormData>(getForm);
-        if (createCategoryBlog.status !== variableCommon.statusF) {
-            action.resetForm();
-            setAlert(value => (
-              {
-                ...value, display: true,
-                message: createCategoryBlog.message,
-                type: 'success'
-              }))
-        } else {
-          setAlert(value => (
-            {
-              ...value, display: true,
-              message: createCategoryBlog.message,
-              type: 'error'
-            }))
-        }
-        action.setSubmitting(false)
-      }, 1000);
+    setTimeout(async () => {
+      const createCategoryBlog = await categoryBlogApi.postOne<FormData>(getForm);
+      if (createCategoryBlog.status !== variableCommon.statusF) {
+        action.resetForm();
+        setAlert(value => (
+          {
+            ...value, display: true,
+            message: createCategoryBlog.message,
+            type: 'success'
+          }))
+      } else {
+        setAlert(value => (
+          {
+            ...value, display: true,
+            message: createCategoryBlog.message,
+            type: 'error'
+          }))
+      }
+      action.setSubmitting(false)
+    }, 1000);
   }
   const navigatePage = (page: string) => {
     changePage(page);
@@ -62,6 +62,7 @@ const AddCategoryBlog: React.FC<AddCategoryBlog<any>> = ({ changePage, ...props 
           initialValues={initialValue}
           onSubmit={submitForm}
           validateOnChange={false}
+          validateOnBlur={false}
           validationSchema={validationSchemaCategoryBlog}
         >
           {(formik) => {
@@ -72,29 +73,29 @@ const AddCategoryBlog: React.FC<AddCategoryBlog<any>> = ({ changePage, ...props 
                     <Card elevation={5}>
                       <div className="form-input-add">
                         <div className="inputForm">
-                          <InputText 
-                            name="name" 
-                            label="Tên chủ đề" 
-                            other={{ variant: "standard" }} 
+                          <InputText
+                            name="name"
+                            label="Tên chủ đề"
+                            other={{ variant: "standard" }}
                           />
                         </div>
                       </div>
                     </Card>
                     <br />
-                    <LoadingButton 
-                      loading={formik.isSubmitting} 
+                    <LoadingButton
+                      loading={formik.isSubmitting}
                       variant="contained"
                       type="submit"
                     >
-                      Thêm danh mục Blog
+                      Add Category Blog
                     </LoadingButton>
-                    <Button 
-                      variant="contained" 
-                      color="error" 
-                      style={{ marginLeft: 20 }} 
+                    <Button
+                      variant="contained"
+                      color="error"
+                      style={{ marginLeft: 20 }}
                       onClick={() => { navigatePage(page.ListCategoryBlog) }}
                     >
-                      Hủy
+                      Cancel
                     </Button>
                   </div>
                 </div>

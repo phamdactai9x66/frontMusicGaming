@@ -108,7 +108,6 @@ const UpdatePlayList: React.FC<UpdatePlayList<any>> = ({ changePage, _id, ...pro
     const addSongPlaylist = await playlistSongApi.deleteOne<string>(id);
     const deleteSongPlayList = listSong.filter(e => e._id !== id);
     setlistSong(deleteSongPlayList)
-    console.log(addSongPlaylist)
 
   }
   return (
@@ -129,10 +128,8 @@ const UpdatePlayList: React.FC<UpdatePlayList<any>> = ({ changePage, _id, ...pro
           enableReinitialize
         >
           {(formik) => {
-            // console.log(formik.values)
             return (
               <Form ref={refForm}>
-                {/* {JSON.stringify(formik.values)} */}
                 <div className="grid-addpage">
                   <div className="section-add">
                     <Card elevation={5}>
@@ -153,7 +150,6 @@ const UpdatePlayList: React.FC<UpdatePlayList<any>> = ({ changePage, _id, ...pro
                             disablePortal
                             id="combo-box-demo"
                             options={getSong.current}
-                            // sx={{ width: 300 }}
                             onChange={onchangeOption}
                             renderInput={(params) => <TextField {...params} variant="standard" label="Search Song" fullWidth />}
                             fullWidth
@@ -163,7 +159,6 @@ const UpdatePlayList: React.FC<UpdatePlayList<any>> = ({ changePage, _id, ...pro
                       </div>
                       <List sx={{ width: '100%' }}>
                         {listSong.map((current: any, index: number) => {
-                          // console.log(current)
                           const findSong = tranFormId.current[current?.id_Songs]
                           console.log(findSong)
                           return <ListItem key={index}>
@@ -202,7 +197,7 @@ const UpdatePlayList: React.FC<UpdatePlayList<any>> = ({ changePage, _id, ...pro
                       variant="contained"
                       type="submit"
                     >
-                      Sửa
+                      Update
                     </LoadingButton>
                     <Button
                       variant="contained"
@@ -210,7 +205,7 @@ const UpdatePlayList: React.FC<UpdatePlayList<any>> = ({ changePage, _id, ...pro
                       style={{ marginLeft: 20 }}
                       onClick={() => { navigatePage(page.ListPlay) }}
                     >
-                      Hủy
+                      Cancel
                     </Button>
                   </div>
                 </div>

@@ -22,7 +22,7 @@ const initialValue = {
   title: '',
   image: '',
   content: '',
-  status: 'false',
+  // status: 'false',
   view: '',
   id_User: '',
   id_CategoryBlog: ''
@@ -90,7 +90,7 @@ const UpdateBlog: React.FC<UpdateBlog<any>> = ({ changePage, _id, ...props }) =>
         </Alert>}
 
         <Formik
-          initialValues={{ ...dataBlog.data, status: (dataBlog.data as any)?.status + '' } || initialValue}
+          initialValues={((dataBlog.data as any)?.title && { ...dataBlog.data }) || initialValue}
           onSubmit={submitForm}
           validateOnChange={false}
           validationSchema={validationSchemaBlog}
@@ -118,19 +118,18 @@ const UpdateBlog: React.FC<UpdateBlog<any>> = ({ changePage, _id, ...props }) =>
                     <Card elevation={5}>
                       <div className="form-input-add">
                         <div className="inputForm">
-                          <TextareaField
-                            name="content"
-                            label="Nội dung bài viết"
-                            other={{ variant: "standard" }}
-                            minRows={3}
-                            style={{ width: '100%' }}
+                          <InputText name="content" placeholder="Nội dung bài viết"
+                            other={{
+                              multiline: true,
+                              rows: 3
+                            }}
                           />
                         </div>
                       </div>
                     </Card>
                   </div>
 
-                  <div>
+                  {/* <div>
                     <Card elevation={5}>
                       <div className="form-input-add">
                         <div className="inputForm">
@@ -142,7 +141,7 @@ const UpdateBlog: React.FC<UpdateBlog<any>> = ({ changePage, _id, ...props }) =>
                         </div>
                       </div>
                     </Card>
-                  </div>
+                  </div> */}
 
                   <div>
                     <Card elevation={5}>

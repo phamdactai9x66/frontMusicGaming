@@ -23,7 +23,7 @@ const initialValue = {
   image: '',
   view: '',
   audio: '',
-  active: 'false',
+  // active: 'false',
   describe: '',
   day_release: new Date().toISOString(),
   id_Topic: '',
@@ -80,6 +80,7 @@ const AddSong: React.FC<AddSong<any>> = ({ changePage, ...props }) => {
           initialValues={initialValue}
           onSubmit={submitForm}
           validateOnChange={false}
+          validateOnBlur={false}
           validationSchema={validationSchemaSong}
         >
           {formik => {
@@ -155,7 +156,7 @@ const AddSong: React.FC<AddSong<any>> = ({ changePage, ...props }) => {
                       </div>
                     </Card>
                   </div>
-                  <div>
+                  {/* <div>
                     <Card elevation={5}>
                       <div className="form-input-add">
                         <div className="inputForm">
@@ -168,22 +169,16 @@ const AddSong: React.FC<AddSong<any>> = ({ changePage, ...props }) => {
                         </div>
                       </div>
                     </Card>
-                  </div>
+                  </div> */}
                   <div>
                     <Card elevation={5}>
                       <div className="form-input-add">
                         <div className="inputForm">
                           <InputText name="describe" placeholder="Mô tả bài hát"
                             other={{
-                              // variant: 'standard',
                               multiline: true,
                               rows: 3
                             }} />
-                          {/* <TextareaField
-                            name="describe"
-                            placeholder="Mô tả bài hát"
-                            other={{ variant: 'standard' }}
-                          /> */}
                         </div>
                         <div className="inputForm">
                           <SelectTopic />

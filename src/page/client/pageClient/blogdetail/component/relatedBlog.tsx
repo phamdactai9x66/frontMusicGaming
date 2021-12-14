@@ -17,7 +17,8 @@ const RelatedBlog: React.FC<RelatedBlogIF<any>> = ({ id_CategoryBlog, history, .
         (async () => {
             const query = {
                 id_CategoryBlog,
-                ...state.Filter
+                ...state.Filter,
+                status: true
             }
             const [data, error] = await HandleGet(BlogApi.getAll, query)
             const getAll = await BlogApi.getAll<object>({})

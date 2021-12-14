@@ -85,6 +85,7 @@ const Search: React.FC<SearchIF<any>> = ({ ...props }) => {
     const searchSongs = async () => {
         const conditionSong = {
             name: key,
+            status: true
         };
         const { data } = await songApi.getAll(conditionSong);
         setSongs({
@@ -95,6 +96,7 @@ const Search: React.FC<SearchIF<any>> = ({ ...props }) => {
     const searchArtists = async () => {
         const conditionArtists = {
             name: key,
+            status: true
         };
         const { data } = await ArtistApi.getAll(conditionArtists);
         setArtists({
@@ -105,6 +107,7 @@ const Search: React.FC<SearchIF<any>> = ({ ...props }) => {
     const searchBlogs = async () => {
         const conditionBlogs = {
             title: key,
+            status: true
         };
         const { data } = await BlogApi.getAll(conditionBlogs);
         setBlogs({
@@ -120,7 +123,7 @@ const Search: React.FC<SearchIF<any>> = ({ ...props }) => {
 
     useEffect(() => {
         (async () => {
-            const { data } = await songApi.getAll({ view: "desc" });
+            const { data } = await songApi.getAll({ view: "desc", status: true });
             setTopSongs(data);
         })();
     }, []);

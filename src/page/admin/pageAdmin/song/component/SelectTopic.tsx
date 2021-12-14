@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import topicApi from 'api/topicApi'
 import { HandleGet, tranFormData } from 'component/MethodCommon'
 import { useFormikContext } from 'formik'
-import { SelectField } from 'component/customField'
+import { SelectField } from 'component/customField/index'
 
 interface SelectTopic<T> {
 

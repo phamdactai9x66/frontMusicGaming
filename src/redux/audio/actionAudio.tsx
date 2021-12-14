@@ -3,7 +3,7 @@ import stateAudio, { formStateAudio } from "./stateAudio";
 import songApi from "api/songApi";
 import { tranFormDataId } from "component/MethodCommon";
 export const getlistAudio: any = createAsyncThunk("audio/getListAUdio", async (params, thunkAPi) => {
-    const getAllSong = await songApi.getAll({});
+    const getAllSong = await songApi.getAll({status: true});
     return getAllSong?.data
 })
 

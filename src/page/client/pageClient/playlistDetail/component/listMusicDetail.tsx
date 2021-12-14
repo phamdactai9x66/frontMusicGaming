@@ -20,6 +20,7 @@ interface ListMusicDetailIF<T> {
 const ListMusicDetail: React.FC<ListMusicDetailIF<any>> = ({ current, index, listIdSong, onRemoveUPL, ...props }) => {
     const [anchor, setAnchor] = useState(null);
     const dispatch = useDispatch()
+    
     const openPopover = (event: any) => {
         setAnchor(event.currentTarget);
     };

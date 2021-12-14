@@ -58,13 +58,13 @@ const AddTodo: React.FC<AddTodoIF<any>> = ({ changePage, ...props }) => {
                 {alert.display && <Alert severity={alert.type as any} style={{ marginBottom: 5 }}>
                     {alert.message}
                 </Alert>}
-                
+
 
                 <Formik
                     initialValues={initialValue}
                     onSubmit={submitForm}
                     validateOnChange={false}
-                    // validateOnBlur={false}
+                    validateOnBlur={false}
                     validationSchema={validateSchema}
                 >
                     {formik => {
@@ -93,12 +93,12 @@ const AddTodo: React.FC<AddTodoIF<any>> = ({ changePage, ...props }) => {
                                         <LoadingButton loading={formik.isSubmitting} variant="contained"
                                             type="submit"
                                         >
-                                            Thêm chủ đề
+                                            Add Topic
                                         </LoadingButton>
                                         {/* <Button variant="contained" type="submit" color="primary">Thêm bài hát</Button> */}
                                         <Button variant="contained" color="error" style={{ marginLeft: 20 }}
                                             onClick={() => { navigatePage(page.todolist) }}
-                                        >Hủy</Button>
+                                        >Cancel</Button>
                                     </div>
 
                                 </div>

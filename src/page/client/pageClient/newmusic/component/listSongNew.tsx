@@ -46,7 +46,7 @@ const ListMusicNew: React.FC<ListMusicNewIF<any>> = (props) => {
 
     useEffect(() => {
         const getSongs = async () => {
-            const { data } = await songApi.getAll({ _limit: 20 });
+            const { data } = await songApi.getAll({ _limit: 20, status: true });
             setSongs(data);
         }
         getSongs();
