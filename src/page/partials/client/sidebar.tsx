@@ -86,7 +86,10 @@ const Sidebar: React.FC<SidebarIF<any>> = ({ ...props }) => {
               //     return null
               // } ;
               return (
-                <Link key={item._id} to={`/playlist/${item?._id}`}><li><BiPlayCircle className="icon" />{item.name}</li></Link>
+                <Link key={item._id} to={{
+                  pathname: `/playlist/${item?._id}`,
+                  state: item.name
+                }}><li><BiPlayCircle className="icon" />{item.name}</li></Link>
               )
             })}
           </ul>
