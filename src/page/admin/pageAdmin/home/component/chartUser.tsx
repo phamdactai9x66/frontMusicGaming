@@ -41,8 +41,8 @@ const ChartUser: React.FC<ChartUser<any>> = ({ ...props }) => {
         return { ...e, createdAt: getMonth.getMonth() + 1 }
       })
       const formatChart = createYear().map(e => {
-        const getUserMonth = formatDate.filter((monthUser: any) => monthUser.createdAt === e.month)
-          .map((user: any) => user.role)
+        const getUserMonth = formatDate?.filter((monthUser: any) => monthUser.createdAt === e.month)
+          ?.map((user: any) => user.role)
         const getMember = getRole(getUserMonth, 0);
         const getActor = getRole(getUserMonth, 1);
         const getAdmin = getRole(getUserMonth, 2);
