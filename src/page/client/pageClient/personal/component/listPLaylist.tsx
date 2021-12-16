@@ -14,9 +14,14 @@ import Popup from '@titaui/reactjs-popup';
 import { useSelector } from 'react-redux';
 import ModalPlaylistEdit from './modalPlaylistEdit';
 import { variableCommon } from "component/variableCommon";
-
+import { BiFolderOpen } from "react-icons/bi";
 interface ListPLaylistIF<T> {
     render: number,
+}
+
+interface stateIF<T> {
+    display: boolean,
+    data: any | T,
 }
 
 const ListPLaylist: React.FC<ListPLaylistIF<any>> = ({ render, ...props }) => {
@@ -24,23 +29,35 @@ const ListPLaylist: React.FC<ListPLaylistIF<any>> = ({ render, ...props }) => {
     const [stateDelete, dispatch] = useReducer(handleReducer, initialReducer);
     const userState = useSelector<{ user: any }>(state => state.user) as formStateUser;
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+    const [anchorItem, setAnchorItem] = useState({
+        _id: "",
+        name: "",
+        id_User: ""
+    })
     const open = Boolean(anchorEl);
-    const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+    const handleClick = (event: React.MouseEvent<HTMLElement>, item: any) => {
         setAnchorEl(event.currentTarget);
+        setAnchorItem(item)
     };
     const handleClose = () => {
         setAnchorEl(null);
+        setAnchorItem({
+            _id: "",
+            name: "",
+            id_User: ""
+        })
     };
     //
     const { user: { _id: id_User } } = useSelector<{ user: any }>(state => state.user) as formStateUser;
-    const [state, setstate] = useState({ display: false, data: [] });
+    const [state, setstate] = useState<stateIF<any>>({ display: false, data: [] });
     const [renderPlaylist, setrenderPlaylist] = useState<boolean>(false);
     const renderComponent = (): void => {
         setrenderPlaylist(value => !value)
     }
     useEffect(() => {
         dataStorage.renderPlaylist = renderComponent as any
-    }, [])
+    }, []);
+
     useEffect(() => {
         (async () => {
    
@@ -58,15 +75,24 @@ const ListPLaylist: React.FC<ListPLaylistIF<any>> = ({ render, ...props }) => {
         return () => {
             setstate(value => ({ ...value, display: false }))
         }
-    }, [id_User, render, renderPlaylist,stateDelete.Filter])
-    const deleteOne = async (_id: string) => {
-        console.log(_id)
-        if (!_id) return;
-        dispatch(pustAction(typeAciton.deleteOne, { _id }))
+    }, [id_User, render, renderPlaylist,stateDelete.Filter]);
+
+    const deleteOne = async () => {
+        // console.log(anchorItem)
+        if (!anchorItem._id) return;
+        dispatch(pustAction(typeAciton.deleteOne, { _id: anchorItem._id }))
     
-        await UserPlaylist.deleteOne(_id);
-    
+        const response = await UserPlaylist.deleteOne(anchorItem._id);
+        if(response.status === variableCommon.statusS){
+            setstate({ display: true, data: state.data.filter( (i: any) => i._id !== anchorItem._id) })
+        }
       }
+
+    const handleRename = (item: any) => {
+        const findIndex = state.data.findIndex( (i: any) => i._id === item._id);
+        state.data.splice(findIndex, 1, item)
+    }
+    console.log("this is state: ", state.data)
     return (
         <>
             {state.display ?
@@ -84,14 +110,14 @@ const ListPLaylist: React.FC<ListPLaylistIF<any>> = ({ render, ...props }) => {
                                         pathname: `/playlistDetail/${current?._id}`,
                                         state: current
                                     }} >
-                                        <FiPlayCircle className="icon" style={{marginRight: "0.2rem"}}/>
+                                        <BiFolderOpen className="icon" style={{marginRight: "0.2rem"}}/>
                                     </Link>
                                     <Button
                                         id="demo-positioned-button"
                                         aria-controls="demo-positioned-menu"
                                         aria-haspopup="true"
                                         aria-expanded={open ? 'true' : undefined}
-                                        onClick={handleClick}
+                                        onClick={(e) => handleClick(e, current)}
            
                                     >
                                      <HiOutlineDotsCircleHorizontal className="icon" style={{ fontSize: "1.8rem" }}/>
@@ -115,16 +141,17 @@ const ListPLaylist: React.FC<ListPLaylistIF<any>> = ({ render, ...props }) => {
                             >
                                 
                                 {userState.token && userState.user ? <Popup
-            modal
-            overlayStyle={{ background: "rgba(255,255,255,0.98" }}
-            closeOnDocumentClick={false}
-            trigger={() =>
-                <MenuItem><AiFillEdit /> Sửa playlist</MenuItem>
-            }
-          >
-            {(close: any) => (<ModalPlaylistEdit close={close} />)}
-          </Popup> : null}
-                               <div onClick={handleClose}> <MenuItem onClick={() => { deleteOne(current?._id) }}><AiFillDelete /> Xóa playlist</MenuItem></div>
+                                modal
+                                overlayStyle={{ background: "rgba(255,255,255,0.98" }}
+                                closeOnDocumentClick={true}
+                                closeOnEscape={true}
+                                trigger={() =>
+                                    <MenuItem><AiFillEdit /> Sửa playlist</MenuItem>
+                                }
+                                    >
+                                {(close: any) => (<ModalPlaylistEdit handleRename={handleRename} anchorItem={anchorItem} close={close} />)}
+                            </Popup> : null}
+                               <div onClick={handleClose}> <MenuItem onClick={deleteOne}><AiFillDelete /> Xóa playlist</MenuItem></div>
                             </Menu>
 
                             <h6>{current.name} </h6>
