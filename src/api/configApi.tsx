@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from "axios";
 import dataStoreage from "component/dataStorage";
 
-const baseURL = 'http://localhost:5000'
+const baseURL = 'https://music-game-api-v1.herokuapp.com'
 
 const getUser = JSON.parse(localStorage?.getItem("persist:root") as any)?.user;
 const getToken = getUser ? JSON.parse(getUser).token : '';
