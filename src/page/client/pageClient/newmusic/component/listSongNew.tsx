@@ -146,9 +146,6 @@ const ListMusicNew: React.FC<ListMusicNewIF<any>> = (props) => {
                 <div className="box-chart" key={index}>
                     <h5 className="stt">{index + 1}</h5>
                     <img width={45} height={45} src={item.image} alt="" />
-                    {/* <div className="box-icon" style={{left: "4rem",padding:"0.5rem 0.65rem"}} >
-                    ▶
-                    </div> */}
                     <div className="box-icon " style={{ marginLeft: "0.7rem", padding: "0.1rem 0.58rem", fontSize: "1.5rem" }} onClick={() => {
                         playAudio(item._id);
                         saveToLocalStorage(item);

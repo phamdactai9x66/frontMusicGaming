@@ -66,7 +66,7 @@ const Sidebar: React.FC<SidebarIF<any>> = ({ ...props }) => {
           <ul>
             <Link to="/newmusic"><li><BsMusicNoteBeamed className="icon" />Nhạc mới</li></Link>
             <Link to="/category"><li><BsListUl className="icon" />Thể loại</li></Link>
-            <Link to="/toptrending"><li><AiFillStar className="icon" />Top thịnh hành</li></Link>
+            {/* <Link to="/toptrending"><li><AiFillStar className="icon" />Top thịnh hành</li></Link> */}
             {userState.token && userState.user ? <Link to="/listenTogether"><li><RiGroupFill className="icon" />Nghe cùng nhau</li></Link> : <a onClick={() => setIsLogin({ status: true, path: '/listenTogether' })}><li><RiGroupFill className="icon" />Nghe cùng nhau</li></a>}
           </ul>
           <ul>
@@ -86,12 +86,15 @@ const Sidebar: React.FC<SidebarIF<any>> = ({ ...props }) => {
               //     return null
               // } ;
               return (
-                <Link key={item._id} to={`/playlist/${item?._id}`}><li><BiPlayCircle className="icon" />{item.name}</li></Link>
+                <Link key={item._id} to={{
+                  pathname: `/playlist/${item?._id}`,
+                  state: item.name
+                }}><li><BiPlayCircle className="icon" />{item.name}</li></Link>
               )
             })}
           </ul>
         </div>
-
+{/* asd */}
         <div className="popup-playlist">
           {userState.token && userState.user ? <Popup
             modal

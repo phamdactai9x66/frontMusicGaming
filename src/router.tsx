@@ -233,11 +233,11 @@ const Client: propertyPage[] = [
         component: ComfirmPassword,
         exact: false
     },
-    {
-        path: "/toptrending",
-        component: Toptrending,
-        exact: false
-    },
+    // {
+    //     path: "/toptrending",
+    //     component: Toptrending,
+    //     exact: false
+    // },
     {
         path: "/newmusic",
         component: Newmusic,

@@ -3,7 +3,6 @@ import { MdNavigateNext } from 'react-icons/md';
 import Modal from "../component/modal";
 import ListPLaylist from "../component/listPLaylist"
 interface PlaylistSongIF<T> {
-
 }
 const PlaylistSong: React.FC<PlaylistSongIF<any>> = ({ ...props }) => {
     const [render, setRender] = useState(0);
