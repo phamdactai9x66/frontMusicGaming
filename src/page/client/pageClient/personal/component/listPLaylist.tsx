@@ -15,6 +15,8 @@ import { useSelector } from 'react-redux';
 import ModalPlaylistEdit from './modalPlaylistEdit';
 import { variableCommon } from "component/variableCommon";
 import { BiFolderOpen } from "react-icons/bi";
+import ModalRemove from 'page/client/moldal/modalRemove';
+
 interface ListPLaylistIF<T> {
     render: number,
 }
@@ -29,6 +31,7 @@ const ListPLaylist: React.FC<ListPLaylistIF<any>> = ({ render, ...props }) => {
     const [stateDelete, dispatch] = useReducer(handleReducer, initialReducer);
     const userState = useSelector<{ user: any }>(state => state.user) as formStateUser;
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+    const [openModalRemove ,setOpenModalRemove] = useState(false);
     const [anchorItem, setAnchorItem] = useState({
         _id: "",
         name: "",
@@ -47,6 +50,8 @@ const ListPLaylist: React.FC<ListPLaylistIF<any>> = ({ render, ...props }) => {
             id_User: ""
         })
     };
+    // 
+  
     //
     const { user: { _id: id_User } } = useSelector<{ user: any }>(state => state.user) as formStateUser;
     const [state, setstate] = useState<stateIF<any>>({ display: false, data: [] });
@@ -79,15 +84,25 @@ const ListPLaylist: React.FC<ListPLaylistIF<any>> = ({ render, ...props }) => {
 
     const deleteOne = async () => {
         // console.log(anchorItem)
-        if (!anchorItem._id) return;
-        dispatch(pustAction(typeAciton.deleteOne, { _id: anchorItem._id }))
-    
-        const response = await UserPlaylist.deleteOne(anchorItem._id);
-        if(response.status === variableCommon.statusS){
-            setstate({ display: true, data: state.data.filter( (i: any) => i._id !== anchorItem._id) })
-        }
+       
+            if (!anchorItem._id) return;
+            dispatch(pustAction(typeAciton.deleteOne, { _id: anchorItem._id }))
+        
+            const response = await UserPlaylist.deleteOne(anchorItem._id);
+            if(response.status === variableCommon.statusS){
+                setstate({ display: true, data: state.data.filter( (i: any) => i._id !== anchorItem._id) })
+            }
+        
+     
       }
-
+    const modalRemove =()=>{
+        setOpenModalRemove(!openModalRemove);
+        setAnchorItem({
+            _id: "",
+            name: "",
+            id_User: ""
+        })
+    }
     const handleRename = (item: any) => {
         const findIndex = state.data.findIndex( (i: any) => i._id === item._id);
         state.data.splice(findIndex, 1, item)
@@ -95,6 +110,12 @@ const ListPLaylist: React.FC<ListPLaylistIF<any>> = ({ render, ...props }) => {
     console.log("this is state: ", state.data)
     return (
         <>
+        { openModalRemove == false ? '': 
+        (
+            
+            <><ModalRemove modalRemove={modalRemove} deleteOne={deleteOne} ></ModalRemove></>
+        )
+        }
             {state.display ?
                 state?.data?.map((current: any, index: number) => {
                     return (
@@ -151,7 +172,7 @@ const ListPLaylist: React.FC<ListPLaylistIF<any>> = ({ render, ...props }) => {
                                     >
                                 {(close: any) => (<ModalPlaylistEdit handleRename={handleRename} anchorItem={anchorItem} close={close} />)}
                             </Popup> : null}
-                               <div onClick={handleClose}> <MenuItem onClick={deleteOne}><AiFillDelete /> Xóa playlist</MenuItem></div>
+                               <div onClick={handleClose}> <MenuItem onClick={modalRemove}><AiFillDelete /> Xóa playlist</MenuItem></div>
                             </Menu>
 
                             <h6>{current.name} </h6>

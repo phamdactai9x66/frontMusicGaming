@@ -47,7 +47,7 @@ const ModalPlaylistEdit: React.FC<ModalPlaylistEditIF<any>> = ({ anchorItem, han
                     {status.display && <Alert className="mb-2">{status.content}</Alert>}
                     <form onSubmit={handleSubmit}>
                         <input type="text" placeholder="Nhập tên playlist" onChange={(e) => setName(e.target.value)} defaultValue={anchorItem.name}/>
-                        <Button className="create_playlist" type="submit" onClick={handleSubmit}>Sửa Playlist</Button>
+                       <br/> <br /> <Button className="create_playlist" type="submit" onClick={handleSubmit}>Sửa Playlist</Button>
                     </form>
                 </div>
             </div>
