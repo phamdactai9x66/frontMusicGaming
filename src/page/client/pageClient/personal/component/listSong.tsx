@@ -20,8 +20,9 @@ import { saveToLocalStorage } from 'page/client/common/localStorageCommon';
 
 interface ListSongIF<T> {
     data: any | T,
+    handleUnLike: any,
 }
-const ListSong: React.FC<ListSongIF<any>> = ({ data, ...props }) => {
+const ListSong: React.FC<ListSongIF<any>> = ({ data, handleUnLike, ...props }) => {
     const dispatch = useDispatch();
     const { user } = useSelector<{ user: any }>(state => state.user) as formStateUser;
     const [anchor, setAnchor] = useState(null);
@@ -70,6 +71,7 @@ const ListSong: React.FC<ListSongIF<any>> = ({ data, ...props }) => {
                     status: "success",
                     content: "Bỏ yêu thích thành công."
                 })
+                handleUnLike(s)
             } else {
                 setHandleStatus({
                     status: "failed",
@@ -193,7 +195,7 @@ const ListSong: React.FC<ListSongIF<any>> = ({ data, ...props }) => {
                                 </div>
                                 <div className="icon_item">
                                     <AiOutlineDownload onClick={() => handleDownload(song)} className="icon" />
-                                    {likeLoading.indexOf(song?._id) === -1 ? <AiFillHeart onClick={() => handleAdd(song._id, user._id, "like")} className="icon" /> : <span className='loading-icon'><CircularProgress className='loading-icon' size={15} sx={{ color: "#d6f4f8" }} /></span>}
+                                    {likeLoading.indexOf(song?._id) === -1 ? <AiFillHeart onClick={() => handleAdd(song?._id, user._id, "like")} className="icon" /> : <span className='loading-icon'><CircularProgress className='loading-icon' size={15} sx={{ color: "#d6f4f8" }} /></span>}
                                     <IoMdAdd className="icon" onClick={(e) => {
                                         openPopover(e);
                                         getUserPlaylists();

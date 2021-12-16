@@ -14,6 +14,8 @@ import GetTimeAudio from "component/getTimeAudio";
 import { useDispatch } from "react-redux";
 import { playSong } from "redux/audio/actionAudio";
 import { saveToLocalStorage } from 'page/client/common/localStorageCommon';
+import { AiFillDelete } from 'react-icons/ai';
+
 interface ListLikeSongIF<T> {
 
 }
@@ -70,7 +72,8 @@ const ListLikeSong: React.FC<ListLikeSongIF<any>> = ({ ...props }) => {
                         </div>
                         <div className="icon_item">
                             <AiOutlineDownload className="icon" />
-                            <AiFillHeart className="icon" />
+                            {/* <AiFillDelete className='icon' /> */}
+                            {/* <AiFillHeart className="icon" /> */}
                             <IoMdAdd className="icon" onClick={openPopover} />
                             <Popover
                                 open={Boolean(anchor)}
