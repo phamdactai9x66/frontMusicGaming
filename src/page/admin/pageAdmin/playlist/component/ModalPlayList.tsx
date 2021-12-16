@@ -38,7 +38,7 @@ const ModalPlayList: React.FC<Modal<any>> = ({ state, onClose, ...props }) => {
     (async () => {
       if (dataPlay.error) return;
       const [data, error] = await HandleGet(playlistApi.getOne, state._id);
-      setDataPlay({ error: false, data: data.data, display: true })
+      setDataPlay({ error: false, data: data?.data, display: true })
     })()
     return () => {
       setDataPlay((value: any) => ({ ...value, display: false }))
