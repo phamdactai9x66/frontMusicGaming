@@ -44,11 +44,11 @@ const ListPLaylist: React.FC<ListPLaylistIF<any>> = ({ render, ...props }) => {
     };
     const handleClose = () => {
         setAnchorEl(null);
-        setAnchorItem({
-            _id: "",
-            name: "",
-            id_User: ""
-        })
+        // setAnchorItem({
+        //     _id: "",
+        //     name: "",
+        //     id_User: ""
+        // })
     };
     // 
   
@@ -83,7 +83,6 @@ const ListPLaylist: React.FC<ListPLaylistIF<any>> = ({ render, ...props }) => {
     }, [id_User, render, renderPlaylist,stateDelete.Filter]);
 
     const deleteOne = async () => {
-        // console.log(anchorItem)
        
             if (!anchorItem._id) return;
             dispatch(pustAction(typeAciton.deleteOne, { _id: anchorItem._id }))
@@ -92,16 +91,17 @@ const ListPLaylist: React.FC<ListPLaylistIF<any>> = ({ render, ...props }) => {
             if(response.status === variableCommon.statusS){
                 setstate({ display: true, data: state.data.filter( (i: any) => i._id !== anchorItem._id) })
             }
-        
+            setOpenModalRemove(!openModalRemove);
+
      
       }
     const modalRemove =()=>{
         setOpenModalRemove(!openModalRemove);
-        setAnchorItem({
-            _id: "",
-            name: "",
-            id_User: ""
-        })
+        // setAnchorItem({
+        //     _id: "",
+        //     name: "",
+        //     id_User: ""
+        // })
     }
     const handleRename = (item: any) => {
         const findIndex = state.data.findIndex( (i: any) => i._id === item._id);
@@ -110,7 +110,7 @@ const ListPLaylist: React.FC<ListPLaylistIF<any>> = ({ render, ...props }) => {
     console.log("this is state: ", state.data)
     return (
         <>
-        { openModalRemove == false ? '': 
+        { openModalRemove === false ? '': 
         (
             
             <><ModalRemove modalRemove={modalRemove} deleteOne={deleteOne} ></ModalRemove></>
