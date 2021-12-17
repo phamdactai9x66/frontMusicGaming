@@ -18,8 +18,7 @@ const LoginGoogle: React.FC<LoginGoogle<any>> = ({ history, displayAlert, ...pro
 
         if (LoginGg.status !== "failed") {
             dispatchUser(saveInfo(LoginGg))
-
-            return history.replace('')
+            return window.location.href = window.location.origin
         }
         displayAlert(LoginGg.message)
     }

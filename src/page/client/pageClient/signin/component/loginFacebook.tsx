@@ -18,7 +18,7 @@ const LoginFacebook: React.FC<LoginFacebookIF<any>> = ({ history, displayAlert, 
 
         if (LoginFacebook.status !== "failed") {
             dispatchUser(saveInfo(LoginFacebook))
-            return history.replace('')
+            return window.location.href = window.location.origin
         }
         displayAlert(LoginFacebook.message)
     }

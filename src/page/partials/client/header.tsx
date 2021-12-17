@@ -124,21 +124,21 @@ const HeaderClient: React.FC<HeaderClientIF> = ({ ...props }) => {
 
         const requireLoginPath = ['/profile', '/listenTogether', '/personal', '/roomDetail'];
         setLoading(false);
-        if (requireLoginPath.filter(item => item === props.history.location.pathname).length !== 0) {
+        if (requireLoginPath?.filter(item => item === props.history.location.pathname).length !== 0) {
             setHandleStatus({
                 status: "success",
                 content: "Đăng xuất thành công.",
             })
 
-            return props.history.replace('/');
+            return window.location.href = window.location.origin
         } else {
-            props.history.replace('/signin')
+            window.location.href = window.location.origin + '/signin'
         }
         // props.history.replace('/signin');
     };
 
-    useEffect( () => {
-        if(handleStatus.status !== ""){
+    useEffect(() => {
+        if (handleStatus.status !== "") {
             let timer = setTimeout(() => {
                 setHandleStatus({ status: "", content: "" })
             }, 2500);

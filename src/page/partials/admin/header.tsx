@@ -110,9 +110,9 @@ const Header: React.FC<HeaderIF> = ({ ...props }) => {
 				content: "Đăng xuất thành công.",
 			})
 
-			return props.history.replace('/');
+			return window.location.href = window.location.origin
 		} else {
-			props.history.replace('/signin')
+			window.location.href = window.location.origin + '/signin'
 		}
 		// props.history.replace('/signin');
 	};

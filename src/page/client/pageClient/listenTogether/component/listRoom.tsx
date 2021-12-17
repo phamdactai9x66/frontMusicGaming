@@ -24,17 +24,21 @@ const ListRoom: React.FC<ListRoomIF<any>> = ({ index, current, history, ...props
     const server = "http://localhost:5000";
     const saveUser = useRef({});
     const listUser = () => {
-        const { roomUser, user } = props.saveData as any;
-        const findRoom = roomUser.filter((currentRU: any) => currentRU.id_Room === current._id)
-        return findRoom.map((current: any, index: number) => {
-            const getListId = tranFormDataId(user)[current.id_User];
-            return <Avatar key={index} alt="Remy Sharp" src={getListId?.avatar} />
-        })
+        try {
+            const { roomUser, user } = props.saveData as any;
+            const findRoom = roomUser?.filter((currentRU: any) => currentRU.id_Room === current._id)
+            return findRoom?.map((current: any, index: number) => {
+                const getListId = tranFormDataId(user)[current.id_User];
+                return <Avatar key={index} alt="Remy Sharp" src={getListId?.avatar} />
+            })
+        } catch (err) {
+            return null;
+        }
     }
     const navigateDetailRoom = async () => {
         const data = {
-            id_Room: current._id,
-            id_User: user._id
+            id_Room: current?._id,
+            id_User: user?._id
         }
         // console.log(current._id)
         const { data: findRoom } = await roomApi.getAll({ _id: current._id })
