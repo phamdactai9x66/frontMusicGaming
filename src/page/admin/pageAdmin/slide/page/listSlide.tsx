@@ -171,41 +171,13 @@ const ListSlide: React.FC<ListSlide<any>> = ({ changePage, set_id, ...props }) =
 															<Avatar alt={name} variant="rounded" src={image} />
 														</TableCell>
 														<TableCell align='center'>
-															<div>
-																<Button
-																	id="demo-positioned-button"
-																	aria-controls="demo-positioned-menu"
-																	aria-haspopup="true"
-																	aria-expanded={open ? 'true' : undefined}
-																	onClick={handleClick}
-																>
-																	ACTION
-																</Button>
-																<Menu
-																	id="demo-positioned-menu"
-																	aria-labelledby="demo-positioned-button"
-																	anchorEl={anchorEl}
-																	open={open}
-																	onClose={handleClose}
-																	anchorOrigin={{
-																		vertical: 'top',
-																		horizontal: 'left',
-																	}}
-																	transformOrigin={{
-																		vertical: 'top',
-																		horizontal: 'left',
-																	}}
-																>
-																	<div onClick={handleClose}>
-																		<MenuItem onClick={() => { deleteOne(_id) }}>Delete</MenuItem>
-																	</div>
-																	<div onClick={handleClose}>
-																		<MenuItem onClick={() => { navigatePage(page.UpdateSlide, _id) }}>Edit</MenuItem>
-																	</div>
-																	<div onClick={handleClose}>
-																		<MenuItem onClick={() => { onOpen<string>(_id) }}>More</MenuItem>
-																	</div>
-																</Menu>
+															<div className="dropdown">
+																<button className="dropbtn">Action</button>
+																<div className="dropdown-content">
+																	<div onClick={() => { deleteOne(_id) }}><i className="fa fa-trash-o" aria-hidden="true"></i> Delete</div>
+																	<div onClick={() => { navigatePage(page.UpdateSlide, _id) }}><i className="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</div>
+																	<div onClick={() => { onOpen<string>(_id) }}><i className="fa fa-info-circle" aria-hidden="true"></i> More</div>
+																</div>
 															</div>
 														</TableCell>
 													</TableRow>
