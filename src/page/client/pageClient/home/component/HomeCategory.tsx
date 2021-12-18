@@ -29,36 +29,35 @@ const HomeCategory: React.FC<HomeCategoryIF<any>> = ({ ...props }) => {
     return (
         <>
             <div>
-                {/* <Slider {...props.settings_category}> */}
-                <div className="box-main">
-                    {categories.length !== 0 && categories.map((item: CategoryIF) => (
-                      
-                        <Link to={{
-                            pathname: '/subCategory',
-                            // search: `?idTopic=${item._id}`,
-                            state: item,
-                            // searchParams: `?idTopic=${item._id}&id_subCate=123`
-                        }} key={item._id}>
-                            
-                            <div className="box">
-                                <figure>
-                                    <img src={item.image} alt={item.image} />
-                                </figure>
-                                <div className="icon-box_category">
-                                    <div>
-                                        <h6 className="icon " style={{fontSize:"1.3rem"}}>{item.name}</h6>
+                <Slider {...props.settings_category}>
+                    <div className="box-main">
+                        {categories.length !== 0 && categories.map((item: CategoryIF) => (
+
+                            <Link to={{
+                                pathname: '/subCategory',
+                                // search: `?idTopic=${item._id}`,
+                                state: item,
+                                // searchParams: `?idTopic=${item._id}&id_subCate=123`
+                            }} key={item._id}>
+
+                                <div className="box">
+                                    <figure>
+                                        <img src={item.image} alt={item.image} />
+                                    </figure>
+                                    <div className="icon-box_category">
+                                        <div>
+                                            <h6 className="icon " style={{ fontSize: "1.3rem" }}>{item.name}</h6>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </Link>
-                       
-                    ))}
-                     </div>
-                {/* </Slider> */}
+                            </Link>
+
+                        ))}
+                    </div>
+                </Slider>
             </div>
         </>
     )
 }
 
 export default HomeCategory
- 
