@@ -10,9 +10,17 @@
     }
     .tab_login {
         form {
-          .css-1wc848c-MuiFormHelperText-root {
+          .MuiFormHelperText-root {
             color: rgb(245, 12, 12) !important;
+            white-space: nowrap !important;
           }         
+            .MuiOutlinedInput-notchedOutline {
+              display: none !important;
+            }
+
+            .MuiRadio-colorPrimary {
+              color: aquamarine !important;
+            }
         }
         border-radius: 0 0.5rem 0.5rem 0 ;
         background: #3D5983;
@@ -48,6 +56,7 @@
             color: rgb(221, 221, 221);
             margin-top: 0.6rem;
             }
+
            input{
             margin-top: 0.4rem;
             padding: 13px 14px 5px 14px;

@@ -8,12 +8,13 @@ const Profile: React.FC<profile<any>> = () => {
     const state = useSelector<{ user: any }>(state => state.user) as formStateUser;
     const handleRole = () => {
         if (state.user?.role == 0) {
-            return "Thành viên"
+            return "Người xem"
         } else if (state.user?.role == 1) {
+            return "Thành viên"
+        } else if (state.user?.role == 2) {
             return "Quản trị"
         }
     }
-    console.log("hê hê", state.user)
     return (
         <div className="profile-grid">
             <div className="profile-box1 p-4">

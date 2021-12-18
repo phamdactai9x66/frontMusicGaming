@@ -8,17 +8,17 @@
     height: 100vh;
     padding-right: 2rem;
     .search_music {
-      .css-aqpgxn-MuiFormLabel-root-MuiInputLabel-root {
+      .MuiInputLabel-formControl {
         color: rgb(203, 234, 248) !important;
       }
-      .css-i4bv87-MuiSvgIcon-root {
+      .MuiSvgIcon-fontSizeMedium {
         color: rgb(203, 234, 248) !important;
       }
-      .css-ghsjzk-MuiInputBase-root-MuiInput-root:before {
-        border-bottom: 1px solid rgba(39, 201, 193, 0.678);
-      }
-      .css-ei7t0p-MuiAutocomplete-root .MuiInput-root .MuiInput-input {
+      .MuiInput-input {
         color: #fff !important;
+      }
+      .MuiInput-underline:before {
+        border-bottom: 1px solid rgba(39, 201, 193, 0.678);
       }
     }
   }
