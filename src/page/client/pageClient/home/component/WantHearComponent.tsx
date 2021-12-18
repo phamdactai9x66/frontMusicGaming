@@ -44,10 +44,10 @@ const WantHearComponent: React.FC<WantHearComponentIF<any>> = ({...props}) => {
     }, [props.PLS]);
     return (
         <div>
-            <Slider {...props.settings_category}>
+            {/* <Slider {...props.settings_category}> */}
+            <div className="box-main">
                 {PLS.length !== 0 && PLS.map( (item: any) => (
-                    <div className="box" key={item._id}>
-                        <div className="box">
+                        <div className="box" key={item._id}>
                             <figure>
                                 <img src={item.image} alt={item.title} />
                             </figure>
@@ -62,9 +62,10 @@ const WantHearComponent: React.FC<WantHearComponentIF<any>> = ({...props}) => {
 
                             <h6>{item.title}</h6>
                         </div>
-                    </div>
+                    
   )) }
-            </Slider>
+  </div>
+            {/* </Slider> */}
         </div>
     )
 }

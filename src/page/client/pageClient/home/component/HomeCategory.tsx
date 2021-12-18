@@ -29,14 +29,17 @@ const HomeCategory: React.FC<HomeCategoryIF<any>> = ({ ...props }) => {
     return (
         <>
             <div>
-                <Slider {...props.settings_category}>
+                {/* <Slider {...props.settings_category}> */}
+                <div className="box-main">
                     {categories.length !== 0 && categories.map((item: CategoryIF) => (
+                      
                         <Link to={{
                             pathname: '/subCategory',
                             // search: `?idTopic=${item._id}`,
                             state: item,
                             // searchParams: `?idTopic=${item._id}&id_subCate=123`
                         }} key={item._id}>
+                            
                             <div className="box">
                                 <figure>
                                     <img src={item.image} alt={item.image} />
@@ -48,8 +51,10 @@ const HomeCategory: React.FC<HomeCategoryIF<any>> = ({ ...props }) => {
                                 </div>
                             </div>
                         </Link>
+                       
                     ))}
-                </Slider>
+                     </div>
+                {/* </Slider> */}
             </div>
         </>
     )
