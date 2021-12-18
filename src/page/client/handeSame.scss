@@ -283,55 +283,51 @@
 }
 
 .list-slider {
-    .box-main {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr;
-        gap: 1rem;
+
+    .slick-track, .slick-slider .slick-list {
+        margin-left: -1.9rem;
     }
-    // .slick-track, .slick-slider .slick-list {
-    //     margin-left: -1.9rem;
-    // }
-    // .slick-slide {
-    //     border-left: 2rem solid #00000000;
-    //   }
-    // margin-top: 2rem;
-    // h4 {
-    //     color: #fff;
-    // }
-    // div {
-    //     .slick-prev:before {
-    //         color: #6ee9ff;
-    //         content: "\003c";
-    //         font-size: 1.5rem;
-    //         font-weight: bold;
-    //         padding: 0.10rem 1rem 0.38rem 1rem;
-    //         border-radius: 0.3rem;
-    //         background-color: rgb(12, 16, 32);
-    //         box-shadow: 0 3px 7px rgba(0, 0, 0, 0.795);
-    //     }
-    //     .slick-next:before {
-    //         color: #6ee9ff;
-    //         content: "\003e";
-    //         font-size: 1.5rem;
-    //         font-weight: bold;
-    //         padding: 0.10rem 1rem 0.38rem 1rem;
-    //         border-radius: 0.3rem;
-    //         background-color: rgb(12, 16, 32);
-    //         box-shadow: 0 3px 7px rgba(0, 0, 0, 0.795);
-    //     }
-    //     .slick-prev {
-    //         position: absolute;
-    //         z-index: 1;
-    //         left: 89%;
-    //         top: -12%;
-    //     }
-    //     .slick-next {
-    //         position: absolute;
-    //         z-index: 1;
-    //         left: 95%;
-    //         top: -12%;
-    //     }
-    // }
+    .slick-slide {
+        border-left: 2rem solid #00000000;
+      }
+    margin-top: 2rem;
+    h4 {
+        color: #fff;
+    }
+    div {
+        .slick-prev:before {
+            color: #6ee9ff;
+            content: "\003c";
+            font-size: 1.5rem;
+            font-weight: bold;
+            padding: 0.10rem 1rem 0.38rem 1rem;
+            border-radius: 0.3rem;
+            background-color: rgb(12, 16, 32);
+            box-shadow: 0 3px 7px rgba(0, 0, 0, 0.795);
+        }
+        .slick-next:before {
+            color: #6ee9ff;
+            content: "\003e";
+            font-size: 1.5rem;
+            font-weight: bold;
+            padding: 0.10rem 1rem 0.38rem 1rem;
+            border-radius: 0.3rem;
+            background-color: rgb(12, 16, 32);
+            box-shadow: 0 3px 7px rgba(0, 0, 0, 0.795);
+        }
+        .slick-prev {
+            position: absolute;
+            z-index: 1;
+            left: 89%;
+            top: -12%;
+        }
+        .slick-next {
+            position: absolute;
+            z-index: 1;
+            left: 95%;
+            top: -12%;
+        }
+    }
 }
 .Pagination {
     display: flex;

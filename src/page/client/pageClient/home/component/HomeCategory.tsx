@@ -30,7 +30,6 @@ const HomeCategory: React.FC<HomeCategoryIF<any>> = ({ ...props }) => {
         <>
             <div>
                 <Slider {...props.settings_category}>
-                    <div className="box-main">
                         {categories.length !== 0 && categories.map((item: CategoryIF) => (
 
                             <Link to={{
@@ -53,7 +52,6 @@ const HomeCategory: React.FC<HomeCategoryIF<any>> = ({ ...props }) => {
                             </Link>
 
                         ))}
-                    </div>
                 </Slider>
             </div>
         </>

@@ -413,7 +413,47 @@ main .home-page .gird-main-3 .main5 .main5-table-flex3 div a {
 .MuiAccordionSummary-root.Mui-expanded {
   min-height: 0px !important;
 }
+.MuiTableContainer-root {
+  overflow-x: none !important;
+}
+.dropbtn {
+  border: 0.1rem solid rgb(42, 160, 228);
+  background: #fff;
+  border-radius: 0.3rem;
+  color: rgb(0, 0, 0);
+  padding: 9px 17px;
+  font-size: 12px;
+}
 
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  border-radius: 0.2rem;
+  min-width: 130px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 100000000;
+}
+
+.dropdown-content div {
+  text-align: left;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  cursor: pointer;
+}
+
+.dropdown-content div:hover {background-color: rgb(238, 238, 238)}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: #3491cf;color: #fff;}
 /* End Styles Admin*/
 
 
