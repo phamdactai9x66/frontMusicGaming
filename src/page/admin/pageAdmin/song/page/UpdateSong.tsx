@@ -160,9 +160,8 @@ const UpdateSong: React.FC<UpdateSong<any>> = ({ changePage, _id, ...props }) =>
                           />
                         </div>
                         <div className="bia-bai-hat-image">
-                          <audio>
-                            <source src={(dataSong?.data as any)?.audio} />
-                          </audio>
+                          <audio src={(dataSong.data as any)?.audio} controls></audio>
+
                         </div>
                       </div>
                     </Card>

@@ -172,7 +172,7 @@ const Sidebar: React.FC<SidebarIF<any>> = ({ ...props }) => {
             <Link to="/admin/profile"><div><img width={50} height={50} src={state.user?.avatar} alt="" /><div className="name">{state.user?.first_name} {state.user?.last_name}</div></div></Link> : "err"}
         </div>
       </div>
-      <div className="search_sidebar">
+      {/* <div className="search_sidebar">
         <div className={classes.search} style={{ position: "relative" }}>
           <div className={classes.searchIcon} style={{ zIndex: 999 }}>
             <SearchIcon />
@@ -188,7 +188,7 @@ const Sidebar: React.FC<SidebarIF<any>> = ({ ...props }) => {
           />
 
         </div>
-      </div>
+      </div> */}
       <nav className="tabs">
         <Link to="/admin">
           <AccordionSummary
@@ -249,7 +249,7 @@ const Sidebar: React.FC<SidebarIF<any>> = ({ ...props }) => {
               </Accordion>
             </Link>
           );
-        }) : data.filter((item:any) => item.name != 'User').map(accordion => {
+        }) : data.filter((item: any) => item.name != 'User').map(accordion => {
           const { icon } = accordion;
           return (
             <Link to={`${accordion.link}`}>
