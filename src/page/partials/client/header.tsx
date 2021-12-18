@@ -117,24 +117,14 @@ const HeaderClient: React.FC<HeaderClientIF> = ({ ...props }) => {
         dispatch(pausePlaying())
     }
 
-    const logOut = () => {
+    const logOut1 = () => {
         setLoading(true);
         setOpenModalLogout(false);
         dispatch(Logout())
-
-        const requireLoginPath = ['/profile', '/listenTogether', '/personal', '/roomDetail'];
+        // console.log(window.location.origin + '/signin')
+        window.location.href = window.location.origin + '/signin'
+        // const requireLoginPath = ['/profile', '/listenTogether', '/personal', '/roomDetail'];
         setLoading(false);
-        if (requireLoginPath?.filter(item => item === props.history.location.pathname).length !== 0) {
-            setHandleStatus({
-                status: "success",
-                content: "Đăng xuất thành công.",
-            })
-
-            return window.location.href = window.location.origin
-        } else {
-            window.location.href = window.location.origin + '/signin'
-        }
-        // props.history.replace('/signin');
     };
 
     useEffect(() => {
@@ -181,8 +171,9 @@ const HeaderClient: React.FC<HeaderClientIF> = ({ ...props }) => {
                         className="link text-danger rounded border-1 border-danger "
                         style={{ fontSize: "1rem" }}
                         onClick={() => {
-                            setOpenModalLogout(true)
+                            // setOpenModalLogout(true)
                             setAnchorEl(null);
+                            logOut1()
                         }}
                     >
                         <FaSignInAlt className="text-danger _icon" />
@@ -303,7 +294,11 @@ const HeaderClient: React.FC<HeaderClientIF> = ({ ...props }) => {
 
                 <div className="d-flex justify-content-center">
                     <button onClick={() => setOpenModalLogout(false)} className="btn btn-light">Hủy</button>
-                    <button onClick={logOut} className="btn btn-danger" style={{ marginLeft: "1rem" }}>Đăng xuất</button>
+                    <button onClick={() => {
+                        setOpenModalLogout(true)
+                        setAnchorEl(null)
+                        logOut1()
+                    }} className="btn btn-danger" style={{ marginLeft: "1rem" }}>Đăng xuất</button>
                 </div>
             </div>
 
