@@ -94,7 +94,8 @@ const Signin: React.FC<SigninIF<any>> = ({ history, ...props }: any) => {
 
         // history.replace('');
         // console.log(lastLocation)
-        history.push('');
+        window.location.href = window.location.origin
+        // history.push('');
       }
       return displayAlert(loginUser.message, 'error')
     }
