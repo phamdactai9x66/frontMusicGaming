@@ -15,10 +15,11 @@ import LikeSong from "./likeSong";
 import { RouteComponentProps, withRouter } from "react-router-dom";
 import { io } from "socket.io-client"
 import roomUserApi from "api/roomUser";
+import { variableCommon } from 'component/variableCommon';
 interface AudioIF<T> extends RouteComponentProps {
     audio?: any | T
 }
-const server = "https://music-game-api-v1.herokuapp.com";
+const server = variableCommon.localhost;
 const Audio: React.FC<AudioIF<any>> = ({ audio: { audio: url, title, image, _id }, ...props }) => {
     const state = useSelector<{ audio: any }>(state => state.audio) as formStateAudio;
     const userInfo = useSelector<{ user: any }>(state => state.user) as formStateUser;

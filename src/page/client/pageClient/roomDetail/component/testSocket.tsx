@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react'
 import { io } from "socket.io-client";
+import { variableCommon } from 'component/variableCommon'
 
 const TestSocket = () => {
-    let server = "http://localhost:5000";
+    let server = variableCommon.localhost
     useEffect(() => {
         io(server).on("Output", (data) => {
             console.log(data)

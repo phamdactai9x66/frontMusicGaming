@@ -15,10 +15,11 @@ import ListRoomUser from "./component/listRoomUser";
 import roomUser from "api/roomUser";
 import { io } from "socket.io-client";
 import SearchSong from "./component/searchSong";
+import { variableCommon } from 'component/variableCommon'
 
 interface RoomDetail<T> extends RouteComponentProps {
 }
-const server = "https://music-game-api-v1.herokuapp.com";
+const server = variableCommon.localhost;
 const RoomDetail: React.FC<RoomDetail<any>> = ({ match, ...props }) => {
     const [songRoom, setSongRoom] = useState({ display: false, data: [] });
     const [renderSong, setrenderSong] = useState(0)

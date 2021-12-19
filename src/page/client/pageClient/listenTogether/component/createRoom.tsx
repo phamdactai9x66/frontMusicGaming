@@ -12,6 +12,7 @@ import { variableCommon } from "component/variableCommon"
 import Alert from '@mui/material/Alert';
 import { io } from "socket.io-client";
 
+
 const validateForm = Yup.object().shape({
     name: Yup.string().checkRequire().min(4, 'this min length must is 4.'),
     password: Yup.string().when('checkPassword', (value: any, schema: any) => {
@@ -33,7 +34,7 @@ const intitialForm = {
 const CreateRoom: React.FC<CreateRoom<any>> = ({ history, ...props }) => {
     const { user } = useSelector<{ user: any }>(state => state.user) as formStateUser;
     const [alertForm, setalertForm] = useState({ status: 'error', display: false, message: '' })
-    const server = "https://music-game-api-v1.herokuapp.com";
+    const server = variableCommon.localhost;
     const eventSubmit = (value: any, FormikHelpers: FormikHelpers<any>): void => {
         setTimeout(async () => {
             const data = {
