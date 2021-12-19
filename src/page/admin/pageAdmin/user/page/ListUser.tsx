@@ -73,7 +73,7 @@ const ListUser: React.FC<ListUser<any>> = ({ changePage, set_id, ...props }) => 
   const findUserName = (event: Event | any) => {
     const getValue = ((event.target as HTMLInputElement).value).trim();
     if (event.keyCode === 13) {
-      dispatch(pustAction(typeAciton.findName, { userName: getValue }))
+      dispatch(pustAction(typeAciton.findName, { name: getValue }))
     }
   }
 
@@ -179,13 +179,13 @@ const ListUser: React.FC<ListUser<any>> = ({ changePage, set_id, ...props }) => 
                               {gender === true ? 'Nữ' : 'Nam'}
                             </TableCell>
                             <TableCell align="left">
-                            <div className="dropdown">
+                              <div className="dropdown">
                                 <button className="dropbtn">Action</button>
                                 <div className="dropdown-content">
                                   <div onClick={() => { deleteOne(_id) }}><i className="fa fa-trash-o" aria-hidden="true"></i> Delete</div>
                                   <div onClick={() => { onOpen<string>(_id) }}><i className="fa fa-info-circle" aria-hidden="true"></i> More</div>
                                 </div>
-                              </div> 
+                              </div>
                             </TableCell>
                           </TableRow>
                         );

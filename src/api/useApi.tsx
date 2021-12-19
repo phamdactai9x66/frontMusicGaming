@@ -4,7 +4,7 @@ class userApi {
 
     getAll<T extends object>(query: T): Promise<any> {
         let url: string = "/user";
-        return Axios.get(url, { params: { query } })
+        return Axios.get(url, { params: { ...query } })
     }
     getOne<T extends string>(_id: T): Promise<any> {
         const url: string = `/user/${_id}`;
