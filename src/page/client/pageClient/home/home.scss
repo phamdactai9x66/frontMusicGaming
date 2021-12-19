@@ -10,8 +10,8 @@
                 border-radius: 0.4rem;
                 width: 100%;
                 cursor: pointer;
-                transform: scale(0.70) translateY(0);
-                box-shadow: 1rem 1rem 1rem 0.2rem rgba(0, 0, 0, 0.438);
+                transform: scale(0.80) translateY(0);
+                box-shadow: 0.5rem 0.5rem 1rem 0.2rem rgba(0, 0, 0, 0.438);
                 animation-name: banner;
                 animation-duration: 1s;
                 @keyframes banner {
@@ -25,8 +25,10 @@
             }
         }
         .slick-center img {
-            transform: scale(0.93);
-            
+            transform: scale(0.98);
+            &:hover {
+                filter: brightness(70%);
+            }
         }
             .slick-prev:before,
         .slick-next:before {
@@ -34,13 +36,13 @@
             font-size: 45px;
             line-height: 1;
             opacity: 0.75;
-            color: rgb(152, 252, 255);
+            color: rgb(109, 194, 250);
         }
         .slick-prev {
             position: absolute;
             z-index: 1;
             top: 41%;
-            transform: translateX(-3.3rem);
+            transform: translateX(-3.33rem);
             transition: 0.5s;
         }
         .slick-next {
@@ -110,7 +112,7 @@
                     section {
                         display: grid;
                         margin-right: 3.5rem;
-                        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+                        grid-template-columns: 1fr 1fr 1fr 1fr;
                         %handel_img {
                             width: 4.5rem;
                             height: 4.5rem;
@@ -119,23 +121,29 @@
                             cursor: pointer;
                         }
                         div {
-                            @extend %handel_img;
-                            overflow: hidden;
-                            img {
+                            figure {
                                 @extend %handel_img;
-                                &:hover {
-                                    transform: scale(1.1);
-                                    transition: 0.4s;
-                                    filter: brightness(70%);
-                                }
-                            }                          
-                        }
-                        section .name {
+                                overflow: hidden;
+                                img {
+                                    @extend %handel_img;
+                                    &:hover {
+                                        transform: scale(1.1);
+                                        transition: 0.4s;
+                                        filter: brightness(70%);
+                                    }
+                                }                          
+                            }
+                            .name {
+                                text-align: center;
                                 width: 4.2rem;
                                 overflow: hidden;
                                 white-space: nowrap;
                                 text-overflow: ellipsis;
+                                margin-bottom: 1.1rem;
                         }
+                        }
+                      
+                         
                     }
                 }
             }

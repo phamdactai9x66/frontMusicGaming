@@ -66,14 +66,6 @@ const Sidebar: React.FC<SidebarIF<any>> = ({ ...props }) => {
 
   const data = [
     {
-      icon: "fa fa-pie-chart",
-      name: "Chart",
-      // iconAdd: "fa fa-plus-circle",
-      // details: "Add Chart",
-      link: "/admin/",
-      subLink: "/admin/"
-    },
-    {
       icon: "fa fa-music",
       name: "Music",
       iconAdd: "fa fa-plus-circle",
@@ -141,7 +133,7 @@ const Sidebar: React.FC<SidebarIF<any>> = ({ ...props }) => {
       icon: "fa fa-calendar",
       name: "Category Blog",
       iconAdd: "fa fa-plus-circle",
-      details: "Add Category Blog",
+      details: "Add Cate Blog",
       link: "/admin/categoryBlog",
       subLink: "/admin/addCategoryBlog"
     },
