@@ -89,7 +89,8 @@ const CheckPass: React.FC<CheckPass<any>> = () => {
                             <label className="_button_text">Nhạc sĩ</label>
                             <div style={{ display: "flex", gridGap: "2rem" }}>
                                 <div className="_icon_drop">&#10095;</div>
-                                <input className="checkbox_name" type="checkbox" />
+                                <div style={{ padding: 5 }}></div>
+                                {/* <input className="checkbox_name" type="checkbox" /> */}
                             </div>
 
                         </div>
@@ -126,7 +127,8 @@ const CheckPass: React.FC<CheckPass<any>> = () => {
                             <label className="_button_text">Music</label>
                             <div style={{ display: "flex", gridGap: "2rem" }}>
                                 <div className="_icon_drop">&#10095;</div>
-                                <input className="checkbox_name" type="checkbox" />
+                                <div style={{ padding: 5 }}></div>
+                                {/* <input className="checkbox_name" type="checkbox" /> */}
                             </div>
 
                         </div>
@@ -164,7 +166,8 @@ const CheckPass: React.FC<CheckPass<any>> = () => {
                             <label className="_button_text">Blogs</label>
                             <div style={{ display: "flex", gridGap: "2rem" }}>
                                 <div className="_icon_drop">&#10095;</div>
-                                <input className="checkbox_name" type="checkbox" />
+                                <div style={{ padding: 5 }}></div>
+                                {/* <input className="checkbox_name" type="checkbox" /> */}
                             </div>
 
                         </div>
