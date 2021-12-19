@@ -1,4 +1,4 @@
 export const activeOption = [
-  { value: 'true', label: "Phát" },
-  { value: 'false', label: "Không phát" }
+  { value: 'true', label: "Duyệt" },
+  { value: 'false', label: "Không duyệt" }
 ]
