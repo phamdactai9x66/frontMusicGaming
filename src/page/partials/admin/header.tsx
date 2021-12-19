@@ -233,7 +233,7 @@ const Header: React.FC<HeaderIF> = ({ ...props }) => {
 						<Link to="/" className="text-light">Trang chủ</Link>
 					</Typography>
 
-					<div className={classes.search} style={{ position: "relative" }}>
+					{/* <div className={classes.search} style={{ position: "relative" }}>
 						<div className={classes.searchIcon} style={{ zIndex: 999 }}>
 							<SearchIcon />
 						</div>
@@ -246,7 +246,7 @@ const Header: React.FC<HeaderIF> = ({ ...props }) => {
 							inputProps={{ "aria-label": "search" }}
 						/>
 
-					</div>
+					</div> */}
 					<div className={classes.grow} />
 					<div className={classes.sectionDesktop}>
 

@@ -5,7 +5,7 @@ export default Yup.object().shape({
   image: (Yup as any).mixed().requireFile().checkTypeFile().checkSizeFile(),
   view: Yup.number().checkRequireNumber(),
   audio: Yup.string().checkRequire(),
-  // active: Yup.string().checkRequire(),
+  active: Yup.string().checkRequire(),
   describe: Yup.string().checkRequire(),
   day_release: Yup.string().required('Không được bỏ trống !'),
   id_Topic: Yup.string().checkRequire(),

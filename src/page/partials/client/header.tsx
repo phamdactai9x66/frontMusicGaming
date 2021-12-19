@@ -122,7 +122,9 @@ const HeaderClient: React.FC<HeaderClientIF> = ({ ...props }) => {
         setOpenModalLogout(false);
         dispatch(Logout())
         // console.log(window.location.origin + '/signin')
-        window.location.href = window.location.origin + '/signin'
+        setTimeout(() => {
+            window.location.href = window.location.origin + '/signin'
+        }, 500);
         // const requireLoginPath = ['/profile', '/listenTogether', '/personal', '/roomDetail'];
         setLoading(false);
     };

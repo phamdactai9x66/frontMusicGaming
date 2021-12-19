@@ -35,6 +35,7 @@ interface Modal<T> {
 
 const ModalCategory: React.FC<Modal<any>> = ({ state, onClose, ...props }) => {
   const [dataCategory, setDataCategory] = useState<any>({ data: {}, error: false, display: false });
+  console.log('dataCategory : ', dataCategory);
   const nameTopic = useRef<any>('');
   const classes = useStyle();
 
@@ -54,6 +55,7 @@ const ModalCategory: React.FC<Modal<any>> = ({ state, onClose, ...props }) => {
   const findTopic = async <T extends string>(_id: T) => {
     if (!_id) return;
     const findTopics = await topicsApi.getOne(_id);
+    console.log('dataFindTopics : ', findTopics);
 
     if (findTopics.status !== variableCommon.statusF) {
       const { name } = findTopics.data[0];

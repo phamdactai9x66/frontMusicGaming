@@ -46,7 +46,7 @@ const ModalBlog: React.FC<ModalBlog<any>> = ({ state, onClose, ...props }) => {
       const [data, error] = await HandleGet(blogApi.getAll, { _id: state._id });
 
       if (error) setDataBlog((value: any) => ({ ...value, error: true, display: false }));
-      await findUser(data?.data?.id_User);
+      await findUser(data?.data[0]?.id_User);
       await findCategoryBlog(data?.data?.id_CategoryBlog);
       setDataBlog({ error: false, data: data?.data, display: true });
     })()
@@ -56,10 +56,8 @@ const ModalBlog: React.FC<ModalBlog<any>> = ({ state, onClose, ...props }) => {
   }, [state._id])
 
   const findUser = async <T extends string>(_id: T) => {
-    console.log('id User : ', _id)
     if (!_id) return;
     const findUser = await useApi.getOne(_id);
-    console.log("name User : ", findUser);
 
     if (findUser.status !== variableCommon.statusF) {
       const { first_name, last_name } = findUser.data[0];
@@ -69,10 +67,8 @@ const ModalBlog: React.FC<ModalBlog<any>> = ({ state, onClose, ...props }) => {
   }
 
   const findCategoryBlog = async <T extends string>(_id: T) => {
-    console.log('id CategoryBlog : ', _id);
     if (!_id) return;
     const findCategoryBlog = await categoryBlogApi.getOne(_id);
-    console.log("name Blog : ", findCategoryBlog);
 
     if (findCategoryBlog.status !== variableCommon.statusF) {
       const { name } = findCategoryBlog.data[0];
