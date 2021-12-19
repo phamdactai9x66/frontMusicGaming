@@ -15,10 +15,11 @@ import ListRoomUser from "./component/listRoomUser";
 import roomUser from "api/roomUser";
 import { io } from "socket.io-client";
 import SearchSong from "./component/searchSong";
+import { variableCommon } from 'component/variableCommon'
 
 interface RoomDetail<T> extends RouteComponentProps {
 }
-const server = "http://localhost:5000";
+const server = variableCommon.localhost;
 const RoomDetail: React.FC<RoomDetail<any>> = ({ match, ...props }) => {
     const [songRoom, setSongRoom] = useState({ display: false, data: [] });
     const [renderSong, setrenderSong] = useState(0)
@@ -52,7 +53,7 @@ const RoomDetail: React.FC<RoomDetail<any>> = ({ match, ...props }) => {
 
     useEffect(() => {
         (async () => {
-            const { data } = await songApi.getAll({status: true});
+            const { data } = await songApi.getAll({ status: true });
             saveSong.current = tranFormDataId<any[]>(data);
         })()
 
@@ -124,7 +125,7 @@ const RoomDetail: React.FC<RoomDetail<any>> = ({ match, ...props }) => {
         <>
             <div className="romdetail">
                 <div className="room">
-                <h3 className="mt-3 text-white ps-3" style={{ borderLeft: '0.5rem solid #26a5ff', fontSize: '1.2rem' }}>{(props.location.state as any)?.name_Room}</h3>
+                    <h3 className="mt-3 text-white ps-3" style={{ borderLeft: '0.5rem solid #26a5ff', fontSize: '1.2rem' }}>{(props.location.state as any)?.name_Room}</h3>
                     <SearchSong addSongToRoom={addSongToRoom} />
                     {/*  */}
                     <h3 className="mt-3 text-white ps-3" style={{ borderLeft: '0.5rem solid #26a5ff', fontSize: '1.2rem' }}>Danh sách bài hát</h3>

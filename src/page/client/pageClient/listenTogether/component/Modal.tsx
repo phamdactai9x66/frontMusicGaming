@@ -39,7 +39,7 @@ const styleInput = {
 const ModalRoom: React.FC<ModalRoomIF<any>> = ({ current, open, setOpen, ...props }) => {
     const [alertForm, setalertForm] = useState({ type: 'info', message: '', display: false })
     const { user } = useSelector<{ user: any }>(state => state.user) as formStateUser;
-    const server = "http://localhost:5000";
+    const server = variableCommon.localhost;
     const handleForm = (value: any, formAction: FormikHelpers<any>): void | Promise<any> => {
         (async () => {
             const data = {

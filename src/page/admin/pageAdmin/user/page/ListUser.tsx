@@ -73,13 +73,18 @@ const ListUser: React.FC<ListUser<any>> = ({ changePage, set_id, ...props }) => 
   const findUserName = (event: Event | any) => {
     const getValue = ((event.target as HTMLInputElement).value).trim();
     if (event.keyCode === 13) {
-      dispatch(pustAction(typeAciton.findName, { userName: getValue }))
+      dispatch(pustAction(typeAciton.findName, { name: getValue }))
     }
   }
 
   const onOpen = <T extends string>(_id: T) => {
     if ([undefined, null].includes(_id as any)) return;
     setStateModalUser((value: any) => ({ _id, display: true }))
+  }
+
+  const navigatePage = <T extends string>(page: T, _id?: T): void => {
+    changePage(page);
+    if (_id) set_id(_id);
   }
 
   const onClose = () => {
@@ -179,13 +184,14 @@ const ListUser: React.FC<ListUser<any>> = ({ changePage, set_id, ...props }) => 
                               {gender === true ? 'Nữ' : 'Nam'}
                             </TableCell>
                             <TableCell align="left">
-                            <div className="dropdown">
+                              <div className="dropdown">
                                 <button className="dropbtn">Action</button>
                                 <div className="dropdown-content">
                                   <div onClick={() => { deleteOne(_id) }}><i className="fa fa-trash-o" aria-hidden="true"></i> Delete</div>
+                                  <div onClick={() => { navigatePage(page.UpdateUser, _id) }}><i className="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</div>
                                   <div onClick={() => { onOpen<string>(_id) }}><i className="fa fa-info-circle" aria-hidden="true"></i> More</div>
                                 </div>
-                              </div> 
+                              </div>
                             </TableCell>
                           </TableRow>
                         );

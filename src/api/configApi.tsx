@@ -1,8 +1,9 @@
 import axios, { AxiosResponse } from "axios";
 import dataStoreage from "component/dataStorage";
+import { variableCommon } from 'component/variableCommon';
 
-// const baseURL = 'https://music-game-api-v1.herokuapp.com'
-const baseURL = 'http://localhost:5000'
+const baseURL = variableCommon.localhost;
+// const baseURL = 'http://localhost:5000'
 
 const getUser = JSON.parse(localStorage?.getItem("persist:root") as any)?.user;
 const getToken = getUser ? JSON.parse(getUser).token : '';
@@ -27,7 +28,8 @@ Axios.interceptors.response.use((response: AxiosResponse) => {
     }
     return response
 }, (err: any) => {
-    throw Error(err)
+    console.log(err)
+    // throw Error(err)
 })
 AxiosFormdata.interceptors.response.use((response: AxiosResponse) => {
     if (response.data || response) {
@@ -35,7 +37,8 @@ AxiosFormdata.interceptors.response.use((response: AxiosResponse) => {
     }
     return response
 }, (err: any) => {
-    throw Error(err)
+    console.log(err)
+    // throw Error(err)
 })
 
 export { Axios, AxiosFormdata }

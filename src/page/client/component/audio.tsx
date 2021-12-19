@@ -15,10 +15,11 @@ import LikeSong from "./likeSong";
 import { RouteComponentProps, withRouter } from "react-router-dom";
 import { io } from "socket.io-client"
 import roomUserApi from "api/roomUser";
+import { variableCommon } from 'component/variableCommon';
 interface AudioIF<T> extends RouteComponentProps {
     audio?: any | T
 }
-const server = "http://localhost:5000";
+const server = variableCommon.localhost;
 const Audio: React.FC<AudioIF<any>> = ({ audio: { audio: url, title, image, _id }, ...props }) => {
     const state = useSelector<{ audio: any }>(state => state.audio) as formStateAudio;
     const userInfo = useSelector<{ user: any }>(state => state.user) as formStateUser;
@@ -233,23 +234,23 @@ const Audio: React.FC<AudioIF<any>> = ({ audio: { audio: url, title, image, _id 
             </div>
             <div className="icon_play-music">
                 <IconButton onClick={() => nextSong('previous')} color="primary" disabled={!checkDisableNext('previous')}>
-                    <SkipPrevious className="icon" style={{color: "#fff"}}/>
+                    <SkipPrevious className="icon" style={{ color: "#fff" }} />
                 </IconButton>
 
                 <IconButton onClick={() => { nextTime(currentTime - 10) }} color="primary">
-                    <NavigateBefore className="icon" style={{color: "#fff"}}/>
+                    <NavigateBefore className="icon" style={{ color: "#fff" }} />
                 </IconButton>
 
                 <IconButton onClick={playAudio} color="primary">
                     {/* {url ? play ? <Pause className="icon" /> : <PlayArrow className="icon" /> : <CircularProgress size="20px" />} */}
-                    {play ? <Pause className="icon" style={{color: "#fff"}}/> : <PlayArrow className="icon" style={{color: "#fff"}}/>}
+                    {play ? <Pause className="icon" style={{ color: "#fff" }} /> : <PlayArrow className="icon" style={{ color: "#fff" }} />}
                 </IconButton>
                 <IconButton onClick={() => { nextTime(currentTime + 10) }} color="primary">
-                    <NavigateNext className="icon" style={{color: "#fff"}}/>
+                    <NavigateNext className="icon" style={{ color: "#fff" }} />
                 </IconButton>
 
                 <IconButton onClick={() => nextSong('next')} color="primary" disabled={!checkDisableNext('next')}>
-                    <SkipNext className="icon" style={{color: "#fff"}}/>
+                    <SkipNext className="icon" style={{ color: "#fff" }} />
                 </IconButton>
 
             </div>

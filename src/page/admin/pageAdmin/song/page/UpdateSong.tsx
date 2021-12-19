@@ -1,18 +1,22 @@
 import React, { useRef, useState, useEffect } from 'react'
 import { Card } from "@material-ui/core"
 import LoadingButton from '@mui/lab/LoadingButton'
-import { Button, Alert } from "@mui/material"
 import { Formik, Form } from "formik"
 import { InputText, FileField, RadioField, TextareaField, PickDate } from "component/customField/index"
 import { page } from "../index"
 import songApi from 'api/songApi'
-import { HandleGet } from "component/MethodCommon"
 import { activeOption } from '../component/stateForm'
 import { variableCommon } from "component/variableCommon"
 import SelectAlbums from "../component/SelectAlbums"
 import SelectCategory from "../component/SelectCategory"
 import SelectTopic from "../component/SelectTopic"
 import validationSchemaSong from "../component/ValidationSchemaSong"
+import { Button, Alert, List, ListItem, ListItemText, ListItemAvatar, Avatar, Autocomplete, TextField } from "@mui/material"
+import DeleteIcon from '@mui/icons-material/Delete';
+import { IconButton } from '@mui/material';
+import songArtistAPi from "api/songArtistAPi"
+import artist from 'api/ArtistApi'
+import { HandleGet, tranFormDataId } from "component/MethodCommon";
 
 interface UpdateSong<T> {
   changePage: any,
@@ -36,12 +40,27 @@ const UpdateSong: React.FC<UpdateSong<any>> = ({ changePage, _id, ...props }) =>
   const refForm = useRef<HTMLFormElement | any>(null);
   const [alert, setAlert] = useState({ display: false, message: "", type: "" });
   const [dataSong, setDataSong] = useState({ data: {}, display: true });
+  const [listSong, setlistSong] = useState<any[]>([]);
+  const tranFormId = useRef<any>({});
+  const getArtist = useRef([]);
+  useEffect(() => {
+    (async () => {
+      const getAllArtist = await artist.getAll<object>({});
+      const tranForm = getAllArtist.data.map((current: any) => {
+        return { label: `${current?.first_Name} ${current?.last_Name}`, id: current?._id }
+      })
+      getArtist.current = tranForm
+      tranFormId.current = tranFormDataId(getAllArtist.data)
+    })()
+  }, [])
 
   useEffect(() => {
     (async () => {
       if (!dataSong.display) return navigatePage(page.ListSong);
-
       const [data, error] = await HandleGet(songApi.getOne, _id);
+      const getsongArtistAPi = await songArtistAPi.getAll<object>({ id_Songs: data.data?.[0]?._id });
+      // console.log(getsongArtistAPi)
+      setlistSong([...getsongArtistAPi.data])
 
       if (error) return navigatePage(page.ListSong);
       setDataSong(value => ({ ...value, data: data.data[0] }))
@@ -79,8 +98,26 @@ const UpdateSong: React.FC<UpdateSong<any>> = ({ changePage, _id, ...props }) =>
     }, 1000)
   }
 
+
   const navigatePage = (page: string) => {
     changePage(page);
+  }
+  const onchangeOption = async (event: any, newValue: any | null): Promise<void> => {
+    const checkExist = listSong.find(e => e.id_Artist === newValue?.id);
+    if (checkExist) return;
+    const query = {
+      id_Songs: _id,
+      id_Artist: newValue?.id
+    }
+    const addSongPlaylist = await songArtistAPi.postOne<object>(query);
+    setlistSong(value => [...value, addSongPlaylist.data])
+  }
+  const deleteSongPlaylist = async (id: string): Promise<void> => {
+    if (!id) return;
+    const addSongPlaylist = await songArtistAPi.deleteOne<string>(id);
+    const deleteSongPlayList = listSong.filter(e => e._id !== id);
+    setlistSong(deleteSongPlayList)
+
   }
 
   return (
@@ -176,10 +213,41 @@ const UpdateSong: React.FC<UpdateSong<any>> = ({ changePage, _id, ...props }) =>
                             other={{ variant: "standard" }}
                           />
                         </div>
+                        <div style={{ width: '100%' }}>
+                          <div className="form-input-add" style={{ padding: 0 }}>
+                            <div className="inputForm">
+                              <Autocomplete
+                                disablePortal
+                                id="combo-box-demo"
+                                options={getArtist.current}
+                                onChange={onchangeOption}
+                                renderInput={(params) => <TextField {...params} variant="standard" label="Search Artist" fullWidth />}
+                                fullWidth
+
+                              />
+                            </div>
+                          </div>
+                          <List sx={{ width: '100%' }} style={{ padding: 0 }}>
+                            {listSong.map((current: any, index: number) => {
+                              const findSong = tranFormId.current[current?.id_Artist]
+                              // console.log(findSong)
+                              return <ListItem key={index}>
+                                <ListItemAvatar>
+                                  <Avatar src={findSong?.image}></Avatar>
+                                </ListItemAvatar>
+                                <ListItemText primary={`${findSong?.first_Name} ${findSong?.last_Name}`} secondary={findSong?.day_release} />
+                                <IconButton onClick={() => deleteSongPlaylist(current._id)}>
+                                  <DeleteIcon />
+                                </IconButton>
+                              </ListItem>
+                            })}
+
+                          </List>
+                        </div>
                       </div>
                     </Card>
                   </div>
-                  <div>
+                  {/* <div>
                     <Card elevation={5}>
                       <div className="form-input-add">
                         <div className="inputForm">
@@ -191,7 +259,7 @@ const UpdateSong: React.FC<UpdateSong<any>> = ({ changePage, _id, ...props }) =>
                         </div>
                       </div>
                     </Card>
-                  </div>
+                  </div> */}
                   <div>
                     <Card elevation={5}>
                       <div className="form-input-add">
@@ -230,6 +298,7 @@ const UpdateSong: React.FC<UpdateSong<any>> = ({ changePage, _id, ...props }) =>
                       Cancel
                     </Button>
                   </div>
+
                 </div>
               </Form>
             )

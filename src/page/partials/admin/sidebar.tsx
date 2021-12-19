@@ -184,7 +184,7 @@ const Sidebar: React.FC<SidebarIF<any>> = ({ ...props }) => {
       <nav className="tabs">
         <Link to="/admin">
           <AccordionSummary
-            expandIcon={<ExpandMore style={{ color: "aqua" }} />}
+            // expandIcon={<ExpandMore style={{ color: "aqua" }} />}
             aria-controls="panel1bh-content"
             id="panel1bh-header"
             style={{ background: "#1d2d47", height: "3.6rem" }}
@@ -211,7 +211,7 @@ const Sidebar: React.FC<SidebarIF<any>> = ({ ...props }) => {
                 onChange={handleChange(icon)}
               >
                 <AccordionSummary
-                  expandIcon={<ExpandMore style={{ color: "aqua" }} />}
+                  // expandIcon={<ExpandMore style={{ color: "aqua" }} />}
                   aria-controls="panel1bh-content"
                   id="panel1bh-header"
                   style={{ background: "#1d2d47", height: "3.6rem" }}
@@ -227,7 +227,7 @@ const Sidebar: React.FC<SidebarIF<any>> = ({ ...props }) => {
                     </label>
                   </div>
                 </AccordionSummary>
-                <Link to={`${accordion.subLink}`}>
+                {/* <Link to={`${accordion.subLink}`}>
                   <AccordionDetails style={{ height: "3.5rem", background: "#121a34" }}>
 
                     <div className="tab-content">
@@ -237,7 +237,7 @@ const Sidebar: React.FC<SidebarIF<any>> = ({ ...props }) => {
                       </label>
                     </div>
                   </AccordionDetails>
-                </Link>
+                </Link> */}
               </Accordion>
             </Link>
           );
@@ -251,7 +251,7 @@ const Sidebar: React.FC<SidebarIF<any>> = ({ ...props }) => {
                 onChange={handleChange(icon)}
               >
                 <AccordionSummary
-                  expandIcon={<ExpandMore style={{ color: "aqua" }} />}
+                  // expandIcon={<ExpandMore style={{ color: "aqua" }} />}
                   aria-controls="panel1bh-content"
                   id="panel1bh-header"
                   style={{ background: "#1d2d47", height: "3.6rem" }}
@@ -267,7 +267,7 @@ const Sidebar: React.FC<SidebarIF<any>> = ({ ...props }) => {
                     </label>
                   </div>
                 </AccordionSummary>
-                <Link to={`${accordion.subLink}`}>
+                {/* <Link to={`${accordion.subLink}`}>
                   <AccordionDetails style={{ height: "3.5rem", background: "#121a34" }}>
 
                     <div className="tab-content">
@@ -277,7 +277,7 @@ const Sidebar: React.FC<SidebarIF<any>> = ({ ...props }) => {
                       </label>
                     </div>
                   </AccordionDetails>
-                </Link>
+                </Link> */}
               </Accordion>
             </Link>
           );
