@@ -47,7 +47,7 @@ const UpdateSong: React.FC<UpdateSong<any>> = ({ changePage, _id, ...props }) =>
     (async () => {
       const getAllArtist = await artist.getAll<object>({});
       const tranForm = getAllArtist.data.map((current: any) => {
-        return { label: current?.title, id: current?._id }
+        return { label: `${current?.first_Name} ${current?.last_Name}`, id: current?._id }
       })
       getArtist.current = tranForm
       tranFormId.current = tranFormDataId(getAllArtist.data)
@@ -59,7 +59,7 @@ const UpdateSong: React.FC<UpdateSong<any>> = ({ changePage, _id, ...props }) =>
       if (!dataSong.display) return navigatePage(page.ListSong);
       const [data, error] = await HandleGet(songApi.getOne, _id);
       const getsongArtistAPi = await songArtistAPi.getAll<object>({ id_Songs: data.data?.[0]?._id });
-      console.log(getsongArtistAPi)
+      // console.log(getsongArtistAPi)
       setlistSong([...getsongArtistAPi.data])
 
       if (error) return navigatePage(page.ListSong);
@@ -103,17 +103,21 @@ const UpdateSong: React.FC<UpdateSong<any>> = ({ changePage, _id, ...props }) =>
     changePage(page);
   }
   const onchangeOption = async (event: any, newValue: any | null): Promise<void> => {
-    // console.log(newValue)
-    console.log(newValue)
-    // const checkExist = listSong.find(e => e.id_Songs === newValue?.id);
-    // if (checkExist) return;
-    // const query = {
-    //   id_Songs: newValue?.id,
-    //   id_PlayList: _id
-    // }
-    // const addSongPlaylist = await playlistSongApi.postOne<object>(query);
-    // setlistSong(value => [...value, addSongPlaylist.data])
-    // console.log(addSongPlaylist)
+    const checkExist = listSong.find(e => e.id_Artist === newValue?.id);
+    if (checkExist) return;
+    const query = {
+      id_Songs: _id,
+      id_Artist: newValue?.id
+    }
+    const addSongPlaylist = await songArtistAPi.postOne<object>(query);
+    setlistSong(value => [...value, addSongPlaylist.data])
+  }
+  const deleteSongPlaylist = async (id: string): Promise<void> => {
+    if (!id) return;
+    const addSongPlaylist = await songArtistAPi.deleteOne<string>(id);
+    const deleteSongPlayList = listSong.filter(e => e._id !== id);
+    setlistSong(deleteSongPlayList)
+
   }
 
   return (
@@ -224,37 +228,6 @@ const UpdateSong: React.FC<UpdateSong<any>> = ({ changePage, _id, ...props }) =>
                         </div>
                       </div>
                     </Card>
-                    <Card elevation={5} style={{ marginTop: 5 }}>
-                      <div className="form-input-add">
-                        <div className="inputForm">
-                          <Autocomplete
-                            disablePortal
-                            id="combo-box-demo"
-                            options={getArtist.current}
-                            onChange={onchangeOption}
-                            renderInput={(params) => <TextField {...params} variant="standard" label="Search Artist" fullWidth />}
-                            fullWidth
-
-                          />
-                        </div>
-                      </div>
-                      <List sx={{ width: '100%' }}>
-                        {listSong.map((current: any, index: number) => {
-                          const findSong = tranFormId.current[current?.id_Artist]
-                          console.log(findSong)
-                          return <ListItem key={index}>
-                            <ListItemAvatar>
-                              <Avatar src={findSong?.image}></Avatar>
-                            </ListItemAvatar>
-                            <ListItemText primary={findSong?.title} secondary={findSong?.day_release} />
-                            {/* <IconButton onClick={() => deleteSongPlaylist(current._id)}>
-                              <DeleteIcon />
-                            </IconButton> */}
-                          </ListItem>
-                        })}
-
-                      </List>
-                    </Card>
                   </div>
                   <div>
                     <Card elevation={5}>
@@ -294,6 +267,40 @@ const UpdateSong: React.FC<UpdateSong<any>> = ({ changePage, _id, ...props }) =>
                       Cancel
                     </Button>
                   </div>
+                  <div>
+                    <Card elevation={5} style={{ marginTop: 5 }}>
+                      <div className="form-input-add">
+                        <div className="inputForm">
+                          <Autocomplete
+                            disablePortal
+                            id="combo-box-demo"
+                            options={getArtist.current}
+                            onChange={onchangeOption}
+                            renderInput={(params) => <TextField {...params} variant="standard" label="Search Artist" fullWidth />}
+                            fullWidth
+
+                          />
+                        </div>
+                      </div>
+                      <List sx={{ width: '100%' }}>
+                        {listSong.map((current: any, index: number) => {
+                          const findSong = tranFormId.current[current?.id_Artist]
+                          // console.log(findSong)
+                          return <ListItem key={index}>
+                            <ListItemAvatar>
+                              <Avatar src={findSong?.image}></Avatar>
+                            </ListItemAvatar>
+                            <ListItemText primary={`${findSong?.first_Name} ${findSong?.last_Name}`} secondary={findSong?.day_release} />
+                            <IconButton onClick={() => deleteSongPlaylist(current._id)}>
+                              <DeleteIcon />
+                            </IconButton>
+                          </ListItem>
+                        })}
+
+                      </List>
+                    </Card>
+                  </div>
+
                 </div>
               </Form>
             )
