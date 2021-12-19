@@ -73,7 +73,7 @@ const ListArtist: React.FC<ListArtist<any>> = ({ changePage, set_id, ...props })
     const getValue = ((event.target as HTMLInputElement).value).trim();
     // let nameArtist = `${first_Name} ${last_Name}`;
     if (event.keyCode === 13) {
-      dispatch(pustAction(typeAciton.findName, { first_Name: getValue }))
+      dispatch(pustAction(typeAciton.findName, { name: getValue }))
     }
   }
 
@@ -187,14 +187,14 @@ const ListArtist: React.FC<ListArtist<any>> = ({ changePage, set_id, ...props })
                               {gender === true ? 'Nam' : 'Nữ'}
                             </TableCell>
                             <TableCell align='center'>
-                            <div className="dropdown">
+                              <div className="dropdown">
                                 <button className="dropbtn">Action</button>
                                 <div className="dropdown-content">
                                   <div onClick={() => { deleteOne(_id) }}><i className="fa fa-trash-o" aria-hidden="true"></i> Delete</div>
                                   <div onClick={() => { navigatePage(page.UpdateArtist, _id) }}><i className="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</div>
                                   <div onClick={() => { onOpen<string>(_id) }}><i className="fa fa-info-circle" aria-hidden="true"></i> More</div>
                                 </div>
-                              </div> 
+                              </div>
                             </TableCell>
                           </TableRow>
                         );
