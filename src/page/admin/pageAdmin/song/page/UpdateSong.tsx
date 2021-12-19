@@ -213,10 +213,41 @@ const UpdateSong: React.FC<UpdateSong<any>> = ({ changePage, _id, ...props }) =>
                             other={{ variant: "standard" }}
                           />
                         </div>
+                        <div style={{ width: '100%' }}>
+                          <div className="form-input-add" style={{ padding: 0 }}>
+                            <div className="inputForm">
+                              <Autocomplete
+                                disablePortal
+                                id="combo-box-demo"
+                                options={getArtist.current}
+                                onChange={onchangeOption}
+                                renderInput={(params) => <TextField {...params} variant="standard" label="Search Artist" fullWidth />}
+                                fullWidth
+
+                              />
+                            </div>
+                          </div>
+                          <List sx={{ width: '100%' }} style={{ padding: 0 }}>
+                            {listSong.map((current: any, index: number) => {
+                              const findSong = tranFormId.current[current?.id_Artist]
+                              // console.log(findSong)
+                              return <ListItem key={index}>
+                                <ListItemAvatar>
+                                  <Avatar src={findSong?.image}></Avatar>
+                                </ListItemAvatar>
+                                <ListItemText primary={`${findSong?.first_Name} ${findSong?.last_Name}`} secondary={findSong?.day_release} />
+                                <IconButton onClick={() => deleteSongPlaylist(current._id)}>
+                                  <DeleteIcon />
+                                </IconButton>
+                              </ListItem>
+                            })}
+
+                          </List>
+                        </div>
                       </div>
                     </Card>
                   </div>
-                  <div>
+                  {/* <div>
                     <Card elevation={5}>
                       <div className="form-input-add">
                         <div className="inputForm">
@@ -228,7 +259,7 @@ const UpdateSong: React.FC<UpdateSong<any>> = ({ changePage, _id, ...props }) =>
                         </div>
                       </div>
                     </Card>
-                  </div>
+                  </div> */}
                   <div>
                     <Card elevation={5}>
                       <div className="form-input-add">
@@ -266,39 +297,6 @@ const UpdateSong: React.FC<UpdateSong<any>> = ({ changePage, _id, ...props }) =>
                     >
                       Cancel
                     </Button>
-                  </div>
-                  <div>
-                    <Card elevation={5} style={{ marginTop: 5 }}>
-                      <div className="form-input-add">
-                        <div className="inputForm">
-                          <Autocomplete
-                            disablePortal
-                            id="combo-box-demo"
-                            options={getArtist.current}
-                            onChange={onchangeOption}
-                            renderInput={(params) => <TextField {...params} variant="standard" label="Search Artist" fullWidth />}
-                            fullWidth
-
-                          />
-                        </div>
-                      </div>
-                      <List sx={{ width: '100%' }}>
-                        {listSong.map((current: any, index: number) => {
-                          const findSong = tranFormId.current[current?.id_Artist]
-                          // console.log(findSong)
-                          return <ListItem key={index}>
-                            <ListItemAvatar>
-                              <Avatar src={findSong?.image}></Avatar>
-                            </ListItemAvatar>
-                            <ListItemText primary={`${findSong?.first_Name} ${findSong?.last_Name}`} secondary={findSong?.day_release} />
-                            <IconButton onClick={() => deleteSongPlaylist(current._id)}>
-                              <DeleteIcon />
-                            </IconButton>
-                          </ListItem>
-                        })}
-
-                      </List>
-                    </Card>
                   </div>
 
                 </div>
