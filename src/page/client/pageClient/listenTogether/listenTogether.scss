@@ -1,80 +1,80 @@
 .listenTogeter {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-    padding: 2rem;
-  .room {
-    border-right: 0.1rem solid aqua;
-    height: 100vh;
-    padding-right: 2rem;
-    .search_music {
-      .MuiInputLabel-formControl {
-        color: rgb(203, 234, 248) !important;
-      }
-      .MuiSvgIcon-fontSizeMedium {
-        color: rgb(203, 234, 248) !important;
-      }
-      .MuiInput-input {
-        color: #fff !important;
-      }
-      .MuiInput-underline:before {
-        border-bottom: 1px solid rgba(39, 201, 193, 0.678);
-      }
-
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  padding: 2rem;
+.room {
+  border-right: 0.1rem solid aqua;
+  height: 100vh;
+  padding-right: 2rem;
+  .search_music {
+    .MuiInputLabel-formControl {
+      color: rgb(203, 234, 248) !important;
     }
-  }
-
-  .room_box {
-    margin-top: 2rem;
-    width: 100%;
-    height: 3.5rem;
-    border-radius: 0.2rem;
-    box-shadow: 0 3px 7px rgba(0, 0, 0, 0.692);
-    display: flex;
-    color: #fff;
-    background: linear-gradient(to right, rgb(37, 111, 196) , rgba(104, 199, 223, 0.616));
-    padding: 0.4rem;
-    cursor: pointer;
-  }
-  .name {
-    flex-basis: 80%; 
-  }
-  .key {
-    flex-basis: 20%; 
-    margin-top: 0.25rem;
-    svg {
-      border: 0.3rem solid #3644688f;
-      border-radius: 50%;
-      background: #161b288f;
-      font-size: 1.7rem;
+    .MuiSvgIcon-fontSizeMedium {
+      color: rgb(203, 234, 248) !important;
     }
-  }
-  .css-1ytufz-MuiAvatarGroup-root {
-    justify-content: left !important;
-  }
-  .css-1ytufz-MuiAvatarGroup-root .MuiAvatar-root {
-    width: 1rem;
-    height: 1rem;
-    font-size: 0.6rem;
+    .MuiInput-input {
+      color: #fff !important;
+    }
+    .MuiInput-underline:before {
+      border-bottom: 1px solid rgba(39, 201, 193, 0.678);
+    }
+
   }
 }
 
-.create_room{
-  display: block;
+.room_box {
+  margin-top: 2rem;
+  width: 100%;
+  height: 3.5rem;
+  border-radius: 0.2rem;
+  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.692);
+  display: flex;
   color: #fff;
-  .input_room{
-    input{
-      color: rgb(203, 252, 255);
-    }
-    width: 400px;
-    margin-bottom: 20px;
-    background-color: #06111C;
-    label{
-      color: #fff;
-    }
+  background: linear-gradient(to right, rgb(37, 111, 196) , rgba(104, 199, 223, 0.616));
+  padding: 0.4rem;
+  cursor: pointer;
+}
+.name {
+  flex-basis: 80%; 
+}
+.key {
+  flex-basis: 20%; 
+  margin-top: 0.25rem;
+  svg {
+    border: 0.3rem solid #3644688f;
+    border-radius: 50%;
+    background: #161b288f;
+    font-size: 1.7rem;
   }
-  button {
-    display: block;
-    background-color: #249F9F;
+}
+.MuiAvatarGroup-root  {
+  justify-content: left !important;
+}
+.MuiAvatarGroup-root .MuiAvatar-root {
+  width: 1rem;
+  height: 1rem;
+  font-size: 0.6rem;
+}
+}
+
+.create_room{
+display: block;
+color: #fff;
+.input_room{
+  input{
+    color: rgb(203, 252, 255);
   }
+  width: 400px;
+  margin-bottom: 20px;
+  background-color: #06111C;
+  label{
+    color: #fff;
+  }
+}
+button {
+  display: block;
+  background-color: #249F9F;
+}
 }
