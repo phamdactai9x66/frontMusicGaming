@@ -14,7 +14,7 @@ const initialForm = {
 }
 const Modal: React.FC<Modal<any>> = ({ close, ...props }) => {
     const { user: { _id: _idUser } } = useSelector<{ user: any }>(state => state.user) as formStateUser;
-    const [alert, setalert] = useState({ display: false, message: '', status: '' });
+    const [alert, setalert] = useState({ display: false, message: '', status: '',content: '' });
     const submitForm = (data: any, methodAction: any) => {
 
         (async () => {
@@ -27,9 +27,9 @@ const Modal: React.FC<Modal<any>> = ({ close, ...props }) => {
                 methodAction.resetForm()
                 dataStorage.renderPlaylist && (dataStorage as any).renderPlaylist()
                 // renderComponent && renderComponent()
-                return setalert({ display: true, message: createPlaylist.message, status: 'success' })
+                return setalert({ display: true, message: createPlaylist.message, status: 'success',content: "Tạo playlist thành công" })
             }
-            setalert({ display: true, message: createPlaylist.message, status: 'error' })
+            setalert({ display: true, message: createPlaylist.message, status: 'error',content: "Tạo playlist không thành công" })
 
         })()
 
@@ -42,7 +42,7 @@ const Modal: React.FC<Modal<any>> = ({ close, ...props }) => {
                         X
                     </button>
                     <h5 className="text-center">Tạo playlist mới</h5>
-                    {alert.display ? <Alert className="mb-2" severity={alert?.status as any}>Tạo playlist thành công</Alert> : null}
+                    {alert.display ? <Alert className="mb-2" severity={alert?.status as any}>{alert?.content as any}</Alert> : null}
                     <Formik
                         initialValues={initialForm}
                         onSubmit={submitForm}

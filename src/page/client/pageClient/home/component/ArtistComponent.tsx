@@ -27,14 +27,17 @@ const ArtistComponent: React.FC<ArtistComponentIF<any>> = (props) => {
             <div className='items'>
                 <section>
                     {artistsTransform.length !== 0 && artistsTransform.map( (item: ItemArtistIF<string>) => (
-                        <section style={{display: "flex", flexDirection: "column"}} key={item._id}>
+                        // <section >
                             <div>
+                                <figure>
                                 <Link to={`/artistDetail/${item._id}`}>
                                     <img src={item.image} alt={handleNameArtist(item.first_Name, item.last_Name)} />     
                                 </Link>
+                                </figure> 
+                                <div className="name">{handleNameArtist(item.first_Name, item.last_Name)}</div>                          
                             </div>
-                            <span className="text-center name">{handleNameArtist(item.first_Name, item.last_Name)}</span>
-                        </section>
+                            
+                        // </section>
                     ))}
                     
                 </section>
