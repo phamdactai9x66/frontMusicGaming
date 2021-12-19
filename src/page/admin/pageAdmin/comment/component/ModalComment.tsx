@@ -44,7 +44,7 @@ const ModalComment: React.FC<ModalComment<any>> = ({ state, onClose, ...props })
       if (dataComment.error) return;
       const [data, error] = await HandleGet(commentApi.getAll, { _id: state._id });
       if (error) setDataComment((value: any) => ({ ...value, error: true, display: false }));
-      await findUser(data?.data?.id_User);
+      await findUser(data?.data[0]?.id_User);
       await findBlog(data?.data?.id_Blog);
       setDataComment({ error: false, data: data?.data, display: true })
     })()
@@ -56,7 +56,6 @@ const ModalComment: React.FC<ModalComment<any>> = ({ state, onClose, ...props })
   const findUser = async <T extends string>(_id: T) => {
     if (!_id) return;
     const findUser = await useApi.getOne(_id);
-    console.log('Modal Comment user : ', findUser);
 
     if (findUser.status !== variableCommon.statusF) {
       const { first_name, last_name } = findUser.data[0];

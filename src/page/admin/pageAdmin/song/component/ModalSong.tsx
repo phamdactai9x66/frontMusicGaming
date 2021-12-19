@@ -42,6 +42,21 @@ const ModalSong: React.FC<ModalSong<any>> = ({ state, onClose, ...props }) => {
   const nameAlbums = useRef<any>('');
   const nameCategory = useRef<any>('');
 
+  useEffect(() => {
+    (async () => {
+      if (dataSong.error) return;
+      const [data, error] = await HandleGet(songApi.getOne, state._id);
+      if (error) setDataSong((value: any) => ({ ...value, error: true, display: false }));
+      await findTopic(data?.data[0]?.id_Topic);
+      await findAlbum(data?.data[0]?.id_album);
+      await findCategory(data?.data[0]?.id_Categories);
+      setDataSong({ error: false, data: data?.data, display: true });
+    })()
+    return () => {
+      setDataSong((value: any) => ({ ...value, display: false }))
+    }
+  }, [state._id])
+
   const findTopic = async <T extends string>(_id: T) => {
     if (!_id) return;
     const findTopics = await topicsApi.getOne(_id);
@@ -52,21 +67,6 @@ const ModalSong: React.FC<ModalSong<any>> = ({ state, onClose, ...props }) => {
     }
     nameTopic.current = ''
   }
-
-  useEffect(() => {
-    (async () => {
-      if (dataSong.error) return;
-      const [data, error] = await HandleGet(songApi.getOne, state._id);
-      if (error) setDataSong((value: any) => ({ ...value, error: true, display: false }));
-      await findTopic(data?.data?.id_Topic);
-      await findAlbum(data?.data?.id_album);
-      await findCategory(data?.data?.id_Categories);
-      setDataSong({ error: false, data: data?.data, display: true });
-    })()
-    return () => {
-      setDataSong((value: any) => ({ ...value, display: false }))
-    }
-  }, [state._id])
 
   const findAlbum = async <T extends string>(_id: T) => {
     if (!_id) return;
@@ -207,6 +207,30 @@ const ModalSong: React.FC<ModalSong<any>> = ({ state, onClose, ...props }) => {
                       inputProps={{ readOnly: true }}
                       label="Category"
                       value={nameCategory.current}
+                      variant="standard"
+                      fullWidth
+                    />
+                  </Typography>
+                </Grid>
+
+                <Grid item xs={12} md={6}>
+                  <Typography>
+                    <TextField
+                      inputProps={{ readOnly: true }}
+                      label="CreatedAt"
+                      value={getDate(dataSong.data?.createdAt)}
+                      variant="standard"
+                      fullWidth
+                    />
+                  </Typography>
+                </Grid>
+
+                <Grid item xs={12} md={6}>
+                  <Typography>
+                    <TextField
+                      inputProps={{ readOnly: true }}
+                      label="UpdatedAt"
+                      value={getDate(dataSong.data?.updatedAt)}
                       variant="standard"
                       fullWidth
                     />
