@@ -27,7 +27,8 @@ Axios.interceptors.response.use((response: AxiosResponse) => {
     }
     return response
 }, (err: any) => {
-    throw Error(err)
+    console.log(err)
+    // throw Error(err)
 })
 AxiosFormdata.interceptors.response.use((response: AxiosResponse) => {
     if (response.data || response) {
@@ -35,7 +36,8 @@ AxiosFormdata.interceptors.response.use((response: AxiosResponse) => {
     }
     return response
 }, (err: any) => {
-    throw Error(err)
+    console.log(err)
+    // throw Error(err)
 })
 
 export { Axios, AxiosFormdata }

@@ -1,18 +1,22 @@
 import React, { useRef, useState, useEffect } from 'react'
 import { Card } from "@material-ui/core"
 import LoadingButton from '@mui/lab/LoadingButton'
-import { Button, Alert } from "@mui/material"
 import { Formik, Form } from "formik"
 import { InputText, FileField, RadioField, TextareaField, PickDate } from "component/customField/index"
 import { page } from "../index"
 import songApi from 'api/songApi'
-import { HandleGet } from "component/MethodCommon"
 import { activeOption } from '../component/stateForm'
 import { variableCommon } from "component/variableCommon"
 import SelectAlbums from "../component/SelectAlbums"
 import SelectCategory from "../component/SelectCategory"
 import SelectTopic from "../component/SelectTopic"
 import validationSchemaSong from "../component/ValidationSchemaSong"
+import { Button, Alert, List, ListItem, ListItemText, ListItemAvatar, Avatar, Autocomplete, TextField } from "@mui/material"
+import DeleteIcon from '@mui/icons-material/Delete';
+import { IconButton } from '@mui/material';
+import songArtistAPi from "api/songArtistAPi"
+import artist from 'api/ArtistApi'
+import { HandleGet, tranFormDataId } from "component/MethodCommon";
 
 interface UpdateSong<T> {
   changePage: any,
@@ -36,12 +40,27 @@ const UpdateSong: React.FC<UpdateSong<any>> = ({ changePage, _id, ...props }) =>
   const refForm = useRef<HTMLFormElement | any>(null);
   const [alert, setAlert] = useState({ display: false, message: "", type: "" });
   const [dataSong, setDataSong] = useState({ data: {}, display: true });
+  const [listSong, setlistSong] = useState<any[]>([]);
+  const tranFormId = useRef<any>({});
+  const getArtist = useRef([]);
+  useEffect(() => {
+    (async () => {
+      const getAllArtist = await artist.getAll<object>({});
+      const tranForm = getAllArtist.data.map((current: any) => {
+        return { label: current?.title, id: current?._id }
+      })
+      getArtist.current = tranForm
+      tranFormId.current = tranFormDataId(getAllArtist.data)
+    })()
+  }, [])
 
   useEffect(() => {
     (async () => {
       if (!dataSong.display) return navigatePage(page.ListSong);
-
       const [data, error] = await HandleGet(songApi.getOne, _id);
+      const getsongArtistAPi = await songArtistAPi.getAll<object>({ id_Songs: data.data?.[0]?._id });
+      console.log(getsongArtistAPi)
+      setlistSong([...getsongArtistAPi.data])
 
       if (error) return navigatePage(page.ListSong);
       setDataSong(value => ({ ...value, data: data.data[0] }))
@@ -79,8 +98,22 @@ const UpdateSong: React.FC<UpdateSong<any>> = ({ changePage, _id, ...props }) =>
     }, 1000)
   }
 
+
   const navigatePage = (page: string) => {
     changePage(page);
+  }
+  const onchangeOption = async (event: any, newValue: any | null): Promise<void> => {
+    // console.log(newValue)
+    console.log(newValue)
+    // const checkExist = listSong.find(e => e.id_Songs === newValue?.id);
+    // if (checkExist) return;
+    // const query = {
+    //   id_Songs: newValue?.id,
+    //   id_PlayList: _id
+    // }
+    // const addSongPlaylist = await playlistSongApi.postOne<object>(query);
+    // setlistSong(value => [...value, addSongPlaylist.data])
+    // console.log(addSongPlaylist)
   }
 
   return (
@@ -190,6 +223,37 @@ const UpdateSong: React.FC<UpdateSong<any>> = ({ changePage, _id, ...props }) =>
                           />
                         </div>
                       </div>
+                    </Card>
+                    <Card elevation={5} style={{ marginTop: 5 }}>
+                      <div className="form-input-add">
+                        <div className="inputForm">
+                          <Autocomplete
+                            disablePortal
+                            id="combo-box-demo"
+                            options={getArtist.current}
+                            onChange={onchangeOption}
+                            renderInput={(params) => <TextField {...params} variant="standard" label="Search Artist" fullWidth />}
+                            fullWidth
+
+                          />
+                        </div>
+                      </div>
+                      <List sx={{ width: '100%' }}>
+                        {listSong.map((current: any, index: number) => {
+                          const findSong = tranFormId.current[current?.id_Artist]
+                          console.log(findSong)
+                          return <ListItem key={index}>
+                            <ListItemAvatar>
+                              <Avatar src={findSong?.image}></Avatar>
+                            </ListItemAvatar>
+                            <ListItemText primary={findSong?.title} secondary={findSong?.day_release} />
+                            {/* <IconButton onClick={() => deleteSongPlaylist(current._id)}>
+                              <DeleteIcon />
+                            </IconButton> */}
+                          </ListItem>
+                        })}
+
+                      </List>
                     </Card>
                   </div>
                   <div>
