@@ -33,7 +33,7 @@ const intitialForm = {
 const CreateRoom: React.FC<CreateRoom<any>> = ({ history, ...props }) => {
     const { user } = useSelector<{ user: any }>(state => state.user) as formStateUser;
     const [alertForm, setalertForm] = useState({ status: 'error', display: false, message: '' })
-    const server = "http://localhost:5000";
+    const server = "https://music-game-api-v1.herokuapp.com";
     const eventSubmit = (value: any, FormikHelpers: FormikHelpers<any>): void => {
         setTimeout(async () => {
             const data = {

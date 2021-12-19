@@ -43,7 +43,7 @@ const ListRoomUser: React.FC<ListRoomUserIF<any>> = ({ match, ...props }) => {
     const [userRoom, setUserRoom] = useState({ display: true, data: [] });
     const [renderUser, setrenderUser] = useState<number>(0)
     const saveUser = useRef<any>(null)
-    const server = "http://localhost:5000";
+    const server = "https://music-game-api-v1.herokuapp.com";
     useEffect(() => {
         io(server).on("joined", (date: number) => {
             if (date) {

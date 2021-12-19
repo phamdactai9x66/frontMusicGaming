@@ -21,7 +21,7 @@ interface ListRoomIF<T> extends RouteComponentProps {
 const ListRoom: React.FC<ListRoomIF<any>> = ({ index, current, history, ...props }) => {
     const [open, setOpen] = useState<boolean>(false);
     const { user } = useSelector<{ user: any }>(state => state.user) as formStateUser;
-    const server = "http://localhost:5000";
+    const server = "https://music-game-api-v1.herokuapp.com";
     const saveUser = useRef({});
     const listUser = () => {
         try {

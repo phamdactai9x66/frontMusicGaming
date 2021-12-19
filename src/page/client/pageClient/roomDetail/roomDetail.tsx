@@ -18,7 +18,7 @@ import SearchSong from "./component/searchSong";
 
 interface RoomDetail<T> extends RouteComponentProps {
 }
-const server = "http://localhost:5000";
+const server = "https://music-game-api-v1.herokuapp.com";
 const RoomDetail: React.FC<RoomDetail<any>> = ({ match, ...props }) => {
     const [songRoom, setSongRoom] = useState({ display: false, data: [] });
     const [renderSong, setrenderSong] = useState(0)
@@ -52,7 +52,7 @@ const RoomDetail: React.FC<RoomDetail<any>> = ({ match, ...props }) => {
 
     useEffect(() => {
         (async () => {
-            const { data } = await songApi.getAll({status: true});
+            const { data } = await songApi.getAll({ status: true });
             saveSong.current = tranFormDataId<any[]>(data);
         })()
 
@@ -124,7 +124,7 @@ const RoomDetail: React.FC<RoomDetail<any>> = ({ match, ...props }) => {
         <>
             <div className="romdetail">
                 <div className="room">
-                <h3 className="mt-3 text-white ps-3" style={{ borderLeft: '0.5rem solid #26a5ff', fontSize: '1.2rem' }}>{(props.location.state as any)?.name_Room}</h3>
+                    <h3 className="mt-3 text-white ps-3" style={{ borderLeft: '0.5rem solid #26a5ff', fontSize: '1.2rem' }}>{(props.location.state as any)?.name_Room}</h3>
                     <SearchSong addSongToRoom={addSongToRoom} />
                     {/*  */}
                     <h3 className="mt-3 text-white ps-3" style={{ borderLeft: '0.5rem solid #26a5ff', fontSize: '1.2rem' }}>Danh sách bài hát</h3>

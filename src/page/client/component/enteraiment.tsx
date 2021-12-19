@@ -15,7 +15,7 @@ const Enteraiment: React.FC<Enteraiment<any>> = ({ ...props }) => {
     const { audio, display, playRealTime } = useSelector<{ audio: any }>(state => state.audio) as formStateAudio;
     const { user } = useSelector<{ user: any }>(state => state.user) as formStateUser;
     const [renderUser, setrenderUser] = useState<number>(0)
-    const server = "http://localhost:5000";
+    const server = "https://music-game-api-v1.herokuapp.com";
     const saveUser = useRef<Array<string>>([]);
     const dispatch = useDispatch();
     window.addEventListener("beforeunload", function (event) {
