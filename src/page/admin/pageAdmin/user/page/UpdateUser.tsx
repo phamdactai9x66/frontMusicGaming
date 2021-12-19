@@ -6,12 +6,10 @@ import { Formik, Form } from "formik"
 import { InputText, FileField, RadioField, TextareaField } from "component/customField/index"
 import { page } from "../index"
 import useApi from 'api/useApi'
-import validationSchemaUser from '../component/validateSchemaUser'
-import { HandleGet } from "component/MethodCommon"
+import validationSchemaUser from '../component/validateUpdateUser'
+import { HandleGet, tranFormData } from "component/MethodCommon"
 import { activeOption } from '../component/activeOption'
 import { variableCommon } from "component/variableCommon"
-
-
 interface UpdateUser<T> {
   changePage: any,
   _id: string | any
@@ -23,15 +21,19 @@ const initialValue = {
   email: '',
   image: '',
   gender: 'false',
-  role: '',
+  role: 0,
   address: ''
 }
+const selectRole = [
+  { value: 0, label: 'Guest' },
+  { value: 1, label: 'Member' },
+  { value: 2, label: 'Admin' },
+]
 
 const UpdateUser: React.FC<UpdateUser<any>> = ({ changePage, _id, ...props }) => {
   const refForm = useRef<HTMLFormElement | any>(null);
   const [alert, setAlert] = useState({ display: false, message: "", type: "" });
   const [dataUser, setDataUser] = useState({ data: {}, display: true });
-
   useEffect(() => {
     (async () => {
       if (!dataUser.display) return navigatePage(page.ListUser);
@@ -48,7 +50,6 @@ const UpdateUser: React.FC<UpdateUser<any>> = ({ changePage, _id, ...props }) =>
 
   const submitForm = (data: any, action: any) => {
     const getForm = new FormData(refForm.current);
-
     setTimeout(async () => {
       const editUser = await useApi.putOne<FormData, string>(getForm, _id);
       if (editUser.status !== variableCommon.statusF) {
@@ -82,121 +83,123 @@ const UpdateUser: React.FC<UpdateUser<any>> = ({ changePage, _id, ...props }) =>
       <div className="text-name-add">
         <h3>Edit User</h3><br />
       </div>
-      {alert.display && <Alert severity={alert.type as any} style={{ marginBottom: 5 }}>
+      {alert.display ? <Alert severity={alert.type as any} style={{ marginBottom: 5 }}>
         {alert.message}
-      </Alert>}
+      </Alert> : null}
 
       <Formik
-        initialValues={{ ...dataUser.data, gender: (dataUser.data as any)?.gender + '' } || initialValue}
+        initialValues={{
+          ...dataUser.data,
+          gender: (dataUser.data as any)?.gender + '',
+          role: (dataUser.data as any)?.role + ''
+        } || initialValue}
         onSubmit={submitForm}
         validateOnChange={false}
         validationSchema={validationSchemaUser}
         enableReinitialize
       >
         {formik => {
-          <Form ref={refForm}>
-            <div className="grid-addpage">
-              <div className="section-add">
-                <Card elevation={5}>
-                  <div className="form-input-add">
-                    <div className="inputForm">
-                      <InputText
-                        name="first_name"
-                        label="Họ"
-                        other={{ variant: "standard" }}
-                      />
+          console.log(formik.errors)
+          return (
+            <Form ref={refForm}>
+              <div className="grid-addpage">
+                <div className="section-add">
+                  <Card elevation={5}>
+                    <div className="form-input-add">
+                      <div className="inputForm">
+                        <InputText
+                          name="first_name"
+                          label="Họ"
+                          other={{ variant: "standard", InputLabelProps: { shrink: true } }}
+                        />
+                      </div>
                     </div>
-                  </div>
-                </Card>
+                  </Card>
+                </div>
+                <div>
+                  <Card elevation={5}>
+                    <div className="form-input-add">
+                      <div className="inputForm">
+                        <InputText
+                          name="last_name"
+                          label="Tên"
+                          other={{ variant: "standard", InputLabelProps: { shrink: true } }}
+                        />
+                      </div>
+                    </div>
+                  </Card>
+                </div>
+                <div>
+                  <Card elevation={5}>
+                    <div className="form-input-add">
+                      <div className="inputForm">
+                        <InputText
+                          name="email"
+                          label="Email"
+                          other={{ variant: "standard", InputLabelProps: { shrink: true } }}
+                        />
+                      </div>
+                    </div>
+                  </Card>
+                </div>
+                <div>
+                  <Card elevation={5}>
+                    <div className="form-input-add">
+                      <div className="inputForm">
+                        <RadioField
+                          name="gender"
+                          data={activeOption}
+                          other={{ variant: 'standard' }}
+                        />
+                      </div>
+                    </div>
+                  </Card>
+                </div>
+                <div>
+                  <Card elevation={5}>
+                    <div className="form-input-add">
+                      <div className="inputForm">
+                        <RadioField name='role' label="Quyền" data={selectRole} other={{ variant: "standard" }} />
+                      </div>
+                    </div>
+                  </Card>
+                </div>
+                <div>
+                  <Card elevation={5}>
+                    <div className="form-input-add">
+                      <div className="inputForm">
+                        <FileField
+                          name="image"
+                          label="Image User"
+                          type="file"
+                          other={{ variant: 'standard' }}
+                        />
+                      </div>
+                      <div className="bia-bai-hat-image">
+                        <img src={(dataUser.data as any)?.avatar} alt="" />
+                      </div>
+                    </div>
+                  </Card>
+                  <br />
+                  <LoadingButton
+                    loading={formik.isSubmitting}
+                    variant="contained"
+                    type="submit"
+                  >
+                    Update User
+                  </LoadingButton>
+                  <Button
+                    variant="contained"
+                    color="error"
+                    style={{ marginLeft: 20 }}
+                    onClick={() => { navigatePage(page.ListUser) }}
+                  >
+                    Cancel
+                  </Button>
+                </div>
               </div>
-              <div>
-                <Card elevation={5}>
-                  <div className="form-input-add">
-                    <div className="inputForm">
-                      <InputText
-                        name="last_name"
-                        label="Tên"
-                        other={{ variant: "standard" }}
-                      />
-                    </div>
-                  </div>
-                </Card>
-              </div>
-              <div>
-                <Card elevation={5}>
-                  <div className="form-input-add">
-                    <div className="inputForm">
-                      <InputText
-                        name="email"
-                        label="Email"
-                        other={{ variant: "standard" }}
-                      />
-                    </div>
-                  </div>
-                </Card>
-              </div>
-              <div>
-                <Card elevation={5}>
-                  <div className="form-input-add">
-                    <div className="inputForm">
-                      <RadioField
-                        name="active"
-                        data={activeOption}
-                        other={{ variant: 'standard' }}
-                      />
-                    </div>
-                  </div>
-                </Card>
-              </div>
-              <div>
-                <Card elevation={5}>
-                  <div className="form-input-add">
-                    <div className="inputForm">
-                      <InputText
-                        name="Role"
-                        label="Quyền"
-                        type="number"
-                        other={{ variant: "standard" }}
-                      />
-                    </div>
-                  </div>
-                </Card>
-              </div>
-              <div>
-                <Card elevation={5}>
-                  <div className="form-input-add">
-                    <div className="inputForm">
-                      <FileField
-                        name="image"
-                        label="Image User"
-                        type="file"
-                        other={{ variant: 'standard' }}
-                      />
-                    </div>
-                    <div className="bia-bai-hat-image">
-                      <img src={(dataUser.data as any)?.image} alt="" />
-                    </div>
-                  </div>
-                </Card>
-                <br />
-                <LoadingButton
-                  loading={formik.isSubmitting}
-                  variant="contained"
-                  type="submit"
-                >
-                  Update User
-                </LoadingButton>
-                <Button
-                  variant="contained"
-                  color="error"
-                  style={{ marginLeft: 20 }}
-                  onClick={() => { navigatePage(page.ListUser) }}
-                >
-                  Cancel
-                </Button>
-              </div>
-            </div>
-          </Form>
+            </Form>
+          )
         }}
       </Formik>
     </div>

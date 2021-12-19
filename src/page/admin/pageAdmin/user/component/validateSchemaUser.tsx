@@ -6,6 +6,6 @@ export default Yup.object().shape({
   image: (Yup as any).mixed().requireFile().checkTypeFile().checkSizeFile(),
   email: Yup.string().checkRequire(),
   gender: Yup.string().checkRequire(),
-  role: Yup.number().checkRequireNumber(),
-  address: Yup.string().checkRequire(),
+  role: Yup.number(),
+  // address: Yup.string().checkRequire(),
 })
