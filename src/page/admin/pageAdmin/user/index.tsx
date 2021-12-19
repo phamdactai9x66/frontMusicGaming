@@ -1,11 +1,13 @@
-import React, { useState } from 'react'
-import ListUser from './page/ListUser'
+import React, { useState } from 'react';
+import ListUser from './page/ListUser';
+import UpdateUser from './page/UpdateUser';
 import { useSelector } from "react-redux";
 import { formStateUser } from "redux/user/stateUser";
 import { Redirect } from 'react-router-dom';
 
 export const page = {
-  ListUser: 'ListUser'
+  ListUser: 'ListUser',
+  UpdateUser: 'UpdateUser',
 }
 
 interface IndexUser<T> {
@@ -30,6 +32,9 @@ const IndexUser: React.FC<IndexUser<any>> = ({ ...props }) => {
       case page.ListUser: {
         return <ListUser changePage={changePage} set_id={set_id} />
       }
+      case page.UpdateUser: {
+        return <UpdateUser changePage={changePage} _id={findId} />
+      }
       default: {
         return <ListUser changePage={changePage} set_id={set_id} />
       }
@@ -37,7 +42,7 @@ const IndexUser: React.FC<IndexUser<any>> = ({ ...props }) => {
   }
   return (
     <>
-      {state.user.role && state.user.role < 2 ? <Redirect to={{ pathname: '/admin'}} /> : pageUserList()}
+      {state.user.role && state.user.role < 2 ? <Redirect to={{ pathname: '/admin' }} /> : pageUserList()}
     </>
   )
 }

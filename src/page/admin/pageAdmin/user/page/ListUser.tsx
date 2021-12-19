@@ -82,6 +82,11 @@ const ListUser: React.FC<ListUser<any>> = ({ changePage, set_id, ...props }) => 
     setStateModalUser((value: any) => ({ _id, display: true }))
   }
 
+  const navigatePage = <T extends string>(page: T, _id?: T): void => {
+    changePage(page);
+    if (_id) set_id(_id);
+  }
+
   const onClose = () => {
     setStateModalUser((value: any) => ({ ...value, display: false }))
   }
@@ -183,6 +188,7 @@ const ListUser: React.FC<ListUser<any>> = ({ changePage, set_id, ...props }) => 
                                 <button className="dropbtn">Action</button>
                                 <div className="dropdown-content">
                                   <div onClick={() => { deleteOne(_id) }}><i className="fa fa-trash-o" aria-hidden="true"></i> Delete</div>
+                                  <div onClick={() => { navigatePage(page.UpdateUser, _id) }}><i className="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</div>
                                   <div onClick={() => { onOpen<string>(_id) }}><i className="fa fa-info-circle" aria-hidden="true"></i> More</div>
                                 </div>
                               </div>
