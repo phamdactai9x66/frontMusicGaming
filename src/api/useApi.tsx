@@ -10,6 +10,10 @@ class userApi {
         const url: string = `/user/${_id}`;
         return Axios.get(url)
     }
+    putOne<T extends FormData, Y extends string>(formdata: T, id: Y): Promise<any> {
+        const url: string = `/user/${id}/update`;
+        return AxiosFormdata.put(url, formdata)
+    }
     activeUser<T extends string, Y extends string>(_id: T, hash: Y): Promise<any> {
         const url: string = `/user/verifyUser/${_id}/${hash}`;
         return Axios.put(url)
